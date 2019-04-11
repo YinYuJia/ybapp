@@ -1,13 +1,13 @@
 <template>
     <swipe  v-model="index" :loop='loop' :pagination='pagination' class="itemStyle">
         <swipe-item class="itemStyle">
-            <img src="../../../static/images/StartupPage/01.jpg" alt="">
+            <!-- <img src="../../../static/images/My/My.jpg" alt=""> -->
         </swipe-item>
         <swipe-item class="itemStyle">
-            <img src="../../../static/images/StartupPage/02.jpg" alt="">
+           2
         </swipe-item>
         <swipe-item class="itemStyle">
-            <img src="../../../static/images/StartupPage/03.jpg" alt="">
+           3
         </swipe-item>
     </swipe>
 </template>

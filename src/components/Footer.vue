@@ -2,32 +2,32 @@
     <div class="footer">
         <el-row>
             <el-col :span="4">
-                <router-link to="/IndexComponent">
+                <!-- <router-link to="/IndexComponent"> -->
                     <img src="../../static/images/My/1.png" v-if="'IndexComponent' == info" alt="">
                     <img src="../../static/images/My/11.png" v-else alt="">
                     <p>首页</p>
-                </router-link>
+                <!-- </router-link> -->
             </el-col>
             <el-col :span="4" :offset='1'>
-                <router-link to="/Work">
+                <!-- <router-link to="/Work"> -->
                     <img src="../../static/images/My/2.png" v-if="'Work' == info" alt="">
                     <img src="../../static/images/My/22.png" v-else alt="">
                     <p>办事</p>
-                </router-link>
+                <!-- </router-link> -->
             </el-col>
             <el-col :span="4" :offset='1'>
-                <router-link to='/YiyaoIndex'>
+                <!-- <router-link to='/YiyaoIndex'> -->
                     <img src="../../static/images/My/3.png" v-if="'YiyaoIndex' == info" alt="">
                     <img src="../../static/images/My/33.png" v-else alt="">
                     <p>医药</p>
-                </router-link>
+                <!-- </router-link> -->
             </el-col>
             <el-col :span="4" :offset='1'>
-                <router-link to='/Healthy'>
+                <!-- <router-link to='/Healthy'> -->
                     <img src="../../static/images/My/4.png" v-if="'Healthy' == info" alt="">
                     <img src="../../static/images/My/44.png" v-else alt="">
                     <p>健康</p>
-                </router-link>
+                <!-- </router-link> -->
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to='/My' > -->

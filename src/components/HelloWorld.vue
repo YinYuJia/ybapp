@@ -1,25 +1,29 @@
 <template>
   <div class="hello">
     <v-RotationChart></v-RotationChart>
-    <router-link to='/IndexComponent'>
-      <div class="clickTrun"><img src="../../static/images/StartupPage/start.png" alt=""></div>
+    <router-link to='/first'>
+      <div class="clickTrun"></div>
     </router-link>
     <!-- <router-link to='/first'>go go go！！！</router-link> -->
+    <Footer :info="info"></Footer>
   </div>
 </template>
 
 <script>
   import RotationChart from '../components/lunbotu/RotationChart.vue';
+  import Footer from './Footer.vue'
   export default {
     name: 'HelloWorld',
     data() {
       return {
         msg: 'Welcome to Your Vue.js App',
-        imgHieight: ''
+        imgHieight: '',
+        info:"My"
       }
     },
     components: {
-      'v-RotationChart': RotationChart
+      'v-RotationChart': RotationChart,
+      "Footer":Footer
     },
     created() {
     }
@@ -48,6 +52,8 @@
       width: 180px;
       left: 50%;
       transform: translateX(-50%);
+      background-color: aqua;
+      z-index: 1000;
       img {
         height: 100%;
         width: 100%;
