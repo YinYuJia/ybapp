@@ -1,9 +1,9 @@
 <template>
   <div class="hello">
     <v-RotationChart></v-RotationChart>
-    <router-link to='/first'>
-      <div class="clickTrun"></div>
-    </router-link>
+    <!-- <router-link to='/first'> -->
+      <div class="clickTrun" @click="click"></div>
+    <!-- </router-link> -->
     <!-- <router-link to='/first'>go go go！！！</router-link> -->
     <Footer :info="info"></Footer>
   </div>
@@ -21,11 +21,20 @@
         info:"My"
       }
     },
+    methods:{
+click() {
+  this.$store.dispatch('SET_PRODUCTS', {}); 
+  console.log('this.$store.state.SET_PRODUCTS',this.$store.state.SET_PRODUCTS)
+}
+    },
     components: {
       'v-RotationChart': RotationChart,
       "Footer":Footer
     },
     created() {
+        console.log('this.$store.state.SET_PRODUCTS',this.$store.state.SET_PRODUCTS)
+        console.log('this.$store.getters.SET_PRODUCTS',this.$store.getters.SET_PRODUCTS)
+
     }
   }
 </script>

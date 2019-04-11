@@ -92,7 +92,6 @@
             }
         },
         created() {
-            console.log(this.$store.state.flage)
             if (this.$store.state.flage == 1) {
                 this.flage = 1
             }else{
@@ -110,6 +109,7 @@
         position: fixed;
         bottom: 0;
         left: 0;
+        z-index: 199;
     }
     .el-row {
         // margin-bottom: 20px;
