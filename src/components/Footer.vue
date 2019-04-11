@@ -10,30 +10,30 @@
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to="/Work"> -->
-                    <img src="../../static/images/footer/work.png" v-if="'work' == info.msg" alt="">
-                    <img src="../../static/images/footer/work1.png" v-else alt="">
-                    <p>办事</p>
+                <img src="../../static/images/footer/work.png" v-if="'work' == info.msg" alt="">
+                <img src="../../static/images/footer/work1.png" v-else alt="">
+                <p>办事</p>
                 <!-- </router-link> -->
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to='/YiyaoIndex'> -->
-                    <img src="../../static/images/footer/medicine.png" v-if="'medicine' == info.msg" alt="">
-                    <img src="../../static/images/footer/medicine1.png" v-else alt="">
-                    <p>医药</p>
+                <img src="../../static/images/footer/medicine.png" v-if="'medicine' == info.msg" alt="">
+                <img src="../../static/images/footer/medicine1.png" v-else alt="">
+                <p>医药</p>
                 <!-- </router-link> -->
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to='/Healthy'> -->
-                    <img src="../../static/images/footer/healthy.png" v-if="'healthy' == info.msg" alt="">
-                    <img src="../../static/images/footer/healthy1.png" v-else alt="">
-                    <p>健康</p>
+                <img src="../../static/images/footer/healthy.png" v-if="'healthy' == info.msg" alt="">
+                <img src="../../static/images/footer/healthy1.png" v-else alt="">
+                <p>健康</p>
                 <!-- </router-link> -->
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to='/My' > -->
-                    <img src="../../static/images/footer/my.png" v-if="'my' == info.msg" alt="">
-                    <img src="../../static/images/footer/my1.png" v-else alt="">
-                    <p>我的</p>
+                <img src="../../static/images/footer/my.png" v-if="'my' == info.msg" alt="">
+                <img src="../../static/images/footer/my1.png" v-else alt="">
+                <p>{{set_select}}</p>
                 <!-- </router-link> -->
             </el-col>
         </el-row>
@@ -45,7 +45,8 @@
     export default {
         data() {
             return {
-                flage: ''
+                flage: '',
+                set_select: this.$store.state.SET_SELECT
             }
         },
         components: {
@@ -59,13 +60,24 @@
         },
         methods: {
             TipsTrue: function(a) {
-                console.log(a)
                 this.$emit('fas', "1234")
             },
         },
         created() {
-  
+
         },
+        // 创建一个方法 储存 vuex数据
+        computed: {
+            getUserIcons() {
+                return this.$store.state.SET_SELECT
+            }
+        },
+        // 监听这个方法当之变化的时候重新赋值
+        watch: {
+            getUserIcons(val,OldValue) {
+                this.set_select = val
+            }
+        }
     }
 </script>
 

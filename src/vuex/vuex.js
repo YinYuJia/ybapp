@@ -9,6 +9,7 @@ export default new Vuex.Store({  // 暴露与new vuex
           {name: '耳机', price: 60},
           {name: '显示屏', price: 80}
         ],
+        SET_SELECT:'选项1'
       },
       // 计算属性 getters
       getters:{
@@ -28,11 +29,18 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_PRODUCTS (state, payload ) {
           state.SET_PRODUCTS = payload
         },
+        SET_SELECT (state,payload) {
+          state.SET_SELECT = payload
+        }
       },
 
       actions:{ //添加actions
         SET_PRODUCTS( context, payload ) {
           context.commit( 'SET_PRODUCTS', payload ); //context提交
         },
+        SET_SELECT( context, payload ) {
+          context.commit( 'SET_SELECT', payload ); //context提交
+        },
+
       }
 })

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-button type="primary" @click="iShow">主要按钮</el-button>
-    <el-select v-model="value" placeholder="请选择">
+    <el-select v-model="value" placeholder="请选择" filterable @change = 'onChange'>
       <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
       </el-option>
     </el-select>
@@ -12,7 +12,7 @@
           <el-input v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item label="活动区域">
-          <el-select v-model="form.region" placeholder="请选择活动区域">
+          <el-select v-model="form.region" placeholder="请选择活动区域" >
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
@@ -59,6 +59,7 @@
       <div>{{Bs}}</div>
       <div>{{Cs}}</div>
       <svg-icon icon-class="1"  className = "Svg" />
+      <Footer :info = "infoMse"></Footer>
     </div>
   </div>
 </template>
@@ -86,10 +87,17 @@
 </style>
 
 <script>
+import Footer from './Footer'
   export default {
+    components:{
+'Footer':Footer
+    },
     // 数据集合
     data() {
       return {
+        infoMse:{
+          msg:'work'
+        },
         value: '',
         cont: 50,
         message: "12345389",
@@ -163,8 +171,7 @@
       cont: {
         deep: true,
         handler: function(newValue, oldValue) {
-          console.log('新数据' + newValue)
-          console.log('旧数据' + oldValue)
+          
         }
       },
       delivery: {
@@ -182,20 +189,17 @@
     // 方法集合
     methods: {
       onSubmit() {
-        // alert("33333333333333333333")
-        this.As = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-        this.msg = 1
-        console.log(this.form)
-        console.log(typeof this.resDatas)
-        clearInterval(this.timer)
+        
+      },
+      onChange(value) {
+          this.$store.dispatch('SET_SELECT', value); 
+          
       },
       cancle() {
         this.msg = 0;
         // vuex获取数据
         const m = this.$store.state.products;
         const d = this.$store.getters.Old
-        console.log(m)
-        console.log(d)
       },
       iShow() {
         if (this.ifShow) {
