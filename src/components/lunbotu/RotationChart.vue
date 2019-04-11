@@ -1,7 +1,7 @@
 <template>
     <swipe  v-model="index" :loop='loop' :pagination='pagination' class="itemStyle">
         <swipe-item class="itemStyle">
-            <!-- <img src="../../../static/images/My/My.jpg" alt=""> -->
+           1
         </swipe-item>
         <swipe-item class="itemStyle">
            2

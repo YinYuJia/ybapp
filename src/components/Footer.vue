@@ -2,49 +2,41 @@
     <div class="footer">
         <el-row>
             <el-col :span="4">
-                <!-- <router-link to="/IndexComponent"> -->
-                    <img src="../../static/images/My/1.png" v-if="'IndexComponent' == info" alt="">
-                    <img src="../../static/images/My/11.png" v-else alt="">
+                <router-link to="/first">
+                    <img src="../../static/images/footer/index.png" v-if="'index' == info.msg" alt="">
+                    <img src="../../static/images/footer/index1.png" v-else alt="">
                     <p>首页</p>
-                <!-- </router-link> -->
+                </router-link>
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to="/Work"> -->
-                    <img src="../../static/images/My/2.png" v-if="'Work' == info" alt="">
-                    <img src="../../static/images/My/22.png" v-else alt="">
+                    <img src="../../static/images/footer/work.png" v-if="'work' == info.msg" alt="">
+                    <img src="../../static/images/footer/work1.png" v-else alt="">
                     <p>办事</p>
                 <!-- </router-link> -->
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to='/YiyaoIndex'> -->
-                    <img src="../../static/images/My/3.png" v-if="'YiyaoIndex' == info" alt="">
-                    <img src="../../static/images/My/33.png" v-else alt="">
+                    <img src="../../static/images/footer/medicine.png" v-if="'medicine' == info.msg" alt="">
+                    <img src="../../static/images/footer/medicine1.png" v-else alt="">
                     <p>医药</p>
                 <!-- </router-link> -->
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to='/Healthy'> -->
-                    <img src="../../static/images/My/4.png" v-if="'Healthy' == info" alt="">
-                    <img src="../../static/images/My/44.png" v-else alt="">
+                    <img src="../../static/images/footer/healthy.png" v-if="'healthy' == info.msg" alt="">
+                    <img src="../../static/images/footer/healthy1.png" v-else alt="">
                     <p>健康</p>
                 <!-- </router-link> -->
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to='/My' > -->
-                <div @click="goto" v-if="flage == 1">
-                    <img src="../../static/images/My/5.png" v-if="'My' == info" alt="">
-                    <img src="../../static/images/My/55.png" v-else alt="">
+                    <img src="../../static/images/footer/my.png" v-if="'my' == info.msg" alt="">
+                    <img src="../../static/images/footer/my1.png" v-else alt="">
                     <p>我的</p>
-                </div>
-                <div @click="goto2" v-if="flage == 2">
-                    <img src="../../static/images/My/5.png" v-if="'My' == info" alt="">
-                    <img src="../../static/images/My/55.png" v-else alt="">
-                    <p>我的</p>
-                </div>
                 <!-- </router-link> -->
             </el-col>
         </el-row>
-        <!-- <TipsTrueComponent :message = "message" v-on:TipsTrue = 'TipsTrue' v-if="show" ></TipsTrueComponent> -->
     </div>
 </template>
 
@@ -61,42 +53,18 @@
         },
         props: {
             info: {
-                type: String,
-                default: ''
+                type: Object,
+                default: null
             },
-            message: {
-                type: String,
-                default: ''
-            },
-            mess: {
-                type: String,
-                default: ""
-            },
-            show: {
-                type: Boolean,
-                default: false
-            }
         },
         methods: {
             TipsTrue: function(a) {
                 console.log(a)
                 this.$emit('fas', "1234")
             },
-            goto() {
-               this.$router.push("/Login")
-               this.$store.dispatch('SET_FLAGE', 2); 
-                // this.flage = 2
-            },
-            goto2() {
-               this.$router.push("/My")
-            }
         },
         created() {
-            if (this.$store.state.flage == 1) {
-                this.flage = 1
-            }else{
-                this.flage = 2
-            }
+  
         },
     }
 </script>

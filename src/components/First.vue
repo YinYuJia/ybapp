@@ -58,7 +58,7 @@
       <div>{{As}}</div>
       <div>{{Bs}}</div>
       <div>{{Cs}}</div>
-      <svg-icon icon-class="1" class="Svg"/>
+      <svg-icon icon-class="1"  className = "Svg" />
     </div>
   </div>
 </template>
@@ -76,12 +76,13 @@
     .formListDiv1 {
       background-color: blue;
     }
+    .Svg {
+      height:22.1rem;
+      width:7.5rem;
+    }
   }
-  .Svg {
-    height: 5rem;
-    width: 7.5rem;
-    font-size: 50px;
-  }
+
+
 </style>
 
 <script>

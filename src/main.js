@@ -49,6 +49,8 @@ Vue.config.productionTip = false;
 // vuex 储存数据方法
 // this.$store.dispatch('minusPriceAsync', 30); 
 
+// Svg 图片
+{/* <svg-icon icon-class="1"  className = "Svg" /> */}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

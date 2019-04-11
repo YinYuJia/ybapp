@@ -16,6 +16,9 @@ export default {
             default:""
         }
     },
+    created() {
+      console.log(this.message)
+    },
      methods:{
          MakeShrue() {
              this.$emit('TipsTrue','1')

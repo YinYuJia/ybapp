@@ -16,7 +16,8 @@ export default new Vuex.Store({  // 暴露与new vuex
           let a = state.SET_PRODUCTS.map( product => {
             return {
               name: product.name,
-              price: product.price / 2
+              price: product.price / 2,
+              name2:product.name + (Number(product.price) + 1)
             }
           })
           return a;
