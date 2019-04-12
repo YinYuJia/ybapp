@@ -16,7 +16,9 @@ module.exports = {
     // 殷宇佳
     // host: '192.168.1.113', 
     // 殷宇佳
-    host: '192.168.1.169', 
+    // host: '192.168.1.169', 
+    // 殷宇佳
+    host: '192.168.1.170', 
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
