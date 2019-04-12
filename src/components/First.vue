@@ -1,10 +1,15 @@
 <template>
   <div>
     <el-button type="primary" @click="iShow">主要按钮</el-button>
-    <el-select v-model="value" placeholder="请选择" filterable @change = 'onChange'>
+    <el-select v-model="value" placeholder="请选择"  @change = 'onChange'>
       <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
       </el-option>
     </el-select>
+    <el-cascader
+  :options="optionst"
+  :show-all-levels="false"
+  v-model ="optionsModel"
+></el-cascader>
     <div class="formList " v-if="ifShow">
       <div :class="{formListDiv:true,formListDiv1:form.delivery}">{{cont}}</div>
       <el-form ref="form" :model="form" label-width="80px">
@@ -58,6 +63,7 @@
       <div>{{As}}</div>
       <div>{{Bs}}</div>
       <div>{{Cs}}</div>
+      
       <svg-icon icon-class="1"  className = "Svg" />
       <Footer :info = "infoMse"></Footer>
     </div>
@@ -96,11 +102,13 @@ import Footer from './Footer'
     data() {
       return {
         infoMse:{
-          msg:'work'
+          msg:'work',
         },
         value: '',
         cont: 50,
         message: "12345389",
+        optionsModel:[],
+        optionst:this.$store.state.SET_SELECTARRAY,
         options: [{
           value: '选项1',
           label: '黄金糕'
@@ -138,21 +146,24 @@ import Footer from './Footer'
     },
     // 生命周期发送请求
     created() {
-      const _this = this
-      this.$axios.post('http://192.168.101.62:8001/test/json', {
-        id: 1
-      }).then(function(resData) {
-        _this.resDatas = resData.data
-      }).catch(function(error) {
-        console.log(error)
-      })
-      this.timer = setInterval(() => {
-        this.cont--
-          if (this.cont == 0) {
-            clearInterval(this.timer);
-            console.log('定时器停止')
-          }
-      }, 1000)
+      // const _this = this
+      // this.$axios.post('http://192.168.101.62:8001/test/json', {
+      //   id: 1
+      // }).then(function(resData) {
+      //   _this.resDatas = resData.data
+      // }).catch(function(error) {
+      //   console.log(error)
+      // })
+
+      // 定时器
+      // this.timer = setInterval(() => {
+      //   this.cont--
+      //     if (this.cont == 0) {
+      //       clearInterval(this.timer);
+      //       console.log('定时器停止')
+      //     }
+      // }, 1000)
+      console.log(this.$store.state.SET_SELECTARRAY)
     },
     beforeDestroy() {
       clearInterval(this.timer)
@@ -171,7 +182,9 @@ import Footer from './Footer'
       cont: {
         deep: true,
         handler: function(newValue, oldValue) {
-          
+          this.$store.state.SET_PRODUCTS.map((item,index) => {
+              console.log(item.name + newValue)
+          })
         }
       },
       delivery: {
@@ -189,7 +202,8 @@ import Footer from './Footer'
     // 方法集合
     methods: {
       onSubmit() {
-        
+        console.log(this.form)
+        console.log(this.optionsModel)
       },
       onChange(value) {
           this.$store.dispatch('SET_SELECT', value); 
