@@ -163,7 +163,8 @@ import Footer from './Footer'
       //       console.log('定时器停止')
       //     }
       // }, 1000)
-      console.log(this.$store.state.SET_SELECTARRAY)
+      this.$store.dispatch('SET_SELECTARRAY',this.epFn.ChinaJsonDatas())
+      this.optionst = this.$store.state.SET_SELECTARRAY
     },
     beforeDestroy() {
       clearInterval(this.timer)
