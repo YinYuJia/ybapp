@@ -48,13 +48,12 @@ export default {
 <style lang="less" scoped>
     .IconNav{
         width: 7.5rem;
-        height: 200px;
-        background-color:darkcyan;
+        height: 3.45rem;
 
         .IconList{
             display: flex;
             align-items: center;
-            height: 100px;
+            height: 3.45rem/2;
              
             .IconBox{
                 .IconImg{
