@@ -2,7 +2,7 @@
     <div class="progress">
         <div class="progress-btn">办事进度</div>
         <span class="progress-msg">{{msg}}</span>
-        <embed src="../../../static/images/index/WorkPro_more.svg" type="">
+        <svg-icon icon-class="WorkPro_more" />
     </div>
 </template>
 
@@ -54,7 +54,7 @@ export default {
         color: #000000;
         letter-spacing: 0;
     }
-    embed{
+    .svg-icon{
         display: block;
         height: .3rem;
         width: .3rem;
