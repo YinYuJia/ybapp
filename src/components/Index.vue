@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
-    <h1 class="H1">{{msg}}</h1>
+    <header>
+        
+    </header>
     <Footer :info="info"></Footer>
   </div>
 </template>
