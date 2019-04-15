@@ -1,15 +1,20 @@
 <template>
   <div class="hello">
     <header>
-        
+       <Header></Header>
     </header>
+    <nav class="nav">
+        <Navbar></Navbar>
+    </nav>
     <Footer :info="info"></Footer>
   </div>
 </template>
 
 <script>
-  import RotationChart from '../components/lunbotu/RotationChart.vue';
+  import Header from './commonComponent/Index/Header'
+  import Navbar from './commonComponent/Index/Navbar'
   import Footer from './Footer.vue'
+  
   export default {
     name: 'HelloWorld',
     data() {
@@ -27,7 +32,8 @@
       }
     },
     components: {
-      'v-RotationChart': RotationChart,
+      'Header': Header,
+      'Navbar': Navbar,
       "Footer": Footer
     },
     created() {
@@ -47,8 +53,8 @@
   }
   .hello {
     height: 100%;
-    .H1 {
-      font-size: .3rem;
+    .nav {
+        margin-top: -1px;
     }
     img {
       width: 7.5rem;

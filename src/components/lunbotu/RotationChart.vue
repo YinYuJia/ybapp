@@ -12,30 +12,6 @@
     </swipe>
 </template>
 
-<style lang='less' scoped>
-    img {
-        width: 7.5rem;
-        height: 100%;
-        float: left;
-    }
-    ;
-    .clickTrun {
-        float: left;
-        // background-color: red;
-        height: 70px;
-        width: 150px; //   position: absolute;
-        margin-top: -110px;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        z-index: 10000;
-    }
-    ;
-    .itemStyle {
-        height: 850px;
-        line-height: 850px
-    }
-</style>
-
 <script>
     import '../../common/js/base.js'
     export default {
@@ -67,5 +43,28 @@
         },
     }
 </script>
+
+<style lang='less' scoped>
+    img {
+        width: 7.5rem;
+        height: 100%;
+        float: left;
+    }
+    .clickTrun {
+        float: left;
+        // background-color: red;
+        height: 70px;
+        width: 150px; //   position: absolute;
+        margin-top: -110px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        z-index: 10000;
+    }
+    .itemStyle {
+        height: 850px;
+        line-height: 850px
+    }
+</style>
+
 
 
