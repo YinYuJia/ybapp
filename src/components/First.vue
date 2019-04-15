@@ -1,15 +1,11 @@
 <template>
   <div>
     <el-button type="primary" @click="iShow">主要按钮</el-button>
-    <el-select v-model="value" placeholder="请选择"  @change = 'onChange'>
+    <el-select v-model="value" placeholder="请选择" @change='onChange'>
       <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
       </el-option>
     </el-select>
-    <el-cascader
-  :options="optionst"
-  :show-all-levels="false"
-  v-model ="optionsModel"
-></el-cascader>
+    <el-cascader :options="optionst" :show-all-levels="false" v-model="optionsModel"></el-cascader>
     <div class="formList " v-if="ifShow">
       <div :class="{formListDiv:true,formListDiv1:form.delivery}">{{cont}}</div>
       <el-form ref="form" :model="form" label-width="80px">
@@ -17,7 +13,7 @@
           <el-input v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item label="活动区域">
-          <el-select v-model="form.region" placeholder="请选择活动区域" >
+          <el-select v-model="form.region" placeholder="请选择活动区域">
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
@@ -63,9 +59,8 @@
       <div>{{As}}</div>
       <div>{{Bs}}</div>
       <div>{{Cs}}</div>
-      
-      <svg-icon icon-class="1"  className = "Svg" />
-      <Footer :info = "infoMse"></Footer>
+      <svg-icon icon-class="1" className="Svg" />
+      <Footer :info="infoMse"></Footer>
     </div>
   </div>
 </template>
@@ -84,31 +79,29 @@
       background-color: blue;
     }
     .Svg {
-      height:22.1rem;
-      width:7.5rem;
+      height: 22.1rem;
+      width: 7.5rem;
     }
   }
-
-
 </style>
 
 <script>
-import Footer from './Footer'
+  import Footer from './Footer'
   export default {
-    components:{
-'Footer':Footer
+    components: {
+      'Footer': Footer
     },
     // 数据集合
     data() {
       return {
-        infoMse:{
-          msg:'work',
+        infoMse: {
+          msg: 'work',
         },
         value: '',
         cont: 50,
         message: "12345389",
-        optionsModel:[],
-        optionst:this.$store.state.SET_SELECTARRAY,
+        optionsModel: [],
+        optionst: this.$store.state.SET_SELECTARRAY,
         options: [{
           value: '选项1',
           label: '黄金糕'
@@ -154,7 +147,6 @@ import Footer from './Footer'
       // }).catch(function(error) {
       //   console.log(error)
       // })
-
       // 定时器
       // this.timer = setInterval(() => {
       //   this.cont--
@@ -163,7 +155,7 @@ import Footer from './Footer'
       //       console.log('定时器停止')
       //     }
       // }, 1000)
-      this.$store.dispatch('SET_SELECTARRAY',this.epFn.ChinaJsonDatas())
+      this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas())
       this.optionst = this.$store.state.SET_SELECTARRAY
     },
     beforeDestroy() {
@@ -183,16 +175,15 @@ import Footer from './Footer'
       cont: {
         deep: true,
         handler: function(newValue, oldValue) {
-          this.$store.state.SET_PRODUCTS.map((item,index) => {
-              console.log(item.name + newValue)
+          this.$store.state.SET_PRODUCTS.map((item, index) => {
+            console.log(item.name + newValue)
           })
         }
       },
       delivery: {
         deep: true,
         handler: function(New, Old) {
-          if (New) {
-          }
+          if (New) {}
         }
       }
     },
@@ -207,8 +198,7 @@ import Footer from './Footer'
         console.log(this.optionsModel)
       },
       onChange(value) {
-          this.$store.dispatch('SET_SELECT', value); 
-          
+        this.$store.dispatch('SET_SELECT', value);
       },
       cancle() {
         this.msg = 0;

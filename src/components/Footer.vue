@@ -2,18 +2,18 @@
     <div class="footer">
         <el-row>
             <el-col :span="4">
-                <router-link to="/first">
+                <router-link to="/">
                     <img src="../../static/images/footer/index.png" v-if="'index' == info.msg" alt="">
                     <img src="../../static/images/footer/index1.png" v-else alt="">
                     <p>首页</p>
                 </router-link>
             </el-col>
             <el-col :span="4" :offset='1'>
-                <!-- <router-link to="/Work"> -->
+                <router-link to="/First">
                 <img src="../../static/images/footer/work.png" v-if="'work' == info.msg" alt="">
                 <img src="../../static/images/footer/work1.png" v-else alt="">
                 <p>办事</p>
-                <!-- </router-link> -->
+                </router-link>
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to='/YiyaoIndex'> -->
