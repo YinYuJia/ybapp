@@ -1,7 +1,7 @@
 <template>
     <swipe  v-model="index" :loop='loop' :pagination='pagination' class="itemStyle">
         <swipe-item class="itemStyle">
-           1
+           <img src="../../../static/images/index/Index_RotationChart_HealthyRow.png" alt="">
         </swipe-item>
         <swipe-item class="itemStyle">
            2
@@ -12,6 +12,18 @@
     </swipe>
 </template>
 
+<style lang='less' scoped>
+    img {
+        width: 7.5rem;
+        height: 100%;
+        float: left;
+    }
+
+    .itemStyle {
+        height: 2.1rem;
+    }
+</style>
+
 <script>
     import '../../common/js/base.js'
     export default {
@@ -20,7 +32,7 @@
             return {
                 index: 0, // two way,
                 loop: false,
-                pagination: false
+                pagination: true
             }
         },
         // c-swipe 内部将重新计算 Swipe 的宽度，
@@ -43,28 +55,5 @@
         },
     }
 </script>
-
-<style lang='less' scoped>
-    img {
-        width: 7.5rem;
-        height: 100%;
-        float: left;
-    }
-    .clickTrun {
-        float: left;
-        // background-color: red;
-        height: 70px;
-        width: 150px; //   position: absolute;
-        margin-top: -110px;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        z-index: 10000;
-    }
-    .itemStyle {
-        height: 2.1rem;
-        line-height: 2.1rem;
-    }
-</style>
-
 
 
