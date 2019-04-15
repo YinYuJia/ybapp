@@ -61,8 +61,8 @@
         z-index: 10000;
     }
     .itemStyle {
-        height: 850px;
-        line-height: 850px
+        height: 2.1rem;
+        line-height: 2.1rem;
     }
 </style>
 

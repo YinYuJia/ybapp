@@ -49,6 +49,7 @@ export default {
     .IconNav{
         width: 7.5rem;
         height: 3.45rem;
+        background-color: #ffffff;
 
         .IconList{
             display: flex;

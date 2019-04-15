@@ -1,11 +1,21 @@
 <template>
   <div class="hello">
+      <!-- 头部 -->
     <header>
        <Header></Header>
     </header>
+    <!-- 导航 -->
     <nav class="nav">
         <Navbar></Navbar>
     </nav>
+    <!-- 菜单栏 -->
+    <div class="menu_bar">
+        <MenuBar></MenuBar>
+    </div>
+    <!-- 轮播图 -->
+    <div class="Rotation_chart">
+        <!-- <RotationChart></RotationChart> -->
+    </div>
     <Footer :info="info"></Footer>
   </div>
 </template>
@@ -13,6 +23,8 @@
 <script>
   import Header from './commonComponent/Index/Header'
   import Navbar from './commonComponent/Index/Navbar'
+  import MenuBar from './commonComponent/IconNav'
+  import RotationChart from './lunbotu/RotationChart'
   import Footer from './Footer.vue'
   
   export default {
@@ -34,11 +46,12 @@
     components: {
       'Header': Header,
       'Navbar': Navbar,
+      'MenuBar': MenuBar,
+      'RotationChart': RotationChart,
       "Footer": Footer
     },
     created() {
-      console.log('this.$store.state.SET_PRODUCTS', this.$store.state.SET_PRODUCTS)
-      console.log('this.$store.getters.SET_PRODUCTS', this.$store.getters.SET_PRODUCTS)
+       console.log(MenuBar)
     }
   }
 </script>
@@ -53,27 +66,23 @@
   }
   .hello {
     height: 100%;
+    width: 7.5rem;
+    * {
+        overflow: hidden;
+    }
+    h1 {
+        height: 100px;
+        background-color: #99a9bf;
+    }
     .nav {
         margin-top: -1px;
+        width: 7.5rem;
+        overflow: hidden;
     }
-    img {
-      width: 7.5rem;
-      height: 100%;
-    }
-    ;
-    .clickTrun {
-      position: absolute;
-      top: 694px;
-      height: 40px;
-      width: 180px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: aqua;
-      z-index: 1000;
-      img {
-        height: 100%;
-        width: 100%;
-      }
+    .Rotation_chart {
+        margin-top: .15rem;
+        height: 2.1rem;
+        background-color: #ffffff;
     }
   }
 </style>
