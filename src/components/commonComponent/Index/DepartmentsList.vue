@@ -5,11 +5,11 @@
         <div class="swiper-container bestDiv" >
             
             <div class="swiper-wrapper">
-                <div class="swiper-slide">1</div>
-                <div class="swiper-slide">2</div>
-                <div class="swiper-slide">3</div>
-                <div class="swiper-slide">4</div>
-                <div class="swiper-slide">5</div>
+                <div class="swiper-slide  swiper-slide1">1</div>
+                <div class="swiper-slide swiper-slide1">2</div>
+                <div class="swiper-slide swiper-slide1">3</div>
+                <div class="swiper-slide swiper-slide1">4</div>
+                <div class="swiper-slide swiper-slide1">5</div>
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
@@ -66,6 +66,10 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
+    }
+    .swiper-slide1 {
+        border-radius: .04rem;
+        border: 2px solid rgba(0,0,0,0.20);
     }
 </style>
 
