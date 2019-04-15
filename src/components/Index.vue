@@ -11,6 +11,7 @@
     <!-- 菜单栏 -->
     <div class="menu_bar">
         <MenuBar></MenuBar>
+        <WorkProgress></WorkProgress>
     </div>
     <!-- 轮播图 -->
     <div class="Rotation_chart">
@@ -23,6 +24,7 @@
 <script>
   import Header from './commonComponent/Index/Header'
   import Navbar from './commonComponent/Index/Navbar'
+  import WorkProgress from './commonComponent/WorkProgress'
   import MenuBar from './commonComponent/IconNav'
   import RotationChart from './lunbotu/RotationChart'
   import Footer from './Footer.vue'
@@ -48,7 +50,8 @@
       'Navbar': Navbar,
       'MenuBar': MenuBar,
       'RotationChart': RotationChart,
-      "Footer": Footer
+      "Footer": Footer,
+      "WorkProgress": WorkProgress
     },
     created() {
        console.log(MenuBar)
