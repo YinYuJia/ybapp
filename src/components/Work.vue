@@ -5,13 +5,14 @@
        <Header></Header>
     </header>
 
+    <Service></Service>
     <Footer :info="info"></Footer>
   </div>
 </template>
 
 <script>
   import Header from './commonComponent/Work/Header'
-
+  import Service from './commonComponent/Work/Service'
   import Footer from './Footer.vue'
   
   export default {
@@ -32,7 +33,7 @@
     },
     components: {
       'Header': Header,
-
+      'Service': Service,
       "Footer": Footer,
 
     },
