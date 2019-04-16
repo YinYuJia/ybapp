@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
       <!-- 头部 -->
-    <header>
+    <header class="header">
        <Header></Header>
     </header>
     <!-- 导航 -->
@@ -15,7 +15,11 @@
     </div>
     <!-- 轮播图 -->
     <div class="Rotation_chart">
-        <!-- <RotationChart></RotationChart> -->
+        <DepartmentsList Propmsg = "Healthy"></DepartmentsList>
+    </div>
+    <!-- 科室列表 -->
+    <div class="departments_list">
+        <DepartmentsList Propmsg = "DepartmentsList"></DepartmentsList>
     </div>
     <!-- 机构、医师、药店分类 -->
     <div class="Classified_nav">
@@ -32,6 +36,7 @@
   import MenuBar from './commonComponent/IconNav'
   import RotationChart from './lunbotu/RotationChart'
   import ClassifiedNav from './commonComponent/Index/Classified'
+  import DepartmentsList from './commonComponent/Index/DepartmentsList'
   import Footer from './Footer.vue'
   
   export default {
@@ -55,6 +60,7 @@
       'Navbar': Navbar,
       'MenuBar': MenuBar,
       'RotationChart': RotationChart,
+      'DepartmentsList':DepartmentsList,
       "Footer": Footer,
       "WorkProgress": WorkProgress,
       "ClassifiedNav": ClassifiedNav
@@ -76,22 +82,25 @@
   .hello {
     height: 100%;
     width: 7.5rem;
-    * {
+    .header {
         overflow: hidden;
-    }
-    h1 {
-        height: 100px;
-        background-color: #99a9bf;
     }
     .nav {
         margin-top: -1px;
         width: 7.5rem;
         overflow: hidden;
     }
+    .menu_bar {
+        overflow: hidden;
+    }
     .Rotation_chart {
-        margin-top: .15rem;
-        height: 2.1rem;
-        background-color: #ffffff;
+        margin-top: .25rem;
+        // height: 2.1rem;
+        // background-color: #ffffff;
+    }
+    .departments_list {
+        margin-top: 100px;
+        background-color: yellow;
     }
     .Classified_nav {
         margin-top: .15rem;
