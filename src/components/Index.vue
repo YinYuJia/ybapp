@@ -17,6 +17,10 @@
     <div class="Rotation_chart">
         <DepartmentsList Propmsg = "Healthy"></DepartmentsList>
     </div>
+    <!-- 机构、医师、药店分类 -->
+    <div class="Classified_nav">
+        <ClassifiedNav></ClassifiedNav>
+    </div>
     <!-- 科室列表 -->
     <div class="departments_list">
         <DepartmentsList Propmsg = "DepartmentsList"></DepartmentsList>
@@ -38,6 +42,7 @@
   import WorkProgress from './commonComponent/WorkProgress'
   import MenuBar from './commonComponent/IconNav'
   import RotationChart from './lunbotu/RotationChart'
+  import ClassifiedNav from './commonComponent/Index/Classified'
   import DepartmentsList from './commonComponent/Index/DepartmentsList'
   import Footer from './Footer.vue'
   
@@ -65,6 +70,7 @@
       'DepartmentsList':DepartmentsList,
       "Footer": Footer,
       "WorkProgress": WorkProgress,
+      "ClassifiedNav": ClassifiedNav
     },
     created() {
        console.log(MenuBar)
