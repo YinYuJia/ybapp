@@ -15,7 +15,7 @@
     </div>
     <!-- 轮播图 -->
     <div class="Rotation_chart">
-        <DepartmentsList Propmsg = "Healthy"></DepartmentsList>
+        <RotationChart Propmsg = "Healthy"></RotationChart>
     </div>
     <!-- 机构、医师、药店分类 -->
     <div class="Classified_nav">
@@ -23,11 +23,11 @@
     </div>
     <!-- 科室列表 -->
     <div class="departments_list">
-        <DepartmentsList Propmsg = "DepartmentsList"></DepartmentsList>
+        <RotationChart Propmsg = "DepartmentsList"></RotationChart>
     </div>
     <!-- 预防轮播图 -->
     <div class="Rotation_chart2">
-        <DepartmentsList Propmsg = "Rotation_chart2"></DepartmentsList>
+        <RotationChart Propmsg = "Rotation_chart2"></RotationChart>
     </div>
     <!-- 底部提示信息 -->
     <div class="bottom">
@@ -40,12 +40,12 @@
 <script>
   import Header from './commonComponent/Index/Header'
   import Navbar from './commonComponent/Index/Navbar'
-  import WorkProgress from './commonComponent/WorkProgress'
-  import MenuBar from './commonComponent/IconNav'
-  import RotationChart from './lunbotu/RotationChart'
+  import WorkProgress from './commonComponent/Index/WorkProgress'
+  import MenuBar from './commonComponent/Index/IconNav'
   import ClassifiedNav from './commonComponent/Index/Classified'
   import DepartmentsList from './commonComponent/Index/DepartmentsList'
   import HintMsg from './commonComponent/Index/HintMsg'
+  import RotationChart from './commonComponent/Index/RotationChart'
   import Footer from './Footer.vue'
   
   export default {
@@ -68,8 +68,7 @@
       'Header': Header,
       'Navbar': Navbar,
       'MenuBar': MenuBar,
-      'RotationChart': RotationChart,
-      'DepartmentsList':DepartmentsList,
+      'RotationChart':RotationChart,
       "Footer": Footer,
       "WorkProgress": WorkProgress,
       "ClassifiedNav": ClassifiedNav,
@@ -104,20 +103,22 @@
         overflow: hidden;
     }
     .Rotation_chart {
-        margin-top: .25rem;
+        margin-top: .15rem;
         overflow: hidden;
         // height: 2.1rem;
         // background-color: #ffffff;
     }
-  
+  .Classified_nav {
+    margin-top: .15rem;
+  }
     .departments_list {
         overflow: hidden;
-        margin-top: 20px;
+        margin-top: .15rem;
         background-color: #ffffff;
         padding-left: .28rem;
     }
       .Rotation_chart2 {
-        margin-top: .25rem;
+        margin-top: .15rem;
         overflow: hidden;
         height: 2.8rem;
         background-color: white;        // height: 2.1rem;
