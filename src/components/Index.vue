@@ -25,6 +25,13 @@
     <div class="departments_list">
         <DepartmentsList Propmsg = "DepartmentsList"></DepartmentsList>
     </div>
+    <!-- 预防轮播图 -->
+    <div class="Rotation_chart2">
+        <DepartmentsList Propmsg = "Rotation_chart2"></DepartmentsList>
+    </div>
+    <div class="bottom">
+      
+    </div>
     <Footer :info="info"></Footer>
   </div>
 </template>
@@ -94,16 +101,28 @@
         overflow: hidden;
     }
     .Rotation_chart {
-        margin-top: .15rem;
+        margin-top: .25rem;
+        overflow: hidden;
         // height: 2.1rem;
         // background-color: #ffffff;
     }
-    .Classified_nav {
-        margin-top: .15rem;
-    }
+  
     .departments_list {
-        margin-top: 100px;
-        background-color: yellow;
+        overflow: hidden;
+        margin-top: 20px;
+        background-color: #ffffff;
+        padding-left: .28rem;
+    }
+      .Rotation_chart2 {
+        margin-top: .25rem;
+        overflow: hidden;
+        height: 2.8rem;
+        background-color: white;        // height: 2.1rem;
+        // background-color: #ffffff;
+    }
+    .bottom {
+      overflow: hidden;
+      height: 300px;
     }
   }
 </style>
