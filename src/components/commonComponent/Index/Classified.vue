@@ -43,14 +43,13 @@ export default {
             box-sizing: border-box;
 
             .hos_title{
-                width: 1.48rem;
                 height: .45rem;
+                width: 1.48rem;
                 text-align: left;
                 font-family: PingFangSC-Medium;
                 font-size: .32rem;
                 color: #278DFF;
                 letter-spacing: 0;
-                text-align: center;
                 position: absolute;
                 top: .36rem;
                 left: .26rem;
