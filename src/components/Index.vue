@@ -17,13 +17,13 @@
     <div class="Rotation_chart">
         <DepartmentsList Propmsg = "Healthy"></DepartmentsList>
     </div>
-    <!-- 科室列表 -->
-    <div class="departments_list">
-        <DepartmentsList Propmsg = "DepartmentsList"></DepartmentsList>
-    </div>
     <!-- 机构、医师、药店分类 -->
     <div class="Classified_nav">
         <ClassifiedNav></ClassifiedNav>
+    </div>
+    <!-- 科室列表 -->
+    <div class="departments_list">
+        <DepartmentsList Propmsg = "DepartmentsList"></DepartmentsList>
     </div>
     <Footer :info="info"></Footer>
   </div>
@@ -94,16 +94,16 @@
         overflow: hidden;
     }
     .Rotation_chart {
-        margin-top: .25rem;
+        margin-top: .15rem;
         // height: 2.1rem;
         // background-color: #ffffff;
+    }
+    .Classified_nav {
+        margin-top: .15rem;
     }
     .departments_list {
         margin-top: 100px;
         background-color: yellow;
-    }
-    .Classified_nav {
-        margin-top: .15rem;
     }
   }
 </style>
