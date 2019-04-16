@@ -39,9 +39,8 @@
 <script>
   import Header from './commonComponent/Index/Header'
   import Navbar from './commonComponent/Index/Navbar'
-  import WorkProgress from './commonComponent/WorkProgress'
-  import MenuBar from './commonComponent/IconNav'
-  import RotationChart from './lunbotu/RotationChart'
+  import WorkProgress from './commonComponent/Index/WorkProgress'
+  import MenuBar from './commonComponent/Index/IconNav'
   import ClassifiedNav from './commonComponent/Index/Classified'
   import DepartmentsList from './commonComponent/Index/DepartmentsList'
   import Footer from './Footer.vue'
@@ -66,7 +65,6 @@
       'Header': Header,
       'Navbar': Navbar,
       'MenuBar': MenuBar,
-      'RotationChart': RotationChart,
       'DepartmentsList':DepartmentsList,
       "Footer": Footer,
       "WorkProgress": WorkProgress,
@@ -101,20 +99,22 @@
         overflow: hidden;
     }
     .Rotation_chart {
-        margin-top: .25rem;
+        margin-top: .15rem;
         overflow: hidden;
         // height: 2.1rem;
         // background-color: #ffffff;
     }
-  
+  .Classified_nav {
+    margin-top: .15rem;
+  }
     .departments_list {
         overflow: hidden;
-        margin-top: 20px;
+        margin-top: .15rem;
         background-color: #ffffff;
         padding-left: .28rem;
     }
       .Rotation_chart2 {
-        margin-top: .25rem;
+        margin-top: .15rem;
         overflow: hidden;
         height: 2.8rem;
         background-color: white;        // height: 2.1rem;
