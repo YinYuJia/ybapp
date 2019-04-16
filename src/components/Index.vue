@@ -17,6 +17,10 @@
     <div class="Rotation_chart">
         <!-- <RotationChart></RotationChart> -->
     </div>
+    <!-- 机构、医师、药店分类 -->
+    <div class="Classified_nav">
+        <ClassifiedNav></ClassifiedNav>
+    </div>
     <Footer :info="info"></Footer>
   </div>
 </template>
@@ -27,6 +31,7 @@
   import WorkProgress from './commonComponent/WorkProgress'
   import MenuBar from './commonComponent/IconNav'
   import RotationChart from './lunbotu/RotationChart'
+  import ClassifiedNav from './commonComponent/Index/Classified'
   import Footer from './Footer.vue'
   
   export default {
@@ -51,7 +56,8 @@
       'MenuBar': MenuBar,
       'RotationChart': RotationChart,
       "Footer": Footer,
-      "WorkProgress": WorkProgress
+      "WorkProgress": WorkProgress,
+      "ClassifiedNav": ClassifiedNav
     },
     created() {
        console.log(MenuBar)
@@ -86,6 +92,9 @@
         margin-top: .15rem;
         height: 2.1rem;
         background-color: #ffffff;
+    }
+    .Classified_nav {
+        margin-top: .15rem;
     }
   }
 </style>
