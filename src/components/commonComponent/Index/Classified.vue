@@ -1,22 +1,24 @@
 <template>
-    <div class="Classified">
-        <!-- 左侧 -->
-        <div class="hospital">
-            <div class="hos_title">医疗机构</div>
-            <div class="hos_text">全省医院直达</div>
-            <div class="hos_icon"><svg-icon icon-class="Classified_hospital" /></div>
-        </div>
-        <!-- 右侧 -->
-        <div class="doc_store">
-            <div class="doctor">
-                <div class="doc_title">专家医师</div>
-                <div class="doc_text">专家医师就在您身边</div>
-                <div class="doc_icon"><svg-icon icon-class="Classified_doctor" /></div>
+    <div>
+        <div class="Classified" v-if="Types == 'index'">
+            <!-- 左侧 -->
+            <div class="hospital">
+                <div class="hos_title">医疗机构</div>
+                <div class="hos_text">全省医院直达</div>
+                <div class="hos_icon"><svg-icon icon-class="Classified_hospital" /></div>
             </div>
-            <div class="store">
-                <div class="store_title">优质药店</div>
-                <div class="store_text">您掌中的药店</div>
-                <div class="store_icon"><svg-icon icon-class="Classified_store" /></div>
+            <!-- 右侧 -->
+            <div class="doc_store">
+                <div class="doctor">
+                    <div class="doc_title">专家医师</div>
+                    <div class="doc_text">专家医师就在您身边</div>
+                    <div class="doc_icon"><svg-icon icon-class="Classified_doctor" /></div>
+                </div>
+                <div class="store">
+                    <div class="store_title">优质药店</div>
+                    <div class="store_text">您掌中的药店</div>
+                    <div class="store_icon"><svg-icon icon-class="Classified_store" /></div>
+                </div>
             </div>
         </div>
     </div>
@@ -24,7 +26,12 @@
 
 <script>
 export default {
-    
+    props: {
+        Types: {
+            type: String,
+            default: ""
+        }
+    }
 }
 </script>
 

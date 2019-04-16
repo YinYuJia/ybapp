@@ -19,7 +19,7 @@
     </div>
     <!-- 机构、医师、药店分类 -->
     <div class="Classified_nav">
-        <ClassifiedNav></ClassifiedNav>
+        <ClassifiedNav Types = "index"></ClassifiedNav>
     </div>
     <!-- 科室列表 -->
     <div class="departments_list">
