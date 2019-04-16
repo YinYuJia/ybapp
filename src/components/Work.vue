@@ -8,7 +8,10 @@
     <nav class="nav">
          <Navbar PropMsg="WorkNav"></Navbar>
     </nav>
-
+    <!-- 我的事项 -->
+    <div class="my_items">
+      <MyItems></MyItems>
+    </div>
     <!-- 客服、指南 -->
     <div class="service_guide">
       <Service></Service>
@@ -25,6 +28,7 @@
 <script>
   import Header from './commonComponent/Work/Header'
   import Navbar from './commonComponent/Index/NavBar.vue'
+  import MyItems from './commonComponent/Work/MyItems'
   import Service from './commonComponent/Work/Service'
   import ClassifiedNav from './commonComponent/Index/Classified'
 
@@ -49,6 +53,7 @@
     components: {
       'Header': Header,
       'Navbar': Navbar,
+      'MyItems': MyItems,
       'Service': Service,
       'ClassifiedNav': ClassifiedNav,
 
@@ -79,6 +84,9 @@
         padding-left: 1rem;
         padding-right: 1rem;
         background-color: #ffffff;
+    }
+    .my_items{
+        margin-top: .15rem;
     }
     .service_guide{
         margin-top: .15rem;
