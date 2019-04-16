@@ -155,6 +155,8 @@
       //       console.log('定时器停止')
       //     }
       // }, 1000)
+            console.log('this.$store.state.SET_PRODUCTS', this.$store.state.SET_PRODUCTS)
+      console.log('this.$store.getters.SET_PRODUCTS', this.$store.getters.SET_PRODUCTS)
       this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas())
       this.optionst = this.$store.state.SET_SELECTARRAY
     },

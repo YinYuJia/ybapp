@@ -45,10 +45,14 @@
             <div class="swiper-container2 bestDiv1">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" style="background-color:#0f0">
-                        <!-- <img src="../../../../static/images/index/Index_RotationChart_HealthyRow.png" alt=""> -->
+                        <img src="../../../../static/images/index/01.png" alt="">
                     </div>
-                    <div class="swiper-slide" style="background-color:red">2</div>
-                    <div class="swiper-slide" style="background-color:yellow">3</div>
+                    <div class="swiper-slide" style="background-color:red">
+                         <img src="../../../../static/images/index/02.png" alt="">
+                    </div>
+                    <div class="swiper-slide" style="background-color:yellow">
+                         <img src="../../../../static/images/index/03.png" alt="">
+                    </div>
                 </div>
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
@@ -99,6 +103,7 @@
         text-align: center;
         font-size: .18rem;
         background: #fff;
+        
         /* Center slide text vertically */
         display: -webkit-box;
         display: -ms-flexbox;
@@ -133,6 +138,11 @@
             width: .8rem;
             height: 1rem;
             margin-top: .7rem;
+        }
+    }
+    .swiper-container2 {
+        img {
+            width: 100%;
         }
     }
 </style>
