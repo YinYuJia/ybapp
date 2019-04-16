@@ -37,6 +37,9 @@
             margin-bottom: 0;
         }
     }
+    .el-input--prefix .el-input__inner {
+        background-color: red;
+    }
     .el-select {
         display: block;
         top: 50%;

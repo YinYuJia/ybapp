@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="bestDiv" v-if="PropMsg == 'IndexNav'"> 
+        <div class="bestDiv" v-if="PropMsg == 'IndexNav'">
             <el-row :gutter="20">
                 <el-col :span="8">
-                    <div class="grid-content bg-purple ">
+                    <div class="grid-content bg-purple " @click="Test">
                         <svg-icon icon-class="Index_nav_SweepCode" className="Index_nav_SweepCode" />
                         <p class="p">扫一扫</p>
                     </div>
@@ -22,7 +22,6 @@
                 </el-col>
             </el-row>
         </div>
-
         <div class="bestDiv2" v-if="PropMsg == 'WorkNav'">
             <el-row :gutter="20">
                 <el-col :span="8">
@@ -52,7 +51,6 @@
     .bestDiv {
         background-color: #05AEF0;
     }
-
     .el-row {
         margin-bottom: 20px;
         overflow: hidden;
@@ -84,7 +82,7 @@
     }
     .p2 {
         font-size: .24rem;
-        color: rgba(0,0,0,.65);
+        color: rgba(0, 0, 0, .65);
         font-family: 'PingFangSC-Regular';
     }
     .Index_nav_payment {
@@ -116,10 +114,21 @@
                 value: ''
             }
         },
-        props:{
-            PropMsg:{
-                type:String,
-                default:""
+        props: {
+            PropMsg: {
+                type: String,
+                default: ""
+            }
+        },
+        methods: {
+            Test() {
+                this.$axios.post('http://192.168.1.169:8080/zjybapp/test/info', {
+                    id:1
+                }).then(function(resData) {
+                    console.log(resData)
+                }).catch(function(error) {
+                    console.log(error)
+                })
             }
         }
     }

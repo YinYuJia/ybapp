@@ -117,7 +117,7 @@
                     span {
                         display: block;
                         opacity: .65;
-                        font-family: PingFangSC-Regular;
+                        font-family: 'PingFangSC-Regular';
                         letter-spacing: 0;
                         color: #000;
                         font-size: .24rem;
