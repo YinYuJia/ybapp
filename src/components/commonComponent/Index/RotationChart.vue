@@ -45,13 +45,13 @@
             <div class="swiper-container2 bestDiv1">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" style="background-color:#0f0">
-                        <img src="../../../../static/images/index/2.png" alt="">
+                        <img src="../../../../static/images/index/01.png" alt="">
                     </div>
                     <div class="swiper-slide" style="background-color:red">
-                         <img src="../../../../static/images/index/2.png" alt="">
+                         <img src="../../../../static/images/index/02.png" alt="">
                     </div>
                     <div class="swiper-slide" style="background-color:yellow">
-                         <img src="../../../../static/images/index/2.png" alt="">
+                         <img src="../../../../static/images/index/03.png" alt="">
                     </div>
                 </div>
                 <!-- Add Pagination -->
@@ -103,6 +103,7 @@
         text-align: center;
         font-size: .18rem;
         background: #fff;
+        
         /* Center slide text vertically */
         display: -webkit-box;
         display: -ms-flexbox;
