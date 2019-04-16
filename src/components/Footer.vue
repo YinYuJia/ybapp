@@ -9,18 +9,18 @@
                 </router-link>
             </el-col>
             <el-col :span="4" :offset='1'>
-                <router-link to="/First">
+                <router-link to="/Work">
                 <img src="../../static/images/footer/work.png" v-if="'work' == info.msg" alt="">
                 <img src="../../static/images/footer/work1.png" v-else alt="">
                 <p>办事</p>
                 </router-link>
             </el-col>
             <el-col :span="4" :offset='1'>
-                <!-- <router-link to='/YiyaoIndex'> -->
+                <router-link to='/first'>
                 <img src="../../static/images/footer/medicine.png" v-if="'medicine' == info.msg" alt="">
                 <img src="../../static/images/footer/medicine1.png" v-else alt="">
                 <p>医药</p>
-                <!-- </router-link> -->
+                </router-link>
             </el-col>
             <el-col :span="4" :offset='1'>
                 <!-- <router-link to='/Healthy'> -->
