@@ -29,8 +29,9 @@
     <div class="Rotation_chart2">
         <DepartmentsList Propmsg = "Rotation_chart2"></DepartmentsList>
     </div>
+    <!-- 底部提示信息 -->
     <div class="bottom">
-      
+        <HintMsg></HintMsg>
     </div>
     <Footer :info="info"></Footer>
   </div>
@@ -44,6 +45,7 @@
   import RotationChart from './lunbotu/RotationChart'
   import ClassifiedNav from './commonComponent/Index/Classified'
   import DepartmentsList from './commonComponent/Index/DepartmentsList'
+  import HintMsg from './commonComponent/Index/HintMsg'
   import Footer from './Footer.vue'
   
   export default {
@@ -70,7 +72,8 @@
       'DepartmentsList':DepartmentsList,
       "Footer": Footer,
       "WorkProgress": WorkProgress,
-      "ClassifiedNav": ClassifiedNav
+      "ClassifiedNav": ClassifiedNav,
+      "HintMsg": HintMsg
     },
     created() {
        console.log(MenuBar)
@@ -121,8 +124,7 @@
         // background-color: #ffffff;
     }
     .bottom {
-      overflow: hidden;
-      height: 300px;
+      margin-bottom: 70px;
     }
   }
 </style>
