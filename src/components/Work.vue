@@ -4,10 +4,16 @@
     <header class="header">
        <Header></Header>
     </header>
-     
+     <!-- 导航 -->
     <nav class="nav">
          <Navbar PropMsg="WorkNav"></Navbar>
     </nav>
+    <!-- 菜单栏 -->
+    <div class="nav_list">
+         <!-- Work_NavList -->
+         <NavList PropsMsg = "Work_NavList"></NavList>
+    </div>
+
 
     <Footer :info="info"></Footer>
   </div>
@@ -15,7 +21,8 @@
 
 <script>
   import Header from './commonComponent/Work/Header'
-  import Navbar from './commonComponent/Index/NavBar.vue'
+  import Navbar from './commonComponent/Index/Navbar.vue'
+  import NavList from './commonComponent/Index/IconNav.vue'
 
   import Footer from './Footer.vue'
   
@@ -38,6 +45,7 @@
     components: {
       'Header': Header,
       'Navbar': Navbar,
+      'NavList': NavList,
 
       "Footer": Footer,
 
@@ -66,6 +74,9 @@
         padding-left: 1rem;
         padding-right: 1rem;
         background-color: #ffffff;
+    }
+    .nav_list {
+        margin-top: .15rem;
     }
   }
 </style>
