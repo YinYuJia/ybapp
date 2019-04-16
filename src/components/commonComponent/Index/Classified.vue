@@ -45,6 +45,7 @@ export default {
             .hos_title{
                 width: 1.28rem;
                 height: .45rem;
+                text-align: left;
                 font-family: PingFangSC-Medium;
                 font-size: .32rem;
                 color: #278DFF;
@@ -93,7 +94,8 @@ export default {
 
                 .doc_title{
                     height: .45rem;
-                    width: 1.28rem;
+                    width: 1.48rem;
+                    text-align: left;
                     opacity: 0.85;
                     font-family: PingFangSC-Medium;
                     font-size: .32rem;
@@ -130,7 +132,8 @@ export default {
 
                 .store_title{
                     height: .45rem;
-                    width: 1.28rem;
+                    width: 1.48rem;
+                    text-align: left;
                     opacity: 0.85;
                     font-family: PingFangSC-Medium;
                     font-size: .32rem;
