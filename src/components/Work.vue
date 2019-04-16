@@ -9,15 +9,24 @@
          <Navbar PropMsg="WorkNav"></Navbar>
     </nav>
 
-    <Service></Service>
+    <!-- 客服、指南 -->
+    <div class="service_guide">
+      <Service></Service>
+    </div>
+    <!-- 药店分类 -->
+    <div class="classified_nav">
+      <ClassifiedNav Types = "work"></ClassifiedNav>
+    </div>
+    
     <Footer :info="info"></Footer>
   </div>
 </template>
 
 <script>
   import Header from './commonComponent/Work/Header'
-  import Service from './commonComponent/Work/Service'
   import Navbar from './commonComponent/Index/NavBar.vue'
+  import Service from './commonComponent/Work/Service'
+  import ClassifiedNav from './commonComponent/Index/Classified'
 
   import Footer from './Footer.vue'
   
@@ -39,8 +48,9 @@
     },
     components: {
       'Header': Header,
-      'Service': Service,
       'Navbar': Navbar,
+      'Service': Service,
+      'ClassifiedNav': ClassifiedNav,
 
       "Footer": Footer,
 
@@ -69,6 +79,12 @@
         padding-left: 1rem;
         padding-right: 1rem;
         background-color: #ffffff;
+    }
+    .service_guide{
+        margin-top: .15rem;
+    }
+    .classified_nav{
+      margin-top: .15rem;
     }
   }
 </style>
