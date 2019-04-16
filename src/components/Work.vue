@@ -4,6 +4,10 @@
     <header class="header">
        <Header></Header>
     </header>
+     
+    <nav class="nav">
+         <Navbar PropMsg="WorkNav"></Navbar>
+    </nav>
 
     <Footer :info="info"></Footer>
   </div>
@@ -11,6 +15,7 @@
 
 <script>
   import Header from './commonComponent/Work/Header'
+  import Navbar from './commonComponent/Index/NavBar.vue'
 
   import Footer from './Footer.vue'
   
@@ -32,6 +37,7 @@
     },
     components: {
       'Header': Header,
+      'Navbar': Navbar,
 
       "Footer": Footer,
 
@@ -55,6 +61,11 @@
     width: 7.5rem;
     .header {
         overflow: hidden;
+    }
+    .nav {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #ffffff;
     }
   }
 </style>
