@@ -1,20 +1,23 @@
 <template>
     <div class="bestDiv">
-        <el-row :gutter="20">
-            <el-col :span="7">
+        <el-row >
+            <el-col :span="6">
                 <div class="grid-content bg-purple Row1 first">
-                    <el-select v-model="value" placeholder="请选择">
-                        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                    <el-select v-model="value" style="width:90%">
+                        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" >
                         </el-option>
                     </el-select>
                 </div>
             </el-col>
-            <el-col :span="10">
+            <el-col :span="15" style="line-height:0">
                 <div class="grid-content bg-purple Row2">
-                    1
+                    <!-- prefix-icon="el-icon-search" -->
+                     <el-input   placeholder="请输入搜索内容" v-model="search" class="Row2_input">
+                         <i slot="prefix" class="el-input__icon el-icon-search Icon"></i>
+                     </el-input>
                 </div>
             </el-col>
-            <el-col :span="7">
+            <el-col :span="3">
                 <div class="grid-content bg-purple Row3 first">
                     <svg-icon icon-class="Index_Message" className="Index_Message" />
                 </div>
@@ -38,6 +41,12 @@
         display: block;
         top: 50%;
         transform: translateY(-50%);
+        width: 100%;
+    }
+    .el-input {
+          display: block;
+        top: 53%;
+        transform: translateY(-50%);
     }
     .el-col {
         border-radius: 4px;
@@ -56,16 +65,18 @@
     .Row1 {
         height: 1rem;
         text-align: left;
-                    .Index_Search {
-            text-align: left;
-            margin-left: .23rem;
-            height: .6rem;
-            width: .6rem;
-        }
     }
+    .el-icon-search {
+        font-size: .48rem;
+    }
+     .el-input__icon {
+         line-height: .94rem;
+     }
     .Row2 {
         height: 1rem;
-        text-align: center
+        line-height: 1rem;
+        text-align: center;
+        position: relative; 
     }
     .Row3 {
         height: 1rem;
@@ -74,7 +85,7 @@
             text-align: center;
             height: .6rem;
             width: .6rem;
-            margin-right: .23rem;
+            margin-right: .20rem;
         }
     }
 
@@ -101,7 +112,8 @@
                     value: '选项5',
                     label: '北京烤鸭'
                 }],
-                value: ''
+                value: '',
+                search:''
             }
         }
     }

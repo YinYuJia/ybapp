@@ -4,6 +4,10 @@
     <header class="header">
        <Header></Header>
     </header>
+     
+    <nav class="nav">
+         <Navbar PropMsg="WorkNav"></Navbar>
+    </nav>
 
     <Service></Service>
     <Footer :info="info"></Footer>
@@ -13,6 +17,8 @@
 <script>
   import Header from './commonComponent/Work/Header'
   import Service from './commonComponent/Work/Service'
+  import Navbar from './commonComponent/Index/NavBar.vue'
+
   import Footer from './Footer.vue'
   
   export default {
@@ -34,6 +40,8 @@
     components: {
       'Header': Header,
       'Service': Service,
+      'Navbar': Navbar,
+
       "Footer": Footer,
 
     },
@@ -56,6 +64,11 @@
     width: 7.5rem;
     .header {
         overflow: hidden;
+    }
+    .nav {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: #ffffff;
     }
   }
 </style>

@@ -6,7 +6,7 @@
     </header>
     <!-- 导航 -->
     <nav class="nav">
-        <Navbar></Navbar>
+        <Navbar PropMsg = 'IndexNav'></Navbar>
     </nav>
     <!-- 菜单栏 -->
     <div class="menu_bar">
