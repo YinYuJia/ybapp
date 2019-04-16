@@ -15,6 +15,15 @@
     </div>
 
 
+    <!-- 客服、指南 -->
+    <div class="service_guide">
+      <Service></Service>
+    </div>
+    <!-- 药店分类 -->
+    <div class="classified_nav">
+      <ClassifiedNav Types = "work"></ClassifiedNav>
+    </div>
+    
     <Footer :info="info"></Footer>
   </div>
 </template>
@@ -23,6 +32,8 @@
   import Header from './commonComponent/Work/Header'
   import Navbar from './commonComponent/Index/Navbar.vue'
   import NavList from './commonComponent/Index/IconNav.vue'
+  import Service from './commonComponent/Work/Service'
+  import ClassifiedNav from './commonComponent/Index/Classified'
 
   import Footer from './Footer.vue'
   
@@ -46,7 +57,8 @@
       'Header': Header,
       'Navbar': Navbar,
       'NavList': NavList,
-
+      'Service': Service,
+      'ClassifiedNav': ClassifiedNav,
       "Footer": Footer,
 
     },
@@ -77,6 +89,12 @@
     }
     .nav_list {
         margin-top: .15rem;
+    }
+    .service_guide{
+        margin-top: .15rem;
+    }
+    .classified_nav{
+      margin-top: .15rem;
     }
   }
 </style>
