@@ -10,7 +10,7 @@
     </nav>
     <!-- 菜单栏 -->
     <div class="menu_bar">
-        <MenuBar></MenuBar>
+        <MenuBar PropsMsg = 'Index_IconNav'></MenuBar>
         <WorkProgress></WorkProgress>
     </div>
     <!-- 轮播图 -->

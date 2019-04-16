@@ -4,10 +4,15 @@
     <header class="header">
        <Header></Header>
     </header>
-     
+     <!-- 导航 -->
     <nav class="nav">
          <Navbar PropMsg="WorkNav"></Navbar>
     </nav>
+    <!-- 菜单栏 -->
+    <div class="nav_list">
+         <!-- Work_NavList -->
+         <NavList PropsMsg = "Work_NavList"></NavList>
+    </div>
     <!-- 我的事项 -->
     <div class="my_items">
       <MyItems></MyItems>
@@ -29,6 +34,7 @@
   import Header from './commonComponent/Work/Header'
   import Navbar from './commonComponent/Index/NavBar.vue'
   import MyItems from './commonComponent/Work/MyItems'
+  import NavList from './commonComponent/Index/IconNav.vue'
   import Service from './commonComponent/Work/Service'
   import ClassifiedNav from './commonComponent/Index/Classified'
 
@@ -54,9 +60,9 @@
       'Header': Header,
       'Navbar': Navbar,
       'MyItems': MyItems,
+      'NavList': NavList,
       'Service': Service,
       'ClassifiedNav': ClassifiedNav,
-
       "Footer": Footer,
 
     },
@@ -86,6 +92,9 @@
         background-color: #ffffff;
     }
     .my_items{
+      margin-top: .15rem;
+    }
+    .nav_list {
         margin-top: .15rem;
     }
     .service_guide{
