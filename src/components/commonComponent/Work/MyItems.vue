@@ -29,12 +29,24 @@
             </el-col>
         </el-row>
         <!-- 信息 -->
+        <div class="ItemMsg">
+            <div class="MsgTitle">
+                <span>【{{msg_type}}】</span><span>{{msg_title}}</span>
+            </div>
+            <div class="MsgText"><span>{{msg_text}}</span></div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    
+    data() {
+        return {
+            msg_type: '收件',
+            msg_title: '基本医疗保险参保人员医疗费用零星报销',
+            msg_text: '预计今天12:34前进入受理环节'
+        }
+    }
 }
 </script>
 
@@ -102,6 +114,36 @@ export default {
                     letter-spacing: 0;
                     text-align: center;
                 }
+            }
+        }
+        .ItemMsg{
+            height: 1.4rem;
+            width: 6.9rem;
+            background: #F1F1F1;
+            border-radius: .06rem;
+            margin: auto;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            .MsgTitle{
+                margin-left: .34rem;
+                font-family: PingFangSC-Regular;
+                font-size: .24rem;
+                color: #000000;
+                letter-spacing: 0;
+                line-height: .33rem;
+                span:first-child{
+                    color: #05AEF0;
+                }
+            }
+            .MsgText{
+                margin-left: .48rem;
+                opacity: 0.45;
+                font-family: PingFangSC-Regular;
+                font-size: .24rem;
+                color: #000000;
+                letter-spacing: 0;
             }
         }
     }
