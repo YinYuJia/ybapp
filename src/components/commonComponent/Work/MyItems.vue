@@ -8,23 +8,43 @@
         <!-- 图标 -->
         <el-row type="flex" justify="space-around" class="IconContent">
             <el-col :span="4" class="IconBox">
-                <div class="Icon"><svg-icon icon-class="MyItems_receive" /></div>
+                <div class="Icon">
+                    <el-badge :value="12" class="HintDot">
+                        <svg-icon icon-class="MyItems_receive" />
+                    </el-badge>
+                </div>
                 <div class="Text"><span>收件</span></div>
             </el-col>
             <el-col :span="4" class="IconBox">
-                <div class="Icon"><svg-icon icon-class="MyItems_accept" /></div>
+                <div class="Icon">
+                    <el-badge :value="null" class="HintDot">
+                        <svg-icon icon-class="MyItems_accept" />
+                    </el-badge>
+                </div>
                 <div class="Text"><span>受理</span></div>
             </el-col>
             <el-col :span="4" class="IconBox">
-                <div class="Icon"><svg-icon icon-class="MyItems_check" /></div>
+                <div class="Icon">
+                    <el-badge :value="3" class="HintDot">
+                        <svg-icon icon-class="MyItems_check" />
+                    </el-badge>
+                </div>
                 <div class="Text"><span>审核</span></div>
             </el-col>
             <el-col :span="4" class="IconBox">
-                <div class="Icon"><svg-icon icon-class="MyItems_done" /></div>
+                <div class="Icon">
+                    <el-badge :value="null" class="HintDot">
+                        <svg-icon icon-class="MyItems_done" />
+                    </el-badge>
+                </div>
                 <div class="Text"><span>办结</span></div>
             </el-col>
             <el-col :span="4" class="IconBox">
-                <div class="Icon"><svg-icon icon-class="MyItems_delivery" /></div>
+                <div class="Icon">
+                    <el-badge :value="null" class="HintDot">
+                        <svg-icon icon-class="MyItems_delivery" />
+                    </el-badge>
+                </div>
                 <div class="Text"><span>送达</span></div>
             </el-col>
         </el-row>
@@ -99,6 +119,16 @@ export default {
                 .Icon{
                     height: .6rem;
                     width: .6rem;
+                    .HintDot{
+                        display: block;
+                        height: 100%;
+                        width: 100%;
+                        .svg-icon{
+                            display: block;
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
                     .svg-icon{
                         display: block;
                         height: 100%;
