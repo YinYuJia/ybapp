@@ -51,25 +51,23 @@
         <div class="IconNav" v-if="'Work_NavList' == PropsMsg">
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="gotoInsuredService">
                         <svg-icon icon-class="Work_NavList_1" /></div>
                     <div class="IconText"><span>参保服务</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="gotoRecordService">
                         <svg-icon icon-class="Work_NavList_2" /></div>
                     <div class="IconText"><span>备案服务</span></div>
                 </el-col>
-                <el-col :span="6" class="IconBox" >
-                   
-                        <div class="IconImg" @click="gotoTreatmentReimbursement">
-                            <svg-icon icon-class="Work_NavList_3" />
-                        </div>
-                        <div class="IconText"><span>待遇报销</span></div>
-                    
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg" @click="gotoTreatmentReimbursement">
+                        <svg-icon icon-class="Work_NavList_3" />
+                    </div>
+                    <div class="IconText"><span>待遇报销</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="gotoOtherServices">
                         <svg-icon icon-class="Work_NavList_4" /></div>
                     <div class="IconText"><span>其他服务</span></div>
                 </el-col>
@@ -89,13 +87,40 @@
         created() {
             console.log(this.PropsMsg)
         },
-        methods:{
+        methods: {
+            gotoInsuredService() {
+                this.$router.push({
+                    name: 'TreatmentReimbursement',
+                    params: {
+                        id: "1",
+                        name: "参保服务"
+                    }
+                })
+            },
+            gotoRecordService() {
+                this.$router.push({
+                    name: 'TreatmentReimbursement',
+                    params: {
+                        id: "2",
+                        name: "备案服务"
+                    }
+                })
+            },
             gotoTreatmentReimbursement() {
                 this.$router.push({
                     name: 'TreatmentReimbursement',
                     params: {
                         id: "3",
-                        name:"待遇报销"
+                        name: "待遇报销"
+                    }
+                })
+            },
+            gotoOtherServices() {
+                this.$router.push({
+                    name: 'TreatmentReimbursement',
+                    params: {
+                        id: "4",
+                        name: "其他服务"
                     }
                 })
             }

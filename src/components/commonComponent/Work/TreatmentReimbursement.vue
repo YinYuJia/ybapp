@@ -21,7 +21,11 @@
                 </el-col>
             </el-row>
         </div>
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu :default-active="activeIndex" 
+             class="el-menu-demo" mode="horizontal" 
+             background-color = "#F5F5F5"
+             active-text-color = '#059BF0'
+              @select="handleSelect">
             <el-menu-item index="1" style="width:25%">参保服务</el-menu-item>
             <el-menu-item index="2" style="width:25%">备案服务</el-menu-item>
             <el-menu-item index="3" style="width:25%">待遇报销</el-menu-item>
@@ -37,7 +41,7 @@
         </div>
         <div v-if="activeIndex == 3">
             <!-- 待遇报销 -->
-            3333
+            <TReimbursement :NameTitle = "NameTitle"></TReimbursement>
         </div>
         <div v-if="activeIndex == 4">
             <!-- 其他服务 -->
@@ -48,6 +52,7 @@
 </template>
 
 <script>
+    import TReimbursement from './TreatmentReimbursement/TReimbursement.vue'
     export default {
         data() {
             return {
@@ -64,6 +69,9 @@
             goBackIndex() {
                 this.$router.push('/Work')
             }
+        },
+        components:{
+           'TReimbursement':TReimbursement
         },
         created() {
             this.activeIndex = this.$route.params.id
