@@ -25,7 +25,17 @@
     <div class="classified_nav">
       <ClassifiedNav Types = "work"></ClassifiedNav>
     </div>
-    
+     <!-- 新闻资讯 -->
+    <div class="News">
+      <News PropsTitle = "热门事项" PropsFlage = "1"></News>
+    </div>
+
+    <div class="News">
+      <News PropsTitle = "医保资讯" PropsFlage = "2"></News>
+    </div>
+    <div class="last">
+
+    </div>
     <Footer :info="info"></Footer>
   </div>
 </template>
@@ -36,7 +46,8 @@
   import MyItems from './commonComponent/Work/MyItems'
   import NavList from './commonComponent/Index/IconNav.vue'
   import Service from './commonComponent/Work/Service'
-  import ClassifiedNav from './commonComponent/Index/Classified'
+  import ClassifiedNav from './commonComponent/Index/Classified';
+  import News from './commonComponent/Work/News.vue'
 
   import Footer from './Footer.vue'
   
@@ -63,8 +74,8 @@
       'NavList': NavList,
       'Service': Service,
       'ClassifiedNav': ClassifiedNav,
+      'News' : News,
       "Footer": Footer,
-
     },
     created() {
        
@@ -102,6 +113,12 @@
     }
     .classified_nav{
       margin-top: .15rem;
+    }
+    .News {
+      margin-top: .15rem;
+    }
+    .last {
+      height: 1.62rem;
     }
   }
 </style>
