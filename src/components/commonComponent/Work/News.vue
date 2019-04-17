@@ -3,7 +3,7 @@
         <div v-if=" PropsFlage == '1'">
             <div class="first">
                 <span class="span1"></span>
-                <p class="titleOne">{{PropsTitle}}</p>
+                <p class="titleOne">{{title1}}</p>
                 <span class="el-icon-arrow-right span2"></span>
             </div>
             <div class="second">
@@ -32,7 +32,7 @@
         <div v-if=" PropsFlage == '2'">
             <div class="first">
                 <span class="span1"></span>
-                <p class="titleOne">{{PropsTitle}}</p>
+                <p class="titleOne">{{title2}}</p>
                 <span class="el-icon-arrow-right span2"></span>
             </div>
             <div class="second">
@@ -64,7 +64,8 @@
     export default {
         data() {
             return {
-                title: "热门事项"
+                title1: "热门事项",
+                title2: "医保资讯"
             }
         },
         created() {

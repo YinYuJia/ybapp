@@ -27,11 +27,11 @@
     </div>
      <!-- 新闻资讯 -->
     <div class="News">
-      <News PropsTitle = "热门事项" PropsFlage = "1"></News>
+      <News PropsFlage = "1"></News>
     </div>
 
     <div class="News">
-      <News PropsTitle = "医保资讯" PropsFlage = "2"></News>
+      <News  PropsFlage = "2"></News>
     </div>
     <div class="last">
 

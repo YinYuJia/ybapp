@@ -44,13 +44,13 @@
         <div v-if="Propmsg == 'Rotation_chart2'" class="thirdDic">
             <div class="swiper-container2 bestDiv1">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" style="background-color:#0f0">
+                    <div class="swiper-slide" >
                         <img src="../../../../static/images/index/01.png" alt="">
                     </div>
-                    <div class="swiper-slide" style="background-color:red">
+                    <div class="swiper-slide" >
                          <img src="../../../../static/images/index/02.png" alt="">
                     </div>
-                    <div class="swiper-slide" style="background-color:yellow">
+                    <div class="swiper-slide" >
                          <img src="../../../../static/images/index/03.png" alt="">
                     </div>
                 </div>
