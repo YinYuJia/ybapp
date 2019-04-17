@@ -4,6 +4,7 @@ import Index from '@/components/Index'
 import First from '@/components/First';
 import Work from '@/components/Work';
 import TreatmentReimbursement from '@/components/commonComponent/Work/TreatmentReimbursement/TreatmentReimbursement'
+import Submit from '@/components/commonComponent/Work/TreatmentReimbursement/SubmitReimbursement'
 
 Vue.use(Router)
 
@@ -31,6 +32,11 @@ export default new Router({
       path: '/Work/TreatmentReimbursement',
       name: 'TreatmentReimbursement',
       component: TreatmentReimbursement
+    },
+    {
+      path: '/Submit',
+      name: 'Submit',
+      component: Submit
     },
 
   ]
