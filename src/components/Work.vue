@@ -32,7 +32,7 @@
 
 <script>
   import Header from './commonComponent/Work/Header'
-  import Navbar from './commonComponent/Index/NavBar.vue'
+  import Navbar from './commonComponent/Index/Navbar.vue'
   import MyItems from './commonComponent/Work/MyItems'
   import NavList from './commonComponent/Index/IconNav.vue'
   import Service from './commonComponent/Work/Service'
