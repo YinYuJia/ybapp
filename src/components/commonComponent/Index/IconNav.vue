@@ -60,13 +60,13 @@
                         <svg-icon icon-class="Work_NavList_2" /></div>
                     <div class="IconText"><span>备案服务</span></div>
                 </el-col>
-                <el-col :span="6" class="IconBox">
-                    <router-link to="/Work/TreatmentReimbursement">
-                        <div class="IconImg">
+                <el-col :span="6" class="IconBox" >
+                   
+                        <div class="IconImg" @click="gotoTreatmentReimbursement">
                             <svg-icon icon-class="Work_NavList_3" />
                         </div>
                         <div class="IconText"><span>待遇报销</span></div>
-                    </router-link>
+                    
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
@@ -88,6 +88,17 @@
         },
         created() {
             console.log(this.PropsMsg)
+        },
+        methods:{
+            gotoTreatmentReimbursement() {
+                this.$router.push({
+                    name: 'TreatmentReimbursement',
+                    params: {
+                        id: "3",
+                        name:"待遇报销"
+                    }
+                })
+            }
         }
     }
 </script>

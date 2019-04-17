@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Index from '@/components/Index'
 import First from '@/components/First';
 import Work from '@/components/Work';
-import TreatmentReimbursement from '@/components/commonComponent/Work/TreatmentReimbursement/TreatmentReimbursement'
+import TreatmentReimbursement from '@/components/commonComponent/Work/TreatmentReimbursement'
 
 Vue.use(Router)
 
