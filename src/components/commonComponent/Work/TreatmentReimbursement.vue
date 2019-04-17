@@ -4,9 +4,7 @@
             <el-row>
                 <el-col :span="6">
                     <div class="grid-content">
-                        <span class="el-icon-arrow-left" 
-                        style="color: #ffffff;font-size: .38rem;margin-left: -50px;"
-                        @click="goBackIndex"></span>
+                        <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="goBackIndex"></span>
                     </div>
                 </el-col>
                 <el-col :span="12">
@@ -15,19 +13,13 @@
                     </div>
                 </el-col>
                 <el-col :span="6">
-                                        <div class="grid-content">
-                        <span class="el-icon-bell" 
-                        style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.15rem"
-                        ></span>
+                    <div class="grid-content">
+                        <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.15rem"></span>
                     </div>
                 </el-col>
             </el-row>
         </div>
-        <el-menu :default-active="activeIndex" 
-             class="el-menu-demo" mode="horizontal" 
-             background-color = "#F5F5F5"
-             active-text-color = '#059BF0'
-              @select="handleSelect">
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
             <el-menu-item index="1" style="width:25%">参保服务</el-menu-item>
             <el-menu-item index="2" style="width:25%">备案服务</el-menu-item>
             <el-menu-item index="3" style="width:25%">待遇报销</el-menu-item>
@@ -43,7 +35,7 @@
         </div>
         <div v-if="activeIndex == 3">
             <!-- 待遇报销 -->
-            <TReimbursement :NameTitle = "NameTitle"></TReimbursement>
+            <TReimbursement :NameTitle="NameTitle"></TReimbursement>
         </div>
         <div v-if="activeIndex == 4">
             <!-- 其他服务 -->
@@ -59,21 +51,21 @@
         data() {
             return {
                 activeIndex: '',
-                NameTitle:''
+                NameTitle: ''
             };
         },
         methods: {
             handleSelect(key, keyPath) {
-                const nameAyy = ['参保服务','备案服务','待遇报销','其他服务']
+                const nameAyy = ['参保服务', '备案服务', '待遇报销', '其他服务']
                 this.activeIndex = key
-                this.NameTitle = nameAyy[key-1]
+                this.NameTitle = nameAyy[key - 1]
             },
             goBackIndex() {
                 this.$router.push('/Work')
             }
         },
-        components:{
-           'TReimbursement':TReimbursement
+        components: {
+            'TReimbursement': TReimbursement
         },
         created() {
             this.activeIndex = this.$route.params.id
@@ -87,12 +79,10 @@
         height: .8rem;
         background-color: #05AEF0;
         font-size: .36rem;
-                line-height: .8rem;
-                overflow: hidden;
+        line-height: .8rem;
+        overflow: hidden;
     }
-    .span {
-
-    }
+    .span {}
     .NameTitle {
         font-size: .36rem;
         color: #FFFFFF;

@@ -42,20 +42,19 @@
             <!-- 其他服务 -->
             4444
         </div>
-        <div class="bottom">
-            <div class="bottom_left">
-                <!-- Work_TreatmentReimbursement_CustomerService -->
-                <svg-icon icon-class="Work_TreatmentReimbursement_CustomerService" class="Icon" />
-                <p class="p">客服</p>
+        <footer class="Footer">
+            <div class="IconBox">
+                <div class="Icon"><svg-icon icon-class="SubmitReim_service" /></div>
+                <div class="Text">客服</div>
             </div>
-            <div class="bottom_right">
-                <el-button class="button">我要办事</el-button>
-            </div>
-        </div>
+            <div class="SubmitBtn" @click="submit"><span>我要办事</span></div>
+        </footer>
     </div>
 </template>
 
 <script>
+// SubmitReimbursement
+
     export default {
         data() {
             return {
@@ -75,11 +74,19 @@
                         name: "待遇报销"
                     }
                 })
-            }
+            },
+            submit() {
+                       this.$router.push({
+                    name: 'SubmitReimbursement',
+                    params: {
+                        name:'待遇报销'
+                    }
+            })
         },
         created() {
             console.log()
         }
+    }
     }
 </script>
 
@@ -96,40 +103,53 @@
         color: #FFFFFF;
         font-family: 'PingFangSC-Regular';
     }
-    .bottom {
-        width: 7.5rem;
-        height: 1.2rem;
-        background-color: #ffffff;
-        position: fixed;
-        bottom: 0;
-        .bottom_left {
-            width: 20%;
-            height: 100%;
-            float: left;
-            line-height: .5rem;
-            .p {
-                font-size: .2rem;
-                color: rgba(0, 0, 0, .45);
-                margin-top: -0.1rem;
-            }
-            .Icon {
-                height: .6rem;
+ .Footer{
+            height: 1.2rem;
+            width: 7.5rem;
+            background-color: white;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 199;
+            display: flex;
+            align-items: center;
+            .IconBox{
                 width: .6rem;
+                margin-left: .51rem;
+                .Icon{
+                    height: .6rem;
+                    width: .6rem;
+                    .svg-icon{
+                        display: block;
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+                .Text{
+                    height: .28rem;
+                    width: .6rem;
+                    opacity: 0.45;
+                    font-family: PingFangSC-Regular;
+                    font-size: .2rem;
+                    color: #000;
+                    letter-spacing: 0;
+                    text-align: center;
+                }
             }
-        }
-        .bottom_right {
-            width: 80%;
-            float: left;
-            line-height: .8rem;
-            .button {
-                width: 90%;
-                color: #ffffff;
-                font-size: .36rem;
+            .SubmitBtn{
+                height: .8rem;
+                width: 5.6rem;
+                margin-left: .51rem;
+                line-height: 0.8rem;
                 background-image: linear-gradient(90deg, #35B8FD 0%, #4E8DFF 100%);
                 border-radius: .4rem;
+                font-family: PingFangSC-Regular;
+                font-size: .36rem;
+                color: #FFFFFF;
+                letter-spacing: 0;
+                text-align: center;
             }
         }
-    }
 </style>
 
 

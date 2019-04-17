@@ -1,10 +1,25 @@
 <template>
     <div class="Submit">
-        <header class="Header">
-            <i class="back_icon el-icon-arrow-left"></i>
-            <div class="Title"><span>待遇报销</span></div>
-            <div class="ring_icon"><svg-icon icon-class="Index_Message" /></div>
-        </header>
+                <div class="Title">
+            <el-row>
+                <el-col :span="6">
+                    <div class="grid-content">
+                        <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="goBack"></span>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="grid-content NameTitle">
+                        {{NameTitle}}
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <div class="grid-content">
+                        <!-- <svg-icon icon-class="Index_Message" className="Index_Message1" /> -->
+                        <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.15rem"></span>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
         <!-- 选择日期 -->
         <div class="ChooseDate">
             <div class="ChooseBox">
@@ -106,6 +121,7 @@
 </template>
 
 <script>
+import ChinaJson from '../../../../common/js/ChinaArray.js'
 export default {
     data() {
         return {
@@ -127,13 +143,39 @@ export default {
                 value: '选项5',
                 label: '北京烤鸭'
             }],
-            value: ''
+            value: '',
+            NameTitle:this.$route.params.name
             }
+    },
+    created() {
+        console.log(ChinaJson)
+    },
+    methods:{
+        goBack() {
+                    this.$router.push({
+                    name: 'TReimbursement1',
+                    params: {
+                        name:this.$route.params.name
+                    }
+                })
+        }
     }
 }
 </script>
 
 <style lang="less" scoped>
+    .Title {
+        height: .8rem;
+        background-color: #05AEF0;
+        font-size: .36rem;
+        line-height: .8rem;
+        overflow: hidden;
+    }
+    .NameTitle {
+        font-size: .36rem;
+        color: #FFFFFF;
+        font-family: 'PingFangSC-Regular';
+    }
     .Submit{
         height: auto;
         width: 7.5rem;
