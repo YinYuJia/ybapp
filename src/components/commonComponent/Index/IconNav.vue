@@ -61,9 +61,12 @@
                     <div class="IconText"><span>备案服务</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon icon-class="Work_NavList_3" /></div>
-                    <div class="IconText"><span>待遇报销</span></div>
+                    <router-link to="/Work/TreatmentReimbursement">
+                        <div class="IconImg">
+                            <svg-icon icon-class="Work_NavList_3" />
+                        </div>
+                        <div class="IconText"><span>待遇报销</span></div>
+                    </router-link>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
@@ -77,10 +80,10 @@
 
 <script>
     export default {
-        props:{
-            PropsMsg:{
-                type:String,
-                default:""
+        props: {
+            PropsMsg: {
+                type: String,
+                default: ""
             }
         },
         created() {
