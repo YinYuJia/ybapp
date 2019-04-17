@@ -37,7 +37,8 @@
                                this.$router.push({
                     name: 'TReimbursement1',
                     params: {
-                        name:this.NameTitle
+                        
+                        name: "待遇报销"
                     }
                 })
             }
