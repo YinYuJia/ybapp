@@ -3,7 +3,7 @@
         <div class="items" style="border-top:1px solid transparent">
             <p class="p11">基本医疗保险视同年缴费核定 <span class="el-icon-arrow-right"></span> </p>
         </div>
-        <div class="items">
+        <div class="items"  @click="gotoTReimbursement1">
             <p class="p11">基本医疗保险参保人员医疗费用零星报销 <span class="el-icon-arrow-right"></span> </p>
         </div>
         <div class="items">
@@ -31,6 +31,16 @@
         },
         created() {
             console.log('this.NameTitle',this.NameTitle)
+        },
+        methods:{
+            gotoTReimbursement1() {
+                               this.$router.push({
+                    name: 'TReimbursement1',
+                    params: {
+                        name:this.NameTitle
+                    }
+                })
+            }
         }
     }
 </script>

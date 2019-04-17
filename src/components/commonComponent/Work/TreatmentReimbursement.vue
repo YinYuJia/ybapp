@@ -15,8 +15,10 @@
                     </div>
                 </el-col>
                 <el-col :span="6">
-                    <div class="grid-content col3">
-                        <svg-icon icon-class="Index_Message" className="Index_Message" />
+                                        <div class="grid-content">
+                        <span class="el-icon-bell" 
+                        style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.15rem"
+                        ></span>
                     </div>
                 </el-col>
             </el-row>
@@ -96,16 +98,6 @@
         color: #FFFFFF;
         font-family: 'PingFangSC-Regular';
     }
-    .col3 {
-       margin-top: .13rem;
-       margin-right: -.35rem;
-    }
-    .Index_Message {
-            height: .4rem;
-            width: .4rem;
-            font-size: .6rem;
-            line-height: 0;
-        }
 </style>
 
 
