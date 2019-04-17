@@ -52,6 +52,17 @@ Vue.config.productionTip = false;
 // Svg 图片
 {/* <svg-icon icon-class="1"  className = "Svg" /> */}
 /* eslint-disable no-new */
+
+
+// 路由传参
+// this.$router.push({
+//   name: 'TreatmentReimbursement',
+//   params: {
+//       id: 1
+//   }
+// })
+// 子组件过去参数
+// this.$route.params.id
 new Vue({
   el: '#app',
   store,
