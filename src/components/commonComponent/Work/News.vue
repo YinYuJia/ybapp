@@ -69,7 +69,7 @@
             }
         },
         created() {
-            console.log(this.PropsTitle)
+            
         },
         props: {
             PropsTitle: {

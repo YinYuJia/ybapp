@@ -85,7 +85,7 @@
             }
         },
         created() {
-            console.log(this.PropsMsg)
+           
         },
         methods: {
             gotoInsuredService() {

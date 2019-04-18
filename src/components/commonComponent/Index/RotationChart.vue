@@ -164,7 +164,6 @@
         },
         methods: {},
         mounted() {
-            console.log(this.Propmsg)
             if (this.Propmsg == 'DepartmentsList') {
                 new Swiper('.swiper-container', {
                     slidesPerView: 3.5,

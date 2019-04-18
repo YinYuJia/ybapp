@@ -74,7 +74,7 @@
       "HintMsg": HintMsg
     },
     created() {
-       console.log(MenuBar)
+       
     }
   }
 </script>

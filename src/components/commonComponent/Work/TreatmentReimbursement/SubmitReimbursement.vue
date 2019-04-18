@@ -197,6 +197,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
     .Title {
         height: .8rem;
         background-color: #05AEF0;
@@ -253,6 +254,7 @@ export default {
                 justify-content: space-between;
                 align-items: center;
                 position: relative;
+                padding-right: .1rem;
                 .Name{
                     width: 1.5rem;
                     text-align: left;
@@ -275,7 +277,7 @@ export default {
                     }
                 }
                 .InputBox{
-                    width: 5rem;
+                    width: 3rem;
                     .el-input__inner{
                         height: 50px;
                     }
@@ -321,7 +323,7 @@ export default {
                     }
                 }
                 .InputBox{
-                    width: 5rem;
+                    width: 3rem;
                     .input{
                         background-color: #000;
                     }
@@ -367,7 +369,7 @@ export default {
                     }
                 }
                 .InputBox{
-                    width: 5rem;
+                    width: 3rem;
                     height: .8rem;
                     input{
                         border: none;
@@ -441,4 +443,10 @@ export default {
             }
         }
     }
+    
+</style>
+<style>
+.Submit .el-input__inner {
+    border: none;
+}
 </style>
