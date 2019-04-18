@@ -27,19 +27,19 @@
             <el-menu-item index="4" style="width:25%">常见问题</el-menu-item>
         </el-menu>
         <div v-if="activeIndex == 1">
-            <!-- 参保服务 -->
-            1111
+            <!-- 办事指南 -->
+            <BusinessGuide></BusinessGuide>
         </div>
         <div v-if="activeIndex == 2">
-            <!-- 备案服务 -->
+            <!-- 政策解读 -->
             2222
         </div>
         <div v-if="activeIndex == 3">
-            <!-- 待遇报销 -->
+            <!-- 案例分析 -->
             3333
         </div>
         <div v-if="activeIndex == 4">
-            <!-- 其他服务 -->
+            <!-- 常见问题 -->
             4444
         </div>
         <footer class="Footer">
@@ -54,6 +54,7 @@
 
 <script>
 // SubmitReimbursement
+import BusinessGuide from './BusinessGuide'
 
     export default {
         data() {
@@ -61,6 +62,9 @@
                 activeIndex: '1',
                 NameTitle: this.$route.params.name
             };
+        },
+        components:{
+          'BusinessGuide':BusinessGuide
         },
         methods: {
             handleSelect(key, keyPath) {

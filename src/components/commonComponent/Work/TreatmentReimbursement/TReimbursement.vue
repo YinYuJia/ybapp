@@ -30,14 +30,13 @@
             }
         },
         created() {
-            console.log('this.NameTitle',this.NameTitle)
         },
         methods:{
             gotoTReimbursement1() {
                                this.$router.push({
                     name: 'TReimbursement1',
                     params: {
-                        name:this.NameTitle
+                        name: "待遇报销"
                     }
                 })
             }

@@ -14,7 +14,7 @@ module.exports = {
 
     // Various Dev Server settings
     // 殷宇佳
-    host: '192.168.1.170', 
+    host: '192.168.1.113', 
  
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,

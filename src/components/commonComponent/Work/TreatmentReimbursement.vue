@@ -27,7 +27,7 @@
         </el-menu>
         <div v-if="activeIndex == 1">
             <!-- 参保服务 -->
-            1111
+            <InsuredService :NameTitle="NameTitle"></InsuredService>
         </div>
         <div v-if="activeIndex == 2">
             <!-- 备案服务 -->
@@ -46,7 +46,8 @@
 </template>
 
 <script>
-    import TReimbursement from './TreatmentReimbursement/TReimbursement.vue'
+    import TReimbursement from './TreatmentReimbursement/TReimbursement.vue';
+    import InsuredService from './InsuredService/InsuredService.vue'
     export default {
         data() {
             return {
@@ -65,7 +66,8 @@
             }
         },
         components: {
-            'TReimbursement': TReimbursement
+            'TReimbursement': TReimbursement,
+            'InsuredService': InsuredService
         },
         created() {
             this.activeIndex = this.$route.params.id
