@@ -255,7 +255,6 @@ export default {
                 justify-content: space-between;
                 align-items: center;
                 position: relative;
-                padding-right: .1rem;
                 .Name{
                     width: 1.5rem;
                     text-align: left;
@@ -278,10 +277,7 @@ export default {
                     }
                 }
                 .InputBox{
-                    width: 3rem;
-                    .el-input__inner{
-                        height: 50px;
-                    }
+                    width: 3.5rem;
                 }
                 &:last-child{
                     .Name{
@@ -324,10 +320,7 @@ export default {
                     }
                 }
                 .InputBox{
-                    width: 3rem;
-                    .input{
-                        background-color: #000;
-                    }
+                    width: 4.5rem;
                 }
                 &:last-child{
                     .Name{
@@ -378,12 +371,16 @@ export default {
                         height: 100%;
                         width: 100%;
                         padding-right: .42rem;
-                        opacity: 0.25;
                         font-family: PingFangSC-Regular;
                         font-size: .3rem;
-                        color: #000000;
+                        color: #000;
+                        opacity: 0.8;
                         letter-spacing: 0;
                         text-align: right;
+                        &::placeholder{
+                            color: #000;
+                            opacity: 0.25;
+                        }
                     }
                 }
                 &:last-child{
@@ -449,5 +446,19 @@ export default {
 <style>
 .Submit .el-input__inner {
     border: none;
+    text-align: right;
+    font-size: .3rem;
+    color: #000;
+    opacity: 0.8;
+    padding-right: 1.18rem;
+    letter-spacing: 0;
+}
+.Submit .el-input__inner::placeholder{
+    font-size: .3rem;
+    color: #000;
+    opacity: 0.25;
+}
+.Submit .el-input__suffix{
+    right: .36rem;
 }
 </style>
