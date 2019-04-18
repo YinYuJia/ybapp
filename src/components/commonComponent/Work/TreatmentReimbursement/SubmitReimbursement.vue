@@ -187,6 +187,8 @@
             },
             Submit() {
                 console.log(this.form)
+                this.$store.dispatch("SET_TREATMENT_REIMBURSEMENT",this.form)
+                this.$router.push("/first")
             }
         }
     }

@@ -156,7 +156,9 @@
       //     }
       // }, 1000)
             console.log('this.$store.state.SET_PRODUCTS', this.$store.state.SET_PRODUCTS)
+            console.log('this.$store.state.SET_TREATMENT_REIMBURSEMENT', this.$store.state.SET_TREATMENT_REIMBURSEMENT)
       console.log('this.$store.getters.SET_PRODUCTS', this.$store.getters.SET_PRODUCTS)
+
       this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas())
       this.optionst = this.$store.state.SET_SELECTARRAY
     },
