@@ -99,7 +99,7 @@
             <div class="ChooseBox">
                 <div class="Name"><span>总金额:</span></div>
                 <div class="InputBox">
-                    <input type="text" placeholder="请输入总金额">
+                    <input type="number" placeholder="请输入总金额">
                 </div>
             </div>
             <div class="ChooseBox">
@@ -160,6 +160,7 @@ export default {
         });
     },
     computed: {
+        //地级市数组
         cityArr: function(){
             if(this.province != ''){
                 this.city = '';
@@ -181,7 +182,7 @@ export default {
             }else{
                 return [];
             }
-        }
+        },
     },
     methods:{
         goBack() {
