@@ -28,6 +28,7 @@
                 class="InputBox"
                 v-model="startDate"
                 type="date"
+                clear-icon=""
                 placeholder="请选择开始日期">
                 </el-date-picker>
             </div>
@@ -37,6 +38,7 @@
                 class="InputBox"
                 v-model="endDate"
                 type="date"
+                clear-icon=""
                 placeholder="请选择结束日期">
                 </el-date-picker>
             </div>
@@ -277,7 +279,7 @@ export default {
                     }
                 }
                 .InputBox{
-                    width: 3.5rem;
+                    width: 4rem;
                 }
                 &:last-child{
                     .Name{
@@ -320,7 +322,7 @@ export default {
                     }
                 }
                 .InputBox{
-                    width: 4.5rem;
+                    width: 4rem;
                 }
                 &:last-child{
                     .Name{
@@ -453,6 +455,11 @@ export default {
     padding-right: 1.18rem;
     letter-spacing: 0;
 }
+.Submit .el-input__prefix{
+    right: .36rem;
+    left: 3.2rem;
+    font-size: .36rem;
+}
 .Submit .el-input__inner::placeholder{
     font-size: .3rem;
     color: #000;
@@ -460,5 +467,8 @@ export default {
 }
 .Submit .el-input__suffix{
     right: .36rem;
+}
+.Submit .el-input__suffix .el-input__suffix-inner .el-select__caret{
+    font-size: 0.3rem;
 }
 </style>
