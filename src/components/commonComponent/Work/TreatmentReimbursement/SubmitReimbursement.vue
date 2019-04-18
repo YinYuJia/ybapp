@@ -26,7 +26,7 @@
                 <div class="Name"><span>开始日期:</span></div>
                 <el-date-picker
                 class="InputBox"
-                v-model="startDate"
+                v-model="form.startDate"
                 type="date"
                 clear-icon=""
                 placeholder="请选择开始日期">
@@ -36,7 +36,7 @@
                 <div class="Name"><span>结束日期:</span></div>
                 <el-date-picker
                 class="InputBox"
-                v-model="endDate"
+                v-model="form.endDate"
                 type="date"
                 clear-icon=""
                 placeholder="请选择结束日期">
@@ -154,12 +154,16 @@
             }
         },
         created() {
+            if ( this.$store.state.SET_TREATMENT_REIMBURSEMENT) {
+                this.form = this.$store.state.SET_TREATMENT_REIMBURSEMENT
+            }
             ChinaJson.forEach((item) => {
                 let obj = new Object();
                 obj.value = item.name;
                 obj.label = item.name;
                 this.provinceArr.push(obj);
             });
+            
         },
         computed: {
             //地级市数组
@@ -196,7 +200,10 @@
                 })
             },
             Submit() {
-                console.log(this.form)
+                
+                this.form.startDate = this.form.startDate.valueOf()
+                this.form.endDate = this.form.endDate.valueOf()
+                console.log(this.form.startDate - this.form.endDate)
                 this.$store.dispatch("SET_TREATMENT_REIMBURSEMENT",this.form)
                 this.$router.push("/first")
             }
