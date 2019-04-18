@@ -10,7 +10,9 @@ export default new Vuex.Store({  // 暴露与new vuex
           {name: '显示屏', price: 80}
         ],
         SET_SELECT:'选项1',
-        SET_SELECTARRAY:[]
+        SET_SELECTARRAY:[],
+        // 待遇报销表单
+        SET_TREATMENT_REIMBURSEMENT:{}
       },
       // 计算属性 getters
       getters:{
@@ -35,7 +37,10 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_SELECTARRAY (state,payload) {
           state.SET_SELECTARRAY = payload
-        }
+        },
+        SET_TREATMENT_REIMBURSEMENT (state,payload) {
+          state.SET_TREATMENT_REIMBURSEMENT = payload
+        },
       },
 
       actions:{ //添加actions
@@ -47,6 +52,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_SELECTARRAY( context, payload ) {
           context.commit( 'SET_SELECTARRAY', payload ); //context提交
+        },
+        SET_TREATMENT_REIMBURSEMENT( context, payload ) {
+          context.commit( 'SET_TREATMENT_REIMBURSEMENT', payload ); //context提交
         },
 
       }
