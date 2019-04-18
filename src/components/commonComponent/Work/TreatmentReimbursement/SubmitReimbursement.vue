@@ -160,6 +160,7 @@ export default {
         });
     },
     computed: {
+        //地级市数组
         cityArr: function(){
             if(this.province != ''){
                 this.city = '';
@@ -181,7 +182,7 @@ export default {
             }else{
                 return [];
             }
-        }
+        },
     },
     methods:{
         goBack() {
