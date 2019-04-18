@@ -47,45 +47,29 @@
         <div class="ChooseClinic">
             <div class="ChooseBox">
                 <div class="Name"><span>就诊类型:</span></div>
-                <el-select class="InputBox" v-model="value" placeholder="请选择就诊类型">
-                    <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
+                <el-select class="InputBox" v-model="form.TypeOfVisit" placeholder="请选择就诊类型">
+                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                     </el-option>
                 </el-select>
             </div>
             <div class="ChooseBox">
                 <div class="Name"><span>就诊省份:</span></div>
-                <el-select class="InputBox" v-model="province" placeholder="请选择就诊省份">
-                    <el-option
-                    v-for="item in provinceArr"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
+                <el-select class="InputBox" v-model="form.province" placeholder="请选择就诊省份">
+                    <el-option v-for="item in provinceArr" :key="item.value" :label="item.label" :value="item.value">
                     </el-option>
                 </el-select>
             </div>
             <div class="ChooseBox">
                 <div class="Name"><span>就诊地市:</span></div>
-                <el-select class="InputBox" v-model="city" placeholder="请选择就诊地市">
-                    <el-option
-                    v-for="item in cityArr"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
+                <el-select class="InputBox" v-model="form.city" placeholder="请选择就诊地市">
+                    <el-option v-for="item in cityArr" :key="item.value" :label="item.label" :value="item.value">
                     </el-option>
                 </el-select>
             </div>
             <div class="ChooseBox">
                 <div class="Name"><span>就诊机构:</span></div>
-                <el-select class="InputBox" v-model="value" placeholder="请选择就诊机构">
-                    <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
+                <el-select class="InputBox" v-model="form.VisitingInstitution" placeholder="请选择就诊机构">
+                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                     </el-option>
                 </el-select>
             </div>
@@ -95,13 +79,13 @@
             <div class="ChooseBox">
                 <div class="Name"><span>发票号码:</span></div>
                 <div class="InputBox">
-                    <input type="text" placeholder="请输入发票号码">
+                    <input type="text" placeholder="请输入发票号码" v-model="form.InvoiceNumber">
                 </div>
             </div>
             <div class="ChooseBox">
                 <div class="Name"><span>总金额:</span></div>
                 <div class="InputBox">
-                    <input type="number" placeholder="请输入总金额">
+                    <input type="number" placeholder="请输入总金额" v-model="form.TotalSum">
                 </div>
             </div>
             <div class="ChooseBox">
@@ -114,93 +98,111 @@
         <!-- 底端 -->
         <footer class="Footer">
             <div class="IconBox">
-                <div class="Icon"><svg-icon icon-class="SubmitReim_service" /></div>
+                <div class="Icon">
+                    <svg-icon icon-class="SubmitReim_service" /></div>
                 <div class="Text">客服</div>
             </div>
-            <div class="SubmitBtn"><span>确认提交</span></div>
+            <div class="SubmitBtn" @click="Submit"><span>确认提交</span></div>
         </footer>
     </div>
 </template>
 
 <script>
-import ChinaJson from '../../../../common/js/ChinaArray.js'
-export default {
-    data() {
-        return {
-            startDate: '',
-            endDate: '',
-            options: [{
-                value: '选项1',
-                label: '黄金糕'
+    import ChinaJson from '../../../../common/js/ChinaArray.js'
+    export default {
+        data() {
+            return {
+                form: {
+                    // 开始时间
+                    startDate: '',
+                    // 结束时间
+                    endDate:"",
+                    // 就诊类型
+                    TypeOfVisit:"",
+                    // 省
+                    province:"",
+                    // 市
+                    city:"",
+                    // 就诊机构
+                    VisitingInstitution:"",
+                    // 发票号
+                    InvoiceNumber:"",
+                    // 总金额
+                    TotalSum:""
+                },
+                options: [{
+                    value: '选项1',
+                    label: '黄金糕'
                 }, {
-                value: '选项2',
-                label: '双皮奶'
+                    value: '选项2',
+                    label: '双皮奶'
                 }, {
-                value: '选项3',
-                label: '蚵仔煎'
+                    value: '选项3',
+                    label: '蚵仔煎'
                 }, {
-                value: '选项4',
-                label: '龙须面'
+                    value: '选项4',
+                    label: '龙须面'
                 }, {
-                value: '选项5',
-                label: '北京烤鸭'
-            }],
-            value: '',
-            NameTitle:this.$route.params.name,
-            // 省,地级市
-            province: '',
-            provinceArr: [],
-            city: '',
-        }
-    },
-    created() {
-        ChinaJson.forEach((item) => {
-            let obj = new Object();
-            obj.value = item.name;
-            obj.label = item.name;
-            this.provinceArr.push(obj);
-        });
-    },
-    computed: {
-        //地级市数组
-        cityArr: function(){
-            if(this.province != ''){
-                this.city = '';
-                let cities;
-                let arr = [];
-                ChinaJson.some((item) => {
-                    if(this.province == item.name){
-                        cities = item.city;
-                        return true;
-                    }
-                });
-                cities.forEach((item) => {
-                    let obj = new Object();
-                    obj.value = item.name;
-                    obj.label = item.name;
-                    arr.push(obj);
-                });
-                return arr;
-            }else{
-                return [];
+                    value: '选项5',
+                    label: '北京烤鸭'
+                }],
+                value: '',
+                NameTitle: this.$route.params.name,
+                // 省,地级市
+                provinceArr: [],
+                city: '',
             }
         },
-    },
-    methods:{
-        goBack() {
-                    this.$router.push({
+        created() {
+            ChinaJson.forEach((item) => {
+                let obj = new Object();
+                obj.value = item.name;
+                obj.label = item.name;
+                this.provinceArr.push(obj);
+            });
+        },
+        computed: {
+            //地级市数组
+            cityArr: function() {
+                if (this.form.province != '') {
+                    this.city = '';
+                    let cities;
+                    let arr = [];
+                    ChinaJson.some((item) => {
+                        if (this.form.province == item.name) {
+                            cities = item.city;
+                            return true;
+                        }
+                    });
+                    cities.forEach((item) => {
+                        let obj = new Object();
+                        obj.value = item.name;
+                        obj.label = item.name;
+                        arr.push(obj);
+                    });
+                    return arr;
+                } else {
+                    return [];
+                }
+            },
+        },
+        methods: {
+            goBack() {
+                this.$router.push({
                     name: 'TReimbursement1',
                     params: {
-                        name:this.$route.params.name
+                        name: this.$route.params.name
                     }
                 })
+            },
+            Submit() {
+                console.log(this.form)
+            }
         }
     }
-}
 </script>
 
 <style lang="less" scoped>
-
     .Title {
         height: .8rem;
         background-color: #05AEF0;
@@ -213,23 +215,23 @@ export default {
         color: #FFFFFF;
         font-family: 'PingFangSC-Regular';
     }
-    .Submit{
+    .Submit {
         height: auto;
-        width: 7.5rem;
+        width: 7.5rem; 
         // 头部
-        .Header{
+        .Header {
             height: .8rem;
             width: 7.5rem;
             background: #05AEF0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            .back_icon{
+            .back_icon {
                 margin-left: .1rem;
                 font-size: .5rem;
                 color: white;
             }
-            .Title{
+            .Title {
                 height: .5rem;
                 font-family: PingFangSC-Regular;
                 font-size: .36rem;
@@ -237,27 +239,27 @@ export default {
                 letter-spacing: 0;
                 text-align: center;
             }
-            .ring_icon{
+            .ring_icon {
                 height: .5rem;
                 width: .5rem;
                 margin-right: .35rem;
-                .svg-icon{
+                .svg-icon {
                     display: block;
                     height: 100%;
                     width: 100%;
                 }
             }
-        }
+        } 
         // 选择日期
-        .ChooseDate{
+        .ChooseDate {
             background: #fff;
-            .ChooseBox{
+            .ChooseBox {
                 height: 1.21rem;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 position: relative;
-                .Name{
+                .Name {
                     width: 1.5rem;
                     text-align: left;
                     line-height: .42rem;
@@ -267,7 +269,7 @@ export default {
                     font-size: .3rem;
                     color: #000;
                     letter-spacing: 0;
-                    &::before{
+                    &::before {
                         content: '';
                         height: .02rem;
                         width: 6.9rem;
@@ -281,26 +283,26 @@ export default {
                 .InputBox{
                     width: 4rem;
                 }
-                &:last-child{
-                    .Name{
-                        &::before{
+                &:last-child {
+                    .Name {
+                        &::before {
                             background-color: #FFF;
                         }
                     }
                 }
             }
-        }
+        } 
         //就诊信息
-        .ChooseClinic{
+        .ChooseClinic {
             background: #FFF;
             margin-top: .15rem;
-            .ChooseBox{
+            .ChooseBox {
                 height: 1.21rem;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 position: relative;
-                .Name{
+                .Name {
                     width: 1.5rem;
                     text-align: left;
                     line-height: .42rem;
@@ -310,7 +312,7 @@ export default {
                     font-size: .3rem;
                     color: #000;
                     letter-spacing: 0;
-                    &::before{
+                    &::before {
                         content: '';
                         height: .02rem;
                         width: 6.9rem;
@@ -324,26 +326,26 @@ export default {
                 .InputBox{
                     width: 4rem;
                 }
-                &:last-child{
-                    .Name{
-                        &::before{
+                &:last-child {
+                    .Name {
+                        &::before {
                             background-color: #FFF;
                         }
                     }
                 }
             }
-        }
+        } 
         // 发票
-        .Invoice{
+        .Invoice {
             background: #FFF;
             margin-top: .15rem;
-            .ChooseBox{
+            .ChooseBox {
                 height: 1.21rem;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 position: relative;
-                .Name{
+                .Name {
                     width: 1.5rem;
                     text-align: left;
                     line-height: .42rem;
@@ -353,7 +355,7 @@ export default {
                     font-size: .3rem;
                     color: #000;
                     letter-spacing: 0;
-                    &::before{
+                    &::before {
                         content: '';
                         height: .02rem;
                         width: 6.9rem;
@@ -364,10 +366,10 @@ export default {
                         background-color: #D5D5D5;
                     }
                 }
-                .InputBox{
+                .InputBox {
                     width: 3rem;
                     height: .8rem;
-                    input{
+                    input {
                         border: none;
                         display: block;
                         height: 100%;
@@ -379,23 +381,23 @@ export default {
                         opacity: 0.8;
                         letter-spacing: 0;
                         text-align: right;
-                        &::placeholder{
+                        &::placeholder {
                             color: #000;
                             opacity: 0.25;
                         }
                     }
                 }
-                &:last-child{
-                    .Name{
-                        &::before{
+                &:last-child {
+                    .Name {
+                        &::before {
                             background-color: #FFF;
                         }
                     }
                 }
             }
-        }
+        } 
         // 底部
-        .Footer{
+        .Footer {
             height: 1.2rem;
             width: 7.5rem;
             background-color: white;
@@ -405,19 +407,19 @@ export default {
             z-index: 199;
             display: flex;
             align-items: center;
-            .IconBox{
+            .IconBox {
                 width: .6rem;
                 margin-left: .51rem;
-                .Icon{
+                .Icon {
                     height: .6rem;
                     width: .6rem;
-                    .svg-icon{
+                    .svg-icon {
                         display: block;
                         height: 100%;
                         width: 100%;
                     }
                 }
-                .Text{
+                .Text {
                     height: .28rem;
                     width: .6rem;
                     opacity: 0.45;
@@ -428,7 +430,7 @@ export default {
                     text-align: center;
                 }
             }
-            .SubmitBtn{
+            .SubmitBtn {
                 height: .8rem;
                 width: 5.6rem;
                 margin-left: .51rem;
@@ -443,7 +445,7 @@ export default {
             }
         }
     }
-    
+
 </style>
 <style>
 .Submit .el-input__inner {
