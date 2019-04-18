@@ -8,7 +8,7 @@
             </el-col>
             <el-col :span="10">
                 <div class="grid-content bg-purple Row2">
-                    <el-select v-model="value" placeholder="请选择">
+                    <el-select v-model="value" placeholder="请选择" style="width:80%" >
                         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                         </el-option>
                     </el-select>
@@ -26,7 +26,9 @@
 <style lang="less" scoped>
     .bestDiv {
         background-color: #05AEF0;
+        
     }
+
     .el-row {
         margin-bottom: 20px;
         overflow: hidden;
@@ -80,6 +82,21 @@
 
 
 </style>
+<style>
+    .bestDiv .el-input__inner {
+        border: none;
+        background-color:#05AEF0; 
+        color: #ffffff;
+        font-size: .36rem;
+
+    }
+    .bestDiv input-placeholder {
+         color: #ffffff;
+    }
+    .bestDiv .el-select .el-input .el-select__caret {
+        color: #ffffff;
+    }
+</style>
 
 <script>
     export default {
@@ -101,7 +118,7 @@
                     value: '选项5',
                     label: '北京烤鸭'
                 }],
-                value: ''
+                value: '杭州'
             }
         }
     }
