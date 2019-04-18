@@ -1,6 +1,6 @@
 <template>
     <div class="Submit">
-                <div class="Title">
+        <div class="Title">
             <el-row>
                 <el-col :span="6">
                     <div class="grid-content">
@@ -56,9 +56,9 @@
             </div>
             <div class="ChooseBox">
                 <div class="Name"><span>就诊省份:</span></div>
-                <el-select class="InputBox" v-model="value" placeholder="请选择就诊类型">
+                <el-select class="InputBox" v-model="province" placeholder="请选择就诊省份">
                     <el-option
-                    v-for="item in options"
+                    v-for="item in provinceArr"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value">
@@ -67,9 +67,9 @@
             </div>
             <div class="ChooseBox">
                 <div class="Name"><span>就诊地市:</span></div>
-                <el-select class="InputBox" v-model="value" placeholder="请选择就诊类型">
+                <el-select class="InputBox" v-model="city" placeholder="请选择就诊地市">
                     <el-option
-                    v-for="item in options"
+                    v-for="item in cityArr"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value">
@@ -78,7 +78,7 @@
             </div>
             <div class="ChooseBox">
                 <div class="Name"><span>就诊机构:</span></div>
-                <el-select class="InputBox" v-model="value" placeholder="请选择就诊类型">
+                <el-select class="InputBox" v-model="value" placeholder="请选择就诊机构">
                     <el-option
                     v-for="item in options"
                     :key="item.value"
@@ -144,11 +144,44 @@ export default {
                 label: '北京烤鸭'
             }],
             value: '',
-            NameTitle:this.$route.params.name
-            }
+            NameTitle:this.$route.params.name,
+            // 省,地级市
+            province: '',
+            provinceArr: [],
+            city: '',
+        }
     },
     created() {
-        console.log(ChinaJson)
+        ChinaJson.forEach((item) => {
+            let obj = new Object();
+            obj.value = item.name;
+            obj.label = item.name;
+            this.provinceArr.push(obj);
+        });
+    },
+    computed: {
+        cityArr: function(){
+            if(this.province != ''){
+                this.city = '';
+                let cities;
+                let arr = [];
+                ChinaJson.some((item) => {
+                    if(this.province == item.name){
+                        cities = item.city;
+                        return true;
+                    }
+                });
+                cities.forEach((item) => {
+                    let obj = new Object();
+                    obj.value = item.name;
+                    obj.label = item.name;
+                    arr.push(obj);
+                });
+                return arr;
+            }else{
+                return [];
+            }
+        }
     },
     methods:{
         goBack() {
