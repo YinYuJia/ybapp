@@ -67,7 +67,11 @@
     }
     .Row2 {
         height: 1rem;
-        text-align: center
+        text-align: center;
+        .el-select{
+            height: 1rem;
+            line-height: 1rem;
+        }
     }
     .Row3 {
         height: 1rem;
@@ -79,9 +83,25 @@
             margin-right: .23rem;
         }
     }
-
-
 </style>
+<style>
+.bestDiv .el-input__inner{
+    background: #05AEF0;
+    border: none;
+    text-align: center;
+    font-size: .32rem;
+    color: #fff;
+    letter-spacing: 0;
+}
+.bestDiv .el-input__inner::placeholder{
+    color: #fff;
+}
+.bestDiv .el-input__suffix .el-select__caret{
+    font-size: .32rem;
+    color: white;
+}
+</style>
+
 
 
 <script>

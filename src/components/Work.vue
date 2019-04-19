@@ -96,6 +96,7 @@
     width: 7.5rem;
     .header {
         overflow: hidden;
+        height: 1.2rem;
     }
     .nav {
         padding-left: 1rem;

@@ -1,26 +1,23 @@
 <template>
     <div class="bestDiv">
-        <el-row >
-            <el-col :span="6">
-                <div class="grid-content bg-purple Row1 first">
-                    <el-select v-model="value" style="width:90%">
-                        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" >
-                        </el-option>
-                    </el-select>
-                </div>
+        <el-row class="WorkHead">
+            <el-col class="Choose" :span="6">
+                <el-select v-model="value" placeholder="请选择">
+                    <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    </el-option>
+                </el-select>
             </el-col>
-            <el-col :span="15" style="line-height:0">
-                <div class="grid-content bg-purple Row2">
-                    <!-- prefix-icon="el-icon-search" -->
-                     <el-input   placeholder="请输入搜索内容" v-model="search" class="Row2_input">
-                         <i slot="prefix" class="el-input__icon el-icon-search Icon"></i>
-                     </el-input>
-                </div>
+            <el-col class="Search" :span="15">
+                <el-input placeholder="请输入搜索内容" v-model="search">
+                    <i slot="prefix" class="el-input__icon el-icon-search Icon"></i>
+                </el-input>
             </el-col>
-            <el-col :span="3">
-                <div class="grid-content bg-purple Row3 first">
-                    <svg-icon icon-class="Index_Message" className="Index_Message" />
-                </div>
+            <el-col class="Btn" :span="3">
+                <svg-icon icon-class="Index_Message" className="Index_Message" />
             </el-col>
         </el-row>
     </div>
@@ -29,71 +26,72 @@
 <style lang="less" scoped>
     .bestDiv {
         background-color: #05AEF0;
-    }
-    .el-row {
-        margin-bottom: 20px;
-        overflow: hidden;
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-    .el-input--prefix .el-input__inner {
-        background-color: red;
-    }
-    .el-select {
-        display: block;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 100%;
-    }
-    .el-input {
-          display: block;
-        top: 53%;
-        transform: translateY(-50%);
-    }
-    .el-col {
-        border-radius: 4px;
-    }
-    .grid-content {
-        border-radius: 4px;
-        min-height: 36px;
-    }
-    .row-bg {
-        padding: 10px 0;
-        background-color: #f9fafc;
-    }
-    .first {
-        line-height: .7rem;
-    }
-    .Row1 {
-        height: 1rem;
-        text-align: left;
-    }
-    .el-icon-search {
-        font-size: .48rem;
-    }
-     .el-input__icon {
-         line-height: .94rem;
-     }
-    .Row2 {
-        height: 1rem;
-        line-height: 1rem;
-        text-align: center;
-        position: relative; 
-    }
-    .Row3 {
-        height: 1rem;
-        text-align: right;
-                .Index_Message {
-            text-align: center;
+        height: 1.2rem;
+        padding-top: .21rem;
+        .WorkHead {
             height: .6rem;
-            width: .6rem;
-            margin-right: .20rem;
+            .Choose,.Search {
+                height: .6rem;
+                .el-select{
+                    display: block;
+                }
+                .el-input{
+                    display: block;
+                }
+            }
+            .Btn {
+                height: .6rem;
+                .svg-icon{
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
         }
     }
-
-
 </style>
+
+<style>
+/*覆盖Element自带样式*/
+/* 选择 */
+.bestDiv .WorkHead .Choose .el-select .el-input__inner{
+    height: .6rem;
+    border: none;
+    background: #05AEF0;
+    font-size: .32rem;
+    color: #FFF;
+    letter-spacing: 0;
+}
+.bestDiv .WorkHead .Choose .el-select .el-input__inner::placeholder{
+    color: #FFF;
+}
+.bestDiv .WorkHead .Choose .el-input__suffix .el-input__suffix-inner .el-select__caret{
+    color: #FFF;
+    line-height: .6rem;
+    font-size: .3rem;
+}
+/* 搜索 */
+.bestDiv .WorkHead .Search .el-input .el-input__inner{
+    height: .6rem;
+    border: none;
+    background: #50C6F4;
+    font-size: .24rem;
+    opacity: 0.65;
+    font-size: .24rem;
+    color: #FFF;
+    letter-spacing: 0;
+}
+.bestDiv .WorkHead .Search .el-input .el-input__inner::placeholder{
+    color: #FFF;
+}
+.bestDiv .WorkHead .Search .el-input__prefix .el-input__icon{
+    line-height: .6rem;
+    color: #FFF;
+    font-size: .4rem;
+    opacity: 0.8;
+}
+</style>
+
 
 <script>
     export default {
