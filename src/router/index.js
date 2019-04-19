@@ -6,7 +6,7 @@ import Work from '@/components/Work';
 import TreatmentReimbursement from '@/components/commonComponent/Work/TreatmentReimbursement';
 import TReimbursement1 from '@/components/commonComponent/Work/TreatmentReimbursement/TReimbursement1'
 import SubmitReimbursement from '@/components/commonComponent/Work/TreatmentReimbursement/SubmitReimbursement'
-import EventDetail from '@/components/commonComponent/Work/TreatmentReimbursement/EventDetail'
+import EventDetail from '@/components/commonComponent/Work/TreatmentReimbursement/EventDetail_1'
 
 Vue.use(Router)
 
