@@ -155,7 +155,7 @@
             'Tip': Tip
         },
         created() {
-            this.form = this.$store.state.SET_TREATMENT_REIMBURSEMENT
+            // this.form = this.$store.state.SET_TREATMENT_REIMBURSEMENT
             console.log('this.form', this.form)
             ChinaJson.forEach((item) => {
                 let obj = new Object();

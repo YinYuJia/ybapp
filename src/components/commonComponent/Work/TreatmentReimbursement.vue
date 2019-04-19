@@ -74,6 +74,7 @@
             'OtherService': OtherService,
         },
         created() {
+            
             this.activeIndex = this.$route.params.id
             this.NameTitle = this.$route.params.name
         }
