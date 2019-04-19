@@ -25,7 +25,7 @@
             <el-row>
                 <el-col class="NameBox" :span="18">
                     <div class="StateTitle">基本医疗保险参保人员医疗费用零星报销项</div>
-                    <div class="RestTime">处理时限：23:23:54</div>
+                    <div class="RestTime">处理时限：{{time}}</div>
                 </el-col>
                 <el-col class="BtnBox" :span="6">
                     <div class="Btn Receive"><span>收件</span></div>
@@ -36,44 +36,44 @@
         <div class="StateDate">
             <div class="StateInnerBox">
                 <div class="BoxName"><span>开始日期:</span></div>
-                <div class="BoxContent"><span>2019-03-01</span></div>
+                <div class="BoxContent"><span>{{form.startDate}}</span></div>
             </div>
             <div class="StateInnerBox">
                 <div class="BoxName"><span>结束日期:</span></div>
-                <div class="BoxContent"><span>2019-04-10</span></div>
+                <div class="BoxContent"><span>{{form.endDate}}</span></div>
             </div>
         </div>
         <!-- 地区 -->
         <div class="StateSite">
             <div class="StateInnerBox">
                 <div class="BoxName"><span>就诊类型:</span></div>
-                <div class="BoxContent"><span>门诊</span></div>
+                <div class="BoxContent"><span>{{form.TypeOfVisit}}</span></div>
             </div>
             <div class="StateInnerBox">
                 <div class="BoxName"><span>就诊省份:</span></div>
-                <div class="BoxContent"><span>浙江省</span></div>
+                <div class="BoxContent"><span>{{form.province}}</span></div>
             </div>
             <div class="StateInnerBox">
                 <div class="BoxName"><span>就诊城市:</span></div>
-                <div class="BoxContent"><span>杭州</span></div>
+                <div class="BoxContent"><span>{{form.city}}</span></div>
             </div>
             <div class="StateInnerBox">
                 <div class="BoxName"><span>就诊机构:</span></div>
-                <div class="BoxContent"><span>杭州市第二人民医院</span></div>
+                <div class="BoxContent"><span>{{form.VisitingInstitution}}</span></div>
             </div>
         </div>
         <!-- 发票 -->
         <div class="Invoice">
             <div class="PhotoBox">
-                <img src=""/>
+                <img src="" />
             </div>
             <div class="StateInnerBox">
                 <div class="BoxName">发票号码:</div>
-                <div class="BoxContent">345354587106</div>
+                <div class="BoxContent">{{form.InvoiceNumber}}</div>
             </div>
             <div class="StateInnerBox">
                 <div class="BoxName">总金额:</div>
-                <div class="BoxContent">5354.00</div>
+                <div class="BoxContent">{{form.TotalSum}}</div>
             </div>
         </div>
         <!-- 底部 -->
@@ -85,31 +85,85 @@
             </div>
             <div class="BtnBox">
                 <div class="ResetBtn">撤销</div>
-                <div class="EditBtn">编辑</div>
+                <div class="EditBtn" @click="edit">编辑</div>
             </div>
         </footer>
     </div>
 </template>
 
 <script>
-export default {
-    methods: {
-        goBack() {
-            this.$router.push({
-                name: 'TReimbursement1',
-                params: {
-                    name: this.$route.params.name
-                }
-            })
+    export default {
+        data() {
+            return {
+                form: {},
+                time: '',
+                timer:null
+            }
         },
+        watch: {
+            time: {
+                deep: true,
+                handler: function(newValue, oldValue) {
+                    console.log('newValue',newValue)
+                    console.log(this.time)
+                }
+            }
+        },
+        methods: {
+            goBack() {
+                this.$router.push({
+                    name: 'Work',
+                })
+            },
+            edit() {
+                this.$router.push({
+                    name: 'SubmitReimbursement',
+                    params: {
+                        name: "待遇报销"
+                    }
+                })
+            },
+            countDown(times) {
+                
+                this.timer = setInterval(() => {
+                    var day = 0,
+                        hour = 0,
+                        minute = 0,
+                        second = 0; //时间默认值
+                    if (times > 0) {
+                        day = Math.floor(times / (60 * 60 * 24));
+                        hour = Math.floor(times / (60 * 60)) - (day * 24);
+                        minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+                        second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                    }
+                    if (day <= 9) day = '0' + day;
+                    if (hour <= 9) hour = '0' + hour;
+                    if (minute <= 9) minute = '0' + minute;
+                    if (second <= 9) second = '0' + second;
+                    //
+                    this.time = hour + ':' + minute + ":" + second
+                    console.log(this.time)
+                    times--;
+                }, 1000);
+                if (times <= 0) {
+                    clearInterval(timer);
+                }
+            }
+        },
+        created() {
+            console.log(this.$store.state.SET_TREATMENT_REIMBURSEMENT)
+            this.form = this.$store.getters.SET_TREATMENT_REIMBURSEMENT
+            // this.countDown(18000 * 24 / 5)
+        },
+            beforeDestroy() {
+      clearInterval(this.timer)
+    },
     }
-}
 </script>
 
 <style lang="less" scoped>
-    .EventDetail{
-        width: 7.5rem;
-        // 标题
+    .EventDetail {
+        width: 7.5rem; // 标题
         .Title {
             height: .8rem;
             background-color: #05AEF0;
@@ -121,22 +175,21 @@ export default {
                 color: #FFFFFF;
                 font-family: 'PingFangSC-Regular';
             }
-        }
-        // 事项名
-        .StateBox{
+        } // 事项名
+        .StateBox {
             height: 2.4rem;
             width: 7.5rem;
             background: #FFF;
-            .el-row{
+            .el-row {
                 height: 2.4rem;
                 display: flex;
                 align-items: center;
-                .NameBox{
+                .NameBox {
                     height: 1.72rem;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    .StateTitle{
+                    .StateTitle {
                         height: 1rem;
                         width: 4.48rem;
                         margin-left: .3rem;
@@ -148,7 +201,7 @@ export default {
                         letter-spacing: 0;
                         line-height: .5rem;
                     }
-                    .RestTime{
+                    .RestTime {
                         opacity: 0.45;
                         margin-left: .3rem;
                         text-align: left;
@@ -158,9 +211,9 @@ export default {
                         letter-spacing: 0;
                     }
                 }
-                .BtnBox{
+                .BtnBox {
                     height: 1.34rem;
-                    .Btn{
+                    .Btn {
                         height: 1.34rem;
                         width: 1.34rem;
                         margin-right: .4rem;
@@ -171,23 +224,24 @@ export default {
                         color: #FFF;
                         text-align: center;
                     }
-                    .Receive{
+                    .Receive {
                         background-color: #8BDFFF;
                     }
                 }
             }
-        }
-        //日期、地区、发票
-        .StateDate ,.StateSite, .Invoice{
+        } //日期、地区、发票
+        .StateDate,
+        .StateSite,
+        .Invoice {
             background: #FFF;
             margin-top: .15rem;
-            .StateInnerBox{
+            .StateInnerBox {
                 height: 1.21rem;
                 width: 7.5rem;
                 display: flex;
                 align-items: center;
                 position: relative;
-                .BoxName{
+                .BoxName {
                     height: .42rem;
                     width: 1.5rem;
                     line-height: 0.42rem;
@@ -198,7 +252,7 @@ export default {
                     font-size: .3rem;
                     color: #000000;
                     letter-spacing: 0;
-                    span{
+                    span {
                         display: block;
                     }
                     &::before {
@@ -212,7 +266,7 @@ export default {
                         background-color: #D5D5D5;
                     }
                 }
-                .BoxContent{
+                .BoxContent {
                     margin-left: .26rem;
                     opacity: 0.85;
                     font-family: PingFangSC-Regular;
@@ -229,9 +283,9 @@ export default {
                 }
             }
         }
-        .Invoice{
+        .Invoice {
             position: relative;
-            .PhotoBox{
+            .PhotoBox {
                 height: 1.8rem;
                 width: 1.8rem;
                 background-color: #ddd;
@@ -240,15 +294,14 @@ export default {
                 top: .34rem;
                 border-radius: .08rem;
             }
-            .StateInnerBox{
-                .BoxName{
+            .StateInnerBox {
+                .BoxName {
                     &::before {
                         width: 4.6rem;
                     }
                 }
             }
-        }
-        // 底部
+        } // 底部
         // 底部
         .Footer {
             height: 1.2rem;
@@ -295,13 +348,13 @@ export default {
                 color: #FFFFFF;
                 letter-spacing: 0;
                 display: flex;
-                .ResetBtn{
+                .ResetBtn {
                     width: 2.8rem;
                     background: #B6DEFF;
                     border-top-left-radius: .4rem;
                     border-bottom-left-radius: .4rem;
                 }
-                .EditBtn{
+                .EditBtn {
                     width: 2.8rem;
                 }
             }

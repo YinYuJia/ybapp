@@ -49,12 +49,14 @@
             </el-col>
         </el-row>
         <!-- 信息 -->
-        <div class="ItemMsg">
+        <router-link to="/EventDetail">
+            <div class="ItemMsg">
             <div class="MsgTitle">
                 <span>【{{msg_type}}】</span><span>{{msg_title}}</span>
             </div>
             <div class="MsgText"><span>{{msg_text}}</span></div>
         </div>
+        </router-link>
     </div>
 </template>
 

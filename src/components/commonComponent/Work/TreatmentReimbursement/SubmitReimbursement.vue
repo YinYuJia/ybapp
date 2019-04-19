@@ -37,6 +37,7 @@
                 <el-date-picker
                 class="InputBox"
                 v-model="form.endDate"
+                format="yyyy-MM-dd"
                 type="date"
                 clear-icon=""
                 placeholder="请选择结束日期">
@@ -154,6 +155,9 @@
             }
         },
         created() {
+            
+            this.form = this.$store.state.SET_TREATMENT_REIMBURSEMENT
+            console.log('this.form',this.form)
             ChinaJson.forEach((item) => {
                 let obj = new Object();
                 obj.value = item.name;
