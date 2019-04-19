@@ -31,7 +31,7 @@
         </div>
         <div v-if="activeIndex == 2">
             <!-- 备案服务 -->
-            2222
+            <RecordService :NameTitle="NameTitle"></RecordService>
         </div>
         <div v-if="activeIndex == 3">
             <!-- 待遇报销 -->
@@ -39,7 +39,7 @@
         </div>
         <div v-if="activeIndex == 4">
             <!-- 其他服务 -->
-            4444
+            <OtherService :NameTitle="NameTitle"></OtherService>
         </div>
         <div class="line"></div>
     </div>
@@ -47,7 +47,9 @@
 
 <script>
     import TReimbursement from './TreatmentReimbursement/TReimbursement.vue';
-    import InsuredService from './InsuredService/InsuredService.vue'
+    import InsuredService from './InsuredService/InsuredService.vue';
+    import RecordService from './RecordService/RecordService.vue';
+    import OtherService from './OtherService/OtherService.vue';
     export default {
         data() {
             return {
@@ -67,7 +69,9 @@
         },
         components: {
             'TReimbursement': TReimbursement,
-            'InsuredService': InsuredService
+            'InsuredService': InsuredService,
+            'RecordService': RecordService,
+            'OtherService': OtherService,
         },
         created() {
             this.activeIndex = this.$route.params.id
