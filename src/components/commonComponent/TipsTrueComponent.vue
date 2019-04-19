@@ -1,28 +1,28 @@
 <template>
     <div class="Tips">
         <div class="TipsInfo">
-            <p class="p">提示信息</p>
-            <p class="Info">{{message}}</p>
-        <el-button type="primary" @click="MakeShrue" class="btn" >确定</el-button>
+            <div style="height:100%;width:100%">
+                <div class="left">
+                   <!-- Tips_Success -->
+                    <svg-icon icon-class="Tips_Success" className="Tips_Success" />
+                </div>
+                
+                <div class="right">
+                    提交成功
+                    </div> 
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props:{
-        message:{
-            type:String,
-            default:""
-        }
-    },
+
     created() {
       console.log(this.message)
     },
      methods:{
-         MakeShrue() {
-             this.$emit('TipsTrue','1')
-         }
+
      }
 }
 </script>
@@ -35,33 +35,41 @@ export default {
          top: 0;
          left: 0;
          z-index: 200;
-
-         background-color: rgba(0,0,0,.5);
+         background-color: rgba(0,0,0,.4);
          .TipsInfo {
-            border-radius: 15px;
-             height: 200px;
-             width: 300px;
+             height: 1.4rem;
+             width: 100%;;
              background-color: white;
              position: absolute;
-             top: 30%;
+             top: .8rem;
              left: 50%;
-             transform: translate(-50%,-50%);
+             transform: translateX(-50%);
              .p {
                  font-size: 24px;
                  margin-top: 15px;
                  text-align: left;
                  margin-left: 10px;
-             }
-             .Info {
-                font-size: 20px;
-                text-align: left;
-                text-indent: 15px;
-                margin-top: 25px;
-             }
-             .btn {
-                 position: absolute;
-                 bottom: 15px;
-                 right: 20px;
+             };
+             .left {
+                 height: 100%;
+                 float: left;
+                 width: 50%;
+                 text-align: right;
+                 .Tips_Success {
+                     height:.6rem;
+                     width: .6rem;
+                     margin-right: .3rem;
+                 }
+             };
+             .right {
+                 width: 49%;
+                 height: 100%;
+                 float: left;
+                 font-size: .36rem;
+                 line-height: 1.5rem;
+                 text-align: left;
+                 text-indent: .3rem;
+                 font-family: 'PingFangSC-Regular';
              }
          }
      }
