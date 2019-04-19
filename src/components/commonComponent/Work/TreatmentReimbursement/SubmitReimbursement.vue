@@ -26,7 +26,7 @@
                 <div class="Name"><span>开始日期:</span></div>
                 <el-date-picker
                 class="InputBox"
-                v-model="startDate"
+                v-model="form.startDate"
                 type="date"
                 clear-icon=""
                 placeholder="请选择开始日期">
@@ -36,7 +36,7 @@
                 <div class="Name"><span>结束日期:</span></div>
                 <el-date-picker
                 class="InputBox"
-                v-model="endDate"
+                v-model="form.endDate"
                 type="date"
                 clear-icon=""
                 placeholder="请选择结束日期">
