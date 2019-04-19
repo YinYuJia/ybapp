@@ -8,7 +8,7 @@
                 </div>
                 
                 <div class="right">
-                    提交成功
+                    {{message}}
                     </div> 
             </div>
         </div>
@@ -17,7 +17,12 @@
 
 <script>
 export default {
-
+    props:{
+        message:{
+            type:String,
+            default:''
+        }
+    },
     created() {
       console.log(this.message)
     },
