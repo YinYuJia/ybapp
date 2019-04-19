@@ -153,7 +153,7 @@
         created() {
             console.log(this.$store.state.SET_TREATMENT_REIMBURSEMENT)
             this.form = this.$store.getters.SET_TREATMENT_REIMBURSEMENT
-            // this.countDown(18000 * 24 / 5)
+            this.countDown(18000 * 24 / 5)
         },
             beforeDestroy() {
       clearInterval(this.timer)

@@ -24,23 +24,12 @@
         <div class="ChooseDate">
             <div class="ChooseBox">
                 <div class="Name"><span>开始日期:</span></div>
-                <el-date-picker
-                class="InputBox"
-                v-model="form.startDate"
-                type="date"
-                clear-icon=""
-                placeholder="请选择开始日期">
+                <el-date-picker class="InputBox" v-model="form.startDate" type="date" clear-icon="" placeholder="请选择开始日期">
                 </el-date-picker>
             </div>
             <div class="ChooseBox">
                 <div class="Name"><span>结束日期:</span></div>
-                <el-date-picker
-                class="InputBox"
-                v-model="form.endDate"
-                format="yyyy-MM-dd"
-                type="date"
-                clear-icon=""
-                placeholder="请选择结束日期">
+                <el-date-picker class="InputBox" v-model="form.endDate" format="yyyy-MM-dd" type="date" clear-icon="" placeholder="请选择结束日期">
                 </el-date-picker>
             </div>
         </div>
@@ -105,31 +94,40 @@
             </div>
             <div class="SubmitBtn" @click="Submit"><span>确认提交</span></div>
         </footer>
+        <!-- 提示框 -->
+        <transition name="el-fade-in-linear">
+            <div v-if="tips == true">
+                <Tip :message = "message"></Tip>
+            </div>
+        </transition>
     </div>
 </template>
 
 <script>
-    import ChinaJson from '../../../../common/js/ChinaArray.js'
+    import ChinaJson from '../../../../common/js/ChinaArray.js';
+    import Tip from '../../TipsTrueComponent.vue'
     export default {
         data() {
             return {
+                tips: false,
+                message:"提交成功",
                 form: {
                     // 开始时间
                     startDate: '',
                     // 结束时间
-                    endDate:"",
+                    endDate: "",
                     // 就诊类型
-                    TypeOfVisit:"",
+                    TypeOfVisit: "",
                     // 省
-                    province:"",
+                    province: "",
                     // 市
-                    city:"",
+                    city: "",
                     // 就诊机构
-                    VisitingInstitution:"",
+                    VisitingInstitution: "",
                     // 发票号
-                    InvoiceNumber:"",
+                    InvoiceNumber: "",
                     // 总金额
-                    TotalSum:""
+                    TotalSum: ""
                 },
                 options: [{
                     value: '选项1',
@@ -154,10 +152,12 @@
                 city: '',
             }
         },
+        components: {
+            'Tip': Tip
+        },
         created() {
-            
-            this.form = this.$store.state.SET_TREATMENT_REIMBURSEMENT
-            console.log('this.form',this.form)
+            // this.form = this.$store.state.SET_TREATMENT_REIMBURSEMENT
+            console.log('this.form', this.form)
             ChinaJson.forEach((item) => {
                 let obj = new Object();
                 obj.value = item.name;
@@ -200,9 +200,13 @@
                 })
             },
             Submit() {
-                console.log(this.form)
-                this.$store.dispatch("SET_TREATMENT_REIMBURSEMENT",this.form)
-                this.$router.push("/first")
+                this.tips = true;
+                setTimeout(() => {
+                    this.tips = false;
+                    console.log(this.form)
+                    this.$store.dispatch("SET_TREATMENT_REIMBURSEMENT", this.form)
+                    this.$router.push("/first")
+                }, 2500)
             }
         }
     }
@@ -223,8 +227,7 @@
     }
     .Submit {
         height: auto;
-        width: 7.5rem; 
-        // 头部
+        width: 7.5rem; // 头部
         .Header {
             height: .8rem;
             width: 7.5rem;
@@ -255,8 +258,7 @@
                     width: 100%;
                 }
             }
-        } 
-        // 选择日期
+        } // 选择日期
         .ChooseDate {
             background: #fff;
             .ChooseBox {
@@ -286,7 +288,7 @@
                         background-color: #D5D5D5;
                     }
                 }
-                .InputBox{
+                .InputBox {
                     width: 4rem;
                 }
                 &:last-child {
@@ -297,8 +299,7 @@
                     }
                 }
             }
-        } 
-        //就诊信息
+        } //就诊信息
         .ChooseClinic {
             background: #FFF;
             margin-top: .15rem;
@@ -329,7 +330,7 @@
                         background-color: #D5D5D5;
                     }
                 }
-                .InputBox{
+                .InputBox {
                     width: 4rem;
                 }
                 &:last-child {
@@ -340,8 +341,7 @@
                     }
                 }
             }
-        } 
-        // 发票
+        } // 发票
         .Invoice {
             background: #FFF;
             margin-top: .15rem;
@@ -401,8 +401,7 @@
                     }
                 }
             }
-        } 
-        // 底部
+        } // 底部
         .Footer {
             height: 1.2rem;
             width: 7.5rem;
@@ -451,32 +450,31 @@
             }
         }
     }
-
 </style>
 <style>
-.Submit .el-input__inner {
-    border: none;
-    text-align: right;
-    font-size: .3rem;
-    color: #000;
-    opacity: 0.8;
-    padding-right: 1.18rem;
-    letter-spacing: 0;
-}
-.Submit .el-input__prefix{
-    right: .36rem;
-    left: 3.2rem;
-    font-size: .36rem;
-}
-.Submit .el-input__inner::placeholder{
-    font-size: .3rem;
-    color: #000;
-    opacity: 0.25;
-}
-.Submit .el-input__suffix{
-    right: .36rem;
-}
-.Submit .el-input__suffix .el-input__suffix-inner .el-select__caret{
-    font-size: 0.3rem;
-}
+    .Submit .el-input__inner {
+        border: none;
+        text-align: right;
+        font-size: .3rem;
+        color: #000;
+        opacity: 0.8;
+        padding-right: 1.18rem;
+        letter-spacing: 0;
+    }
+    .Submit .el-input__prefix {
+        right: .36rem;
+        left: 3.2rem;
+        font-size: .36rem;
+    }
+    .Submit .el-input__inner::placeholder {
+        font-size: .3rem;
+        color: #000;
+        opacity: 0.25;
+    }
+    .Submit .el-input__suffix {
+        right: .36rem;
+    }
+    .Submit .el-input__suffix .el-input__suffix-inner .el-select__caret {
+        font-size: 0.3rem;
+    }
 </style>
