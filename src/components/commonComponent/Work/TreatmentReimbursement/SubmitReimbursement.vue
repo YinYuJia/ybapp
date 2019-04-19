@@ -37,6 +37,7 @@
                 <el-date-picker
                 class="InputBox"
                 v-model="form.endDate"
+                format="yyyy-MM-dd"
                 type="date"
                 clear-icon=""
                 placeholder="请选择结束日期">
@@ -154,16 +155,15 @@
             }
         },
         created() {
-            if ( this.$store.state.SET_TREATMENT_REIMBURSEMENT) {
-                this.form = this.$store.state.SET_TREATMENT_REIMBURSEMENT
-            }
+            
+            this.form = this.$store.state.SET_TREATMENT_REIMBURSEMENT
+            console.log('this.form',this.form)
             ChinaJson.forEach((item) => {
                 let obj = new Object();
                 obj.value = item.name;
                 obj.label = item.name;
                 this.provinceArr.push(obj);
             });
-            
         },
         computed: {
             //地级市数组
@@ -200,10 +200,7 @@
                 })
             },
             Submit() {
-                
-                this.form.startDate = this.form.startDate.valueOf()
-                this.form.endDate = this.form.endDate.valueOf()
-                console.log(this.form.startDate - this.form.endDate)
+                console.log(this.form)
                 this.$store.dispatch("SET_TREATMENT_REIMBURSEMENT",this.form)
                 this.$router.push("/first")
             }

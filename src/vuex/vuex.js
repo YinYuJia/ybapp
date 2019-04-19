@@ -44,6 +44,8 @@ export default new Vuex.Store({  // 暴露与new vuex
           return a;
         },
         SET_TREATMENT_REIMBURSEMENT:(state) => {
+          state.SET_TREATMENT_REIMBURSEMENT.startDate = state.SET_TREATMENT_REIMBURSEMENT.startDate.valueOf()
+          state.SET_TREATMENT_REIMBURSEMENT.endDate = state.SET_TREATMENT_REIMBURSEMENT.endDate.valueOf()
           let a = new Date(state.SET_TREATMENT_REIMBURSEMENT.startDate)
           let b = new Date(state.SET_TREATMENT_REIMBURSEMENT.endDate)
           

@@ -95,8 +95,8 @@
     export default {
         data() {
             return {
-                form: this.$store.getters.SET_TREATMENT_REIMBURSEMENT,
-                time: '24:00:00',
+                form: {},
+                time: '',
                 timer:null
             }
         },
@@ -151,7 +151,9 @@
             }
         },
         created() {
-            this.countDown(18000 * 24 / 5)
+            console.log(this.$store.state.SET_TREATMENT_REIMBURSEMENT)
+            this.form = this.$store.getters.SET_TREATMENT_REIMBURSEMENT
+            // this.countDown(18000 * 24 / 5)
         },
             beforeDestroy() {
       clearInterval(this.timer)
