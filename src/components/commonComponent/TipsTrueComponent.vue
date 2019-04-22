@@ -4,7 +4,9 @@
             <div style="height:100%;width:100%">
                 <div class="left">
                    <!-- Tips_Success -->
-                    <svg-icon icon-class="Tips_Success" className="Tips_Success" />
+                    <svg-icon icon-class="Tips_Success" className="Tips_Success" v-if="PropTips == 'PropTipsTrue'" />
+                    <svg-icon icon-class="Tips_Fail" className="Tips_Success" v-if ="PropTips == 'PropTipsFalse'" />
+                    
                 </div>
                 
                 <div class="right">
@@ -21,10 +23,15 @@ export default {
         message:{
             type:String,
             default:''
+        },
+        PropTips:{
+            type:String,
+            default:''
         }
     },
     created() {
       console.log(this.message)
+      console.log(this.PropTips)
     },
      methods:{
 
@@ -63,7 +70,7 @@ export default {
                  .Tips_Success {
                      height:.6rem;
                      width: .6rem;
-                     margin-right: .3rem;
+                     margin-right: .6rem;
                  }
              };
              .right {
@@ -73,7 +80,7 @@ export default {
                  font-size: .36rem;
                  line-height: 1.5rem;
                  text-align: left;
-                 text-indent: .3rem;
+                 text-indent: .2rem;
                  font-family: 'PingFangSC-Regular';
              }
          }

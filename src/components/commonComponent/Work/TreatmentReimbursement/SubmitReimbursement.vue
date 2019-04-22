@@ -97,7 +97,7 @@
         <!-- 提示框 -->
         <transition name="el-fade-in-linear">
             <div v-if="tips == true">
-                <Tip :message = "message"></Tip>
+                <Tip message = "提交失败" PropTips = "PropTipsFalse"></Tip>
             </div>
         </transition>
     </div>
@@ -110,7 +110,6 @@
         data() {
             return {
                 tips: false,
-                message:"提交成功",
                 form: {
                     // 开始时间
                     startDate: '',
