@@ -14,10 +14,10 @@ module.exports = {
 
     // Various Dev Server settings
     // 殷宇佳
-    host: '192.168.1.169', 
+    host: 'localhost', 
  
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
+    autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
