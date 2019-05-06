@@ -60,7 +60,7 @@
         },
         methods: {
             TipsTrue: function(a) {
-                this.$emit('fas', "1234")
+                this.$emit('fas', "12345")
             },
         },
         created() {
