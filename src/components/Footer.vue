@@ -69,6 +69,7 @@
         // 创建一个方法 储存 vuex数据
         computed: {
             getUserIcons() {
+                console.log(this.$store.state.SET_SELECT)
                 return this.$store.state.SET_SELECT
             }
         },
