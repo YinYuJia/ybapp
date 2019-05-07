@@ -172,6 +172,7 @@
       // }, 1000)
 
           this.$axios.get('/static/a.json').then((resData) => {
+            console.log(resData)
           this.responseData = resData.data
             console.log(this.responseData)
           }
