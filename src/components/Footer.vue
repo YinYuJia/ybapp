@@ -60,7 +60,7 @@
         },
         methods: {
             TipsTrue: function(a) {
-                this.$emit('fas', "1234")
+                this.$emit('fas', "12345")
             },
         },
         created() {
@@ -69,6 +69,7 @@
         // 创建一个方法 储存 vuex数据
         computed: {
             getUserIcons() {
+                console.log(this.$store.state.SET_SELECT)
                 return this.$store.state.SET_SELECT
             }
         },
