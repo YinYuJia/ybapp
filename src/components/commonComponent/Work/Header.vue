@@ -72,6 +72,8 @@
 }
 /* 搜索 */
 .bestDiv .WorkHead .Search .el-input .el-input__inner{
+    padding-left: .8rem;
+    text-align: left;
     height: .6rem;
     border: none;
     background: #50C6F4;
