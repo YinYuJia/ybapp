@@ -36,7 +36,7 @@ Vue.config.productionTip = false;
 // 公共请求模板
 // this.$axios.post('url',{parmas}).then((resData) => {
 //   cosole.log(resData)
-// }).catch(function(error) {
+// }).catch((error) => {
 //   console.log(error)
 // })
 

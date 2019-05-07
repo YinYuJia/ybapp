@@ -16,7 +16,7 @@
                 </router-link>
             </el-col>
             <el-col :span="4" :offset='1'>
-                <router-link to='/first'>
+                <router-link to='/'>
                 <img src="../../static/images/footer/medicine.png" v-if="'medicine' == info.msg" alt="">
                 <img src="../../static/images/footer/medicine1.png" v-else alt="">
                 <p>医药</p>

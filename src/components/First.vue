@@ -58,7 +58,7 @@
       <div>{{reversedMessage}}</div>
       <!-- 数组循环 -->
       <ul>
-        <li v-for = '(item,index) in options' :key = "item.value" style="font-size:.5rem" >{{index}}:{{item.label}}</li>
+        <li v-for = '(item,index) in options' :key = "item.value" style="font-size:.5rem" >{{index}}:{{item.label}}||{{item.value}}</li>
       </ul>
       <!-- 对象循环 -->
       <div v-for = "(item,key)  in responseData" :key = "item">{{key}}:{{item}}</div>
@@ -157,9 +157,9 @@
       // const _this = this
       // this.$axios.post('http://192.168.101.62:8001/test/json', {
       //   id: 1
-      // }).then(function(resData) {
+      // }).then((resData) => {
       //   _this.resDatas = resData.data
-      // }).catch(function(error) {
+      // }).catch((error) => {
       //   console.log(error)
       // })
       // 定时器
