@@ -47,7 +47,7 @@ export default {
     props: {
         Types: {
             type: String,
-            default: ""
+            default: "" 
         }
     }
 }
