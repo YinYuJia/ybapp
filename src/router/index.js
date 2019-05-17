@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/serveComponent/index'
-// import First from '@/components/First';
+import First from '@/components/First';
 // import Work from '@/components/Work';
 // import TreatmentReimbursement from '@/components/commonComponent/Work/TreatmentReimbursement';
 // import TReimbursement1 from '@/components/commonComponent/Work/TreatmentReimbursement/TReimbursement1'
@@ -19,11 +19,11 @@ export default new Router({
       component: Index
     },
 
-    // {
-    //   path: '/first',
-    //   name: 'FirstComponent',
-    //   component: First
-    // },
+    {
+      path: '/first',
+      name: 'FirstComponent',
+      component: First
+    },
     // // 办事
     // {
     //   path: '/Work',
