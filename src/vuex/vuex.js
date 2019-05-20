@@ -36,6 +36,12 @@ export default new Vuex.Store({  // 暴露与new vuex
           phone: '', //联系电话
           address: '' //详细地址
         },
+        // 参保变更
+        SET_INSURED_CHANGE: {
+          address: '', //家庭住址
+          phone: '', //手机号码
+          code: '', //邮政编码
+        }
       },
       // 计算属性 getters
       getters:{
@@ -77,6 +83,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_INSURED_PROOF:(state, payload) =>{
           state.SET_INSURED_PROOF = payload
         },
+        SET_INSURED_CHANGE:(state, payload) =>{
+          state.SET_INSURED_CHANGE = payload
+        },
       },
 
       actions:{ //添加actions
@@ -94,6 +103,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_INSURED_PROOF:(context, payload) =>{
           context.commit('SET_INSURED_PROOF', payload);
+        },
+        SET_INSURED_CHANGE:(context, payload) =>{
+          context.commit('SET_INSURED_CHANGE', payload);
         },
       }
 })
