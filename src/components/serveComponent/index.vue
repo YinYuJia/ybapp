@@ -20,8 +20,8 @@
                 </el-col>
             </el-row>
         </div>
-        <div>
-            666
+        <div class="discribe">
+            {{discribe}}
         </div>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
             <el-menu-item index="1" style="width:25%">办事指南</el-menu-item>
@@ -64,7 +64,8 @@ import BusinessGuide from './BusinessGuide'
         data() {
             return {
                 activeIndex: '1',
-                NameTitle: this.$route.params.name,
+                NameTitle: '安卓传过来的标题',
+                discribe:'title的相信描述内容',
                 id: null,
             };
         },
@@ -80,6 +81,8 @@ import BusinessGuide from './BusinessGuide'
             //获取URL函数
             getAndroid(dataStr) {
                 this.id = dataStr;
+                this.NameTitle = dataStr.title;
+                this.discribe = dataStr.discribe;
             },
             handleSelect(key, keyPath) {
                 this.activeIndex = key
@@ -94,11 +97,11 @@ import BusinessGuide from './BusinessGuide'
                 })
             },
             submit() {
-                       this.$router.push({
-                    name: 'SubmitReimbursement',
-                    params: {
-                        name:'待遇报销'
-                    }
+                this.$router.push({
+                name: 'SubmitReimbursement',
+                params: {
+                    name:'待遇报销'
+                }
             })
         },
         created() {
@@ -120,6 +123,14 @@ import BusinessGuide from './BusinessGuide'
         font-size: .36rem;
         color: #FFFFFF;
         font-family: 'PingFangSC-Regular';
+    }
+    .discribe {
+        height: 80px;
+        line-height: 80px;
+        font-size: 22px;
+        text-align: left;
+        text-indent: 10px;
+        background-color: #fff;
     }
  .Footer{
             height: 1.2rem;
