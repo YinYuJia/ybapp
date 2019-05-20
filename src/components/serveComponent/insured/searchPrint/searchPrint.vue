@@ -1,5 +1,5 @@
 <template>
-    <div class="insuredChange">
+    <div class="searchPrint">
         <div class="Title">
             <el-row>
                 <el-col :span="6">
@@ -7,7 +7,7 @@
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
-                        参保信息变更
+                        打印参保证明
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -29,31 +29,22 @@
                     </div>
                 </div>
             </div>
-            <!-- 变更信息 -->
-            <div class="ChangeInfo">
-                <div class="ContentTitle">变更信息</div>
-                <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="家庭住址">
-                        <el-input type="textarea" :rows="4" v-model="form.address"></el-input>
-                    </el-form-item>
-                    <el-form-item label="手机号码">
-                        <el-input v-model="form.phone"></el-input>
-                    </el-form-item>
-                    <el-form-item label="邮政编码">
-                        <el-input v-model="form.code"></el-input>
-                    </el-form-item>
-                    
-                </el-form>
-            </div>
-            <!-- 提示 -->
-            <div class="Hint">
-                <div class="HintTitle"><i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示</div>
-                <div class="HintText">请依照您的实际变更情况，修改以上内容。</div>
+            <!-- 查询月数 -->
+            <div class="SearchInfo">
+                <span>查询月数</span>
+                <el-select v-model="value" placeholder="请选择">
+                    <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    </el-option>
+                </el-select>
             </div>
         </div>
         <!-- 按钮 -->
-        <footer class="Btn" :class="{'active': canSubmit == true}" @click="submit()">
-            确认提交
+        <footer class="Btn active" @click="search()">
+            查询
         </footer>
     </div>
 </template>
@@ -63,17 +54,23 @@ export default {
     data(){
         return{
             form:{
-                address: '',
+                name: '',
                 phone: '',
-                code: ''
+                address: ''
             },
-            canSubmit: false,
+            value: '',
+            options:[
+                {value: '12', label: '12个月'},
+                {value: '24', label: '24个月'},
+                {value: '36', label: '36个月'},
+                {value: '48', label: '48个月'},
+            ],
         }
     },
     watch:{
         form:{
             handler:function(val){
-                if(val.address != '' && val.phone != '' && val.code != ''){
+                if(val.name != '' && val.phone != '' && val.address != ''){
                     this.canSubmit = true;
                 }else{
                     this.canSubmit = false;
@@ -82,24 +79,16 @@ export default {
             deep: true
         }
     },
-    created(){
-        this.form = this.$store.state.SET_INSURED_CHANGE;
-    },
     methods:{
-        submit(){
-            if(this.canSubmit == false){
-                return false;
-            }else{
-                this.$store.dispatch('SET_INSURED_CHANGE', this.form);
-                this.$router.push("/test1");
-            }
+        search(){
+            console.log("aaa");
         }
     }
 }
 </script>
 
 <style lang="less" scoped>
-.insuredChange{
+.searchPrint{
     color: #666;
     .Title {
         height: .8rem;
@@ -138,20 +127,18 @@ export default {
                 }
             }
         }
-        .ChangeInfo{
-            padding: .1rem 0;
+        .SearchInfo{
+            padding: .2rem 0;
             font-size: .3rem;
-            .ContentTitle{
-                font-weight: bold;
-                line-height: .6rem;
+            display: flex;
+            span{
+                display: block;
+                width: 1.7rem;
+                display: flex;
+                align-items: center;
             }
-        }
-        .Hint{
-            padding: .2rem .1rem;
-            background: #EEE;
-            font-size: .28rem;
-            .HintTitle{
-                line-height: .5rem;
+            .el-select{
+                width: 5.3rem;
             }
         }
     }
