@@ -7,7 +7,9 @@ import First from '@/components/First';
 // import TReimbursement1 from '@/components/commonComponent/Work/TreatmentReimbursement/TReimbursement1'
 // import SubmitReimbursement from '@/components/commonComponent/Work/TreatmentReimbursement/SubmitReimbursement'
 // import EventDetail from '@/components/commonComponent/Work/TreatmentReimbursement/EventDetail_1'
-
+import elseWhereDetails from '@/components/serveComponent/record/elseWhere/elseWhereDetails'
+import elseWhereEdit from '@/components/serveComponent/record/elseWhere/elseWhereEdit'
+import elseWhereOperation from '@/components/serveComponent/record/elseWhere/elseWhereOperation'
 
 Vue.use(Router)
 
@@ -26,6 +28,23 @@ export default new Router({
       component: First
     },
 
+    {
+      path: '/elseWhereDetails',
+      name: 'elseWhereDetails',
+      component: elseWhereDetails
+    },
+
+    {
+      path: '/elseWhereEdit',
+      name: 'elseWhereEdit',
+      component: elseWhereEdit
+    },
+    
+    {
+      path: '/elseWhereOperation',
+      name: 'elseWhereOperation',
+      component: elseWhereOperation
+    },
     // // 办事
     // {
     //   path: '/Work',
