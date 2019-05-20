@@ -22,15 +22,15 @@
             <div class="Info">
                 <div class="Line">
                     <div class="name">收件人</div>
-                    <div class="text">某某某</div>
+                    <div class="text">{{form.name}}</div>
                 </div>
                 <div class="Line">
                     <div class="name">联系电话</div>
-                    <div class="text">18909301923</div>
+                    <div class="text">{{form.phone}}</div>
                 </div>
                 <div class="Line">
                     <div class="name">详细地址</div>
-                    <div class="text">XXXX街道XXXX号XXXXXXXX街道XXXX号XXXXXXXX街道XXXX号XXXX</div>
+                    <div class="text">{{form.address}}</div>
                 </div>
             </div>
         </div>
@@ -51,7 +51,18 @@
 
 <script>
 export default {
-    
+    data(){
+        return{
+            form:{
+                name: '',
+                phone: '',
+                address: ''
+            },
+        }
+    },
+    created(){
+        this.form = this.$store.state.SET_INSURED_PROOF;
+    }
 }
 </script>
 

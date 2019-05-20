@@ -37,10 +37,10 @@
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
                     <el-form-item label="联系电话">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input v-model="form.phone"></el-input>
                     </el-form-item>
                     <el-form-item label="详细地址">
-                        <el-input type="textarea" :rows="4" v-model="form.desc"></el-input>
+                        <el-input type="textarea" :rows="4" v-model="form.address"></el-input>
                     </el-form-item>
                 </el-form>
             </div>
@@ -51,9 +51,9 @@
             </div>
         </div>
         <!-- 按钮 -->
-        <div class="Btn">
+        <footer class="Btn" :class="{'active': canSubmit == true}" @click="submit()">
             确认提交
-        </div>
+        </footer>
     </div>
 </template>
 
@@ -64,7 +64,30 @@ export default {
             form:{
                 name: '',
                 phone: '',
-                desc: ''
+                address: ''
+            },
+            canSubmit: false,
+        }
+    },
+    watch:{
+        form:{
+            handler:function(val){
+                if(val.name != '' && val.phone != '' && val.desc != ''){
+                    this.canSubmit = true;
+                }else{
+                    this.canSubmit = false;
+                }
+            },
+            deep: true
+        }
+    },
+    methods:{
+        submit(){
+            if(this.canSubmit == false){
+                return false;
+            }else{
+                this.$store.dispatch('SET_INSURED_PROOF', this.form);
+                this.$router.push("/test1");
             }
         }
     }
@@ -97,7 +120,7 @@ export default {
                 line-height: .6rem;
             }
             .Info{
-                border: .01rem solid #CCC;
+                border: 0.01rem solid #DDD;
                 padding: .1rem .25rem;
                 .Line{
                     line-height: .6rem;
@@ -131,13 +154,16 @@ export default {
     .Btn{
         height: 1rem;
         width: 100%;
-        background: #05AEF0;
+        background: rgb(124, 206, 250);
         font-size: .34rem;
         color: white;
         line-height: 1rem;
         text-align: center;
         position: fixed;
         bottom: 0;
+    }
+    .active{
+        background: #05AEF0;
     }
 }
 </style>

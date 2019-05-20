@@ -30,6 +30,12 @@ export default new Vuex.Store({  // 暴露与new vuex
           // 总金额
           TotalSum:""
       },
+        // 就医凭证
+        SET_INSURED_PROOF: {
+          name: '', //收件人
+          phone: '', //联系电话
+          address: '' //详细地址
+        },
       },
       // 计算属性 getters
       getters:{
@@ -53,7 +59,6 @@ export default new Vuex.Store({  // 暴露与new vuex
            state.SET_TREATMENT_REIMBURSEMENT.endDate =  b.toLocaleDateString().replace(/\//g, "-") 
           return state.SET_TREATMENT_REIMBURSEMENT;
         },
-
       },
       // 相当于methods
       mutations:{
@@ -68,6 +73,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_TREATMENT_REIMBURSEMENT (state,payload) {
           state.SET_TREATMENT_REIMBURSEMENT = payload
+        },
+        SET_INSURED_PROOF:(state, payload) =>{
+          state.SET_INSURED_PROOF = payload
         },
       },
 
@@ -84,6 +92,8 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_TREATMENT_REIMBURSEMENT( context, payload ) {
           context.commit( 'SET_TREATMENT_REIMBURSEMENT', payload ); //context提交
         },
-
+        SET_INSURED_PROOF:(context, payload) =>{
+          context.commit('SET_INSURED_PROOF', payload);
+        },
       }
 })
