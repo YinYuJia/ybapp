@@ -69,21 +69,12 @@ import BusinessGuide from './BusinessGuide'
           'BusinessGuide':BusinessGuide
         },
         created(){
+            // 方法暴露给安卓
             window.getAndroid = this.getAndroid;
             // this.id = this.GetURL("id");
         },
         methods: {
             //获取URL函数
-            GetURL(variable){
-                var str = window.location.href;
-                var query = str.substring(str.lastIndexOf("?")+1);
-                var vars = query.split("&");
-                for(var i = 0; i < vars.length; i++){
-                    var pair = vars[i].split("=");
-                    if(pair[0] == variable){return pair[1];}
-                }
-                return(false);
-            },
             getAndroid(dataStr) {
                 this.id = dataStr.pageSize;
             },
