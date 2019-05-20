@@ -20,6 +20,9 @@
                 </el-col>
             </el-row>
         </div>
+        <div>
+            666
+        </div>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
             <el-menu-item index="1" style="width:25%">办事指南</el-menu-item>
             <el-menu-item index="2" style="width:25%">政策解读</el-menu-item>
@@ -76,7 +79,7 @@ import BusinessGuide from './BusinessGuide'
         methods: {
             //获取URL函数
             getAndroid(dataStr) {
-                this.id = dataStr.pageSize;
+                this.id = dataStr;
             },
             handleSelect(key, keyPath) {
                 this.activeIndex = key

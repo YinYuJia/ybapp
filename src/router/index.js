@@ -8,6 +8,7 @@ import First from '@/components/First';
 // import SubmitReimbursement from '@/components/commonComponent/Work/TreatmentReimbursement/SubmitReimbursement'
 // import EventDetail from '@/components/commonComponent/Work/TreatmentReimbursement/EventDetail_1'
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -24,6 +25,7 @@ export default new Router({
       name: 'FirstComponent',
       component: First
     },
+
     // // 办事
     // {
     //   path: '/Work',

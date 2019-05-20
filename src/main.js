@@ -32,6 +32,16 @@ Vue.prototype.epFn = epFn
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false;
 
+// 获取Android参数
+// created(){
+//   window.getAndroid = this.getAndroid;
+// },
+// methods:{
+//   getAndroid(dataStr) {
+//     this.id = dataStr.pageSize;
+//   },
+// }
+
 
 // 公共请求模板
 // this.$axios.post('url',{parmas}).then((resData) => {
@@ -39,7 +49,6 @@ Vue.config.productionTip = false;
 // }).catch((error) => {
 //   console.log(error)
 // })
-
 
 // 调用IOS方法传参              (方法名字)
 // window.webkit.messageHandlers.Scan.postMessage(1);
