@@ -85,7 +85,7 @@ import BusinessGuide from './BusinessGuide'
                 return(false);
             },
             getAndroid(dataStr) {
-                this.id = dataStr.pageSize;
+                this.id = dataStr;
             },
             handleSelect(key, keyPath) {
                 this.activeIndex = key
