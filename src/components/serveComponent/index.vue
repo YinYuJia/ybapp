@@ -20,8 +20,8 @@
                 </el-col>
             </el-row>
         </div>
-        <div class="discribe">
-            {{discribe}}
+        <div class="describe">
+            {{describe}}
         </div>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
             <el-menu-item index="1" style="width:25%">办事指南</el-menu-item>
@@ -65,7 +65,7 @@ import BusinessGuide from './BusinessGuide'
             return {
                 activeIndex: '1',
                 NameTitle: '安卓传过来的标题',
-                discribe:'title的相信描述内容',
+                describe:'title的详细描述内容',
                 id: null,
             };
         },
@@ -82,19 +82,14 @@ import BusinessGuide from './BusinessGuide'
             getAndroid(dataStr) {
                 this.id = dataStr;
                 this.NameTitle = dataStr.title;
-                this.discribe = dataStr.discribe;
+                this.describe = dataStr.describe;
             },
             handleSelect(key, keyPath) {
                 this.activeIndex = key
             },
             goBackIndex() {
-                this.$router.push({
-                    name: 'TreatmentReimbursement',
-                    params: {
-                        id: '3',
-                        name: "待遇报销"
-                    }
-                })
+                // 返回原生界面
+                console.log('返回原生界面')
             },
             submit() {
                 this.$router.push({
@@ -124,7 +119,7 @@ import BusinessGuide from './BusinessGuide'
         color: #FFFFFF;
         font-family: 'PingFangSC-Regular';
     }
-    .discribe {
+    .describe {
         height: 80px;
         line-height: 80px;
         font-size: 22px;
