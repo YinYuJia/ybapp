@@ -78,7 +78,6 @@ export default new Vuex.Store({  // 暴露与new vuex
            state.SET_TREATMENT_REIMBURSEMENT.endDate =  b.toLocaleDateString().replace(/\//g, "-") 
           return state.SET_TREATMENT_REIMBURSEMENT;
         },
-
       },
       // 相当于methods
       mutations:{
