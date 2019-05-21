@@ -3,7 +3,7 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;"></span>
+                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="back()"></span>
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
@@ -64,8 +64,11 @@ export default {
         this.form = this.$store.state.SET_INSURED_CHANGE;
     },
     methods:{
+        back(){
+            this.$router.push("/changeDetail");
+        },
         edit(){
-            this.$router.push('/test');
+            this.$router.push('/insuredChange');
         },
     }
 }

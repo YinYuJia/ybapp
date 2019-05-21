@@ -3,7 +3,7 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;"></span>
+                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="back()"></span>
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
@@ -43,7 +43,7 @@
             </div>
             <div class="BtnBox">
                 <div class="ResetBtn">撤销</div>
-                <div class="EditBtn">编辑</div>
+                <div class="EditBtn" @click="edit()">编辑</div>
             </div>
         </footer>
     </div>
@@ -62,6 +62,14 @@ export default {
     },
     created(){
         this.form = this.$store.state.SET_INSURED_PROOF;
+    },
+    methods:{
+        back(){
+            this.$router.push("/getProof");
+        },
+        edit(){
+            this.$router.push("/getProof");
+        },
     }
 }
 </script>

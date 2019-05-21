@@ -87,7 +87,7 @@ export default {
                 return false;
             }else{
                 this.$store.dispatch('SET_INSURED_PROOF', this.form);
-                this.$router.push("/test1");
+                this.$router.push("/getDetail");
             }
         }
     }
