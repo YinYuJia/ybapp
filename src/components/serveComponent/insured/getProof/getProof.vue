@@ -81,6 +81,9 @@ export default {
             deep: true
         }
     },
+    created(){
+        this.form = this.$store.state.SET_INSURED_PROOF;
+    },
     methods:{
         submit(){
             if(this.canSubmit == false){

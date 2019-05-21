@@ -24,31 +24,28 @@
             {{describe}}
         </div>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
-            <el-menu-item  v-for="item in responseDate"  :key="item.id" index="" style="width:25%">{{item.name}}</el-menu-item>
-            <!-- <el-menu-item index="2" style="width:25%">政策解读</el-menu-item>
+            <el-menu-item index="1" style="width:25%">办事指南</el-menu-item>
+            <el-menu-item index="2" style="width:25%">政策解读</el-menu-item>
             <el-menu-item index="3" style="width:25%">案例分析</el-menu-item>
-            <el-menu-item index="4" style="width:25%">常见问题</el-menu-item> -->
+            <el-menu-item index="4" style="width:25%">常见问题</el-menu-item>
         </el-menu>
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
-            <BusinessGuide :info="BusinessGuideInfo"></BusinessGuide>
+            <BusinessGuide info="1"></BusinessGuide>
             {{id}}
         </div>
         <div v-if="activeIndex == 2">
             <!-- 政策解读 -->
-            2222
+            <BusinessGuide info="2"></BusinessGuide>
         </div>
         <div v-if="activeIndex == 3">
             <!-- 案例分析 -->
-            3333
+            <BusinessGuide info="3"></BusinessGuide>
         </div>
         <div v-if="activeIndex == 4">
             <!-- 常见问题 -->
-            4444
+            <BusinessGuide info="4"></BusinessGuide>
         </div>
-        <ul>
-            <li v-for="item in responseDate"  :key="item.id">{{item.name}}</li>
-        </ul>
         <footer class="Footer">
             <div class="IconBox">
                 <div class="Icon"><svg-icon icon-class="SubmitReim_service" /></div>
@@ -71,13 +68,13 @@ import BusinessGuide from './BusinessGuide'
                 describe:'title的详细描述内容',
                 id: null,
                 BusinessGuideInfo:{},
+                PolicyInterpretationInfo:{},
+                CaseAnalysisInfo:{},
                 responseDate:{},
-                array:[{a:1},{a:2},{a:3},{a:4}]
-
             };
         },
         components:{
-          'BusinessGuide':BusinessGuide
+          'BusinessGuide':BusinessGuide,
         },
         created(){
             // 方法暴露给安卓
@@ -113,9 +110,9 @@ import BusinessGuide from './BusinessGuide'
             },
             axiosPost() {
                 this.$axios.post('https://0443a588-b61d-4208-87e8-58e7f61c68d7.mock.pstmn.io/testJson12').then((resData) => {
-                console.log(resData.data.data)
+                console.log('resData.data',resData.data.data)
+                this.$store.dispatch('SET_INDEXRESPONSEDATAARRAY',resData.data.data); 
                 this.responseDate = resData.data.data
-              
                 }).catch((error) => {
                     console.log(error)
                 })
