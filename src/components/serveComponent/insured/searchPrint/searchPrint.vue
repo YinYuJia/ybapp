@@ -81,8 +81,8 @@ export default {
     },
     methods:{
         search(){
-            console.log("aaa");
-        }
+            this.$router.push('/insuredDownload');
+        },
     }
 }
 </script>

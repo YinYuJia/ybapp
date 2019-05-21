@@ -44,7 +44,21 @@ export default new Vuex.Store({  // 暴露与new vuex
           delivery: false,
           address:""
           //详细地址
-        }
+        },
+
+        // 领取就医凭证
+        SET_INSURED_PROOF:{
+          name: '', //收件人
+          phone: '', //联系电话
+          address: '' //详细地址
+        },
+
+        // 参保变更信息
+        SET_INSURED_CHANGE:{
+          address: '', //家庭住址
+          phone: '', //手机号码
+          code: '' //邮政编码
+        },
       },
       // 计算属性 getters
       getters:{
@@ -95,6 +109,12 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_ELSEWHERE_OPERATION(state,payload){
           state.SET_ELSEWHERE_OPERATION = payload
+        },
+        SET_INSURED_PROOF(state,payload){
+          state.SET_INSURED_PROOF = payload;
+        },
+        SET_INSURED_CHANGE(state,payload){
+          state.SET_INSURED_CHANGE = payload;
         }
       },
 
@@ -114,6 +134,12 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_ELSEWHERE_OPERATION( context, payload ) {
           console.log('payload',payload)
           context.commit( 'SET_ELSEWHERE_OPERATION', payload ); //context提交
+        },
+        SET_INSURED_PROOF( context, payload ) {
+          context.commit( 'SET_INSURED_PROOF', payload ); //context提交
+        },
+        SET_INSURED_CHANGE( context, payload ) {
+          context.commit( 'SET_INSURED_CHANGE', payload ); //context提交
         }
       }
 })

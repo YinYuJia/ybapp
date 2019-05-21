@@ -91,7 +91,7 @@ export default {
                 return false;
             }else{
                 this.$store.dispatch('SET_INSURED_CHANGE', this.form);
-                this.$router.push("/test1");
+                this.$router.push("/changeDetail");
             }
         }
     }

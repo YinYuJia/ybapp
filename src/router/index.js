@@ -10,6 +10,13 @@ import First from '@/components/First';
 import elseWhereDetails from '@/components/serveComponent/record/elseWhere/elseWhereDetails'
 import elseWhereEdit from '@/components/serveComponent/record/elseWhere/elseWhereEdit'
 import elseWhereOperation from '@/components/serveComponent/record/elseWhere/elseWhereOperation'
+import getProof from '@/components/serveComponent/insured/getProof/getProof'
+import getDetail from '@/components/serveComponent/insured/getProof/getDetail'
+import insuredChange from '@/components/serveComponent/insured/insuredChange/insuredChange'
+import changeDetail from '@/components/serveComponent/insured/insuredChange/changeDetail'
+import searchPrint from '@/components/serveComponent/insured/searchPrint/searchPrint'
+import insuredDownload from '@/components/serveComponent/insured/searchPrint/insuredDownload'
+
 
 Vue.use(Router)
 
@@ -44,6 +51,36 @@ export default new Router({
       path: '/elseWhereOperation',
       name: 'elseWhereOperation',
       component: elseWhereOperation
+    },
+    {
+      path: '/getProof',
+      name: 'getProof',
+      component: getProof
+    },
+    {
+      path: '/getDetail',
+      name: 'getDetail',
+      component: getDetail
+    },
+    {
+      path: '/insuredChange',
+      name: 'insuredChange',
+      component: insuredChange
+    },
+    {
+      path: '/changeDetail',
+      name: 'changeDetail',
+      component: changeDetail
+    },
+    {
+      path: '/searchPrint',
+      name: 'searchPrint',
+      component: searchPrint
+    },
+    {
+      path: '/insuredDownload',
+      name: 'insuredDownload',
+      component: insuredDownload
     },
     // // 办事
     // {
