@@ -12,24 +12,7 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_SELECT:'选项1',
         SET_SELECTARRAY:[],
         // 待遇报销表单
-        SET_TREATMENT_REIMBURSEMENT: {
-          // 开始时间
-          startDate: '',
-          // 结束时间
-          endDate:"",
-          // 就诊类型
-          TypeOfVisit:"",
-          // 省
-          province:"",
-          // 市
-          city:"",
-          // 就诊机构
-          VisitingInstitution:"",
-          // 发票号
-          InvoiceNumber:"",
-          // 总金额
-          TotalSum:""
-      },
+        SET_TREATMENT_REIMBURSEMENT: {},
       },
       // 计算属性 getters
       getters:{
@@ -42,16 +25,6 @@ export default new Vuex.Store({  // 暴露与new vuex
             }
           })
           return a;
-        },
-        SET_TREATMENT_REIMBURSEMENT:(state) => {
-          state.SET_TREATMENT_REIMBURSEMENT.startDate = state.SET_TREATMENT_REIMBURSEMENT.startDate.valueOf()
-          state.SET_TREATMENT_REIMBURSEMENT.endDate = state.SET_TREATMENT_REIMBURSEMENT.endDate.valueOf()
-          let a = new Date(state.SET_TREATMENT_REIMBURSEMENT.startDate)
-          let b = new Date(state.SET_TREATMENT_REIMBURSEMENT.endDate)
-          
-           state.SET_TREATMENT_REIMBURSEMENT.startDate = a.toLocaleDateString().replace(/\//g, "-") 
-           state.SET_TREATMENT_REIMBURSEMENT.endDate =  b.toLocaleDateString().replace(/\//g, "-") 
-          return state.SET_TREATMENT_REIMBURSEMENT;
         },
 
       },

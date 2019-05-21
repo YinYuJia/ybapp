@@ -24,14 +24,14 @@
             {{describe}}
         </div>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
-            <el-menu-item index="1" style="width:25%">办事指南</el-menu-item>
+            <el-menu-item   index="1" style="width:25%">办事指南</el-menu-item>
             <el-menu-item index="2" style="width:25%">政策解读</el-menu-item>
             <el-menu-item index="3" style="width:25%">案例分析</el-menu-item>
             <el-menu-item index="4" style="width:25%">常见问题</el-menu-item>
         </el-menu>
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
-            <BusinessGuide></BusinessGuide>
+            <BusinessGuide :info="BusinessGuideInfo"></BusinessGuide>
             {{id}}
         </div>
         <div v-if="activeIndex == 2">
@@ -67,6 +67,9 @@ import BusinessGuide from './BusinessGuide'
                 NameTitle: '安卓传过来的标题',
                 describe:'title的详细描述内容',
                 id: null,
+                BusinessGuideInfo:{},
+                responseDate:{}
+
             };
         },
         components:{
@@ -75,7 +78,11 @@ import BusinessGuide from './BusinessGuide'
         created(){
             // 方法暴露给安卓
             window.getAndroid = this.getAndroid;
+            var formData=new FormData();
+            formData.append('file',1)
+            console.log(formData.get("file"))
             // this.id = this.GetURL("id");
+            console.log('this.$store.state.SET_TREATMENT_REIMBURSEMENT',this.$store.state.SET_TREATMENT_REIMBURSEMENT)
         },
         methods: {
             //获取URL函数
@@ -92,17 +99,27 @@ import BusinessGuide from './BusinessGuide'
                 console.log('返回原生界面')
             },
             submit() {
-                this.$router.push({
-                name: 'SubmitReimbursement',
-                params: {
-                    name:'待遇报销'
-                }
-            })
-        },
-        created() {
-            console.log()
+                // this.$router.push({
+                //     name: 'SubmitReimbursement',
+                //     params: {
+                //         name:'待遇报销'
+                //     }
+                // })
+                // 公共请求模板
+               
+                this.$axios.post('https://37534c5a-b3d1-4599-845b-0c57ac81f71a.mock.pstmn.io/testJson11').then((resData) => {
+                    console.log(resData.data.data)
+                    this.responseDate = resData.data.data
+              
+                }).catch((error) => {
+                    console.log(error)
+                })
+                
+            },
+            created() {
+                console.log()
+            }
         }
-    }
     }
 </script>
 
@@ -175,5 +192,12 @@ import BusinessGuide from './BusinessGuide'
             }
         }
 </style>
+
+<style>
+  .Title .el-message-box {
+     width: 24px;
+  }
+</style>
+
 
 

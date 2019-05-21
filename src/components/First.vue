@@ -220,7 +220,9 @@
     methods: {
       onSubmit() {
         console.log(this.form)
-        console.log(this.optionsModel)
+        this.$store.dispatch('SET_TREATMENT_REIMBURSEMENT', this.form);
+        // this.$router.push('/')
+        
       },
       onChange(value) {
         this.$store.dispatch('SET_SELECT', value);
