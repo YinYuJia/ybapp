@@ -3,7 +3,7 @@
         <div v-for="item in clist" @click="clickInfoList(item.id)" :key="item.id"  class="items" style="border-top:1px solid transparent">
             <p class="p11">{{item.name}} <span class="el-icon-arrow-right"></span> </p>
         </div>
-        <div>{{info}}</div>
+        <div>props:{{info}}</div>
     </div>
 </template>
 
@@ -13,31 +13,45 @@
             info:{
                 type:String,
                 default:''
-            }
+            },
         },
         data() {
             return {
-                clist:this.$store.state.SET_INDEXRESPONSEDATAARRAY[0].clist
+                clist:[],
+                resData:{}
             }
         },
         created() {
-            console.log('this.info',this.info)
+            this.axiosPost()
+            console.log('this.enFn.ApiUrl()',this.epFn.ApiUrl())
+            
+        },
+        mounted() {
         },
         watch:{
             info:function(val ) {
                 console.log("监听",val)
-                this.clist = this.$store.state.SET_INDEXRESPONSEDATAARRAY[val-1].clist
+                this.clist = this.resData[val-1].clist
             }
         },
         methods:{
             clickInfoList( val ) {
                 console.log( 'val ' , val )
-                this.$axios.post('https://d0f44a2a-91b0-421c-abb3-9ffab08af413.mock.pstmn.io/testDetail',{id:val}).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl() + '/testDetail',{id:val}).then((resData) => {
                      console.log(resData.data)
                 }).catch((error) => {
                     console.log(error)
                 })
-            }
+            },
+            axiosPost() {
+                this.$axios.post(this.epFn.ApiUrl() + '/testJson12').then((resData) => {
+                this.clist = resData.data.data[0].clist;
+                this.resData = resData.data.data
+                
+                }).catch((error) => {
+                    console.log(error)
+                })
+            },
         }
     }
 </script>
