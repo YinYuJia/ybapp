@@ -24,10 +24,10 @@
             {{describe}}
         </div>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
-            <el-menu-item   index="1" style="width:25%">办事指南</el-menu-item>
-            <el-menu-item index="2" style="width:25%">政策解读</el-menu-item>
+            <el-menu-item  v-for="item in responseDate"  :key="item.id" index="" style="width:25%">{{item.name}}</el-menu-item>
+            <!-- <el-menu-item index="2" style="width:25%">政策解读</el-menu-item>
             <el-menu-item index="3" style="width:25%">案例分析</el-menu-item>
-            <el-menu-item index="4" style="width:25%">常见问题</el-menu-item>
+            <el-menu-item index="4" style="width:25%">常见问题</el-menu-item> -->
         </el-menu>
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
@@ -46,6 +46,9 @@
             <!-- 常见问题 -->
             4444
         </div>
+        <ul>
+            <li v-for="item in responseDate"  :key="item.id">{{item.name}}</li>
+        </ul>
         <footer class="Footer">
             <div class="IconBox">
                 <div class="Icon"><svg-icon icon-class="SubmitReim_service" /></div>
@@ -68,7 +71,8 @@ import BusinessGuide from './BusinessGuide'
                 describe:'title的详细描述内容',
                 id: null,
                 BusinessGuideInfo:{},
-                responseDate:{}
+                responseDate:{},
+                array:[{a:1},{a:2},{a:3},{a:4}]
 
             };
         },
@@ -78,14 +82,14 @@ import BusinessGuide from './BusinessGuide'
         created(){
             // 方法暴露给安卓
             window.getAndroid = this.getAndroid;
-            var formData=new FormData();
-            formData.append('file',1)
-            console.log(formData.get("file"))
-            // this.id = this.GetURL("id");
+            this.axiosPost()
             console.log('this.$store.state.SET_TREATMENT_REIMBURSEMENT',this.$store.state.SET_TREATMENT_REIMBURSEMENT)
         },
         methods: {
             //获取URL函数
+            click1(a) {
+                 console.log(a)
+            },
             getAndroid(dataStr) {
                 this.id = dataStr;
                 this.NameTitle = dataStr.title;
@@ -106,15 +110,15 @@ import BusinessGuide from './BusinessGuide'
                 //     }
                 // })
                 // 公共请求模板
-               
-                this.$axios.post('https://37534c5a-b3d1-4599-845b-0c57ac81f71a.mock.pstmn.io/testJson11').then((resData) => {
-                    console.log(resData.data.data)
-                    this.responseDate = resData.data.data
+            },
+            axiosPost() {
+                this.$axios.post('https://0443a588-b61d-4208-87e8-58e7f61c68d7.mock.pstmn.io/testJson12').then((resData) => {
+                console.log(resData.data.data)
+                this.responseDate = resData.data.data
               
                 }).catch((error) => {
                     console.log(error)
                 })
-                
             },
             created() {
                 console.log()
