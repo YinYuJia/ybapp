@@ -12,7 +12,39 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_SELECT:'选项1',
         SET_SELECTARRAY:[],
         // 待遇报销表单
-        SET_TREATMENT_REIMBURSEMENT: {},
+        SET_TREATMENT_REIMBURSEMENT: {
+          // 开始时间
+          startDate: '',
+          // 结束时间
+          endDate:"",
+          // 就诊类型
+          TypeOfVisit:"",
+          // 省
+          province:"",
+          // 市
+          city:"",
+          // 就诊机构
+          VisitingInstitution:"",
+          // 发票号
+          InvoiceNumber:"",
+          // 总金额
+          TotalSum:""
+        },
+        SET_ELSEWHERE_OPERATION:{
+          name: '',
+          //联系人
+          phone:"",
+          //联系电话
+          reason: '',
+          //申请原因
+          leave: '',
+          //离杭时间
+          back: '',
+          //回杭时间
+          delivery: false,
+          address:""
+          //详细地址
+        }
       },
       // 计算属性 getters
       getters:{
@@ -26,7 +58,26 @@ export default new Vuex.Store({  // 暴露与new vuex
           })
           return a;
         },
-
+        SET_ELSEWHERE_OPERATION:(state) => {
+          
+          let a = state.SET_ELSEWHERE_OPERATION
+          if (a.selectedOptions.length != 0 ) {
+            console.log('a.operation',a.selectedOptions[3])
+            a.selectedOptions = a.selectedOptions[3]
+          }
+          
+          return a;
+        },
+        SET_TREATMENT_REIMBURSEMENT:(state) => {
+          state.SET_TREATMENT_REIMBURSEMENT.startDate = state.SET_TREATMENT_REIMBURSEMENT.startDate.valueOf()
+          state.SET_TREATMENT_REIMBURSEMENT.endDate = state.SET_TREATMENT_REIMBURSEMENT.endDate.valueOf()
+          let a = new Date(state.SET_TREATMENT_REIMBURSEMENT.startDate)
+          let b = new Date(state.SET_TREATMENT_REIMBURSEMENT.endDate)
+          
+           state.SET_TREATMENT_REIMBURSEMENT.startDate = a.toLocaleDateString().replace(/\//g, "-") 
+           state.SET_TREATMENT_REIMBURSEMENT.endDate =  b.toLocaleDateString().replace(/\//g, "-") 
+          return state.SET_TREATMENT_REIMBURSEMENT;
+        },
       },
       // 相当于methods
       mutations:{
@@ -42,6 +93,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_TREATMENT_REIMBURSEMENT (state,payload) {
           state.SET_TREATMENT_REIMBURSEMENT = payload
         },
+        SET_ELSEWHERE_OPERATION(state,payload){
+          state.SET_ELSEWHERE_OPERATION = payload
+        }
       },
 
       actions:{ //添加actions
@@ -57,6 +111,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_TREATMENT_REIMBURSEMENT( context, payload ) {
           context.commit( 'SET_TREATMENT_REIMBURSEMENT', payload ); //context提交
         },
-
+        SET_ELSEWHERE_OPERATION( context, payload ) {
+          console.log('payload',payload)
+          context.commit( 'SET_ELSEWHERE_OPERATION', payload ); //context提交
+        }
       }
 })

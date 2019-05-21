@@ -1,5 +1,5 @@
 <template>
-    <div class="getDetail">
+    <div class="changeDetail">
         <div class="Title">
             <el-row>
                 <el-col :span="6">
@@ -7,7 +7,7 @@
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
-                        领取就医凭证
+                        参保信息变更
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -16,21 +16,21 @@
         </div>
         <div class="Content">
             <div class="Proof">
-                <div class="name">领取基本医疗保险就医凭证</div>
+                <div class="name">基本医疗保险职工参保信息变更登记</div>
                 <div class="icon"></div>
             </div>
             <div class="Info">
                 <div class="Line">
-                    <div class="name">收件人</div>
-                    <div class="text">{{form.name}}</div>
+                    <div class="name">家庭住址</div>
+                    <div class="text">{{form.address}}</div>
                 </div>
                 <div class="Line">
-                    <div class="name">联系电话</div>
+                    <div class="name">手机号码</div>
                     <div class="text">{{form.phone}}</div>
                 </div>
                 <div class="Line">
-                    <div class="name">详细地址</div>
-                    <div class="text">{{form.address}}</div>
+                    <div class="name">邮政编码</div>
+                    <div class="text">{{form.code}}</div>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
             </div>
             <div class="BtnBox">
                 <div class="ResetBtn">撤销</div>
-                <div class="EditBtn">编辑</div>
+                <div class="EditBtn" @click="edit()">编辑</div>
             </div>
         </footer>
     </div>
@@ -54,20 +54,25 @@ export default {
     data(){
         return{
             form:{
-                name: '',
+                address: '',
                 phone: '',
-                address: ''
+                code: ''
             },
         }
     },
     created(){
-        this.form = this.$store.state.SET_INSURED_PROOF;
+        this.form = this.$store.state.SET_INSURED_CHANGE;
+    },
+    methods:{
+        edit(){
+            this.$router.push('/test');
+        },
     }
 }
 </script>
 
 <style lang="less" scoped>
-.getDetail{
+.changeDetail{
     color: #666;
     background: white;
     .Title {

@@ -1,5 +1,5 @@
 <template>
-    <div class="getProof">
+    <div class="searchPrint">
         <div class="Title">
             <el-row>
                 <el-col :span="6">
@@ -7,7 +7,7 @@
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
-                        领取就医凭证
+                        打印参保证明
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -29,30 +29,22 @@
                     </div>
                 </div>
             </div>
-            <!-- 邮递信息 -->
-            <div class="MailInfo">
-                <div class="ContentTitle">邮递信息</div>
-                <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="收件人">
-                        <el-input v-model="form.name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="联系电话">
-                        <el-input v-model="form.phone"></el-input>
-                    </el-form-item>
-                    <el-form-item label="详细地址">
-                        <el-input type="textarea" :rows="4" v-model="form.address"></el-input>
-                    </el-form-item>
-                </el-form>
-            </div>
-            <!-- 提示 -->
-            <div class="Hint">
-                <div class="HintTitle"><i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示</div>
-                <div class="HintText">为保证您的正常领取，请务必填写正确、完整的邮递信息。</div>
+            <!-- 查询月数 -->
+            <div class="SearchInfo">
+                <span>查询月数</span>
+                <el-select v-model="value" placeholder="请选择">
+                    <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    </el-option>
+                </el-select>
             </div>
         </div>
         <!-- 按钮 -->
-        <footer class="Btn" :class="{'active': canSubmit == true}" @click="submit()">
-            确认提交
+        <footer class="Btn active" @click="search()">
+            查询
         </footer>
     </div>
 </template>
@@ -66,7 +58,13 @@ export default {
                 phone: '',
                 address: ''
             },
-            canSubmit: false,
+            value: '',
+            options:[
+                {value: '12', label: '12个月'},
+                {value: '24', label: '24个月'},
+                {value: '36', label: '36个月'},
+                {value: '48', label: '48个月'},
+            ],
         }
     },
     watch:{
@@ -82,20 +80,15 @@ export default {
         }
     },
     methods:{
-        submit(){
-            if(this.canSubmit == false){
-                return false;
-            }else{
-                this.$store.dispatch('SET_INSURED_PROOF', this.form);
-                this.$router.push("/test1");
-            }
+        search(){
+            console.log("aaa");
         }
     }
 }
 </script>
 
 <style lang="less" scoped>
-.getProof{
+.searchPrint{
     color: #666;
     .Title {
         height: .8rem;
@@ -134,20 +127,18 @@ export default {
                 }
             }
         }
-        .MailInfo{
-            padding: .1rem 0;
+        .SearchInfo{
+            padding: .2rem 0;
             font-size: .3rem;
-            .ContentTitle{
-                font-weight: bold;
-                line-height: .6rem;
+            display: flex;
+            span{
+                display: block;
+                width: 1.7rem;
+                display: flex;
+                align-items: center;
             }
-        }
-        .Hint{
-            padding: .2rem .1rem;
-            background: #EEE;
-            font-size: .28rem;
-            .HintTitle{
-                line-height: .5rem;
+            .el-select{
+                width: 5.3rem;
             }
         }
     }

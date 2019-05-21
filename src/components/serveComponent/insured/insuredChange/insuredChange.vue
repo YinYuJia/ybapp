@@ -1,5 +1,5 @@
 <template>
-    <div class="getProof">
+    <div class="insuredChange">
         <div class="Title">
             <el-row>
                 <el-col :span="6">
@@ -7,7 +7,7 @@
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
-                        领取就医凭证
+                        参保信息变更
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -29,25 +29,26 @@
                     </div>
                 </div>
             </div>
-            <!-- 邮递信息 -->
-            <div class="MailInfo">
-                <div class="ContentTitle">邮递信息</div>
+            <!-- 变更信息 -->
+            <div class="ChangeInfo">
+                <div class="ContentTitle">变更信息</div>
                 <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="收件人">
-                        <el-input v-model="form.name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="联系电话">
-                        <el-input v-model="form.phone"></el-input>
-                    </el-form-item>
-                    <el-form-item label="详细地址">
+                    <el-form-item label="家庭住址">
                         <el-input type="textarea" :rows="4" v-model="form.address"></el-input>
                     </el-form-item>
+                    <el-form-item label="手机号码">
+                        <el-input v-model="form.phone"></el-input>
+                    </el-form-item>
+                    <el-form-item label="邮政编码">
+                        <el-input v-model="form.code"></el-input>
+                    </el-form-item>
+                    
                 </el-form>
             </div>
             <!-- 提示 -->
             <div class="Hint">
                 <div class="HintTitle"><i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示</div>
-                <div class="HintText">为保证您的正常领取，请务必填写正确、完整的邮递信息。</div>
+                <div class="HintText">请依照您的实际变更情况，修改以上内容。</div>
             </div>
         </div>
         <!-- 按钮 -->
@@ -62,9 +63,9 @@ export default {
     data(){
         return{
             form:{
-                name: '',
+                address: '',
                 phone: '',
-                address: ''
+                code: ''
             },
             canSubmit: false,
         }
@@ -72,7 +73,7 @@ export default {
     watch:{
         form:{
             handler:function(val){
-                if(val.name != '' && val.phone != '' && val.address != ''){
+                if(val.address != '' && val.phone != '' && val.code != ''){
                     this.canSubmit = true;
                 }else{
                     this.canSubmit = false;
@@ -81,12 +82,15 @@ export default {
             deep: true
         }
     },
+    created(){
+        this.form = this.$store.state.SET_INSURED_CHANGE;
+    },
     methods:{
         submit(){
             if(this.canSubmit == false){
                 return false;
             }else{
-                this.$store.dispatch('SET_INSURED_PROOF', this.form);
+                this.$store.dispatch('SET_INSURED_CHANGE', this.form);
                 this.$router.push("/test1");
             }
         }
@@ -95,7 +99,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.getProof{
+.insuredChange{
     color: #666;
     .Title {
         height: .8rem;
@@ -134,7 +138,7 @@ export default {
                 }
             }
         }
-        .MailInfo{
+        .ChangeInfo{
             padding: .1rem 0;
             font-size: .3rem;
             .ContentTitle{
