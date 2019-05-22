@@ -51,7 +51,8 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_INSURED_PROOF:{
           name: '', //收件人
           phone: '', //联系电话
-          address: '' //详细地址
+          address1: [], //所在地区
+          address2: '' //详细地址
         },
 
         // 参保变更信息
