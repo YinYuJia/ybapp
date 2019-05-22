@@ -22,8 +22,9 @@
             }
         },
         created() {
-            this.axiosPost()
-            console.log('this.enFn.ApiUrl()',this.epFn.ApiUrl())
+            console.log(this.epFn.IndexList())
+            this.clist = this.epFn.IndexList().data[0].clist;
+            this.resData = this.epFn.IndexList().data
             
         },
         mounted() {
@@ -39,15 +40,6 @@
                 console.log( 'val ' , val )
                 this.$axios.post(this.epFn.ApiUrl() + '/testDetail',{id:val}).then((resData) => {
                      console.log(resData.data)
-                }).catch((error) => {
-                    console.log(error)
-                })
-            },
-            axiosPost() {
-                this.$axios.post(this.epFn.ApiUrl() + '/testJson12').then((resData) => {
-                this.clist = resData.data.data[0].clist;
-                this.resData = resData.data.data
-                
                 }).catch((error) => {
                     console.log(error)
                 })
