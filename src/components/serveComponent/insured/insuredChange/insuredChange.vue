@@ -11,45 +11,30 @@
                     </div>
                 </el-col>
                 <el-col :span="6">
+                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
         <div class="Content">
             <!-- 基本信息 -->
             <div class="BaseInfo">
-                <div class="ContentTitle">基本信息</div>
-                <div class="Info">
-                    <div class="Line">
-                        <span>证件号码</span>
-                        <span>3**************X</span>
-                    </div>
-                    <div class="Line">
-                        <span>姓名</span>
-                        <span>*佳</span>
+                <div class="InfoPad">
+                    <div class="UserPhoto"></div>
+                    <div class="UserInfo">
+                        <div class="UserName">张*佳</div>
+                        <div class="UserId">3301**********4567</div>
                     </div>
                 </div>
             </div>
             <!-- 变更信息 -->
             <div class="ChangeInfo">
-                <div class="ContentTitle">变更信息</div>
-                <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="家庭住址">
-                        <el-input type="textarea" :rows="4" v-model="form.address"></el-input>
-                    </el-form-item>
-                    <el-form-item label="手机号码">
-                        <el-input v-model="form.phone"></el-input>
-                    </el-form-item>
-                    <el-form-item label="邮政编码">
-                        <el-input v-model="form.code"></el-input>
-                    </el-form-item>
-                    
-                </el-form>
+                
             </div>
             <!-- 提示 -->
-            <div class="Hint">
+            <!-- <div class="Hint">
                 <div class="HintTitle"><i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示</div>
                 <div class="HintText">请依照您的实际变更情况，修改以上内容。</div>
-            </div>
+            </div> -->
         </div>
         <!-- 按钮 -->
         <footer class="Btn" :class="{'active': canSubmit == true}" @click="submit()">
@@ -100,12 +85,11 @@ export default {
 
 <style lang="less" scoped>
 .insuredChange{
-    color: #666;
     .Title {
-        height: .8rem;
+        height: 1.2rem;
         background-color: #05AEF0;
         font-size: .36rem;
-        line-height: .8rem;
+        line-height: 1.2rem;
         overflow: hidden;
         .NameTitle{
             color: white;
@@ -113,34 +97,56 @@ export default {
     }
     .Content{
         height: 100%;
-        background: white;
-        text-align: left;
-        padding: 0 .2rem;
         .BaseInfo{
-            padding: .1rem 0;
-            font-size: .3rem;
-            .ContentTitle{
-                font-weight: bold;
-                line-height: .6rem;
-            }
-            .Info{
-                border: 0.01rem solid #DDD;
-                padding: .1rem .25rem;
-                .Line{
-                    line-height: .6rem;
-                    display: flex;
-                    justify-content: space-between;
-                    span{
-                        &:first-child{
-                            font-weight: bold;
-                        }
+            width: 7.5rem;
+            height: 2.35rem;
+            background: #05AEF0;
+            position: relative;
+            .InfoPad{
+                height: 2.3rem;
+                width: 6.9rem;
+                position: absolute;
+                margin-top: .42rem;
+                left: 50%;
+                margin-left: -6.9rem/2;
+                background: white;
+                border-radius: .08rem;
+                border-bottom: .1rem solid #C4EEFF;
+                .UserPhoto{
+                    height: 1.2rem;
+                    width: 1.2rem;
+                    position: relative;
+                    left: 50%;
+                    margin-left: -.6rem;
+                    margin-top: -.44rem;
+                    border-radius: .6rem;
+                    background: #DDD;
+                }
+                .UserInfo{
+                    .UserName{
+                        margin-top: .18rem;
+                        font-family: PingFangSC-Regular;
+                        font-size: .36rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                    }
+                    .UserId{
+                        margin-top: 12px;
+                        opacity: .65;
+                        font-family: PingFangSC-Regular;
+                        font-size: .26rem;
+                        color: #000000;
+                        letter-spacing: 0;
                     }
                 }
             }
         }
         .ChangeInfo{
-            padding: .1rem 0;
-            font-size: .3rem;
+            height: 5.2rem;
+            width: 7.5rem;
+            padding: 0 .3rem;
+            margin-top: .67rem;
+            background: white;
             .ContentTitle{
                 font-weight: bold;
                 line-height: .6rem;

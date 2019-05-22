@@ -11,38 +11,45 @@
                     </div>
                 </el-col>
                 <el-col :span="6">
+                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
         <div class="Content">
             <!-- 基本信息 -->
             <div class="BaseInfo">
-                <div class="ContentTitle">基本信息</div>
-                <div class="Info">
-                    <div class="Line">
-                        <span>证件号码</span>
-                        <span>3**************X</span>
-                    </div>
-                    <div class="Line">
-                        <span>姓名</span>
-                        <span>*佳</span>
+                <div class="InfoPad">
+                    <div class="UserPhoto"></div>
+                    <div class="UserInfo">
+                        <div class="UserName">张*佳</div>
+                        <div class="UserId">3301**********4567</div>
                     </div>
                 </div>
             </div>
             <!-- 邮递信息 -->
             <div class="MailInfo">
-                <div class="ContentTitle">邮递信息</div>
-                <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="收件人">
-                        <el-input v-model="form.name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="联系电话">
-                        <el-input v-model="form.phone"></el-input>
-                    </el-form-item>
-                    <el-form-item label="详细地址">
-                        <el-input type="textarea" :rows="4" v-model="form.address"></el-input>
-                    </el-form-item>
-                </el-form>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>收件人：</span></div>
+                    <div class="InfoText"><input type="text" v-model="form.name" placeholder="请输入收件人姓名"></div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>联系电话：</span></div>
+                    <div class="InfoText"><input type="text" v-model="form.phone" placeholder="请输入联系人电话号码"></div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>所在地区：</span></div>
+                    <div class="InfoText">
+                        <el-cascader
+                            :options="optionList"
+                            v-model="form.address1">
+                        </el-cascader>
+                        <i class="el-icon-arrow-right" style="font-size:0.4rem; margin-left:0.23rem"></i>
+                    </div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>详细地址：</span></div>
+                    <div class="InfoText"><textarea v-model="form.address2"></textarea></div>
+                </div>
             </div>
             <!-- 提示 -->
             <div class="Hint">
@@ -51,8 +58,10 @@
             </div>
         </div>
         <!-- 按钮 -->
-        <footer class="Btn" :class="{'active': canSubmit == true}" @click="submit()">
-            确认提交
+        <footer class="Footer">
+            <div class="Btn" @click="submit()" :class="{'active': canSubmit == true}">
+                确认提交
+            </div>
         </footer>
     </div>
 </template>
@@ -64,15 +73,17 @@ export default {
             form:{
                 name: '',
                 phone: '',
-                address: ''
+                address1: [],
+                address2: ''
             },
             canSubmit: false,
-        }
+            optionList: [],
+        };
     },
     watch:{
         form:{
             handler:function(val){
-                if(val.name != '' && val.phone != '' && val.address != ''){
+                if(val.name != '' && val.phone != '' && val.address1 != undefined && val.address2 != ''){
                     this.canSubmit = true;
                 }else{
                     this.canSubmit = false;
@@ -83,6 +94,8 @@ export default {
     },
     created(){
         this.form = this.$store.state.SET_INSURED_PROOF;
+        this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
+        this.optionList = this.$store.state.SET_SELECTARRAY;
     },
     methods:{
         submit(){
@@ -92,19 +105,18 @@ export default {
                 this.$store.dispatch('SET_INSURED_PROOF', this.form);
                 this.$router.push("/getDetail");
             }
-        }
+        },
     }
 }
 </script>
 
 <style lang="less" scoped>
 .getProof{
-    color: #666;
     .Title {
-        height: .8rem;
+        height: 1.2rem;
         background-color: #05AEF0;
         font-size: .36rem;
-        line-height: .8rem;
+        line-height: 1.2rem;
         overflow: hidden;
         .NameTitle{
             color: white;
@@ -112,61 +124,174 @@ export default {
     }
     .Content{
         height: 100%;
-        background: white;
-        text-align: left;
-        padding: 0 .2rem;
         .BaseInfo{
-            padding: .1rem 0;
-            font-size: .3rem;
-            .ContentTitle{
-                font-weight: bold;
-                line-height: .6rem;
-            }
-            .Info{
-                border: 0.01rem solid #DDD;
-                padding: .1rem .25rem;
-                .Line{
-                    line-height: .6rem;
-                    display: flex;
-                    justify-content: space-between;
-                    span{
-                        &:first-child{
-                            font-weight: bold;
-                        }
+            width: 7.5rem;
+            height: 2.35rem;
+            background: #05AEF0;
+            position: relative;
+            .InfoPad{
+                height: 2.3rem;
+                width: 6.9rem;
+                position: absolute;
+                margin-top: .42rem;
+                left: 50%;
+                margin-left: -6.9rem/2;
+                background: white;
+                border-radius: .08rem;
+                border-bottom: .1rem solid #C4EEFF;
+                .UserPhoto{
+                    height: 1.2rem;
+                    width: 1.2rem;
+                    position: relative;
+                    left: 50%;
+                    margin-left: -.6rem;
+                    margin-top: -.44rem;
+                    border-radius: .6rem;
+                    background: #DDD;
+                }
+                .UserInfo{
+                    .UserName{
+                        margin-top: .18rem;
+                        font-family: PingFangSC-Regular;
+                        font-size: .36rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                    }
+                    .UserId{
+                        margin-top: 12px;
+                        opacity: .65;
+                        font-family: PingFangSC-Regular;
+                        font-size: .26rem;
+                        color: #000000;
+                        letter-spacing: 0;
                     }
                 }
             }
         }
         .MailInfo{
-            padding: .1rem 0;
-            font-size: .3rem;
-            .ContentTitle{
-                font-weight: bold;
-                line-height: .6rem;
+            height: 5.2rem;
+            width: 7.5rem;
+            padding: 0 .3rem;
+            margin-top: .67rem;
+            background: white;
+            .InfoLine{
+                height: 1.2rem;
+                position: relative;
+                font-family: PingFangSC-Regular;
+                font-size: .3rem;
+                display: flex;
+                justify-content: space-between;
+                border-bottom: .01rem solid #D5D5D5;
+                .InfoName{
+                    opacity: 0.85;
+                    line-height: 1.2rem;
+                    span{
+                        height: .6rem;
+                        line-height: .6rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                    }
+                }
+                .InfoText{
+                    opacity: 0.85;
+                    line-height: 1.2rem;
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                    input{
+                        height: .6rem;
+                        opacity: 0.85;
+                        font-family: PingFangSC-Regular;
+                        font-size: .3rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                        text-align: right;
+                        border: none;
+                    }
+                }
+                &:last-child{
+                    height: 1.6rem;
+                    border-bottom: none;
+                    .InfoText{
+                        display: flex;
+                        align-items: center;
+                    }
+                    textarea{
+                        height: .84rem;
+                        font-size: .3rem;
+                        opacity: 0.85;
+                        color: #000000;
+                        line-height: .42rem;
+                        text-align: right;
+                    }
+                }
             }
         }
         .Hint{
-            padding: .2rem .1rem;
-            background: #EEE;
-            font-size: .28rem;
+            margin-top: .45rem;
+            padding: 0 .3rem;
+            opacity: 0.45;
+            font-family: PingFangSC-Regular;
+            font-size: .24rem;
+            color: #000000;
+            text-align: left;
             .HintTitle{
-                line-height: .5rem;
+                i{
+                    margin-right: .2rem;
+                    letter-spacing: 0;
+                }
+            }
+            .HintText{
+                margin-top: .28rem;
+                letter-spacing: 0;
             }
         }
     }
-    .Btn{
-        height: 1rem;
-        width: 100%;
-        background: rgb(124, 206, 250);
-        font-size: .34rem;
-        color: white;
-        line-height: 1rem;
-        text-align: center;
+    .Footer{
+        height: 1.2rem;
+        width: 7.5rem;
+        background: white;
         position: fixed;
         bottom: 0;
+        left: 0;
+        z-index: 199;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .Btn{
+            height: .8rem;
+            width: 6.9rem;
+            background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
+            border-radius: 40px;
+            text-align: center;
+            line-height: 0.8rem;
+            font-family: PingFangSC-Regular;
+            font-size: .36rem;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .active{
+            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
+        }
     }
+    
     .active{
         background: #05AEF0;
     }
+}
+</style>
+
+<style>
+.getProof .el-cascader .el-input__inner{
+    padding-right: 0;
+    text-align: right;
+    border: none;
+}
+.getProof .el-cascader .el-input__suffix{
+    display: none;
+}
+.getProof .el-cascader .el-cascader__label{
+    text-align: right;
+    padding-right: 0;
 }
 </style>
