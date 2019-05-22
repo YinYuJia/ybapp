@@ -7,8 +7,9 @@ export default {
     },
     // 公用请求地址
     ApiUrl:function() {
-        return 'http://192.168.101.62:8001'
+        return 'https://d0f44a2a-91b0-421c-abb3-9ffab08af413.mock.pstmn.io'
     },
+
     // 中国省市县json转换
     ChinaJsonDatas:function() {
         const dataArray = []

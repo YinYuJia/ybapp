@@ -31,20 +31,20 @@
         </el-menu>
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
-            <BusinessGuide info="1"></BusinessGuide>
-            {{id}}
+            <BusinessGuide info="1" ></BusinessGuide>
+             安卓字段 : {{id}}
         </div>
         <div v-if="activeIndex == 2">
             <!-- 政策解读 -->
-            <BusinessGuide info="2"></BusinessGuide>
+            <BusinessGuide info="2" ></BusinessGuide>
         </div>
         <div v-if="activeIndex == 3">
             <!-- 案例分析 -->
-            <BusinessGuide info="3"></BusinessGuide>
+            <BusinessGuide info="3" ></BusinessGuide>
         </div>
         <div v-if="activeIndex == 4">
             <!-- 常见问题 -->
-            <BusinessGuide info="4"></BusinessGuide>
+            <BusinessGuide info="4" ></BusinessGuide>
         </div>
         <footer class="Footer">
             <div class="IconBox">
@@ -67,10 +67,6 @@ import BusinessGuide from './BusinessGuide'
                 NameTitle: '安卓传过来的标题',
                 describe:'title的详细描述内容',
                 id: null,
-                BusinessGuideInfo:{},
-                PolicyInterpretationInfo:{},
-                CaseAnalysisInfo:{},
-                responseDate:{},
             };
         },
         components:{
@@ -79,8 +75,6 @@ import BusinessGuide from './BusinessGuide'
         created(){
             // 方法暴露给安卓
             window.getAndroid = this.getAndroid;
-            this.axiosPost()
-            console.log('this.$store.state.SET_TREATMENT_REIMBURSEMENT',this.$store.state.SET_TREATMENT_REIMBURSEMENT)
         },
         methods: {
             //获取URL函数
@@ -107,15 +101,6 @@ import BusinessGuide from './BusinessGuide'
                 //     }
                 // })
                 // 公共请求模板
-            },
-            axiosPost() {
-                this.$axios.post('https://0443a588-b61d-4208-87e8-58e7f61c68d7.mock.pstmn.io/testJson12').then((resData) => {
-                console.log('resData.data',resData.data.data)
-                this.$store.dispatch('SET_INDEXRESPONSEDATAARRAY',resData.data.data); 
-                this.responseDate = resData.data.data
-                }).catch((error) => {
-                    console.log(error)
-                })
             },
             created() {
                 console.log()
