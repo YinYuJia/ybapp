@@ -11,6 +11,7 @@
                     </div>
                 </el-col>
                 <el-col :span="6">
+                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
@@ -34,10 +35,10 @@ export default {
 <style lang="less" scoped>
 .download{
     .Title {
-        height: .8rem;
+        height: 1.2rem;
         background-color: #05AEF0;
         font-size: .36rem;
-        line-height: .8rem;
+        line-height: 1.2rem;
         overflow: hidden;
         .NameTitle{
             color: white;

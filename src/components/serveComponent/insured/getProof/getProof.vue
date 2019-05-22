@@ -30,11 +30,11 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>收件人：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.name"></div>
+                    <div class="InfoText"><input type="text" v-model="form.name" placeholder="请输入收件人姓名"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.phone"></div>
+                    <div class="InfoText"><input type="text" v-model="form.phone" placeholder="请输入联系人电话号码"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>所在地区：</span></div>
@@ -261,7 +261,7 @@ export default {
         .Btn{
             height: .8rem;
             width: 6.9rem;
-            background-image: linear-gradient(90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
+            background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
             border-radius: 40px;
             text-align: center;
             line-height: 0.8rem;
@@ -271,7 +271,7 @@ export default {
             letter-spacing: 0;
         }
         .active{
-            background-image: linear-gradient(90deg, #35B8FD 0%, #4E8DFF 100%);
+            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
         }
     }
     
