@@ -75,6 +75,7 @@ import BusinessGuide from './BusinessGuide'
         created(){
             // 方法暴露给安卓
             window.getAndroid = this.getAndroid;
+            this.$toast('提示信息')
         },
         methods: {
             //获取URL函数
