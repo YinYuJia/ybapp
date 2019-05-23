@@ -205,7 +205,6 @@ export default {
         .Btn {
             height: .8rem;
             width: 6.9rem;
-            margin-left: .51rem;
             line-height: 0.8rem;
             background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
             border-radius: .4rem;
