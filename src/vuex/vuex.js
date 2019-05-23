@@ -31,19 +31,13 @@ export default new Vuex.Store({  // 暴露与new vuex
           TotalSum:""
         },
         SET_ELSEWHERE_OPERATION:{
-          name: '',
-          //联系人
-          phone:"",
-          //联系电话
-          reason: '',
-          //申请原因
-          leave: '',
-          //离杭时间
-          back: '',
-          //回杭时间
-          delivery: false,
-          address:""
-          //详细地址
+          leave: '', //离杭日期
+          back: '', //回杭日期
+          address1: [], //省市信息
+          address2: '', //详细地址
+          reason: '', //申请原因
+          name: '', //联系人
+          phone:"" //联系电话
         },
 
         // 领取就医凭证
