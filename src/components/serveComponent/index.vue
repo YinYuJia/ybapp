@@ -108,17 +108,20 @@ import BusinessGuide from './BusinessGuide'
                     
                 }else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 2) {
                     // 参保服务------- 就医凭证 -------领取基本医疗保险就医凭证
+                    this.$router.push('/getProof');
                 }else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 3) {
                     // 参保服务------- 信息变更 -------基本医疗保险职工参保信息变更登记
+                    this.$router.push('/insuredChange');
                 }else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 4) {
                     // 参保服务------- 参保打印 -------参保人员查下你打印社会保险信息
+                    this.$router.push('/searchPrint');
                 }else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 5) {
                     // 参保服务------- 关系转移 -------基本医疗保险关系转移
                 }else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 6) {
                     // 参保服务------- 关系接续 -------基本医疗保险关系接续
                 }else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 1) {
                     // 备案服务------- 异地备案 -------基本医疗保险参保人员异地就医备案
-                    this.$toast('// 备案服务------- 异地备案 -------基本医疗保险参保人员异地就医备案')
+                    this.$router.push('/elseWhere');
                 }else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 2) {
                     // 备案服务------- 特药备案 -------基本医疗保险参保人员特制特药备案
                 }else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 3) {
@@ -156,10 +159,10 @@ import BusinessGuide from './BusinessGuide'
 
 <style lang="less" scoped>
     .Title {
-        height: .8rem;
+        height: 1.2rem;
         background-color: #05AEF0;
         font-size: .36rem;
-        line-height: .8rem;
+        line-height: 1.2rem;
         overflow: hidden;
     }
     .NameTitle {

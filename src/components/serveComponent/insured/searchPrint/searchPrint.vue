@@ -3,7 +3,7 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;"></span>
+                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="backIndex()"></span>
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
@@ -80,6 +80,9 @@ export default {
         }
     },
     methods:{
+        backIndex(){
+            this.$router.push('/');
+        },
         search(){
             this.$router.push('/insuredDownload');
         },
@@ -206,5 +209,8 @@ export default {
     padding-right: 0;
     text-align: right;
     border: none;
+}
+.searchPrint .el-select .el-input__suffix .el-input__suffix-inner{
+    display: none;
 }
 </style>

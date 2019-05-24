@@ -35,11 +35,11 @@ export default {
     opacity: 0;
 }
 @keyframes animate_in{
-    0%{opacity: 0;}
-    100%{opacity: 1;}
+    0%{background: rgba(0, 0, 0, 0);}
+    100%{background: rgba(0, 0, 0, .55);}
 }
 @keyframes animate_out{
-    0%{opacity: 1;}
-    100%{opacity: 0;}
+    0%{background: rgba(0, 0, 0, .55);}
+    100%{background: rgba(0, 0, 0, 0);}
 }
 </style>

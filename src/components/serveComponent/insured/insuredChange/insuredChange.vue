@@ -3,7 +3,7 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;"></span>
+                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="backIndex()"></span>
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
@@ -69,8 +69,12 @@ export default {
         this.form = this.$store.state.SET_INSURED_CHANGE;
     },
     methods:{
+        backIndex(){
+            this.$router.push('/');
+        },
         submit(){
             if(this.canSubmit == false){
+                this.$toast('信息未填写完整');
                 return false;
             }else{
                 this.$store.dispatch('SET_INSURED_CHANGE', this.form);
