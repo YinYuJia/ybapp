@@ -55,7 +55,10 @@ Vue.config.productionTip = false;
 
 // 调用IOS方法传参              (方法名字)
 // window.webkit.messageHandlers.Scan.postMessage(1);
-// IOS调用我的方法
+// 调用安卓方法
+// window.dzsb.back('H5message');
+
+// 原生调用我的方法
 // window.setOrderList = this.setOrderList
 
 // vuex 储存数据方法
@@ -75,6 +78,11 @@ Vue.config.productionTip = false;
 // })
 // 子组件过去参数
 // this.$route.params.id
+
+// 判断终端
+// var u = navigator.userAgent;
+// var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+// var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 new Vue({
   el: '#app',
   store,

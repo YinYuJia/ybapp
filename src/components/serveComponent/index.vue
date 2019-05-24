@@ -32,7 +32,7 @@
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
             <BusinessGuide info="1" ></BusinessGuide>
-             安卓字段 : {{id}}
+             安卓字段 : {{getAndroidMsg}}
         </div>
         <div v-if="activeIndex == 2">
             <!-- 政策解读 -->
@@ -62,7 +62,7 @@ import BusinessGuide from './BusinessGuide'
                 activeIndex: '1',
                 NameTitle: '安卓传过来的标题',
                 describe:'title的详细描述内容',
-                id: null,
+                getAndroidMsg: null,
             };
         },
         components:{
@@ -71,7 +71,10 @@ import BusinessGuide from './BusinessGuide'
         created(){
             // 方法暴露给安卓
             window.getAndroid = this.getAndroid;
-            this.$toast('提示信息')
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            this.$toast('是否是Android：'+isAndroid + '是否是iOS：'+isiOS)
         },
         methods: {
             //获取URL函数
@@ -79,7 +82,7 @@ import BusinessGuide from './BusinessGuide'
                  console.log(a)
             },
             getAndroid(dataStr) {
-                this.id = dataStr;
+                this.getAndroidMsg = dataStr;
                 this.NameTitle = dataStr.title;
                 this.describe = dataStr.describe;
             },
@@ -88,16 +91,61 @@ import BusinessGuide from './BusinessGuide'
             },
             goBackIndex() {
                 // 返回原生界面
-                console.log('返回原生界面')
+                console.log('111')
+                var u = navigator.userAgent;
+                var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+                var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                this.$toast('是否是Android：'+isAndroid + '是否是iOS：'+isiOS)
+                if (isiOS ) {
+                   window.webkit.messageHandlers.back.postMessage("H5message");
+                }else if (isAndroid ) {
+                   window.dzsb.back('H5message');
+                }
             },
             submit() {
-                // this.$router.push({
-                //     name: 'SubmitReimbursement',
-                //     params: {
-                //         name:'待遇报销'
-                //     }
-                // })
-                // 公共请求模板
+                if ( this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 1 ) {
+                    // 参保服务------- 参保登记 -------基本医疗保险职工参保登记
+                    
+                }else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 2) {
+                    // 参保服务------- 就医凭证 -------领取基本医疗保险就医凭证
+                }else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 3) {
+                    // 参保服务------- 信息变更 -------基本医疗保险职工参保信息变更登记
+                }else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 4) {
+                    // 参保服务------- 参保打印 -------参保人员查下你打印社会保险信息
+                }else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 5) {
+                    // 参保服务------- 关系转移 -------基本医疗保险关系转移
+                }else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 6) {
+                    // 参保服务------- 关系接续 -------基本医疗保险关系接续
+                }else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 1) {
+                    // 备案服务------- 异地备案 -------基本医疗保险参保人员异地就医备案
+                    this.$toast('// 备案服务------- 异地备案 -------基本医疗保险参保人员异地就医备案')
+                }else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 2) {
+                    // 备案服务------- 特药备案 -------基本医疗保险参保人员特制特药备案
+                }else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 3) {
+                    // 备案服务------- 慢病备案 -------基本医疗保险参保人员享受规定（特殊慢性）病种待遇备案
+                }else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 4) {
+                    // 备案服务------- 转外备案 -------基本医疗保险参保人员赚外就已备案
+                }else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 5) {
+                    // 备案服务------- 出国带药 -------基本医疗保险参保人员出国（境）带要备案
+                }else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 6) {
+                    // 备案服务------- 家庭共济 -------基本医疗保险参保人员历年账户家庭共济备案
+                }else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 1) {
+                    // 待遇报销------- 缴费年限 -------基本医疗保险视同缴费年限核定
+                }else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 2) {
+                    // 待遇报销------- 零星报销 -------基本医疗保险参保人员医疗费用零星报销
+                }else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 3) {
+                    // 待遇报销------- 费用审核 -------医疗保险费用审核结算
+                }else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 4) {
+                    // 待遇报销------- 平产待遇 -------平产-剖宫产-助娩产待遇核准支付
+                }else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 5) {
+                    // 待遇报销------- 流产待遇 -------流产-引产-节育-复通手术待遇核准支付
+                }else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 6) {
+                    // 待遇报销------- 未就业待遇 -------未就业配偶医疗待遇核准支付
+                }else if (this.getAndroidMsg.type == 4 && this.getAndroidMsg.typeItem == 1) {
+                    // 其他服务------- 社保卡 -------社保卡补换
+                }else if (this.getAndroidMsg.type == 4 && this.getAndroidMsg.typeItem == 2) {
+                    // 其他服务------- 社保卡 -------社保卡挂失/解挂
+                }
             },
             created() {
                 console.log()
