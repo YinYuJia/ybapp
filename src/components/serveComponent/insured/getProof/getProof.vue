@@ -16,16 +16,8 @@
             </el-row>
         </div>
         <div class="Content">
-            <!-- 基本信息 -->
-            <div class="BaseInfo">
-                <div class="InfoPad">
-                    <div class="UserPhoto"></div>
-                    <div class="UserInfo">
-                        <div class="UserName">张*佳</div>
-                        <div class="UserId">3301**********4567</div>
-                    </div>
-                </div>
-            </div>
+            <!-- 用户信息 -->
+            <userBaseInfo></userBaseInfo>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -67,7 +59,11 @@
 </template>
 
 <script>
+import userBaseInfo from '../../common/userBaseInfo'
 export default {
+    components:{
+        'userBaseInfo': userBaseInfo
+    },
     data(){
         return{
             form:{
@@ -124,50 +120,6 @@ export default {
     }
     .Content{
         height: 100%;
-        .BaseInfo{
-            width: 7.5rem;
-            height: 2.35rem;
-            background: #05AEF0;
-            position: relative;
-            .InfoPad{
-                height: 2.3rem;
-                width: 6.9rem;
-                position: absolute;
-                margin-top: .42rem;
-                left: 50%;
-                margin-left: -6.9rem/2;
-                background: white;
-                border-radius: .08rem;
-                border-bottom: .1rem solid #C4EEFF;
-                .UserPhoto{
-                    height: 1.2rem;
-                    width: 1.2rem;
-                    position: relative;
-                    left: 50%;
-                    margin-left: -.6rem;
-                    margin-top: -.44rem;
-                    border-radius: .6rem;
-                    background: #DDD;
-                }
-                .UserInfo{
-                    .UserName{
-                        margin-top: .18rem;
-                        font-family: PingFangSC-Regular;
-                        font-size: .36rem;
-                        color: #000000;
-                        letter-spacing: 0;
-                    }
-                    .UserId{
-                        margin-top: 12px;
-                        opacity: .65;
-                        font-family: PingFangSC-Regular;
-                        font-size: .26rem;
-                        color: #000000;
-                        letter-spacing: 0;
-                    }
-                }
-            }
-        }
         .MailInfo{
             height: 5.2rem;
             width: 7.5rem;

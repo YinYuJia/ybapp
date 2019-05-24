@@ -30,6 +30,14 @@ export default new Vuex.Store({  // 暴露与new vuex
           // 总金额
           TotalSum:""
         },
+
+        // 用户基本信息
+        SET_USER_BASEINFO:{
+          name: '张*佳', //姓名
+          idNo: '3301**********4567', //身份证号
+        },
+
+        // 异地就医备案
         SET_ELSEWHERE_OPERATION:{
           leave: '', //离杭日期
           back: '', //回杭日期

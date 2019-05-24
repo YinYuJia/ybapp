@@ -17,15 +17,7 @@
         </div>
         <div class="Content">
             <!-- 基本信息 -->
-            <div class="BaseInfo">
-                <div class="InfoPad">
-                    <div class="UserPhoto"></div>
-                    <div class="UserInfo">
-                        <div class="UserName">张*佳</div>
-                        <div class="UserId">3301**********4567</div>
-                    </div>
-                </div>
-            </div>
+            <userBaseInfo></userBaseInfo>
             <!-- 变更信息 -->
             <div class="ChangeInfo">
                 
@@ -44,7 +36,11 @@
 </template>
 
 <script>
+import userBaseInfo from '../../common/userBaseInfo'
 export default {
+    components:{
+        'userBaseInfo': userBaseInfo
+    },
     data(){
         return{
             form:{
