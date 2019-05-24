@@ -47,10 +47,6 @@
             <BusinessGuide info="4" ></BusinessGuide>
         </div>
         <footer class="Footer">
-            <div class="IconBox">
-                <div class="Icon"><svg-icon icon-class="SubmitReim_service" /></div>
-                <div class="Text">客服</div>
-            </div>
             <div class="SubmitBtn" @click="submit"><span>我要办事</span></div>
         </footer>
     </div>
@@ -140,36 +136,13 @@ import BusinessGuide from './BusinessGuide'
             left: 0;
             z-index: 199;
             display: flex;
+            justify-content: center;
             align-items: center;
-            .IconBox{
-                width: .6rem;
-                margin-left: .51rem;
-                .Icon{
-                    height: .6rem;
-                    width: .6rem;
-                    .svg-icon{
-                        display: block;
-                        height: 100%;
-                        width: 100%;
-                    }
-                }
-                .Text{
-                    height: .28rem;
-                    width: .6rem;
-                    opacity: 0.45;
-                    font-family: PingFangSC-Regular;
-                    font-size: .2rem;
-                    color: #000;
-                    letter-spacing: 0;
-                    text-align: center;
-                }
-            }
             .SubmitBtn{
                 height: .8rem;
-                width: 5.6rem;
-                margin-left: .51rem;
+                width: 6.9rem;
                 line-height: 0.8rem;
-                background-image: linear-gradient(90deg, #35B8FD 0%, #4E8DFF 100%);
+                background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
                 border-radius: .4rem;
                 font-family: PingFangSC-Regular;
                 font-size: .36rem;
