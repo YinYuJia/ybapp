@@ -29,8 +29,10 @@
             </div> -->
         </div>
         <!-- 按钮 -->
-        <footer class="Btn" :class="{'active': canSubmit == true}" @click="submit()">
-            确认提交
+        <footer class="Footer">
+            <div class="Btn" @click="submit()" :class="{'active': canSubmit == true}">
+                确认提交
+            </div>
         </footer>
     </div>
 </template>
@@ -157,19 +159,32 @@ export default {
             }
         }
     }
-    .Btn{
-        height: 1rem;
-        width: 100%;
-        background: rgb(124, 206, 250);
-        font-size: .34rem;
-        color: white;
-        line-height: 1rem;
-        text-align: center;
+    .Footer{
+        height: 1.2rem;
+        width: 7.5rem;
+        background: white;
         position: fixed;
         bottom: 0;
-    }
-    .active{
-        background: #05AEF0;
+        left: 0;
+        z-index: 199;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .Btn{
+            height: .8rem;
+            width: 6.9rem;
+            background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
+            border-radius: 40px;
+            text-align: center;
+            line-height: 0.8rem;
+            font-family: PingFangSC-Regular;
+            font-size: .36rem;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .active{
+            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
+        }
     }
 }
 </style>

@@ -125,14 +125,27 @@ export default {
     watch:{
         form:{
             handler:function(val){
+                // 判断不为空
                 if(val.leave != '' && val.back != '' && val.address1 != undefined && val.address2 != '' && val.reason != '' && val.name != '' && val.phone != ''){
                     this.canSubmit = true;
                 }else{
                     this.canSubmit = false;
                 }
+
+                // 判断时间间隔
+                if(val.leave != '' && val.back != ''){
+                    let leave = new Date(val.leave);
+                    let back = new Date(val.back);
+                    let month = 24 * 3600 * 1000 * 30;
+                    let gap = back - leave;
+                    if(gap < month){
+                        this.$toast('备案时间至少一个月');
+                        this.form.back = '';
+                    }
+                }
             },
             deep: true
-        }
+        },
     },
     methods:{
         submit(){

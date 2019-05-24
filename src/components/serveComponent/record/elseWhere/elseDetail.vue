@@ -201,6 +201,7 @@ export default {
         left: 0;
         z-index: 199;
         display: flex;
+        justify-content: center;
         align-items: center;
         .Btn {
             height: .8rem;

@@ -226,10 +226,6 @@ export default {
             background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
         }
     }
-    
-    .active{
-        background: #05AEF0;
-    }
 }
 </style>
 
