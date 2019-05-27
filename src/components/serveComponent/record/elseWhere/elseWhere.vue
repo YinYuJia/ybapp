@@ -158,7 +158,32 @@ export default {
                 return false;
             }else{
                 this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
-                this.$router.push("/elseDetail");
+                // 公共请求模板
+                this.$axios.post('http://192.168.1.199:13030/h5/jy1012/addRecord',{
+	"imei": "10019",
+	"mac": "121212",
+	"phoneModel": "IOS",
+	"platform": "h5",
+	"signType": "mdf",
+	"sign": "sdfsdf",
+	"tradeCode": "1012",
+	"data": {
+		"AAC003": "吴学文",
+		"AAE135": "362329199202195313",
+		"AAE030": "9",
+		"AAE031": "10",
+		"AAE011": "ewf",
+		"AKC030": "世界那么大",
+		"tradeCode": "121212"
+	},
+	"version": "1.0"
+}).then((resData) => {
+                    cosole.log(resData)
+                }).catch((error) => {
+                    console.log(error)
+                })
+
+                // this.$router.push("/elseDetail");
             }
         },
     }
