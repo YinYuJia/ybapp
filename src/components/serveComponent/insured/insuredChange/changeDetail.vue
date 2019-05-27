@@ -22,15 +22,15 @@
             <div class="Info">
                 <div class="Line">
                     <div class="name">家庭住址</div>
-                    <div class="text">{{form.address}}</div>
+                    <div class="text">{{form.AAE006}}</div>
                 </div>
                 <div class="Line">
                     <div class="name">手机号码</div>
-                    <div class="text">{{form.phone}}</div>
+                    <div class="text">{{form.AAE005}}</div>
                 </div>
                 <div class="Line">
                     <div class="name">邮政编码</div>
-                    <div class="text">{{form.code}}</div>
+                    <div class="text">{{form.AAE007}}</div>
                 </div>
             </div>
         </div>
@@ -54,9 +54,9 @@ export default {
     data(){
         return{
             form:{
-                address: '',
-                phone: '',
-                code: ''
+                AAE006: '', //家庭地址
+                AAE005: '', //手机号码
+                AAE007: '' //邮政编码
             },
         }
     },

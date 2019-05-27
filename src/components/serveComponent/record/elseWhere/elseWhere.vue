@@ -24,7 +24,7 @@
                     <div class="InfoName"><span>拟离杭日期</span></div>
                     <div class="InfoText">
                         <el-date-picker
-                        v-model="form.leave"
+                        v-model="form.AAE030"
                         type="date"
                         placeholder="请选择"
                         value-format="yyyy-MM-dd">
@@ -35,7 +35,7 @@
                     <div class="InfoName"><span>回杭日期</span></div>
                     <div class="InfoText">
                         <el-date-picker
-                        v-model="form.back"
+                        v-model="form.AAE031"
                         type="date"
                         placeholder="请选择"
                         value-format="yyyy-MM-dd">
@@ -47,20 +47,20 @@
                     <div class="InfoText">
                         <el-cascader
                             :options="optionList"
-                            v-model="form.address1">
+                            v-model="form.AAE011">
                         </el-cascader>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址</span></div>
                     <div class="InfoText">
-                        <textarea v-model="form.address2" placeholder="请输入详细地址"></textarea>
+                        <textarea v-model="form.AAE006" placeholder="请输入详细地址"></textarea>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请原因</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.reason" placeholder="请选择">
+                        <el-select v-model="form.ACK030" placeholder="请选择">
                             <el-option
                             v-for="item in reportReason"
                             :key="item.value"
@@ -72,11 +72,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系人</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.name" placeholder="请输入联系人"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE004" placeholder="请输入联系人"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.phone" placeholder="请输入联系电话"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系电话"></div>
                 </div>
             </div>
         </div>
@@ -98,13 +98,13 @@ export default {
     data() {
       return {
         form: {
-            leave: '',
-            back: '',
-            address1: [],
-            address2: '',
-            reason: '',
-            name: '',
-            phone:""
+            AAE030: '', //离杭日期
+            AAE031: '', //回杭日期
+            AAE011: [], //省市信息，提交时需要转成String
+            AAE006: '', //详细地址 
+            ACK030: '', //申请原因
+            AAE004: '', //联系人
+            AAE005: '' //联系电话
         },
         optionList: [], //存放城市数据
         canSubmit: false,

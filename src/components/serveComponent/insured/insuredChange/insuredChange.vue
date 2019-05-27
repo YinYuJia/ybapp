@@ -46,9 +46,9 @@ export default {
     data(){
         return{
             form:{
-                address: '',
-                phone: '',
-                code: ''
+                AAE006: '', //家庭地址
+                AAE005: '', //手机号码
+                AAE007: '' //邮政编码
             },
             canSubmit: false,
         }
