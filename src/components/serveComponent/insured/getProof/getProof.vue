@@ -67,8 +67,8 @@ export default {
     data(){
         return{
             form:{
-                name: '',
-                phone: '',
+                AAE011: '', //收件人
+                AAE005: '', //联系电话
                 address1: [],
                 address2: ''
             },

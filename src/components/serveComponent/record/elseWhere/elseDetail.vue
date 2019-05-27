@@ -25,11 +25,11 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>拟离杭日期:</span></div>
-                    <div class="InfoText">{{form.leave}}</div>
+                    <div class="InfoText">{{form.AAE030}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>回杭日期:</span></div>
-                    <div class="InfoText">{{form.back}}</div>
+                    <div class="InfoText">{{form.AAE031}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>省市信息:</span></div>
@@ -37,19 +37,19 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址:</span></div>
-                    <div class="InfoText"><textarea v-model="form.address2" readonly></textarea></div>
+                    <div class="InfoText"><textarea v-model="form.AAE006" readonly></textarea></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请原因:</span></div>
-                    <div class="InfoText">{{form.reason}}</div>
+                    <div class="InfoText">{{form.ACK030}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系人:</span></div>
-                    <div class="InfoText">{{form.name}}</div>
+                    <div class="InfoText">{{form.AAE004}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话:</span></div>
-                    <div class="InfoText">{{form.phone}}</div>
+                    <div class="InfoText">{{form.AAE005}}</div>
                 </div>
             </div>
         </div>
@@ -68,13 +68,13 @@ export default {
     data() {
       return {
         form: {
-            leave: '',
-            back: '',
-            address1: [],
-            address2: '',
-            reason: '',
-            name: '',
-            phone:""
+            AAE030: '', //离杭日期
+            AAE031: '', //回杭日期
+            AAE011: [], //省市信息，提交时需要转成String
+            AAE006: '', //详细地址 
+            ACK030: '', //申请原因
+            AAE004: '', //联系人
+            AAE005: '' //联系电话
         },
       }
     },
@@ -83,7 +83,7 @@ export default {
     },
     computed:{
         address: function(){
-            return this.form.address1.join(' ');
+            return this.form.AAE011.join(' ');
         }
     },
     methods:{
