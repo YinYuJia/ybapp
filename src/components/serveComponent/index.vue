@@ -75,6 +75,13 @@ import BusinessGuide from './BusinessGuide'
             var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
             this.$toast('是否是Android：'+isAndroid + '是否是iOS：'+isiOS)
+
+            // console.log(this.$store)
+            this.$store.dispatch('SET_USER_BASEINFO',{
+          name: '殷宇佳', //姓名
+          idNo: '111000030333', //身份证号
+        },
+)
         },
         methods: {
             //获取URL函数
@@ -105,6 +112,7 @@ import BusinessGuide from './BusinessGuide'
                 }
             },
             submit() {
+                console.log(this.$store.getters.SET_USER_BASEINFO)
                 if ( this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 1 ) {
                     // 参保服务------- 参保登记 -------基本医疗保险职工参保登记
                     
