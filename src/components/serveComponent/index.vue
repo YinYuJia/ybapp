@@ -24,10 +24,10 @@
             {{describe}}
         </div>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
-            <el-menu-item index="1" style="width:25%">办事指南</el-menu-item>
-            <el-menu-item index="2" style="width:25%">政策解读</el-menu-item>
-            <el-menu-item index="3" style="width:25%">案例分析</el-menu-item>
-            <el-menu-item index="4" style="width:25%">常见问题</el-menu-item>
+            <el-menu-item index="1" style="width:25%;font-size:.29rem">办事指南</el-menu-item>
+            <el-menu-item index="2" style="width:25%;font-size:.29rem">政策解读</el-menu-item>
+            <el-menu-item index="3" style="width:25%;font-size:.29rem">案例分析</el-menu-item>
+            <el-menu-item index="4" style="width:25%;font-size:.29rem">常见问题</el-menu-item>
         </el-menu>
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
@@ -69,7 +69,7 @@ import BusinessGuide from './BusinessGuide'
           'BusinessGuide':BusinessGuide,
         },
         created(){
-            // 方法暴露给安卓
+            // 方法暴露给原生native方法
             window.getAndroid = this.getAndroid;
             var u = navigator.userAgent;
             var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
@@ -85,6 +85,7 @@ import BusinessGuide from './BusinessGuide'
                 this.getAndroidMsg = dataStr;
                 this.NameTitle = dataStr.title;
                 this.describe = dataStr.describe;
+                // 储存原生数据
                 this.$store.dispatch('SET_NATIVEMSG', dataStr);
             },
             handleSelect(key, keyPath) {
