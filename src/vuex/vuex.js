@@ -51,8 +51,8 @@ export default new Vuex.Store({  // 暴露与new vuex
 
         // 领取就医凭证
         SET_INSURED_PROOF:{
-          name: '', //收件人
-          phone: '', //联系电话
+          AAE011: '', //收件人
+          AAE005: '', //联系电话
           address1: [], //所在地区
           address2: '' //详细地址
         },
