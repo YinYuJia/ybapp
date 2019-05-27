@@ -80,7 +80,6 @@ export default {
     },
     created(){
         this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
-        console.log(this.$store.getters.SET_USER_BASEINFO)
     },
     computed:{
         address: function(){

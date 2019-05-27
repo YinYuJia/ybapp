@@ -121,6 +121,7 @@ export default {
         this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
         this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
         this.optionList = this.$store.state.SET_SELECTARRAY;
+        console.log('11111------',this.$store.getters.SET_USER_BASEINFO)
     },
     watch:{
         form:{

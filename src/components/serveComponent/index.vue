@@ -27,7 +27,7 @@
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
             <BusinessGuide info="1" ></BusinessGuide>
-             安卓字段 : {{getAndroidMsg}}
+             安卓2222字段 : {{getAndroidMsg}}
         </div>
         <div v-if="activeIndex == 2">
             <!-- 政策解读 -->
@@ -55,7 +55,7 @@ import BusinessGuide from './BusinessGuide'
         data() {
             return {
                 activeIndex: '1',
-                NameTitle: '安卓传过来的标题',
+                NameTitle: '安卓传过来的标题1',
                 describe:'title的详细描述内容',
                 getAndroidMsg: null,
             };
