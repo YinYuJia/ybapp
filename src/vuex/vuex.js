@@ -76,6 +76,12 @@ export default new Vuex.Store({  // 暴露与new vuex
           })
           return a;
         },
+        SET_USER_BASEINFO:( state ) => {
+          return state.SET_USER_BASEINFO=JSON.parse(sessionStorage.getItem('SET_USER_BASEINFO'));
+        },
+        SET_NATIVEMSG:( state ) => {
+          return state.SET_NATIVEMSG=JSON.parse(sessionStorage.getItem('SET_NATIVEMSG'));
+        },
         SET_ELSEWHERE_OPERATION:(state) => {
           
           let a = state.SET_ELSEWHERE_OPERATION
@@ -123,6 +129,14 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_INSURED_CHANGE(state,payload){
           state.SET_INSURED_CHANGE = payload;
+        },
+        SET_USER_BASEINFO(state,payload){
+          sessionStorage.setItem("SET_USER_BASEINFO",JSON.stringify(payload));
+          state.SET_USER_BASEINFO = payload;
+        },
+        SET_NATIVEMSG(state,payload){
+          sessionStorage.setItem("SET_NATIVEMSG",JSON.stringify(payload));
+          state.SET_NATIVEMSG = payload;
         }
       },
 
@@ -154,6 +168,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_INSURED_CHANGE( context, payload ) {
           context.commit( 'SET_INSURED_CHANGE', payload ); //context提交
+        },
+        SET_USER_BASEINFO( context, payload ) {
+          context.commit( 'SET_USER_BASEINFO', payload ); //context提交
         }
       }
 })
