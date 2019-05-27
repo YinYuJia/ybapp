@@ -16,13 +16,18 @@ export default {
     data(){
         return{
             form:{
-                name: '',
-                idNo: ''
+                name: '张*佳',
+                idNo: '3301**********4567'
             }
         }
     },
     created(){
-        this.form = this.$store.state.SET_USER_BASEINFO;
+        // this.form = this.$store.state.SET_USER_BASEINFO;
+        console.log(this.$store.state.SET_NATIVEMSG)
+        this.form.name = this.$store.state.SET_NATIVEMSG.name
+        this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard
+
+        // this.$store.state.SET_NATIVEMSG.name,
     }
 }
 </script>

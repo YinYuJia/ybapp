@@ -85,6 +85,7 @@ import BusinessGuide from './BusinessGuide'
                 this.getAndroidMsg = dataStr;
                 this.NameTitle = dataStr.title;
                 this.describe = dataStr.describe;
+                this.$store.dispatch('SET_NATIVEMSG', dataStr);
             },
             handleSelect(key, keyPath) {
                 this.activeIndex = key

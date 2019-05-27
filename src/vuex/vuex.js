@@ -9,6 +9,7 @@ export default new Vuex.Store({  // 暴露与new vuex
           {name: '耳机', price: 60},
           {name: '显示屏', price: 80}
         ],
+        SET_NATIVEMSG:{},
         SET_SELECT:'选项1',
         SET_SELECTARRAY:[],
         // 待遇报销表单
@@ -101,6 +102,10 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_PRODUCTS (state, payload ) {
           state.SET_PRODUCTS = payload
         },
+        SET_NATIVEMSG (state, payload ) {
+          state.SET_NATIVEMSG = payload
+        },
+
         SET_SELECT (state,payload) {
           state.SET_SELECT = payload
         },
@@ -124,6 +129,12 @@ export default new Vuex.Store({  // 暴露与new vuex
       actions:{ //添加actions
         SET_PRODUCTS( context, payload ) {
           context.commit( 'SET_PRODUCTS', payload ); //context提交
+        },
+        SET_NATIVEMSG( context, payload ) {
+          context.commit( 'SET_NATIVEMSG', payload ); //context提交
+        },
+        SET_NATIVEMSG( context, payload ) {
+          context.commit( 'SET_NATIVEMSG', payload ); //context提交
         },
         SET_SELECT( context, payload ) {
           context.commit( 'SET_SELECT', payload ); //context提交
