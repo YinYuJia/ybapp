@@ -323,4 +323,11 @@ export default {
     padding-right: 0;
     padding-left: 0;
 }
+.elseWhere .el-cascader .el-input .el-input__inner{
+    width: 4.5rem;
+}
+.elseWhere .el-cascader .el-cascader__label{
+    text-align: right;
+    padding: 0;
+}
 </style>
