@@ -3,20 +3,15 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <div class="grid-content">
-                        <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="goBackIndex"></span>
-                    </div>
+                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="goBackIndex()"></span>
                 </el-col>
                 <el-col :span="12">
-                    <div class="grid-content NameTitle">
+                    <div class="NameTitle">
                         {{NameTitle}}
                     </div>
                 </el-col>
                 <el-col :span="6">
-                    <div class="grid-content">
-                        <!-- <svg-icon icon-class="Index_Message" className="Index_Message1" /> -->
-                        <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.15rem"></span>
-                    </div>
+                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
@@ -174,6 +169,9 @@ import BusinessGuide from './BusinessGuide'
         font-size: .36rem;
         line-height: 1.2rem;
         overflow: hidden;
+        .NameTitle{
+            color: white;
+        }
     }
     .NameTitle {
         font-size: .36rem;
@@ -181,12 +179,12 @@ import BusinessGuide from './BusinessGuide'
         font-family: 'PingFangSC-Regular';
     }
     .describe {
-        height: 80px;
-        line-height: 80px;
-        font-size: 22px;
-        text-align: left;
-        text-indent: 10px;
-        background-color: #fff;
+        width: 7.5rem;
+        height: .8rem;
+        font-size: .3rem;
+        text-align: center;
+        background-color: #05AEF0;
+        color: white;
     }
  .Footer{
             height: 1.2rem;

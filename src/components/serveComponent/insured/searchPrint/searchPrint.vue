@@ -53,12 +53,7 @@ export default {
     },
     data(){
         return{
-            form:{
-                name: '',
-                phone: '',
-                address: ''
-            },
-            value: '',
+            AAE011: '', //缴费月数
             options:[
                 {value: '12', label: '12个月'},
                 {value: '24', label: '24个月'},

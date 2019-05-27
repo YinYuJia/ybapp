@@ -40,13 +40,13 @@ export default new Vuex.Store({  // 暴露与new vuex
 
         // 异地就医备案
         SET_ELSEWHERE_OPERATION:{
-          leave: '', //离杭日期
-          back: '', //回杭日期
-          address1: [], //省市信息
-          address2: '', //详细地址
-          reason: '', //申请原因
-          name: '', //联系人
-          phone:"" //联系电话
+          AAE030: '', //离杭日期
+          AAE031: '', //回杭日期
+          AAE011: [], //省市信息，提交时需要转成String
+          AAE006: '', //详细地址 
+          ACK030: '', //申请原因
+          AAE004: '', //联系人
+          AAE005: '' //联系电话
         },
 
         // 领取就医凭证
@@ -59,9 +59,9 @@ export default new Vuex.Store({  // 暴露与new vuex
 
         // 参保变更信息
         SET_INSURED_CHANGE:{
-          address: '', //家庭住址
-          phone: '', //手机号码
-          code: '' //邮政编码
+          AAE006: '', //家庭住址
+          AAE005: '', //手机号码
+          AAE007: '' //邮政编码
         },
       },
       // 计算属性 getters
