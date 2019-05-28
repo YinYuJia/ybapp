@@ -27,7 +27,7 @@
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
             <BusinessGuide info="1"></BusinessGuide>
-            安卓2222字段 : {{getAndroidMsg}}
+            安卓字段 : {{getAndroidMsg}}
         </div>
         <div v-if="activeIndex == 2">
             <!-- 政策解读 -->
@@ -83,6 +83,7 @@
                 console.log(a)
             },
             getAndroid(dataStr) {
+                
                 this.getAndroidMsg = dataStr || this.$store.getters.SET_USER_BASEINFO;;
                 this.NameTitle = dataStr.title;
                 this.describe = dataStr.describe;
@@ -107,7 +108,10 @@
                 }
             },
             submit() {
-                console.log(this.$store.getters.SET_USER_BASEINFO)
+                if ( this.getAndroidMsg === null ) {
+                    this.$toast("this.getAmdroidMsg值为-----------null");
+                    return;
+                }
                 if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 1) {
                     // 参保服务------- 参保登记 -------基本医疗保险职工参保登记
                 } else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 2) {
