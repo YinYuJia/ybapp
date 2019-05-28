@@ -97,6 +97,7 @@ export default {
     },
     data() {
       return {
+          dddddd:"1111",
         form: {
             AAE030: '', //离杭日期
             AAE031: '', //回杭日期
@@ -132,7 +133,7 @@ export default {
                 }else{
                     this.canSubmit = false;
                 }
-
+ 
                 // 判断时间间隔
                 if(val.AAE030 != '' && val.AAE031 != ''){
                     let AAE030 = new Date(val.AAE030);
