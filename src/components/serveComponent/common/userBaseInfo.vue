@@ -22,8 +22,6 @@ export default {
         }
     },
     created(){
-        // this.form = this.$store.state.SET_USER_BASEINFO;
-        console.log(this.$store.state.SET_NATIVEMSG === {})
         this.form.name = this.$store.state.SET_NATIVEMSG.name
         this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard
 
