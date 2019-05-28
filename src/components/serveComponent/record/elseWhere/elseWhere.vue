@@ -127,21 +127,21 @@ export default {
         form:{
             handler:function(val){
                 // 判断不为空
-                if(val.leave != '' && val.back != '' && val.address1 != undefined && val.address2 != '' && val.reason != '' && val.name != '' && val.phone != ''){
+                if(val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != undefined && val.AAE006 != '' && val.ACK030 != '' && val.AAE004 != '' && val.AAE005 != ''){
                     this.canSubmit = true;
                 }else{
                     this.canSubmit = false;
                 }
 
                 // 判断时间间隔
-                if(val.leave != '' && val.back != ''){
-                    let leave = new Date(val.leave);
-                    let back = new Date(val.back);
+                if(val.AAE030 != '' && val.AAE031 != ''){
+                    let AAE030 = new Date(val.AAE030);
+                    let AAE031 = new Date(val.AAE031);
                     let month = 24 * 3600 * 1000 * 30;
-                    let gap = back - leave;
+                    let gap = AAE031 - AAE030;
                     if(gap < month){
                         this.$toast('备案时间至少一个月');
-                        this.form.back = '';
+                        this.form.AAE031 = '';
                     }
                 }
             },

@@ -23,7 +23,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>查询月数：</span></div>
                     <div class="InfoText">
-                        <el-select v-model="value" placeholder="请选择">
+                        <el-select v-model="AAE011" placeholder="请选择">
                             <el-option
                             v-for="item in options"
                             :key="item.value"
@@ -60,18 +60,6 @@ export default {
                 {value: '36', label: '36个月'},
                 {value: '48', label: '48个月'},
             ],
-        }
-    },
-    watch:{
-        form:{
-            handler:function(val){
-                if(val.name != '' && val.phone != '' && val.address != ''){
-                    this.canSubmit = true;
-                }else{
-                    this.canSubmit = false;
-                }
-            },
-            deep: true
         }
     },
     methods:{
