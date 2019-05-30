@@ -23,6 +23,14 @@ import { Swipe, SwipeItem } from 'c-swipe';
 import Toast from './components/toast/index'
 Vue.use(Toast)
 
+import Vconsole from 'vconsole';
+
+let vConsole = new Vconsole()
+
+export default vConsole;
+
+// Vue.use(vConsole)
+
 // 全局注册组件
 Vue.component('swipe', Swipe);
 Vue.component('swipe-item', SwipeItem);

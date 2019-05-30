@@ -24,6 +24,7 @@ export default {
     created(){
         this.form.name = this.$store.state.SET_NATIVEMSG.name
         this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard
+        
 
         // this.$store.state.SET_NATIVEMSG.name,
     }

@@ -153,7 +153,6 @@ export default new Vuex.Store({  // 暴露与new vuex
           context.commit( 'SET_TREATMENT_REIMBURSEMENT', payload ); //context提交
         },
         SET_ELSEWHERE_OPERATION( context, payload ) {
-          console.log('payload',payload)
           context.commit( 'SET_ELSEWHERE_OPERATION', payload ); //context提交
         },
         SET_INSURED_PROOF( context, payload ) {

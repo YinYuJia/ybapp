@@ -23,31 +23,21 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>拟离杭日期</span></div>
                     <div class="InfoText">
-                        <el-date-picker
-                        v-model="form.AAE030"
-                        type="date"
-                        placeholder="请选择"
-                        value-format="yyyy-MM-dd">
+                        <el-date-picker v-model="form.AAE030" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
                         </el-date-picker>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>回杭日期</span></div>
                     <div class="InfoText">
-                        <el-date-picker
-                        v-model="form.AAE031"
-                        type="date"
-                        placeholder="请选择"
-                        value-format="yyyy-MM-dd">
+                        <el-date-picker v-model="form.AAE031" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
                         </el-date-picker>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>省市信息</span></div>
                     <div class="InfoText">
-                        <el-cascader
-                            :options="optionList"
-                            v-model="form.AAE011">
+                        <el-cascader :options="optionList" v-model="form.AAE011">
                         </el-cascader>
                     </div>
                 </div>
@@ -61,11 +51,7 @@
                     <div class="InfoName"><span>申请原因</span></div>
                     <div class="InfoText">
                         <el-select v-model="form.ACK030" placeholder="请选择">
-                            <el-option
-                            v-for="item in reportReason"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
+                            <el-option v-for="item in reportReason" :key="item.value" :label="item.label" :value="item.value">
                             </el-option>
                         </el-select>
                     </div>
@@ -79,7 +65,6 @@
                     <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系电话"></div>
                 </div>
             </div>
-            {{submitForm}}
         </div>
         <!-- 按钮 -->
         <footer class="Footer">
@@ -91,275 +76,286 @@
 </template>
 
 <script>
-import userBaseInfo from '../../common/userBaseInfo'
-export default {
-    components:{
-        'userBaseInfo': userBaseInfo
-    },
-    data() {
-      return {
-        dddddd:"1111",
-        form: {
-            AAE030: '', //离杭日期
-            AAE031: '', //回杭日期
-            AAE011: [], //省市信息，提交时需要转成String
-            AAE006: '', //详细地址 
-            ACK030: '', //申请原因
-            AAE004: '', //联系人
-            AAE005: '' //联系电话
+    import userBaseInfo from '../../common/userBaseInfo'
+    export default {
+        components: {
+            'userBaseInfo': userBaseInfo
         },
-        optionList: [], //存放城市数据
-        canSubmit: false,
-        reportReason:[
-            {value: '退休异地安置', label: '退休异地安置'},
-            {value: '在职驻外工作学习', label: '在职驻外工作学习'},
-            {value: '异地探亲', label: '异地探亲'},
-            {value: '异地生育', label: '异地生育'},
-            {value: '子女统筹异地学习/抚养', label: '子女统筹异地学习/抚养'},
-        ],
-        submitForm: null,
-      }
-    },
-    created(){
-        this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
-        this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
-        this.optionList = this.$store.state.SET_SELECTARRAY;
-        console.log('11111------',this.$store.getters.SET_USER_BASEINFO)
-    },
-    watch:{
-        form:{
-            handler:function(val){
-                // 判断不为空
-                if(val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != undefined && val.AAE006 != '' && val.ACK030 != '' && val.AAE004 != '' && val.AAE005 != ''){
-                    this.canSubmit = true;
-                }else{
-                    this.canSubmit = false;
-                }
- 
-                // 判断时间间隔
-                if(val.AAE030 != '' && val.AAE031 != ''){
-                    let AAE030 = new Date(val.AAE030);
-                    let AAE031 = new Date(val.AAE031);
-                    let month = 24 * 3600 * 1000 * 30;
-                    let gap = AAE031 - AAE030;
-                    if(gap < month){
-                        this.$toast('备案时间至少一个月');
-                        this.form.AAE031 = '';
-                    }
-                }
-            },
-            deep: true
-        },
-    },
-    methods:{
-        backIndex(){
-            this.$router.push('/');
-        },
-        submit(){
-            if(this.canSubmit == false){
-                this.$toast('信息未填写完整');
-                return false;
-            }else{
-                this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
-                // 公共请求模板
-                let userBaseInfo = this.$store.state.SET_NATIVEMSG;
-                this.submitForm = {
-                    "imei": "10019",
-                    "mac": "121212",
-                    "phoneModel": "IOS",
-                    "platform": "h5",
-                    "signType": "mdf",
-                    "sign": "sdfsdf",
-                    "tradeCode": "1012",
-                    "data": {
-                        "AAC003": userBaseInfo.name,
-                        "AAE135": userBaseInfo.idCard,
-                        "AAE030": "9",
-                        "AAE031": "10",
-                        "AAE011": "ewf",
-                        "AKC030": "世界那么大",
-                        "tradeCode": "121212"
+        data() {
+            return {
+                dddddd: "1111",
+                form: {
+                    AAE030: '', //离杭日期
+                    AAE031: '', //回杭日期
+                    AAE011: [], //省市信息，提交时需要转成String
+                    AAE006: '', //详细地址 
+                    ACK030: '', //申请原因
+                    AAE004: '', //联系人
+                    AAE005: '', //联系电话
+                },
+                optionList: [], //存放城市数据
+                canSubmit: false,
+                reportReason: [{
+                        value: '退休异地安置',
+                        label: '退休异地安置'
                     },
-                    "version": "1.0"
-                };
-                
-                this.$axios.post('http://192.168.1.199:13030/h5/jy1012/addRecord',submitForm).then((resData) => {
-                    cosole.log(resData)
-                }).catch((error) => {
-                    console.log(error)
-                })
-
-                // this.$router.push("/elseDetail");
+                    {
+                        value: '在职驻外工作学习',
+                        label: '在职驻外工作学习'
+                    },
+                    {
+                        value: '异地探亲',
+                        label: '异地探亲'
+                    },
+                    {
+                        value: '异地生育',
+                        label: '异地生育'
+                    },
+                    {
+                        value: '子女统筹异地学习/抚养',
+                        label: '子女统筹异地学习/抚养'
+                    },
+                ],
             }
         },
+        created() {
+            this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
+            this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
+            this.optionList = this.$store.state.SET_SELECTARRAY;
+            console.log('11111------', this.$store.state.SET_NATIVEMSG)
+            this.form.AAC003 = '11111'
+            this.form.AAE135 = '22222'
+            console.log(this.form)
+
+        },
+        watch: {
+            form: {
+                handler: function(val) {
+                    // 判断不为空
+                    if (val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != undefined && val.AAE006 != '' && val.ACK030 != '' && val.AAE004 != '' && val.AAE005 != '') {
+                        this.canSubmit = true;
+                    } else {
+                        this.canSubmit = false;
+                    }
+                    // 判断时间间隔
+                    if (val.AAE030 != '' && val.AAE031 != '') {
+                        let AAE030 = new Date(val.AAE030);
+                        let AAE031 = new Date(val.AAE031);
+                        let month = 24 * 3600 * 1000 * 30;
+                        let gap = AAE031 - AAE030;
+                        if (gap < month) {
+                            this.$toast('备案时间至少一个月');
+                            this.form.AAE031 = '';
+                        }
+                    }
+                },
+                deep: true
+            },
+        },
+        methods: {
+            backIndex() {
+                this.$router.push('/');
+            },
+            submit() {
+                if (this.canSubmit == false) {
+                    this.$toast('信息未填写完整');
+                    return false;
+                } else {
+                    this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
+
+                    let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝，否则出错
+                    submitForm.AAE011 = submitForm.AAE011.join(' '); //省市信息转换为字符串
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name; //用户名
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard; //单子社保卡号
+                    console.log(submitForm);
+                    // 开始请求
+                    this.$axios.post('http://192.168.1.199:13030/h5/jy1012/addRecord', {
+                        data: submitForm
+                    }).then((resData) => {
+                           console.log(resData.data.data.msg)
+                          if (resData.data.code == 0 ) {
+                            this.$toast(resData.data.data.msg);
+                            this.$router.push("/elseDetail");
+                        }else{
+                            this.$toast("请求失败");
+                            return;
+                        }
+                    }).catch((error) => {
+                        console.log(error)
+                    })
+                    
+                }
+            },
+        }
     }
-  }
 </script>
 
 <style lang="less" scoped>
-.elseWhere{
-    .Title {
-        height: 1.2rem;
-        background-color: #05AEF0;
-        font-size: .36rem;
-        line-height: 1.2rem;
-        overflow: hidden;
-        .NameTitle{
-            color: white;
-        }
-    }
-    .Content{
-        height: 100%;
-        .BaseInfo{
-            width: 7.5rem;
-            height: 2.35rem;
-            background: #05AEF0;
-            position: relative;
-            .InfoPad{
-                height: 2.3rem;
-                width: 6.9rem;
-                position: absolute;
-                margin-top: .42rem;
-                left: 50%;
-                margin-left: -6.9rem/2;
-                background: white;
-                border-radius: .08rem;
-                border-bottom: .1rem solid #C4EEFF;
-                .UserPhoto{
-                    height: 1.2rem;
-                    width: 1.2rem;
-                    position: relative;
-                    left: 50%;
-                    margin-left: -.6rem;
-                    margin-top: -.44rem;
-                    border-radius: .6rem;
-                    background: #DDD;
-                }
-                .UserInfo{
-                    .UserName{
-                        margin-top: .18rem;
-                        font-family: PingFangSC-Regular;
-                        font-size: .36rem;
-                        color: #000000;
-                        letter-spacing: 0;
-                    }
-                    .UserId{
-                        margin-top: 12px;
-                        opacity: .65;
-                        font-family: PingFangSC-Regular;
-                        font-size: .26rem;
-                        color: #000000;
-                        letter-spacing: 0;
-                    }
-                }
-            }
-        }
-        .ReportInfo{
-            height: 8.8rem;
-            width: 7.5rem;
-            padding: 0 .3rem;
-            margin-top: .67rem;
-            background: white;
-            .InfoLine{
-                height: 1.2rem;
-                position: relative;
-                font-family: PingFangSC-Regular;
-                font-size: .3rem;
-                display: flex;
-                justify-content: space-between;
-                border-bottom: .01rem solid #D5D5D5;
-                .InfoName{
-                    opacity: 0.85;
-                    line-height: 1.2rem;
-                    span{
-                        height: .6rem;
-                        line-height: .6rem;
-                        color: #000000;
-                        letter-spacing: 0;
-                    }
-                }
-                .InfoText{
-                    opacity: 0.85;
-                    line-height: 1.2rem;
-                    display: flex;
-                    position: relative;
-                    align-items: center;
-                    input{
-                        height: .6rem;
-                        opacity: 0.85;
-                        font-family: PingFangSC-Regular;
-                        font-size: .3rem;
-                        color: #000000;
-                        letter-spacing: 0;
-                        text-align: right;
-                        border: none;
-                    }
-                }
-                &:nth-child(4){
-                    height: 1.6rem;
-                    textarea{
-                        height: .84rem;
-                        font-size: .3rem;
-                        opacity: 0.85;
-                        color: #000000;
-                        line-height: .42rem;
-                        text-align: right;
-                    }
-                }
-                &:last-child{
-                    border-bottom: none;
-                }
-            }
-        }
-    }
-    .Footer{
-        height: 1.2rem;
-        width: 7.5rem;
-        background: white;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 199;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .Btn{
-            height: .8rem;
-            width: 6.9rem;
-            background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
-            border-radius: 40px;
-            text-align: center;
-            line-height: 0.8rem;
-            font-family: PingFangSC-Regular;
+    .elseWhere {
+        .Title {
+            height: 1.2rem;
+            background-color: #05AEF0;
             font-size: .36rem;
-            color: #FFFFFF;
-            letter-spacing: 0;
+            line-height: 1.2rem;
+            overflow: hidden;
+            .NameTitle {
+                color: white;
+            }
         }
-        .active{
-            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
+        .Content {
+            height: 100%;
+            .BaseInfo {
+                width: 7.5rem;
+                height: 2.35rem;
+                background: #05AEF0;
+                position: relative;
+                .InfoPad {
+                    height: 2.3rem;
+                    width: 6.9rem;
+                    position: absolute;
+                    margin-top: .42rem;
+                    left: 50%;
+                    margin-left: -6.9rem/2;
+                    background: white;
+                    border-radius: .08rem;
+                    border-bottom: .1rem solid #C4EEFF;
+                    .UserPhoto {
+                        height: 1.2rem;
+                        width: 1.2rem;
+                        position: relative;
+                        left: 50%;
+                        margin-left: -.6rem;
+                        margin-top: -.44rem;
+                        border-radius: .6rem;
+                        background: #DDD;
+                    }
+                    .UserInfo {
+                        .UserName {
+                            margin-top: .18rem;
+                            font-family: PingFangSC-Regular;
+                            font-size: .36rem;
+                            color: #000000;
+                            letter-spacing: 0;
+                        }
+                        .UserId {
+                            margin-top: 12px;
+                            opacity: .65;
+                            font-family: PingFangSC-Regular;
+                            font-size: .26rem;
+                            color: #000000;
+                            letter-spacing: 0;
+                        }
+                    }
+                }
+            }
+            .ReportInfo {
+                height: 8.8rem;
+                width: 7.5rem;
+                padding: 0 .3rem;
+                margin-top: .67rem;
+                background: white;
+                .InfoLine {
+                    height: 1.2rem;
+                    position: relative;
+                    font-family: PingFangSC-Regular;
+                    font-size: .3rem;
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: .01rem solid #D5D5D5;
+                    .InfoName {
+                        opacity: 0.85;
+                        line-height: 1.2rem;
+                        span {
+                            height: .6rem;
+                            line-height: .6rem;
+                            color: #000000;
+                            letter-spacing: 0;
+                        }
+                    }
+                    .InfoText {
+                        opacity: 0.85;
+                        line-height: 1.2rem;
+                        display: flex;
+                        position: relative;
+                        align-items: center;
+                        input {
+                            height: .6rem;
+                            opacity: 0.85;
+                            font-family: PingFangSC-Regular;
+                            font-size: .3rem;
+                            color: #000000;
+                            letter-spacing: 0;
+                            text-align: right;
+                            border: none;
+                        }
+                    }
+                    &:nth-child(4) {
+                        height: 1.6rem;
+                        textarea {
+                            height: .84rem;
+                            font-size: .3rem;
+                            opacity: 0.85;
+                            color: #000000;
+                            line-height: .42rem;
+                            text-align: right;
+                        }
+                    }
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+        .Footer {
+            height: 1.2rem;
+            width: 7.5rem;
+            background: white;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 199;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .Btn {
+                height: .8rem;
+                width: 6.9rem;
+                background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
+                border-radius: 40px;
+                text-align: center;
+                line-height: 0.8rem;
+                font-family: PingFangSC-Regular;
+                font-size: .36rem;
+                color: #FFFFFF;
+                letter-spacing: 0;
+            }
+            .active {
+                background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
+            }
         }
     }
-}
 </style>
 
 <style>
-.elseWhere .el-date-editor.el-input, .el-date-editor.el-input__inner{
-    width: 160px;
-}
-.elseWhere .el-input__prefix, .el-input__suffix{
-    display: none;
-}
-.elseWhere .el-input__inner{
-    border:none;
-    text-align: right;
-    padding-right: 0;
-    padding-left: 0;
-}
-.elseWhere .el-cascader .el-input .el-input__inner{
-    width: 4.5rem;
-}
-.elseWhere .el-cascader .el-cascader__label{
-    text-align: right;
-    padding: 0;
-}
+    .elseWhere .el-date-editor.el-input,
+    .el-date-editor.el-input__inner {
+        width: 160px;
+    }
+    .elseWhere .el-input__prefix,
+    .el-input__suffix {
+        display: none;
+    }
+    .elseWhere .el-input__inner {
+        border: none;
+        text-align: right;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .elseWhere .el-cascader .el-input .el-input__inner {
+        width: 4.5rem;
+    }
+    .elseWhere .el-cascader .el-cascader__label {
+        text-align: right;
+        padding: 0;
+    }
 </style>
