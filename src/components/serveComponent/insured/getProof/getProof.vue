@@ -18,8 +18,39 @@
         <div class="Content">
             <!-- 用户信息 -->
             <userBaseInfo></userBaseInfo>
+            <!-- 领取信息 -->
+            <div class="GetInfo">
+                <div class="InfoLine">
+                    <div class="InfoName"><span>类型：</span></div>
+                    <div class="InfoText">
+                        <el-select v-model="getInfo.getType" placeholder="请选择">
+                            <el-option
+                            v-for="item in getTypes"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                            </el-option>
+                        </el-select>
+                        <i class="el-icon-arrow-right" style="font-size:0.4rem; margin-left:0.23rem"></i>
+                    </div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>领取方式：</span></div>
+                    <div class="InfoText">
+                        <el-select v-model="getInfo.getWay" placeholder="请选择">
+                            <el-option
+                            v-for="item in getWays"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                            </el-option>
+                        </el-select>
+                        <i class="el-icon-arrow-right" style="font-size:0.4rem; margin-left:0.23rem"></i>
+                    </div>
+                </div>
+            </div>
             <!-- 邮递信息 -->
-            <div class="MailInfo">
+            <div class="MailInfo" v-if="showMail">
                 <div class="InfoLine">
                     <div class="InfoName"><span>收件人：</span></div>
                     <div class="InfoText"><input type="text" v-model="form.name" placeholder="请输入收件人姓名"></div>
@@ -44,7 +75,7 @@
                 </div>
             </div>
             <!-- 提示 -->
-            <div class="Hint">
+            <div class="Hint" v-if="showMail">
                 <div class="HintTitle"><i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示</div>
                 <div class="HintText">为保证您的正常领取，请务必填写正确、完整的邮递信息。</div>
             </div>
@@ -73,10 +104,44 @@ export default {
                 address2: ''
             },
             canSubmit: false,
-            optionList: [],
+            optionList: [], //所有地区
+            getTypes: [
+                {value: 'change',label: '变更'},
+                {value: 'reapply',label: '补办'}
+            ], 
+            getWays: [
+                {value: 'self',label: '自取'},
+                {value: 'mail',label: '邮寄'}
+            ], 
+            getInfo:{
+                getType: '', //领取类型
+                getWay: '' //领取方式
+            },
+            showMail: false,
         };
     },
     watch:{
+        // 监听领取信息
+        getInfo:{
+            handler:function(val){
+                if(val.getType != '' && val.getWay == 'self'){
+                    this.canSubmit = true;
+                    this.showMail = false;
+                }else if(val.getType != '' && val.getWay == 'mail'){
+                    this.canSubmit = false;
+                    this.showMail = true;
+                }else if(val.getType == '' && val.getWay == 'self'){
+                    this.showMail = false;
+                }else if(val.getType == '' && val.getWay == 'mail'){
+                    this.showMail = true;
+                }else{
+                    this.canSubmit = false;
+                    this.showMail = false;
+                }
+            },
+            deep: true
+        },
+        // 监听邮递信息
         form:{
             handler:function(val){
                 if(val.name != '' && val.phone != '' && val.address1 != undefined && val.address2 != ''){
@@ -86,7 +151,7 @@ export default {
                 }
             },
             deep: true
-        }
+        },
     },
     created(){
         this.form = this.$store.state.SET_INSURED_PROOF;
@@ -124,11 +189,38 @@ export default {
     }
     .Content{
         height: 100%;
+        .GetInfo{
+            height: 2.4rem;
+            width: 7.5rem;
+            padding: 0 .3rem;
+            margin-top: .67rem;
+            background: white;
+            .InfoLine{
+                height: 1.2rem;
+                position: relative;
+                font-family: PingFangSC-Regular;
+                font-size: .3rem;
+                display: flex;
+                justify-content: space-between;
+                .InfoName{
+                    color: #000000;
+                    opacity: 0.85;
+                    line-height: 1.2rem;
+                    letter-spacing: 0;
+                }
+                .InfoText{
+                    opacity: 0.85;
+                    line-height: 1.2rem;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
         .MailInfo{
             height: 5.2rem;
             width: 7.5rem;
             padding: 0 .3rem;
-            margin-top: .67rem;
+            margin-top: .27rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;
@@ -245,5 +337,13 @@ export default {
 .getProof .el-cascader .el-cascader__label{
     text-align: right;
     padding-right: 0;
+}
+.getProof .el-select .el-input__inner{
+    padding-right: 0;
+    text-align: right;
+    border: none;
+}
+.getProof .el-select .el-input__suffix .el-input__suffix-inner{
+    display: none;
 }
 </style>
