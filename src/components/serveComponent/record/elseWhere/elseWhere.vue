@@ -79,6 +79,7 @@
                     <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系电话"></div>
                 </div>
             </div>
+            {{submitForm}}
         </div>
         <!-- 按钮 -->
         <footer class="Footer">
@@ -97,7 +98,7 @@ export default {
     },
     data() {
       return {
-          dddddd:"1111",
+        dddddd:"1111",
         form: {
             AAE030: '', //离杭日期
             AAE031: '', //回杭日期
@@ -116,6 +117,7 @@ export default {
             {value: '异地生育', label: '异地生育'},
             {value: '子女统筹异地学习/抚养', label: '子女统筹异地学习/抚养'},
         ],
+        submitForm: null,
       }
     },
     created(){
@@ -160,25 +162,28 @@ export default {
             }else{
                 this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
                 // 公共请求模板
-                this.$axios.post('http://192.168.1.199:13030/h5/jy1012/addRecord',{
-	"imei": "10019",
-	"mac": "121212",
-	"phoneModel": "IOS",
-	"platform": "h5",
-	"signType": "mdf",
-	"sign": "sdfsdf",
-	"tradeCode": "1012",
-	"data": {
-		"AAC003": "吴学文",
-		"AAE135": "362329199202195313",
-		"AAE030": "9",
-		"AAE031": "10",
-		"AAE011": "ewf",
-		"AKC030": "世界那么大",
-		"tradeCode": "121212"
-	},
-	"version": "1.0"
-}).then((resData) => {
+                let userBaseInfo = this.$store.state.SET_NATIVEMSG;
+                this.submitForm = {
+                    "imei": "10019",
+                    "mac": "121212",
+                    "phoneModel": "IOS",
+                    "platform": "h5",
+                    "signType": "mdf",
+                    "sign": "sdfsdf",
+                    "tradeCode": "1012",
+                    "data": {
+                        "AAC003": userBaseInfo.name,
+                        "AAE135": userBaseInfo.idCard,
+                        "AAE030": "9",
+                        "AAE031": "10",
+                        "AAE011": "ewf",
+                        "AKC030": "世界那么大",
+                        "tradeCode": "121212"
+                    },
+                    "version": "1.0"
+                };
+                
+                this.$axios.post('http://192.168.1.199:13030/h5/jy1012/addRecord',submitForm).then((resData) => {
                     cosole.log(resData)
                 }).catch((error) => {
                     console.log(error)

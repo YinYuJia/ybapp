@@ -20,13 +20,24 @@
             <userBaseInfo></userBaseInfo>
             <!-- 变更信息 -->
             <div class="ChangeInfo">
-                
+                <div class="InfoLine">
+                    <div class="InfoName"><span>家庭住址：</span></div>
+                    <div class="InfoText"><textarea v-model="form.address2" placeholder="请输入家庭住址"></textarea></div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>手机号码：</span></div>
+                    <div class="InfoText"><input type="text" placeholder="请输入手机号码"></div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>邮政编码：</span></div>
+                    <div class="InfoText"><input type="text" placeholder="请输入邮政编码"></div>
+                </div>
             </div>
             <!-- 提示 -->
-            <!-- <div class="Hint">
+            <div class="Hint">
                 <div class="HintTitle"><i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示</div>
                 <div class="HintText">请依照您的实际变更情况，修改以上内容。</div>
-            </div> -->
+            </div>
         </div>
         <!-- 按钮 -->
         <footer class="Footer">
@@ -144,22 +155,83 @@ export default {
             }
         }
         .ChangeInfo{
-            height: 5.2rem;
+            height: 4rem;
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .67rem;
             background: white;
-            .ContentTitle{
-                font-weight: bold;
-                line-height: .6rem;
+            .InfoLine{
+                height: 1.2rem;
+                position: relative;
+                font-family: PingFangSC-Regular;
+                font-size: .3rem;
+                display: flex;
+                justify-content: space-between;
+                border-bottom: .01rem solid #D5D5D5;
+                .InfoName{
+                    opacity: 0.85;
+                    line-height: 1.2rem;
+                    span{
+                        height: .6rem;
+                        line-height: .6rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                    }
+                }
+                .InfoText{
+                    opacity: 0.85;
+                    line-height: 1.2rem;
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                    input{
+                        height: .6rem;
+                        opacity: 0.85;
+                        font-family: PingFangSC-Regular;
+                        font-size: .3rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                        text-align: right;
+                        border: none;
+                    }
+                }
+                &:first-child{
+                    height: 1.6rem;
+                    .InfoText{
+                        display: flex;
+                        align-items: center;
+                    }
+                    textarea{
+                        height: .84rem;
+                        font-size: .3rem;
+                        opacity: 0.85;
+                        color: #000000;
+                        line-height: .42rem;
+                        text-align: right;
+                    }
+                }
+                &:last-child{
+                    border-bottom: none;
+                }
             }
         }
         .Hint{
-            padding: .2rem .1rem;
-            background: #EEE;
-            font-size: .28rem;
+            margin-top: .45rem;
+            padding: 0 .3rem;
+            opacity: 0.45;
+            font-family: PingFangSC-Regular;
+            font-size: .24rem;
+            color: #000000;
+            text-align: left;
             .HintTitle{
-                line-height: .5rem;
+                i{
+                    margin-right: .2rem;
+                    letter-spacing: 0;
+                }
+            }
+            .HintText{
+                margin-top: .28rem;
+                letter-spacing: 0;
             }
         }
     }
