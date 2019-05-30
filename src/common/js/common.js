@@ -9,6 +9,9 @@ export default {
     ApiUrl:function() {
         return 'https://d0f44a2a-91b0-421c-abb3-9ffab08af413.mock.pstmn.io'
     },
+    SaveElseWhereState(data) {
+        return data
+    },
     IndexList:function() {
          return {
             "cdoe": 1,
