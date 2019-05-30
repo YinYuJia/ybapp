@@ -92,8 +92,6 @@
                     ACK030: '', //申请原因
                     AAE004: '', //联系人
                     AAE005: '', //联系电话
-                    AAC003: "adsf", //用户名
-                    AAE135: "1111", //单子社保卡号
                 },
                 optionList: [], //存放城市数据
                 canSubmit: false,
@@ -163,10 +161,15 @@
                 } else {
                     console.log("请求信息",this.form)
                     this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
-                    // 公共请求模板
-                    //  this.$toast("开始请求");
+
+                    let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝，否则出错
+                    submitForm.AAE011 = submitForm.AAE011.join(' '); //省市信息转换为字符串
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name; //用户名
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard; //单子社保卡号
+                    console.log(submitForm);
+                    // 开始请求
                     this.$axios.post('http://192.168.1.199:13030/h5/jy1012/addRecord', {
-                        data: this.form,
+                        data: submitForm
                     }).then((resData) => {
                            console.log('返回成功信息',resData.data.data)
                           if (resData.data.code == 0 ) {
