@@ -87,9 +87,10 @@
                 this.getAndroidMsg = dataStr || this.$store.getters.SET_USER_BASEINFO;;
                 this.NameTitle = dataStr.title;
                 this.describe = dataStr.describe;
-                console.log(11111)
                 // 储存原生数据
                 this.$store.dispatch('SET_NATIVEMSG', dataStr);
+
+                console.log('dataStr---',dataStr)
             },
             handleSelect(key, keyPath) {
                 this.activeIndex = key
