@@ -125,10 +125,8 @@
             this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
             this.optionList = this.$store.state.SET_SELECTARRAY;
             console.log('11111------', this.$store.state.SET_NATIVEMSG)
-            this.form.AAC003 = '11111'
-            this.form.AAE135 = '22222'
-            console.log(this.form)
-
+            this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
+            this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
         },
         watch: {
             form: {
@@ -163,18 +161,33 @@
                     this.$toast('信息未填写完整');
                     return false;
                 } else {
+                    console.log("请求信息",this.form)
                     this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
                     // 公共请求模板
                     //  this.$toast("开始请求");
                     this.$axios.post('http://192.168.1.199:13030/h5/jy1012/addRecord', {
-                        data: this.form
+                        data: this.form,
                     }).then((resData) => {
-                           console.log(resData.data.data.msg)
+                           console.log('返回成功信息',resData.data.data)
                           if (resData.data.code == 0 ) {
-                            this.$toast(resData.data.data.msg);
-                            this.$router.push("/elseDetail");
-                        }else{
-                            this.$toast("请求失败");
+                            //   成功   1000
+                              if ( resData.data.data.enCode == 1000 ) {
+                                  this.$toast(resData.data.data.msg);
+                                  this.$router.push("/elseDetail");
+                              }else if (resData.data.data.enCode == 1001 ) {
+                                //   失败  1001
+                                  this.$toast(resData.data.data.msg);
+                                  return;
+                              }
+                        }else if(resData.data.code == -1 ){
+                            // 系统异常
+                            this.$toast("系统异常");
+                            return;
+                        }else if (resData.data.code == 1 ) {
+                            // 业务异常
+                            if ( resData.data.data.enCode !== 1000 ) {
+                               this.$toast(resData.data.data.msg);
+                            }
                             return;
                         }
                     }).catch((error) => {

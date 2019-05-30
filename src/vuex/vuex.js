@@ -9,7 +9,10 @@ export default new Vuex.Store({  // 暴露与new vuex
           {name: '耳机', price: 60},
           {name: '显示屏', price: 80}
         ],
+        
+        // 原生传过来的数据
         SET_NATIVEMSG:{},
+
         SET_SELECT:'选项1',
         SET_SELECTARRAY:[],
         // 待遇报销表单
@@ -86,7 +89,6 @@ export default new Vuex.Store({  // 暴露与new vuex
           
           let a = state.SET_ELSEWHERE_OPERATION
           if (a.selectedOptions.length != 0 ) {
-            console.log('a.operation',a.selectedOptions[3])
             a.selectedOptions = a.selectedOptions[3]
           }
           
@@ -153,7 +155,6 @@ export default new Vuex.Store({  // 暴露与new vuex
           context.commit( 'SET_TREATMENT_REIMBURSEMENT', payload ); //context提交
         },
         SET_ELSEWHERE_OPERATION( context, payload ) {
-          console.log('payload',payload)
           context.commit( 'SET_ELSEWHERE_OPERATION', payload ); //context提交
         },
         SET_INSURED_PROOF( context, payload ) {

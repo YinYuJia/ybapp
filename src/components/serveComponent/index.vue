@@ -70,6 +70,8 @@
             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
             if (this.$store.getters.SET_NATIVEMSG === null) {
                 this.getAndroidMsg = this.$store.state.SET_NATIVEMSG
+                this.NameTitle = this.getAndroidMsg.title;
+                this.describe = this.getAndroidMsg.describe;
             }
             //  测试vuex+ sessionStorage
             this.$store.dispatch('SET_USER_BASEINFO', {
@@ -83,14 +85,11 @@
                 console.log(a)
             },
             getAndroid(dataStr) {
-                
                 this.getAndroidMsg = dataStr || this.$store.getters.SET_USER_BASEINFO;;
                 this.NameTitle = dataStr.title;
                 this.describe = dataStr.describe;
                 // 储存原生数据
                 this.$store.dispatch('SET_NATIVEMSG', dataStr);
-
-                console.log('dataStr---',dataStr)
             },
             handleSelect(key, keyPath) {
                 this.activeIndex = key
