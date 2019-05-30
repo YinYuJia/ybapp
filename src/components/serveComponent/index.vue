@@ -78,6 +78,8 @@
                 name: '殷宇佳', //姓名
                 idNo: '111000030333', //身份证号
             }, )
+
+            this.$toast('this.epFn.SaveElseWhereState()',)
         },
         methods: {
             //获取URL函数

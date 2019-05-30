@@ -159,14 +159,13 @@
                     this.$toast('信息未填写完整');
                     return false;
                 } else {
-                    console.log("请求信息",this.form)
                     this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
 
                     let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝，否则出错
                     submitForm.AAE011 = submitForm.AAE011.join(' '); //省市信息转换为字符串
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name; //用户名
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard; //单子社保卡号
-                    console.log(submitForm);
+                    console.log('请求信息',submitForm);
                     // 开始请求
                     this.$axios.post('http://192.168.1.199:13030/h5/jy1012/addRecord', {
                         data: submitForm
@@ -176,6 +175,7 @@
                             //   成功   1000
                               if ( resData.data.data.enCode == 1000 ) {
                                   this.$toast(resData.data.data.msg);
+                                  this.epFn.SaveElseWhereState(resData.data.data.msg)
                                   this.$router.push("/elseDetail");
                               }else if (resData.data.data.enCode == 1001 ) {
                                 //   失败  1001
