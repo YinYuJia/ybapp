@@ -77,7 +77,7 @@
             <!-- 提示 -->
             <div class="Hint" v-if="showMail">
                 <div class="HintTitle"><i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示</div>
-                <div class="HintText">为保证您的正常领取，请务必填写正确、完整的邮递信息。</div>
+                <div class="HintText">为保证您的正常领取，请务必填写正确、完整的邮递信息。具体送达时间以实际邮递情况为准。</div>
             </div>
         </div>
         <!-- 按钮 -->
