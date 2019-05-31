@@ -27,7 +27,7 @@
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
             <BusinessGuide info="1"></BusinessGuide>
-            安卓字段 : {{getAndroidMsg}}
+            <!-- 安卓字段 : {{getAndroidMsg}} -->
         </div>
         <div v-if="activeIndex == 2">
             <!-- 政策解读 -->
@@ -68,18 +68,19 @@
             var u = navigator.userAgent;
             var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-            if (this.$store.getters.SET_NATIVEMSG === null) {
-                this.getAndroidMsg = this.$store.state.SET_NATIVEMSG
-                this.NameTitle = this.getAndroidMsg.title;
-                this.describe = this.getAndroidMsg.describe;
-            }
+            console.log(this.$store.getters.SET_NATIVEMSG === null)
+            // if (this.$store.getters.SET_NATIVEMSG === null) {
+            //     this.getAndroidMsg = this.$store.state.SET_NATIVEMSG
+            //     this.NameTitle = this.getAndroidMsg.title;
+            //     this.describe = this.getAndroidMsg.describe;
+            // }
             //  测试vuex+ sessionStorage
             this.$store.dispatch('SET_USER_BASEINFO', {
                 name: '殷宇佳', //姓名
                 idNo: '111000030333', //身份证号
             }, )
 
-            this.$toast('this.epFn.SaveElseWhereState()',)
+            this.$toast('this.epFn.SaveElseWhereState()',this.epFn.SaveElseWhereState() || 'kong')
         },
         methods: {
             //获取URL函数
@@ -87,6 +88,7 @@
                 console.log(a)
             },
             getAndroid(dataStr) {
+                console.log('原生msg',dataStr)
                 this.getAndroidMsg = dataStr || this.$store.getters.SET_USER_BASEINFO;;
                 this.NameTitle = dataStr.title;
                 this.describe = dataStr.describe;

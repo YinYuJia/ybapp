@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/serveComponent/index'
+import indexInfoList from '@/components/serveComponent/indexInfoList'
+
 import First from '@/components/First';
+
 // import Work from '@/components/Work';
 // import TreatmentReimbursement from '@/components/commonComponent/Work/TreatmentReimbursement';
 // import TReimbursement1 from '@/components/commonComponent/Work/TreatmentReimbursement/TReimbursement1'
@@ -32,6 +35,11 @@ export default new Router({
       path: '/first',
       name: 'FirstComponent',
       component: First
+    },
+    {
+      path: '/indexInfoList',
+      name: 'indexInfoListComponent',
+      component: indexInfoList
     },
 
     {

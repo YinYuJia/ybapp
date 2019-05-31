@@ -10,6 +10,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 // 使用axios请求
 import axios from 'axios'
+
+axios.defaults.baseURL = '/api'
 // 使用vuex
 import store from './vuex/vuex.js' 
 // import Icon from 'vue-svg-icon/Icon.vue';

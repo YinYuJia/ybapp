@@ -6,9 +6,15 @@ export default {
         console.log(a);
     },
     // 公用请求地址
+    // 开发地址
     ApiUrl:function() {
-        return 'https://d0f44a2a-91b0-421c-abb3-9ffab08af413.mock.pstmn.io'
+        return 'http://192.168.1.199:13030'
     },
+
+    // 打包测试地址
+    // ApiUrl:function() {
+    //     return '/api'
+    // },
     SaveElseWhereState(data) {
         return data
     },
