@@ -3,7 +3,7 @@
         <div v-for="item in clist" @click="clickInfoList(item.id)" :key="item.id"  class="items" style="border-top:1px solid transparent">
             <p class="p11">{{item.name}} <span class="el-icon-arrow-right"></span> </p>
         </div>
-        <div>props:{{info}}</div>
+        <!-- <div>props:{{info}}</div> -->
     </div>
 </template>
 
