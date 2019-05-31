@@ -167,7 +167,7 @@
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard; //单子社保卡号
                     console.log('请求信息',submitForm);
                     // 开始请求
-                    this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', {
+                    this.$axios.post('/h5/jy1012/addRecord', {
                         data: submitForm
                     }).then((resData) => {
                            console.log('返回成功信息',resData.data.data)
