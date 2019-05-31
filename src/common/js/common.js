@@ -7,14 +7,14 @@ export default {
     },
     // 公用请求地址
     // 开发地址
-    // ApiUrl:function() {
-    //     return 'http://192.168.1.199:13030'
-    // },
+    ApiUrl:function() {
+        return 'http://192.168.1.199:13030'
+    },
 
     // 打包测试地址
-    ApiUrl:function() {
-        return '/api'
-    },
+    // ApiUrl:function() {
+    //     return '/api'
+    // },
     SaveElseWhereState(data) {
         return data
     },
