@@ -182,14 +182,14 @@
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
                         <svg-icon v-if="show" icon-class="indexInfoList-chuguodaiyao" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-chuguodaiyao1"/>
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-chuguodaiyao1" />
                     </div>
                     <div class="IconText"><span>出国带药</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon v-if="show" icon-class="indexInfoList-guanxijiexu" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-guanxijiexu1"/>
+                        <svg-icon v-if="show" icon-class="indexInfoList-jiatinggongji" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiatinggongji1" />
                     </div>
                     <div class="IconText"><span>家庭共济</span></div>
                 </el-col>
@@ -201,45 +201,47 @@
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_HospitalSearch" /></div>
-                    <div class="IconText"><span>医院查询</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-jiaofeinianxian" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiaofeinianxian1" />
+                    </div>
+                    <div class="IconText"><span>缴费年限</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_progress" /></div>
-                    <div class="IconText"><span>办事进度</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-lingxingbaoxiao" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-lingxingbaoxiao1" />
+                    </div>
+                    <div class="IconText"><span>零星报销</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_DeliverMedi" /></div>
-                    <div class="IconText"><span>送药上门</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-feiyongshenhe" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-feiyongshenhe1" />
+                    </div>
+                    <div class="IconText"><span>费用审核</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_more" /></div>
-                    <div class="IconText"><span>更多</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-pingchan" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-pingchan1" />
+                    </div>
+                    <div class="IconText"><span>平产...<br/>待遇核准</span></div>
                 </el-col>
             </el-row>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_HospitalSearch" /></div>
-                    <div class="IconText"><span>医院查询</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-liuchan" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-liuchan1" />
+                    </div>
+                    <div class="IconText"><span>流产...<br/>待遇核准</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_progress" /></div>
-                    <div class="IconText"><span>办事进度</span></div>
-                </el-col>
-                <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon icon-class="IconNav_DeliverMedi" /></div>
-                    <div class="IconText"><span>送药上门</span></div>
-                </el-col>
-                <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon icon-class="IconNav_more" /></div>
-                    <div class="IconText"><span>更多</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-peiou" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-peiou1" />
+                    </div>
+                    <div class="IconText"><span>未就业配偶<br/>待遇核准</span></div>
                 </el-col>
             </el-row>
             <div class="DepartmentsList">
@@ -249,23 +251,17 @@
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_HospitalSearch" /></div>
-                    <div class="IconText"><span>医院查询</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-guashi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-guashi1" />
+                    </div>
+                    <div class="IconText"><span>社保卡</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_progress" /></div>
-                    <div class="IconText"><span>办事进度</span></div>
-                </el-col>
-                <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon icon-class="IconNav_DeliverMedi" /></div>
-                    <div class="IconText"><span>送药上门</span></div>
-                </el-col>
-                <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon icon-class="IconNav_more" /></div>
-                    <div class="IconText"><span>更多</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-buhuan" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-buhuan1" />
+                    </div>
+                    <div class="IconText"><span>社保卡补换</span></div>
                 </el-col>
             </el-row>
             <div class="DepartmentsList">
@@ -275,23 +271,24 @@
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_HospitalSearch" /></div>
-                    <div class="IconText"><span>医院查询</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-yiyuan" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-yiyuan1" />
+                    </div>
+                    <div class="IconText"><span>定点医院</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_progress" /></div>
-                    <div class="IconText"><span>办事进度</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-yaodian" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-yaodian1" />
+                    </div>
+                    <div class="IconText"><span>定点药店</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon icon-class="IconNav_DeliverMedi" /></div>
-                    <div class="IconText"><span>送药上门</span></div>
-                </el-col>
-                <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon icon-class="IconNav_more" /></div>
-                    <div class="IconText"><span>更多</span></div>
+                        <svg-icon v-if="show" icon-class="indexInfoList-yaopinmulu" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-yaopinmulu1" />
+                    </div>
+                    <div class="IconText"><span>药品目录</span></div>
                 </el-col>
             </el-row>
         </div>
@@ -306,51 +303,9 @@
                 hidden: true
             }
         },
-        props: {
-            PropsMsg: {
-                type: String,
-                default: ""
-            }
-        },
         created() {
         },
         methods: {
-            gotoInsuredService() {
-                this.$router.push({
-                    name: 'TreatmentReimbursement',
-                    params: {
-                        id: "1",
-                        name: "参保服务"
-                    }
-                })
-            },
-            gotoRecordService() {
-                this.$router.push({
-                    name: 'TreatmentReimbursement',
-                    params: {
-                        id: "2",
-                        name: "备案服务"
-                    }
-                })
-            },
-            gotoTreatmentReimbursement() {
-                this.$router.push({
-                    name: 'TreatmentReimbursement',
-                    params: {
-                        id: "3",
-                        name: "待遇报销"
-                    }
-                })
-            },
-            gotoOtherServices() {
-                this.$router.push({
-                    name: 'TreatmentReimbursement',
-                    params: {
-                        id: "4",
-                        name: "其他服务"
-                    }
-                })
-            }
         }
     }
 </script>
