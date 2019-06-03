@@ -1,5 +1,5 @@
 <template>
-    <div class="elseWhere">
+    <div class="turnOut">
         <div class="Title">
             <el-row>
                 <el-col :span="6">
@@ -7,7 +7,7 @@
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
-                        异地就医备案
+                        转外就医备案
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -21,34 +21,28 @@
             <!-- 申报信息 -->
             <div class="ReportInfo">
                 <div class="InfoLine">
-                    <div class="InfoName"><span>拟离杭日期</span></div>
-                    <div class="InfoText">
-                        <el-date-picker v-model="form.AAE030" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
-                        </el-date-picker>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>回杭日期</span></div>
-                    <div class="InfoText">
-                        <el-date-picker v-model="form.AAE031" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
-                        </el-date-picker>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>省市信息</span></div>
+                    <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
                         <el-cascader :options="optionList" v-model="form.AAE011">
                         </el-cascader>
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>详细地址</span></div>
+                    <div class="InfoName"><span>开始日期</span></div>
                     <div class="InfoText">
-                        <textarea v-model="form.AAE006" placeholder="请输入详细地址"></textarea>
+                        <el-date-picker v-model="form.AAE030" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
+                        </el-date-picker>
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>申请原因</span></div>
+                    <div class="InfoName"><span>转往地市</span></div>
+                    <div class="InfoText">
+                        <el-cascader :options="optionList" v-model="form.AAE011">
+                        </el-cascader>
+                    </div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>疾病名称</span></div>
                     <div class="InfoText">
                         <el-select v-model="form.ACK030" placeholder="请选择">
                             <el-option v-for="item in reportReason" :key="item.value" :label="item.label" :value="item.value">
@@ -57,12 +51,13 @@
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>联系人</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE004" placeholder="请输入联系人"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>联系电话</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系电话"></div>
+                    <div class="InfoName"><span>就医疗程</span></div>
+                    <div class="InfoText">
+                        <el-select v-model="form.treatment" placeholder="请选择">
+                            <el-option v-for="item in treatment" :key="item.value" :label="item.label" :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,7 +71,7 @@
 </template>
 
 <script>
-    import userBaseInfo from '../../common/userBaseInfo'
+import userBaseInfo from '../../common/userBaseInfo'
     export default {
         components: {
             'userBaseInfo': userBaseInfo
@@ -92,29 +87,13 @@
                     ACK030: '', //申请原因
                     AAE004: '', //联系人
                     AAE005: '', //联系电话
+                    treatment: '', //就诊疗程
                 },
                 optionList: [], //存放城市数据
                 canSubmit: false,
-                reportReason: [{
-                        value: '退休异地安置',
-                        label: '退休异地安置'
-                    },
-                    {
-                        value: '在职驻外工作学习',
-                        label: '在职驻外工作学习'
-                    },
-                    {
-                        value: '异地探亲',
-                        label: '异地探亲'
-                    },
-                    {
-                        value: '异地生育',
-                        label: '异地生育'
-                    },
-                    {
-                        value: '子女统筹异地学习/抚养',
-                        label: '子女统筹异地学习/抚养'
-                    },
+                treatment: [
+                    {value:'初诊', label:'初诊'},
+                    {value:'复诊', value:'复诊'}
                 ],
             }
         },
@@ -204,127 +183,92 @@
 </script>
 
 <style lang="less" scoped>
-    .elseWhere {
-        .Title {
-            height: 1.2rem;
-            background-color: #05AEF0;
-            font-size: .36rem;
-            line-height: 1.2rem;
-            overflow: hidden;
-            .NameTitle {
-                color: white;
-            }
+.turnOut {
+    .Title {
+        height: 1.2rem;
+        background-color: #05AEF0;
+        font-size: .36rem;
+        line-height: 1.2rem;
+        overflow: hidden;
+        .NameTitle {
+            color: white;
         }
-        .Content {
-            height: 100%;
-            .ReportInfo {
-                height: 8.8rem;
-                width: 7.5rem;
-                padding: 0 .3rem;
-                margin-top: .67rem;
-                background: white;
-                .InfoLine {
-                    height: 1.2rem;
-                    position: relative;
-                    font-family: PingFangSC-Regular;
-                    font-size: .3rem;
+    }
+    .Content {
+        height: 100%;
+        .ReportInfo {
+            height: 6rem;
+            width: 7.5rem;
+            padding: 0 .3rem;
+            margin-top: .67rem;
+            background: white;
+            .InfoLine {
+                height: 1.2rem;
+                position: relative;
+                font-family: PingFangSC-Regular;
+                font-size: .3rem;
+                display: flex;
+                justify-content: space-between;
+                border-bottom: .01rem solid #D5D5D5;
+                .InfoName {
+                    opacity: 0.85;
+                    line-height: 1.2rem;
+                    span {
+                        height: .6rem;
+                        line-height: .6rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                    }
+                }
+                .InfoText {
+                    opacity: 0.85;
+                    line-height: 1.2rem;
                     display: flex;
-                    justify-content: space-between;
-                    border-bottom: .01rem solid #D5D5D5;
-                    .InfoName {
+                    position: relative;
+                    align-items: center;
+                    input {
+                        height: .6rem;
                         opacity: 0.85;
-                        line-height: 1.2rem;
-                        span {
-                            height: .6rem;
-                            line-height: .6rem;
-                            color: #000000;
-                            letter-spacing: 0;
-                        }
+                        font-family: PingFangSC-Regular;
+                        font-size: .3rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                        text-align: right;
+                        border: none;
                     }
-                    .InfoText {
-                        opacity: 0.85;
-                        line-height: 1.2rem;
-                        display: flex;
-                        position: relative;
-                        align-items: center;
-                        input {
-                            height: .6rem;
-                            opacity: 0.85;
-                            font-family: PingFangSC-Regular;
-                            font-size: .3rem;
-                            color: #000000;
-                            letter-spacing: 0;
-                            text-align: right;
-                            border: none;
-                        }
-                    }
-                    &:nth-child(4) {
-                        height: 1.6rem;
-                        textarea {
-                            height: .84rem;
-                            font-size: .3rem;
-                            opacity: 0.85;
-                            color: #000000;
-                            line-height: .42rem;
-                            text-align: right;
-                        }
-                    }
-                    &:last-child {
-                        border-bottom: none;
-                    }
+                }
+                &:last-child {
+                    border-bottom: none;
                 }
             }
         }
-        .Footer {
-            height: 1.2rem;
-            width: 7.5rem;
-            background: white;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 199;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .Btn {
-                height: .8rem;
-                width: 6.9rem;
-                background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
-                border-radius: 40px;
-                text-align: center;
-                line-height: 0.8rem;
-                font-family: PingFangSC-Regular;
-                font-size: .36rem;
-                color: #FFFFFF;
-                letter-spacing: 0;
-            }
-            .active {
-                background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
-            }
+    }
+    .Footer {
+        height: 1.2rem;
+        width: 7.5rem;
+        background: white;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 199;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .Btn {
+            height: .8rem;
+            width: 6.9rem;
+            background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
+            border-radius: 40px;
+            text-align: center;
+            line-height: 0.8rem;
+            font-family: PingFangSC-Regular;
+            font-size: .36rem;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .active {
+            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
         }
     }
-</style>
-
-<style>
-    .elseWhere .el-date-editor.el-input,
-    .el-date-editor.el-input__inner {
-        width: 160px;
-    }
-    .elseWhere .el-input__prefix,
-    .el-input__suffix {
-        display: none;
-    }
-    .elseWhere .el-input__inner {
-        border: none;
-        text-align: right;
-        padding-right: 0;
-        padding-left: 0;
-    }
-    .elseWhere .el-cascader .el-input .el-input__inner {
-        width: 4.5rem;
-    }
-    .elseWhere .el-cascader .el-cascader__label {
-        text-align: right;
-        padding: 0;
-    }
+}
 </style>

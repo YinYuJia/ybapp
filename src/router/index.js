@@ -10,14 +10,15 @@ import First from '@/components/First';
 // import TReimbursement1 from '@/components/commonComponent/Work/TreatmentReimbursement/TReimbursement1'
 // import SubmitReimbursement from '@/components/commonComponent/Work/TreatmentReimbursement/SubmitReimbursement'
 // import EventDetail from '@/components/commonComponent/Work/TreatmentReimbursement/EventDetail_1'
-import elseWhere from '@/components/serveComponent/record/elseWhere/elseWhere'
-import elseDetail from '@/components/serveComponent/record/elseWhere/elseDetail'
 import getProof from '@/components/serveComponent/insured/getProof/getProof'
 import getDetail from '@/components/serveComponent/insured/getProof/getDetail'
 import insuredChange from '@/components/serveComponent/insured/insuredChange/insuredChange'
 import changeDetail from '@/components/serveComponent/insured/insuredChange/changeDetail'
 import searchPrint from '@/components/serveComponent/insured/searchPrint/searchPrint'
 import insuredDownload from '@/components/serveComponent/insured/searchPrint/insuredDownload'
+import elseWhere from '@/components/serveComponent/record/elseWhere/elseWhere'
+import elseDetail from '@/components/serveComponent/record/elseWhere/elseDetail'
+import turnOut from '@/components/serveComponent/record/turnOut/turnOut'
 
 
 Vue.use(Router)
@@ -40,18 +41,6 @@ export default new Router({
       path: '/indexInfoList',
       name: 'indexInfoListComponent',
       component: indexInfoList
-    },
-
-    {
-      path: '/elseWhere',
-      name: 'elseWhere',
-      component: elseWhere
-    },
-
-    {
-      path: '/elseDetail',
-      name: 'elseDetail',
-      component: elseDetail
     },
     {
       path: '/getProof',
@@ -82,6 +71,21 @@ export default new Router({
       path: '/insuredDownload',
       name: 'insuredDownload',
       component: insuredDownload
+    },
+    {
+      path: '/elseWhere',
+      name: 'elseWhere',
+      component: elseWhere
+    },
+    {
+      path: '/elseDetail',
+      name: 'elseDetail',
+      component: elseDetail
+    },
+    {
+      path: '/turnOut',
+      name: 'turnOut',
+      component: turnOut
     },
     // // 办事
     // {
