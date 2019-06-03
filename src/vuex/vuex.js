@@ -52,6 +52,33 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE005: '' //联系电话
         },
 
+        // 转外就医备案
+        SET_TURNOUT_OPERATION:{
+          canbao: [], //参保地
+          start: '', //开始日期
+          city: [], //省市信息，提交时需要转成String
+          treatName: '',//疾病名称
+          treatment: '', //就诊疗程
+        },
+
+        // 出境带药备案
+        SET_ABROADTAKE_OPERATION:{
+          canbao: [], //参保地
+          start: '', //出境日期
+          end: '', //拟回国日期
+          organize: '',//取药机构
+          passport: '', //护照号码
+        },
+
+        // 家庭共济备案
+        SET_FAMILYAID_OPERATION:{
+          canbao: [], //参保地
+          name: '', //享受人姓名
+          idNo: '', //享受人身份证
+          relation: '',//绑定关系
+          start: '', //开始日期
+        },
+
         // 领取就医凭证
         SET_INSURED_PROOF:{
           AAE011: '', //收件人
@@ -122,6 +149,15 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_ELSEWHERE_OPERATION(state,payload){
           state.SET_ELSEWHERE_OPERATION = payload
         },
+        SET_TURNOUT_OPERATION(state,payload){
+          state.SET_TURNOUT_OPERATION = payload
+        },
+        SET_ABROADTAKE_OPERATION(state,payload){
+          state.SET_ABROADTAKE_OPERATION = payload
+        },
+        SET_FAMILYAID_OPERATION(state,payload){
+          state.SET_FAMILYAID_OPERATION = payload
+        },
         SET_INSURED_PROOF(state,payload){
           state.SET_INSURED_PROOF = payload;
         },
@@ -156,6 +192,15 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_ELSEWHERE_OPERATION( context, payload ) {
           context.commit( 'SET_ELSEWHERE_OPERATION', payload ); //context提交
+        },
+        SET_TURNOUT_OPERATION( context, payload ) {
+          context.commit( 'SET_TURNOUT_OPERATION', payload ); //context提交
+        },
+        SET_ABROADTAKE_OPERATION( context, payload ) {
+          context.commit( 'SET_ABROADTAKE_OPERATION', payload ); //context提交
+        },
+        SET_FAMILYAID_OPERATION( context, payload ) {
+          context.commit( 'SET_FAMILYAID_OPERATION', payload ); //context提交
         },
         SET_INSURED_PROOF( context, payload ) {
           context.commit( 'SET_INSURED_PROOF', payload ); //context提交
