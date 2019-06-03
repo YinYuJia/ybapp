@@ -299,8 +299,8 @@
     export default {
         data() {
             return {
-                show: false,
-                hidden: true
+                show: true,
+                hidden: false
             }
         },
         created() {
