@@ -28,6 +28,10 @@ import { Swipe, SwipeItem } from 'c-swipe';
 import Toast from './components/toast/index'
 Vue.use(Toast)
 
+// 引入mintUI
+import Mint from 'mint-ui';
+Vue.use(Mint);
+
 import Vconsole from 'vconsole';
 
 let vConsole = new Vconsole()
