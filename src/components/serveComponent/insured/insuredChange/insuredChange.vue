@@ -73,7 +73,7 @@ export default {
         }
     },
     created(){
-        
+                
     },
     methods:{
         backIndex(){
@@ -92,38 +92,40 @@ export default {
                     this.form.AAE135 = "113344223344536624"; //单子社保卡号
                 }
                 const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,this.form,'1010')
-                    console.log('parmas------',parmas)
-                    
-                    this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
-                           console.log('返回成功信息',resData.data.data)
-                          if (resData.data.code == 0 ) {
-                            //   成功   1000
-                              if ( resData.data.data.enCode == 1000 ) {
-                                  this.$toast("提交成功");
-                                        this.$store.dispatch('SET_INSURED_CHANGE', this.form);
-                                       this.$router.push("/changeDetail");
-                              }else if (resData.data.data.enCode == 1001 ) {
-                                //   失败  1001
-                                  this.$toast(resData.data.data.msg);
-                                  return;
-                              }else{
-                                  this.$toast('业务出错');
-                                  return;
-                              }
-                        }else if(resData.data.code == -1 ){
-                            // 系统异常
-                            this.$toast("系统异常");
-                            return;
-                        }else if (resData.data.code == 1 ) {
-                            // 业务异常
-                            if ( resData.data.data.enCode !== 1000 ) {
-                               this.$toast(resData.data.data.msg);
-                            }
-                            return;
-                        }
-                    }).catch((error) => {
-                        console.log(error)
-                    })
+                    console.log('parmas------',typeof parmas)
+
+
+
+                    // this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
+                    //        console.log('返回成功信息',resData.data.data)
+                    //       if (resData.data.code == 0 ) {
+                    //         //   成功   1000
+                    //           if ( resData.data.data.enCode == 1000 ) {
+                    //               this.$toast("提交成功");
+                    //                     this.$store.dispatch('SET_INSURED_CHANGE', this.form);
+                    //                    this.$router.push("/changeDetail");
+                    //           }else if (resData.data.data.enCode == 1001 ) {
+                    //             //   失败  1001
+                    //               this.$toast(resData.data.data.msg);
+                    //               return;
+                    //           }else{
+                    //               this.$toast('业务出错');
+                    //               return;
+                    //           }
+                    //     }else if(resData.data.code == -1 ){
+                    //         // 系统异常
+                    //         this.$toast("系统异常");
+                    //         return;
+                    //     }else if (resData.data.code == 1 ) {
+                    //         // 业务异常
+                    //         if ( resData.data.data.enCode !== 1000 ) {
+                    //            this.$toast(resData.data.data.msg);
+                    //         }
+                    //         return;
+                    //     }
+                    // }).catch((error) => {
+                    //     console.log(error)
+                    // })
 
             }
         }

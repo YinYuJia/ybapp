@@ -88,13 +88,13 @@ export default {
     data(){
         return{
             form:{
-                AAE011: '', //收件人
-                AAE005: '', //联系电话
-                AAE006: '', //地址
-                AAC050:'', //变更类型
-                BKA077 :'' ,//领取方式
-                AAC003:'',//用户名
-                AAE135:'' //电子社保卡号
+                'AAE011': '', //收件人
+                'AAE005': '', //联系电话
+                'AAE006': '', //地址
+                'AAC050':'', //变更类型
+                'BKA077' :'' ,//领取方式
+                'AAC003':'',//用户名
+                'AAE135':'' //电子社保卡号
             },
             canSubmit: false,
             optionList: [], //所有地区
@@ -143,7 +143,6 @@ export default {
     },
     created(){
         this.form = this.$store.state.SET_INSURED_PROOF;
-        console.log("createdFomr",this.form)
     },
     methods:{
         backIndex(){
@@ -163,34 +162,16 @@ export default {
                 }
                 const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,this.form,'1008')
                     console.log('parmas------',parmas)
-                    
-                    this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
-                           console.log('返回成功信息',resData.data.data)
-                          if (resData.data.code == 0 ) {
-                            //   成功   1000
-                              if ( resData.data.data.enCode == 1000 ) {
-                                  this.$toast("提交成功");
-                                  this.$store.dispatch('SET_INSURED_PROOF', this.form);
-                                  this.$router.push("/getDetail");
-                              }else if (resData.data.data.enCode == 1001 ) {
-                                //   失败  1001
-                                  this.$toast(resData.data.data.msg);
-                                  return;
-                              }else{
-                                  this.$toast('业务出错');
-                                  return;
-                              }
-                        }else if(resData.data.code == -1 ){
-                            // 系统异常
-                            this.$toast("系统异常");
-                            return;
-                        }else if (resData.data.code == 1 ) {
-                            // 业务异常
-                            if ( resData.data.data.enCode !== 1000 ) {
-                               this.$toast(resData.data.data.msg);
-                            }
-                            return;
-                        }
+
+                    this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
+                           console.log('返回成功信息',resData)
+                        //   if (resData.data.code == 0 ) {
+                        //       if ( resData.data.data.enCode == 1000 ) {
+                        //           this.$toast("提交成功");
+                        //           this.$store.dispatch('SET_INSURED_PROOF', this.form);
+                        //           this.$router.push("/getDetail");
+                        //       }
+                        // }
                     }).catch((error) => {
                         console.log(error)
                     })

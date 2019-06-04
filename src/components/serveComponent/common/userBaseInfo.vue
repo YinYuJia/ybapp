@@ -26,7 +26,7 @@ export default {
         this.form.name = this.$store.state.SET_NATIVEMSG.name || '张*佳(初始值)'
         this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard || '3301**********4567(初始值)'
 
-        // this.$store.state.SET_NATIVEMSG.name,
+        console.log('原生参数-----',this.$store.state.SET_NATIVEMSG)
     }
 }
 </script>
