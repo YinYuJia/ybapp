@@ -24,12 +24,12 @@
         <div class="ChooseDate">
             <div class="ChooseBox">
                 <div class="Name"><span>开始日期:</span></div>
-                <el-date-picker class="InputBox" v-model="form.startDate" type="date" clear-icon="" placeholder="请选择开始日期">
+                <el-date-picker class="InputBox" v-model="form.startDate" type="date" clear-icon="" placeholder="请选择开始日期" :editable="false">
                 </el-date-picker>
             </div>
             <div class="ChooseBox">
                 <div class="Name"><span>结束日期:</span></div>
-                <el-date-picker class="InputBox" v-model="form.endDate" format="yyyy-MM-dd" type="date" clear-icon="" placeholder="请选择结束日期">
+                <el-date-picker class="InputBox" v-model="form.endDate" format="yyyy-MM-dd" type="date" clear-icon="" placeholder="请选择结束日期" :editable="false">
                 </el-date-picker>
             </div>
         </div>

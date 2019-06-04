@@ -51,7 +51,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期</span></div>
                     <div class="InfoText">
-                        <el-date-picker v-model="form.start" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
+                        <el-date-picker v-model="form.start" type="date" placeholder="请选择" value-format="yyyy-MM-dd" :editable="false">
                         </el-date-picker>
                     </div>
                 </div>

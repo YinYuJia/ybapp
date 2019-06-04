@@ -23,14 +23,14 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>拟离杭日期</span></div>
                     <div class="InfoText">
-                        <el-date-picker v-model="form.AAE030" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
+                        <el-date-picker v-model="form.AAE030" type="date" placeholder="请选择" value-format="yyyy-MM-dd" :editable="false">
                         </el-date-picker>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>回杭日期</span></div>
                     <div class="InfoText">
-                        <el-date-picker v-model="form.AAE031" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
+                        <el-date-picker v-model="form.AAE031" type="date" placeholder="请选择" value-format="yyyy-MM-dd" :editable="false">
                         </el-date-picker>
                     </div>
                 </div>
