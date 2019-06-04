@@ -25,15 +25,15 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>收件人:</span></div>
-                    <div class="InfoText">{{form.name}}</div>
+                    <div class="InfoText">{{form.AAE011}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话:</span></div>
-                    <div class="InfoText">{{form.phone}}</div>
+                    <div class="InfoText">{{form.AAE005}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址:</span></div>
-                    <div class="InfoText"><textarea v-model="form.address2" readonly></textarea></div>
+                    <div class="InfoText"><textarea v-model="form.AAE006" readonly></textarea></div>
                 </div>
             </div>
         </div>
@@ -51,15 +51,11 @@
 export default {
     data(){
         return{
-            form:{
-                name: '',
-                phone: '',
-                address2: ''
-            },
+            form:this.$store.state.SET_INSURED_PROOF,
         }
     },
     created(){
-        this.form = this.$store.state.SET_INSURED_PROOF;
+        
     },
     computed:{
 

@@ -22,15 +22,15 @@
             <div class="ChangeInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>家庭住址：</span></div>
-                    <div class="InfoText"><textarea v-model="form.address2" placeholder="请输入家庭住址"></textarea></div>
+                    <div class="InfoText"><textarea v-model="form.AAE006" placeholder="请输入家庭住址"></textarea></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码：</span></div>
-                    <div class="InfoText"><input type="text" placeholder="请输入手机号码"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入手机号码"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>邮政编码：</span></div>
-                    <div class="InfoText"><input type="text" placeholder="请输入邮政编码"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE007" placeholder="请输入邮政编码"></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -56,11 +56,7 @@ export default {
     },
     data(){
         return{
-            form:{
-                AAE006: '', //家庭地址
-                AAE005: '', //手机号码
-                AAE007: '' //邮政编码
-            },
+            form:this.$store.state.SET_INSURED_CHANGE,
             canSubmit: false,
         }
     },
@@ -77,7 +73,7 @@ export default {
         }
     },
     created(){
-        this.form = this.$store.state.SET_INSURED_CHANGE;
+        
     },
     methods:{
         backIndex(){
@@ -88,8 +84,47 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
-                this.$store.dispatch('SET_INSURED_CHANGE', this.form);
-                this.$router.push("/changeDetail");
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name  //用户名
+                    this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard //单子社保卡号
+                }else {
+                    this.form.AAC003 = '殷宇佳'; //用户名
+                    this.form.AAE135 = "113344223344536624"; //单子社保卡号
+                }
+                const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,this.form,'1010')
+                    console.log('parmas------',parmas)
+                    
+                    this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
+                           console.log('返回成功信息',resData.data.data)
+                          if (resData.data.code == 0 ) {
+                            //   成功   1000
+                              if ( resData.data.data.enCode == 1000 ) {
+                                  this.$toast("提交成功");
+                                        this.$store.dispatch('SET_INSURED_CHANGE', this.form);
+                                       this.$router.push("/changeDetail");
+                              }else if (resData.data.data.enCode == 1001 ) {
+                                //   失败  1001
+                                  this.$toast(resData.data.data.msg);
+                                  return;
+                              }else{
+                                  this.$toast('业务出错');
+                                  return;
+                              }
+                        }else if(resData.data.code == -1 ){
+                            // 系统异常
+                            this.$toast("系统异常");
+                            return;
+                        }else if (resData.data.code == 1 ) {
+                            // 业务异常
+                            if ( resData.data.data.enCode !== 1000 ) {
+                               this.$toast(resData.data.data.msg);
+                            }
+                            return;
+                        }
+                    }).catch((error) => {
+                        console.log(error)
+                    })
+
             }
         }
     }

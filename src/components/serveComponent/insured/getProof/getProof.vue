@@ -161,7 +161,7 @@ export default {
                     this.form.AAC003 = '殷宇佳'; //用户名
                     this.form.AAE135 = "113344223344536624"; //单子社保卡号
                 }
-                const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,this.form,1008)
+                const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,this.form,'1008')
                     console.log('parmas------',parmas)
                     
                     this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
