@@ -8,16 +8,18 @@ export default {
     },
     // 公用请求地址
     // 开发地址
-    ApiUrl:function() {
-        return 'http://192.168.1.199:13030'
-    },
+    // ApiUrl:function() {
+    //     return 'http://192.168.1.199:13030'
+    // },
+    
+    // ApiUrl1:function() {
+    //     return 'http://192.168.1.96:13030'
+    // },
+
 
     // 打包测试地址
-    // ApiUrl:function() {
-    //     return ''
-    // },
-    SaveElseWhereState(data) {
-        return data
+    ApiUrl:function() {
+        return ''
     },
     SaveNativeData( data ) {
       return data
@@ -25,7 +27,6 @@ export default {
 
     // 公共请求参数封装 nativemsg 原生公共报文头 data 我们要穿的参数  tradeCode 交易号码
     commonRequsetData(nativemsg,data , tradeCode) {
-    
           let commonData = {
             tradeCode:tradeCode,
             data:data,

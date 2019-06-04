@@ -17,18 +17,15 @@ export default {
     data(){
         return{
             form:{
-                name: '张*佳',
-                idNo: '3301**********4567'
+                name: '',
+                idNo: ''
             }
         }
     },
     created(){
-        this.form.name = this.$store.state.SET_NATIVEMSG.name
-        this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard
-        // 请求参数封装
-        const str = this.epFn.commonRequsetData(this.$store.state.SET_PUBLICHEADER,{a:1},123)
-        console.log(str)
-    
+        this.form.name = this.$store.state.SET_NATIVEMSG.name || '张*佳(初始值)'
+        this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard || '3301**********4567(初始值)'
+
         // this.$store.state.SET_NATIVEMSG.name,
     }
 }

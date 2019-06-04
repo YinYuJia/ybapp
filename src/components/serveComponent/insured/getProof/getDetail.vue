@@ -33,7 +33,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址:</span></div>
-                    <div class="InfoText"><textarea v-model="address" readonly></textarea></div>
+                    <div class="InfoText"><textarea v-model="form.address2" readonly></textarea></div>
                 </div>
             </div>
         </div>
@@ -54,7 +54,6 @@ export default {
             form:{
                 name: '',
                 phone: '',
-                address1: [],
                 address2: ''
             },
         }
@@ -63,9 +62,7 @@ export default {
         this.form = this.$store.state.SET_INSURED_PROOF;
     },
     computed:{
-        address: function(){
-            return this.form.address1.join('') + this.form.address2;
-        }
+
     },
     methods:{
         back(){
