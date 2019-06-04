@@ -15,6 +15,14 @@
                 </el-col>
             </el-row>
         </div>
+        <!-- MintUI弹出框区域 -->
+        <mt-datetime-picker
+            type="date"
+            ref="cityPicker"
+            v-model="dateVal"
+            @confirm="handleCityConfirm">
+        </mt-datetime-picker>
+        <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
             <userBaseInfo></userBaseInfo>
@@ -37,8 +45,9 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>省市信息</span></div>
                     <div class="InfoText">
-                        <el-cascader :options="optionList" v-model="form.AAE011">
-                        </el-cascader>
+                         <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAE011" placeholder="请选择" readonly></div>
+                        <!-- <el-cascader :options="optionList" v-model="form.AAE011">
+                        </el-cascader> -->
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -87,7 +96,7 @@
                 form: {
                     AAE030: '', //离杭日期
                     AAE031: '', //回杭日期
-                    AAE011: [], //省市信息，提交时需要转成String
+                    AAE011: '', //省市信息
                     AAE006: '', //详细地址 
                     ACK030: '', //申请原因
                     AAE004: '', //联系人
@@ -97,6 +106,8 @@
                 },
                 optionList: [], //存放城市数据
                 canSubmit: false,
+                showCityPicker: true,
+                dateVal: new Date(),
                 reportReason: [{
                         value: '退休异地安置',
                         label: '退休异地安置'
@@ -155,6 +166,15 @@
         methods: {
             backIndex() {
                 this.$router.push('/');
+            },
+            openCityPicker(){
+                this.$refs.cityPicker.open();
+            },
+            handleCityConfirm(data){
+                // console.log(this.util.dateFormat(data));
+                console.log(this.util.formatDate(data,'yyyy-MM-dd'));
+                let date = this.util.formatDate(data,'yyyy-MM-dd')
+                this.form.AAE011 = date;
             },
             submit() {
                 if (this.canSubmit == false) {

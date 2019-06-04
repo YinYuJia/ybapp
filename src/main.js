@@ -30,7 +30,12 @@ Vue.use(Toast)
 
 // 引入mintUI
 import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css'
 Vue.use(Mint);
+
+// 使用utils
+import Util from './utils/util'
+Vue.prototype.util = Util;
 
 import Vconsole from 'vconsole';
 
