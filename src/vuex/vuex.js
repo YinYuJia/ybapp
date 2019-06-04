@@ -79,6 +79,13 @@ export default new Vuex.Store({  // 暴露与new vuex
           start: '', //开始日期
         },
 
+        // 基本信息变更
+        SET_BASEINFOCHANGE_OPERATION:{
+          address: '', //家庭地址
+          phone: '', //手机号码
+          code: '' //邮政编码
+        },
+
         // 领取就医凭证
         SET_INSURED_PROOF:{
           AAE011: '', //收件人
@@ -158,6 +165,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_FAMILYAID_OPERATION(state,payload){
           state.SET_FAMILYAID_OPERATION = payload
         },
+        SET_BASEINFOCHANGE_OPERATION(state,payload){
+          state.SET_BASEINFOCHANGE_OPERATION = payload
+        },
         SET_INSURED_PROOF(state,payload){
           state.SET_INSURED_PROOF = payload;
         },
@@ -201,6 +211,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_FAMILYAID_OPERATION( context, payload ) {
           context.commit( 'SET_FAMILYAID_OPERATION', payload ); //context提交
+        },
+        SET_BASEINFOCHANGE_OPERATION( context, payload ) {
+          context.commit( 'SET_BASEINFOCHANGE_OPERATION', payload ); //context提交
         },
         SET_INSURED_PROOF( context, payload ) {
           context.commit( 'SET_INSURED_PROOF', payload ); //context提交

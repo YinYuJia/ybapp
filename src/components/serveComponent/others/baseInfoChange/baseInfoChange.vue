@@ -1,5 +1,5 @@
 <template>
-    <div class="insuredChange">
+    <div class="baseInfoChange">
         <div class="Title">
             <el-row>
                 <el-col :span="6">
@@ -7,7 +7,7 @@
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
-                        参保信息变更
+                        基本信息变更
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -22,15 +22,15 @@
             <div class="ChangeInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>家庭住址：</span></div>
-                    <div class="InfoText"><textarea v-model="form.address2" placeholder="请输入家庭住址"></textarea></div>
+                    <div class="InfoText"><textarea v-model="form.address" placeholder="请输入家庭住址"></textarea></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码：</span></div>
-                    <div class="InfoText"><input type="text" placeholder="请输入手机号码"></div>
+                    <div class="InfoText"><input v-model="form.phone" type="text" placeholder="请输入手机号码"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>邮政编码：</span></div>
-                    <div class="InfoText"><input type="text" placeholder="请输入邮政编码"></div>
+                    <div class="InfoText"><input v-model="form.code" type="text" placeholder="请输入邮政编码"></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -57,9 +57,9 @@ export default {
     data(){
         return{
             form:{
-                AAE006: '', //家庭地址
-                AAE005: '', //手机号码
-                AAE007: '' //邮政编码
+                address: '', //家庭地址
+                phone: '', //手机号码
+                code: '' //邮政编码
             },
             canSubmit: false,
         }
@@ -77,7 +77,7 @@ export default {
         }
     },
     created(){
-        this.form = this.$store.state.SET_INSURED_CHANGE;
+        this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
     },
     methods:{
         backIndex(){
@@ -88,8 +88,8 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
-                this.$store.dispatch('SET_INSURED_CHANGE', this.form);
-                this.$router.push("/changeDetail");
+                this.$store.dispatch('SET_BASEINFOCHANGE_OPERATION', this.form);
+                this.$router.push("/baseInfoChangeDetail");
             }
         }
     }
@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.insuredChange{
+.baseInfoChange{
     .Title {
         height: 1.2rem;
         background-color: #05AEF0;
