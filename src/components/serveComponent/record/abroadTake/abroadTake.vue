@@ -1,5 +1,5 @@
 <template>
-    <div class="turnOut">
+    <div class="abroadTake">
         <div class="Title">
             <el-row>
                 <el-col :span="6">
@@ -7,7 +7,7 @@
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
-                        转外就医备案
+                        带药备案
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -28,32 +28,29 @@
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>开始日期</span></div>
+                    <div class="InfoName"><span>出境日期</span></div>
                     <div class="InfoText">
                         <el-date-picker v-model="form.start" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
                         </el-date-picker>
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>转往地市</span></div>
+                    <div class="InfoName"><span>拟回国日期</span></div>
                     <div class="InfoText">
-                        <el-cascader :options="optionList" v-model="form.city">
-                        </el-cascader>
+                        <el-date-picker v-model="form.end" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
+                        </el-date-picker>
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>疾病名称</span></div>
+                    <div class="InfoName"><span>取药机构</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input type="text" v-model="form.treatName" placeholder="请选择"></div>
+                        <div class="InfoText"><input type="text" v-model="form.organize" placeholder="请选择"></div>
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>就医疗程</span></div>
+                    <div class="InfoName"><span>护照号码</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.treatment" placeholder="请选择">
-                            <el-option v-for="item in treatment" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>
+                        <div class="InfoText"><input type="text" v-model="form.passport" placeholder="请输入"></div>
                     </div>
                 </div>
             </div>
@@ -78,21 +75,17 @@ import userBaseInfo from '../../common/userBaseInfo'
                 dddddd: "1111",
                 form: {
                     canbao: [], //参保地
-                    start: '', //开始日期
-                    city: [], //省市信息，提交时需要转成String
-                    treatName: '',//疾病名称
-                    treatment: '', //就诊疗程
+                    start: '', //出境日期
+                    end: '', //拟回国日期
+                    organize: '',//取药机构
+                    passport: '', //护照号码
                 },
                 optionList: [], //存放城市数据
                 canSubmit: false,
-                treatment: [
-                    {value:'初诊', label:'初诊'},
-                    {value:'复诊', value:'复诊'}
-                ],
             }
         },
         created() {
-            this.form = this.$store.state.SET_TURNOUT_OPERATION;
+            this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
             this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
             this.optionList = this.$store.state.SET_SELECTARRAY;
             this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
@@ -102,7 +95,7 @@ import userBaseInfo from '../../common/userBaseInfo'
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (val.canbao != undefined && val.start != '' && val.city != undefined && val.treatName != '' && val.treatment != '') {
+                    if (val.canbao != undefined && val.start != '' && val.end != '' && val.organize != '' && val.passport != '') {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
@@ -120,15 +113,14 @@ import userBaseInfo from '../../common/userBaseInfo'
                     this.$toast('信息未填写完整');
                     return false;
                 } else {
-                    this.$store.dispatch('SET_TURNOUT_OPERATION', this.form);
+                    this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
 
                     let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝，否则出错
                     submitForm.canbao = submitForm.canbao.join(' '); //省市信息转换为字符串
-                    submitForm.city = submitForm.city.join(' '); //省市信息转换为字符串
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name; //用户名
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard; //单子社保卡号
                     console.log('请求信息',submitForm);
-                    this.$router.push('/turnDetail');
+                    this.$router.push('/abroadDetail');
                 }
             },
         }
@@ -136,7 +128,7 @@ import userBaseInfo from '../../common/userBaseInfo'
 </script>
 
 <style lang="less" scoped>
-.turnOut {
+.abroadTake {
     .Title {
         height: 1.2rem;
         background-color: #05AEF0;

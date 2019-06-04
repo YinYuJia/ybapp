@@ -1,5 +1,5 @@
 <template>
-    <div class="turnOut">
+    <div class="familyAid">
         <div class="Title">
             <el-row>
                 <el-col :span="6">
@@ -7,7 +7,7 @@
                 </el-col>
                 <el-col :span="12">
                     <div class="NameTitle">
-                        转外就医备案
+                        家庭共济备案
                     </div>
                 </el-col>
                 <el-col :span="6">
@@ -28,32 +28,31 @@
                     </div>
                 </div>
                 <div class="InfoLine">
+                    <div class="InfoName"><span>享受人姓名</span></div>
+                    <div class="InfoText">
+                        <div class="InfoText"><input type="text" v-model="form.name" placeholder="请输入"></div>
+                    </div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>享受人身份证</span></div>
+                    <div class="InfoText">
+                        <div class="InfoText"><input type="text" v-model="form.idNo" placeholder="请输入"></div>
+                    </div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>绑定关系</span></div>
+                    <div class="InfoText">
+                        <el-select v-model="form.relation" placeholder="请选择">
+                            <el-option v-for="item in relationList" :key="item.value" :label="item.label" :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </div>
+                </div>
+                <div class="InfoLine">
                     <div class="InfoName"><span>开始日期</span></div>
                     <div class="InfoText">
                         <el-date-picker v-model="form.start" type="date" placeholder="请选择" value-format="yyyy-MM-dd">
                         </el-date-picker>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>转往地市</span></div>
-                    <div class="InfoText">
-                        <el-cascader :options="optionList" v-model="form.city">
-                        </el-cascader>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>疾病名称</span></div>
-                    <div class="InfoText">
-                        <div class="InfoText"><input type="text" v-model="form.treatName" placeholder="请选择"></div>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>就医疗程</span></div>
-                    <div class="InfoText">
-                        <el-select v-model="form.treatment" placeholder="请选择">
-                            <el-option v-for="item in treatment" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>
                     </div>
                 </div>
             </div>
@@ -78,21 +77,30 @@ import userBaseInfo from '../../common/userBaseInfo'
                 dddddd: "1111",
                 form: {
                     canbao: [], //参保地
+                    name: '', //享受人姓名
+                    idNo: '', //享受人身份证
+                    relation: '',//绑定关系
                     start: '', //开始日期
-                    city: [], //省市信息，提交时需要转成String
-                    treatName: '',//疾病名称
-                    treatment: '', //就诊疗程
                 },
                 optionList: [], //存放城市数据
                 canSubmit: false,
-                treatment: [
-                    {value:'初诊', label:'初诊'},
-                    {value:'复诊', value:'复诊'}
+                relationList: [{
+                        value: '配偶',
+                        label: '配偶'
+                    },
+                    {
+                        value: '子女',
+                        label: '子女'
+                    },
+                    {
+                        value: '父母',
+                        label: '父母'
+                    }
                 ],
             }
         },
         created() {
-            this.form = this.$store.state.SET_TURNOUT_OPERATION;
+            this.form = this.$store.state.SET_FAMILYAID_OPERATION;
             this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
             this.optionList = this.$store.state.SET_SELECTARRAY;
             this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
@@ -102,7 +110,7 @@ import userBaseInfo from '../../common/userBaseInfo'
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (val.canbao != undefined && val.start != '' && val.city != undefined && val.treatName != '' && val.treatment != '') {
+                    if (val.canbao != undefined && val.name != '' && val.idNo != '' && val.relation != '' && val.start != '') {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
@@ -120,15 +128,14 @@ import userBaseInfo from '../../common/userBaseInfo'
                     this.$toast('信息未填写完整');
                     return false;
                 } else {
-                    this.$store.dispatch('SET_TURNOUT_OPERATION', this.form);
+                    this.$store.dispatch('SET_FAMILYAID_OPERATION', this.form);
 
                     let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝，否则出错
                     submitForm.canbao = submitForm.canbao.join(' '); //省市信息转换为字符串
-                    submitForm.city = submitForm.city.join(' '); //省市信息转换为字符串
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name; //用户名
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard; //单子社保卡号
                     console.log('请求信息',submitForm);
-                    this.$router.push('/turnDetail');
+                    this.$router.push('/familyDetail');
                 }
             },
         }
@@ -136,7 +143,7 @@ import userBaseInfo from '../../common/userBaseInfo'
 </script>
 
 <style lang="less" scoped>
-.turnOut {
+.familyAid {
     .Title {
         height: 1.2rem;
         background-color: #05AEF0;

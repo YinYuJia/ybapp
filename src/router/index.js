@@ -19,6 +19,16 @@ import insuredDownload from '@/components/serveComponent/insured/searchPrint/ins
 import elseWhere from '@/components/serveComponent/record/elseWhere/elseWhere'
 import elseDetail from '@/components/serveComponent/record/elseWhere/elseDetail'
 import turnOut from '@/components/serveComponent/record/turnOut/turnOut'
+import turnDetail from '@/components/serveComponent/record/turnOut/turnDetail'
+import searchDisease from '@/components/serveComponent/record/turnOut/searchDisease'
+import abroadTake from '@/components/serveComponent/record/abroadTake/abroadTake'
+import abroadDetail from '@/components/serveComponent/record/abroadTake/abroadDetail'
+import familyAid from '@/components/serveComponent/record/familyAid/familyAid'
+import familyDetail from '@/components/serveComponent/record/familyAid/familyDetail'
+import mendChangeCard from '@/components/serveComponent/others/mendChangeCard/mendChangeCard'
+import mendChangeDetail from '@/components/serveComponent/others/mendChangeCard/mendChangeDetail'
+import baseInfoChange from '@/components/serveComponent/others/baseInfoChange/baseInfoChange'
+import baseInfoChangeDetail from '@/components/serveComponent/others/baseInfoChange/baseInfoChangeDetail'
 
 
 Vue.use(Router)
@@ -86,6 +96,56 @@ export default new Router({
       path: '/turnOut',
       name: 'turnOut',
       component: turnOut
+    },
+    {
+      path: '/turnDetail',
+      name: 'turnDetail',
+      component: turnDetail
+    },
+    {
+      path: '/searchDisease',
+      name: 'searchDisease',
+      component: searchDisease
+    },
+    {
+      path: '/abroadTake',
+      name: 'abroadTake',
+      component: abroadTake
+    },
+    {
+      path: '/abroadDetail',
+      name: 'abroadDetail',
+      component: abroadDetail
+    },
+    {
+      path: '/familyAid',
+      name: 'familyAid',
+      component: familyAid
+    },
+    {
+      path: '/familyDetail',
+      name: 'familyDetail',
+      component: familyDetail
+    },
+    {
+      path: '/mendChangeCard',
+      name: 'mendChangeCard',
+      component: mendChangeCard
+    },
+    {
+      path: '/mendChangeDetail',
+      name: 'mendChangeDetail',
+      component: mendChangeDetail
+    },
+    {
+      path: '/baseInfoChange',
+      name: 'baseInfoChange',
+      component: baseInfoChange
+    },
+    {
+      path: '/baseInfoChangeDetail',
+      name: 'baseInfoChangeDetail',
+      component: baseInfoChangeDetail
     },
     // // 办事
     // {

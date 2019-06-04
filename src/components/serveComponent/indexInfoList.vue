@@ -3,6 +3,21 @@
         <header class="header"><span class="el-icon-arrow-left icon-left"></span> <span class="title">更多医保服务</span></header>
         <!-- Index -->
         <div class="IconNav">
+            <!-- <div v-for="item in List" :key="item.title">
+                <div class="DepartmentsList">
+                    <span></span>
+                    <p class="titleOne">{{item.title}}</p>
+                </div>
+                <el-row class="IconList" v-for="line in item.Info" :key="line.title">
+                    <el-col :span="6" class="IconBox" v-for="box in line.line" :key="box.iconName">
+                        <div class="IconImg">
+                            <svg-icon v-if="show" icon-class="indexInfoList-yuyueguahao" />
+                            <svg-icon v-if="hidden" icon-class="indexInfoList-yuyueguahao1" />
+                        </div>
+                        <div class="IconText"><span>{{box.iconName}}</span></div>
+                    </el-col>
+                </el-row>
+            </div> -->
             <div class="DepartmentsList">
                 <span></span>
                 <p class="titleOne">我的健康</p>
