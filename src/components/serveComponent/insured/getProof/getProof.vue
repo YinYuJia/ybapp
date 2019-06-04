@@ -60,16 +60,6 @@
                     <div class="InfoText"><input type="text" v-model="form.phone" placeholder="请输入联系人电话号码"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>所在地区：</span></div>
-                    <div class="InfoText">
-                        <el-cascader
-                            :options="optionList"
-                            v-model="form.address1">
-                        </el-cascader>
-                        <i class="el-icon-arrow-right" style="font-size:0.4rem; margin-left:0.23rem"></i>
-                    </div>
-                </div>
-                <div class="InfoLine">
                     <div class="InfoName"><span>详细地址：</span></div>
                     <div class="InfoText"><textarea v-model="form.address2"></textarea></div>
                 </div>
@@ -100,7 +90,6 @@ export default {
             form:{
                 AAE011: '', //收件人
                 AAE005: '', //联系电话
-                address1: [],
                 address2: ''
             },
             canSubmit: false,
@@ -144,7 +133,7 @@ export default {
         // 监听邮递信息
         form:{
             handler:function(val){
-                if(val.name != '' && val.phone != '' && val.address1 != undefined && val.address2 != ''){
+                if(val.name != '' && val.phone != '' && val.address2 != ''){
                     this.canSubmit = true;
                 }else{
                     this.canSubmit = false;
@@ -155,8 +144,6 @@ export default {
     },
     created(){
         this.form = this.$store.state.SET_INSURED_PROOF;
-        this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
-        this.optionList = this.$store.state.SET_SELECTARRAY;
     },
     methods:{
         backIndex(){

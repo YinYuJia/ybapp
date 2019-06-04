@@ -166,8 +166,8 @@
                     let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝，否则出错
                     submitForm.AAE011 = submitForm.AAE011.join(' '); //省市信息转换为字符串
                     if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name || '殷宇佳'; //用户名
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard || "113344223344536624"; //单子社保卡号
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name  //用户名
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard //单子社保卡号
                     }else {
                     submitForm.AAC003 = '殷宇佳'; //用户名
                     submitForm.AAE135 = "113344223344536624"; //单子社保卡号
@@ -175,16 +175,15 @@
 
                     console.log('请求信息',submitForm);
                     // 开始请求
-                    this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', {
-                        data: submitForm,
-                        
-                    }).then((resData) => {
+                            // 请求参数封装
+                    const parmas = this.epFn.commonRequsetData(this.$store.state.SET_PUBLICHEADER,submitForm,1012)
+                    console.log('parmas------',parmas)
+                    this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', parmas).then((resData) => {
                            console.log('返回成功信息',resData.data.data)
                           if (resData.data.code == 0 ) {
                             //   成功   1000
                               if ( resData.data.data.enCode == 1000 ) {
                                   this.$toast("提交成功");
-                                  this.epFn.SaveElseWhereState(resData.data.data.msg)
                                   this.$router.push("/elseDetail");
                               }else if (resData.data.data.enCode == 1001 ) {
                                 //   失败  1001
