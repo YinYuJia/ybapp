@@ -92,6 +92,8 @@
                     ACK030: '', //申请原因
                     AAE004: '', //联系人
                     AAE005: '', //联系电话
+                    AAC003:"",//用户名
+                    AAE135:"",//电子社保卡
                 },
                 optionList: [], //存放城市数据
                 canSubmit: false,
@@ -163,23 +165,33 @@
 
                     let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝，否则出错
                     submitForm.AAE011 = submitForm.AAE011.join(' '); //省市信息转换为字符串
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name; //用户名
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard; //单子社保卡号
+                    if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name || '殷宇佳'; //用户名
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard || "113344223344536624"; //单子社保卡号
+                    }else {
+                    submitForm.AAC003 = '殷宇佳'; //用户名
+                    submitForm.AAE135 = "113344223344536624"; //单子社保卡号
+                    }
+
                     console.log('请求信息',submitForm);
                     // 开始请求
                     this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', {
-                        data: submitForm
+                        data: submitForm,
+                        
                     }).then((resData) => {
                            console.log('返回成功信息',resData.data.data)
                           if (resData.data.code == 0 ) {
                             //   成功   1000
                               if ( resData.data.data.enCode == 1000 ) {
-                                  this.$toast(resData.data.data.msg);
+                                  this.$toast("提交成功");
                                   this.epFn.SaveElseWhereState(resData.data.data.msg)
                                   this.$router.push("/elseDetail");
                               }else if (resData.data.data.enCode == 1001 ) {
                                 //   失败  1001
                                   this.$toast(resData.data.data.msg);
+                                  return;
+                              }else{
+                                  this.$toast('业务出错');
                                   return;
                               }
                         }else if(resData.data.code == -1 ){

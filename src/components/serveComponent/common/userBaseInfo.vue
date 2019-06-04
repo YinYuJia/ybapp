@@ -2,7 +2,7 @@
     <!-- 基本信息 -->
     <div class="UserBaseInfo">
         <div class="InfoPad">
-            <div class="UserPhoto"></div>
+            <div class="UserPhoto"><img class="headerImg" src='../../../../static/images/baseHeader/header.png' alt=""></div>
             <div class="UserInfo">
                 <div class="UserName">{{form.name}}</div>
                 <div class="UserId">{{form.idNo}}</div>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+// import headerUrl from '../../../../static/images/baseHeader/header.png'
 export default {
     data(){
         return{
@@ -24,8 +25,10 @@ export default {
     created(){
         this.form.name = this.$store.state.SET_NATIVEMSG.name
         this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard
-        
-
+        // 请求参数封装
+        const str = this.epFn.commonRequsetData(this.$store.state.SET_PUBLICHEADER,{a:1},123)
+        console.log(str)
+    
         // this.$store.state.SET_NATIVEMSG.name,
     }
 }
@@ -56,6 +59,10 @@ export default {
             margin-top: -.44rem;
             border-radius: .6rem;
             background: #DDD;
+            .headerImg {
+                height: 1.2rem;
+                width: 1.2rem;
+            }
         }
         .UserInfo{
             .UserName{
