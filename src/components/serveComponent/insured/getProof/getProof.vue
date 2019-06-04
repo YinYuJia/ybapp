@@ -23,9 +23,9 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>类型：</span></div>
                     <div class="InfoText">
-                        <el-select v-model="getInfo.getType" placeholder="请选择">
+                        <el-select v-model="form.AAC050" placeholder="请选择">
                             <el-option
-                            v-for="item in getTypes"
+                            v-for="item in AAC050s"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -37,9 +37,9 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>领取方式：</span></div>
                     <div class="InfoText">
-                        <el-select v-model="getInfo.getWay" placeholder="请选择">
+                        <el-select v-model="form.BKA077" placeholder="请选择">
                             <el-option
-                            v-for="item in getWays"
+                            v-for="item in BKA077s"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -53,15 +53,15 @@
             <div class="MailInfo" v-if="showMail">
                 <div class="InfoLine">
                     <div class="InfoName"><span>收件人：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.name" placeholder="请输入收件人姓名"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE011" placeholder="请输入收件人姓名"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.phone" placeholder="请输入联系人电话号码"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系人电话号码"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址：</span></div>
-                    <div class="InfoText"><textarea v-model="form.address2"></textarea></div>
+                    <div class="InfoText"><textarea v-model="form.AAE006"></textarea></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -90,53 +90,52 @@ export default {
             form:{
                 AAE011: '', //收件人
                 AAE005: '', //联系电话
-                address2: ''
+                AAE006: '', //地址
+                AAC050:'', //变更类型
+                BKA077 :'' ,//领取方式
+                AAC003:'',//用户名
+                AAE135:'' //电子社保卡号
             },
             canSubmit: false,
             optionList: [], //所有地区
-            getTypes: [
-                {value: 'change',label: '变更'},
-                {value: 'reapply',label: '补办'}
+            AAC050s: [
+                {value: '1',label: '变更'},
+                {value: '2',label: '补办'}
             ], 
-            getWays: [
-                {value: 'self',label: '自取'},
-                {value: 'mail',label: '邮寄'}
+            BKA077s: [
+                {value: '0',label: '自取'},
+                {value: '1',label: '邮寄'}
             ], 
             getInfo:{
-                getType: '', //领取类型
-                getWay: '' //领取方式
+                AAC050: '', //领取类型
+                BKA077: '' //领取方式
             },
             showMail: false,
         };
     },
     watch:{
         // 监听领取信息
-        getInfo:{
+        form:{
             handler:function(val){
-                if(val.getType != '' && val.getWay == 'self'){
+                console.log(val)
+                if(val.AAC050 != '' && val.BKA077 == '0'){
                     this.canSubmit = true;
                     this.showMail = false;
-                }else if(val.getType != '' && val.getWay == 'mail'){
+                }else if(val.AAC050 != '' && val.BKA077 == '1'){
                     this.canSubmit = false;
                     this.showMail = true;
-                }else if(val.getType == '' && val.getWay == 'self'){
+                }else if(val.AAC050 == '' && val.BKA077 == '0'){
                     this.showMail = false;
-                }else if(val.getType == '' && val.getWay == 'mail'){
+                }else if(val.AAC050 == '' && val.BKA077 == '1'){
                     this.showMail = true;
                 }else{
                     this.canSubmit = false;
                     this.showMail = false;
                 }
-            },
-            deep: true
-        },
-        // 监听邮递信息
-        form:{
-            handler:function(val){
-                if(val.name != '' && val.phone != '' && val.address2 != ''){
-                    this.canSubmit = true;
-                }else{
-                    this.canSubmit = false;
+                if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
+                    this.canSubmit = true
+                }else {
+                    this.canSubmit = false
                 }
             },
             deep: true
@@ -144,6 +143,7 @@ export default {
     },
     created(){
         this.form = this.$store.state.SET_INSURED_PROOF;
+        console.log("createdFomr",this.form)
     },
     methods:{
         backIndex(){
@@ -154,8 +154,46 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
-                this.$store.dispatch('SET_INSURED_PROOF', this.form);
-                this.$router.push("/getDetail");
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name  //用户名
+                    this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard //单子社保卡号
+                }else {
+                    this.form.AAC003 = '殷宇佳'; //用户名
+                    this.form.AAE135 = "113344223344536624"; //单子社保卡号
+                }
+                const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,this.form,1008)
+                    console.log('parmas------',parmas)
+                    
+                    this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
+                           console.log('返回成功信息',resData.data.data)
+                          if (resData.data.code == 0 ) {
+                            //   成功   1000
+                              if ( resData.data.data.enCode == 1000 ) {
+                                  this.$toast("提交成功");
+                                  this.$store.dispatch('SET_INSURED_PROOF', this.form);
+                                  this.$router.push("/getDetail");
+                              }else if (resData.data.data.enCode == 1001 ) {
+                                //   失败  1001
+                                  this.$toast(resData.data.data.msg);
+                                  return;
+                              }else{
+                                  this.$toast('业务出错');
+                                  return;
+                              }
+                        }else if(resData.data.code == -1 ){
+                            // 系统异常
+                            this.$toast("系统异常");
+                            return;
+                        }else if (resData.data.code == 1 ) {
+                            // 业务异常
+                            if ( resData.data.data.enCode !== 1000 ) {
+                               this.$toast(resData.data.data.msg);
+                            }
+                            return;
+                        }
+                    }).catch((error) => {
+                        console.log(error)
+                    })
             }
         },
     }

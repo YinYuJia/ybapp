@@ -124,9 +124,11 @@
             this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
             this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
             this.optionList = this.$store.state.SET_SELECTARRAY;
-            console.log('11111------', this.$store.state.SET_NATIVEMSG)
+            console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
             this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
             this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+
+            
         },
         watch: {
             form: {
@@ -176,7 +178,7 @@
                     console.log('请求信息',submitForm);
                     // 开始请求
                             // 请求参数封装
-                    const parmas = this.epFn.commonRequsetData(this.$store.state.SET_PUBLICHEADER,submitForm,1012)
+                    const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012)
                     console.log('parmas------',parmas)
                     this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', parmas).then((resData) => {
                            console.log('返回成功信息',resData.data.data)

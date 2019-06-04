@@ -69,18 +69,16 @@
             var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
             console.log(this.$store.getters.SET_NATIVEMSG === null)
-            // if (this.$store.getters.SET_NATIVEMSG === null) {
-            //     this.getAndroidMsg = this.$store.state.SET_NATIVEMSG
-            //     this.NameTitle = this.getAndroidMsg.title;
-            //     this.describe = this.getAndroidMsg.describe;
-            // }
+            if (this.$store.getters.SET_NATIVEMSG === null) {
+                this.getAndroidMsg = this.$store.state.SET_NATIVEMSG
+                this.NameTitle = this.getAndroidMsg.title;
+                this.describe = this.getAndroidMsg.describe;
+            }
             //  测试vuex+ sessionStorage
             this.$store.dispatch('SET_USER_BASEINFO', {
                 name: '殷宇佳', //姓名
                 idNo: '111000030333', //身份证号
             }, )
-
-            this.$toast('this.epFn.SaveElseWhereState()',this.epFn.SaveElseWhereState() || 'kong')
             sessionStorage.setItem("a","123")
         },
         methods: {

@@ -56,8 +56,7 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_INSURED_PROOF:{
           AAE011: '', //收件人
           AAE005: '', //联系电话
-          address1: [], //所在地区
-          address2: '' //详细地址
+          AAE006: '', //详细地址
         },
         SET_PUBLICHEADER:{  imei:	'移动设备身份码',
         mac:	'设备编号',
