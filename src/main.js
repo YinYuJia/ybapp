@@ -1,5 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
+import store from './vuex/vuex.js' // 使用vuex
 import './common/js/rem.js'
 import Vue from 'vue'
 import App from './App'
@@ -8,18 +10,19 @@ import './common/css/base.css';
 import epFn from './common/js/common.js';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
-// 使用axios请求
-import axios from 'axios'
+
+import axios from 'axios'// 使用axios请求
+
+// import './api/service'
 
 axios.defaults.baseURL = '/api'
-// 使用vuex
-import store from './vuex/vuex.js' 
+
 // import Icon from 'vue-svg-icon/Icon.vue';
 // Vue.component('icon',Icon);
 import './icons';
 // main.js
-// 引入 c-swipe 主文件
-import 'c-swipe/dist/swipe.css';
+
+import 'c-swipe/dist/swipe.css';// 引入 c-swipe 主文件
 import { Swipe, SwipeItem } from 'c-swipe';
 // 引入toast组件
 import Toast from './components/toast/index'

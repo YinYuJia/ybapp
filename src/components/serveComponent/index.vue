@@ -81,6 +81,7 @@
             }, )
 
             this.$toast('this.epFn.SaveElseWhereState()',this.epFn.SaveElseWhereState() || 'kong')
+            sessionStorage.setItem("a","123")
         },
         methods: {
             //获取URL函数

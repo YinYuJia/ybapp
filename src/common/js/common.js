@@ -1,5 +1,6 @@
 // 中国省市县ArrayData
 import ChinaJson from './ChinaArray'
+import  Vuex from '../../vuex/vuex' 
 export default {
     // 登录方法
     login:function(a){
@@ -13,10 +14,24 @@ export default {
 
     // 打包测试地址
     // ApiUrl:function() {
-    //     return '/api'
+    //     return ''
     // },
     SaveElseWhereState(data) {
         return data
+    },
+    SaveNativeData( data ) {
+      return data
+    },
+
+    // 公共请求参数封装 nativemsg 原生公共报文头 data 我们要穿的参数  tradeCode 交易号码
+    commonRequsetData(nativemsg,data , tradeCode) {
+    
+          let commonData = {
+            tradeCode:tradeCode,
+            data:data,
+            ...nativemsg
+          }
+        return commonData
     },
     IndexList:function() {
          return {

@@ -93,6 +93,16 @@ export default new Vuex.Store({  // 暴露与new vuex
           address1: [], //所在地区
           address2: '' //详细地址
         },
+        SET_PUBLICHEADER:{  imei:	'移动设备身份码',
+        mac:	'设备编号',
+        phoneModel:	'设备机型',
+        platform:	'平台标识',
+        signType	:	'签名类型',
+        sign	:'签名',
+        // tradeCode	:	'交易类型',
+        // data	:	'交易内容',
+        version	:	'版本号',
+      },
 
         // 参保变更信息
         SET_INSURED_CHANGE:{

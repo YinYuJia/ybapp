@@ -3,7 +3,7 @@
         <header class="header"><span class="el-icon-arrow-left icon-left"></span> <span class="title">更多医保服务</span></header>
         <!-- Index -->
         <div class="IconNav">
-            <div v-for="item in List" :key="item.title">
+            <!-- <div v-for="item in List" :key="item.title">
                 <div class="DepartmentsList">
                     <span></span>
                     <p class="titleOne">{{item.title}}</p>
@@ -17,10 +17,8 @@
                         <div class="IconText"><span>{{box.iconName}}</span></div>
                     </el-col>
                 </el-row>
-            </div>
-
-
-            <!-- <div class="DepartmentsList">
+            </div> -->
+            <div class="DepartmentsList">
                 <span></span>
                 <p class="titleOne">我的健康</p>
             </div>
@@ -53,11 +51,8 @@
                     </div>
                     <div class="IconText"><span>报告查询</span></div>
                 </el-col>
-            </el-row> -->
-
-
-
-            <!-- <div class="DepartmentsList">
+            </el-row>
+            <div class="DepartmentsList">
                 <span></span>
                 <p class="titleOne">个人信息查询</p>
             </div>
@@ -310,7 +305,7 @@
                     </div>
                     <div class="IconText"><span>药品目录</span></div>
                 </el-col>
-            </el-row> -->
+            </el-row>
         </div>
     </div>
 </template>
@@ -319,48 +314,8 @@
     export default {
         data() {
             return {
-                show: false,
-                hidden: true,
-                List:[
-                    // 我的健康
-                    {
-                        title:'我的健康',
-                        Info:[
-                            {
-                                title:'我的健康1',
-                                line:[
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'预约挂号'},
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'排队叫号'},
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'医保支付'},
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'报告查询'}
-                                ]
-                            }
-                        ]
-                    },
-                    // 个人信息查询
-                    {
-                        title:'个人信息查询',
-                        Info:[
-                            {
-                                title:'个人信息查询1',
-                                line:[
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'备案信息'},
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'就诊信息'},
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'参保信息'},
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'账户信息'},
-                                ]
-                            },
-                            {
-                                title:'个人信息查询2',
-                                line:[
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'缴费信息'},
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'权益单'},
-                                    {iconClass:'indexInfoList-yuyueguahao',iconName:'办事进度'}
-                                ]
-                            }
-                        ]
-                    }
-                ]
+                show: true,
+                hidden: false
             }
         },
         created() {
