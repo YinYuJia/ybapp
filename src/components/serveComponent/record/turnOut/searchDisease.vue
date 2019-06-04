@@ -11,21 +11,35 @@
                     </div>
                 </el-col>
                 <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
+                    <span class="el-icon-search" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
-        <div class="searchInput">
-            <div class="inputBox">
-                <input type="text">
+        <div class="SearchList">
+            <div class="Line" v-for="item in resultList" :key="item.code">
+                {{item.code}}-{{item.value}}
             </div>
-            <div class="serachBtn">查询</div>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    data(){
+        return{
+            resultList:[
+                {code:'1000', value:'疾病名称1'},
+                {code:'1001', value:'疾病名称2'},
+                {code:'1002', value:'疾病名称3'},
+                {code:'1003', value:'疾病名称4'},
+                {code:'1004', value:'疾病名称5'},
+                {code:'1005', value:'疾病名称6'},
+                {code:'1006', value:'疾病名称7'},
+                {code:'1007', value:'疾病名称8'},
+                {code:'1008', value:'疾病名称9'},
+            ]
+        }
+    },
     methods:{
         back(){
             this.$router.push('/turnOut')
@@ -46,12 +60,21 @@ export default {
             color: white;
         }
     }
-    .searchInput{
-        height: 1rem;
-        width: 7.5rem;
-        background-color: #05AEF0;
-        font-size: .28rem;
-        display: flex;
+    .SearchList{
+        background-color: white;
+        padding: 0 .3rem;
+        .Line{
+            height: 1rem;
+            display: block;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: left;
+            font-size: .31rem;
+            border-bottom: .01rem solid #D5D5D5;
+            &:last-child{
+                border-bottom: none;
+            }
+        }
     }
 }
 </style>
