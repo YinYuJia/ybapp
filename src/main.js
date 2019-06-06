@@ -24,9 +24,6 @@ import './icons';
 
 import 'c-swipe/dist/swipe.css';// 引入 c-swipe 主文件
 import { Swipe, SwipeItem } from 'c-swipe';
-// 引入toast组件
-import Toast from './components/toast/index'
-Vue.use(Toast)
 
 // 引入mintUI
 import Mint from 'mint-ui';
