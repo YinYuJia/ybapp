@@ -139,10 +139,13 @@
                     // 备案服务------- 慢病备案 -------基本医疗保险参保人员享受规定（特殊慢性）病种待遇备案
                 } else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 4) {
                     // 备案服务------- 转外备案 -------基本医疗保险参保人员赚外就已备案
+                    this.$router.push('/turnOut');
                 } else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 5) {
                     // 备案服务------- 出国带药 -------基本医疗保险参保人员出国（境）带要备案
+                    this.$router.push('/abroadTake');
                 } else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 6) {
                     // 备案服务------- 家庭共济 -------基本医疗保险参保人员历年账户家庭共济备案
+                    this.$router.push('/familyAid');
                 } else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 1) {
                     // 待遇报销------- 缴费年限 -------基本医疗保险视同缴费年限核定
                 } else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 2) {
@@ -157,6 +160,7 @@
                     // 待遇报销------- 未就业待遇 -------未就业配偶医疗待遇核准支付
                 } else if (this.getAndroidMsg.type == 4 && this.getAndroidMsg.typeItem == 1) {
                     // 其他服务------- 社保卡 -------社保卡补换
+                    this.$router.push('/mendChangeCard');
                 } else if (this.getAndroidMsg.type == 4 && this.getAndroidMsg.typeItem == 2) {
                     // 其他服务------- 社保卡 -------社保卡挂失/解挂
                 }

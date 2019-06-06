@@ -49,7 +49,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.insured" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -116,7 +116,7 @@
             return {
                 // 提交信息
                 form: {
-                    insured: '', //参保地
+                    AAB301: '', //参保地
                     AAE030: '', //离杭日期
                     AAE031: '', //回杭日期
                     AAE011: '', //申请地市
@@ -124,8 +124,6 @@
                     ACK030: '', //申请原因
                     AAE004: '', //联系人
                     AAE005: '', //联系电话
-                    AAC003: '',//用户名
-                    AAE135: '',//电子社保卡
                 },
                 optionList: [], //存放城市数据
                 canSubmit: false,
@@ -165,7 +163,7 @@
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (val.insured != '' && val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != '' && val.AAE006 != '' && val.ACK030 != '' && val.AAE004 != '' && val.AAE005 != '') {
+                    if (val.AAB301 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != '' && val.AAE006 != '' && val.ACK030 != '' && val.AAE004 != '' && val.AAE005 != '') {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
@@ -194,7 +192,7 @@
                 this.$refs.insuredPicker.open();
             },
             chooseInsured(val){
-                this.form.insured = val;
+                this.form.AAB301 = val;
             },
             // 选择离开日期
             openStartPicker(){
@@ -227,23 +225,12 @@
                 } else {
                     this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
 
-                    let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝，否则出错
-                    submitForm.AAE011 = submitForm.AAE011.join(' '); //省市信息转换为字符串
-                    if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name  //用户名
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard //单子社保卡号
-                    }else {
-                    submitForm.AAC003 = '殷宇佳'; //用户名
-                    submitForm.AAE135 = "113344223344536624"; //单子社保卡号
-                    }
-
-                    console.log('请求信息',submitForm);
+                    // 封装数据
+                    let params = this.formatSubmitData();
                     // 开始请求
-                            // 请求参数封装
-                    const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012)
-                    console.log('parmas------',parmas)
-                    this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', parmas).then((resData) => {
-                           console.log('返回成功信息',resData.data.data)
+                    console.log('parmas------',params)
+                    this.$axios.post('/ApiUrl/h5/jy1012/addRecord', params).then((resData) => {
+                           console.log('返回成功信息',resData)
                           if (resData.data.code == 0 ) {
                             //   成功   1000
                               if ( resData.data.data.enCode == 1000 ) {
@@ -274,6 +261,23 @@
                     
                 }
             },
+            formatSubmitData(){
+                let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+                // 日期传换成Number
+                submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
+                submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
+                // 加入用户名和电子社保卡号
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    submitForm.AAC003 = '殷宇佳';
+                    submitForm.AAE135 = "113344223344536624";
+                }
+                // 请求参数封装
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012);
+                return params;
+            }
         }
     }
 </script>

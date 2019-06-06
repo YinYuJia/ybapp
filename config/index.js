@@ -10,12 +10,20 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/ApiUrl':{
+        target: 'http://192.168.1.199:13030',
+        changeOrigin: true,
+        pathRewrite:{
+          '^/ApiUrl': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     // 殷宇佳
     // host: 'localhost', 
-    host: '127.0.0.7',
+    host: '192.168.1.183',
  
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,

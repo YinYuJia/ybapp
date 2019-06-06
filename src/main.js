@@ -15,7 +15,7 @@ import axios from 'axios'// 使用axios请求
 
 // import './api/service'
 
-axios.defaults.baseURL = '/api'
+// axios.defaults.baseURL = '/api'
 
 // import Icon from 'vue-svg-icon/Icon.vue';
 // Vue.component('icon',Icon);

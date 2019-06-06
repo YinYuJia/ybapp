@@ -43,7 +43,7 @@ export default new Vuex.Store({  // 暴露与new vuex
 
         // 异地就医备案
         SET_ELSEWHERE_OPERATION:{
-          insured: '', //参保地
+          AAB301: '', //参保地
           AAE030: '', //离杭日期
           AAE031: '', //回杭日期
           AAE011: '', //省市信息

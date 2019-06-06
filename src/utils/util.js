@@ -1,20 +1,4 @@
 // 格式化日期函数
-// function dateFormat(date){
-//     let year = date.getFullYear();
-//     let month;
-//     if(date.getMonth()+1 < 10){
-//         month = '0' + (date.getMonth()+1);
-//     }else{
-//         month = date.getMonth()+1;
-//     }
-//     let day;
-//     if(date.getDate() < 10){
-//         day = '0' + date.getDate();
-//     }else{
-//         day = date.getDate();
-//     }
-//     return year + '-' + month + '-' + day;
-// }
 function formatDate (date, fmt) {
     if (/(y+)/.test(fmt)) {
         fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
@@ -38,6 +22,13 @@ function padLeftZero (str) {
     return ('00' + str).substr(str.length)
 }
 
+// 日期转换为Number
+function DateToNumber(date){
+    let dateNum = date.replace(/-/g,'');
+    return parseInt(dateNum);
+}
+
 export default{
     formatDate,
+    DateToNumber,
 }
