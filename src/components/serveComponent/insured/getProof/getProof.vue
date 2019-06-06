@@ -3,15 +3,15 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="backIndex()"></span>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">
-                        领取就医凭证
+                    <div class="BackIcon" @click="backIndex()">
+                        <svg-icon icon-class="serveComponent_back" />
+                        <span>返回</span>
                     </div>
                 </el-col>
+                <el-col :span="12">
+                    <div class="NameTitle">领取就医凭证</div>
+                </el-col>
                 <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
@@ -72,10 +72,15 @@
         </div>
         <!-- 按钮 -->
         <footer class="Footer">
+            <div class="SubmitBtn" @click="submit" :class="{'active': canSubmit == true}">
+                <span>确认提交</span>
+            </div>
+        </footer>
+        <!-- <footer class="Footer">
             <div class="Btn" @click="submit()" :class="{'active': canSubmit == true}">
                 确认提交
             </div>
-        </footer>
+        </footer> -->
     </div>
 </template>
 
@@ -93,8 +98,6 @@ export default {
                 'AAE006': '', //地址
                 'AAC050':'', //变更类型
                 'BKA077' :'' ,//领取方式
-                'AAC003':'',//用户名
-                'AAE135':'' //电子社保卡号
             },
             canSubmit: false,
             optionList: [], //所有地区
@@ -117,32 +120,33 @@ export default {
         // 监听领取信息
         form:{
             handler:function(val){
-                console.log(val)
-                if(val.AAC050 != '' && val.BKA077 == '0'){
+                if(val.AAC050 == '' && val.BKA077 == '0'){
+                    this.canSubmit = false;
+                    this.showMail = false;
+                }else if(val.AAC050 == '' && val.BKA077 == '1'){
+                    this.canSubmit = false;
+                    this.showMail = true;
+                }else if(val.AAC050 != '' && val.BKA077 == '0'){
                     this.canSubmit = true;
                     this.showMail = false;
                 }else if(val.AAC050 != '' && val.BKA077 == '1'){
                     this.canSubmit = false;
                     this.showMail = true;
-                }else if(val.AAC050 == '' && val.BKA077 == '0'){
-                    this.showMail = false;
-                }else if(val.AAC050 == '' && val.BKA077 == '1'){
-                    this.showMail = true;
-                }else{
-                    this.canSubmit = false;
-                    this.showMail = false;
                 }
-                if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
-                    this.canSubmit = true
-                }else {
-                    this.canSubmit = false
+                // 如果需要邮寄
+                if(this.showMail == true){
+                    if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
+                        this.canSubmit = true
+                    }else {
+                        this.canSubmit = false
+                    }
                 }
             },
             deep: true
         },
     },
     created(){
-        this.form = this.$store.state.SET_INSURED_PROOF;
+        // this.form = this.$store.state.SET_INSURED_PROOF;
     },
     methods:{
         backIndex(){
@@ -184,13 +188,23 @@ export default {
 <style lang="less" scoped>
 .getProof{
     .Title {
-        height: 1.2rem;
-        background-color: #05AEF0;
-        font-size: .36rem;
-        line-height: 1.2rem;
-        overflow: hidden;
-        .NameTitle{
-            color: white;
+        height: .8rem;
+        background-color: white;
+        line-height: .8rem;
+        .BackIcon{
+            display: flex;
+            align-items: center;
+            color: #1492FF;
+            font-size: .32rem;
+            .svg-icon{
+                height: .5rem;
+                width: .5rem;
+            }
+        }
+        .NameTitle {
+            color: #000000;
+            letter-spacing: 0;
+            font-size: .36rem;
         }
     }
     .Content{
@@ -199,7 +213,6 @@ export default {
             height: 2.4rem;
             width: 7.5rem;
             padding: 0 .3rem;
-            margin-top: .67rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;
@@ -301,31 +314,28 @@ export default {
             }
         }
     }
-    .Footer{
-        height: 1.2rem;
+    .Footer {
+        height: 1.31rem;
         width: 7.5rem;
-        background: white;
         position: fixed;
         bottom: 0;
         left: 0;
         z-index: 199;
         display: flex;
         justify-content: center;
-        align-items: center;
-        .Btn{
-            height: .8rem;
-            width: 6.9rem;
-            background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
-            border-radius: 40px;
-            text-align: center;
-            line-height: 0.8rem;
+        .SubmitBtn {
+            height: 1.05rem;
+            width: 7.1rem;
+            line-height: 1.05rem;
+            background: #93cdff;
             font-family: PingFangSC-Regular;
             font-size: .36rem;
             color: #FFFFFF;
             letter-spacing: 0;
+            text-align: center;
         }
         .active{
-            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
+            background: #1492FF;
         }
     }
 }

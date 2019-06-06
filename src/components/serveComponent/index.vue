@@ -3,27 +3,35 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="goBackIndex()"></span>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">
-                        {{NameTitle}}
+                    <div class="BackIcon" @click="goBackIndex()">
+                        <svg-icon icon-class="serveComponent_back" />
+                        <span>返回</span>
                     </div>
                 </el-col>
+                <el-col :span="12">
+                    <div class="NameTitle">{{NameTitle}}</div>
+                </el-col>
                 <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
         <div class="describe">
             {{describe}}
         </div>
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
+        <div class="IndexMenu">
+            <div class="MenuLine">
+                <div class="MenuCell" @click="changeIndex(1)" :class="{'active': activeIndex == 1}">办事指南</div>
+                <div class="MenuCell" @click="changeIndex(2)" :class="{'active': activeIndex == 2}">政策解读</div>
+                <div class="MenuCell" @click="changeIndex(3)" :class="{'active': activeIndex == 3}">案例分析</div>
+                <div class="MenuCell" @click="changeIndex(4)" :class="{'active': activeIndex == 4}">常见问题</div>
+            </div>
+        </div>
+        <!-- <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
             <el-menu-item index="1" style="width:25%;font-size:.29rem">办事指南</el-menu-item>
             <el-menu-item index="2" style="width:25%;font-size:.29rem">政策解读</el-menu-item>
             <el-menu-item index="3" style="width:25%;font-size:.29rem">案例分析</el-menu-item>
             <el-menu-item index="4" style="width:25%;font-size:.29rem">常见问题</el-menu-item>
-        </el-menu>
+        </el-menu> -->
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
             <BusinessGuide info="1"></BusinessGuide>
@@ -53,7 +61,7 @@
     export default {
         data() {
             return {
-                activeIndex: '1',
+                activeIndex: 1,
                 NameTitle: '安卓传过来的标题1',
                 describe: 'title的详细描述内容',
                 getAndroidMsg: null,
@@ -109,6 +117,9 @@
                 } else if (isAndroid) {
                     window.dzsb.back('H5message');
                 }
+            },
+            changeIndex(index){
+                this.activeIndex = index;
             },
             submit() {
                 if ( this.getAndroidMsg === null ) {
@@ -174,45 +185,86 @@
 
 <style lang="less" scoped>
     .Title {
-        height: 1.2rem;
-        background-color: #05AEF0;
-        font-size: .36rem;
-        line-height: 1.2rem;
-        overflow: hidden;
-        .NameTitle {
-            color: white;
+        height: .8rem;
+        background-color: white;
+        line-height: .8rem;
+        .BackIcon{
+            display: flex;
+            align-items: center;
+            color: #1492FF;
+            font-size: .32rem;
+            .svg-icon{
+                height: .5rem;
+                width: .5rem;
+            }
         }
-    }
-    .NameTitle {
-        font-size: .36rem;
-        color: #FFFFFF;
-        font-family: 'PingFangSC-Regular';
+        .NameTitle {
+            color: #000000;
+            letter-spacing: 0;
+            font-size: .36rem;
+        }
     }
     .describe {
         width: 7.5rem;
-        height: .8rem;
-        font-size: .3rem;
+        height: .63rem;
+        line-height: .63rem;
+        background: #FFF;
+        font-size: .32rem;
         text-align: center;
-        background-color: #05AEF0;
-        color: white;
+        color: #000;
     }
-    .Footer {
+    .IndexMenu{
         height: 1.2rem;
         width: 7.5rem;
-        background-color: white;
+        background: #FFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .MenuLine{
+            height: .62rem;
+            width: 6.9rem;
+            background: #FFFFFF;
+            border: .01rem solid #1492FF;
+            border-radius: .05rem;
+            display: flex;
+            .MenuCell{
+                line-height: .62rem;
+                width: 25%;
+                color: #1492FF;
+                text-align: center;
+                letter-spacing: 0;
+                font-size: .28rem;
+                border-right: .01rem solid #1492FF;
+                &:first-child{
+                    border-top-left-radius: .05rem;
+                    border-bottom-left-radius: .05rem;
+                }
+                &:last-child{
+                    border-top-right-radius: .05rem;
+                    border-bottom-right-radius: .05rem;
+                    border-right: none;
+                }
+            }
+            .active{
+                color: #FFF;
+                background: #1492FF;
+            }
+        }
+    }
+    .Footer {
+        height: 1.31rem;
+        width: 7.5rem;
         position: fixed;
         bottom: 0;
         left: 0;
         z-index: 199;
         display: flex;
         justify-content: center;
-        align-items: center;
         .SubmitBtn {
-            height: .8rem;
-            width: 6.9rem;
-            line-height: 0.8rem;
-            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
-            border-radius: .4rem;
+            height: 1.05rem;
+            width: 7.1rem;
+            line-height: 1.05rem;
+            background: #1492FF;
             font-family: PingFangSC-Regular;
             font-size: .36rem;
             color: #FFFFFF;

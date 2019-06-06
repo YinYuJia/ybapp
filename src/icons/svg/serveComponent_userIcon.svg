@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="160px" viewBox="0 0 160 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>大头像</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="80" cy="80" r="80"></circle>
+    </defs>
+    <g id="大头像" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="touxiang">
+            <g id="530a44efa01c4dd77eb561289d4ac161420345">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" stroke="#FFFFFF" stroke-width="2" fill="#B4DCFA" xlink:href="#path-1"></use>
+                <g id="touxiang-2" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g transform="translate(32.000000, 25.333333)" id="Shape">
+                        <path d="M58.7626269,60.0072044 L36.9814155,60.0072044 C16.5884716,60.0072044 0,76.3458763 0,96.4315443 L0,98.575843 C0,109.295126 16.3209869,109.295126 36.9814155,109.295126 L58.7626269,109.295126 C78.6073377,109.295126 95.7440424,109.295126 95.746253,98.575843 L95.746253,96.4315443 C95.746253,76.3436657 79.1489389,60.0072044 58.7626269,60.0072044 Z M46.7810816,57.8562739 C62.9672209,57.8562739 76.1358676,44.8777402 76.1358676,28.9259263 C76.1358676,12.9741125 62.9716421,0 46.7810816,0 C30.5905211,0 17.4285062,12.9763231 17.4285062,28.9259263 C17.4285062,44.8755296 30.5927317,57.8562739 46.7810816,57.8562739 Z"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

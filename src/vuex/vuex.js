@@ -89,9 +89,11 @@ export default new Vuex.Store({  // 暴露与new vuex
 
         // 领取就医凭证
         SET_INSURED_PROOF:{
-          AAE011: '', //收件人
-          AAE005: '', //联系电话
-          AAE006: '', //详细地址
+          'AAE011': '', //收件人
+          'AAE005': '', //联系电话
+          'AAE006': '', //地址
+          'AAC050':'', //变更类型
+          'BKA077' :'' ,//领取方式
         },
         SET_PUBLICHEADER:{  imei:	'移动设备身份码',
         mac:	'设备编号',
