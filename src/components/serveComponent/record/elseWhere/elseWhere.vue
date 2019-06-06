@@ -18,10 +18,28 @@
         <!-- MintUI弹出框区域 -->
         <mt-datetime-picker
             type="date"
-            ref="cityPicker"
+            ref="startPicker"
             v-model="dateVal"
-            @confirm="handleCityConfirm">
+            @confirm="handleStartConfirm">
         </mt-datetime-picker>
+        <mt-datetime-picker
+            type="date"
+            ref="endPicker"
+            v-model="dateVal"
+            @confirm="handleEndConfirm">
+        </mt-datetime-picker>
+        <selectCity 
+            :type="2"
+            ref="insuredPicker"
+            @confirm="chooseInsured"
+            >
+        </selectCity>
+        <selectCity 
+            :type="3"
+            ref="cityPicker"
+            @confirm="chooseCity"
+            >
+        </selectCity>
         <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
@@ -29,25 +47,27 @@
             <!-- 申报信息 -->
             <div class="ReportInfo">
                 <div class="InfoLine">
+                    <div class="InfoName"><span>参保地</span></div>
+                    <div class="InfoText">
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.insured" placeholder="请选择" readonly></div>
+                    </div>
+                </div>
+                <div class="InfoLine">
                     <div class="InfoName"><span>拟离杭日期</span></div>
                     <div class="InfoText">
-                        <el-date-picker v-model="form.AAE030" type="date" placeholder="请选择" value-format="yyyy-MM-dd" :editable="false">
-                        </el-date-picker>
+                        <div class="InfoText"><input @click="openStartPicker" type="text" v-model="form.AAE030" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>回杭日期</span></div>
                     <div class="InfoText">
-                        <el-date-picker v-model="form.AAE031" type="date" placeholder="请选择" value-format="yyyy-MM-dd" :editable="false">
-                        </el-date-picker>
+                        <div class="InfoText"><input @click="openEndPicker" type="text" v-model="form.AAE031" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>省市信息</span></div>
+                    <div class="InfoName"><span>申请地市</span></div>
                     <div class="InfoText">
                          <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAE011" placeholder="请选择" readonly></div>
-                        <!-- <el-cascader :options="optionList" v-model="form.AAE011">
-                        </el-cascader> -->
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -86,28 +106,30 @@
 
 <script>
     import userBaseInfo from '../../common/userBaseInfo'
+    import selectCity from '../../common/selectCity'
     export default {
         components: {
-            'userBaseInfo': userBaseInfo
+            'userBaseInfo': userBaseInfo,
+            'selectCity': selectCity,
         },
         data() {
             return {
-                dddddd: "1111",
+                // 提交信息
                 form: {
+                    insured: '', //参保地
                     AAE030: '', //离杭日期
                     AAE031: '', //回杭日期
-                    AAE011: '', //省市信息
+                    AAE011: '', //申请地市
                     AAE006: '', //详细地址 
                     ACK030: '', //申请原因
                     AAE004: '', //联系人
                     AAE005: '', //联系电话
-                    AAC003:"",//用户名
-                    AAE135:"",//电子社保卡
+                    AAC003: '',//用户名
+                    AAE135: '',//电子社保卡
                 },
                 optionList: [], //存放城市数据
                 canSubmit: false,
-                showCityPicker: true,
-                dateVal: new Date(),
+                dateVal: new Date(), //默认绑定的时间
                 reportReason: [{
                         value: '退休异地安置',
                         label: '退休异地安置'
@@ -138,14 +160,12 @@
             console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
             this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
             this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-
-            
         },
         watch: {
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != undefined && val.AAE006 != '' && val.ACK030 != '' && val.AAE004 != '' && val.AAE005 != '') {
+                    if (val.insured != '' && val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != '' && val.AAE006 != '' && val.ACK030 != '' && val.AAE004 != '' && val.AAE005 != '') {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
@@ -169,15 +189,37 @@
             backIndex() {
                 this.$router.push('/');
             },
+            // 选择参保地
+            openInsuredPicker(){
+                this.$refs.insuredPicker.open();
+            },
+            chooseInsured(val){
+                this.form.insured = val;
+            },
+            // 选择离开日期
+            openStartPicker(){
+                this.$refs.startPicker.open();
+            },
+            handleStartConfirm(val){
+                let date = this.util.formatDate(val,'yyyy-MM-dd');
+                this.form.AAE030 = date;
+            },
+            // 选择回杭日期
+            openEndPicker(){
+                this.$refs.endPicker.open();
+            },
+            handleEndConfirm(val){
+                let date = this.util.formatDate(val,'yyyy-MM-dd');
+                this.form.AAE031 = date;
+            },
+            // 选择申请地市
             openCityPicker(){
                 this.$refs.cityPicker.open();
             },
-            handleCityConfirm(data){
-                // console.log(this.util.dateFormat(data));
-                console.log(this.util.formatDate(data,'yyyy-MM-dd'));
-                let date = this.util.formatDate(data,'yyyy-MM-dd')
-                this.form.AAE011 = date;
+            chooseCity(val){
+                this.form.AAE011 = val;
             },
+            // 提交
             submit() {
                 if (this.canSubmit == false) {
                     this.$toast('信息未填写完整');
@@ -251,10 +293,11 @@
         .Content {
             height: 100%;
             .ReportInfo {
-                height: 8.8rem;
+                height: 10rem;
                 width: 7.5rem;
                 padding: 0 .3rem;
                 margin-top: .67rem;
+                margin-bottom: 1.4rem;
                 background: white;
                 .InfoLine {
                     height: 1.2rem;
@@ -281,6 +324,7 @@
                         position: relative;
                         align-items: center;
                         input {
+                            width: 4rem;
                             height: .6rem;
                             opacity: 0.85;
                             font-family: PingFangSC-Regular;
@@ -291,10 +335,12 @@
                             border: none;
                         }
                     }
-                    &:nth-child(4) {
+                    &:nth-child(5) {
                         height: 1.6rem;
                         textarea {
                             height: .84rem;
+                            width: 4rem;
+                            padding: 0;
                             font-size: .3rem;
                             opacity: 0.85;
                             color: #000000;

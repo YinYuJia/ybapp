@@ -67,7 +67,22 @@ export default {
             this.$router.push('/');
         },
         search(){
-            this.$router.push('/insuredDownload');
+            // this.$router.push('/insuredDownload');
+            let parmas = {
+                tradeCode: '1014',
+                data:{
+                    AAE135: '1212',
+                    AAE091: 4
+                }
+            }
+            console.log(this.epFn.ApiUrl() + '/h5/jy1014/getInfo');
+            this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1014/getInfo', parmas)
+                .then((resData) => {
+                    console.log(resData)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         },
     }
 }

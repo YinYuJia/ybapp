@@ -1,5 +1,6 @@
 // 中国省市县ArrayData
 import ChinaJson from './ChinaArray'
+import addressList from './address'
 import  Vuex from '../../vuex/vuex' 
 export default {
     // 登录方法
@@ -194,4 +195,8 @@ export default {
         })
         return dataArray
     },  
+
+    addressList:function(){
+      return addressList;
+    }
 }
