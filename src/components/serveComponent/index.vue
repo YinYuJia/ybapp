@@ -88,7 +88,7 @@
             },
             getAndroid(dataStr) {
                 console.log('原生msg',dataStr)
-                this.getAndroidMsg = dataStr || this.$store.getters.SET_USER_BASEINFO;;
+                this.getAndroidMsg = dataStr ;
                 this.NameTitle = dataStr.title;
                 this.describe = dataStr.describe;
                 // 储存原生数据

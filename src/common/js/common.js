@@ -17,7 +17,7 @@ export default {
     ApiUrl1:function() {
         return 'http://192.168.1.96:13030' // 胡伟
     },
-    
+
     ApiUrl1:function() {
         return 'http://192.168.1.157:13030' // 魏陈涛
     },

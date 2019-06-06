@@ -13,9 +13,48 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import axios from 'axios'// 使用axios请求
 
+axios.interceptors.request.use(
+  config => {
+    console.log('请求拦截器',config)
+    return config
+  }, function (error) {
+    // return Promise.reject(error) 
+  }
+)
+
+axios.interceptors.response.use((res) => {
+  // token 已过期，重定向到登录页面
+  let newRes = res.data;
+  console.log('响应拦截器')
+  if(newRes.code == -1 ){
+    // 系统异常
+    console.log(newRes.data.msg);
+    this.$router.push("/")
+    return;
+  }else if (newRes.code == 1 ) {
+    // 业务异常
+    if ( newRes.data.enCode !== 1000 ) {
+       console.log(newRes.data.msg);
+       this.$router.push("/")
+    }
+    return;
+}else if (newRes.code == 0 ) {
+  //   成功   1000
+     if (newRes.data.enCode !== 1000 ) {
+      //   失败  1001
+        console.log(newRes.data.msg);
+        return;
+    }
+}
+
+  console.log("响应拦截器",newRes)
+  return newRes.data
+}, function(err) {
+  // return Promise.reject(error) 
+})
+// axios.defaults.baseURL = '/api'
 // import './api/service'
 
-// axios.defaults.baseURL = '/api'
 
 // import Icon from 'vue-svg-icon/Icon.vue';
 // Vue.component('icon',Icon);
