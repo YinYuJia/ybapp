@@ -3,15 +3,15 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="backIndex()"></span>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">
-                        参保信息变更
+                    <div class="BackIcon" @click="backIndex()">
+                        <svg-icon icon-class="serveComponent_back" />
+                        <span>返回</span>
                     </div>
                 </el-col>
+                <el-col :span="12">
+                    <div class="NameTitle">参保变更</div>
+                </el-col>
                 <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
@@ -41,8 +41,8 @@
         </div>
         <!-- 按钮 -->
         <footer class="Footer">
-            <div class="Btn" @click="submit()" :class="{'active': canSubmit == true}">
-                确认提交
+            <div class="SubmitBtn" @click="submit" :class="{'active': canSubmit == true}">
+                <span>确认提交</span>
             </div>
         </footer>
     </div>
@@ -56,14 +56,18 @@ export default {
     },
     data(){
         return{
-            form:this.$store.state.SET_INSURED_CHANGE,
+            form:{
+                AAE006: '', //家庭住址
+                AAE005: '', //手机号码
+                AAE007: '' //邮政编码
+            },
             canSubmit: false,
         }
     },
     watch:{
         form:{
             handler:function(val){
-                if(val.address != '' && val.phone != '' && val.code != ''){
+                if(val.AAE006 != '' && val.AAE005 != '' && val.AAE007 != ''){
                     this.canSubmit = true;
                 }else{
                     this.canSubmit = false;
@@ -73,7 +77,7 @@ export default {
         }
     },
     created(){
-                
+        this.form = this.$store.state.SET_INSURED_CHANGE;
     },
     methods:{
         backIndex(){
@@ -136,13 +140,23 @@ export default {
 <style lang="less" scoped>
 .insuredChange{
     .Title {
-        height: 1.2rem;
-        background-color: #05AEF0;
-        font-size: .36rem;
-        line-height: 1.2rem;
-        overflow: hidden;
-        .NameTitle{
-            color: white;
+        height: .8rem;
+        background-color: white;
+        line-height: .8rem;
+        .BackIcon{
+            display: flex;
+            align-items: center;
+            color: #1492FF;
+            font-size: .32rem;
+            .svg-icon{
+                height: .5rem;
+                width: .5rem;
+            }
+        }
+        .NameTitle {
+            color: #000000;
+            letter-spacing: 0;
+            font-size: .36rem;
         }
     }
     .Content{
@@ -151,7 +165,6 @@ export default {
             height: 4rem;
             width: 7.5rem;
             padding: 0 .3rem;
-            margin-top: .67rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;
@@ -228,31 +241,30 @@ export default {
             }
         }
     }
-    .Footer{
-        height: 1.2rem;
+    .Footer {
+        height: 1.31rem;
         width: 7.5rem;
-        background: white;
         position: fixed;
         bottom: 0;
         left: 0;
         z-index: 199;
         display: flex;
         justify-content: center;
-        align-items: center;
-        .Btn{
-            height: .8rem;
-            width: 6.9rem;
-            background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
-            border-radius: 40px;
-            text-align: center;
-            line-height: 0.8rem;
+        .SubmitBtn {
+            height: 1.05rem;
+            width: 7.1rem;
+            border-radius: .05rem;
+            line-height: 1.05rem;
+            background: #F2F2F2;;
             font-family: PingFangSC-Regular;
             font-size: .36rem;
-            color: #FFFFFF;
+            color: #B4B4B4;
             letter-spacing: 0;
+            text-align: center;
         }
         .active{
-            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
+            background: #1492FF;
+            color: #FFFFFF;
         }
     }
 }

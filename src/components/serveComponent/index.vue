@@ -263,6 +263,7 @@
         .SubmitBtn {
             height: 1.05rem;
             width: 7.1rem;
+            border-radius: .05rem;
             line-height: 1.05rem;
             background: #1492FF;
             font-family: PingFangSC-Regular;

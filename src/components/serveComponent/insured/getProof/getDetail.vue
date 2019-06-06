@@ -3,15 +3,15 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="back()"></span>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">
-                        领取就医凭证
+                    <div class="BackIcon" @click="backIndex()">
+                        <svg-icon icon-class="serveComponent_back" />
+                        <span>返回</span>
                     </div>
                 </el-col>
+                <el-col :span="12">
+                    <div class="NameTitle">领取就医凭证</div>
+                </el-col>
                 <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
@@ -68,23 +68,11 @@ export default {
             this.$router.push("/getProof");
         },
         // 撤销提醒
-        backout() {
-        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning'
-        }).then(() => {
-            this.$message({
-                type: 'success',
-                message: '删除成功!'
+        backout(){
+            this.$messagebox.confirm('确定撤销吗?').then(() => {
+                this.$toast("撤销请求");
             });
-        }).catch(() => {
-            this.$message({
-                type: 'info',
-                message: '已取消删除'
-            });          
-        });
-      }
+        },
     }
 }
 </script>
@@ -92,20 +80,29 @@ export default {
 <style lang="less" scoped>
 .getDetail{
     .Title {
-        height: 1.2rem;
-        background-color: #05AEF0;
-        font-size: .36rem;
-        line-height: 1.2rem;
-        overflow: hidden;
-        .NameTitle{
-            color: white;
+        height: .8rem;
+        background-color: white;
+        line-height: .8rem;
+        .BackIcon{
+            display: flex;
+            align-items: center;
+            color: #1492FF;
+            font-size: .32rem;
+            .svg-icon{
+                height: .5rem;
+                width: .5rem;
+            }
+        }
+        .NameTitle {
+            color: #000000;
+            letter-spacing: 0;
+            font-size: .36rem;
         }
     }
     .Content{
         .ItemInfo{
-            height: 2.4rem;
+            height: 1.86rem;
             width: 7.5rem;
-            background: white;
             padding: 0 .4rem 0 .3rem;
             display: flex;
             justify-content: space-between;
@@ -120,7 +117,7 @@ export default {
             .icon{
                 height: 1.34rem;
                 width: 1.34rem;
-                background:  #8BDFFF;
+                background:  #8BCEFF;
                 border-radius: 1.34rem/2;
                 text-align: center;
                 line-height: 1.34rem;
@@ -141,27 +138,26 @@ export default {
                 height: 1.2rem;
                 position: relative;
                 font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName{
                     width: 1.5rem;
-                    opacity: 0.45;
                     line-height: 1.2rem;
                     text-align: left;
                     span{
                         height: .6rem;
                         line-height: .6rem;
-                        color: #000000;
                         letter-spacing: 0;
+                        color: #000;
                     }
                 }
                 .InfoText{
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
                     align-items: center;
+                    color: #333;
                 }
                 &:last-child{
                     border-bottom: none;
@@ -169,9 +165,9 @@ export default {
                         height: 1.6rem;
                         textarea{
                             border: none;
-                            opacity: 0.85;
                             width: 5rem;
                             line-height: .45rem;
+                            color: #333;
                         }
                     }
                 }
@@ -180,35 +176,39 @@ export default {
     }
     // 底部
     .Footer {
-        height: 1.2rem;
+        height: 1.31rem;
         width: 7.5rem;
-        background-color: white;
         position: fixed;
         bottom: 0;
         left: 0;
         z-index: 199;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .Btn {
-            height: .8rem;
-            width: 6.9rem;
-            line-height: 0.8rem;
-            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
-            border-radius: .4rem;
-            font-family: PingFangSC-Regular;
-            font-size: .36rem;
-            color: #FFFFFF;
-            letter-spacing: 0;
+        .Btn{
             display: flex;
+            justify-content: space-around;
             .ResetBtn {
+                height: 1.05rem;
                 width: 3.45rem;
-                background: #B6DEFF;
-                border-top-left-radius: .4rem;
-                border-bottom-left-radius: .4rem;
+                border-radius: .05rem;
+                line-height: 1.05rem;
+                background: #F2F2F2;;
+                font-family: PingFangSC-Regular;
+                font-size: .36rem;
+                color: #B4B4B4;
+                letter-spacing: 0;
+                text-align: center;
             }
-            .EditBtn {
+            .EditBtn{
+                height: 1.05rem;
                 width: 3.45rem;
+                border-radius: .05rem;
+                line-height: 1.05rem;
+                background: #F2F2F2;;
+                font-family: PingFangSC-Regular;
+                font-size: .36rem;
+                background: #1492FF;
+                color: #FFF;
+                letter-spacing: 0;
+                text-align: center;
             }
         }
     }

@@ -76,11 +76,6 @@
                 <span>确认提交</span>
             </div>
         </footer>
-        <!-- <footer class="Footer">
-            <div class="Btn" @click="submit()" :class="{'active': canSubmit == true}">
-                确认提交
-            </div>
-        </footer> -->
     </div>
 </template>
 
@@ -326,16 +321,18 @@ export default {
         .SubmitBtn {
             height: 1.05rem;
             width: 7.1rem;
+            border-radius: .05rem;
             line-height: 1.05rem;
-            background: #93cdff;
+            background: #F2F2F2;;
             font-family: PingFangSC-Regular;
             font-size: .36rem;
-            color: #FFFFFF;
+            color: #B4B4B4;
             letter-spacing: 0;
             text-align: center;
         }
         .active{
             background: #1492FF;
+            color: #FFFFFF;
         }
     }
 }
