@@ -26,12 +26,6 @@
                 <div class="MenuCell" @click="changeIndex(4)" :class="{'active': activeIndex == 4}">常见问题</div>
             </div>
         </div>
-        <!-- <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#F5F5F5" active-text-color='#059BF0' @select="handleSelect">
-            <el-menu-item index="1" style="width:25%;font-size:.29rem">办事指南</el-menu-item>
-            <el-menu-item index="2" style="width:25%;font-size:.29rem">政策解读</el-menu-item>
-            <el-menu-item index="3" style="width:25%;font-size:.29rem">案例分析</el-menu-item>
-            <el-menu-item index="4" style="width:25%;font-size:.29rem">常见问题</el-menu-item>
-        </el-menu> -->
         <div v-if="activeIndex == 1">
             <!-- 办事指南 -->
             <BusinessGuide info="1"></BusinessGuide>
@@ -75,25 +69,15 @@
             window.getAndroid = this.getAndroid
             var u = navigator.userAgent;
             var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-            console.log(this.$store.getters.SET_NATIVEMSG === null)
-            if (this.$store.getters.SET_NATIVEMSG === null) {
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (this.$store.getters.SET_NATIVEMSG === null && isAndroid && isIOS) {
                 this.getAndroidMsg = this.$store.state.SET_NATIVEMSG
                 this.NameTitle = this.getAndroidMsg.title;
                 this.describe = this.getAndroidMsg.describe;
             }
-            //  测试vuex+ sessionStorage
-            this.$store.dispatch('SET_USER_BASEINFO', {
-                name: '殷宇佳', //姓名
-                idNo: '111000030333', //身份证号
-            }, )
-            sessionStorage.setItem("a","123")
+            
         },
         methods: {
-            //获取URL函数
-            click1(a) {
-                console.log(a)
-            },
             getAndroid(dataStr) {
                 console.log('原生msg',dataStr)
                 this.getAndroidMsg = dataStr ;
@@ -176,9 +160,6 @@
                     // 其他服务------- 社保卡 -------社保卡挂失/解挂
                 }
             },
-            created() {
-                console.log()
-            }
         }
     }
 </script>

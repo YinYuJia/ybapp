@@ -103,11 +103,7 @@ export default {
             BKA077s: [
                 {value: '0',label: '自取'},
                 {value: '1',label: '邮寄'}
-            ], 
-            getInfo:{
-                AAC050: '', //领取类型
-                BKA077: '' //领取方式
-            },
+            ],
             showMail: false,
         };
     },
@@ -152,30 +148,31 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
-                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                    this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name  //用户名
-                    this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard //单子社保卡号
-                }else {
-                    this.form.AAC003 = '殷宇佳'; //用户名
-                    this.form.AAE135 = "113344223344536624"; //单子社保卡号
-                }
-                const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,this.form,'1008')
-                    console.log('parmas------',parmas)
-
-                    this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
-                           console.log('返回成功信息',resData)
-                        //   if (resData.data.code == 0 ) {
-                        //       if ( resData.data.data.enCode == 1000 ) {
-                        //           this.$toast("提交成功");
-                        //           this.$store.dispatch('SET_INSURED_PROOF', this.form);
-                        //           this.$router.push("/getDetail");
-                        //       }
-                        // }
-                    }).catch((error) => {
-                        console.log(error)
-                    })
+                let params = this.formatSubmitData();
+                console.log('parmas------',params)
+                this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', params)
+                .then((resData) => {
+                    console.log('返回成功信息',resData)
+                }).catch((error) => {
+                    console.log(error)
+                })
             }
         },
+        // 提交信息封装
+        formatSubmitData(){
+            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '鲁伟兴';
+                submitForm.AAE135 = "330622197407215513";
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1008');
+            return params;
+        }
     }
 }
 </script>

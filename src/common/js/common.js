@@ -18,7 +18,7 @@ export default {
         return 'http://192.168.1.96:13030' // 胡伟
     },
 
-    ApiUrl1:function() {
+    ApiUrl2:function() {
         return 'http://192.168.1.157:13030' // 魏陈涛
     },
     
@@ -42,7 +42,7 @@ export default {
     },
     IndexList:function() {
          return {
-            "cdoe": 1,
+            "code": 1,
             "data": [
               {
                 "name": "办事指南",

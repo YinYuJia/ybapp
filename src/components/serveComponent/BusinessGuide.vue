@@ -6,13 +6,13 @@
             </div>
         </div>
         <div v-if="info == 2">
-            222222
+            {{policy}}
         </div>
         <div v-if="info == 3">
-            3333333
+            {{CaseAnalysis}}
         </div>
         <div v-if="info == 4">
-            444444
+            {{question}}
         </div>
     </div>
 </template>
@@ -28,10 +28,14 @@
         data() {
             return {
                 clist: [],
-                resData: {}
+                resData: {},
+                policy: '', //政策解读
+                CaseAnalysis: '',//案例分析
+                question: '', //常见问题
             }
         },
         created() {
+            this.getIndexList();
             console.log(this.epFn.IndexList())
             this.clist = this.epFn.IndexList().data[0].clist;
             this.resData = this.epFn.IndexList().data
@@ -44,6 +48,26 @@
             }
         },
         methods: {
+            // 获取详情列表
+            getIndexList(){
+                let submitForm = {
+                    AGA002: '1'
+                }
+                // 请求参数封装
+                const params = this.epFn.commonRequsetData('a',submitForm,'1015');
+                console.log('parmas------',params)
+                this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1015/itemQuery', params)
+                .then((resData) => {
+                    console.log('返回成功信息',resData);
+                    let List = resData.LS_DS;
+                    console.log(List);
+                    this.policy = List.xza008;
+                    this.CaseAnalysis = List.xza009;
+                    this.question = List.xza010   ;
+                }).catch((error) => {
+                    console.log(error)
+                })
+            },
             clickInfoList(val) {
                 console.log('val ', val)
                 this.$axios.post(this.epFn.ApiUrl() + '/testDetail', {
