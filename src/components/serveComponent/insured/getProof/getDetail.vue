@@ -3,7 +3,7 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <div class="BackIcon" @click="backIndex()">
+                    <div class="BackIcon" @click="back()">
                         <svg-icon icon-class="serveComponent_back" />
                         <span>返回</span>
                     </div>
@@ -100,6 +100,7 @@ export default {
         }
     }
     .Content{
+        margin-bottom: 1.4rem;
         .ItemInfo{
             height: 1.86rem;
             width: 7.5rem;

@@ -204,6 +204,7 @@ export default {
     }
     .Content{
         height: 100%;
+        margin-bottom: 1.4rem;
         .GetInfo{
             height: 2.4rem;
             width: 7.5rem;

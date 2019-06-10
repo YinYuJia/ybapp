@@ -12,7 +12,21 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/ApiUrl':{
-        target: 'http://192.168.1.199:13030',
+        target: 'http://192.168.1.199:13030', // 吴学文
+        changeOrigin: true,
+        pathRewrite:{
+          '^/ApiUrl': ''
+        }
+      },
+      '/ApiUrl1':{
+        target: 'http://192.168.1.96:13030', // 胡伟
+        changeOrigin: true,
+        pathRewrite:{
+          '^/ApiUrl': ''
+        }
+      },
+      '/ApiUrl2':{
+        target: 'http://192.168.1.157:13030', // 魏陈涛
         changeOrigin: true,
         pathRewrite:{
           '^/ApiUrl': ''

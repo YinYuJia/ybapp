@@ -3,15 +3,15 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="back()"></span>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">
-                        基本信息变更
+                    <div class="BackIcon" @click="back()">
+                        <svg-icon icon-class="serveComponent_back" />
+                        <span>返回</span>
                     </div>
                 </el-col>
+                <el-col :span="12">
+                    <div class="NameTitle">参保信息变更</div>
+                </el-col>
                 <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
@@ -40,7 +40,7 @@
         <!-- 底部 -->
         <footer class="Footer">
             <div class="Btn">
-                <div class="ResetBtn">撤销</div>
+                <div class="ResetBtn" @click="backout()">撤销</div>
                 <div class="EditBtn" @click="edit()">编辑</div>
             </div>
         </footer>
@@ -76,20 +76,30 @@ export default {
 <style lang="less" scoped>
 .baseInfoChange{
     .Title {
-        height: 1.2rem;
-        background-color: #05AEF0;
-        font-size: .36rem;
-        line-height: 1.2rem;
-        overflow: hidden;
-        .NameTitle{
-            color: white;
+        height: .8rem;
+        background-color: white;
+        line-height: .8rem;
+        .BackIcon{
+            display: flex;
+            align-items: center;
+            color: #1492FF;
+            font-size: .32rem;
+            .svg-icon{
+                height: .5rem;
+                width: .5rem;
+            }
+        }
+        .NameTitle {
+            color: #000000;
+            letter-spacing: 0;
+            font-size: .36rem;
         }
     }
     .Content{
+        margin-bottom: 1.4rem;
         .ItemInfo{
-            height: 2.4rem;
+            height: 1.86rem;
             width: 7.5rem;
-            background: white;
             padding: 0 .4rem 0 .3rem;
             display: flex;
             justify-content: space-between;
@@ -104,7 +114,7 @@ export default {
             .icon{
                 height: 1.34rem;
                 width: 1.34rem;
-                background:  #8BDFFF;
+                background:  #8BCEFF;
                 border-radius: 1.34rem/2;
                 text-align: center;
                 line-height: 1.34rem;
@@ -119,7 +129,6 @@ export default {
             height: 4rem;
             width: 7.5rem;
             padding: 0 .3rem;
-            margin-top: .15rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;
@@ -168,35 +177,39 @@ export default {
     }
     // 底部
     .Footer {
-        height: 1.2rem;
+        height: 1.31rem;
         width: 7.5rem;
-        background-color: white;
         position: fixed;
         bottom: 0;
         left: 0;
         z-index: 199;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .Btn {
-            height: .8rem;
-            width: 6.9rem;
-            line-height: 0.8rem;
-            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
-            border-radius: .4rem;
-            font-family: PingFangSC-Regular;
-            font-size: .36rem;
-            color: #FFFFFF;
-            letter-spacing: 0;
+        .Btn{
             display: flex;
+            justify-content: space-around;
             .ResetBtn {
+                height: 1.05rem;
                 width: 3.45rem;
-                background: #B6DEFF;
-                border-top-left-radius: .4rem;
-                border-bottom-left-radius: .4rem;
+                border-radius: .05rem;
+                line-height: 1.05rem;
+                background: #F2F2F2;;
+                font-family: PingFangSC-Regular;
+                font-size: .36rem;
+                color: #B4B4B4;
+                letter-spacing: 0;
+                text-align: center;
             }
-            .EditBtn {
+            .EditBtn{
+                height: 1.05rem;
                 width: 3.45rem;
+                border-radius: .05rem;
+                line-height: 1.05rem;
+                background: #F2F2F2;;
+                font-family: PingFangSC-Regular;
+                font-size: .36rem;
+                background: #1492FF;
+                color: #FFF;
+                letter-spacing: 0;
+                text-align: center;
             }
         }
     }

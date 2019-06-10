@@ -1,17 +1,17 @@
 <template>
-    <div class="mendChangeCard">
+    <div class="getProof">
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="backIndex()"></span>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">
-                        社保卡补换
+                    <div class="BackIcon" @click="backIndex()">
+                        <svg-icon icon-class="serveComponent_back" />
+                        <span>返回</span>
                     </div>
                 </el-col>
+                <el-col :span="12">
+                    <div class="NameTitle">社保卡补换</div>
+                </el-col>
                 <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
@@ -21,11 +21,11 @@
             <!-- 领取信息 -->
             <div class="GetInfo">
                 <div class="InfoLine">
-                    <div class="InfoName"><span>补换原因：</span></div>
+                    <div class="InfoName"><span>类型：</span></div>
                     <div class="InfoText">
-                        <el-select v-model="getInfo.getType" placeholder="请选择">
+                        <el-select v-model="form.AAC050" placeholder="请选择">
                             <el-option
-                            v-for="item in getTypes"
+                            v-for="item in AAC050s"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -37,9 +37,9 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>领取方式：</span></div>
                     <div class="InfoText">
-                        <el-select v-model="getInfo.getWay" placeholder="请选择">
+                        <el-select v-model="form.BKA077" placeholder="请选择">
                             <el-option
-                            v-for="item in getWays"
+                            v-for="item in BKA077s"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
@@ -53,25 +53,15 @@
             <div class="MailInfo" v-if="showMail">
                 <div class="InfoLine">
                     <div class="InfoName"><span>收件人：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.name" placeholder="请输入收件人姓名"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE011" placeholder="请输入收件人姓名"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.phone" placeholder="请输入联系人电话号码"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>所在地区：</span></div>
-                    <div class="InfoText">
-                        <el-cascader
-                            :options="optionList"
-                            v-model="form.address1">
-                        </el-cascader>
-                        <i class="el-icon-arrow-right" style="font-size:0.4rem; margin-left:0.23rem"></i>
-                    </div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系人电话号码"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址：</span></div>
-                    <div class="InfoText"><textarea v-model="form.address2"></textarea></div>
+                    <div class="InfoText"><textarea v-model="form.AAE006"></textarea></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -82,8 +72,8 @@
         </div>
         <!-- 按钮 -->
         <footer class="Footer">
-            <div class="Btn" @click="submit()" :class="{'active': canSubmit == true}">
-                确认提交
+            <div class="SubmitBtn" @click="submit" :class="{'active': canSubmit == true}">
+                <span>确认提交</span>
             </div>
         </footer>
     </div>
@@ -98,65 +88,61 @@ export default {
     data(){
         return{
             form:{
-                AAE011: '', //收件人
-                AAE005: '', //联系电话
-                address1: [],
-                address2: ''
+                'AAE011': '', //收件人
+                'AAE005': '', //联系电话
+                'AAE006': '', //地址
+                'AAC050':'', //变更类型
+                'BKA077' :'' ,//领取方式
             },
             canSubmit: false,
             optionList: [], //所有地区
-            getTypes: [
-                {value: 'change',label: '变更'},
-                {value: 'reapply',label: '补办'}
+            AAC050s: [
+                {value: '1',label: '原因1'},
+                {value: '2',label: '原因2'},
+                {value: '3',label: '原因3'}
             ], 
-            getWays: [
-                {value: 'self',label: '自取'},
-                {value: 'mail',label: '邮寄'}
+            BKA077s: [
+                {value: '0',label: '自取'},
+                {value: '1',label: '邮寄'}
             ], 
             getInfo:{
-                getType: '', //领取类型
-                getWay: '' //领取方式
+                AAC050: '', //领取类型
+                BKA077: '' //领取方式
             },
             showMail: false,
         };
     },
     watch:{
         // 监听领取信息
-        getInfo:{
-            handler:function(val){
-                if(val.getType != '' && val.getWay == 'self'){
-                    this.canSubmit = true;
-                    this.showMail = false;
-                }else if(val.getType != '' && val.getWay == 'mail'){
-                    this.canSubmit = false;
-                    this.showMail = true;
-                }else if(val.getType == '' && val.getWay == 'self'){
-                    this.showMail = false;
-                }else if(val.getType == '' && val.getWay == 'mail'){
-                    this.showMail = true;
-                }else{
-                    this.canSubmit = false;
-                    this.showMail = false;
-                }
-            },
-            deep: true
-        },
-        // 监听邮递信息
         form:{
             handler:function(val){
-                if(val.name != '' && val.phone != '' && val.address1 != undefined && val.address2 != ''){
-                    this.canSubmit = true;
-                }else{
+                if(val.AAC050 == '' && val.BKA077 == '0'){
                     this.canSubmit = false;
+                    this.showMail = false;
+                }else if(val.AAC050 == '' && val.BKA077 == '1'){
+                    this.canSubmit = false;
+                    this.showMail = true;
+                }else if(val.AAC050 != '' && val.BKA077 == '0'){
+                    this.canSubmit = true;
+                    this.showMail = false;
+                }else if(val.AAC050 != '' && val.BKA077 == '1'){
+                    this.canSubmit = false;
+                    this.showMail = true;
+                }
+                // 如果需要邮寄
+                if(this.showMail == true){
+                    if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
+                        this.canSubmit = true
+                    }else {
+                        this.canSubmit = false
+                    }
                 }
             },
             deep: true
         },
     },
     created(){
-        this.form = this.$store.state.SET_INSURED_PROOF;
-        this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
-        this.optionList = this.$store.state.SET_SELECTARRAY;
+        // this.form = this.$store.state.SET_INSURED_PROOF;
     },
     methods:{
         backIndex(){
@@ -167,8 +153,28 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
-                this.$store.dispatch('SET_INSURED_PROOF', this.form);
-                this.$router.push("/getDetail");
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name  //用户名
+                    this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard //单子社保卡号
+                }else {
+                    this.form.AAC003 = '殷宇佳'; //用户名
+                    this.form.AAE135 = "113344223344536624"; //单子社保卡号
+                }
+                const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,this.form,'1008')
+                    console.log('parmas------',parmas)
+
+                    this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
+                           console.log('返回成功信息',resData)
+                        //   if (resData.data.code == 0 ) {
+                        //       if ( resData.data.data.enCode == 1000 ) {
+                        //           this.$toast("提交成功");
+                        //           this.$store.dispatch('SET_INSURED_PROOF', this.form);
+                        //           this.$router.push("/getDetail");
+                        //       }
+                        // }
+                    }).catch((error) => {
+                        console.log(error)
+                    })
             }
         },
     }
@@ -176,24 +182,34 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.mendChangeCard{
+.getProof{
     .Title {
-        height: 1.2rem;
-        background-color: #05AEF0;
-        font-size: .36rem;
-        line-height: 1.2rem;
-        overflow: hidden;
-        .NameTitle{
-            color: white;
+        height: .8rem;
+        background-color: white;
+        line-height: .8rem;
+        .BackIcon{
+            display: flex;
+            align-items: center;
+            color: #1492FF;
+            font-size: .32rem;
+            .svg-icon{
+                height: .5rem;
+                width: .5rem;
+            }
+        }
+        .NameTitle {
+            color: #000000;
+            letter-spacing: 0;
+            font-size: .36rem;
         }
     }
     .Content{
         height: 100%;
+        margin-bottom: 1.4rem;
         .GetInfo{
             height: 2.4rem;
             width: 7.5rem;
             padding: 0 .3rem;
-            margin-top: .67rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;
@@ -295,55 +311,54 @@ export default {
             }
         }
     }
-    .Footer{
-        height: 1.2rem;
+    .Footer {
+        height: 1.31rem;
         width: 7.5rem;
-        background: white;
         position: fixed;
         bottom: 0;
         left: 0;
         z-index: 199;
         display: flex;
         justify-content: center;
-        align-items: center;
-        .Btn{
-            height: .8rem;
-            width: 6.9rem;
-            background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
-            border-radius: 40px;
-            text-align: center;
-            line-height: 0.8rem;
+        .SubmitBtn {
+            height: 1.05rem;
+            width: 7.1rem;
+            border-radius: .05rem;
+            line-height: 1.05rem;
+            background: #F2F2F2;;
             font-family: PingFangSC-Regular;
             font-size: .36rem;
-            color: #FFFFFF;
+            color: #B4B4B4;
             letter-spacing: 0;
+            text-align: center;
         }
         .active{
-            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
+            background: #1492FF;
+            color: #FFFFFF;
         }
     }
 }
 </style>
 
 <style>
-.mendChangeCard .el-cascader .el-input__inner{
+.getProof .el-cascader .el-input__inner{
     padding-right: 0;
     text-align: right;
     border: none;
 }
-.mendChangeCard .el-cascader .el-input__suffix{
+.getProof .el-cascader .el-input__suffix{
     display: none;
 }
-.mendChangeCard .el-cascader .el-cascader__label{
+.getProof .el-cascader .el-cascader__label{
     text-align: right;
     padding-right: 0;
 }
-.mendChangeCard .el-select .el-input__inner{
+.getProof .el-select .el-input__inner{
     padding-right: 0;
     text-align: right;
     border: none;
 }
-.mendChangeCard .el-select .el-input__suffix .el-input__suffix-inner{
+.getProof .el-select .el-input__suffix .el-input__suffix-inner{
     display: none;
 }
 </style>

@@ -9,7 +9,7 @@
                     </div>
                 </el-col>
                 <el-col :span="12">
-                    <div class="NameTitle">参保变更</div>
+                    <div class="NameTitle">参保信息变更</div>
                 </el-col>
                 <el-col :span="6">
                 </el-col>
@@ -161,6 +161,7 @@ export default {
     }
     .Content{
         height: 100%;
+        margin-bottom: 1.4rem;
         .ChangeInfo{
             height: 4rem;
             width: 7.5rem;

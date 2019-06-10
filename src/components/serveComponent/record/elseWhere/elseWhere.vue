@@ -216,6 +216,7 @@
             },
             chooseCity(val){
                 this.form.AAE011 = val;
+                console.log(val);
             },
             // 提交
             submit() {
@@ -296,12 +297,11 @@
         }
         .Content {
             height: 100%;
+            margin-bottom: 1.4rem;
             .ReportInfo {
                 height: 10rem;
                 width: 7.5rem;
                 padding: 0 .3rem;
-                margin-top: .67rem;
-                margin-bottom: 1.4rem;
                 background: white;
                 .InfoLine {
                     height: 1.2rem;
