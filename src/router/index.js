@@ -29,6 +29,7 @@ import mendChangeCard from '@/components/serveComponent/others/mendChangeCard/me
 import mendChangeDetail from '@/components/serveComponent/others/mendChangeCard/mendChangeDetail'
 import baseInfoChange from '@/components/serveComponent/others/baseInfoChange/baseInfoChange'
 import baseInfoChangeDetail from '@/components/serveComponent/others/baseInfoChange/baseInfoChangeDetail'
+import smallReim from '@/components/serveComponent/treat/smallReim/smallReim'
 
 
 Vue.use(Router)
@@ -146,6 +147,11 @@ export default new Router({
       path: '/baseInfoChangeDetail',
       name: 'baseInfoChangeDetail',
       component: baseInfoChangeDetail
+    },
+    {
+      path: '/smallReim',
+      name: 'smallReim',
+      component: smallReim
     },
     // // 办事
     // {

@@ -21,8 +21,18 @@
                 <div class="name">领取基本医疗保险就医凭证</div>
                 <div class="icon">收件</div>
             </div>
-            <!-- 邮递信息 -->
-            <div class="MailInfo">
+            <!-- 信息 -->
+            <div class="ReportInfo">
+                <div class="InfoLine">
+                    <div class="InfoName"><span>类型:</span></div>
+                    <div class="InfoText">{{type}}</div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>领取方式:</span></div>
+                    <div class="InfoText">{{mailType}}</div>
+                </div>
+            </div>
+            <div class="MailInfo" v-if="form.BKA077 == '1'">
                 <div class="InfoLine">
                     <div class="InfoName"><span>收件人:</span></div>
                     <div class="InfoText">{{form.AAE011}}</div>
@@ -35,6 +45,10 @@
                     <div class="InfoName"><span>详细地址:</span></div>
                     <div class="InfoText"><textarea v-model="form.AAE006" readonly></textarea></div>
                 </div>
+            </div>
+            <div class="searchPlace" v-if="form.BKA077 == '0'">
+                <div class="searchBtn">点击查看附近可领取的医院网点</div>
+                <div class="searchBtn" v-if="form.AAC050 == '1'">点击查看附近可领取的银行网点</div>
             </div>
         </div>
         <!-- 底部 -->
@@ -51,14 +65,39 @@
 export default {
     data(){
         return{
-            form:this.$store.state.SET_INSURED_PROOF,
+            form: this.$store.state.SET_INSURED_PROOF,
         }
     },
     created(){
-        
+        // 请求参数封装
+        let submitForm = {
+            AGA002: '确认-00122-043',
+            AAC003: '吴学文',
+            AAE135: '333333'
+        };
+        const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
+        this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1009/getRecord', params)
+        .then((resData) => {
+            console.log('返回成功信息',resData);
+        }).catch((error) => {
+            console.log(error);
+        })
     },
     computed:{
-
+        type(){
+            if(this.form.AAC050 == '1'){
+                return '变更';
+            }else if(this.form.AAC050 == '2'){
+                return '补办';
+            }
+        },
+        mailType(){
+            if(this.form.BKA077 == '0'){
+                return '自取';
+            }else if(this.form.BKA077 == '1'){
+                return '邮寄';
+            }
+        }
     },
     methods:{
         back(){
@@ -129,6 +168,41 @@ export default {
                 text-align: center;
             }
         }
+        .ReportInfo{
+            height: 2.4rem;
+            width: 7.5rem;
+            padding: 0 .3rem;
+            background: white;
+            .InfoLine{
+                height: 1.2rem;
+                position: relative;
+                font-family: PingFangSC-Regular;
+                font-size: .28rem;
+                display: flex;
+                border-bottom: .01rem solid #D5D5D5;
+                .InfoName{
+                    width: 1.5rem;
+                    line-height: 1.2rem;
+                    text-align: left;
+                    span{
+                        height: .6rem;
+                        line-height: .6rem;
+                        letter-spacing: 0;
+                        color: #000;
+                    }
+                }
+                .InfoText{
+                    line-height: 1.2rem;
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                    color: #333;
+                }
+                &:last-child{
+                    border-bottom: none;
+                }
+            }
+        }
         .MailInfo{
             height: 4rem;
             width: 7.5rem;
@@ -169,9 +243,23 @@ export default {
                             width: 5rem;
                             line-height: .45rem;
                             color: #333;
+                            padding: 0;
                         }
                     }
                 }
+            }
+        }
+        .searchPlace{
+            width: 7.5rem;
+            .searchBtn{
+                height: .8rem;
+                width: 7rem;
+                margin: auto;
+                margin-top: .16rem;
+                line-height: .8rem;
+                font-size: .32rem;
+                background: #CCC;
+                border-radius: .1rem;
             }
         }
     }
