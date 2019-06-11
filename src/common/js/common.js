@@ -27,6 +27,12 @@ export default {
     ApiUrl:function() {
         return ''
     },
+    ApiUrl1:function() {
+        return ''
+    },
+    ApiUrl2:function() {
+        return ''
+    },
     SaveNativeData( data ) {
       return data
     },
