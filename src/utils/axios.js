@@ -8,11 +8,13 @@ const service = axios.create({
 // axios拦截器
 axios.interceptors.request.use(request => {
     request.headers['Content-Type'] = 'application/json';
+    request.baseURL = process.env.baseURL
+    console.log('request.baseURL环境变量',request.baseURL)
     console.log('请求拦截器',request)
     return request;
 });
-axios.default.baseURL = process.env.baseURL
-console.log('process.env.baseURL环境变量',process.env.baseURL)
+
+
 // 拦截响应
 axios.interceptors.response.use((response) => {
     // token 已过期，重定向到登录页面
