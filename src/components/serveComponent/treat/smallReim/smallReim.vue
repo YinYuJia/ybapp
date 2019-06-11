@@ -161,7 +161,7 @@
                     let params = this.formatSubmitData();
                     // 开始请求
                     console.log('parmas------',params)
-                    this.$axios.post('/ApiUrl/h5/jy1012/addRecord', params).then((resData) => {
+                    this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', params).then((resData) => {
                         console.log('返回成功信息',resData);
                     }).catch((error) => {
                         console.log(error)

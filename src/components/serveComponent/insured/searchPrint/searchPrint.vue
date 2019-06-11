@@ -118,7 +118,7 @@ export default {
                     }
                 }
                 console.log(this.epFn.ApiUrl() + '/h5/jy1014/getInfo');
-                this.$axios.post('/ApiUrl/h5/jy1014/getInfo', parmas)
+                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1014/getInfo', parmas)
                     .then((resData) => {
                         console.log(resData)
                     })
