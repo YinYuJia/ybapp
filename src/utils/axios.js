@@ -11,7 +11,8 @@ axios.interceptors.request.use(request => {
     console.log('请求拦截器',request)
     return request;
 });
-
+axios.default.baseURL = process.env.baseURL
+console.log('process.env.baseURL环境变量',process.env.baseURL)
 // 拦截响应
 axios.interceptors.response.use((response) => {
     // token 已过期，重定向到登录页面
