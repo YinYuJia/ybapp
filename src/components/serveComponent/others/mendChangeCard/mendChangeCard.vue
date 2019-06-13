@@ -157,21 +157,19 @@ export default {
                     this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name  //用户名
                     this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard //单子社保卡号
                 }else {
-                    this.form.AAC003 = '殷宇佳'; //用户名
-                    this.form.AAE135 = "113344223344536624"; //单子社保卡号
+                    this.form.AAC003 = "鲁伟兴"; //用户名
+                    this.form.AAE135 = "330622197407215513"; //单子社保卡号
                 }
                 const parmas = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,this.form,'1008')
                     console.log('parmas------',parmas)
 
-                    this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
+                    this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', parmas).then((resData) => {
                            console.log('返回成功信息',resData)
-                        //   if (resData.data.code == 0 ) {
-                        //       if ( resData.data.data.enCode == 1000 ) {
-                        //           this.$toast("提交成功");
-                        //           this.$store.dispatch('SET_INSURED_PROOF', this.form);
-                        //           this.$router.push("/getDetail");
-                        //       }
-                        // }
+                            if ( resData.enCode == 1000 ) {
+                                this.$toast("提交成功");
+                                this.$store.dispatch('SET_INSURED_PROOF', this.form);
+                                this.$router.push("/getDetail");
+                            }
                     }).catch((error) => {
                         console.log(error)
                     })

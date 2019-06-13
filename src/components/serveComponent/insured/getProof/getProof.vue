@@ -148,20 +148,20 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
-                this.$store.dispatch('SET_INSURED_PROOF',this.form);
-                this.$router.push('/getDetail');
-                // let params = this.formatSubmitData();
-                // console.log('parmas------',params)
-                // this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', params)
-                // .then((resData) => {
-                //     console.log('返回成功信息',resData)
-                //     if(resData.code === '1000'){
-                //         this.$store.dispatch('SET_INSURED_PROOF',this.form);
-                //         this.$router.push('/getDetail');
-                //     }
-                // }).catch((error) => {
-                //     console.log(error)
-                // })
+                // this.$store.dispatch('SET_INSURED_PROOF',this.form);
+                // this.$router.push('/getDetail');
+                let params = this.formatSubmitData();
+                console.log('parmas------',this.epFn.ApiUrl1())
+                this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', params)
+                .then((resData) => {
+                    console.log('返回成功信息',resData)
+                    if(resData.enCode == '1000'){
+                        this.$store.dispatch('SET_INSURED_PROOF',this.form);
+                        this.$router.push('/getDetail');
+                    }
+                }).catch((error) => {
+                    console.log(error)
+                })
             }
         },
         // 提交信息封装

@@ -109,18 +109,29 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
-                // this.$router.push('/insuredDownload');
-                let parmas = {
-                    tradeCode: '1011',
-                    data:{
-                        AAE135: '1212',
-                        AAE091: 4
-                    }
+                let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+                // 加入用户名和电子社保卡号
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    // submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    // submitForm.AAC003 = '鲁伟兴';
+                    submitForm.AAE135 = "330622197407215513";
                 }
-                console.log(this.epFn.ApiUrl() + '/h5/jy1014/getInfo');
-                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1014/getInfo', parmas)
+                // 暂时删除参保地
+                delete submitForm.AAB301
+                
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1011');
+                
+                console.log(this.epFn.ApiUrl1() + '/h5/jy1011/QueryInsurance');
+                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1011/QueryInsurance', params)
                     .then((resData) => {
-                        console.log(resData)
+                        console.log(resData);
+                        
+                        if(resData.enCode==1000){
+                            
+                            this.$router.push('/insuredDownload');
+                        }
                     })
                     .catch((error) => {
                         console.log(error)
