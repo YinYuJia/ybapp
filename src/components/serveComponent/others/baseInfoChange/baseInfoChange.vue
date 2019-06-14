@@ -26,21 +26,17 @@
             </div>
         </div>
         <!-- 按钮 -->
-        <footer class="Footer">
-            <div class="SubmitBtn" @click="submit" :class="{'active': canSubmit == true}">
-                <span>确认提交</span>
-            </div>
-        </footer>
+        <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
     </div>
 </template>
 
 <script>
 import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
+import Footer from '../../common/Footer'
 export default {
     components:{
-        'Title': Title,
-        'userBaseInfo': userBaseInfo
+        Title,userBaseInfo,Footer
     },
     data(){
         return{

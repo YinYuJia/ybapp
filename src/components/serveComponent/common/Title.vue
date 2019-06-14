@@ -9,7 +9,7 @@
                 </div>
             </el-col>
             <el-col :span="12">
-                <div class="NameTitle">领取就医凭证</div>
+                <div class="NameTitle">{{title}}</div>
             </el-col>
             <el-col :span="6">
             </el-col>

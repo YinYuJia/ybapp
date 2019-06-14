@@ -2,6 +2,7 @@
     <div class="getDetail">
         <Title :title="'领取就医凭证'" :backRouter="'/getProof'"></Title>
         <div class="Content">
+            <!-- 办事进度 -->
             <WorkProgress :currentStep="3"></WorkProgress>
             <!-- <WorkProgress :currentStep="3" :progress=arr></WorkProgress> -->
             <!-- 信息 -->
@@ -113,34 +114,6 @@ export default {
 .getDetail{
     .Content{
         margin-bottom: 1.4rem;
-        .ItemInfo{
-            height: 1.86rem;
-            width: 7.5rem;
-            padding: 0 .4rem 0 .3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            .name{
-                opacity: 0.85;
-                font-family: PingFangSC-Medium;
-                font-size: .32rem;
-                color: #000000;
-                letter-spacing: 0;
-            }
-            .icon{
-                height: 1.34rem;
-                width: 1.34rem;
-                background:  #8BCEFF;
-                border-radius: 1.34rem/2;
-                text-align: center;
-                line-height: 1.34rem;
-                font-family: PingFangSC-Regular;
-                font-size: .4rem;
-                color: #FFFFFF;
-                letter-spacing: 0;
-                text-align: center;
-            }
-        }
         .ReportInfo{
             height: 2.4rem;
             width: 7.5rem;

@@ -2,11 +2,8 @@
     <div class="turnDetail">
         <Title :title="'转外就医备案'" :backRouter="'/turnOut'"></Title>
         <div class="Content">
-            <!-- 事项名称 -->
-            <div class="ItemInfo">
-                <div class="name">基本医疗保险参保人员转外就医备案</div>
-                <div class="icon">收件</div>
-            </div>
+            <!-- 办事进度 -->
+            <WorkProgress :currentStep="1"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -32,20 +29,17 @@
             </div>
         </div>
         <!-- 底部 -->
-        <footer class="Footer">
-            <div class="Btn">
-                <div class="ResetBtn" @click="backout()">撤销</div>
-                <div class="EditBtn" @click="edit()">编辑</div>
-            </div>
-        </footer>
+        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
     </div>
 </template>
 
 <script>
 import Title from '../../common/Title'
+import WorkProgress from '../../common/WorkProgress'
+import Footer from '../../common/Footer'
 export default {
     components:{
-        'Title': Title,
+        Title,WorkProgress,Footer
     },
     data() {
       return {
@@ -90,35 +84,6 @@ export default {
 <style lang="less" scoped>
 .turnDetail{
     .Content{
-        .ItemInfo{
-            height: 2.4rem;
-            width: 7.5rem;
-            background: white;
-            padding: 0 .4rem 0 .3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            .name{
-                opacity: 0.85;
-                font-family: PingFangSC-Medium;
-                font-size: .32rem;
-                color: #000000;
-                letter-spacing: 0;
-            }
-            .icon{
-                height: 1.34rem;
-                width: 1.34rem;
-                background:  #8BDFFF;
-                border-radius: 1.34rem/2;
-                text-align: center;
-                line-height: 1.34rem;
-                font-family: PingFangSC-Regular;
-                font-size: .4rem;
-                color: #FFFFFF;
-                letter-spacing: 0;
-                text-align: center;
-            }
-        }
         .MailInfo{
             height: 6rem;
             width: 7.5rem;
@@ -155,44 +120,6 @@ export default {
                 &:last-child{
                     border-bottom: none;
                 }
-            }
-        }
-    }
-    // 底部
-    .Footer {
-        height: 1.31rem;
-        width: 7.5rem;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 199;
-        .Btn{
-            display: flex;
-            justify-content: space-around;
-            .ResetBtn {
-                height: 1.05rem;
-                width: 3.45rem;
-                border-radius: .05rem;
-                line-height: 1.05rem;
-                background: #F2F2F2;;
-                font-family: PingFangSC-Regular;
-                font-size: .36rem;
-                color: #B4B4B4;
-                letter-spacing: 0;
-                text-align: center;
-            }
-            .EditBtn{
-                height: 1.05rem;
-                width: 3.45rem;
-                border-radius: .05rem;
-                line-height: 1.05rem;
-                background: #F2F2F2;;
-                font-family: PingFangSC-Regular;
-                font-size: .36rem;
-                background: #1492FF;
-                color: #FFF;
-                letter-spacing: 0;
-                text-align: center;
             }
         }
     }
