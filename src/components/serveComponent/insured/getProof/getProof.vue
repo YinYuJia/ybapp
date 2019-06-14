@@ -1,16 +1,11 @@
 <template>
     <div class="getProof">
-        <selectCity 
-            :type="3"
-            ref="insuredPicker"
-            @confirm="chooseInsured"
-            >
-        </selectCity>
+        <!-- 标题 -->
         <Title :title="'领取就医凭证'" :backRouter="'/'"></Title>
         <div class="Content">
             <!-- 用户信息 -->
             <userBaseInfo></userBaseInfo>
-            <!-- 领取信息 -->
+            <!-- 列表信息 -->
             <div class="GetInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>类型：</span></div>
@@ -68,11 +63,7 @@
             </div>
         </div>
         <!-- 按钮 -->
-        <footer class="Footer">
-            <div class="SubmitBtn" @click="submit" :class="{'active': canSubmit == true}">
-                <span>确认提交</span>
-            </div>
-        </footer>
+        <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
     </div>
 </template>
 
@@ -80,11 +71,10 @@
 import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
 import selectCity from '../../common/selectCity'
+import Footer from '../../common/Footer'
 export default {
     components:{
-        'Title': Title,
-        'userBaseInfo': userBaseInfo,
-        'selectCity': selectCity,
+        Title,userBaseInfo,selectCity,Footer
     },
     data(){
         return{
@@ -338,32 +328,6 @@ export default {
                 margin-top: .28rem;
                 letter-spacing: 0;
             }
-        }
-    }
-    .Footer {
-        height: 1.31rem;
-        width: 7.5rem;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 199;
-        display: flex;
-        justify-content: center;
-        .SubmitBtn {
-            height: 1.05rem;
-            width: 7.1rem;
-            border-radius: .05rem;
-            line-height: 1.05rem;
-            background: #F2F2F2;;
-            font-family: PingFangSC-Regular;
-            font-size: .36rem;
-            color: #B4B4B4;
-            letter-spacing: 0;
-            text-align: center;
-        }
-        .active{
-            background: #1492FF;
-            color: #FFFFFF;
         }
     }
 }
