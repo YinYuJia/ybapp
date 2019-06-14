@@ -1,4 +1,5 @@
 <template>
+    <!-- 城市选择 -->
     <mt-popup class="cityPicker" v-model="showCityPicker" position="bottom" >
         <mt-picker
             v-if="type=='2'"

@@ -2,11 +2,7 @@
     <div class="getDetail">
         <Title :title="'领取就医凭证'" :backRouter="'/getProof'"></Title>
         <div class="Content">
-            <!-- 事项名称 -->
-            <div class="ItemInfo">
-                <div class="name">领取基本医疗保险就医凭证</div>
-                <div class="icon">收件</div>
-            </div>
+            <WorkProgress :progress="4"></WorkProgress>
             <!-- 信息 -->
             <div class="ReportInfo">
                 <div class="InfoLine">
@@ -49,9 +45,11 @@
 
 <script>
 import Title from '../../common/Title'
+import WorkProgress from '../../common/WorkProgress'
 export default {
     components:{
         'Title': Title,
+        'WorkProgress': WorkProgress,
     },
     data(){
         return{

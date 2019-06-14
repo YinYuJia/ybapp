@@ -1,5 +1,5 @@
 <template>
-    <!-- 基本信息 -->
+    <!-- 用户基本信息 -->
     <div class="UserBaseInfo">
         <div class="UserPhoto"><svg-icon icon-class="serveComponent_userIcon" /></div>
         <div class="UserInfo">
