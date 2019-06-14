@@ -1,20 +1,6 @@
 <template>
     <div class="turnOut">
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <div class="BackIcon" @click="backIndex()">
-                        <svg-icon icon-class="serveComponent_back" />
-                        <span>返回</span>
-                    </div>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">转外就医备案</div>
-                </el-col>
-                <el-col :span="6">
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'转外就医备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <selectCity 
             :type="2"
@@ -85,10 +71,12 @@
 </template>
 
 <script>
+import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
 import selectCity from '../../common/selectCity'
     export default {
         components: {
+            'Title': Title,
             'userBaseInfo': userBaseInfo,
             'selectCity': selectCity,
         },
@@ -130,9 +118,6 @@ import selectCity from '../../common/selectCity'
             },
         },
         methods: {
-            backIndex() {
-                this.$router.push('/');
-            },
             // 选择参保地
             openInsuredPicker(){
                 this.$refs.insuredPicker.open();
@@ -178,26 +163,6 @@ import selectCity from '../../common/selectCity'
 
 <style lang="less" scoped>
 .turnOut {
-    .Title {
-        height: .8rem;
-        background-color: white;
-        line-height: .8rem;
-        .BackIcon{
-            display: flex;
-            align-items: center;
-            color: #1492FF;
-            font-size: .32rem;
-            .svg-icon{
-                height: .5rem;
-                width: .5rem;
-            }
-        }
-        .NameTitle {
-            color: #000000;
-            letter-spacing: 0;
-            font-size: .36rem;
-        }
-    }
     .Content {
         height: 100%;
         .ReportInfo {

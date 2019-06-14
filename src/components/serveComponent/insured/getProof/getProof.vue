@@ -6,21 +6,7 @@
             @confirm="chooseInsured"
             >
         </selectCity>
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <div class="BackIcon" @click="backIndex()">
-                        <svg-icon icon-class="serveComponent_back" />
-                        <span>返回</span>
-                    </div>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">领取就医凭证</div>
-                </el-col>
-                <el-col :span="6">
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'领取就医凭证'" :backRouter="'/'"></Title>
         <div class="Content">
             <!-- 用户信息 -->
             <userBaseInfo></userBaseInfo>
@@ -91,12 +77,14 @@
 </template>
 
 <script>
+import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
 import selectCity from '../../common/selectCity'
 export default {
     components:{
+        'Title': Title,
         'userBaseInfo': userBaseInfo,
-        selectCity
+        'selectCity': selectCity,
     },
     data(){
         return{
@@ -163,7 +151,6 @@ export default {
         }
     },
     created(){
-        
         this.form = this.$store.state.SET_INSURED_PROOF;
         if(!this.form.AAE011){
             this.form.AAE011=this.$store.state.SET_NATIVEMSG.name
@@ -171,9 +158,6 @@ export default {
         console.log('原生参数-----',this.$store.state.SET_NATIVEMSG)
     },
     methods:{
-        backIndex(){
-            this.$router.push('/');
-        },
         submit(){
             if(this.canSubmit == false){
                 this.$toast('信息未填写完整');
@@ -230,26 +214,6 @@ export default {
 
 <style lang="less" scoped>
 .getProof{
-    .Title {
-        height: .8rem;
-        background-color: white;
-        line-height: .8rem;
-        .BackIcon{
-            display: flex;
-            align-items: center;
-            color: #1492FF;
-            font-size: .32rem;
-            .svg-icon{
-                height: .5rem;
-                width: .5rem;
-            }
-        }
-        .NameTitle {
-            color: #000000;
-            letter-spacing: 0;
-            font-size: .36rem;
-        }
-    }
     .Content{
         height: 100%;
         margin-bottom: 1.4rem;

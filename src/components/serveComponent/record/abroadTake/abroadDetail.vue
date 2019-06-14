@@ -1,20 +1,6 @@
 <template>
     <div class="abroadDetail">
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="back()"></span>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">
-                        带药备案
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'领取就医凭证'" :backRouter="'/abroadTake'"></Title>
         <div class="Content">
             <!-- 事项名称 -->
             <div class="ItemInfo">
@@ -56,7 +42,11 @@
 </template>
 
 <script>
+import Title from '../../common/Title'
 export default {
+    components:{
+        'Title': Title,
+    },
     data() {
       return {
         form: {
@@ -77,9 +67,6 @@ export default {
         },
     },
     methods:{
-        back(){
-            this.$router.push("/abroadTake");
-        },
         edit(){
             this.$router.push("/abroadTake");
         },
@@ -90,16 +77,6 @@ export default {
 
 <style lang="less" scoped>
 .abroadDetail{
-    .Title {
-        height: 1.2rem;
-        background-color: #05AEF0;
-        font-size: .36rem;
-        line-height: 1.2rem;
-        overflow: hidden;
-        .NameTitle{
-            color: white;
-        }
-    }
     .Content{
         .ItemInfo{
             height: 2.4rem;

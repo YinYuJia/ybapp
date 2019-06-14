@@ -1,20 +1,6 @@
 <template>
     <div class="turnDetail">
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <div class="BackIcon" @click="back()">
-                        <svg-icon icon-class="serveComponent_back" />
-                        <span>返回</span>
-                    </div>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">转外就医备案</div>
-                </el-col>
-                <el-col :span="6">
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'转外就医备案'" :backRouter="'/turnOut'"></Title>
         <div class="Content">
             <!-- 事项名称 -->
             <div class="ItemInfo">
@@ -56,7 +42,11 @@
 </template>
 
 <script>
+import Title from '../../common/Title'
 export default {
+    components:{
+        'Title': Title,
+    },
     data() {
       return {
         form: {
@@ -99,26 +89,6 @@ export default {
 
 <style lang="less" scoped>
 .turnDetail{
-    .Title {
-        height: .8rem;
-        background-color: white;
-        line-height: .8rem;
-        .BackIcon{
-            display: flex;
-            align-items: center;
-            color: #1492FF;
-            font-size: .32rem;
-            .svg-icon{
-                height: .5rem;
-                width: .5rem;
-            }
-        }
-        .NameTitle {
-            color: #000000;
-            letter-spacing: 0;
-            font-size: .36rem;
-        }
-    }
     .Content{
         .ItemInfo{
             height: 2.4rem;

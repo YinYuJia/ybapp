@@ -1,20 +1,6 @@
 <template>
     <div class="smallReim">
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <div class="BackIcon" @click="backIndex()">
-                        <svg-icon icon-class="serveComponent_back" />
-                        <span>返回</span>
-                    </div>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">零星报销</div>
-                </el-col>
-                <el-col :span="6">
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'零星报销'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <selectCity 
             :type="2"
@@ -76,142 +62,121 @@
 </template>
 
 <script>
-    import userBaseInfo from '../../common/userBaseInfo'
-    import selectCity from '../../common/selectCity'
-    export default {
-        components: {
-            'userBaseInfo': userBaseInfo,
-            'selectCity': selectCity,
-        },
-        data() {
-            return {
-                // 提交信息
-                form: {
-                    AAB301: '', //参保地
-                    ACK264: '', //发票费用总额
-                    number: '', //发票张数
-                    AAE008: '', //收款开户行
-                    AAE009: '', //收款开户名
-                    AAE010: '', //收款银行账号
-                },
-                canSubmit: false,
-            }
-        },
-        created() {
-            this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
-            this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
-            this.optionList = this.$store.state.SET_SELECTARRAY;
-            console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
-            this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
-            this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-        },
-        watch: {
+import Title from '../../common/Title'
+import userBaseInfo from '../../common/userBaseInfo'
+import selectCity from '../../common/selectCity'
+export default {
+    components: {
+        'Title': Title,
+        'userBaseInfo': userBaseInfo,
+        'selectCity': selectCity,
+    },
+    data() {
+        return {
+            // 提交信息
             form: {
-                handler: function(val) {
-                    // 判断不为空
-                    if (val.AAB301 != '' && val.ACK264 != '' && val.number != '' && val.AAE008 != '' && val.AAE009 != '' && val.AAE010 != '') {
-                        this.canSubmit = true;
-                    } else {
-                        this.canSubmit = false;
-                    }
-                },
-                deep: true
+                AAB301: '', //参保地
+                ACK264: '', //发票费用总额
+                number: '', //发票张数
+                AAE008: '', //收款开户行
+                AAE009: '', //收款开户名
+                AAE010: '', //收款银行账号
             },
-        },
-        methods: {
-            backIndex() {
-                this.$router.push('/');
-            },
-            // 选择参保地
-            openInsuredPicker(){
-                this.$refs.insuredPicker.open();
-            },
-            chooseInsured(val){
-                this.form.AAB301 = val;
-            },
-            // 选择照片
-            chooseImg(){
-                document.getElementById('img-file').click();
-            },
-            // 自动上传
-            uploadImg: function(){
-                var data = document.getElementById("img-form");
-                var imgInput = document.getElementById("img-file");
-                if(imgInput.value == '' || imgInput.value == null){
-                    return false;
-                }
-                var formData = new FormData(data);
-                console.log(data);
-                // 上传的函数
-                // axios.post('/apis/mdse/uploadPhoto/'+this.barCode,formData)
-                //     .then((res)=>{
-                //     }).catch((err) => {
-                //         this.$toast("上传失败，请联系管理员","warning",2000);
-                //     });
-            },
-            // 提交
-            submit() {
-                if (this.canSubmit == false) {
-                    this.$toast('信息未填写完整');
-                    return false;
+            canSubmit: false,
+        }
+    },
+    created() {
+        this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
+        this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
+        this.optionList = this.$store.state.SET_SELECTARRAY;
+        console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
+        this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
+        this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+    },
+    watch: {
+        form: {
+            handler: function(val) {
+                // 判断不为空
+                if (val.AAB301 != '' && val.ACK264 != '' && val.number != '' && val.AAE008 != '' && val.AAE009 != '' && val.AAE010 != '') {
+                    this.canSubmit = true;
                 } else {
-                    this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
-
-                    // 封装数据
-                    let params = this.formatSubmitData();
-                    // 开始请求
-                    console.log('parmas------',params)
-                    this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', params).then((resData) => {
-                        console.log('返回成功信息',resData);
-                    }).catch((error) => {
-                        console.log(error)
-                    })
-                    
+                    this.canSubmit = false;
                 }
             },
-            formatSubmitData(){
-                let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
-                // 日期传换成Number
-                submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
-                submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
-                // 加入用户名和电子社保卡号
-                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-                }else {
-                    submitForm.AAC003 = '殷宇佳';
-                    submitForm.AAE135 = "113344223344536624";
-                }
-                // 请求参数封装
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012);
-                return params;
+            deep: true
+        },
+    },
+    methods: {
+        // 选择参保地
+        openInsuredPicker(){
+            this.$refs.insuredPicker.open();
+        },
+        chooseInsured(val){
+            this.form.AAB301 = val;
+        },
+        // 选择照片
+        chooseImg(){
+            document.getElementById('img-file').click();
+        },
+        // 自动上传
+        uploadImg: function(){
+            var data = document.getElementById("img-form");
+            var imgInput = document.getElementById("img-file");
+            if(imgInput.value == '' || imgInput.value == null){
+                return false;
             }
+            var formData = new FormData(data);
+            console.log(data);
+            // 上传的函数
+            // axios.post('/apis/mdse/uploadPhoto/'+this.barCode,formData)
+            //     .then((res)=>{
+            //     }).catch((err) => {
+            //         this.$toast("上传失败，请联系管理员","warning",2000);
+            //     });
+        },
+        // 提交
+        submit() {
+            if (this.canSubmit == false) {
+                this.$toast('信息未填写完整');
+                return false;
+            } else {
+                this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
+
+                // 封装数据
+                let params = this.formatSubmitData();
+                // 开始请求
+                console.log('parmas------',params)
+                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', params).then((resData) => {
+                    console.log('返回成功信息',resData);
+                }).catch((error) => {
+                    console.log(error)
+                })
+                
+            }
+        },
+        formatSubmitData(){
+            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            // 日期传换成Number
+            submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
+            submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012);
+            return params;
         }
     }
+}
 </script>
 
 <style lang="less" scoped>
 .smallReim {
-    .Title {
-        height: .8rem;
-        background-color: white;
-        line-height: .8rem;
-        .BackIcon{
-            display: flex;
-            align-items: center;
-            color: #1492FF;
-            font-size: .32rem;
-            .svg-icon{
-                height: .5rem;
-                width: .5rem;
-            }
-        }
-        .NameTitle {
-            color: #000000;
-            letter-spacing: 0;
-            font-size: .36rem;
-        }
-    }
     .Content {
         height: 100%;
         margin-bottom: 1.4rem;

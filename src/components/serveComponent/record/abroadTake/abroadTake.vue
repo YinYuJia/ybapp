@@ -1,20 +1,6 @@
 <template>
     <div class="abroadTake">
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="backIndex()"></span>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">
-                        带药备案
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'带药备案'" :backRouter="'/'"></Title>
         <div class="Content">
             <!-- 基本信息 -->
             <userBaseInfo></userBaseInfo>
@@ -65,9 +51,11 @@
 </template>
 
 <script>
+import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
     export default {
         components: {
+            'Title': Title,
             'userBaseInfo': userBaseInfo
         },
         data() {
@@ -105,9 +93,6 @@ import userBaseInfo from '../../common/userBaseInfo'
             },
         },
         methods: {
-            backIndex() {
-                this.$router.push('/');
-            },
             submit() {
                 if (this.canSubmit == false) {
                     this.$toast('信息未填写完整');
@@ -129,16 +114,6 @@ import userBaseInfo from '../../common/userBaseInfo'
 
 <style lang="less" scoped>
 .abroadTake {
-    .Title {
-        height: 1.2rem;
-        background-color: #05AEF0;
-        font-size: .36rem;
-        line-height: 1.2rem;
-        overflow: hidden;
-        .NameTitle {
-            color: white;
-        }
-    }
     .Content {
         height: 100%;
         .ReportInfo {

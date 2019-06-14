@@ -1,20 +1,6 @@
 <template>
     <div class="elseWhere">
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <div class="BackIcon" @click="backIndex()">
-                        <svg-icon icon-class="serveComponent_back" />
-                        <span>返回</span>
-                    </div>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">异地就医备案</div>
-                </el-col>
-                <el-col :span="6">
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'异地就医备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <mt-datetime-picker
             type="date"
@@ -105,206 +91,185 @@
 </template>
 
 <script>
-    import userBaseInfo from '../../common/userBaseInfo'
-    import selectCity from '../../common/selectCity'
-    export default {
-        components: {
-            'userBaseInfo': userBaseInfo,
-            'selectCity': selectCity,
-        },
-        data() {
-            return {
-                // 提交信息
-                form: {
-                    AAB301: '', //参保地
-                    AAE030: '', //离杭日期
-                    AAE031: '', //回杭日期
-                    AAE011: '', //申请地市
-                    AAE006: '', //详细地址 
-                    ACK030: '', //申请原因
-                    AAE004: '', //联系人
-                    AAE005: '', //联系电话
-                },
-                optionList: [], //存放城市数据
-                canSubmit: false,
-                dateVal: new Date(), //默认绑定的时间
-                reportReason: [{
-                        value: '退休异地安置',
-                        label: '退休异地安置'
-                    },
-                    {
-                        value: '在职驻外工作学习',
-                        label: '在职驻外工作学习'
-                    },
-                    {
-                        value: '异地探亲',
-                        label: '异地探亲'
-                    },
-                    {
-                        value: '异地生育',
-                        label: '异地生育'
-                    },
-                    {
-                        value: '子女统筹异地学习/抚养',
-                        label: '子女统筹异地学习/抚养'
-                    },
-                ],
-            }
-        },
-        created() {
-            this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
-            this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
-            this.optionList = this.$store.state.SET_SELECTARRAY;
-            console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
-            this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
-            this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-        },
-        watch: {
+import Title from '../../common/Title'
+import userBaseInfo from '../../common/userBaseInfo'
+import selectCity from '../../common/selectCity'
+export default {
+    components: {
+        'Title': Title,
+        'userBaseInfo': userBaseInfo,
+        'selectCity': selectCity,
+    },
+    data() {
+        return {
+            // 提交信息
             form: {
-                handler: function(val) {
-                    // 判断不为空
-                    if (val.AAB301 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != '' && val.AAE006 != '' && val.ACK030 != '' && val.AAE004 != '' && val.AAE005 != '') {
-                        this.canSubmit = true;
-                    } else {
-                        this.canSubmit = false;
-                    }
-                    // 判断时间间隔
-                    if (val.AAE030 != '' && val.AAE031 != '') {
-                        let AAE030 = new Date(val.AAE030);
-                        let AAE031 = new Date(val.AAE031);
-                        let month = 24 * 3600 * 1000 * 30;
-                        let gap = AAE031 - AAE030;
-                        if (gap < month) {
-                            this.$toast('备案时间至少一个月');
-                            this.form.AAE031 = '';
-                        }
-                    }
+                AAB301: '', //参保地
+                AAE030: '', //离杭日期
+                AAE031: '', //回杭日期
+                AAE011: '', //申请地市
+                AAE006: '', //详细地址 
+                ACK030: '', //申请原因
+                AAE004: '', //联系人
+                AAE005: '', //联系电话
+            },
+            optionList: [], //存放城市数据
+            canSubmit: false,
+            dateVal: new Date(), //默认绑定的时间
+            reportReason: [{
+                    value: '退休异地安置',
+                    label: '退休异地安置'
                 },
-                deep: true
-            },
-        },
-        methods: {
-            backIndex() {
-                this.$router.push('/');
-            },
-            // 选择参保地
-            openInsuredPicker(){
-                this.$refs.insuredPicker.open();
-            },
-            chooseInsured(val){
-                this.form.AAB301 = val;
-            },
-            // 选择离开日期
-            openStartPicker(){
-                this.$refs.startPicker.open();
-            },
-            handleStartConfirm(val){
-                let date = this.util.formatDate(val,'yyyy-MM-dd');
-                this.form.AAE030 = date;
-            },
-            // 选择回杭日期
-            openEndPicker(){
-                this.$refs.endPicker.open();
-            },
-            handleEndConfirm(val){
-                let date = this.util.formatDate(val,'yyyy-MM-dd');
-                this.form.AAE031 = date;
-            },
-            // 选择申请地市
-            openCityPicker(){
-                this.$refs.cityPicker.open();
-            },
-            chooseCity(val){
-                this.form.AAE011 = val;
-                console.log(val);
-            },
-            // 提交
-            submit() {
-                if (this.canSubmit == false) {
-                    this.$toast('信息未填写完整');
-                    return false;
+                {
+                    value: '在职驻外工作学习',
+                    label: '在职驻外工作学习'
+                },
+                {
+                    value: '异地探亲',
+                    label: '异地探亲'
+                },
+                {
+                    value: '异地生育',
+                    label: '异地生育'
+                },
+                {
+                    value: '子女统筹异地学习/抚养',
+                    label: '子女统筹异地学习/抚养'
+                },
+            ],
+        }
+    },
+    created() {
+        this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
+        this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
+        this.optionList = this.$store.state.SET_SELECTARRAY;
+        console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
+        this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
+        this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+    },
+    watch: {
+        form: {
+            handler: function(val) {
+                // 判断不为空
+                if (val.AAB301 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != '' && val.AAE006 != '' && val.ACK030 != '' && val.AAE004 != '' && val.AAE005 != '') {
+                    this.canSubmit = true;
                 } else {
-                    this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
-
-                    // 封装数据
-                    let params = this.formatSubmitData();
-                    // 开始请求
-                    console.log('parmas------',params)
-                    this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', params).then((resData) => {
-                           console.log('返回成功信息',resData)
-                          if (resData.data.code == 0 ) {
-                            //   成功   1000
-                              if ( resData.data.data.enCode == 1000 ) {
-                                  this.$toast("提交成功");
-                                  this.$router.push("/elseDetail");
-                              }else if (resData.data.data.enCode == 1001 ) {
-                                //   失败  1001
-                                  this.$toast(resData.data.data.msg);
-                                  return;
-                              }else{
-                                  this.$toast('业务出错');
-                                  return;
-                              }
-                        }else if(resData.data.code == -1 ){
-                            // 系统异常
-                            this.$toast("系统异常");
-                            return;
-                        }else if (resData.data.code == 1 ) {
-                            // 业务异常
-                            if ( resData.data.data.enCode !== 1000 ) {
-                               this.$toast(resData.data.data.msg);
-                            }
-                            return;
-                        }
-                    }).catch((error) => {
-                        console.log(error)
-                    })
-                    
+                    this.canSubmit = false;
+                }
+                // 判断时间间隔
+                if (val.AAE030 != '' && val.AAE031 != '') {
+                    let AAE030 = new Date(val.AAE030);
+                    let AAE031 = new Date(val.AAE031);
+                    let month = 24 * 3600 * 1000 * 30;
+                    let gap = AAE031 - AAE030;
+                    if (gap < month) {
+                        this.$toast('备案时间至少一个月');
+                        this.form.AAE031 = '';
+                    }
                 }
             },
-            formatSubmitData(){
-                let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
-                // 日期传换成Number
-                submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
-                submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
-                // 加入用户名和电子社保卡号
-                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-                }else {
-                    submitForm.AAC003 = '殷宇佳';
-                    submitForm.AAE135 = "113344223344536624";
-                }
-                // 请求参数封装
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012);
-                return params;
+            deep: true
+        },
+    },
+    methods: {
+        // 选择参保地
+        openInsuredPicker(){
+            this.$refs.insuredPicker.open();
+        },
+        chooseInsured(val){
+            this.form.AAB301 = val;
+        },
+        // 选择离开日期
+        openStartPicker(){
+            this.$refs.startPicker.open();
+        },
+        handleStartConfirm(val){
+            let date = this.util.formatDate(val,'yyyy-MM-dd');
+            this.form.AAE030 = date;
+        },
+        // 选择回杭日期
+        openEndPicker(){
+            this.$refs.endPicker.open();
+        },
+        handleEndConfirm(val){
+            let date = this.util.formatDate(val,'yyyy-MM-dd');
+            this.form.AAE031 = date;
+        },
+        // 选择申请地市
+        openCityPicker(){
+            this.$refs.cityPicker.open();
+        },
+        chooseCity(val){
+            this.form.AAE011 = val;
+            console.log(val);
+        },
+        // 提交
+        submit() {
+            if (this.canSubmit == false) {
+                this.$toast('信息未填写完整');
+                return false;
+            } else {
+                this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
+
+                // 封装数据
+                let params = this.formatSubmitData();
+                // 开始请求
+                console.log('parmas------',params)
+                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', params).then((resData) => {
+                        console.log('返回成功信息',resData)
+                        if (resData.data.code == 0 ) {
+                        //   成功   1000
+                            if ( resData.data.data.enCode == 1000 ) {
+                                this.$toast("提交成功");
+                                this.$router.push("/elseDetail");
+                            }else if (resData.data.data.enCode == 1001 ) {
+                            //   失败  1001
+                                this.$toast(resData.data.data.msg);
+                                return;
+                            }else{
+                                this.$toast('业务出错');
+                                return;
+                            }
+                    }else if(resData.data.code == -1 ){
+                        // 系统异常
+                        this.$toast("系统异常");
+                        return;
+                    }else if (resData.data.code == 1 ) {
+                        // 业务异常
+                        if ( resData.data.data.enCode !== 1000 ) {
+                            this.$toast(resData.data.data.msg);
+                        }
+                        return;
+                    }
+                }).catch((error) => {
+                    console.log(error)
+                })
+                
             }
+        },
+        formatSubmitData(){
+            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            // 日期传换成Number
+            submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
+            submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012);
+            return params;
         }
     }
+}
 </script>
 
 <style lang="less" scoped>
 .elseWhere {
-    .Title {
-        height: .8rem;
-        background-color: white;
-        line-height: .8rem;
-        .BackIcon{
-            display: flex;
-            align-items: center;
-            color: #1492FF;
-            font-size: .32rem;
-            .svg-icon{
-                height: .5rem;
-                width: .5rem;
-            }
-        }
-        .NameTitle {
-            color: #000000;
-            letter-spacing: 0;
-            font-size: .36rem;
-        }
-    }
     .Content {
         height: 100%;
         margin-bottom: 1.4rem;

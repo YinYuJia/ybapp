@@ -1,20 +1,6 @@
 <template>
     <div class="baseInfoChange">
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <div class="BackIcon" @click="back()">
-                        <svg-icon icon-class="serveComponent_back" />
-                        <span>返回</span>
-                    </div>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">参保信息变更</div>
-                </el-col>
-                <el-col :span="6">
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'人员基本信息变更'" :backRouter="'/baseInfoChange'"></Title>
         <div class="Content">
             <!-- 事项名称 -->
             <div class="ItemInfo">
@@ -48,7 +34,11 @@
 </template>
 
 <script>
+import Title from '../../common/Title'
 export default {
+    components:{
+        'Title': Title,
+    },
     data() {
       return {
         form: {
@@ -62,9 +52,6 @@ export default {
         this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
     },
     methods:{
-        back(){
-            this.$router.push("/baseInfoChange");
-        },
         edit(){
             this.$router.push("/baseInfoChange");
         },
@@ -75,26 +62,6 @@ export default {
 
 <style lang="less" scoped>
 .baseInfoChange{
-    .Title {
-        height: .8rem;
-        background-color: white;
-        line-height: .8rem;
-        .BackIcon{
-            display: flex;
-            align-items: center;
-            color: #1492FF;
-            font-size: .32rem;
-            .svg-icon{
-                height: .5rem;
-                width: .5rem;
-            }
-        }
-        .NameTitle {
-            color: #000000;
-            letter-spacing: 0;
-            font-size: .36rem;
-        }
-    }
     .Content{
         margin-bottom: 1.4rem;
         .ItemInfo{

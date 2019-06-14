@@ -1,20 +1,6 @@
 <template>
     <div class="download">
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="back()"></span>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">
-                        打印参保证明
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'打印参保证明'" :backRouter="'/searchPrint'"></Title>
         <!-- 按钮 -->
         <footer class="Btn active" @click="search()">
             下载PDF
@@ -23,11 +9,13 @@
 </template>
 
 <script>
+import Title from '../../common/Title'
 export default {
+    components:{
+        'Title': Title,
+    },
     methods:{
-        back(){
-            this.$router.push('/searchPrint')
-        }
+        
     }
 }
 </script>

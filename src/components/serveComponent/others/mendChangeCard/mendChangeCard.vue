@@ -1,20 +1,6 @@
 <template>
     <div class="getProof">
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <div class="BackIcon" @click="backIndex()">
-                        <svg-icon icon-class="serveComponent_back" />
-                        <span>返回</span>
-                    </div>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">社保卡补换</div>
-                </el-col>
-                <el-col :span="6">
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'领取就医凭证'" :backRouter="'/'"></Title>
         <div class="Content">
             <!-- 用户信息 -->
             <userBaseInfo></userBaseInfo>
@@ -80,9 +66,11 @@
 </template>
 
 <script>
+import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
 export default {
     components:{
+        'Title': Title,
         'userBaseInfo': userBaseInfo
     },
     data(){

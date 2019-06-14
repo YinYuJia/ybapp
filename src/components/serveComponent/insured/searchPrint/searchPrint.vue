@@ -8,21 +8,7 @@
             >
         </selectCity>
         <!-- 弹出框结束 -->
-        <div class="Title">
-            <el-row>
-                <el-col :span="6">
-                    <div class="BackIcon" @click="backIndex()">
-                        <svg-icon icon-class="serveComponent_back" />
-                        <span>返回</span>
-                    </div>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">打印参保证明</div>
-                </el-col>
-                <el-col :span="6">
-                </el-col>
-            </el-row>
-        </div>
+        <Title :title="'打印参保证明'" :backRouter="'/'"></Title>
         <div class="Content">
             <!-- 基本信息 -->
             <userBaseInfo></userBaseInfo>
@@ -60,10 +46,12 @@
 </template>
 
 <script>
+import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
 import selectCity from '../../common/selectCity'
 export default {
     components:{
+        'Title': Title,
         'userBaseInfo': userBaseInfo,
         'selectCity': selectCity,
     },
@@ -95,9 +83,6 @@ export default {
         }
     },
     methods:{
-        backIndex(){
-            this.$router.push('/');
-        },
         openInsuredPicker(){
             this.$refs.insuredPicker.open();
         },
@@ -143,27 +128,6 @@ export default {
 
 <style lang="less" scoped>
 .searchPrint{
-    color: #666;
-    .Title {
-        height: .8rem;
-        background-color: white;
-        line-height: .8rem;
-        .BackIcon{
-            display: flex;
-            align-items: center;
-            color: #1492FF;
-            font-size: .32rem;
-            .svg-icon{
-                height: .5rem;
-                width: .5rem;
-            }
-        }
-        .NameTitle {
-            color: #000000;
-            letter-spacing: 0;
-            font-size: .36rem;
-        }
-    }
     .Content{
         height: 100%;
         margin-bottom: 1.4rem;
