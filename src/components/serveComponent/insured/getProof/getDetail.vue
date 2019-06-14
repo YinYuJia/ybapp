@@ -65,11 +65,15 @@
 export default {
     data(){
         return{
-            form: this.$store.state.SET_INSURED_PROOF,
+            form: {}
         }
     },
     created(){
         // 请求参数封装
+        console.log();
+        this.form = this.$store.state.SET_INSURED_PROOF
+        console.log(this.form,"成功参数");
+        
         let submitForm = {
             AGA002: '确认-00122-043',
             AAC003: '吴学文',
@@ -78,9 +82,9 @@ export default {
         const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
         this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1009/getRecord', params)
         .then((resData) => {
-            console.log('返回成功信息',resData);
+            // console.log('返回成功信息',resData);
         }).catch((error) => {
-            console.log(error);
+            // console.log(error);
         })
     },
     computed:{

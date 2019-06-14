@@ -1,5 +1,11 @@
 <template>
     <div class="getProof">
+        <selectCity 
+            :type="3"
+            ref="insuredPicker"
+            @confirm="chooseInsured"
+            >
+        </selectCity>
         <div class="Title">
             <el-row>
                 <el-col :span="6">
@@ -23,7 +29,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>类型：</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.AAC050" placeholder="请选择">
+                        <el-select v-model="form.AAC050" placeholder="请选择类型">
                             <el-option
                             v-for="item in AAC050s"
                             :key="item.value"
@@ -37,7 +43,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>领取方式：</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.BKA077" placeholder="请选择">
+                        <el-select v-model="form.BKA077" placeholder="请选择领取方式">
                             <el-option
                             v-for="item in BKA077s"
                             :key="item.value"
@@ -61,7 +67,12 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址：</span></div>
-                    <div class="InfoText"><textarea v-model="form.AAE006"></textarea></div>
+                    <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="address" placeholder="请选择地址" readonly></div>
+                </div>
+                <div class="InfoLine InfoLineAdress" style="" >
+                    <!-- <div class="InfoName"><span></span></div> -->
+                    <textarea v-model="form.AAE006"></textarea>
+                    <!-- <div class="InfoText"></div> -->
                 </div>
             </div>
             <!-- 提示 -->
@@ -81,9 +92,11 @@
 
 <script>
 import userBaseInfo from '../../common/userBaseInfo'
+import selectCity from '../../common/selectCity'
 export default {
     components:{
-        'userBaseInfo': userBaseInfo
+        'userBaseInfo': userBaseInfo,
+        selectCity
     },
     data(){
         return{
@@ -94,6 +107,7 @@ export default {
                 'AAC050':'', //变更类型
                 'BKA077' :'' ,//领取方式
             },
+            address:"",
             canSubmit: false,
             optionList: [], //所有地区
             AAC050s: [
@@ -125,8 +139,9 @@ export default {
                     this.showMail = true;
                 }
                 // 如果需要邮寄
+
                 if(this.showMail == true){
-                    if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
+                    if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && this.address!='' && val.AAC050 != '' && val.BKA077 != '') {
                         this.canSubmit = true
                     }else {
                         this.canSubmit = false
@@ -135,9 +150,25 @@ export default {
             },
             deep: true
         },
+        address(){
+            // 如果需要邮寄
+
+            if(this.showMail == true){
+                if ( this.form.AAE011 != '' && this.form.AAE005 != '' && this.form.AAE006 != '' && this.address!='' && this.form.AAC050 != '' && this.form.BKA077 != '') {
+                    this.canSubmit = true
+                }else {
+                    this.canSubmit = false
+                }
+            }
+        }
     },
     created(){
+        
         this.form = this.$store.state.SET_INSURED_PROOF;
+        if(!this.form.AAE011){
+            this.form.AAE011=this.$store.state.SET_NATIVEMSG.name
+        }
+        console.log('原生参数-----',this.$store.state.SET_NATIVEMSG)
     },
     methods:{
         backIndex(){
@@ -148,25 +179,39 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
-                this.$store.dispatch('SET_INSURED_PROOF',this.form);
+                let params = this.formatSubmitData();
+                console.log(params,'1111111111111');
+                this.$store.dispatch('SET_INSURED_PROOF',params.submitForm);
+                console.log(this.$store.state.SET_INSURED_PROOF,"请求接口");
                 this.$router.push('/getDetail');
-                // let params = this.formatSubmitData();
-                // console.log('parmas------',params)
-                // this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', params)
-                // .then((resData) => {
-                //     console.log('返回成功信息',resData)
-                //     if(resData.code === '1000'){
-                //         this.$store.dispatch('SET_INSURED_PROOF',this.form);
-                //         this.$router.push('/getDetail');
-                //     }
-                // }).catch((error) => {
-                //     console.log(error)
-                // })
+                // console.log('parmas------',this.epFn.ApiUrl1())
+                this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', params.params)
+                .then((resData) => {
+                    console.log('返回成功信息',resData)
+                    if(resData.enCode == '1000'){
+                        this.$store.dispatch('SET_INSURED_PROOF',params.submitForm);
+                        this.$router.push('/getDetail');
+                    }
+                }).catch((error) => {
+                    console.log(error)
+                })
             }
+        },
+        chooseInsured(val){
+            this.address = val
+        },
+        openInsuredPicker(){
+            this.$refs.insuredPicker.open();
         },
         // 提交信息封装
         formatSubmitData(){
-            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            let submitForm = Object.assign({}, this.form)
+            // let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            // 拼接地址
+            submitForm.AAE006 = this.address + submitForm.AAE006
+            console.log(this.form,'this.form');
+            console.log(submitForm,'submitForm');
+            
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
@@ -177,7 +222,7 @@ export default {
             }
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1008');
-            return params;
+            return {params,submitForm};
         }
     }
 }
@@ -231,6 +276,14 @@ export default {
                     line-height: 1.2rem;
                     display: flex;
                     align-items: center;
+                }
+            }
+            .InfoLineAdress{
+                border:1px solid #ccc;
+                width:100%;
+                margin-top:-1px;
+                textarea{
+                    width: 100%;
                 }
             }
         }
@@ -290,6 +343,16 @@ export default {
                         line-height: .42rem;
                         text-align: right;
                     }
+                }
+            }
+            .InfoLineAdress{
+                border:1px solid #ccc;
+                border-bottom:1px solid #ccc!important;
+                width:100%;
+                margin-top:-1px;
+                textarea{
+                    width: 100%;
+                    text-align: left !important;
                 }
             }
         }
