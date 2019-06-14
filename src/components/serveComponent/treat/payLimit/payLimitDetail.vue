@@ -1,5 +1,5 @@
 <template>
-    <div class="elseDetail">
+    <div class="payLimitDetail">
         <Title :title="'领取就医凭证'" :backRouter="'/elseWhere'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
@@ -7,36 +7,20 @@
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
-                    <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.AAB301}}</div>
+                    <div class="InfoName"><span>视作缴费年限:</span></div>
+                    <div class="InfoText">{{form.AKC412}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>拟离杭日期:</span></div>
-                    <div class="InfoText">{{form.AAE030}}</div>
+                    <div class="InfoName"><span>缴费月数:</span></div>
+                    <div class="InfoText">{{form.BAC213}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>回杭日期:</span></div>
-                    <div class="InfoText">{{form.AAE031}}</div>
+                    <div class="InfoName"><span>退休工资:</span></div>
+                    <div class="InfoText">{{form.AAE041}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>省市信息:</span></div>
-                    <div class="InfoText">{{form.AAE011}}</div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>详细地址:</span></div>
-                    <div class="InfoText"><textarea v-model="form.AAE006" readonly></textarea></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>申请原因:</span></div>
-                    <div class="InfoText">{{form.ACK030}}</div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>联系人:</span></div>
-                    <div class="InfoText">{{form.AAE004}}</div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>联系电话:</span></div>
-                    <div class="InfoText">{{form.AAE005}}</div>
+                    <div class="InfoName"><span>提前退休类别:</span></div>
+                    <div class="InfoText">{{form.BKE810}}</div>
                 </div>
             </div>
         </div>
@@ -56,23 +40,16 @@ export default {
     data() {
         return {
             form: {
-                AAB301: '', //参保地
-                AAE030: '', //离杭日期
-                AAE031: '', //回杭日期
-                AAE011: '', //申请地市
-                AAE006: '', //详细地址 
-                ACK030: '', //申请原因
-                AAE004: '', //联系人
-                AAE005: '', //联系电话
+                AKC412: '', //视作缴费年限
+                BAC213: '', //缴费月数
+                AAE041: '', //退休工资
+                BKE810: '', //提前退休类别
             },
         }
     },
-    created(){
-        this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
-    },
     methods:{
         edit(){
-            this.$router.push("/elseWhere");
+            this.$router.push("/payLimit");
         },
         // 撤销提醒
         backout(){
@@ -86,10 +63,10 @@ export default {
 
 
 <style lang="less" scoped>
-.elseDetail{
+.payLimitDetail{
     .Content{
         .MailInfo{
-            height: 10rem;
+            height: 4.8rem;
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;
@@ -103,7 +80,7 @@ export default {
                 display: flex;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName{
-                    width: 1.8rem;
+                    width: 2rem;
                     opacity: 0.45;
                     line-height: 1.2rem;
                     text-align: left;
@@ -121,18 +98,6 @@ export default {
                     display: flex;
                     position: relative;
                     align-items: center;
-                }
-                &:nth-child(5){
-                    height: 1.6rem;
-                    .InfoText{
-                        height: 1.6rem;
-                        textarea{
-                            border: none;
-                            opacity: 0.85;
-                            width: 5rem;
-                            line-height: .45rem;
-                        }
-                    }
                 }
                 &:last-child{
                     border-bottom: none;

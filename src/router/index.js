@@ -30,7 +30,8 @@ import mendChangeDetail from '@/components/serveComponent/others/mendChangeCard/
 import baseInfoChange from '@/components/serveComponent/others/baseInfoChange/baseInfoChange'
 import baseInfoChangeDetail from '@/components/serveComponent/others/baseInfoChange/baseInfoChangeDetail'
 import smallReim from '@/components/serveComponent/treat/smallReim/smallReim'
-
+import payLimit from '@/components/serveComponent/treat/payLimit/payLimit'
+import payLimitDetail from '@/components/serveComponent/treat/payLimit/payLimitDetail'
 
 Vue.use(Router)
 
@@ -153,6 +154,16 @@ export default new Router({
       name: 'smallReim',
       component: smallReim
     },
+    {
+      path: '/payLimit',
+      name: 'payLimit',
+      component: payLimit
+    },
+    {
+      path: '/payLimitDetail',
+      name: 'payLimitDetail',
+      component: payLimitDetail
+    }
     // // 办事
     // {
     //   path: '/Work',

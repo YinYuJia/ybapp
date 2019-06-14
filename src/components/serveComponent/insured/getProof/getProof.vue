@@ -2,6 +2,14 @@
     <div class="getProof">
         <!-- 标题 -->
         <Title :title="'领取就医凭证'" :backRouter="'/'"></Title>
+        <!-- MintUI弹出区域 -->
+        <selectCity 
+            :type="3"
+            ref="cityPicker"
+            @confirm="chooseCity"
+            >
+        </selectCity>
+        <!-- 弹出区域结束 -->
         <div class="Content">
             <!-- 用户信息 -->
             <userBaseInfo></userBaseInfo>
@@ -47,13 +55,16 @@
                     <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系人电话号码"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>详细地址：</span></div>
-                    <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="address" placeholder="请选择地址" readonly></div>
+                    <div class="InfoName"><span>省市信息</span></div>
+                    <div class="InfoText">
+                         <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAE011" placeholder="请选择" readonly></div>
+                    </div>
                 </div>
-                <div class="InfoLine InfoLineAdress" style="" >
-                    <!-- <div class="InfoName"><span></span></div> -->
-                    <textarea v-model="form.AAE006"></textarea>
-                    <!-- <div class="InfoText"></div> -->
+                <div class="InfoLine">
+                    <div class="InfoName"><span>详细地址</span></div>
+                    <div class="InfoText">
+                        <textarea v-model="form.AAE006" placeholder="请输入详细地址"></textarea>
+                    </div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -79,11 +90,12 @@ export default {
     data(){
         return{
             form:{
-                'AAE011': '', //收件人
-                'AAE005': '', //联系电话
-                'AAE006': '', //地址
-                'AAC050':'', //变更类型
-                'BKA077' :'' ,//领取方式
+                AAE011: '', //收件人
+                AAE005: '', //联系电话
+                AAE011: '', //省市信息
+                AAE006: '', //详细地址
+                AAC050:'', //变更类型
+                BKA077 :'' ,//领取方式
             },
             address:"",
             canSubmit: false,
@@ -117,7 +129,6 @@ export default {
                     this.showMail = true;
                 }
                 // 如果需要邮寄
-
                 if(this.showMail == true){
                     if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && this.address!='' && val.AAC050 != '' && val.BKA077 != '') {
                         this.canSubmit = true
@@ -128,17 +139,6 @@ export default {
             },
             deep: true
         },
-        address(){
-            // 如果需要邮寄
-
-            if(this.showMail == true){
-                if ( this.form.AAE011 != '' && this.form.AAE005 != '' && this.form.AAE006 != '' && this.address!='' && this.form.AAC050 != '' && this.form.BKA077 != '') {
-                    this.canSubmit = true
-                }else {
-                    this.canSubmit = false
-                }
-            }
-        }
     },
     created(){
         this.form = this.$store.state.SET_INSURED_PROOF;
@@ -148,6 +148,14 @@ export default {
         console.log('原生参数-----',this.$store.state.SET_NATIVEMSG)
     },
     methods:{
+        // 选择申请地市
+        openCityPicker(){
+            this.$refs.cityPicker.open();
+        },
+        chooseCity(val){
+            this.form.AAE011 = val;
+            console.log(val);
+        },
         submit(){
             if(this.canSubmit == false){
                 this.$toast('信息未填写完整');
@@ -230,14 +238,6 @@ export default {
                     line-height: 1.2rem;
                     display: flex;
                     align-items: center;
-                }
-            }
-            .InfoLineAdress{
-                border:1px solid #ccc;
-                width:100%;
-                margin-top:-1px;
-                textarea{
-                    width: 100%;
                 }
             }
         }
