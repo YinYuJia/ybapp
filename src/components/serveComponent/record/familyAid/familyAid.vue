@@ -101,7 +101,8 @@ import userBaseInfo from '../../common/userBaseInfo'
         },
         created() {
             this.form = this.$store.state.SET_FAMILYAID_OPERATION;
-            this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
+            
+            // this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
             this.optionList = this.$store.state.SET_SELECTARRAY;
             this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
             this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;

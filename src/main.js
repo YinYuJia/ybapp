@@ -52,6 +52,9 @@ Vue.prototype.epFn = epFn
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false;
 
+// ### 对象的深拷贝
+// this.menuFrom = Object.assign({}, res.data.result.sysFunction)
+
 // 获取Android参数
 // created(){
 //   window.getAndroid = this.getAndroid;
