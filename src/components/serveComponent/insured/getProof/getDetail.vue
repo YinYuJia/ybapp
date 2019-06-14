@@ -2,7 +2,7 @@
     <div class="getDetail">
         <Title :title="'领取就医凭证'" :backRouter="'/getProof'"></Title>
         <div class="Content">
-            <WorkProgress :progress="4"></WorkProgress>
+            <WorkProgress :currentStep="4"></WorkProgress>
             <!-- 信息 -->
             <div class="ReportInfo">
                 <div class="InfoLine">
