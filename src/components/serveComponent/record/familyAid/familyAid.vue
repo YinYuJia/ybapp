@@ -3,18 +3,32 @@
         <div class="Title">
             <el-row>
                 <el-col :span="6">
-                    <span class="el-icon-arrow-left" style="color: #ffffff;font-size: .38rem;margin-left: -50px;" @click="backIndex()"></span>
-                </el-col>
-                <el-col :span="12">
-                    <div class="NameTitle">
-                        家庭共济备案
+                    <div class="BackIcon" @click="backIndex()">
+                        <svg-icon icon-class="serveComponent_back" />
+                        <span>返回</span>
                     </div>
                 </el-col>
+                <el-col :span="12">
+                    <div class="NameTitle">家庭共济备案</div>
+                </el-col>
                 <el-col :span="6">
-                    <span class="el-icon-bell" style="color: #ffffff;font-size: .50rem;margin-right: -.4rem;margin-top:.35rem"></span>
                 </el-col>
             </el-row>
         </div>
+        <!-- MintUI弹出框区域 -->
+        <selectCity 
+            :type="2"
+            ref="insuredPicker"
+            @confirm="chooseInsured"
+            >
+        </selectCity>
+        <mt-datetime-picker
+            type="date"
+            ref="startPicker"
+            v-model="dateVal"
+            @confirm="handleStartConfirm">
+        </mt-datetime-picker>
+        <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
             <userBaseInfo></userBaseInfo>
@@ -23,8 +37,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                        <el-cascader :options="optionList" v-model="form.canbao">
-                        </el-cascader>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -51,16 +64,15 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期</span></div>
                     <div class="InfoText">
-                        <el-date-picker v-model="form.start" type="date" placeholder="请选择" value-format="yyyy-MM-dd" :editable="false">
-                        </el-date-picker>
+                        <div class="InfoText"><input @click="openStartPicker" type="text" v-model="form.start" placeholder="请选择" readonly></div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- 按钮 -->
         <footer class="Footer">
-            <div class="Btn" @click="submit()" :class="{'active': canSubmit == true}">
-                确认提交
+            <div class="SubmitBtn" @click="submit" :class="{'active': canSubmit == true}">
+                <span>确认提交</span>
             </div>
         </footer>
     </div>
@@ -68,21 +80,24 @@
 
 <script>
 import userBaseInfo from '../../common/userBaseInfo'
+import selectCity from '../../common/selectCity'
     export default {
         components: {
-            'userBaseInfo': userBaseInfo
+            'userBaseInfo': userBaseInfo,
+            'selectCity': selectCity,
         },
         data() {
             return {
                 dddddd: "1111",
                 form: {
-                    canbao: [], //参保地
+                    AAB301: '', //参保地
                     name: '', //享受人姓名
                     idNo: '', //享受人身份证
                     relation: '',//绑定关系
                     start: '', //开始日期
                 },
                 optionList: [], //存放城市数据
+                dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
                 relationList: [{
                         value: '配偶',
@@ -100,9 +115,7 @@ import userBaseInfo from '../../common/userBaseInfo'
             }
         },
         created() {
-            this.form = this.$store.state.SET_FAMILYAID_OPERATION;
-            this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
-            this.optionList = this.$store.state.SET_SELECTARRAY;
+            // this.form = this.$store.state.SET_FAMILYAID_OPERATION;
             this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
             this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
         },
@@ -122,6 +135,21 @@ import userBaseInfo from '../../common/userBaseInfo'
         methods: {
             backIndex() {
                 this.$router.push('/');
+            },
+            // 选择参保地
+            openInsuredPicker(){
+                this.$refs.insuredPicker.open();
+            },
+            chooseInsured(val){
+                this.form.AAB301 = val;
+            },
+            // 选择开始日期
+            openStartPicker(){
+                this.$refs.startPicker.open();
+            },
+            handleStartConfirm(val){
+                let date = this.util.formatDate(val,'yyyy-MM-dd');
+                this.form.start = date;
             },
             submit() {
                 if (this.canSubmit == false) {
@@ -145,13 +173,23 @@ import userBaseInfo from '../../common/userBaseInfo'
 <style lang="less" scoped>
 .familyAid {
     .Title {
-        height: 1.2rem;
-        background-color: #05AEF0;
-        font-size: .36rem;
-        line-height: 1.2rem;
-        overflow: hidden;
+        height: .8rem;
+        background-color: white;
+        line-height: .8rem;
+        .BackIcon{
+            display: flex;
+            align-items: center;
+            color: #1492FF;
+            font-size: .32rem;
+            .svg-icon{
+                height: .5rem;
+                width: .5rem;
+            }
+        }
         .NameTitle {
-            color: white;
+            color: #000000;
+            letter-spacing: 0;
+            font-size: .36rem;
         }
     }
     .Content {
@@ -160,7 +198,6 @@ import userBaseInfo from '../../common/userBaseInfo'
             height: 6rem;
             width: 7.5rem;
             padding: 0 .3rem;
-            margin-top: .67rem;
             background: white;
             .InfoLine {
                 height: 1.2rem;
@@ -204,31 +241,43 @@ import userBaseInfo from '../../common/userBaseInfo'
         }
     }
     .Footer {
-        height: 1.2rem;
+        height: 1.31rem;
         width: 7.5rem;
-        background: white;
         position: fixed;
         bottom: 0;
         left: 0;
         z-index: 199;
         display: flex;
         justify-content: center;
-        align-items: center;
-        .Btn {
-            height: .8rem;
-            width: 6.9rem;
-            background-image: linear-gradient(-90deg, rgb(142, 214, 253) 0%, rgb(173, 201, 255) 100%);
-            border-radius: 40px;
-            text-align: center;
-            line-height: 0.8rem;
+        .SubmitBtn {
+            height: 1.05rem;
+            width: 7.1rem;
+            border-radius: .05rem;
+            line-height: 1.05rem;
+            background: #F2F2F2;;
             font-family: PingFangSC-Regular;
             font-size: .36rem;
-            color: #FFFFFF;
+            color: #B4B4B4;
             letter-spacing: 0;
+            text-align: center;
         }
-        .active {
-            background-image: linear-gradient(-90deg, #35B8FD 0%, #4E8DFF 100%);
+        .active{
+            background: #1492FF;
+            color: #FFFFFF;
         }
     }
+}
+</style>
+
+<style>
+.familyAid .el-input__prefix,
+.el-input__suffix {
+    display: none;
+}
+.familyAid .el-input__inner {
+    border: none;
+    text-align: right;
+    padding-right: 0;
+    padding-left: 0;
 }
 </style>
