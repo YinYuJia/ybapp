@@ -72,22 +72,20 @@ export default {
         // this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
         let params=this.formatSubmitData();
         this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1009/getRecord', params).then((resData) => {
-                
-                console.log('返回成功信息',resData)
-                //   成功   1000
-                    if ( resData.enCode == 1000 ) {  
-                        console.log(11111)
-                        this.$toast("提交成功");
-                        this.$router.push("/elseDetail");
-                    }else if (resData.enCode == 1001 ) {
-                    //   失败  1001
-                        this.$toast(resData.msg);
-                        return;
-                    }else{
-                        this.$toast('业务出错');
-                        return;
-                    }
-            
+            console.log('返回成功信息',resData)
+            //   成功   1000
+            if ( resData.enCode == 1000 ) {  
+                console.log(11111)
+                this.$toast("提交成功");
+                this.$router.push("/elseDetail");
+            }else if (resData.enCode == 1001 ) {
+            //   失败  1001
+                this.$toast(resData.msg);
+                return;
+            }else{
+                this.$toast('业务出错');
+                return;
+            }
         })
 
     },
@@ -100,14 +98,6 @@ export default {
         edit(){
             this.$router.push("/elseWhere");
         },
-<<<<<<< HEAD
-        // 撤销提醒
-        backout(){
-            this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$toast("撤销请求");
-            });
-        },
-=======
             formatSubmitData(){
                 let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
                 console.log(submitForm)
@@ -138,8 +128,6 @@ export default {
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
                 return params;
             }
-
->>>>>>> cdb3d374803ef3fc6a7da40f662d7fdd2b7ed77a
     }
 }
 </script>
