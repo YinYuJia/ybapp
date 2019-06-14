@@ -8,23 +8,23 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{canbaocity}}</div>
+                    <div class="InfoText">{{form.AAB301}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>享受人姓名:</span></div>
-                    <div class="InfoText">{{form.name}}</div>
+                    <div class="InfoName"><span>被授权人姓名:</span></div>
+                    <div class="InfoText">{{form.BAC003}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>享受人身份证:</span></div>
-                    <div class="InfoText">{{form.idNo}}</div>
+                    <div class="InfoName"><span>被授权人身份证:</span></div>
+                    <div class="InfoText">{{form.BAC002}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>绑定关系:</span></div>
-                    <div class="InfoText">{{form.relation}}</div>
+                    <div class="InfoText">{{form.AAE144}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期:</span></div>
-                    <div class="InfoText">{{form.start}}</div>
+                    <div class="InfoText">{{form.AAE030}}</div>
                 </div>
             </div>
         </div>
@@ -44,21 +44,16 @@ export default {
     data() {
       return {
         form: {
-            canbao: [], //参保地
-            name: '', //享受人姓名
-            idNo: '', //享受人身份证
-            relation: '',//绑定关系
-            start: '', //开始日期
+            AAB301: '', //参保地
+            BAC003: '', //被授权人姓名
+            BAC002: '', //被授权人身份证
+            AAE144: '',//绑定关系
+            AAE030: '', //开始日期
         },
       }
     },
     created(){
         this.form = this.$store.state.SET_FAMILYAID_OPERATION;
-    },
-    computed:{
-        canbaocity: function(){
-            return this.form.canbao.join(' ');
-        },
     },
     methods:{
         edit(){
@@ -92,7 +87,7 @@ export default {
                 display: flex;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName{
-                    width: 2rem;
+                    width: 2.5rem;
                     opacity: 0.45;
                     line-height: 1.2rem;
                     text-align: left;

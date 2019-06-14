@@ -8,23 +8,27 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{canbaocity}}</div>
+                    <div class="InfoText">{{form.AAB301}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期:</span></div>
                     <div class="InfoText">{{form.start}}</div>
                 </div>
                 <div class="InfoLine">
+                    <div class="InfoName"><span>结束日期:</span></div>
+                    <div class="InfoText">{{form.end}}</div>
+                </div>
+                <div class="InfoLine">
                     <div class="InfoName"><span>转往地市:</span></div>
-                    <div class="InfoText">{{address}}</div>
+                    <div class="InfoText">{{form.AAB301}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称:</span></div>
-                    <div class="InfoText">{{form.treatName}}</div>
+                    <div class="InfoText">{{form.AKA121}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊疗程:</span></div>
-                    <div class="InfoText">{{form.treatment}}</div>
+                    <div class="InfoText">{{form.BKE255}}</div>
                 </div>
             </div>
         </div>
@@ -44,11 +48,12 @@ export default {
     data() {
       return {
         form: {
-            canbao: [], //参保地
+            AAB301: '', //参保地
             start: '', //开始日期
-            city: [], //省市信息，提交时需要转成String
-            treatName: '',//疾病名称
-            treatment: '', //就诊疗程
+            end: '', //结束日期
+            AAB301: '', //转往地市
+            AKA121: '',//疾病名称
+            BKE255: '', //就诊疗程
         },
       }
     },
@@ -85,7 +90,7 @@ export default {
 .turnDetail{
     .Content{
         .MailInfo{
-            height: 6rem;
+            height: 7.2rem;
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;
