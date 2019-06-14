@@ -65,7 +65,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请原因</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.ACK030" placeholder="请选择">
+                        <el-select v-model="form.AKC030" placeholder="请选择">
                             <el-option v-for="item in reportReason" :key="item.value" :label="item.label" :value="item.value">
                             </el-option>
                         </el-select>
@@ -104,7 +104,7 @@ export default {
                 AAE031: '', //回杭日期
                 AAE011: '', //申请地市
                 AAE006: '', //详细地址 
-                ACK030: '', //申请原因
+                AKC030: '', //申请原因
                 AAE004: '', //联系人
                 AAE005: '', //联系电话
             },
@@ -146,7 +146,7 @@ export default {
         form: {
             handler: function(val) {
                 // 判断不为空
-                if (val.AAB301 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != '' && val.AAE006 != '' && val.ACK030 != '' && val.AAE004 != '' && val.AAE005 != '') {
+                if (val.AAB301 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != '' && val.AAE006 != '' && val.AKC030 != '' && val.AAE004 != '' && val.AAE005 != '') {
                     this.canSubmit = true;
                 } else {
                     this.canSubmit = false;
@@ -212,32 +212,19 @@ export default {
                 console.log('parmas------',params)
                 this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', params).then((resData) => {
                         console.log('返回成功信息',resData)
-                        if (resData.data.code == 0 ) {
                         //   成功   1000
-                            if ( resData.data.data.enCode == 1000 ) {
+                            if ( resData.enCode == 1000 ) {
                                 this.$toast("提交成功");
                                 this.$router.push("/elseDetail");
-                            }else if (resData.data.data.enCode == 1001 ) {
+                            }else if (resData.enCode == 1001 ) {
                             //   失败  1001
-                                this.$toast(resData.data.data.msg);
+                                this.$toast(resData.msg);
                                 return;
                             }else{
                                 this.$toast('业务出错');
                                 return;
                             }
-                    }else if(resData.data.code == -1 ){
-                        // 系统异常
-                        this.$toast("系统异常");
-                        return;
-                    }else if (resData.data.code == 1 ) {
-                        // 业务异常
-                        if ( resData.data.data.enCode !== 1000 ) {
-                            this.$toast(resData.data.data.msg);
-                        }
-                        return;
-                    }
-                }).catch((error) => {
-                    console.log(error)
+                    
                 })
                 
             }
@@ -247,6 +234,13 @@ export default {
             // 日期传换成Number
             submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
             submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
+            
+            submitForm.AAE011 =  "460400";
+            submitForm.AAE004 =  this.form.AAE004;
+            submitForm.AKC030 =  this.form.AKC030;
+            submitForm.AAE006 =  this.form.AAE006;
+            submitForm.AAE005 =  this.form.AAE005;
+            submitForm.AAB301 =  "460400";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
@@ -256,7 +250,7 @@ export default {
                 submitForm.AAE135 = "113344223344536624";
             }
             // 请求参数封装
-            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012);
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1012");
             return params;
         }
     }

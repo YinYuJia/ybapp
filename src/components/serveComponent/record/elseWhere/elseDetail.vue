@@ -28,7 +28,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请原因:</span></div>
-                    <div class="InfoText">{{form.ACK030}}</div>
+                    <div class="InfoText">{{form.AKC030}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系人:</span></div>
@@ -54,32 +54,92 @@ export default {
         Title,WorkProgress,Footer
     },
     data() {
-        return {
-            form: {
-                AAB301: '', //参保地
-                AAE030: '', //离杭日期
-                AAE031: '', //回杭日期
-                AAE011: '', //申请地市
-                AAE006: '', //详细地址 
-                ACK030: '', //申请原因
-                AAE004: '', //联系人
-                AAE005: '', //联系电话
-            },
-        }
+      return {
+        form: {
+            // AAE030: '', //离杭日期
+            // AAE031: '', //回杭日期
+            // AAE011: [], //省市信息，提交时需要转成String
+            // AAE006: '', //详细地址 
+            // AKC030: '', //申请原因
+            // AAE004: '', //联系人
+            // AAE005: '', //联系电话
+            AGA002:'',
+        },
+      }
     },
     created(){
-        this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
+        
+        // this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
+        let params=this.formatSubmitData();
+        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1009/getRecord', params).then((resData) => {
+                
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                    if ( resData.enCode == 1000 ) {  
+                        console.log(11111)
+                        this.$toast("提交成功");
+                        this.$router.push("/elseDetail");
+                    }else if (resData.enCode == 1001 ) {
+                    //   失败  1001
+                        this.$toast(resData.msg);
+                        return;
+                    }else{
+                        this.$toast('业务出错');
+                        return;
+                    }
+            
+        })
+
+    },
+    computed:{
+        // address: function(){
+        //     return this.form.AAE011.join(' ');
+        // }
     },
     methods:{
         edit(){
             this.$router.push("/elseWhere");
         },
+<<<<<<< HEAD
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
                 this.$toast("撤销请求");
             });
         },
+=======
+            formatSubmitData(){
+                let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+                console.log(submitForm)
+                // 日期传换成Number
+                // submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
+                // submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
+                // submitForm.AAE011 =  "460400";
+                // submitForm.AAE004 =  this.form.AAE004;
+                // submitForm.AKC030 =  this.form.AKC030;
+                // submitForm.AAE006 =  this.form.AAE006;
+                // submitForm.AAE005 =  this.form.AAE005;
+                // submitForm.AAB301 =  "460400";
+                submitForm.AGA002 =  "确认-00253-013";
+
+
+
+
+                // 加入用户名和电子社保卡号
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    submitForm.AAC003 = '胡';
+                    submitForm.AAE135 = "113344223344536624";
+                }
+                
+                // 请求参数封装
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+                return params;
+            }
+
+>>>>>>> cdb3d374803ef3fc6a7da40f662d7fdd2b7ed77a
     }
 }
 </script>
