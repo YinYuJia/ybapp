@@ -39,7 +39,7 @@ export default {
     },
     created(){
         // 获取VUEX信息
-
+        // this.smallReimForm = Object.assign({}, res.data.result.sysFunction);
     },
     methods:{
         chooseHospital(code,name){
