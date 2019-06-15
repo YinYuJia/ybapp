@@ -12,11 +12,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码:</span></div>
-                    <div class="InfoText">{{form.AAE011}}</div>
+                    <div class="InfoText">{{form.AAE005}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>邮政编码:</span></div>
-                    <div class="InfoText">{{form.AAE005}}</div>
+                    <div class="InfoText">{{form.AAE007}}</div>
                 </div>
             </div>
         </div>
@@ -44,6 +44,23 @@ export default {
     },
     created(){
         this.form = this.$store.state.SET_INSURED_CHANGE;
+        let params=this.formatSubmitData();
+        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1009/getRecord', params).then((resData) => {
+            console.log('返回成功信息',resData)
+            //   成功   1000
+            if ( resData.enCode == 1000 ) {  
+                console.log(11111)
+                this.$toast("提交成功");
+                this.$router.push("/elseDetail");
+            }else if (resData.enCode == 1001 ) {
+            //   失败  1001
+                this.$toast(resData.msg);
+                return;
+            }else{
+                this.$toast('业务出错');
+                return;
+            }
+        })
     },
     methods:{
         back(){
@@ -57,6 +74,22 @@ export default {
                 this.$toast("撤销请求");
             });
         },
+        formatSubmitData(){
+            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            console.log(submitForm)
+            submitForm.AGA002 =  "确认-00253-013";
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        }
     }
 }
 </script>

@@ -56,20 +56,20 @@ export default {
     data() {
       return {
         form: {
-            // AAE030: '', //离杭日期
-            // AAE031: '', //回杭日期
-            // AAE011: [], //省市信息，提交时需要转成String
-            // AAE006: '', //详细地址 
-            // AKC030: '', //申请原因
-            // AAE004: '', //联系人
-            // AAE005: '', //联系电话
+            AAE030: '', //离杭日期
+            AAE031: '', //回杭日期
+            AAE011: [], //省市信息，提交时需要转成String
+            AAE006: '', //详细地址 
+            AKC030: '', //申请原因
+            AAE004: '', //联系人
+            AAE005: '', //联系电话
             AGA002:'',
         },
       }
     },
     created(){
         
-        // this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
+        this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
         let params=this.formatSubmitData();
         this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1009/getRecord', params).then((resData) => {
             console.log('返回成功信息',resData)
@@ -98,36 +98,23 @@ export default {
         edit(){
             this.$router.push("/elseWhere");
         },
-            formatSubmitData(){
-                let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
-                console.log(submitForm)
-                // 日期传换成Number
-                // submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
-                // submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
-                // submitForm.AAE011 =  "460400";
-                // submitForm.AAE004 =  this.form.AAE004;
-                // submitForm.AKC030 =  this.form.AKC030;
-                // submitForm.AAE006 =  this.form.AAE006;
-                // submitForm.AAE005 =  this.form.AAE005;
-                // submitForm.AAB301 =  "460400";
+        formatSubmitData(){
+            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-013";
-
-
-
-
-                // 加入用户名和电子社保卡号
-                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-                }else {
-                    submitForm.AAC003 = '胡';
-                    submitForm.AAE135 = "113344223344536624";
-                }
-                
-                // 请求参数封装
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
-                return params;
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
             }
+            
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        }
     }
 }
 </script>

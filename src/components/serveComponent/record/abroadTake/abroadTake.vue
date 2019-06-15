@@ -84,6 +84,24 @@ import Footer from '../../common/Footer'
                 canSubmit: false,
             }
         },
+        created () {
+                this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
+                this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
+                this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;  
+        },
+        watch: {
+            form: {
+                handler: function(val) {
+                    // 判断不为空
+                    if (val.AAB301 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' ) {
+                        this.canSubmit = true;
+                    } else {
+                        this.canSubmit = false;
+                    }
+                },
+                deep: true
+            },
+        },
         methods: {
             // 选择参保地
             openInsuredPicker(){
@@ -109,8 +127,55 @@ import Footer from '../../common/Footer'
                 this.form.AAE031 = date;
             },
             submit() {
-                this.$router.push('/abroadDetail');
-            },
+            if (this.canSubmit == false) {
+                this.$toast('信息未填写完整');
+                return false;
+            } else {
+                this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
+
+                // 封装数据
+                let params = this.formatSubmitData();
+                // 开始请求
+                console.log('parmas------',params)
+                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', params).then((resData) => {
+                        console.log('返回成功信息',resData)
+                        //   成功   1000
+                            if ( resData.enCode == 1000 ) {
+                                this.$toast("提交成功");
+                                this.$router.push("/abroadDetail");
+                            }else if (resData.enCode == 1001 ) {
+                            //   失败  1001
+                                this.$toast(resData.msg);
+                                return;
+                            }else{
+                                this.$toast('业务出错');
+                                return;
+                            }
+                })
+                
+            }
+        },
+        formatSubmitData(){
+            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            // 日期传换成Number
+            submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
+            submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
+            
+            submitForm.AAB301 =  this.form.AAB301;
+            submitForm.AKB020 =  this.form.AKB020;
+            submitForm.BKE260 =  this.form.BKE260;
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1012");
+            return params;
+        }
         }
     }
 </script>

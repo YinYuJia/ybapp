@@ -8,23 +8,23 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{canbaocity}}</div>
+                    <div class="InfoText">{{form.AAB301}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>出境日期:</span></div>
-                    <div class="InfoText">{{form.start}}</div>
+                    <div class="InfoText">{{form.AAE030}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>拟回国日期:</span></div>
-                    <div class="InfoText">{{form.end}}</div>
+                    <div class="InfoText">{{form.AAE031}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>取药机构:</span></div>
-                    <div class="InfoText">{{form.organize}}</div>
+                    <div class="InfoText">{{form.AKB020}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>护照号码:</span></div>
-                    <div class="InfoText">{{form.passport}}</div>
+                    <div class="InfoText">{{form.BKE260}}</div>
                 </div>
             </div>
         </div>
@@ -44,11 +44,11 @@ export default {
     data() {
       return {
         form: {
-            canbao: [], //参保地
-            start: '', //出境日期
-            end: '', //拟回国日期
-            organize: '',//取药机构
-            passport: '', //护照号码
+            AAB301: [], //参保地
+            AAE030: '', //出境日期
+            AAE031: '', //拟回国日期
+            AKB020: '',//取药机构
+            BKE260: '', //护照号码
         },
       }
     },
