@@ -14,6 +14,7 @@
         <div v-if="info == 4">
             {{question}}
         </div>
+        <div>{{name|tuoMin(0,2)}}</div>
     </div>
 </template>
 
@@ -32,6 +33,7 @@
                 policy: '', //政策解读
                 CaseAnalysis: '',//案例分析
                 question: '', //常见问题
+                name:"殷宇佳"
             }
         },
         created() {
@@ -39,6 +41,7 @@
             console.log(this.epFn.IndexList())
             this.clist = this.epFn.IndexList().data[0].clist;
             this.resData = this.epFn.IndexList().data
+            console.log(1111)
         },
         mounted() {},
         watch: {

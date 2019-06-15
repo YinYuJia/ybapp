@@ -65,6 +65,27 @@
             'BusinessGuide': BusinessGuide,
         },
         created() {
+            console.log(dd)
+                // dd.ready({
+                //     developer: 'daip@dtdream.com',
+                //     usage: [
+                //     'dd.biz.navigation.setTitle',
+                //     ],
+                //     remark: '描述业务场景'
+                // }, function() {
+                //     dd.biz.navigation.setTitle({
+                //         title: '1111111111111111111',
+                //         onSuccess: function(data) {},
+                //         onFail: function(error) {}
+                //     })
+                // })
+                
+                // dd.biz.navigation.setTitle({
+                //         title: '1111111111111111111',
+                //         onSuccess: function(data) {},
+                //         onFail: function(error) {}
+                //     })
+
             // 方法暴露给原生native方法
             window.getAndroid = this.getAndroid
             var u = navigator.userAgent;

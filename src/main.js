@@ -11,8 +11,12 @@ import epFn from './common/js/common.js';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 
+import { MessageBox } from 'mint-ui';
+
 import axios from 'axios'// 使用axios请求
 import './utils/axios.js' //拦截器配置
+
+import * as filters from "./utils/filter"
 
 
 // import Icon from 'vue-svg-icon/Icon.vue';
@@ -51,6 +55,9 @@ Vue.use(ElementUI)
 Vue.prototype.epFn = epFn
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false;
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 // ### 对象的深拷贝
 // this.menuFrom = Object.assign({}, res.data.result.sysFunction)
@@ -103,6 +110,93 @@ Vue.config.productionTip = false;
 // var u = navigator.userAgent;
 // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 // var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+function  paramStr(name){
+  var url = window.location.href || window.location.hash
+  console.log('url当前地址',url)
+  var after = url.split("?")[1];
+  if (after) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = after.match(reg);
+    if (r != null) {
+      var a = '8afac8196b0b9ab2016b46f1c6e36c4e-ticket#/';
+      var str1 = decodeURIComponent(r[2])
+          var str = ''
+          if (str1.substr(str1.length-2,2) == '#/' ) {
+              str = str1.substr(0,str1.length-2)
+              return str
+          }else{
+            return decodeURIComponent(r[2])
+          }
+    } else {
+      return null;
+    }
+  }
+}
+
+// router.beforeEach((to, from, next) => {
+  
+//   const code = 'ybzdpycyysxzsb';
+//   const pwd = 'ybzdpycyysxzbpwd';
+//       var ticket = paramStr("ticket") || "8afac0cc6ac672af016b4beac17d55f9-ticket";
+//        console.log('ticket-------------',ticket)
+//        var token = sessionStorage.getItem("getToken")
+//        console.log('token-------------',token)
+//           if ( token != "" && token != undefined && token != null) {
+//             axios.post("/userInfo" , {
+//               "token":token
+//               }).then(result1=>{
+//                     console.log('result1',result1)
+//               })
+//           }else{
+//             if (ticket != "" && ticket != undefined && ticket != null) {
+//                      // http://192.168.200.130:80 光耀地址
+//                     //  http://192.168.200.130:7777
+//                     axios.post("/ticketInfo" , {
+//                       "st":ticket
+//                     }).then(result0 => {
+//                       console.log('result0',result0)
+//                       console.log('result-typeof--获取',typeof result0.result)
+                     
+//                       if ( result0.result == "0") {
+//                         sessionStorage.setItem("getToken",result0.token)
+//                         console.log(sessionStorage.getItem("getToken"))
+//                       }else{
+//                         MessageBox.alert(result0.errmsg);
+//                         console.log("return前面")
+//                         // return;
+//                       }
+                      
+//                       axios.post("/userInfo" , {
+//                         "token":result0.token
+//                         }).then(result1=>{
+                        
+//                               console.log('result1',result1)
+
+//                         })
+//                     });
+//             } else {
+//               console.log("授权侵入")
+//               window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode="+ code + "&goto=" + window.location.href;
+//             }
+//           }
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 new Vue({
   el: '#app',
   store,
