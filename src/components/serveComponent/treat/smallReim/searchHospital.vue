@@ -39,11 +39,15 @@ export default {
     },
     created(){
         // 获取VUEX信息
-        // this.smallReimForm = Object.assign({}, res.data.result.sysFunction);
+        this.smallReimForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM));
+        // this.smallReimForm = this.$store.state.SET_SMALL_REIM;
     },
     methods:{
         chooseHospital(code,name){
-            
+            this.smallReimForm.hospitalCode = code;
+            this.smallReimForm.hospitalName = name;
+            this.$store.dispatch('SET_SMALL_REIM', this.smallReimForm);
+            this.$router.push('/smallReim');
         }
     }
 }

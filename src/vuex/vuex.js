@@ -117,6 +117,8 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_SMALL_REIM:{
           hospitalName: '', //就诊医院
           hospitalCode: '', //医院编码
+          ceshi: '', //测试
+        },
         //缴费年限核定
         SET_PAYLIMIT_OPERATION:{
           AKC412: '', //视作缴费年限
@@ -274,5 +276,4 @@ export default new Vuex.Store({  // 暴露与new vuex
           context.commit( 'SET_TRANSFERRENEWING_OPERATION', payload ); //context提交
         },
       }
-    }
 })

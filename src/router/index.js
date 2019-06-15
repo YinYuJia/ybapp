@@ -34,6 +34,7 @@ import baseInfoChange from '@/components/serveComponent/others/baseInfoChange/ba
 import baseInfoChangeDetail from '@/components/serveComponent/others/baseInfoChange/baseInfoChangeDetail'
 import smallReim from '@/components/serveComponent/treat/smallReim/smallReim'
 import searchHospital from '@/components/serveComponent/treat/smallReim/searchHospital'
+import invoiceInfo from '@/components/serveComponent/treat/smallReim/invoiceInfo'
 import payLimit from '@/components/serveComponent/treat/payLimit/payLimit'
 import payLimitDetail from '@/components/serveComponent/treat/payLimit/payLimitDetail'
 
@@ -177,6 +178,11 @@ export default new Router({
       path: '/searchHospital',
       name: 'searchHospital',
       component: searchHospital
+    },
+    {
+      path: '/invoiceInfo',
+      name: 'invoiceInfo',
+      component: invoiceInfo
     },
     {
       path: '/payLimit',
