@@ -27,21 +27,21 @@
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>享受人姓名</span></div>
+                    <div class="InfoName"><span>被授权人姓名</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input type="text" v-model="form.name" placeholder="请输入"></div>
+                        <div class="InfoText"><input type="text" v-model="form.BAC003" placeholder="请输入"></div>
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>享受人身份证</span></div>
+                    <div class="InfoName"><span>被授权人身份证</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input type="text" v-model="form.idNo" placeholder="请输入"></div>
+                        <div class="InfoText"><input type="text" v-model="form.BAC002" placeholder="请输入"></div>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>绑定关系</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.relation" placeholder="请选择">
+                        <el-select v-model="form.AAE144" placeholder="请选择">
                             <el-option v-for="item in relationList" :key="item.value" :label="item.label" :value="item.value">
                             </el-option>
                         </el-select>
@@ -50,17 +50,13 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input @click="openStartPicker" type="text" v-model="form.start" placeholder="请选择" readonly></div>
+                        <div class="InfoText"><input @click="openStartPicker" type="text" v-model="form.AAE030" placeholder="请选择" readonly></div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- 按钮 -->
-        <footer class="Footer">
-            <div class="SubmitBtn" @click="submit" :class="{'active': canSubmit == true}">
-                <span>确认提交</span>
-            </div>
-        </footer>
+        <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
     </div>
 </template>
 
@@ -68,23 +64,21 @@
 import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
 import selectCity from '../../common/selectCity'
+import Footer from '../../common/Footer'
     export default {
-        components: {
-            'Title': Title,
-            'userBaseInfo': userBaseInfo,
-            'selectCity': selectCity,
-        },
+        components:{
+        Title,userBaseInfo,selectCity,Footer
+    },
         data() {
             return {
                 dddddd: "1111",
                 form: {
                     AAB301: '', //参保地
-                    name: '', //享受人姓名
-                    idNo: '', //享受人身份证
-                    relation: '',//绑定关系
-                    start: '', //开始日期
+                    BAC003: '', //被授权人姓名
+                    BAC002: '', //被授权人身份证
+                    AAE144: '',//绑定关系
+                    AAE030: '', //开始日期
                 },
-                optionList: [], //存放城市数据
                 dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
                 relationList: [{
@@ -103,24 +97,7 @@ import selectCity from '../../common/selectCity'
             }
         },
         created() {
-            this.form = this.$store.state.SET_FAMILYAID_OPERATION;
-            // this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
-            this.optionList = this.$store.state.SET_SELECTARRAY;
-            this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
-            this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-        },
-        watch: {
-            form: {
-                handler: function(val) {
-                    // 判断不为空
-                    if (val.canbao != undefined && val.name != '' && val.idNo != '' && val.relation != '' && val.start != '') {
-                        this.canSubmit = true;
-                    } else {
-                        this.canSubmit = false;
-                    }
-                },
-                deep: true
-            },
+            // this.form = this.$store.state.SET_FAMILYAID_OPERATION;
         },
         methods: {
             // 选择参保地
@@ -136,22 +113,10 @@ import selectCity from '../../common/selectCity'
             },
             handleStartConfirm(val){
                 let date = this.util.formatDate(val,'yyyy-MM-dd');
-                this.form.start = date;
+                this.form.AAE030 = date;
             },
             submit() {
-                if (this.canSubmit == false) {
-                    this.$toast('信息未填写完整');
-                    return false;
-                } else {
-                    this.$store.dispatch('SET_FAMILYAID_OPERATION', this.form);
-
-                    let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝，否则出错
-                    submitForm.canbao = submitForm.canbao.join(' '); //省市信息转换为字符串
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name; //用户名
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard; //单子社保卡号
-                    console.log('请求信息',submitForm);
-                    this.$router.push('/familyDetail');
-                }
+                this.$router.push('/familyDetail');
             },
         }
     }
@@ -205,32 +170,6 @@ import selectCity from '../../common/selectCity'
                     border-bottom: none;
                 }
             }
-        }
-    }
-    .Footer {
-        height: 1.31rem;
-        width: 7.5rem;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 199;
-        display: flex;
-        justify-content: center;
-        .SubmitBtn {
-            height: 1.05rem;
-            width: 7.1rem;
-            border-radius: .05rem;
-            line-height: 1.05rem;
-            background: #F2F2F2;;
-            font-family: PingFangSC-Regular;
-            font-size: .36rem;
-            color: #B4B4B4;
-            letter-spacing: 0;
-            text-align: center;
-        }
-        .active{
-            background: #1492FF;
-            color: #FFFFFF;
         }
     }
 }

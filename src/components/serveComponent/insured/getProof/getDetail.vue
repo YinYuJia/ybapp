@@ -2,7 +2,9 @@
     <div class="getDetail">
         <Title :title="'领取就医凭证'" :backRouter="'/getProof'"></Title>
         <div class="Content">
-            <WorkProgress :progress="4"></WorkProgress>
+            <!-- 办事进度 -->
+            <WorkProgress :currentStep="3"></WorkProgress>
+            <!-- <WorkProgress :currentStep="3" :progress=arr></WorkProgress> -->
             <!-- 信息 -->
             <div class="ReportInfo">
                 <div class="InfoLine">
@@ -34,26 +36,29 @@
             </div>
         </div>
         <!-- 底部 -->
-        <footer class="Footer">
-            <div class="Btn">
-                <div class="ResetBtn" @click="backout()">撤销</div>
-                <div class="EditBtn" @click="edit()">编辑</div>
-            </div>
-        </footer>
+        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
     </div>
 </template>
 
 <script>
 import Title from '../../common/Title'
 import WorkProgress from '../../common/WorkProgress'
+import Footer from '../../common/Footer'
 export default {
     components:{
-        'Title': Title,
-        'WorkProgress': WorkProgress,
+        Title,WorkProgress,Footer
     },
     data(){
         return{
-            form: {}
+            form: {},
+            arr: [
+                {step:1,name:'收件1'},
+                {step:2,name:'受理2'},
+                {step:3,name:'审核3'},
+                {step:4,name:'办结4'},
+                {step:5,name:'办结5'},
+                {step:6,name:'办结6'},
+            ]
         }
     },
     created(){
@@ -109,34 +114,6 @@ export default {
 .getDetail{
     .Content{
         margin-bottom: 1.4rem;
-        .ItemInfo{
-            height: 1.86rem;
-            width: 7.5rem;
-            padding: 0 .4rem 0 .3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            .name{
-                opacity: 0.85;
-                font-family: PingFangSC-Medium;
-                font-size: .32rem;
-                color: #000000;
-                letter-spacing: 0;
-            }
-            .icon{
-                height: 1.34rem;
-                width: 1.34rem;
-                background:  #8BCEFF;
-                border-radius: 1.34rem/2;
-                text-align: center;
-                line-height: 1.34rem;
-                font-family: PingFangSC-Regular;
-                font-size: .4rem;
-                color: #FFFFFF;
-                letter-spacing: 0;
-                text-align: center;
-            }
-        }
         .ReportInfo{
             height: 2.4rem;
             width: 7.5rem;
@@ -229,44 +206,6 @@ export default {
                 font-size: .32rem;
                 background: #CCC;
                 border-radius: .1rem;
-            }
-        }
-    }
-    // 底部
-    .Footer {
-        height: 1.31rem;
-        width: 7.5rem;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 199;
-        .Btn{
-            display: flex;
-            justify-content: space-around;
-            .ResetBtn {
-                height: 1.05rem;
-                width: 3.45rem;
-                border-radius: .05rem;
-                line-height: 1.05rem;
-                background: #F2F2F2;;
-                font-family: PingFangSC-Regular;
-                font-size: .36rem;
-                color: #B4B4B4;
-                letter-spacing: 0;
-                text-align: center;
-            }
-            .EditBtn{
-                height: 1.05rem;
-                width: 3.45rem;
-                border-radius: .05rem;
-                line-height: 1.05rem;
-                background: #F2F2F2;;
-                font-family: PingFangSC-Regular;
-                font-size: .36rem;
-                background: #1492FF;
-                color: #FFF;
-                letter-spacing: 0;
-                text-align: center;
             }
         }
     }

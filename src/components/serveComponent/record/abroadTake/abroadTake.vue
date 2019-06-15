@@ -1,6 +1,25 @@
 <template>
     <div class="abroadTake">
         <Title :title="'带药备案'" :backRouter="'/'"></Title>
+        <!-- MintUI弹出框区域 -->
+        <selectCity 
+            :type="2"
+            ref="insuredPicker"
+            @confirm="chooseInsured"
+            >
+        </selectCity>
+        <mt-datetime-picker
+            type="date"
+            ref="startPicker"
+            v-model="dateVal"
+            @confirm="handleStartConfirm">
+        </mt-datetime-picker>
+        <mt-datetime-picker
+            type="date"
+            ref="endPicker"
+            v-model="dateVal"
+            @confirm="handleEndConfirm">
+        </mt-datetime-picker>
         <div class="Content">
             <!-- 基本信息 -->
             <userBaseInfo></userBaseInfo>
@@ -9,104 +28,88 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                        <el-cascader :options="optionList" v-model="form.canbao">
-                        </el-cascader>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>出境日期</span></div>
                     <div class="InfoText">
-                        <el-date-picker v-model="form.start" type="date" placeholder="请选择" value-format="yyyy-MM-dd" :editable="false">
-                        </el-date-picker>
+                        <div class="InfoText"><input @click="openStartPicker" type="text" v-model="form.AAE030" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>拟回国日期</span></div>
                     <div class="InfoText">
-                        <el-date-picker v-model="form.end" type="date" placeholder="请选择" value-format="yyyy-MM-dd" :editable="false">
-                        </el-date-picker>
+                        <div class="InfoText"><input @click="openEndPicker" type="text" v-model="form.AAE031" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>取药机构</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input type="text" v-model="form.organize" placeholder="请选择"></div>
+                        <div class="InfoText"><input type="text" v-model="form.AKB020" placeholder="请选择"></div>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>护照号码</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input type="text" v-model="form.passport" placeholder="请输入"></div>
+                        <div class="InfoText"><input type="text" v-model="form.BKE260" placeholder="请输入"></div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- 按钮 -->
-        <footer class="Footer">
-            <div class="Btn" @click="submit()" :class="{'active': canSubmit == true}">
-                确认提交
-            </div>
-        </footer>
+        <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
     </div>
 </template>
 
 <script>
 import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
+import selectCity from '../../common/selectCity'
+import Footer from '../../common/Footer'
     export default {
         components: {
-            'Title': Title,
-            'userBaseInfo': userBaseInfo
+            Title,userBaseInfo,selectCity,Footer
         },
         data() {
             return {
-                dddddd: "1111",
                 form: {
-                    canbao: [], //参保地
-                    start: '', //出境日期
-                    end: '', //拟回国日期
-                    organize: '',//取药机构
-                    passport: '', //护照号码
+                    AAB301: '', //参保地
+                    AAE030: '', //出境日期
+                    AAE031: '', //拟回国日期
+                    AKB020: '',//取药机构
+                    BKE260: '', //护照号码
                 },
-                optionList: [], //存放城市数据
+                dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
             }
         },
-        created() {
-            this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
-            this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
-            this.optionList = this.$store.state.SET_SELECTARRAY;
-            this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
-            this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-        },
-        watch: {
-            form: {
-                handler: function(val) {
-                    // 判断不为空
-                    if (val.canbao != undefined && val.start != '' && val.end != '' && val.organize != '' && val.passport != '') {
-                        this.canSubmit = true;
-                    } else {
-                        this.canSubmit = false;
-                    }
-                },
-                deep: true
-            },
-        },
         methods: {
+            // 选择参保地
+            openInsuredPicker(){
+                this.$refs.insuredPicker.open();
+            },
+            chooseInsured(val){
+                this.form.AAB301 = val;
+            },
+            // 选择出境日期
+            openStartPicker(){
+                this.$refs.startPicker.open();
+            },
+            handleStartConfirm(val){
+                let date = this.util.formatDate(val,'yyyy-MM-dd');
+                this.form.AAE030 = date;
+            },
+            // 选择回国日期
+            openEndPicker(){
+                this.$refs.endPicker.open();
+            },
+            handleEndConfirm(val){
+                let date = this.util.formatDate(val,'yyyy-MM-dd');
+                this.form.AAE031 = date;
+            },
             submit() {
-                if (this.canSubmit == false) {
-                    this.$toast('信息未填写完整');
-                    return false;
-                } else {
-                    this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
-
-                    let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝，否则出错
-                    submitForm.canbao = submitForm.canbao.join(' '); //省市信息转换为字符串
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name; //用户名
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard; //单子社保卡号
-                    console.log('请求信息',submitForm);
-                    this.$router.push('/abroadDetail');
-                }
+                this.$router.push('/abroadDetail');
             },
         }
     }
@@ -120,7 +123,6 @@ import userBaseInfo from '../../common/userBaseInfo'
             height: 6rem;
             width: 7.5rem;
             padding: 0 .3rem;
-            margin-top: .67rem;
             background: white;
             .InfoLine {
                 height: 1.2rem;

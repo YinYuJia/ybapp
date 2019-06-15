@@ -1,28 +1,46 @@
 <template>
-    <div class="baseInfoChange">
-        <Title :title="'人员基本信息变更'" :backRouter="'/'"></Title>
+    <div class="insuredChange">
+        <Title :title="'医保转移接续'" :backRouter="'/'"></Title>
+        <!-- MintUI弹出框区域 -->
+        <selectCity 
+            :type="2"
+            ref="inCityPicker"
+            @confirm="chooseInCity"
+            >
+        </selectCity>
+        <selectCity 
+            :type="2"
+            ref="outCityPicker"
+            @confirm="chooseOutCity"
+            >
+        </selectCity>
+        <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
             <userBaseInfo></userBaseInfo>
             <!-- 变更信息 -->
-            <div class="ChangeInfo">
+            <div class="ReportInfo">
                 <div class="InfoLine">
-                    <div class="InfoName"><span>家庭住址：</span></div>
-                    <div class="InfoText"><textarea v-model="form.address" placeholder="请输入家庭住址"></textarea></div>
+                    <div class="InfoName"><span>转出地</span></div>
+                    <div class="InfoText">
+                         <div class="InfoText"><input @click="openOutCityPicker" type="text" v-model="form.AAA027" placeholder="请选择" readonly></div>
+                    </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>手机号码：</span></div>
-                    <div class="InfoText"><input v-model="form.phone" type="text" placeholder="请输入手机号码"></div>
+                    <div class="InfoName"><span>转入地</span></div>
+                    <div class="InfoText">
+                         <div class="InfoText"><input @click="openInCityPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
+                    </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>邮政编码：</span></div>
-                    <div class="InfoText"><input v-model="form.code" type="text" placeholder="请输入邮政编码"></div>
+                    <div class="InfoName"><span>手机号码</span></div>
+                    <div class="InfoText"><input type="text" v-model="form.phone" placeholder="请输入联系电话"></div>
                 </div>
             </div>
             <!-- 提示 -->
             <div class="Hint">
                 <div class="HintTitle"><i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示</div>
-                <div class="HintText">请依照您的实际变更情况，修改以上内容。</div>
+                <div class="HintText">手机号码将用于您事项办结后的消息通知，请您准确填写。</div>
             </div>
         </div>
         <!-- 按钮 -->
@@ -33,57 +51,51 @@
 <script>
 import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
+import selectCity from '../../common/selectCity'
 import Footer from '../../common/Footer'
 export default {
     components:{
-        Title,userBaseInfo,Footer
+        Title,userBaseInfo,selectCity,Footer
     },
     data(){
         return{
             form:{
-                address: '', //家庭地址
-                phone: '', //手机号码
-                code: '' //邮政编码
+                AAA027: '', //转出地
+                AAB301: '', //转入地
+                phone: '' //手机号码
             },
             canSubmit: false,
         }
     },
-    watch:{
-        form:{
-            handler:function(val){
-                if(val.address != '' && val.phone != '' && val.code != ''){
-                    this.canSubmit = true;
-                }else{
-                    this.canSubmit = false;
-                }
-            },
-            deep: true
-        }
-    },
-    created(){
-        this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
-    },
     methods:{
+        // 选择转出地
+        openOutCityPicker(){
+            this.$refs.inCityPicker.open();
+        },
+        chooseInCity(val){
+            this.form.AAA027 = val;
+        },
+        // 选择转入地
+        openInCityPicker(){
+            this.$refs.outCityPicker.open();
+        },
+        chooseOutCity(val){
+            this.form.AAB301 = val;
+        },
         submit(){
-            if(this.canSubmit == false){
-                this.$toast('信息未填写完整');
-                return false;
-            }else{
-                this.$store.dispatch('SET_BASEINFOCHANGE_OPERATION', this.form);
-                this.$router.push("/baseInfoChangeDetail");
-            }
+            this.$router.push('/transferDetail')
         }
     }
 }
 </script>
 
 <style lang="less" scoped>
-.baseInfoChange{
+.insuredChange{
     .Content{
         height: 100%;
         margin-bottom: 1.4rem;
-        .ChangeInfo{
-            height: 4rem;
+        .ReportInfo{
+            height: 3.6rem;
             width: 7.5rem;
             padding: 0 .3rem;
             background: white;
@@ -122,21 +134,6 @@ export default {
                         border: none;
                     }
                 }
-                &:first-child{
-                    height: 1.6rem;
-                    .InfoText{
-                        display: flex;
-                        align-items: center;
-                    }
-                    textarea{
-                        height: .84rem;
-                        font-size: .3rem;
-                        opacity: 0.85;
-                        color: #000000;
-                        line-height: .42rem;
-                        text-align: right;
-                    }
-                }
                 &:last-child{
                     border-bottom: none;
                 }
@@ -160,32 +157,6 @@ export default {
                 margin-top: .28rem;
                 letter-spacing: 0;
             }
-        }
-    }
-    .Footer {
-        height: 1.31rem;
-        width: 7.5rem;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 199;
-        display: flex;
-        justify-content: center;
-        .SubmitBtn {
-            height: 1.05rem;
-            width: 7.1rem;
-            border-radius: .05rem;
-            line-height: 1.05rem;
-            background: #F2F2F2;;
-            font-family: PingFangSC-Regular;
-            font-size: .36rem;
-            color: #B4B4B4;
-            letter-spacing: 0;
-            text-align: center;
-        }
-        .active{
-            background: #1492FF;
-            color: #FFFFFF;
         }
     }
 }

@@ -1,30 +1,26 @@
 <template>
-    <div class="familyDetail">
-        <Title :title="'家庭共济备案'" :backRouter="'/familyAid'"></Title>
+    <div class="payLimitDetail">
+        <Title :title="'领取就医凭证'" :backRouter="'/elseWhere'"></Title>
         <div class="Content">
-            <!-- 事项名称 -->
+            <!-- 办事进度 -->
             <WorkProgress :currentStep="1"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
-                    <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.AAB301}}</div>
+                    <div class="InfoName"><span>视作缴费年限:</span></div>
+                    <div class="InfoText">{{form.AKC412}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>被授权人姓名:</span></div>
-                    <div class="InfoText">{{form.BAC003}}</div>
+                    <div class="InfoName"><span>缴费月数:</span></div>
+                    <div class="InfoText">{{form.BAC213}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>被授权人身份证:</span></div>
-                    <div class="InfoText">{{form.BAC002}}</div>
+                    <div class="InfoName"><span>退休工资:</span></div>
+                    <div class="InfoText">{{form.AAE041}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>绑定关系:</span></div>
-                    <div class="InfoText">{{form.AAE144}}</div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>开始日期:</span></div>
-                    <div class="InfoText">{{form.AAE030}}</div>
+                    <div class="InfoName"><span>提前退休类别:</span></div>
+                    <div class="InfoText">{{form.BKE810}}</div>
                 </div>
             </div>
         </div>
@@ -42,22 +38,18 @@ export default {
         Title,WorkProgress,Footer
     },
     data() {
-      return {
-        form: {
-            AAB301: '', //参保地
-            BAC003: '', //被授权人姓名
-            BAC002: '', //被授权人身份证
-            AAE144: '',//绑定关系
-            AAE030: '', //开始日期
-        },
-      }
-    },
-    created(){
-        this.form = this.$store.state.SET_FAMILYAID_OPERATION;
+        return {
+            form: {
+                AKC412: '', //视作缴费年限
+                BAC213: '', //缴费月数
+                AAE041: '', //退休工资
+                BKE810: '', //提前退休类别
+            },
+        }
     },
     methods:{
         edit(){
-            this.$router.push("/familyAid");
+            this.$router.push("/payLimit");
         },
         // 撤销提醒
         backout(){
@@ -71,13 +63,14 @@ export default {
 
 
 <style lang="less" scoped>
-.familyDetail{
+.payLimitDetail{
     .Content{
         .MailInfo{
-            height: 6rem;
+            height: 4.8rem;
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;
+            margin-bottom: 1.4rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;
@@ -87,7 +80,7 @@ export default {
                 display: flex;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName{
-                    width: 2.5rem;
+                    width: 2rem;
                     opacity: 0.45;
                     line-height: 1.2rem;
                     text-align: left;

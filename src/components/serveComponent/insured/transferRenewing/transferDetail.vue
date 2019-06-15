@@ -1,30 +1,22 @@
 <template>
-    <div class="familyDetail">
-        <Title :title="'家庭共济备案'" :backRouter="'/familyAid'"></Title>
+    <div class="changeDetail">
+        <Title :title="'医保转移接续'" :backRouter="'/insuredChange'"></Title>
         <div class="Content">
-            <!-- 事项名称 -->
+            <!-- 办事进度 -->
             <WorkProgress :currentStep="1"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
-                    <div class="InfoName"><span>参保地:</span></div>
+                    <div class="InfoName"><span>转出地:</span></div>
+                    <div class="InfoText">{{form.AAA027}}</div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>转入地:</span></div>
                     <div class="InfoText">{{form.AAB301}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>被授权人姓名:</span></div>
-                    <div class="InfoText">{{form.BAC003}}</div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>被授权人身份证:</span></div>
-                    <div class="InfoText">{{form.BAC002}}</div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>绑定关系:</span></div>
-                    <div class="InfoText">{{form.AAE144}}</div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>开始日期:</span></div>
-                    <div class="InfoText">{{form.AAE030}}</div>
+                    <div class="InfoName"><span>手机号码:</span></div>
+                    <div class="InfoText">{{form.phone}}</div>
                 </div>
             </div>
         </div>
@@ -41,25 +33,25 @@ export default {
     components:{
         Title,WorkProgress,Footer
     },
-    data() {
-      return {
-        form: {
-            AAB301: '', //参保地
-            BAC003: '', //被授权人姓名
-            BAC002: '', //被授权人身份证
-            AAE144: '',//绑定关系
-            AAE030: '', //开始日期
-        },
-      }
+    data(){
+        return{
+            form:{
+                AAA027: '', //转出地
+                AAB301: '', //转入地
+                phone: '' //手机号码
+            },
+        }
     },
     created(){
-        this.form = this.$store.state.SET_FAMILYAID_OPERATION;
+        this.form = this.$store.state.SET_INSURED_CHANGE;
     },
     methods:{
-        edit(){
-            this.$router.push("/familyAid");
+        back(){
+            this.$router.push("/insuredChange");
         },
-        // 撤销提醒
+        edit(){
+            this.$router.push('/insuredChange');
+        },
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
                 this.$toast("撤销请求");
@@ -69,42 +61,39 @@ export default {
 }
 </script>
 
-
 <style lang="less" scoped>
-.familyDetail{
+.changeDetail{
     .Content{
+        margin-bottom: 1.4rem;
         .MailInfo{
-            height: 6rem;
+            height: 3.6rem;
             width: 7.5rem;
             padding: 0 .3rem;
-            margin-top: .15rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;
                 position: relative;
                 font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName{
-                    width: 2.5rem;
-                    opacity: 0.45;
+                    width: 1.5rem;
                     line-height: 1.2rem;
                     text-align: left;
                     span{
                         height: .6rem;
                         line-height: .6rem;
-                        color: #000000;
                         letter-spacing: 0;
+                        color: #000;
                     }
                 }
                 .InfoText{
-                    width: 5.1rem;
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
                     align-items: center;
+                    color: #333;
                 }
                 &:last-child{
                     border-bottom: none;

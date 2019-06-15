@@ -16,6 +16,8 @@ import insuredChange from '@/components/serveComponent/insured/insuredChange/ins
 import changeDetail from '@/components/serveComponent/insured/insuredChange/changeDetail'
 import searchPrint from '@/components/serveComponent/insured/searchPrint/searchPrint'
 import insuredDownload from '@/components/serveComponent/insured/searchPrint/insuredDownload'
+import transferRenewing from '@/components/serveComponent/insured/transferRenewing/transferRenewing'
+import transferDetail from '@/components/serveComponent/insured/transferRenewing/transferDetail'
 import elseWhere from '@/components/serveComponent/record/elseWhere/elseWhere'
 import elseDetail from '@/components/serveComponent/record/elseWhere/elseDetail'
 import turnOut from '@/components/serveComponent/record/turnOut/turnOut'
@@ -30,7 +32,8 @@ import mendChangeDetail from '@/components/serveComponent/others/mendChangeCard/
 import baseInfoChange from '@/components/serveComponent/others/baseInfoChange/baseInfoChange'
 import baseInfoChangeDetail from '@/components/serveComponent/others/baseInfoChange/baseInfoChangeDetail'
 import smallReim from '@/components/serveComponent/treat/smallReim/smallReim'
-
+import payLimit from '@/components/serveComponent/treat/payLimit/payLimit'
+import payLimitDetail from '@/components/serveComponent/treat/payLimit/payLimitDetail'
 
 Vue.use(Router)
 
@@ -82,6 +85,16 @@ export default new Router({
       path: '/insuredDownload',
       name: 'insuredDownload',
       component: insuredDownload
+    },
+    {
+      path: '/transferRenewing',
+      name: 'transferRenewing',
+      component: transferRenewing
+    },
+    {
+      path: '/transferDetail',
+      name: 'transferDetail',
+      component: transferDetail
     },
     {
       path: '/elseWhere',
@@ -153,6 +166,16 @@ export default new Router({
       name: 'smallReim',
       component: smallReim
     },
+    {
+      path: '/payLimit',
+      name: 'payLimit',
+      component: payLimit
+    },
+    {
+      path: '/payLimitDetail',
+      name: 'payLimitDetail',
+      component: payLimitDetail
+    }
     // // 办事
     // {
     //   path: '/Work',
