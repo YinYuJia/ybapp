@@ -2,7 +2,7 @@
     <div class="familyDetail">
         <Title :title="'家庭共济备案'" :backRouter="'/familyAid'"></Title>
         <div class="Content">
-            <!-- 事项名称 -->
+            <!-- 事项进度 -->
             <WorkProgress :currentStep="1"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">

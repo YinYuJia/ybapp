@@ -35,25 +35,25 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
+                        <input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>拟离杭日期</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input @click="openStartPicker" type="text" v-model="form.AAE030" placeholder="请选择" readonly></div>
+                        <input @click="openStartPicker" type="text" v-model="form.AAE030" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>回杭日期</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input @click="openEndPicker" type="text" v-model="form.AAE031" placeholder="请选择" readonly></div>
+                        <input @click="openEndPicker" type="text" v-model="form.AAE031" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请地市</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAE011" placeholder="请选择" readonly></div>
+                        <input @click="openCityPicker" type="text" v-model="form.AAE011" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">

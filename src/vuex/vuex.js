@@ -112,6 +112,12 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE005: '', //手机号码
           AAE007: '' //邮政编码
         },
+
+        // 零星报销
+        SET_SMALL_REIM:{
+          hospitalName: '', //就诊医院
+          hospitalCode: '', //医院编码
+        }
       },
       // 计算属性 getters
       getters:{
@@ -193,6 +199,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_NATIVEMSG(state,payload){
           sessionStorage.setItem("SET_NATIVEMSG",JSON.stringify(payload));
           state.SET_NATIVEMSG = payload;
+        },
+        SET_SMALL_REIM(state,payload){
+          state.SET_SMALL_REIM = payload;
         }
       },
 
@@ -235,6 +244,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_USER_BASEINFO( context, payload ) {
           context.commit( 'SET_USER_BASEINFO', payload ); //context提交
+        },
+        SET_SMALL_REIM( context, payload ) {
+          context.commit( 'SET_SMALL_REIM', payload );
         }
       }
 })
