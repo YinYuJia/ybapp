@@ -1,6 +1,6 @@
 <template>
     <div class="payLimitDetail">
-        <Title :title="'领取就医凭证'" :backRouter="'/payLimit'"></Title>
+        <Title :title="'缴费年限核定'" :backRouter="'/payLimit'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
             <WorkProgress :currentStep="1"></WorkProgress>
@@ -56,7 +56,6 @@ export default {
             if ( resData.enCode == 1000 ) {  
                 console.log(11111)
                 this.$toast("提交成功");
-                this.$router.push("/elseDetail");
             }else if (resData.enCode == 1001 ) {
             //   失败  1001
                 this.$toast(resData.msg);
