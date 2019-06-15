@@ -44,6 +44,11 @@ export default new Router({
     // 首页
     {
       path: '/',
+      name: 'indexInfoListComponent',
+      component: indexInfoList
+    },
+    {
+      path: '/Index',
       name: 'Index',
       component: Index
     },
@@ -52,11 +57,6 @@ export default new Router({
       path: '/first',
       name: 'FirstComponent',
       component: First
-    },
-    {
-      path: '/indexInfoList',
-      name: 'indexInfoListComponent',
-      component: indexInfoList
     },
     {
       path: '/getProof',

@@ -3,8 +3,8 @@
     <div class="UserBaseInfo">
         <div class="UserPhoto"><svg-icon icon-class="serveComponent_userIcon" /></div>
         <div class="UserInfo">
-            <div class="UserName">{{form.name}}</div>
-            <div class="UserId">{{form.idNo}}</div>
+            <div class="UserName">{{form.name|tuoMin(0,2)}}</div>
+            <div class="UserId">{{form.idNo|tuoMin(1,1)}}</div>
         </div>
     </div>
 </template>
@@ -20,8 +20,9 @@ export default {
         }
     },
     created(){
-        this.form.name = this.$store.state.SET_NATIVEMSG.name || '张*佳(初始值)'
-        this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard || '3301**********4567(初始值)'
+        console.log(this.$store.state.SET_NATIVEMSG.name)
+        this.form.name = this.$store.state.SET_NATIVEMSG.name 
+        this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard 
 
         console.log('原生参数-----',this.$store.state.SET_NATIVEMSG)
     }

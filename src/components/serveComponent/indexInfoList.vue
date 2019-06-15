@@ -4,20 +4,20 @@
         <!-- Index -->
         <div class="IconNav">
             <!-- <div v-for="item in List" :key="item.title">
-                <div class="DepartmentsList">
-                    <span></span>
-                    <p class="titleOne">{{item.title}}</p>
-                </div>
-                <el-row class="IconList" v-for="line in item.Info" :key="line.title">
-                    <el-col :span="6" class="IconBox" v-for="box in line.line" :key="box.iconName">
-                        <div class="IconImg">
-                            <svg-icon v-if="show" icon-class="indexInfoList-yuyueguahao" />
-                            <svg-icon v-if="hidden" icon-class="indexInfoList-yuyueguahao1" />
-                        </div>
-                        <div class="IconText"><span>{{box.iconName}}</span></div>
-                    </el-col>
-                </el-row>
-            </div> -->
+                    <div class="DepartmentsList">
+                        <span></span>
+                        <p class="titleOne">{{item.title}}</p>
+                    </div>
+                    <el-row class="IconList" v-for="line in item.Info" :key="line.title">
+                        <el-col :span="6" class="IconBox" v-for="box in line.line" :key="box.iconName">
+                            <div class="IconImg">
+                                <svg-icon v-if="show" icon-class="indexInfoList-yuyueguahao" />
+                                <svg-icon v-if="hidden" icon-class="indexInfoList-yuyueguahao1" />
+                            </div>
+                            <div class="IconText"><span>{{box.iconName}}</span></div>
+                        </el-col>
+                    </el-row>
+                </div> -->
             <div class="DepartmentsList">
                 <span></span>
                 <p class="titleOne">我的健康</p>
@@ -115,28 +115,28 @@
             </div>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" >
                         <svg-icon v-if="show" icon-class="indexInfoList-canbaodengji" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-canbaodengji1" />
                     </div>
                     <div class="IconText"><span>参保登记</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/getProof')">
                         <svg-icon v-if="show" icon-class="indexInfoList-jiuyipingzheng" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-jiuyipingzheng1" />
                     </div>
                     <div class="IconText"><span>就医凭证</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/insuredChange')">
                         <svg-icon v-if="show" icon-class="indexInfoList-xinxibiangeng" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-xinxibiangeng1" />
                     </div>
                     <div class="IconText"><span>信息变更</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/searchPrint')">
                         <svg-icon v-if="show" icon-class="indexInfoList-dayinxinxi" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-dayinxinxi1" />
                     </div>
@@ -165,7 +165,7 @@
             </div>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/elseWhere')">
                         <svg-icon v-if="show" icon-class="indexInfoList-yidibeian" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-yidibeian1" />
                     </div>
@@ -186,7 +186,7 @@
                     <div class="IconText"><span>慢病备案</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/turnOut')">
                         <svg-icon v-if="show" icon-class="indexInfoList-zhuanwaibeian" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-zhuanwaibeian1" />
                     </div>
@@ -195,14 +195,14 @@
             </el-row>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/abroadTake')">
                         <svg-icon v-if="show" icon-class="indexInfoList-chuguodaiyao" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-chuguodaiyao1" />
                     </div>
                     <div class="IconText"><span>出国带药</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/familyAid')">
                         <svg-icon v-if="show" icon-class="indexInfoList-jiatinggongji" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-jiatinggongji1" />
                     </div>
@@ -272,7 +272,7 @@
                     <div class="IconText"><span>社保卡</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/mendChangeCard')">
                         <svg-icon v-if="show" icon-class="indexInfoList-buhuan" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-buhuan1" />
                     </div>
@@ -318,9 +318,17 @@
                 hidden: false
             }
         },
-        created() {
-        },
+        created() {},
         methods: {
+            showWork(val) {
+                console.log(val)
+                this.$router.push({
+                    name: 'Index',
+                    params: {
+                        info: val
+                    }
+                })
+            }
         }
     }
 </script>

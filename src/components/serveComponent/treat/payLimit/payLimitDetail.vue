@@ -1,6 +1,6 @@
 <template>
     <div class="payLimitDetail">
-        <Title :title="'领取就医凭证'" :backRouter="'/elseWhere'"></Title>
+        <Title :title="'缴费年限核定'" :backRouter="'/payLimit'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
             <WorkProgress :currentStep="1"></WorkProgress>
@@ -47,6 +47,25 @@ export default {
             },
         }
     },
+    created () {
+        this.form=this.$store.state.SET_PAYLIMIT_OPERATION;
+        let params=this.formatSubmitData();
+        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1009/getRecord', params).then((resData) => {
+            console.log('返回成功信息',resData)
+            //   成功   1000
+            if ( resData.enCode == 1000 ) {  
+                console.log(11111)
+                this.$toast("提交成功");
+            }else if (resData.enCode == 1001 ) {
+            //   失败  1001
+                this.$toast(resData.msg);
+                return;
+            }else{
+                this.$toast('业务出错');
+                return;
+            }
+        })
+    },
     methods:{
         edit(){
             this.$router.push("/payLimit");
@@ -57,6 +76,22 @@ export default {
                 this.$toast("撤销请求");
             });
         },
+        formatSubmitData(){
+            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+                console.log(submitForm)
+                submitForm.AGA002 =  "确认-00253-013";
+                // 加入用户名和电子社保卡号
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    submitForm.AAC003 = '胡';
+                    submitForm.AAE135 = "113344223344536624";
+                }      
+                // 请求参数封装
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+                return params;
+        }
     }
 }
 </script>
