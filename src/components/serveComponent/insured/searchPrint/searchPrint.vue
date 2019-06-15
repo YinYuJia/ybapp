@@ -77,6 +77,11 @@ export default {
             deep: true
         }
     },
+    created () {
+        this.form = this.$store.state.SET_SEARCH_PRINT;
+        this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
+        this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+    },
     methods:{
         openInsuredPicker(){
             this.$refs.insuredPicker.open();

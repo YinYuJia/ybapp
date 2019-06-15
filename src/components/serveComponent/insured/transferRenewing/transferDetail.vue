@@ -1,6 +1,6 @@
 <template>
     <div class="changeDetail">
-        <Title :title="'医保转移接续'" :backRouter="'/insuredChange'"></Title>
+        <Title :title="'医保转移接续'" :backRouter="'/transferRenewing'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
             <WorkProgress :currentStep="1"></WorkProgress>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码:</span></div>
-                    <div class="InfoText">{{form.phone}}</div>
+                    <div class="InfoText">{{form.AAE005}}</div>
                 </div>
             </div>
         </div>
@@ -38,25 +38,62 @@ export default {
             form:{
                 AAA027: '', //转出地
                 AAB301: '', //转入地
-                phone: '' //手机号码
+                AAE005: '' //手机号码
             },
         }
     },
     created(){
-        this.form = this.$store.state.SET_INSURED_CHANGE;
+        this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
+
+        let params=this.formatSubmitData();
+        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1009/getRecord', params).then((resData) => {
+            console.log('返回成功信息',resData)
+            //   成功   1000
+            if ( resData.enCode == 1000 ) {  
+                console.log(11111)
+                this.$toast("提交成功");
+                this.$router.push("/elseDetail");
+            }else if (resData.enCode == 1001 ) {
+            //   失败  1001
+                this.$toast(resData.msg);
+                return;
+            }else{
+                this.$toast('业务出错');
+                return;
+            }
+        })
     },
     methods:{
-        back(){
-            this.$router.push("/insuredChange");
-        },
         edit(){
-            this.$router.push('/insuredChange');
+            this.$router.push('/transferRenewing');
         },
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$toast("撤销请求");
+                // this.form.AAA027="";
+                // this.form.AAB301="";
+                // this.form.AAE005="";
+
+                this.$router.push('/transferRenewing')
+                this.$toast("撤销成功");
             });
         },
+        formatSubmitData(){
+            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            console.log(submitForm)
+                submitForm.AGA002 =  "确认-00253-013";
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        }
     }
 }
 </script>
