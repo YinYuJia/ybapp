@@ -10,66 +10,49 @@
         </selectCity>
         <!-- 弹出框区域结束 -->
         <div class="Content">
+            <!-- 填写进度 -->
+            <WorkProgress :currentStep="1" :progress="progress"></WorkProgress>
             <!-- 基本信息 -->
-            <userBaseInfo></userBaseInfo>
+            <userBaseInfo style="background:white"></userBaseInfo>
             
             <div class="ReportInfo">
                 <div class="InfoLine">
-                    <div class="InfoName"><span>参保地：</span></div>
-                    <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>发票总额：</span></div>
+                    <div class="InfoName"><span>就诊医院：</span></div>
                     <div class="InfoText"><input type="number" v-model="form.ACK264" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>发票张数：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.number" placeholder="请输入"></div>
+                    <div class="InfoName"><span>就诊类型：</span></div>
+                    <div class="InfoText"><input type="number" v-model="form.ACK264" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>收款开户行：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE008" placeholder="请输入"></div>
+                    <div class="InfoName"><span>就诊日期：</span></div>
+                    <div class="InfoText"><input type="number" v-model="form.ACK264" placeholder="请输入"></div>
                 </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>收款开户名：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>收款银行账号：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE010" placeholder="请输入"></div>
-                </div>
-                <div class="InfoLine">
+                <!-- <div class="InfoLine">
                     <div class="InfoName"><span>发票附件上传：</span></div>
                     <div class="UploadPhoto">
                         <div class="SelectPhoto" @click="chooseImg()">+</div>
                     </div>
-                    <!-- 上传框隐藏 -->
                     <form id="img-form">
                         <input @change="uploadImg()" style="display:none" id="img-file" name="file" type="file" accept="image/*">
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- 按钮 -->
-        <footer class="Footer">
-            <div class="SubmitBtn" @click="submit" :class="{'active': canSubmit == true}">
-                <span>确认提交</span>
-            </div>
-        </footer>
+        <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
     </div>
 </template>
 
 <script>
 import Title from '../../common/Title'
+import WorkProgress from '../../common/WorkProgress'
 import userBaseInfo from '../../common/userBaseInfo'
 import selectCity from '../../common/selectCity'
+import Footer from '../../common/Footer'
 export default {
     components: {
-        'Title': Title,
-        'userBaseInfo': userBaseInfo,
-        'selectCity': selectCity,
+        Title,WorkProgress,userBaseInfo,selectCity,Footer
     },
     data() {
         return {
@@ -83,6 +66,12 @@ export default {
                 AAE010: '', //收款银行账号
             },
             canSubmit: false,
+            progress:[
+                {step:1,name:'申请报销'},
+                {step:2,name:'发票信息'},
+                {step:3,name:'信息录入'},
+                {step:4,name:'申报完成'}
+            ]
         }
     },
     created() {
@@ -181,9 +170,10 @@ export default {
         height: 100%;
         margin-bottom: 1.4rem;
         .ReportInfo {
-            height: 10.1rem;
+            height: 3.6rem;
             width: 7.5rem;
             padding: 0 .3rem;
+            margin: .15rem 0 1.4rem 0;
             background: white;
             .InfoLine {
                 height: 1.2rem;
@@ -221,51 +211,28 @@ export default {
                         border: none;
                     }
                 }
-                &:last-child {
+                &:last-child{
                     border-bottom: none;
-                    display: block;
-                    text-align: left;
-                    .UploadPhoto{
-                        display: flex;
-                        .SelectPhoto{
-                            height: 1.4rem;
-                            width: 1.4rem;
-                            background: #EFEFEF;
-                            margin-right: .3rem;
-                            font-size: .6rem;
-                            text-align: center;
-                            line-height: 1.4rem;
-                            color: #999;
-                        }
-                    }
                 }
+                // &:last-child {
+                //     border-bottom: none;
+                //     display: block;
+                //     text-align: left;
+                //     .UploadPhoto{
+                //         display: flex;
+                //         .SelectPhoto{
+                //             height: 1.4rem;
+                //             width: 1.4rem;
+                //             background: #EFEFEF;
+                //             margin-right: .3rem;
+                //             font-size: .6rem;
+                //             text-align: center;
+                //             line-height: 1.4rem;
+                //             color: #999;
+                //         }
+                //     }
+                // }
             }
-        }
-    }
-    .Footer {
-        height: 1.31rem;
-        width: 7.5rem;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 199;
-        display: flex;
-        justify-content: center;
-        .SubmitBtn {
-            height: 1.05rem;
-            width: 7.1rem;
-            border-radius: .05rem;
-            line-height: 1.05rem;
-            background: #F2F2F2;;
-            font-family: PingFangSC-Regular;
-            font-size: .36rem;
-            color: #B4B4B4;
-            letter-spacing: 0;
-            text-align: center;
-        }
-        .active{
-            background: #1492FF;
-            color: #FFFFFF;
         }
     }
 }

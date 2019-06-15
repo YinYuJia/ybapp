@@ -42,7 +42,6 @@ export default {
 .WorkProgress{
     height: 1.8rem;
     width: 7.5rem;
-    background: #F6F8F7;
     position: relative;
     .ProgressMsg{
         height: 100%;
