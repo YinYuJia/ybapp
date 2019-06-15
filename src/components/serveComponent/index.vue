@@ -65,48 +65,44 @@
             'BusinessGuide': BusinessGuide,
         },
         created() {
-            console.log(dd)
-                // dd.ready({
-                //     developer: 'daip@dtdream.com',
-                //     usage: [
-                //     'dd.biz.navigation.setTitle',
-                //     ],
-                //     remark: '描述业务场景'
-                // }, function() {
-                //     dd.biz.navigation.setTitle({
-                //         title: '1111111111111111111',
-                //         onSuccess: function(data) {},
-                //         onFail: function(error) {}
-                //     })
-                // })
-                
-                // dd.biz.navigation.setTitle({
-                //         title: '1111111111111111111',
-                //         onSuccess: function(data) {},
-                //         onFail: function(error) {}
-                //     })
-
-            // 方法暴露给原生native方法
-            window.getAndroid = this.getAndroid
-            var u = navigator.userAgent;
-            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-            if (this.$store.getters.SET_NATIVEMSG === null && isAndroid && isIOS) {
-                this.getAndroidMsg = this.$store.state.SET_NATIVEMSG
-                this.NameTitle = this.getAndroidMsg.title;
-                this.describe = this.getAndroidMsg.describe;
-            }
-            
+            // console.log(dd)
+            // dd.ready({
+            //     developer: 'daip@dtdream.com',
+            //     usage: [
+            //     'dd.biz.navigation.setTitle',
+            //     ],
+            //     remark: '描述业务场景'
+            // }, function() {
+            //     dd.biz.navigation.setTitle({
+            //         title: '1111111111111111111',
+            //         onSuccess: function(data) {},
+            //         onFail: function(error) {}
+            //     })
+            // })
+            // dd.biz.navigation.setTitle({
+            //         title: '1111111111111111111',
+            //         onSuccess: function(data) {},
+            //         onFail: function(error) {}
+            //     })
+            this.$store.dispatch('SET_NATIVEMSG', {
+                title: "",
+                describe: "",
+                type: "",
+                typeItem: "",
+                name: "张思佳",
+                idCard: "330165694569544567",
+                PublicHeader: {
+                    imei: '',
+                    mac: '',
+                    phoneModel: '',
+                    platform: '',
+                    signType: '',
+                    sign: '',
+                    version: 'v2.0',
+                }
+            });
         },
         methods: {
-            getAndroid(dataStr) {
-                console.log('原生msg',dataStr)
-                this.getAndroidMsg = dataStr ;
-                this.NameTitle = dataStr.title;
-                this.describe = dataStr.describe;
-                // 储存原生数据
-                this.$store.dispatch('SET_NATIVEMSG', dataStr);
-            },
             handleSelect(key, keyPath) {
                 this.activeIndex = key
             },
@@ -123,63 +119,12 @@
                     window.dzsb.back('H5message');
                 }
             },
-            changeIndex(index){
+            changeIndex(index) {
                 this.activeIndex = index;
             },
             submit() {
-                if ( this.getAndroidMsg === null ) {
-                    this.$toast("this.getAmdroidMsg值为-----------null");
-                    return;
-                }
-                if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 1) {
-                    // 参保服务------- 参保登记 -------基本医疗保险职工参保登记
-                } else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 2) {
-                    // 参保服务------- 就医凭证 -------领取基本医疗保险就医凭证
-                    this.$router.push('/getProof');
-                } else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 3) {
-                    // 参保服务------- 信息变更 -------基本医疗保险职工参保信息变更登记
-                    this.$router.push('/insuredChange');
-                } else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 4) {
-                    // 参保服务------- 参保打印 -------参保人员查下你打印社会保险信息
-                    this.$router.push('/searchPrint');
-                } else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 5) {
-                    // 参保服务------- 关系转移 -------基本医疗保险关系转移
-                } else if (this.getAndroidMsg.type == 1 && this.getAndroidMsg.typeItem == 6) {
-                    // 参保服务------- 关系接续 -------基本医疗保险关系接续
-                } else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 1) {
-                    // 备案服务------- 异地备案 -------基本医疗保险参保人员异地就医备案
-                    this.$router.push('/elseWhere');
-                } else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 2) {
-                    // 备案服务------- 特药备案 -------基本医疗保险参保人员特制特药备案
-                } else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 3) {
-                    // 备案服务------- 慢病备案 -------基本医疗保险参保人员享受规定（特殊慢性）病种待遇备案
-                } else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 4) {
-                    // 备案服务------- 转外备案 -------基本医疗保险参保人员赚外就已备案
-                    this.$router.push('/turnOut');
-                } else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 5) {
-                    // 备案服务------- 出国带药 -------基本医疗保险参保人员出国（境）带要备案
-                    this.$router.push('/abroadTake');
-                } else if (this.getAndroidMsg.type == 2 && this.getAndroidMsg.typeItem == 6) {
-                    // 备案服务------- 家庭共济 -------基本医疗保险参保人员历年账户家庭共济备案
-                    this.$router.push('/familyAid');
-                } else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 1) {
-                    // 待遇报销------- 缴费年限 -------基本医疗保险视同缴费年限核定
-                } else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 2) {
-                    // 待遇报销------- 零星报销 -------基本医疗保险参保人员医疗费用零星报销
-                } else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 3) {
-                    // 待遇报销------- 费用审核 -------医疗保险费用审核结算
-                } else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 4) {
-                    // 待遇报销------- 平产待遇 -------平产-剖宫产-助娩产待遇核准支付
-                } else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 5) {
-                    // 待遇报销------- 流产待遇 -------流产-引产-节育-复通手术待遇核准支付
-                } else if (this.getAndroidMsg.type == 3 && this.getAndroidMsg.typeItem == 6) {
-                    // 待遇报销------- 未就业待遇 -------未就业配偶医疗待遇核准支付
-                } else if (this.getAndroidMsg.type == 4 && this.getAndroidMsg.typeItem == 1) {
-                    // 其他服务------- 社保卡 -------社保卡补换
-                    this.$router.push('/mendChangeCard');
-                } else if (this.getAndroidMsg.type == 4 && this.getAndroidMsg.typeItem == 2) {
-                    // 其他服务------- 社保卡 -------社保卡挂失/解挂
-                }
+                console.log("路由参数", this.$route.params.info)
+                this.$router.push(this.$route.params.info)
             },
         }
     }
@@ -190,12 +135,12 @@
         height: .8rem;
         background-color: white;
         line-height: .8rem;
-        .BackIcon{
+        .BackIcon {
             display: flex;
             align-items: center;
             color: #1492FF;
             font-size: .32rem;
-            .svg-icon{
+            .svg-icon {
                 height: .5rem;
                 width: .5rem;
             }
@@ -215,21 +160,21 @@
         text-align: center;
         color: #000;
     }
-    .IndexMenu{
+    .IndexMenu {
         height: 1.2rem;
         width: 7.5rem;
         background: #FFF;
         display: flex;
         align-items: center;
         justify-content: center;
-        .MenuLine{
+        .MenuLine {
             height: .62rem;
             width: 6.9rem;
             background: #FFFFFF;
             border: .01rem solid #1492FF;
             border-radius: .05rem;
             display: flex;
-            .MenuCell{
+            .MenuCell {
                 line-height: .62rem;
                 width: 25%;
                 color: #1492FF;
@@ -237,17 +182,17 @@
                 letter-spacing: 0;
                 font-size: .28rem;
                 border-right: .01rem solid #1492FF;
-                &:first-child{
+                &:first-child {
                     border-top-left-radius: .05rem;
                     border-bottom-left-radius: .05rem;
                 }
-                &:last-child{
+                &:last-child {
                     border-top-right-radius: .05rem;
                     border-bottom-right-radius: .05rem;
                     border-right: none;
                 }
             }
-            .active{
+            .active {
                 color: #FFF;
                 background: #1492FF;
             }
