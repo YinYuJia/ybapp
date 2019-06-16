@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 17</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="选中">
+            <g id="Group-17">
+                <circle id="Oval-2" fill="#1492FF" cx="20" cy="20" r="20"></circle>
+                <g id="check" transform="translate(6.000000, 9.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <path d="M10.8939876,22.2068575 C10.4513658,22.2068575 10.0242446,22.0358263 9.70266706,21.7268919 L0.531068232,12.9161288 C-0.155939999,12.2561468 -0.179502356,11.1624144 0.478491072,10.4734064 C1.13644555,9.78428116 2.22681797,9.7606462 2.91386515,10.4206282 L10.7441622,17.9428755 L24.9474732,0.629932085 C25.5518768,-0.106853745 26.6373421,-0.212605561 27.3719813,0.393621508 C28.1065427,0.999887643 28.2119696,2.08869771 27.607527,2.82552261 L12.2241508,21.5769564 C11.9195538,21.9482402 11.4745174,22.1754093 10.9960263,22.2038494 C10.9619874,22.2058808 10.9279486,22.2068966 10.8939487,22.2068966 L10.8939876,22.2068575 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

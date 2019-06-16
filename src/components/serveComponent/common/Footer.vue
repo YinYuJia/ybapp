@@ -2,7 +2,7 @@
     <div>
         <footer class="Footer" v-if="btnType == 1">
             <div class="SubmitBtn" @click="submit()" :class="{'active': canSubmit == true}">
-                <span>确认提交</span>
+                <span>{{btnText}}</span>
             </div>
         </footer>
         <footer class="Footer" v-if="btnType == 2">
@@ -24,6 +24,10 @@ export default {
         btnType:{
             type: Number,
             default: 1
+        },
+        btnText:{
+            type: String,
+            default: '确认提交'
         }
     },
     methods:{
