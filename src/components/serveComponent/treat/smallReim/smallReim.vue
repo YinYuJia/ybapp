@@ -31,7 +31,7 @@
             </div>
         </div>
         <!-- 按钮 -->
-        <Footer :canSubmit='canSubmit' :btnText="'下一步'" @submit="submit()"></Footer>
+        <Footer :canSubmit="true" :btnText="'下一步'" @submit="submit()"></Footer>
     </div>
 </template>
 

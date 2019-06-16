@@ -1,27 +1,19 @@
-// &:last-child {
-                //     border-bottom: none;
-                //     display: block;
-                //     text-align: left;
-                //     .UploadPhoto{
-                //         display: flex;
-                //         .SelectPhoto{
-                //             height: 1.4rem;
-                //             width: 1.4rem;
-                //             background: #EFEFEF;
-                //             margin-right: .3rem;
-                //             font-size: .6rem;
-                //             text-align: center;
-                //             line-height: 1.4rem;
-                //             color: #999;
-                //         }
-                //     }
-                // }
-                <!-- <div class="InfoLine">
-                    <div class="InfoName"><span>发票附件上传：</span></div>
-                    <div class="UploadPhoto">
-                        <div class="SelectPhoto" @click="chooseImg()">+</div>
-                    </div>
-                    <form id="img-form">
-                        <input @change="uploadImg()" style="display:none" id="img-file" name="file" type="file" accept="image/*">
-                    </form>
-                </div> -->
+<template>
+    <!-- 标题 -->
+    <Title :title="'零星报销'" :backRouter="'/reportComplete'"></Title>
+</template>
+
+<script>
+import Title from '../../common/Title'
+import WorkProgress from '../../common/WorkProgress'
+import Footer from '../../common/Footer'
+export default {
+    components:{
+        Title,WorkProgress,Footer
+    },
+}
+</script>
+
+<style lang="less" scoped>
+
+</style>
