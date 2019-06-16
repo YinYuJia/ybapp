@@ -18,7 +18,8 @@
                         </el-col>
                     </el-row>
                 </div> -->
-            <div class="DepartmentsList">
+
+            <!-- <div class="DepartmentsList">
                 <span></span>
                 <p class="titleOne">我的健康</p>
             </div>
@@ -108,69 +109,85 @@
                     </div>
                     <div class="IconText"><span>办事进度</span></div>
                 </el-col>
-            </el-row>
+            </el-row> -->
             <div class="DepartmentsList">
                 <span></span>
                 <p class="titleOne">参保服务</p>
             </div>
             <el-row class="IconList">
-                <el-col :span="6" class="IconBox">
+                <!-- <el-col :span="6" class="IconBox">
                     <div class="IconImg" >
                         <svg-icon v-if="show" icon-class="indexInfoList-canbaodengji" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-canbaodengji1" />
                     </div>
                     <div class="IconText"><span>参保登记</span></div>
-                </el-col>
+                </el-col> -->
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/getProof')">
+                    <div class="IconImg" @click="showWork('/getProof','参保服务','领取就医凭证')">
                         <svg-icon v-if="show" icon-class="indexInfoList-jiuyipingzheng" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-jiuyipingzheng1" />
                     </div>
                     <div class="IconText"><span>就医凭证</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/insuredChange')">
+                    <div class="IconImg" @click="showWork('/insuredChange','参保服务','信息变更')">
                         <svg-icon v-if="show" icon-class="indexInfoList-xinxibiangeng" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-xinxibiangeng1" />
                     </div>
                     <div class="IconText"><span>信息变更</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/searchPrint')">
+                    <div class="IconImg" @click="showWork('/searchPrint','参保服务','打印信息')">
                         <svg-icon v-if="show" icon-class="indexInfoList-dayinxinxi" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-dayinxinxi1" />
                     </div>
                     <div class="IconText"><span>打印信息</span></div>
                 </el-col>
-            </el-row>
-            <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
                         <svg-icon v-if="show" icon-class="indexInfoList-guanxizhuanyi" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-guanxizhuanyi1" />
                     </div>
-                    <div class="IconText"><span>关系转移</span></div>
-                </el-col>
-                <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon v-if="show" icon-class="indexInfoList-guanxijiexu" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-guanxijiexu1" />
-                    </div>
-                    <div class="IconText"><span>关系接续</span></div>
+                    <div class="IconText"><span>接续转移</span></div>
                 </el-col>
             </el-row>
+
             <div class="DepartmentsList">
                 <span></span>
                 <p class="titleOne">备案服务</p>
             </div>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/elseWhere')">
+                    <div class="IconImg" @click="showWork('/elseWhere','备案服务','异地就医备案')">
                         <svg-icon v-if="show" icon-class="indexInfoList-yidibeian" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-yidibeian1" />
                     </div>
                     <div class="IconText"><span>异地备案</span></div>
                 </el-col>
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg" @click="showWork('/turnOut','备案服务','转外备案')">
+                        <svg-icon v-if="show" icon-class="indexInfoList-zhuanwaibeian" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-zhuanwaibeian1" />
+                    </div>
+                    <div class="IconText"><span>转外就医</span></div>
+                </el-col>
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg" @click="showWork('/abroadTake','备案服务','出国带药')">
+                        <svg-icon v-if="show" icon-class="indexInfoList-chuguodaiyao" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-chuguodaiyao1" />
+                    </div>
+                    <div class="IconText"><span>出国带药</span></div>
+                </el-col>
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg" @click="showWork('/familyAid','备案服务','家庭共济')">
+                        <svg-icon v-if="show" icon-class="indexInfoList-jiatinggongji" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiatinggongji1" />
+                    </div>
+                    <div class="IconText"><span>家庭共济</span></div>
+                </el-col>
+                
+            </el-row>
+            <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
                         <svg-icon v-if="show" icon-class="indexInfoList-teyaobeian" />
@@ -185,42 +202,13 @@
                     </div>
                     <div class="IconText"><span>慢病备案</span></div>
                 </el-col>
-                <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/turnOut')">
-                        <svg-icon v-if="show" icon-class="indexInfoList-zhuanwaibeian" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-zhuanwaibeian1" />
-                    </div>
-                    <div class="IconText"><span>转外备案</span></div>
-                </el-col>
-            </el-row>
-            <el-row class="IconList">
-                <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/abroadTake')">
-                        <svg-icon v-if="show" icon-class="indexInfoList-chuguodaiyao" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-chuguodaiyao1" />
-                    </div>
-                    <div class="IconText"><span>出国带药</span></div>
-                </el-col>
-                <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/familyAid')">
-                        <svg-icon v-if="show" icon-class="indexInfoList-jiatinggongji" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiatinggongji1" />
-                    </div>
-                    <div class="IconText"><span>家庭共济</span></div>
-                </el-col>
+                
             </el-row>
             <div class="DepartmentsList">
                 <span></span>
                 <p class="titleOne">待遇报销</p>
             </div>
             <el-row class="IconList">
-                <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon v-if="show" icon-class="indexInfoList-jiaofeinianxian" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiaofeinianxian1" />
-                    </div>
-                    <div class="IconText"><span>缴费年限</span></div>
-                </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
                         <svg-icon v-if="show" icon-class="indexInfoList-lingxingbaoxiao" />
@@ -230,11 +218,12 @@
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
-                        <svg-icon v-if="show" icon-class="indexInfoList-feiyongshenhe" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-feiyongshenhe1" />
+                        <svg-icon v-if="show" icon-class="indexInfoList-jiaofeinianxian" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiaofeinianxian1" />
                     </div>
-                    <div class="IconText"><span>费用审核</span></div>
+                    <div class="IconText"><span>缴费年限</span></div>
                 </el-col>
+                
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
                         <svg-icon v-if="show" icon-class="indexInfoList-pingchan" />
@@ -242,8 +231,6 @@
                     </div>
                     <div class="IconText"><span>平产...<br/>待遇核准</span></div>
                 </el-col>
-            </el-row>
-            <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
                         <svg-icon v-if="show" icon-class="indexInfoList-liuchan" />
@@ -251,6 +238,9 @@
                     </div>
                     <div class="IconText"><span>流产...<br/>待遇核准</span></div>
                 </el-col>
+            </el-row>
+            <el-row class="IconList">
+                
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
                         <svg-icon v-if="show" icon-class="indexInfoList-peiou" />
@@ -259,11 +249,18 @@
                     <div class="IconText"><span>未就业配偶<br/>待遇核准</span></div>
                 </el-col>
             </el-row>
-            <div class="DepartmentsList">
+            <!-- <div class="DepartmentsList">
                 <span></span>
                 <p class="titleOne">其他服务</p>
             </div>
             <el-row class="IconList">
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-feiyongshenhe" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-feiyongshenhe1" />
+                    </div>
+                    <div class="IconText"><span>费用审核</span></div>
+                </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg">
                         <svg-icon v-if="show" icon-class="indexInfoList-guashi" />
@@ -272,14 +269,109 @@
                     <div class="IconText"><span>社保卡</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/mendChangeCard')">
+                    <div class="IconImg" @click="showWork('/mendChangeCard','备案服务','社保卡补换')">
                         <svg-icon v-if="show" icon-class="indexInfoList-buhuan" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-buhuan1" />
                     </div>
                     <div class="IconText"><span>社保卡补换</span></div>
                 </el-col>
-            </el-row>
+            </el-row> -->
+            
+            <!-- <div class="DepartmentsList">
+                <span></span>
+                <p class="titleOne">我的健康</p>
+            </div>
+            <el-row class="IconList">
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-yuyueguahao" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-yuyueguahao1" />
+                    </div>
+                    <div class="IconText"><span>预约挂号</span></div>
+                </el-col>
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-paiduijiaohao" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-paiduijiaohao1" />
+                    </div>
+                    <div class="IconText"><span>排队叫号</span></div>
+                </el-col>
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-yibaozhifu" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-yibaozhifu1" />
+                    </div>
+                    <div class="IconText"><span>医保支付</span></div>
+                </el-col>
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-baogaochaxun" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-baogaochaxun1" />
+                    </div>
+                    <div class="IconText"><span>报告查询</span></div>
+                </el-col>
+            </el-row> -->
             <div class="DepartmentsList">
+                <span></span>
+                <p class="titleOne">个人信息查询</p>
+            </div>
+            <el-row class="IconList">
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-benanxinxi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-benanxinxi1" />
+                    </div>
+                    <div class="IconText"><span>信息变更</span></div>
+                </el-col>
+
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-canbaoxinxi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-canbaoxinxi1" />
+                    </div>
+                    <div class="IconText"><span>参保信息</span></div>
+                </el-col>
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-banshijindu" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-banshijindu1" />
+                    </div>
+                    <div class="IconText"><span>办事进度</span></div>
+                </el-col>
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-jiaofeixinxi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiaofeixinxi1" />
+                    </div>
+                    <div class="IconText"><span>费用信息</span></div>
+                </el-col>
+                <!-- <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-jiuzhenxinxi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiuzhenxinxi1" />
+                    </div>
+                    <div class="IconText"><span>账户信息</span></div>
+                </el-col> -->
+            </el-row>
+            <el-row class="IconList">
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-benanxinxi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-benanxinxi1" />
+                    </div>
+                    <div class="IconText"><span>备案信息</span></div>
+                </el-col>
+                <el-col :span="6" class="IconBox">
+                    <div class="IconImg">
+                        <svg-icon v-if="show" icon-class="indexInfoList-jiuzhenxinxi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiuzhenxinxi1" />
+                    </div>
+                    <div class="IconText"><span>就诊信息</span></div>
+                </el-col>
+
+
+            </el-row>
+            <!-- <div class="DepartmentsList">
                 <span></span>
                 <p class="titleOne">公共查询</p>
             </div>
@@ -305,7 +397,7 @@
                     </div>
                     <div class="IconText"><span>药品目录</span></div>
                 </el-col>
-            </el-row>
+            </el-row> -->
         </div>
     </div>
 </template>
@@ -320,12 +412,13 @@
         },
         created() {},
         methods: {
-            showWork(val) {
-                console.log(val)
+            showWork(url,item,itemInfo) {
                 this.$router.push({
                     name: 'Index',
                     params: {
-                        info: val
+                        info: url,
+                        item:item,
+                        itemInfo:itemInfo
                     }
                 })
             }
