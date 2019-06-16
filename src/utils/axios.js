@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Vue from "vue"
 
 // 创建实例
 const service = axios.create({
@@ -23,13 +24,15 @@ axios.interceptors.response.use((response) => {
     if(newRes.code == -1 ){
         // 系统异常
         console.log(newRes.data.msg);
-        this.$router.push("/")
+        // this.$router.push("/")
+        // Vue.$router.push("/")
+        // console.log()
         return;
     }else if (newRes.code == 1 ) {
         // 业务异常
         if ( newRes.data.enCode !== 1000 ) {
             console.log(newRes.data.msg);
-            this.$router.push("/")
+            // this.$router.push("/")
         }
         return;
     }else if (newRes.code == 0 ) {
