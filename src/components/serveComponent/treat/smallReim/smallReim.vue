@@ -49,9 +49,6 @@ export default {
     components: {
         Title,WorkProgress,userBaseInfo,Footer
     },
-    watch:{
-
-    },
     data() {
         return {
             // 提交信息
@@ -89,7 +86,6 @@ export default {
         },
     },
     created() {
-        // 获取VUEX信息
         this.form = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_1));
     },
     methods: {
@@ -143,11 +139,11 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAC003 = '胡';
                 submitForm.AAE135 = "113344223344536624";
             }
             // 请求参数封装
-            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1026");
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012);
             return params;
         }
     }

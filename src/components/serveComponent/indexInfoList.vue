@@ -210,7 +210,7 @@
             </div>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/smallReim','待遇报销','基本医疗保险参保人员医疗费用零星报销')">
                         <svg-icon v-if="show" icon-class="indexInfoList-lingxingbaoxiao" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-lingxingbaoxiao1" />
                     </div>
