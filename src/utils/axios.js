@@ -21,28 +21,28 @@ axios.interceptors.response.use((response) => {
     // token 已过期，重定向到登录页面
     let newRes = response.data;
     console.log('响应拦截器',newRes)
-    if(newRes.code == -1 ){
-        // 系统异常
-        console.log(newRes.data.msg);
-        // this.$router.push("/")
-        // Vue.$router.push("/")
-        // console.log()
-        return;
-    }else if (newRes.code == 1 ) {
-        // 业务异常
-        if ( newRes.data.enCode !== 1000 ) {
-            console.log(newRes.data.msg);
-            // this.$router.push("/")
-        }
-        return;
-    }else if (newRes.code == 0 ) {
-        // 成功   1000
-        if (newRes.data.enCode !== 1000 ) {
-        // 失败  1001
-            console.log(newRes.data.msg);
-            return;
-        }
-    }
+    // if(newRes.code == -1 ){
+    //     // 系统异常
+    //     console.log(newRes.data.msg);
+    //     // this.$router.push("/")
+    //     // Vue.$router.push("/")
+    //     // console.log()
+    //     return;
+    // }else if (newRes.code == 1 ) {
+    //     // 业务异常
+    //     if ( newRes.data.enCode !== 1000 ) {
+    //         console.log(newRes.data.msg);
+    //         // this.$router.push("/")
+    //     }
+    //     return;
+    // }else if (newRes.code == 0 ) {
+    //     // 成功   1000
+    //     if (newRes.data.enCode !== 1000 ) {
+    //     // 失败  1001
+    //         console.log(newRes.data.msg);
+    //         return;
+    //     }
+    // }
     return newRes.data
 }, 
 error => {
