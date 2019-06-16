@@ -61,13 +61,14 @@ export default {
         return{
             form:{
                 AAA027000:"",
-                AAA027:"", //转出地code
-                AAB301:"", //转入地code
+                AAS027:"", //转出地省code
+                AAS301:"", //转入地省code
                 AAB301000:"",
                 // phone: '' //手机号码
                 AAE005: '', //手机号码,
-                AAQ027:"",
-                AAQ301:""
+                AAA027:"",//转出地市
+                AAB301:"",//转入地市
+                BKZ019:''//经办编号
             },
             canSubmit: false,
         }
@@ -105,11 +106,11 @@ export default {
             this.form.AAA027000= val.name;
             let codein=val.code;
             var str1=codein
-            this.form.AAA027=str1.substring(0,6)
-            this.form.AAQ027=str1.substring(6,12)            
+            this.form.AAS027=str1.substring(0,6)
+            this.form.AAA027=str1.substring(6,12)            
             console.log(codein)
+            console.log(this.form.AAS027)
             console.log(this.form.AAA027)
-            console.log(this.form.AAQ027)
         },
         // 选择转入地
         openInCityPicker(){
@@ -119,13 +120,14 @@ export default {
             this.form.AAB301000 = val.name;
             let codeout=val.code
             var str2=codeout
-            this.form.AAB301=str2.substring(0,6)
-            this.form.AAQ301=str2.substring(6,12)
+            this.form.AAS301=str2.substring(0,6)
+            this.form.AAB301=str2.substring(6,12)
             console.log(codeout)
+            console.log(this.form.AAS301)
             console.log(this.form.AAB301)
-            console.log(this.form.AAQ301)
         },
         submit(){
+            this.$router.push("/transferDetail");
             console.log(this.form)
             if (this.canSubmit == false) {
                 this.$toast('信息未填写完整');
@@ -156,11 +158,13 @@ export default {
         },
         formatSubmitData(){
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            submitForm.AAS027 =  this.form.AAS027;
+            submitForm.AAS301 =  this.form.AAS301;
             submitForm.AAA027 =  this.form.AAA027;
             submitForm.AAB301 =  this.form.AAB301;
             submitForm.AAE005 =  this.form.AAE005;
-            submitForm.AAQ027 =  this.form.AAQ027;
-            submitForm.AAQ301 =  this.form.AAQ301;
+            submitForm.BKZ019 =  this.form.BKZ019;
+
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

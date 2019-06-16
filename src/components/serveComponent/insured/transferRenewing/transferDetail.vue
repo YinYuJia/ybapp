@@ -8,11 +8,11 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>转出地:</span></div>
-                    <div class="InfoText">{{form.AAA027}}</div>
+                    <div class="InfoText">{{form.AAA027000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转入地:</span></div>
-                    <div class="InfoText">{{form.AAB301}}</div>
+                    <div class="InfoText">{{form.AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码:</span></div>
@@ -36,8 +36,8 @@ export default {
     data(){
         return{
             form:{
-                AAA027: '', //转出地
-                AAB301: '', //转入地
+                AAA027000: '', //转出地
+                AAB301000: '', //转入地
                 AAE005: '' //手机号码
             },
         }
@@ -50,9 +50,7 @@ export default {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
-                console.log(11111)
                 this.$toast("提交成功");
-                this.$router.push("/elseDetail");
             }else if (resData.enCode == 1001 ) {
             //   失败  1001
                 this.$toast(resData.msg);
@@ -69,9 +67,9 @@ export default {
         },
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                // this.form.AAA027="";
-                // this.form.AAB301="";
-                // this.form.AAE005="";
+                this.form.AAA027000="";
+                this.form.AAB301000="";
+                this.form.AAE005="";
 
                 this.$router.push('/transferRenewing')
                 this.$toast("撤销成功");
@@ -80,7 +78,7 @@ export default {
         formatSubmitData(){
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
             console.log(submitForm)
-                submitForm.AGA002 =  "确认-00253-013";
+                submitForm.AGA002 =  "公共服务-00512-001";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

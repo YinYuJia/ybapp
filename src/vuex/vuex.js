@@ -89,11 +89,11 @@ export default new Vuex.Store({  // 暴露与new vuex
 
         // 领取就医凭证
         SET_INSURED_PROOF:{
-          'AAE011': '', //收件人
-          'AAE005': '', //联系电话
-          'AAE006': '', //地址
-          'AAC050':'', //变更类型
-          'BKA077' :'' ,//领取方式
+          AAE011: '', //收件人
+          AAE005: '', //联系电话
+          AAE006: '', //地址
+          AAC050:'', //变更类型
+          BKA077 :'' ,//领取方式
         },
         SET_PUBLICHEADER:{  imei:	'移动设备身份码',
         mac:	'设备编号',
@@ -129,12 +129,13 @@ export default new Vuex.Store({  // 暴露与new vuex
         //医保关系转移接续
         SET_TRANSFERRENEWING_OPERATION:{
           AAA027000:"",
-          AAA027:"", //转出地code
-          AAB301:"", //转入地code
+          AAS027:"", //转出地省code
+          AAS301:"", //转入地省code
           AAB301000:"",
           AAE005: '', //手机号码,
-          AAQ027:"",
-          AAQ301:""
+          AAA027:"",//转出地市
+          AAB301:"",//转入地市
+          BKZ019:''//经办编号
         },
         //零星报销
         SET_SMALLREIM_OPERATION:{
