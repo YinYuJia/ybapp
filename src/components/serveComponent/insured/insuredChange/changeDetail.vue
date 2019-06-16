@@ -49,7 +49,6 @@ export default {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
-                console.log(11111)
                 this.$toast("提交成功");
                 this.$router.push("/elseDetail");
             }else if (resData.enCode == 1001 ) {
@@ -77,7 +76,7 @@ export default {
         formatSubmitData(){
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
             console.log(submitForm)
-            submitForm.AGA002 =  "确认-00253-013";
+            submitForm.AGA002 =  "公共服务-00501-004";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

@@ -91,7 +91,7 @@ import Footer from '../../common/Footer'
             }
         },
         created() {
-            // this.form = this.$store.state.SET_TURNOUT_OPERATION;
+            this.form = this.$store.state.SET_TURNOUT_OPERATION;
             this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
             this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
         },

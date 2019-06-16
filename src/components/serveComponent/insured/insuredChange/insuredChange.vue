@@ -43,7 +43,8 @@ export default {
             form:{
                 AAE006: '', //家庭住址
                 AAE005: '', //手机号码
-                AAE007: '' //邮政编码
+                AAE007: '', //邮政编码
+                BKZ019: '' //经办编号
             },
             canSubmit: false,
         }
@@ -64,6 +65,7 @@ export default {
         this.form = this.$store.state.SET_INSURED_CHANGE;
         this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
         this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+        this.form.BKZ019='公共服务-00501-005'
     },
     methods:{
         submit(){
@@ -99,6 +101,7 @@ export default {
             submitForm.AAE005 =  this.form.AAE005;            
             submitForm.AAE006 =  this.form.AAE006;
             submitForm.AAE007 =  this.form.AAE007;
+            submitForm.BKZ019 =  this.form.BKZ019;
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
