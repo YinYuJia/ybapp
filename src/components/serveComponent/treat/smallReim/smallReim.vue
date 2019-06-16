@@ -2,90 +2,69 @@
     <div class="smallReim">
         <Title :title="'零星报销'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
-        <selectCity 
-            :type="2"
-            ref="insuredPicker"
-            @confirm="chooseInsured"
-            >
-        </selectCity>
+        <mt-datetime-picker
+            type="date"
+            ref="timePicker"
+            v-model="dateVal"
+            @confirm="handleTimeConfirm">
+        </mt-datetime-picker>
         <!-- 弹出框区域结束 -->
         <div class="Content">
+            <!-- 填写进度 -->
+            <WorkProgress :currentStep="1" :progress="progress"></WorkProgress>
             <!-- 基本信息 -->
-            <userBaseInfo></userBaseInfo>
+            <userBaseInfo style="background:white"></userBaseInfo>
             
             <div class="ReportInfo">
                 <div class="InfoLine">
-                    <div class="InfoName"><span>参保地：</span></div>
-                    <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
-                    </div>
+                    <div class="InfoName"><span>就诊医院：</span></div>
+                    <div class="InfoText"><input @click="chooseHospital()" type="text" v-model="form.hospitalName" placeholder="请输入" readonly></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>发票总额：</span></div>
-                    <div class="InfoText"><input type="number" v-model="form.ACK264" placeholder="请输入"></div>
+                    <div class="InfoName"><span>就诊类型：</span></div>
+                    <div class="InfoText"><input type="text" v-model="form.jiuzhen" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>发票张数：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.number" placeholder="请输入"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>收款开户行：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE008" placeholder="请输入"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>收款开户名：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>收款银行账号：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE010" placeholder="请输入"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>发票附件上传：</span></div>
-                    <div class="UploadPhoto">
-                        <div class="SelectPhoto" @click="chooseImg()">+</div>
-                    </div>
-                    <!-- 上传框隐藏 -->
-                    <form id="img-form">
-                        <input @change="uploadImg()" style="display:none" id="img-file" name="file" type="file" accept="image/*">
-                    </form>
+                    <div class="InfoName"><span>就诊日期：</span></div>
+                    <div class="InfoText"><input @click="openTimePicker()" type="text" v-model="form.jiuzhendate" placeholder="请输入" readonly></div>
                 </div>
             </div>
         </div>
         <!-- 按钮 -->
-        <footer class="Footer">
-            <div class="SubmitBtn" @click="submit" :class="{'active': canSubmit == true}">
-                <span>确认提交</span>
-            </div>
-        </footer>
+        <Footer :canSubmit="true" :btnText="'下一步'" @submit="submit()"></Footer>
     </div>
 </template>
 
 <script>
 import Title from '../../common/Title'
+import WorkProgress from '../../common/WorkProgress'
 import userBaseInfo from '../../common/userBaseInfo'
-import selectCity from '../../common/selectCity'
+import Footer from '../../common/Footer'
 export default {
     components: {
-        'Title': Title,
-        'userBaseInfo': userBaseInfo,
-        'selectCity': selectCity,
+        Title,WorkProgress,userBaseInfo,Footer
     },
     data() {
         return {
             // 提交信息
             form: {
-                AAB301: '', //参保地
-                ACK264: '', //发票费用总额
-                number: '', //发票张数
-                AAE008: '', //收款开户行
-                AAE009: '', //收款开户名
-                AAE010: '', //收款银行账号
+                hospitalName: '', //医院名称
+                hospitalCode: '', //医院编码
+                jiuzhen: '', //就诊类型
+                jiuzhendate: '', //就诊日期
             },
+            dateVal: new Date(), //默认绑定的时间
             canSubmit: false,
+            progress:[
+                {step:1,name:'申请报销'},
+                {step:2,name:'发票信息'},
+                {step:3,name:'信息录入'},
+                {step:4,name:'申报完成'}
+            ]
         }
     },
     created() {
+<<<<<<< HEAD
         this.form = this.$store.state.SET_SMALLREIM_OPERATION;
         this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
         this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
@@ -103,36 +82,27 @@ export default {
             },
             deep: true
         },
+=======
+        // 获取选择的就诊医院
+        this.form.hospitalName = this.$store.state.SET_SMALL_REIM.hospitalName;
+        this.form.hospitalCode = this.$store.state.SET_SMALL_REIM.hospitalCode;
+>>>>>>> 78c9aa58d46605d7c3aa5a4f9074caad7a06b79c
     },
     methods: {
-        // 选择参保地
-        openInsuredPicker(){
-            this.$refs.insuredPicker.open();
+        // 选择就诊医院
+        chooseHospital(){
+            this.$router.push('/searchHospital');
         },
-        chooseInsured(val){
-            this.form.AAB301 = val;
+        // 选择就诊日期
+        openTimePicker(){
+            this.$refs.timePicker.open();
         },
-        // 选择照片
-        chooseImg(){
-            document.getElementById('img-file').click();
-        },
-        // 自动上传
-        uploadImg: function(){
-            var data = document.getElementById("img-form");
-            var imgInput = document.getElementById("img-file");
-            if(imgInput.value == '' || imgInput.value == null){
-                return false;
-            }
-            var formData = new FormData(data);
-            console.log(data);
-            // 上传的函数
-            // axios.post('/apis/mdse/uploadPhoto/'+this.barCode,formData)
-            //     .then((res)=>{
-            //     }).catch((err) => {
-            //         this.$toast("上传失败，请联系管理员","warning",2000);
-            //     });
+        handleTimeConfirm(val){
+            let date = this.util.formatDate(val,'yyyy-MM-dd');
+            this.form.jiuzhendate = date;
         },
         // 提交
+<<<<<<< HEAD
         submit() {
             
             if (this.canSubmit == false) {
@@ -173,6 +143,10 @@ export default {
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012);
             return params;
+=======
+        submit(){
+            this.$router.push('/invoiceInfo');
+>>>>>>> 78c9aa58d46605d7c3aa5a4f9074caad7a06b79c
         }
     }
 }
@@ -184,9 +158,10 @@ export default {
         height: 100%;
         margin-bottom: 1.4rem;
         .ReportInfo {
-            height: 10.1rem;
+            height: 3.6rem;
             width: 7.5rem;
             padding: 0 .3rem;
+            margin: .15rem 0 0 0;
             background: white;
             .InfoLine {
                 height: 1.2rem;
@@ -224,76 +199,11 @@ export default {
                         border: none;
                     }
                 }
-                &:last-child {
+                &:last-child{
                     border-bottom: none;
-                    display: block;
-                    text-align: left;
-                    .UploadPhoto{
-                        display: flex;
-                        .SelectPhoto{
-                            height: 1.4rem;
-                            width: 1.4rem;
-                            background: #EFEFEF;
-                            margin-right: .3rem;
-                            font-size: .6rem;
-                            text-align: center;
-                            line-height: 1.4rem;
-                            color: #999;
-                        }
-                    }
                 }
             }
         }
     }
-    .Footer {
-        height: 1.31rem;
-        width: 7.5rem;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 199;
-        display: flex;
-        justify-content: center;
-        .SubmitBtn {
-            height: 1.05rem;
-            width: 7.1rem;
-            border-radius: .05rem;
-            line-height: 1.05rem;
-            background: #F2F2F2;;
-            font-family: PingFangSC-Regular;
-            font-size: .36rem;
-            color: #B4B4B4;
-            letter-spacing: 0;
-            text-align: center;
-        }
-        .active{
-            background: #1492FF;
-            color: #FFFFFF;
-        }
-    }
 }
-</style>
-
-<style>
-    .elseWhere .el-date-editor.el-input,
-    .el-date-editor.el-input__inner {
-        width: 160px;
-    }
-    .elseWhere .el-input__prefix,
-    .el-input__suffix {
-        display: none;
-    }
-    .elseWhere .el-input__inner {
-        border: none;
-        text-align: right;
-        padding-right: 0;
-        padding-left: 0;
-    }
-    .elseWhere .el-cascader .el-input .el-input__inner {
-        width: 4.5rem;
-    }
-    .elseWhere .el-cascader .el-cascader__label {
-        text-align: right;
-        padding: 0;
-    }
 </style>

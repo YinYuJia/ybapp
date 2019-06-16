@@ -27,11 +27,18 @@ import abroadTake from '@/components/serveComponent/record/abroadTake/abroadTake
 import abroadDetail from '@/components/serveComponent/record/abroadTake/abroadDetail'
 import familyAid from '@/components/serveComponent/record/familyAid/familyAid'
 import familyDetail from '@/components/serveComponent/record/familyAid/familyDetail'
+import specialDrug from '@/components/serveComponent/record/specialDrug/specialDrug'
 import mendChangeCard from '@/components/serveComponent/others/mendChangeCard/mendChangeCard'
 import mendChangeDetail from '@/components/serveComponent/others/mendChangeCard/mendChangeDetail'
 import baseInfoChange from '@/components/serveComponent/others/baseInfoChange/baseInfoChange'
 import baseInfoChangeDetail from '@/components/serveComponent/others/baseInfoChange/baseInfoChangeDetail'
 import smallReim from '@/components/serveComponent/treat/smallReim/smallReim'
+import searchHospital from '@/components/serveComponent/treat/smallReim/searchHospital'
+import invoiceInfo from '@/components/serveComponent/treat/smallReim/invoiceInfo'
+import plusInvoice from '@/components/serveComponent/treat/smallReim/plusInvoice'
+import infoRecord from '@/components/serveComponent/treat/smallReim/infoRecord'
+import reportComplete from '@/components/serveComponent/treat/smallReim/reportComplete'
+import smallReimDetail from '@/components/serveComponent/treat/smallReim/smallReimDetail'
 import payLimit from '@/components/serveComponent/treat/payLimit/payLimit'
 import payLimitDetail from '@/components/serveComponent/treat/payLimit/payLimitDetail'
 
@@ -137,6 +144,11 @@ export default new Router({
       component: familyAid
     },
     {
+      path: '/specialDrug',
+      name: 'specialDrug',
+      component: specialDrug
+    },
+    {
       path: '/familyDetail',
       name: 'familyDetail',
       component: familyDetail
@@ -165,6 +177,36 @@ export default new Router({
       path: '/smallReim',
       name: 'smallReim',
       component: smallReim
+    },
+    {
+      path: '/searchHospital',
+      name: 'searchHospital',
+      component: searchHospital
+    },
+    {
+      path: '/invoiceInfo',
+      name: 'invoiceInfo',
+      component: invoiceInfo
+    },
+    {
+      path: '/plusInvoice',
+      name: 'plusInvoice',
+      component: plusInvoice
+    },
+    {
+      path: '/infoRecord',
+      name: 'infoRecord',
+      component: infoRecord
+    },
+    {
+      path: '/reportComplete',
+      name: 'reportComplete',
+      component: reportComplete
+    },
+    {
+      path: '/smallReimDetail',
+      name: 'smallReimDetail',
+      component: smallReimDetail
     },
     {
       path: '/payLimit',

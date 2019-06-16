@@ -84,6 +84,8 @@
             //         onSuccess: function(data) {},
             //         onFail: function(error) {}
             //     })
+            this.NameTitle = sessionStorage.getItem("item")
+            this.describe = sessionStorage.getItem("itemInfo")
             this.$store.dispatch('SET_NATIVEMSG', {
                 title: "",
                 describe: "",
@@ -101,23 +103,16 @@
                     version: 'v2.0',
                 }
             });
+            sessionStorage.setItem("userName",'张思佳')
+            sessionStorage.setItem("idCard",'330165694569544567')
         },
         methods: {
             handleSelect(key, keyPath) {
                 this.activeIndex = key
             },
             goBackIndex() {
-                // 返回原生界面
-                console.log('111')
-                var u = navigator.userAgent;
-                var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-                var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-                this.$toast('是否是Android：' + isAndroid + '是否是iOS：' + isiOS)
-                if (isiOS) {
-                    window.webkit.messageHandlers.back.postMessage("H5message");
-                } else if (isAndroid) {
-                    window.dzsb.back('H5message');
-                }
+                // 返回首页
+                this.$router.push('/')
             },
             changeIndex(index) {
                 this.activeIndex = index;

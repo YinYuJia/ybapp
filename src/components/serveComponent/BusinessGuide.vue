@@ -14,7 +14,7 @@
         <div v-if="info == 4">
             {{question}}
         </div>
-        <div>{{name|tuoMin(0,2)}}</div>
+        <!-- <div>{{name|tuoMin(0,2)}}</div> -->
     </div>
 </template>
 

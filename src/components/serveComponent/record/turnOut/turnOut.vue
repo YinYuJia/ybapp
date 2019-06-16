@@ -28,33 +28,23 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
-                    <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
-                    </div>
+                    <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期</span></div>
-                    <div class="InfoText">
-                        <div class="InfoText"><input @click="openStartPicker" type="text" v-model="form.start" placeholder="请选择" readonly></div>
-                    </div>
+                    <div class="InfoText"><input @click="openStartPicker" type="text" v-model="form.start" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>结束日期</span></div>
-                    <div class="InfoText">
-                        <div class="InfoText"><input type="text" v-model="form.end" placeholder="请选择" readonly></div>
-                    </div>
+                    <div class="InfoText"><input type="text" v-model="form.end" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转往地市</span></div>
-                    <div class="InfoText">
-                         <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
-                    </div>
+                    <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称</span></div>
-                    <div class="InfoText">
-                        <div class="InfoText"><input type="text" v-model="form.AKA121" placeholder="请输入"></div>
-                    </div>
+                    <div class="InfoText"><input type="text" v-model="form.AKA121" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就医疗程</span></div>

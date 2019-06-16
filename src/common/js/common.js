@@ -8,8 +8,7 @@ export default {
         console.log(a);
     },
     // 公用请求地址
-    // 开发地址
-    
+
     ApiUrl:function() {
         return 'http://192.168.1.199:13030' // 吴学文
     },

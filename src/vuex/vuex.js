@@ -112,6 +112,13 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE005: '', //手机号码
           AAE007: '' //邮政编码
         },
+
+        // 零星报销
+        SET_SMALL_REIM:{
+          hospitalName: '', //就诊医院
+          hospitalCode: '', //医院编码
+          ceshi: '', //测试
+        },
         //缴费年限核定
         SET_PAYLIMIT_OPERATION:{
           AKC412: '', //视作缴费年限
@@ -221,6 +228,9 @@ export default new Vuex.Store({  // 暴露与new vuex
           sessionStorage.setItem("SET_NATIVEMSG",JSON.stringify(payload));
           state.SET_NATIVEMSG = payload;
         },
+        SET_SMALL_REIM(state,payload){
+          state.SET_SMALL_REIM = payload;
+        },
         SET_PAYLIMIT_OPERATION(state,payload){
           sessionStorage.setItem("SET_PAYLIMIT_OPERATION",JSON.stringify(payload));
           state.SET_PAYLIMIT_OPERATION = payload;
@@ -274,6 +284,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_USER_BASEINFO( context, payload ) {
           context.commit( 'SET_USER_BASEINFO', payload ); //context提交
+        },
+        SET_SMALL_REIM( context, payload ) {
+          context.commit( 'SET_SMALL_REIM', payload );
         },
         SET_PAYLIMIT_OPERATION( context, payload ) {
           context.commit( 'SET_PAYLIMIT_OPERATION', payload ); //context提交
