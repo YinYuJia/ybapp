@@ -127,7 +127,6 @@ export default {
             console.log(this.form.AAB301)
         },
         submit(){
-            this.$router.push("/transferDetail");
             console.log(this.form)
             if (this.canSubmit == false) {
                 this.$toast('信息未填写完整');
