@@ -120,6 +120,10 @@ export default new Vuex.Store({  // 暴露与new vuex
           AKA078: '', //就诊类型
           AAE030: '' //就诊日期
         },
+        SET_SMALL_REIM_2:{
+          eleInvoices: [], //电子发票信息
+        },
+
         //缴费年限核定
         SET_PAYLIMIT_OPERATION:{
           AKC412: '', //视作缴费年限
@@ -217,6 +221,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_SMALL_REIM_1(state,payload){
           state.SET_SMALL_REIM_1 = payload;
         },
+        SET_SMALL_REIM_2(state,payload){
+          state.SET_SMALL_REIM_2 = payload;
+        },
         SET_PAYLIMIT_OPERATION(state,payload){
           sessionStorage.setItem("SET_PAYLIMIT_OPERATION",JSON.stringify(payload));
           state.SET_PAYLIMIT_OPERATION = payload;
@@ -269,6 +276,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_SMALL_REIM_1( context, payload ) {
           context.commit( 'SET_SMALL_REIM_1', payload );
+        },
+        SET_SMALL_REIM_2( context, payload ) {
+          context.commit( 'SET_SMALL_REIM_2', payload );
         },
         SET_PAYLIMIT_OPERATION( context, payload ) {
           context.commit( 'SET_PAYLIMIT_OPERATION', payload ); //context提交
