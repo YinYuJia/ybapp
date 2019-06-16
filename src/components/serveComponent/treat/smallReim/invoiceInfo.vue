@@ -91,7 +91,7 @@ export default {
                 {step:3,name:'信息录入'},
                 {step:4,name:'申报完成'}
             ],
-            hasInvoice: true, //是否有发票信息
+            hasInvoice: false, //是否有发票信息
             invoices:[
                 {code:'9123910023010230120301',name:'骨科',cost:'10239.03'},
                 {code:'9123910023010230120302',name:'外科',cost:'102.88'},
