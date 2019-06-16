@@ -21,13 +21,8 @@ export default {
     },
     created(){
         // console.log(this.$store.state.SET_NATIVEMSG.name)
-<<<<<<< HEAD
-        this.form.name = this.$store.state.SET_NATIVEMSG.name 
-        this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard 
-=======
         this.form.name = sessionStorage.getItem("userName") || this.$store.state.SET_NATIVEMSG.name 
         this.form.idNo = sessionStorage.getItem("idCard") || this.$store.state.SET_NATIVEMSG.idCard 
->>>>>>> 78c9aa58d46605d7c3aa5a4f9074caad7a06b79c
 
         // console.log('原生参数-----',this.$store.state.SET_NATIVEMSG)
     }

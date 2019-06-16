@@ -64,7 +64,6 @@ export default {
         }
     },
     created() {
-<<<<<<< HEAD
         this.form = this.$store.state.SET_SMALLREIM_OPERATION;
         this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
         this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
@@ -82,11 +81,6 @@ export default {
             },
             deep: true
         },
-=======
-        // 获取选择的就诊医院
-        this.form.hospitalName = this.$store.state.SET_SMALL_REIM.hospitalName;
-        this.form.hospitalCode = this.$store.state.SET_SMALL_REIM.hospitalCode;
->>>>>>> 78c9aa58d46605d7c3aa5a4f9074caad7a06b79c
     },
     methods: {
         // 选择就诊医院
@@ -102,7 +96,6 @@ export default {
             this.form.jiuzhendate = date;
         },
         // 提交
-<<<<<<< HEAD
         submit() {
             
             if (this.canSubmit == false) {
@@ -143,10 +136,6 @@ export default {
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1012);
             return params;
-=======
-        submit(){
-            this.$router.push('/invoiceInfo');
->>>>>>> 78c9aa58d46605d7c3aa5a4f9074caad7a06b79c
         }
     }
 }
