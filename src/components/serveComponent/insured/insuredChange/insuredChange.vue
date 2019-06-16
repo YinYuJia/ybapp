@@ -77,13 +77,13 @@ export default {
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1010/info', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl2() + '/h5/jy1010/info', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
-                            if ( resData.enCode == 1000 ) {
+                            if ( resData.enCode == '1000' ) {
                                 this.$toast("提交成功");
                                 this.$router.push("/changeDetail");
-                            }else if (resData.enCode == 1001 ) {
+                            }else if (resData.enCode == '1001' ) {
                             //   失败  1001
                                 this.$toast(resData.msg);
                                 return;

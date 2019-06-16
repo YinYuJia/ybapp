@@ -34,7 +34,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系电话"></div>
+                    <div class="InfoText"><input type="number" v-model="form.AAE005" placeholder="请输入联系电话"></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -76,6 +76,7 @@ export default {
     watch: {
        form:{
             handler: function(val) {
+                console.log("监听",val)
                 // 判断不为空
                 if (val.AAA027 != '' && val.AAA027 != '' && val.AAE005 != '') {
                     this.canSubmit = true;
