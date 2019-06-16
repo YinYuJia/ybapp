@@ -84,8 +84,8 @@
             //         onSuccess: function(data) {},
             //         onFail: function(error) {}
             //     })
-            this.NameTitle = this.$route.params.item
-            this.describe = this.$route.params.itemInfo
+            this.NameTitle = sessionStorage.getItem("item")
+            this.describe = sessionStorage.getItem("itemInfo")
             this.$store.dispatch('SET_NATIVEMSG', {
                 title: "",
                 describe: "",

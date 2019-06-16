@@ -144,7 +144,7 @@
                     <div class="IconText"><span>打印信息</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/transferRenewing','参保服务','关系转移接续')">
                         <svg-icon v-if="show" icon-class="indexInfoList-guanxizhuanyi" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-guanxizhuanyi1" />
                     </div>
@@ -189,7 +189,7 @@
             </el-row>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <div class="IconImg" @click="showWork('/specialDrug','备案服务','特制特药备案')">
                         <svg-icon v-if="show" icon-class="indexInfoList-teyaobeian" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-teyaobeian1" />
                     </div>
@@ -413,6 +413,8 @@
         created() {},
         methods: {
             showWork(url,item,itemInfo) {
+                sessionStorage.setItem("item",item);
+                sessionStorage.setItem("itemInfo",itemInfo);
                 this.$router.push({
                     name: 'Index',
                     params: {
