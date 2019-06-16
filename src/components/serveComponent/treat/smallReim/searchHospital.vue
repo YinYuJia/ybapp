@@ -11,9 +11,9 @@
         <div class="ListContent">
             <div class="List"
                 v-for="item in HospitalList" 
-                :key="item.hospitalCode"
-                @click="chooseHospital(item.hospitalCode,item.hospitalName)">
-                {{item.hospitalCode}}-{{item.hospitalName}}
+                :key="item.AKB020"
+                @click="chooseHospital(item.AKB020,item.hospitalName)">
+                {{item.hospitalName}}
             </div>
         </div>
     </div>
@@ -28,25 +28,23 @@ export default {
     data(){
         return{
             HospitalList:[
-                {hospitalCode: '1001', hospitalName: '医院1'},
-                {hospitalCode: '1002', hospitalName: '医院2'},
-                {hospitalCode: '1003', hospitalName: '医院3'},
-                {hospitalCode: '1004', hospitalName: '医院4'},
-                {hospitalCode: '1005', hospitalName: '医院5'},
+                {AKB020: '3300001101019', hospitalName: '浙江中医药大学附属第三医院'},
+                {AKB020: '3300001102003', hospitalName: '杭州市第三人民医院'},
+                {AKB020: '3302001100003', hospitalName: '宁波市北仑区人民医院'}
             ],
             smallReimForm: {}, // 零星报销对象
         }
     },
     created(){
         // 获取VUEX信息
-        this.smallReimForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM));
+        this.smallReimForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_1));
         // this.smallReimForm = this.$store.state.SET_SMALL_REIM;
     },
     methods:{
         chooseHospital(code,name){
-            this.smallReimForm.hospitalCode = code;
+            this.smallReimForm.AKB020 = code;
             this.smallReimForm.hospitalName = name;
-            this.$store.dispatch('SET_SMALL_REIM', this.smallReimForm);
+            this.$store.dispatch('SET_SMALL_REIM_1', this.smallReimForm);
             this.$router.push('/smallReim');
         }
     }
@@ -107,6 +105,10 @@ export default {
             letter-spacing: 0;
             line-height: 1.2rem;
             text-align: left;
+            border-bottom: .01rem solid #D5D5D5;
+            &:last-child{
+                border-bottom: none;
+            }
         }
     }
 }

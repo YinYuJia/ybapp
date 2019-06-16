@@ -7,21 +7,23 @@
             <!-- 自动获取发票信息 -->
             <div class="invoiceContent" v-if="hasInvoice">
                 <div class="invoiceHint">请选择您的报销条目</div>
-                <div class="invoiceList" v-for="item in invoices" :key="item.code">
-                    <svg-icon icon-class="serveComponent_select" />
+                <div class="invoiceList" v-for="item in invoices" :key="item.BKE100">
+                    <div class="selectIcon" @click="chooseInvoice(item)">
+                        <svg-icon v-if="item.selected" icon-class="serveComponent_select" />
+                    </div>
                     <div class="columnLine"></div>
                     <div class="textBox">
                         <div class="textLine">
                             <span class="textName">发票号</span>
-                            <span class="textInfo active">{{item.code}}</span>
+                            <span class="textInfo active">{{item.BKE100}}</span>
                         </div>
                         <div class="textLine">
                             <span class="textName">科室名称</span>
-                            <span class="textInfo">{{item.name}}</span>
+                            <span class="textInfo">{{item.BKA104}}</span>
                         </div>
                         <div class="textLine">
                             <span class="textName">总费用</span>
-                            <span class="textInfo">{{item.cost}}</span>
+                            <span class="textInfo">{{item.AKC264}}</span>
                         </div>
                     </div>
                 </div>
@@ -29,20 +31,20 @@
             <!-- 手动添加发票信息 -->
             <div class="manualContent" v-if="!hasInvoice">
                 <div class="invoiceHint">暂无报销条目，请手动填写/上传发票信息</div>
-                <div class="invoiceList" v-for="item in invoices" :key="item.code">
+                <div class="invoiceList" v-for="item in invoices" :key="item.BKE100">
                     <div class="invoicePhoto"></div>
                     <div class="textBox">
                         <div class="textLine">
                             <span class="textName">发票号</span>
-                            <span class="textInfo">{{item.code}}</span>
+                            <span class="textInfo">{{item.BKE100}}</span>
                         </div>
                         <div class="textLine">
                             <span class="textName">科室名称</span>
-                            <span class="textInfo">{{item.name}}</span>
+                            <span class="textInfo">{{item.BKA104}}</span>
                         </div>
                         <div class="textLine">
                             <span class="textName">总费用</span>
-                            <span class="textInfo">{{item.cost}}</span>
+                            <span class="textInfo">{{item.AKC264}}</span>
                         </div>
                     </div>
                 </div>
@@ -59,8 +61,8 @@
             <div class="Btn">
                 <div class="CountBtn">
                     <span>合计:</span>
-                    <span class="active">10341.91</span>
-                    <span>元（5张）</span>
+                    <span class="active">{{invoiceCount.price}}</span>
+                    <span>元（{{invoiceCount.count}}张）</span>
                 </div>
                 <div class="SubmitBtn" @click="submit()">下一步</div>
             </div>
@@ -79,34 +81,62 @@ export default {
         return {
             // 提交信息
             form: {
-                hospitalName: '', //医院名称
-                hospitalCode: '', //医院编码
-                jiuzhen: '', //就诊类型
-                jiuzhendate: '', //就诊日期
+                
             },
-            canSubmit: false,
+            canSubmit: false, //是否可以提交
             progress:[
                 {step:1,name:'申请报销'},
                 {step:2,name:'发票信息'},
                 {step:3,name:'信息录入'},
                 {step:4,name:'申报完成'}
             ],
-            hasInvoice: false, //是否有发票信息
-            invoices:[
-                {code:'9123910023010230120301',name:'骨科',cost:'10239.03'},
-                {code:'9123910023010230120302',name:'外科',cost:'102.88'},
-            ]
+            hasInvoice: true, //是否有发票信息
+            // invoices:[  //发票信息
+            //     {BKE100:'9123910023010230120301',BKA104:'骨科',AKC264: 10239.03,selected: false},
+            //     {BKE100:'9123910023010230120302',BKA104:'外科',AKC264: 102.88,selected: false},
+            // ],
+            invoices: [],
+            invoiceCount: {price:0,count:0}, // 发票合计
         }
     },
     created() {
+        // 获取VUEX信息
+        this.invoices = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2));
+        // 封装发票
+        this.invoices.forEach((val)=>{
+            val.selected = false;
+            val.AKC264 = parseInt(val.AKC264);
+        })
+        console.log('发票',this.invoices);
     },
     methods: {
+        // 选择发票
+        chooseInvoice(invoice){
+            invoice.selected = !invoice.selected;
+            var price = 0;
+            var count = 0;
+            this.invoices.forEach((val)=>{
+                if(val.selected == true){
+                    price += val.AKC264;
+                    count++;
+                }
+            });
+            this.invoiceCount = {
+                price: price,
+                count: count
+            }
+        },
         // 添加新发票
         plusInvoice(){
             this.$router.push('/plusInvoice');
         },
         submit(){
-            this.$router.push('/infoRecord');
+            if(this.invoiceCount.count == 0){
+                this.$toast('未选择任何发票');
+                return false;
+            }else{
+                this.$router.push('/infoRecord');
+            }
         },
     }
 }
@@ -134,9 +164,19 @@ export default {
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
-                .svg-icon{
+                .selectIcon{
                     height: .4rem;
                     width: .4rem;
+                    border-radius: .2rem;
+                    background: #D8D8D8;
+                    position: relative;
+                    .svg-icon{
+                        position: absolute;
+                        height: .4rem;
+                        width: .4rem;
+                        top: 0;
+                        left: 0;
+                    }
                 }
                 .columnLine{
                     height: 2rem;
