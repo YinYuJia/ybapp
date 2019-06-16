@@ -1,8 +1,8 @@
 export default[{
-	"code": "11",
+	"code": "110000",
 	"name": "北京市",
 	"children": [{
-		"code": "1101",
+		"code": "110100",
 		"name": "市辖区",
 		"children": [{
 			"code": "110101",
@@ -55,10 +55,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "12",
+	"code": "120000",
 	"name": "天津市",
 	"children": [{
-		"code": "1201",
+		"code": "120100",
 		"name": "市辖区",
 		"children": [{
 			"code": "120101",
@@ -111,10 +111,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "13",
+	"code": "130000",
 	"name": "河北省",
 	"children": [{
-		"code": "1301",
+		"code": "130100",
 		"name": "石家庄市",
 		"children": [{
 			"code": "130102",
@@ -190,7 +190,7 @@ export default[{
 			"name": "新乐市"
 		}]
 	}, {
-		"code": "1302",
+		"code": "130200",
 		"name": "唐山市",
 		"children": [{
 			"code": "130202",
@@ -248,7 +248,7 @@ export default[{
 			"name": "滦州市"
 		}]
 	}, {
-		"code": "1303",
+		"code": "130300",
 		"name": "秦皇岛市",
 		"children": [{
 			"code": "130302",
@@ -279,7 +279,7 @@ export default[{
 			"name": "北戴河新区"
 		}]
 	}, {
-		"code": "1304",
+		"code": "130400",
 		"name": "邯郸市",
 		"children": [{
 			"code": "130402",
@@ -343,7 +343,7 @@ export default[{
 			"name": "武安市"
 		}]
 	}, {
-		"code": "1305",
+		"code": "130500",
 		"name": "邢台市",
 		"children": [{
 			"code": "130502",
@@ -407,7 +407,7 @@ export default[{
 			"name": "沙河市"
 		}]
 	}, {
-		"code": "1306",
+		"code": "130600",
 		"name": "保定市",
 		"children": [{
 			"code": "130602",
@@ -489,7 +489,7 @@ export default[{
 			"name": "高碑店市"
 		}]
 	}, {
-		"code": "1307",
+		"code": "130700",
 		"name": "张家口市",
 		"children": [{
 			"code": "130702",
@@ -550,7 +550,7 @@ export default[{
 			"name": "张家口市塞北管理区"
 		}]
 	}, {
-		"code": "1308",
+		"code": "130800",
 		"name": "承德市",
 		"children": [{
 			"code": "130802",
@@ -590,7 +590,7 @@ export default[{
 			"name": "平泉市"
 		}]
 	}, {
-		"code": "1309",
+		"code": "130900",
 		"name": "沧州市",
 		"children": [{
 			"code": "130902",
@@ -651,7 +651,7 @@ export default[{
 			"name": "河间市"
 		}]
 	}, {
-		"code": "1310",
+		"code": "131000",
 		"name": "廊坊市",
 		"children": [{
 			"code": "131002",
@@ -688,7 +688,7 @@ export default[{
 			"name": "三河市"
 		}]
 	}, {
-		"code": "1311",
+		"code": "131100",
 		"name": "衡水市",
 		"children": [{
 			"code": "131102",
@@ -732,10 +732,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "14",
+	"code": "140000",
 	"name": "山西省",
 	"children": [{
-		"code": "1401",
+		"code": "140100",
 		"name": "太原市",
 		"children": [{
 			"code": "140105",
@@ -772,7 +772,7 @@ export default[{
 			"name": "古交市"
 		}]
 	}, {
-		"code": "1402",
+		"code": "140200",
 		"name": "大同市",
 		"children": [{
 			"code": "140212",
@@ -809,7 +809,7 @@ export default[{
 			"name": "山西大同经济开发区"
 		}]
 	}, {
-		"code": "1403",
+		"code": "140300",
 		"name": "阳泉市",
 		"children": [{
 			"code": "140302",
@@ -828,7 +828,7 @@ export default[{
 			"name": "盂县"
 		}]
 	}, {
-		"code": "1404",
+		"code": "140400",
 		"name": "长治市",
 		"children": [{
 			"code": "140403",
@@ -871,7 +871,7 @@ export default[{
 			"name": "山西长治高新技术产业园区"
 		}]
 	}, {
-		"code": "1405",
+		"code": "140500",
 		"name": "晋城市",
 		"children": [{
 			"code": "140502",
@@ -893,7 +893,7 @@ export default[{
 			"name": "高平市"
 		}]
 	}, {
-		"code": "1406",
+		"code": "140600",
 		"name": "朔州市",
 		"children": [{
 			"code": "140602",
@@ -918,7 +918,7 @@ export default[{
 			"name": "怀仁市"
 		}]
 	}, {
-		"code": "1407",
+		"code": "140700",
 		"name": "晋中市",
 		"children": [{
 			"code": "140702",
@@ -955,7 +955,7 @@ export default[{
 			"name": "介休市"
 		}]
 	}, {
-		"code": "1408",
+		"code": "140800",
 		"name": "运城市",
 		"children": [{
 			"code": "140802",
@@ -998,7 +998,7 @@ export default[{
 			"name": "河津市"
 		}]
 	}, {
-		"code": "1409",
+		"code": "140900",
 		"name": "忻州市",
 		"children": [{
 			"code": "140902",
@@ -1047,7 +1047,7 @@ export default[{
 			"name": "原平市"
 		}]
 	}, {
-		"code": "1410",
+		"code": "141000",
 		"name": "临汾市",
 		"children": [{
 			"code": "141002",
@@ -1102,7 +1102,7 @@ export default[{
 			"name": "霍州市"
 		}]
 	}, {
-		"code": "1411",
+		"code": "141100",
 		"name": "吕梁市",
 		"children": [{
 			"code": "141102",
@@ -1146,10 +1146,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "15",
+	"code": "150000",
 	"name": "内蒙古自治区",
 	"children": [{
-		"code": "1501",
+		"code": "150100",
 		"name": "呼和浩特市",
 		"children": [{
 			"code": "150102",
@@ -1186,7 +1186,7 @@ export default[{
 			"name": "呼和浩特经济技术开发区"
 		}]
 	}, {
-		"code": "1502",
+		"code": "150200",
 		"name": "包头市",
 		"children": [{
 			"code": "150202",
@@ -1220,7 +1220,7 @@ export default[{
 			"name": "包头稀土高新技术产业开发区"
 		}]
 	}, {
-		"code": "1503",
+		"code": "150300",
 		"name": "乌海市",
 		"children": [{
 			"code": "150302",
@@ -1233,7 +1233,7 @@ export default[{
 			"name": "乌达区"
 		}]
 	}, {
-		"code": "1504",
+		"code": "150400",
 		"name": "赤峰市",
 		"children": [{
 			"code": "150402",
@@ -1273,7 +1273,7 @@ export default[{
 			"name": "敖汉旗"
 		}]
 	}, {
-		"code": "1505",
+		"code": "150500",
 		"name": "通辽市",
 		"children": [{
 			"code": "150502",
@@ -1304,7 +1304,7 @@ export default[{
 			"name": "霍林郭勒市"
 		}]
 	}, {
-		"code": "1506",
+		"code": "150600",
 		"name": "鄂尔多斯市",
 		"children": [{
 			"code": "150602",
@@ -1335,7 +1335,7 @@ export default[{
 			"name": "伊金霍洛旗"
 		}]
 	}, {
-		"code": "1507",
+		"code": "150700",
 		"name": "呼伦贝尔市",
 		"children": [{
 			"code": "150702",
@@ -1381,7 +1381,7 @@ export default[{
 			"name": "根河市"
 		}]
 	}, {
-		"code": "1508",
+		"code": "150800",
 		"name": "巴彦淖尔市",
 		"children": [{
 			"code": "150802",
@@ -1406,7 +1406,7 @@ export default[{
 			"name": "杭锦后旗"
 		}]
 	}, {
-		"code": "1509",
+		"code": "150900",
 		"name": "乌兰察布市",
 		"children": [{
 			"code": "150902",
@@ -1443,7 +1443,7 @@ export default[{
 			"name": "丰镇市"
 		}]
 	}, {
-		"code": "1522",
+		"code": "152200",
 		"name": "兴安盟",
 		"children": [{
 			"code": "152201",
@@ -1465,7 +1465,7 @@ export default[{
 			"name": "突泉县"
 		}]
 	}, {
-		"code": "1525",
+		"code": "152500",
 		"name": "锡林郭勒盟",
 		"children": [{
 			"code": "152501",
@@ -1508,7 +1508,7 @@ export default[{
 			"name": "乌拉盖管委会"
 		}]
 	}, {
-		"code": "1529",
+		"code": "152900",
 		"name": "阿拉善盟",
 		"children": [{
 			"code": "152921",
@@ -1525,10 +1525,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "21",
+	"code": "210000",
 	"name": "辽宁省",
 	"children": [{
-		"code": "2101",
+		"code": "210100",
 		"name": "沈阳市",
 		"children": [{
 			"code": "210102",
@@ -1571,7 +1571,7 @@ export default[{
 			"name": "新民市"
 		}]
 	}, {
-		"code": "2102",
+		"code": "210200",
 		"name": "大连市",
 		"children": [{
 			"code": "210202",
@@ -1605,7 +1605,7 @@ export default[{
 			"name": "庄河市"
 		}]
 	}, {
-		"code": "2103",
+		"code": "210300",
 		"name": "鞍山市",
 		"children": [{
 			"code": "210302",
@@ -1630,7 +1630,7 @@ export default[{
 			"name": "海城市"
 		}]
 	}, {
-		"code": "2104",
+		"code": "210400",
 		"name": "抚顺市",
 		"children": [{
 			"code": "210402",
@@ -1655,7 +1655,7 @@ export default[{
 			"name": "清原满族自治县"
 		}]
 	}, {
-		"code": "2105",
+		"code": "210500",
 		"name": "本溪市",
 		"children": [{
 			"code": "210502",
@@ -1677,7 +1677,7 @@ export default[{
 			"name": "桓仁满族自治县"
 		}]
 	}, {
-		"code": "2106",
+		"code": "210600",
 		"name": "丹东市",
 		"children": [{
 			"code": "210602",
@@ -1699,7 +1699,7 @@ export default[{
 			"name": "凤城市"
 		}]
 	}, {
-		"code": "2107",
+		"code": "210700",
 		"name": "锦州市",
 		"children": [{
 			"code": "210702",
@@ -1724,7 +1724,7 @@ export default[{
 			"name": "北镇市"
 		}]
 	}, {
-		"code": "2108",
+		"code": "210800",
 		"name": "营口市",
 		"children": [{
 			"code": "210802",
@@ -1746,7 +1746,7 @@ export default[{
 			"name": "大石桥市"
 		}]
 	}, {
-		"code": "2109",
+		"code": "210900",
 		"name": "阜新市",
 		"children": [{
 			"code": "210902",
@@ -1771,7 +1771,7 @@ export default[{
 			"name": "彰武县"
 		}]
 	}, {
-		"code": "2110",
+		"code": "211000",
 		"name": "辽阳市",
 		"children": [{
 			"code": "211002",
@@ -1796,7 +1796,7 @@ export default[{
 			"name": "灯塔市"
 		}]
 	}, {
-		"code": "2111",
+		"code": "211100",
 		"name": "盘锦市",
 		"children": [{
 			"code": "211102",
@@ -1812,7 +1812,7 @@ export default[{
 			"name": "盘山县"
 		}]
 	}, {
-		"code": "2112",
+		"code": "211200",
 		"name": "铁岭市",
 		"children": [{
 			"code": "211202",
@@ -1837,7 +1837,7 @@ export default[{
 			"name": "开原市"
 		}]
 	}, {
-		"code": "2113",
+		"code": "211300",
 		"name": "朝阳市",
 		"children": [{
 			"code": "211302",
@@ -1862,7 +1862,7 @@ export default[{
 			"name": "凌源市"
 		}]
 	}, {
-		"code": "2114",
+		"code": "211400",
 		"name": "葫芦岛市",
 		"children": [{
 			"code": "211402",
@@ -1885,10 +1885,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "22",
+	"code": "220000",
 	"name": "吉林省",
 	"children": [{
-		"code": "2201",
+		"code": "220100",
 		"name": "长春市",
 		"children": [{
 			"code": "220102",
@@ -1934,7 +1934,7 @@ export default[{
 			"name": "德惠市"
 		}]
 	}, {
-		"code": "2202",
+		"code": "220200",
 		"name": "吉林市",
 		"children": [{
 			"code": "220202",
@@ -1974,7 +1974,7 @@ export default[{
 			"name": "磐石市"
 		}]
 	}, {
-		"code": "2203",
+		"code": "220300",
 		"name": "四平市",
 		"children": [{
 			"code": "220302",
@@ -1996,7 +1996,7 @@ export default[{
 			"name": "双辽市"
 		}]
 	}, {
-		"code": "2204",
+		"code": "220400",
 		"name": "辽源市",
 		"children": [{
 			"code": "220402",
@@ -2012,7 +2012,7 @@ export default[{
 			"name": "东辽县"
 		}]
 	}, {
-		"code": "2205",
+		"code": "220500",
 		"name": "通化市",
 		"children": [{
 			"code": "220502",
@@ -2037,7 +2037,7 @@ export default[{
 			"name": "集安市"
 		}]
 	}, {
-		"code": "2206",
+		"code": "220600",
 		"name": "白山市",
 		"children": [{
 			"code": "220602",
@@ -2059,7 +2059,7 @@ export default[{
 			"name": "临江市"
 		}]
 	}, {
-		"code": "2207",
+		"code": "220700",
 		"name": "松原市",
 		"children": [{
 			"code": "220702",
@@ -2081,7 +2081,7 @@ export default[{
 			"name": "扶余市"
 		}]
 	}, {
-		"code": "2208",
+		"code": "220800",
 		"name": "白城市",
 		"children": [{
 			"code": "220802",
@@ -2103,7 +2103,7 @@ export default[{
 			"name": "大安市"
 		}]
 	}, {
-		"code": "2224",
+		"code": "222400",
 		"name": "延边朝鲜族自治州",
 		"children": [{
 			"code": "222401",
@@ -2132,10 +2132,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "23",
+	"code": "230000",
 	"name": "黑龙江省",
 	"children": [{
-		"code": "2301",
+		"code": "230100",
 		"name": "哈尔滨市",
 		"children": [{
 			"code": "230102",
@@ -2193,7 +2193,7 @@ export default[{
 			"name": "五常市"
 		}]
 	}, {
-		"code": "2302",
+		"code": "230200",
 		"name": "齐齐哈尔市",
 		"children": [{
 			"code": "230202",
@@ -2245,7 +2245,7 @@ export default[{
 			"name": "讷河市"
 		}]
 	}, {
-		"code": "2303",
+		"code": "230300",
 		"name": "鸡西市",
 		"children": [{
 			"code": "230302",
@@ -2276,7 +2276,7 @@ export default[{
 			"name": "密山市"
 		}]
 	}, {
-		"code": "2304",
+		"code": "230400",
 		"name": "鹤岗市",
 		"children": [{
 			"code": "230402",
@@ -2304,7 +2304,7 @@ export default[{
 			"name": "绥滨县"
 		}]
 	}, {
-		"code": "2305",
+		"code": "230500",
 		"name": "双鸭山市",
 		"children": [{
 			"code": "230502",
@@ -2332,7 +2332,7 @@ export default[{
 			"name": "饶河县"
 		}]
 	}, {
-		"code": "2306",
+		"code": "230600",
 		"name": "大庆市",
 		"children": [{
 			"code": "230602",
@@ -2366,7 +2366,7 @@ export default[{
 			"name": "大庆高新技术产业开发区"
 		}]
 	}, {
-		"code": "2307",
+		"code": "230700",
 		"name": "伊春市",
 		"children": [{
 			"code": "230702",
@@ -2421,7 +2421,7 @@ export default[{
 			"name": "铁力市"
 		}]
 	}, {
-		"code": "2308",
+		"code": "230800",
 		"name": "佳木斯市",
 		"children": [{
 			"code": "230803",
@@ -2455,7 +2455,7 @@ export default[{
 			"name": "抚远市"
 		}]
 	}, {
-		"code": "2309",
+		"code": "230900",
 		"name": "七台河市",
 		"children": [{
 			"code": "230902",
@@ -2471,7 +2471,7 @@ export default[{
 			"name": "勃利县"
 		}]
 	}, {
-		"code": "2310",
+		"code": "231000",
 		"name": "牡丹江市",
 		"children": [{
 			"code": "231002",
@@ -2508,7 +2508,7 @@ export default[{
 			"name": "东宁市"
 		}]
 	}, {
-		"code": "2311",
+		"code": "231100",
 		"name": "黑河市",
 		"children": [{
 			"code": "231102",
@@ -2530,7 +2530,7 @@ export default[{
 			"name": "五大连池市"
 		}]
 	}, {
-		"code": "2312",
+		"code": "231200",
 		"name": "绥化市",
 		"children": [{
 			"code": "231202",
@@ -2564,7 +2564,7 @@ export default[{
 			"name": "海伦市"
 		}]
 	}, {
-		"code": "2327",
+		"code": "232700",
 		"name": "大兴安岭地区",
 		"children": [{
 			"code": "232701",
@@ -2590,10 +2590,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "31",
+	"code": "310000",
 	"name": "上海市",
 	"children": [{
-		"code": "3101",
+		"code": "310100",
 		"name": "市辖区",
 		"children": [{
 			"code": "310101",
@@ -2646,10 +2646,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "32",
+	"code": "320000",
 	"name": "江苏省",
 	"children": [{
-		"code": "3201",
+		"code": "320100",
 		"name": "南京市",
 		"children": [{
 			"code": "320102",
@@ -2686,7 +2686,7 @@ export default[{
 			"name": "高淳区"
 		}]
 	}, {
-		"code": "3202",
+		"code": "320200",
 		"name": "无锡市",
 		"children": [{
 			"code": "320205",
@@ -2711,7 +2711,7 @@ export default[{
 			"name": "宜兴市"
 		}]
 	}, {
-		"code": "3203",
+		"code": "320300",
 		"name": "徐州市",
 		"children": [{
 			"code": "320302",
@@ -2748,7 +2748,7 @@ export default[{
 			"name": "邳州市"
 		}]
 	}, {
-		"code": "3204",
+		"code": "320400",
 		"name": "常州市",
 		"children": [{
 			"code": "320402",
@@ -2770,7 +2770,7 @@ export default[{
 			"name": "溧阳市"
 		}]
 	}, {
-		"code": "3205",
+		"code": "320500",
 		"name": "苏州市",
 		"children": [{
 			"code": "320505",
@@ -2804,7 +2804,7 @@ export default[{
 			"name": "太仓市"
 		}]
 	}, {
-		"code": "3206",
+		"code": "320600",
 		"name": "南通市",
 		"children": [{
 			"code": "320602",
@@ -2835,7 +2835,7 @@ export default[{
 			"name": "海安市"
 		}]
 	}, {
-		"code": "3207",
+		"code": "320700",
 		"name": "连云港市",
 		"children": [{
 			"code": "320703",
@@ -2863,7 +2863,7 @@ export default[{
 			"name": "连云港高新技术产业开发区"
 		}]
 	}, {
-		"code": "3208",
+		"code": "320800",
 		"name": "淮安市",
 		"children": [{
 			"code": "320803",
@@ -2891,7 +2891,7 @@ export default[{
 			"name": "淮安经济技术开发区"
 		}]
 	}, {
-		"code": "3209",
+		"code": "320900",
 		"name": "盐城市",
 		"children": [{
 			"code": "320902",
@@ -2925,7 +2925,7 @@ export default[{
 			"name": "东台市"
 		}]
 	}, {
-		"code": "3210",
+		"code": "321000",
 		"name": "扬州市",
 		"children": [{
 			"code": "321002",
@@ -2950,7 +2950,7 @@ export default[{
 			"name": "高邮市"
 		}]
 	}, {
-		"code": "3211",
+		"code": "321100",
 		"name": "镇江市",
 		"children": [{
 			"code": "321102",
@@ -2975,7 +2975,7 @@ export default[{
 			"name": "句容市"
 		}]
 	}, {
-		"code": "3212",
+		"code": "321200",
 		"name": "泰州市",
 		"children": [{
 			"code": "321202",
@@ -3000,7 +3000,7 @@ export default[{
 			"name": "泰兴市"
 		}]
 	}, {
-		"code": "3213",
+		"code": "321300",
 		"name": "宿迁市",
 		"children": [{
 			"code": "321302",
@@ -3023,10 +3023,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "33",
+	"code": "330000",
 	"name": "浙江省",
 	"children": [{
-		"code": "3301",
+		"code": "330100",
 		"name": "杭州市",
 		"children": [{
 			"code": "330102",
@@ -3069,7 +3069,7 @@ export default[{
 			"name": "建德市"
 		}]
 	}, {
-		"code": "3302",
+		"code": "330200",
 		"name": "宁波市",
 		"children": [{
 			"code": "330203",
@@ -3103,7 +3103,7 @@ export default[{
 			"name": "慈溪市"
 		}]
 	}, {
-		"code": "3303",
+		"code": "330300",
 		"name": "温州市",
 		"children": [{
 			"code": "330302",
@@ -3143,7 +3143,7 @@ export default[{
 			"name": "乐清市"
 		}]
 	}, {
-		"code": "3304",
+		"code": "330400",
 		"name": "嘉兴市",
 		"children": [{
 			"code": "330402",
@@ -3168,7 +3168,7 @@ export default[{
 			"name": "桐乡市"
 		}]
 	}, {
-		"code": "3305",
+		"code": "330500",
 		"name": "湖州市",
 		"children": [{
 			"code": "330502",
@@ -3187,7 +3187,7 @@ export default[{
 			"name": "安吉县"
 		}]
 	}, {
-		"code": "3306",
+		"code": "330600",
 		"name": "绍兴市",
 		"children": [{
 			"code": "330602",
@@ -3209,7 +3209,7 @@ export default[{
 			"name": "嵊州市"
 		}]
 	}, {
-		"code": "3307",
+		"code": "330700",
 		"name": "金华市",
 		"children": [{
 			"code": "330702",
@@ -3240,7 +3240,7 @@ export default[{
 			"name": "永康市"
 		}]
 	}, {
-		"code": "3308",
+		"code": "330800",
 		"name": "衢州市",
 		"children": [{
 			"code": "330802",
@@ -3262,7 +3262,7 @@ export default[{
 			"name": "江山市"
 		}]
 	}, {
-		"code": "3309",
+		"code": "330900",
 		"name": "舟山市",
 		"children": [{
 			"code": "330902",
@@ -3278,7 +3278,7 @@ export default[{
 			"name": "嵊泗县"
 		}]
 	}, {
-		"code": "3310",
+		"code": "331000",
 		"name": "台州市",
 		"children": [{
 			"code": "331002",
@@ -3309,7 +3309,7 @@ export default[{
 			"name": "玉环市"
 		}]
 	}, {
-		"code": "3311",
+		"code": "331100",
 		"name": "丽水市",
 		"children": [{
 			"code": "331102",
@@ -3341,10 +3341,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "34",
+	"code": "340000",
 	"name": "安徽省",
 	"children": [{
-		"code": "3401",
+		"code": "340100",
 		"name": "合肥市",
 		"children": [{
 			"code": "340102",
@@ -3384,7 +3384,7 @@ export default[{
 			"name": "巢湖市"
 		}]
 	}, {
-		"code": "3402",
+		"code": "340200",
 		"name": "芜湖市",
 		"children": [{
 			"code": "340202",
@@ -3418,7 +3418,7 @@ export default[{
 			"name": "安徽芜湖长江大桥经济开发区"
 		}]
 	}, {
-		"code": "3403",
+		"code": "340300",
 		"name": "蚌埠市",
 		"children": [{
 			"code": "340302",
@@ -3449,7 +3449,7 @@ export default[{
 			"name": "蚌埠市经济开发区"
 		}]
 	}, {
-		"code": "3404",
+		"code": "340400",
 		"name": "淮南市",
 		"children": [{
 			"code": "340402",
@@ -3474,7 +3474,7 @@ export default[{
 			"name": "寿县"
 		}]
 	}, {
-		"code": "3405",
+		"code": "340500",
 		"name": "马鞍山市",
 		"children": [{
 			"code": "340503",
@@ -3496,7 +3496,7 @@ export default[{
 			"name": "和县"
 		}]
 	}, {
-		"code": "3406",
+		"code": "340600",
 		"name": "淮北市",
 		"children": [{
 			"code": "340602",
@@ -3512,7 +3512,7 @@ export default[{
 			"name": "濉溪县"
 		}]
 	}, {
-		"code": "3407",
+		"code": "340700",
 		"name": "铜陵市",
 		"children": [{
 			"code": "340705",
@@ -3528,7 +3528,7 @@ export default[{
 			"name": "枞阳县"
 		}]
 	}, {
-		"code": "3408",
+		"code": "340800",
 		"name": "安庆市",
 		"children": [{
 			"code": "340802",
@@ -3565,7 +3565,7 @@ export default[{
 			"name": "潜山市"
 		}]
 	}, {
-		"code": "3410",
+		"code": "341000",
 		"name": "黄山市",
 		"children": [{
 			"code": "341002",
@@ -3590,7 +3590,7 @@ export default[{
 			"name": "祁门县"
 		}]
 	}, {
-		"code": "3411",
+		"code": "341100",
 		"name": "滁州市",
 		"children": [{
 			"code": "341102",
@@ -3624,7 +3624,7 @@ export default[{
 			"name": "明光市"
 		}]
 	}, {
-		"code": "3412",
+		"code": "341200",
 		"name": "阜阳市",
 		"children": [{
 			"code": "341202",
@@ -3658,7 +3658,7 @@ export default[{
 			"name": "界首市"
 		}]
 	}, {
-		"code": "3413",
+		"code": "341300",
 		"name": "宿州市",
 		"children": [{
 			"code": "341302",
@@ -3683,7 +3683,7 @@ export default[{
 			"name": "宿州经济技术开发区"
 		}]
 	}, {
-		"code": "3415",
+		"code": "341500",
 		"name": "六安市",
 		"children": [{
 			"code": "341502",
@@ -3708,7 +3708,7 @@ export default[{
 			"name": "霍山县"
 		}]
 	}, {
-		"code": "3416",
+		"code": "341600",
 		"name": "亳州市",
 		"children": [{
 			"code": "341602",
@@ -3724,7 +3724,7 @@ export default[{
 			"name": "利辛县"
 		}]
 	}, {
-		"code": "3417",
+		"code": "341700",
 		"name": "池州市",
 		"children": [{
 			"code": "341702",
@@ -3740,7 +3740,7 @@ export default[{
 			"name": "青阳县"
 		}]
 	}, {
-		"code": "3418",
+		"code": "341800",
 		"name": "宣城市",
 		"children": [{
 			"code": "341802",
@@ -3769,10 +3769,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "35",
+	"code": "350000",
 	"name": "福建省",
 	"children": [{
-		"code": "3501",
+		"code": "350100",
 		"name": "福州市",
 		"children": [{
 			"code": "350102",
@@ -3815,7 +3815,7 @@ export default[{
 			"name": "福清市"
 		}]
 	}, {
-		"code": "3502",
+		"code": "350200",
 		"name": "厦门市",
 		"children": [{
 			"code": "350203",
@@ -3837,7 +3837,7 @@ export default[{
 			"name": "翔安区"
 		}]
 	}, {
-		"code": "3503",
+		"code": "350300",
 		"name": "莆田市",
 		"children": [{
 			"code": "350302",
@@ -3856,7 +3856,7 @@ export default[{
 			"name": "仙游县"
 		}]
 	}, {
-		"code": "3504",
+		"code": "350400",
 		"name": "三明市",
 		"children": [{
 			"code": "350402",
@@ -3896,7 +3896,7 @@ export default[{
 			"name": "永安市"
 		}]
 	}, {
-		"code": "3505",
+		"code": "350500",
 		"name": "泉州市",
 		"children": [{
 			"code": "350502",
@@ -3936,7 +3936,7 @@ export default[{
 			"name": "南安市"
 		}]
 	}, {
-		"code": "3506",
+		"code": "350600",
 		"name": "漳州市",
 		"children": [{
 			"code": "350602",
@@ -3973,7 +3973,7 @@ export default[{
 			"name": "龙海市"
 		}]
 	}, {
-		"code": "3507",
+		"code": "350700",
 		"name": "南平市",
 		"children": [{
 			"code": "350702",
@@ -4007,7 +4007,7 @@ export default[{
 			"name": "建瓯市"
 		}]
 	}, {
-		"code": "3508",
+		"code": "350800",
 		"name": "龙岩市",
 		"children": [{
 			"code": "350802",
@@ -4032,7 +4032,7 @@ export default[{
 			"name": "漳平市"
 		}]
 	}, {
-		"code": "3509",
+		"code": "350900",
 		"name": "宁德市",
 		"children": [{
 			"code": "350902",
@@ -4064,10 +4064,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "36",
+	"code": "360000",
 	"name": "江西省",
 	"children": [{
-		"code": "3601",
+		"code": "360100",
 		"name": "南昌市",
 		"children": [{
 			"code": "360102",
@@ -4098,7 +4098,7 @@ export default[{
 			"name": "进贤县"
 		}]
 	}, {
-		"code": "3602",
+		"code": "360200",
 		"name": "景德镇市",
 		"children": [{
 			"code": "360202",
@@ -4114,7 +4114,7 @@ export default[{
 			"name": "乐平市"
 		}]
 	}, {
-		"code": "3603",
+		"code": "360300",
 		"name": "萍乡市",
 		"children": [{
 			"code": "360302",
@@ -4133,7 +4133,7 @@ export default[{
 			"name": "芦溪县"
 		}]
 	}, {
-		"code": "3604",
+		"code": "360400",
 		"name": "九江市",
 		"children": [{
 			"code": "360402",
@@ -4176,7 +4176,7 @@ export default[{
 			"name": "庐山市"
 		}]
 	}, {
-		"code": "3605",
+		"code": "360500",
 		"name": "新余市",
 		"children": [{
 			"code": "360502",
@@ -4186,7 +4186,7 @@ export default[{
 			"name": "分宜县"
 		}]
 	}, {
-		"code": "3606",
+		"code": "360600",
 		"name": "鹰潭市",
 		"children": [{
 			"code": "360602",
@@ -4199,7 +4199,7 @@ export default[{
 			"name": "贵溪市"
 		}]
 	}, {
-		"code": "3607",
+		"code": "360700",
 		"name": "赣州市",
 		"children": [{
 			"code": "360702",
@@ -4257,7 +4257,7 @@ export default[{
 			"name": "瑞金市"
 		}]
 	}, {
-		"code": "3608",
+		"code": "360800",
 		"name": "吉安市",
 		"children": [{
 			"code": "360802",
@@ -4300,7 +4300,7 @@ export default[{
 			"name": "井冈山市"
 		}]
 	}, {
-		"code": "3609",
+		"code": "360900",
 		"name": "宜春市",
 		"children": [{
 			"code": "360902",
@@ -4334,7 +4334,7 @@ export default[{
 			"name": "高安市"
 		}]
 	}, {
-		"code": "3610",
+		"code": "361000",
 		"name": "抚州市",
 		"children": [{
 			"code": "361002",
@@ -4371,7 +4371,7 @@ export default[{
 			"name": "广昌县"
 		}]
 	}, {
-		"code": "3611",
+		"code": "361100",
 		"name": "上饶市",
 		"children": [{
 			"code": "361102",
@@ -4412,10 +4412,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "37",
+	"code": "370000",
 	"name": "山东省",
 	"children": [{
-		"code": "3701",
+		"code": "370100",
 		"name": "济南市",
 		"children": [{
 			"code": "370102",
@@ -4452,7 +4452,7 @@ export default[{
 			"name": "济南高新技术产业开发区"
 		}]
 	}, {
-		"code": "3702",
+		"code": "370200",
 		"name": "青岛市",
 		"children": [{
 			"code": "370202",
@@ -4489,7 +4489,7 @@ export default[{
 			"name": "莱西市"
 		}]
 	}, {
-		"code": "3703",
+		"code": "370300",
 		"name": "淄博市",
 		"children": [{
 			"code": "370302",
@@ -4517,7 +4517,7 @@ export default[{
 			"name": "沂源县"
 		}]
 	}, {
-		"code": "3704",
+		"code": "370400",
 		"name": "枣庄市",
 		"children": [{
 			"code": "370402",
@@ -4539,7 +4539,7 @@ export default[{
 			"name": "滕州市"
 		}]
 	}, {
-		"code": "3705",
+		"code": "370500",
 		"name": "东营市",
 		"children": [{
 			"code": "370502",
@@ -4564,7 +4564,7 @@ export default[{
 			"name": "东营港经济开发区"
 		}]
 	}, {
-		"code": "3706",
+		"code": "370600",
 		"name": "烟台市",
 		"children": [{
 			"code": "370602",
@@ -4610,7 +4610,7 @@ export default[{
 			"name": "海阳市"
 		}]
 	}, {
-		"code": "3707",
+		"code": "370700",
 		"name": "潍坊市",
 		"children": [{
 			"code": "370702",
@@ -4653,7 +4653,7 @@ export default[{
 			"name": "昌邑市"
 		}]
 	}, {
-		"code": "3708",
+		"code": "370800",
 		"name": "济宁市",
 		"children": [{
 			"code": "370811",
@@ -4693,7 +4693,7 @@ export default[{
 			"name": "邹城市"
 		}]
 	}, {
-		"code": "3709",
+		"code": "370900",
 		"name": "泰安市",
 		"children": [{
 			"code": "370902",
@@ -4715,7 +4715,7 @@ export default[{
 			"name": "肥城市"
 		}]
 	}, {
-		"code": "3710",
+		"code": "371000",
 		"name": "威海市",
 		"children": [{
 			"code": "371002",
@@ -4740,7 +4740,7 @@ export default[{
 			"name": "乳山市"
 		}]
 	}, {
-		"code": "3711",
+		"code": "371100",
 		"name": "日照市",
 		"children": [{
 			"code": "371102",
@@ -4759,7 +4759,7 @@ export default[{
 			"name": "日照经济技术开发区"
 		}]
 	}, {
-		"code": "3712",
+		"code": "371200",
 		"name": "莱芜市",
 		"children": [{
 			"code": "371202",
@@ -4769,7 +4769,7 @@ export default[{
 			"name": "钢城区"
 		}]
 	}, {
-		"code": "3713",
+		"code": "371300",
 		"name": "临沂市",
 		"children": [{
 			"code": "371302",
@@ -4818,7 +4818,7 @@ export default[{
 			"name": "临沂临港经济开发区"
 		}]
 	}, {
-		"code": "3714",
+		"code": "371400",
 		"name": "德州市",
 		"children": [{
 			"code": "371402",
@@ -4861,7 +4861,7 @@ export default[{
 			"name": "禹城市"
 		}]
 	}, {
-		"code": "3715",
+		"code": "371500",
 		"name": "聊城市",
 		"children": [{
 			"code": "371502",
@@ -4889,7 +4889,7 @@ export default[{
 			"name": "临清市"
 		}]
 	}, {
-		"code": "3716",
+		"code": "371600",
 		"name": "滨州市",
 		"children": [{
 			"code": "371602",
@@ -4914,7 +4914,7 @@ export default[{
 			"name": "邹平市"
 		}]
 	}, {
-		"code": "3717",
+		"code": "371700",
 		"name": "菏泽市",
 		"children": [{
 			"code": "371702",
@@ -4952,10 +4952,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "41",
+	"code": "410000",
 	"name": "河南省",
 	"children": [{
-		"code": "4101",
+		"code": "410100",
 		"name": "郑州市",
 		"children": [{
 			"code": "410102",
@@ -5004,7 +5004,7 @@ export default[{
 			"name": "登封市"
 		}]
 	}, {
-		"code": "4102",
+		"code": "410200",
 		"name": "开封市",
 		"children": [{
 			"code": "410202",
@@ -5035,7 +5035,7 @@ export default[{
 			"name": "兰考县"
 		}]
 	}, {
-		"code": "4103",
+		"code": "410300",
 		"name": "洛阳市",
 		"children": [{
 			"code": "410302",
@@ -5087,7 +5087,7 @@ export default[{
 			"name": "偃师市"
 		}]
 	}, {
-		"code": "4104",
+		"code": "410400",
 		"name": "平顶山市",
 		"children": [{
 			"code": "410402",
@@ -5127,7 +5127,7 @@ export default[{
 			"name": "汝州市"
 		}]
 	}, {
-		"code": "4105",
+		"code": "410500",
 		"name": "安阳市",
 		"children": [{
 			"code": "410502",
@@ -5161,7 +5161,7 @@ export default[{
 			"name": "林州市"
 		}]
 	}, {
-		"code": "4106",
+		"code": "410600",
 		"name": "鹤壁市",
 		"children": [{
 			"code": "410602",
@@ -5183,7 +5183,7 @@ export default[{
 			"name": "鹤壁经济技术开发区"
 		}]
 	}, {
-		"code": "4107",
+		"code": "410700",
 		"name": "新乡市",
 		"children": [{
 			"code": "410702",
@@ -5232,7 +5232,7 @@ export default[{
 			"name": "辉县市"
 		}]
 	}, {
-		"code": "4108",
+		"code": "410800",
 		"name": "焦作市",
 		"children": [{
 			"code": "410802",
@@ -5269,7 +5269,7 @@ export default[{
 			"name": "孟州市"
 		}]
 	}, {
-		"code": "4109",
+		"code": "410900",
 		"name": "濮阳市",
 		"children": [{
 			"code": "410902",
@@ -5297,7 +5297,7 @@ export default[{
 			"name": "濮阳经济技术开发区"
 		}]
 	}, {
-		"code": "4110",
+		"code": "411000",
 		"name": "许昌市",
 		"children": [{
 			"code": "411002",
@@ -5322,7 +5322,7 @@ export default[{
 			"name": "长葛市"
 		}]
 	}, {
-		"code": "4111",
+		"code": "411100",
 		"name": "漯河市",
 		"children": [{
 			"code": "411102",
@@ -5344,7 +5344,7 @@ export default[{
 			"name": "漯河经济技术开发区"
 		}]
 	}, {
-		"code": "4112",
+		"code": "411200",
 		"name": "三门峡市",
 		"children": [{
 			"code": "411202",
@@ -5369,7 +5369,7 @@ export default[{
 			"name": "灵宝市"
 		}]
 	}, {
-		"code": "4113",
+		"code": "411300",
 		"name": "南阳市",
 		"children": [{
 			"code": "411302",
@@ -5418,7 +5418,7 @@ export default[{
 			"name": "邓州市"
 		}]
 	}, {
-		"code": "4114",
+		"code": "411400",
 		"name": "商丘市",
 		"children": [{
 			"code": "411402",
@@ -5455,7 +5455,7 @@ export default[{
 			"name": "永城市"
 		}]
 	}, {
-		"code": "4115",
+		"code": "411500",
 		"name": "信阳市",
 		"children": [{
 			"code": "411502",
@@ -5492,7 +5492,7 @@ export default[{
 			"name": "信阳高新技术产业开发区"
 		}]
 	}, {
-		"code": "4116",
+		"code": "411600",
 		"name": "周口市",
 		"children": [{
 			"code": "411602",
@@ -5529,7 +5529,7 @@ export default[{
 			"name": "项城市"
 		}]
 	}, {
-		"code": "4117",
+		"code": "411700",
 		"name": "驻马店市",
 		"children": [{
 			"code": "411702",
@@ -5566,7 +5566,7 @@ export default[{
 			"name": "河南驻马店经济开发区"
 		}]
 	}, {
-		"code": "4190",
+		"code": "419000",
 		"name": "省直辖县级行政区划",
 		"children": [{
 			"code": "419001",
@@ -5574,10 +5574,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "42",
+	"code": "420000",
 	"name": "湖北省",
 	"children": [{
-		"code": "4201",
+		"code": "420100",
 		"name": "武汉市",
 		"children": [{
 			"code": "420102",
@@ -5620,7 +5620,7 @@ export default[{
 			"name": "新洲区"
 		}]
 	}, {
-		"code": "4202",
+		"code": "420200",
 		"name": "黄石市",
 		"children": [{
 			"code": "420202",
@@ -5642,7 +5642,7 @@ export default[{
 			"name": "大冶市"
 		}]
 	}, {
-		"code": "4203",
+		"code": "420300",
 		"name": "十堰市",
 		"children": [{
 			"code": "420302",
@@ -5670,7 +5670,7 @@ export default[{
 			"name": "丹江口市"
 		}]
 	}, {
-		"code": "4205",
+		"code": "420500",
 		"name": "宜昌市",
 		"children": [{
 			"code": "420502",
@@ -5713,7 +5713,7 @@ export default[{
 			"name": "枝江市"
 		}]
 	}, {
-		"code": "4206",
+		"code": "420600",
 		"name": "襄阳市",
 		"children": [{
 			"code": "420602",
@@ -5744,7 +5744,7 @@ export default[{
 			"name": "宜城市"
 		}]
 	}, {
-		"code": "4207",
+		"code": "420700",
 		"name": "鄂州市",
 		"children": [{
 			"code": "420702",
@@ -5757,7 +5757,7 @@ export default[{
 			"name": "鄂城区"
 		}]
 	}, {
-		"code": "4208",
+		"code": "420800",
 		"name": "荆门市",
 		"children": [{
 			"code": "420802",
@@ -5776,7 +5776,7 @@ export default[{
 			"name": "京山市"
 		}]
 	}, {
-		"code": "4209",
+		"code": "420900",
 		"name": "孝感市",
 		"children": [{
 			"code": "420902",
@@ -5801,7 +5801,7 @@ export default[{
 			"name": "汉川市"
 		}]
 	}, {
-		"code": "4210",
+		"code": "421000",
 		"name": "荆州市",
 		"children": [{
 			"code": "421002",
@@ -5832,7 +5832,7 @@ export default[{
 			"name": "松滋市"
 		}]
 	}, {
-		"code": "4211",
+		"code": "421100",
 		"name": "黄冈市",
 		"children": [{
 			"code": "421102",
@@ -5869,7 +5869,7 @@ export default[{
 			"name": "武穴市"
 		}]
 	}, {
-		"code": "4212",
+		"code": "421200",
 		"name": "咸宁市",
 		"children": [{
 			"code": "421202",
@@ -5891,7 +5891,7 @@ export default[{
 			"name": "赤壁市"
 		}]
 	}, {
-		"code": "4213",
+		"code": "421300",
 		"name": "随州市",
 		"children": [{
 			"code": "421303",
@@ -5904,7 +5904,7 @@ export default[{
 			"name": "广水市"
 		}]
 	}, {
-		"code": "4228",
+		"code": "422800",
 		"name": "恩施土家族苗族自治州",
 		"children": [{
 			"code": "422801",
@@ -5932,7 +5932,7 @@ export default[{
 			"name": "鹤峰县"
 		}]
 	}, {
-		"code": "4290",
+		"code": "429000",
 		"name": "省直辖县级行政区划",
 		"children": [{
 			"code": "429004",
@@ -5949,10 +5949,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "43",
+	"code": "430000",
 	"name": "湖南省",
 	"children": [{
-		"code": "4301",
+		"code": "430100",
 		"name": "长沙市",
 		"children": [{
 			"code": "430102",
@@ -5983,7 +5983,7 @@ export default[{
 			"name": "宁乡市"
 		}]
 	}, {
-		"code": "4302",
+		"code": "430200",
 		"name": "株洲市",
 		"children": [{
 			"code": "430202",
@@ -6017,7 +6017,7 @@ export default[{
 			"name": "醴陵市"
 		}]
 	}, {
-		"code": "4303",
+		"code": "430300",
 		"name": "湘潭市",
 		"children": [{
 			"code": "430302",
@@ -6045,7 +6045,7 @@ export default[{
 			"name": "韶山市"
 		}]
 	}, {
-		"code": "4304",
+		"code": "430400",
 		"name": "衡阳市",
 		"children": [{
 			"code": "430405",
@@ -6094,7 +6094,7 @@ export default[{
 			"name": "常宁市"
 		}]
 	}, {
-		"code": "4305",
+		"code": "430500",
 		"name": "邵阳市",
 		"children": [{
 			"code": "430502",
@@ -6134,7 +6134,7 @@ export default[{
 			"name": "武冈市"
 		}]
 	}, {
-		"code": "4306",
+		"code": "430600",
 		"name": "岳阳市",
 		"children": [{
 			"code": "430602",
@@ -6168,7 +6168,7 @@ export default[{
 			"name": "临湘市"
 		}]
 	}, {
-		"code": "4307",
+		"code": "430700",
 		"name": "常德市",
 		"children": [{
 			"code": "430702",
@@ -6202,7 +6202,7 @@ export default[{
 			"name": "津市市"
 		}]
 	}, {
-		"code": "4308",
+		"code": "430800",
 		"name": "张家界市",
 		"children": [{
 			"code": "430802",
@@ -6218,7 +6218,7 @@ export default[{
 			"name": "桑植县"
 		}]
 	}, {
-		"code": "4309",
+		"code": "430900",
 		"name": "益阳市",
 		"children": [{
 			"code": "430902",
@@ -6246,7 +6246,7 @@ export default[{
 			"name": "沅江市"
 		}]
 	}, {
-		"code": "4310",
+		"code": "431000",
 		"name": "郴州市",
 		"children": [{
 			"code": "431002",
@@ -6283,7 +6283,7 @@ export default[{
 			"name": "资兴市"
 		}]
 	}, {
-		"code": "4311",
+		"code": "431100",
 		"name": "永州市",
 		"children": [{
 			"code": "431102",
@@ -6329,7 +6329,7 @@ export default[{
 			"name": "永州市回龙圩管理区"
 		}]
 	}, {
-		"code": "4312",
+		"code": "431200",
 		"name": "怀化市",
 		"children": [{
 			"code": "431202",
@@ -6372,7 +6372,7 @@ export default[{
 			"name": "洪江市"
 		}]
 	}, {
-		"code": "4313",
+		"code": "431300",
 		"name": "娄底市",
 		"children": [{
 			"code": "431302",
@@ -6391,7 +6391,7 @@ export default[{
 			"name": "涟源市"
 		}]
 	}, {
-		"code": "4331",
+		"code": "433100",
 		"name": "湘西土家族苗族自治州",
 		"children": [{
 			"code": "433101",
@@ -6426,10 +6426,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "44",
+	"code": "440000",
 	"name": "广东省",
 	"children": [{
-		"code": "4401",
+		"code": "440100",
 		"name": "广州市",
 		"children": [{
 			"code": "440103",
@@ -6466,7 +6466,7 @@ export default[{
 			"name": "增城区"
 		}]
 	}, {
-		"code": "4402",
+		"code": "440200",
 		"name": "韶关市",
 		"children": [{
 			"code": "440203",
@@ -6500,7 +6500,7 @@ export default[{
 			"name": "南雄市"
 		}]
 	}, {
-		"code": "4403",
+		"code": "440300",
 		"name": "深圳市",
 		"children": [{
 			"code": "440303",
@@ -6531,7 +6531,7 @@ export default[{
 			"name": "光明区"
 		}]
 	}, {
-		"code": "4404",
+		"code": "440400",
 		"name": "珠海市",
 		"children": [{
 			"code": "440402",
@@ -6544,7 +6544,7 @@ export default[{
 			"name": "金湾区"
 		}]
 	}, {
-		"code": "4405",
+		"code": "440500",
 		"name": "汕头市",
 		"children": [{
 			"code": "440507",
@@ -6569,7 +6569,7 @@ export default[{
 			"name": "南澳县"
 		}]
 	}, {
-		"code": "4406",
+		"code": "440600",
 		"name": "佛山市",
 		"children": [{
 			"code": "440604",
@@ -6588,7 +6588,7 @@ export default[{
 			"name": "高明区"
 		}]
 	}, {
-		"code": "4407",
+		"code": "440700",
 		"name": "江门市",
 		"children": [{
 			"code": "440703",
@@ -6613,7 +6613,7 @@ export default[{
 			"name": "恩平市"
 		}]
 	}, {
-		"code": "4408",
+		"code": "440800",
 		"name": "湛江市",
 		"children": [{
 			"code": "440802",
@@ -6644,7 +6644,7 @@ export default[{
 			"name": "吴川市"
 		}]
 	}, {
-		"code": "4409",
+		"code": "440900",
 		"name": "茂名市",
 		"children": [{
 			"code": "440902",
@@ -6663,7 +6663,7 @@ export default[{
 			"name": "信宜市"
 		}]
 	}, {
-		"code": "4412",
+		"code": "441200",
 		"name": "肇庆市",
 		"children": [{
 			"code": "441202",
@@ -6691,7 +6691,7 @@ export default[{
 			"name": "四会市"
 		}]
 	}, {
-		"code": "4413",
+		"code": "441300",
 		"name": "惠州市",
 		"children": [{
 			"code": "441302",
@@ -6710,7 +6710,7 @@ export default[{
 			"name": "龙门县"
 		}]
 	}, {
-		"code": "4414",
+		"code": "441400",
 		"name": "梅州市",
 		"children": [{
 			"code": "441402",
@@ -6738,7 +6738,7 @@ export default[{
 			"name": "兴宁市"
 		}]
 	}, {
-		"code": "4415",
+		"code": "441500",
 		"name": "汕尾市",
 		"children": [{
 			"code": "441502",
@@ -6754,7 +6754,7 @@ export default[{
 			"name": "陆丰市"
 		}]
 	}, {
-		"code": "4416",
+		"code": "441600",
 		"name": "河源市",
 		"children": [{
 			"code": "441602",
@@ -6776,7 +6776,7 @@ export default[{
 			"name": "东源县"
 		}]
 	}, {
-		"code": "4417",
+		"code": "441700",
 		"name": "阳江市",
 		"children": [{
 			"code": "441702",
@@ -6792,7 +6792,7 @@ export default[{
 			"name": "阳春市"
 		}]
 	}, {
-		"code": "4418",
+		"code": "441800",
 		"name": "清远市",
 		"children": [{
 			"code": "441802",
@@ -6820,7 +6820,7 @@ export default[{
 			"name": "连州市"
 		}]
 	}, {
-		"code": "4419",
+		"code": "441900",
 		"name": "东莞市",
 		"children": [{
 			"code": "441900003",
@@ -6929,7 +6929,7 @@ export default[{
 			"name": "东莞生态园"
 		}]
 	}, {
-		"code": "4420",
+		"code": "442000",
 		"name": "中山市",
 		"children": [{
 			"code": "442000001",
@@ -7005,7 +7005,7 @@ export default[{
 			"name": "神湾镇"
 		}]
 	}, {
-		"code": "4451",
+		"code": "445100",
 		"name": "潮州市",
 		"children": [{
 			"code": "445102",
@@ -7018,7 +7018,7 @@ export default[{
 			"name": "饶平县"
 		}]
 	}, {
-		"code": "4452",
+		"code": "445200",
 		"name": "揭阳市",
 		"children": [{
 			"code": "445202",
@@ -7037,7 +7037,7 @@ export default[{
 			"name": "普宁市"
 		}]
 	}, {
-		"code": "4453",
+		"code": "445300",
 		"name": "云浮市",
 		"children": [{
 			"code": "445302",
@@ -7057,10 +7057,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "45",
+	"code": "450000",
 	"name": "广西壮族自治区",
 	"children": [{
-		"code": "4501",
+		"code": "450100",
 		"name": "南宁市",
 		"children": [{
 			"code": "450102",
@@ -7100,7 +7100,7 @@ export default[{
 			"name": "横县"
 		}]
 	}, {
-		"code": "4502",
+		"code": "450200",
 		"name": "柳州市",
 		"children": [{
 			"code": "450202",
@@ -7134,7 +7134,7 @@ export default[{
 			"name": "三江侗族自治县"
 		}]
 	}, {
-		"code": "4503",
+		"code": "450300",
 		"name": "桂林市",
 		"children": [{
 			"code": "450302",
@@ -7189,7 +7189,7 @@ export default[{
 			"name": "荔浦市"
 		}]
 	}, {
-		"code": "4504",
+		"code": "450400",
 		"name": "梧州市",
 		"children": [{
 			"code": "450403",
@@ -7214,7 +7214,7 @@ export default[{
 			"name": "岑溪市"
 		}]
 	}, {
-		"code": "4505",
+		"code": "450500",
 		"name": "北海市",
 		"children": [{
 			"code": "450502",
@@ -7230,7 +7230,7 @@ export default[{
 			"name": "合浦县"
 		}]
 	}, {
-		"code": "4506",
+		"code": "450600",
 		"name": "防城港市",
 		"children": [{
 			"code": "450602",
@@ -7246,7 +7246,7 @@ export default[{
 			"name": "东兴市"
 		}]
 	}, {
-		"code": "4507",
+		"code": "450700",
 		"name": "钦州市",
 		"children": [{
 			"code": "450702",
@@ -7262,7 +7262,7 @@ export default[{
 			"name": "浦北县"
 		}]
 	}, {
-		"code": "4508",
+		"code": "450800",
 		"name": "贵港市",
 		"children": [{
 			"code": "450802",
@@ -7281,7 +7281,7 @@ export default[{
 			"name": "桂平市"
 		}]
 	}, {
-		"code": "4509",
+		"code": "450900",
 		"name": "玉林市",
 		"children": [{
 			"code": "450902",
@@ -7306,7 +7306,7 @@ export default[{
 			"name": "北流市"
 		}]
 	}, {
-		"code": "4510",
+		"code": "451000",
 		"name": "百色市",
 		"children": [{
 			"code": "451002",
@@ -7346,7 +7346,7 @@ export default[{
 			"name": "靖西市"
 		}]
 	}, {
-		"code": "4511",
+		"code": "451100",
 		"name": "贺州市",
 		"children": [{
 			"code": "451102",
@@ -7365,7 +7365,7 @@ export default[{
 			"name": "富川瑶族自治县"
 		}]
 	}, {
-		"code": "4512",
+		"code": "451200",
 		"name": "河池市",
 		"children": [{
 			"code": "451202",
@@ -7402,7 +7402,7 @@ export default[{
 			"name": "大化瑶族自治县"
 		}]
 	}, {
-		"code": "4513",
+		"code": "451300",
 		"name": "来宾市",
 		"children": [{
 			"code": "451302",
@@ -7424,7 +7424,7 @@ export default[{
 			"name": "合山市"
 		}]
 	}, {
-		"code": "4514",
+		"code": "451400",
 		"name": "崇左市",
 		"children": [{
 			"code": "451402",
@@ -7450,10 +7450,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "46",
+	"code": "460000",
 	"name": "海南省",
 	"children": [{
-		"code": "4601",
+		"code": "460100",
 		"name": "海口市",
 		"children": [{
 			"code": "460105",
@@ -7469,7 +7469,7 @@ export default[{
 			"name": "美兰区"
 		}]
 	}, {
-		"code": "4602",
+		"code": "460200",
 		"name": "三亚市",
 		"children": [{
 			"code": "460202",
@@ -7485,7 +7485,7 @@ export default[{
 			"name": "崖州区"
 		}]
 	}, {
-		"code": "4603",
+		"code": "460300",
 		"name": "三沙市",
 		"children": [{
 			"code": "460321",
@@ -7498,7 +7498,7 @@ export default[{
 			"name": "中沙群岛的岛礁及其海域"
 		}]
 	}, {
-		"code": "4604",
+		"code": "460400",
 		"name": "儋州市",
 		"children": [{
 			"code": "460400100",
@@ -7556,7 +7556,7 @@ export default[{
 			"name": "华南热作学院"
 		}]
 	}, {
-		"code": "4690",
+		"code": "469000",
 		"name": "省直辖县级行政区划",
 		"children": [{
 			"code": "469001",
@@ -7606,10 +7606,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "50",
+	"code": "500000",
 	"name": "重庆市",
 	"children": [{
-		"code": "5001",
+		"code": "500100",
 		"name": "市辖区",
 		"children": [{
 			"code": "500101",
@@ -7691,7 +7691,7 @@ export default[{
 			"name": "武隆区"
 		}]
 	}, {
-		"code": "5002",
+		"code": "500200",
 		"name": "县",
 		"children": [{
 			"code": "500229",
@@ -7732,10 +7732,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "51",
+	"code": "510000",
 	"name": "四川省",
 	"children": [{
-		"code": "5101",
+		"code": "510100",
 		"name": "成都市",
 		"children": [{
 			"code": "510104",
@@ -7799,7 +7799,7 @@ export default[{
 			"name": "简阳市"
 		}]
 	}, {
-		"code": "5103",
+		"code": "510300",
 		"name": "自贡市",
 		"children": [{
 			"code": "510302",
@@ -7821,7 +7821,7 @@ export default[{
 			"name": "富顺县"
 		}]
 	}, {
-		"code": "5104",
+		"code": "510400",
 		"name": "攀枝花市",
 		"children": [{
 			"code": "510402",
@@ -7840,7 +7840,7 @@ export default[{
 			"name": "盐边县"
 		}]
 	}, {
-		"code": "5105",
+		"code": "510500",
 		"name": "泸州市",
 		"children": [{
 			"code": "510502",
@@ -7865,7 +7865,7 @@ export default[{
 			"name": "古蔺县"
 		}]
 	}, {
-		"code": "5106",
+		"code": "510600",
 		"name": "德阳市",
 		"children": [{
 			"code": "510603",
@@ -7887,7 +7887,7 @@ export default[{
 			"name": "绵竹市"
 		}]
 	}, {
-		"code": "5107",
+		"code": "510700",
 		"name": "绵阳市",
 		"children": [{
 			"code": "510703",
@@ -7918,7 +7918,7 @@ export default[{
 			"name": "江油市"
 		}]
 	}, {
-		"code": "5108",
+		"code": "510800",
 		"name": "广元市",
 		"children": [{
 			"code": "510802",
@@ -7943,7 +7943,7 @@ export default[{
 			"name": "苍溪县"
 		}]
 	}, {
-		"code": "5109",
+		"code": "510900",
 		"name": "遂宁市",
 		"children": [{
 			"code": "510903",
@@ -7962,7 +7962,7 @@ export default[{
 			"name": "大英县"
 		}]
 	}, {
-		"code": "5110",
+		"code": "511000",
 		"name": "内江市",
 		"children": [{
 			"code": "511002",
@@ -7984,7 +7984,7 @@ export default[{
 			"name": "隆昌市"
 		}]
 	}, {
-		"code": "5111",
+		"code": "511100",
 		"name": "乐山市",
 		"children": [{
 			"code": "511102",
@@ -8021,7 +8021,7 @@ export default[{
 			"name": "峨眉山市"
 		}]
 	}, {
-		"code": "5113",
+		"code": "511300",
 		"name": "南充市",
 		"children": [{
 			"code": "511302",
@@ -8052,7 +8052,7 @@ export default[{
 			"name": "阆中市"
 		}]
 	}, {
-		"code": "5114",
+		"code": "511400",
 		"name": "眉山市",
 		"children": [{
 			"code": "511402",
@@ -8074,7 +8074,7 @@ export default[{
 			"name": "青神县"
 		}]
 	}, {
-		"code": "5115",
+		"code": "511500",
 		"name": "宜宾市",
 		"children": [{
 			"code": "511502",
@@ -8108,7 +8108,7 @@ export default[{
 			"name": "屏山县"
 		}]
 	}, {
-		"code": "5116",
+		"code": "511600",
 		"name": "广安市",
 		"children": [{
 			"code": "511602",
@@ -8130,7 +8130,7 @@ export default[{
 			"name": "华蓥市"
 		}]
 	}, {
-		"code": "5117",
+		"code": "511700",
 		"name": "达州市",
 		"children": [{
 			"code": "511702",
@@ -8158,7 +8158,7 @@ export default[{
 			"name": "万源市"
 		}]
 	}, {
-		"code": "5118",
+		"code": "511800",
 		"name": "雅安市",
 		"children": [{
 			"code": "511802",
@@ -8186,7 +8186,7 @@ export default[{
 			"name": "宝兴县"
 		}]
 	}, {
-		"code": "5119",
+		"code": "511900",
 		"name": "巴中市",
 		"children": [{
 			"code": "511902",
@@ -8208,7 +8208,7 @@ export default[{
 			"name": "巴中经济开发区"
 		}]
 	}, {
-		"code": "5120",
+		"code": "512000",
 		"name": "资阳市",
 		"children": [{
 			"code": "512002",
@@ -8221,7 +8221,7 @@ export default[{
 			"name": "乐至县"
 		}]
 	}, {
-		"code": "5132",
+		"code": "513200",
 		"name": "阿坝藏族羌族自治州",
 		"children": [{
 			"code": "513201",
@@ -8264,7 +8264,7 @@ export default[{
 			"name": "红原县"
 		}]
 	}, {
-		"code": "5133",
+		"code": "513300",
 		"name": "甘孜藏族自治州",
 		"children": [{
 			"code": "513301",
@@ -8322,7 +8322,7 @@ export default[{
 			"name": "得荣县"
 		}]
 	}, {
-		"code": "5134",
+		"code": "513400",
 		"name": "凉山彝族自治州",
 		"children": [{
 			"code": "513401",
@@ -8378,10 +8378,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "52",
+	"code": "520000",
 	"name": "贵州省",
 	"children": [{
-		"code": "5201",
+		"code": "520100",
 		"name": "贵阳市",
 		"children": [{
 			"code": "520102",
@@ -8415,7 +8415,7 @@ export default[{
 			"name": "清镇市"
 		}]
 	}, {
-		"code": "5202",
+		"code": "520200",
 		"name": "六盘水市",
 		"children": [{
 			"code": "520201",
@@ -8431,7 +8431,7 @@ export default[{
 			"name": "盘州市"
 		}]
 	}, {
-		"code": "5203",
+		"code": "520300",
 		"name": "遵义市",
 		"children": [{
 			"code": "520302",
@@ -8477,7 +8477,7 @@ export default[{
 			"name": "仁怀市"
 		}]
 	}, {
-		"code": "5204",
+		"code": "520400",
 		"name": "安顺市",
 		"children": [{
 			"code": "520402",
@@ -8499,7 +8499,7 @@ export default[{
 			"name": "紫云苗族布依族自治县"
 		}]
 	}, {
-		"code": "5205",
+		"code": "520500",
 		"name": "毕节市",
 		"children": [{
 			"code": "520502",
@@ -8527,7 +8527,7 @@ export default[{
 			"name": "赫章县"
 		}]
 	}, {
-		"code": "5206",
+		"code": "520600",
 		"name": "铜仁市",
 		"children": [{
 			"code": "520602",
@@ -8561,7 +8561,7 @@ export default[{
 			"name": "松桃苗族自治县"
 		}]
 	}, {
-		"code": "5223",
+		"code": "522300",
 		"name": "黔西南布依族苗族自治州",
 		"children": [{
 			"code": "522301",
@@ -8589,7 +8589,7 @@ export default[{
 			"name": "安龙县"
 		}]
 	}, {
-		"code": "5226",
+		"code": "522600",
 		"name": "黔东南苗族侗族自治州",
 		"children": [{
 			"code": "522601",
@@ -8641,7 +8641,7 @@ export default[{
 			"name": "丹寨县"
 		}]
 	}, {
-		"code": "5227",
+		"code": "522700",
 		"name": "黔南布依族苗族自治州",
 		"children": [{
 			"code": "522701",
@@ -8682,10 +8682,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "53",
+	"code": "530000",
 	"name": "云南省",
 	"children": [{
-		"code": "5301",
+		"code": "530100",
 		"name": "昆明市",
 		"children": [{
 			"code": "530102",
@@ -8731,7 +8731,7 @@ export default[{
 			"name": "安宁市"
 		}]
 	}, {
-		"code": "5303",
+		"code": "530300",
 		"name": "曲靖市",
 		"children": [{
 			"code": "530302",
@@ -8762,7 +8762,7 @@ export default[{
 			"name": "宣威市"
 		}]
 	}, {
-		"code": "5304",
+		"code": "530400",
 		"name": "玉溪市",
 		"children": [{
 			"code": "530402",
@@ -8793,7 +8793,7 @@ export default[{
 			"name": "元江哈尼族彝族傣族自治县"
 		}]
 	}, {
-		"code": "5305",
+		"code": "530500",
 		"name": "保山市",
 		"children": [{
 			"code": "530502",
@@ -8812,7 +8812,7 @@ export default[{
 			"name": "腾冲市"
 		}]
 	}, {
-		"code": "5306",
+		"code": "530600",
 		"name": "昭通市",
 		"children": [{
 			"code": "530602",
@@ -8849,7 +8849,7 @@ export default[{
 			"name": "水富市"
 		}]
 	}, {
-		"code": "5307",
+		"code": "530700",
 		"name": "丽江市",
 		"children": [{
 			"code": "530702",
@@ -8868,7 +8868,7 @@ export default[{
 			"name": "宁蒗彝族自治县"
 		}]
 	}, {
-		"code": "5308",
+		"code": "530800",
 		"name": "普洱市",
 		"children": [{
 			"code": "530802",
@@ -8902,7 +8902,7 @@ export default[{
 			"name": "西盟佤族自治县"
 		}]
 	}, {
-		"code": "5309",
+		"code": "530900",
 		"name": "临沧市",
 		"children": [{
 			"code": "530902",
@@ -8930,7 +8930,7 @@ export default[{
 			"name": "沧源佤族自治县"
 		}]
 	}, {
-		"code": "5323",
+		"code": "532300",
 		"name": "楚雄彝族自治州",
 		"children": [{
 			"code": "532301",
@@ -8964,7 +8964,7 @@ export default[{
 			"name": "禄丰县"
 		}]
 	}, {
-		"code": "5325",
+		"code": "532500",
 		"name": "红河哈尼族彝族自治州",
 		"children": [{
 			"code": "532501",
@@ -9007,7 +9007,7 @@ export default[{
 			"name": "河口瑶族自治县"
 		}]
 	}, {
-		"code": "5326",
+		"code": "532600",
 		"name": "文山壮族苗族自治州",
 		"children": [{
 			"code": "532601",
@@ -9035,7 +9035,7 @@ export default[{
 			"name": "富宁县"
 		}]
 	}, {
-		"code": "5328",
+		"code": "532800",
 		"name": "西双版纳傣族自治州",
 		"children": [{
 			"code": "532801",
@@ -9048,7 +9048,7 @@ export default[{
 			"name": "勐腊县"
 		}]
 	}, {
-		"code": "5329",
+		"code": "532900",
 		"name": "大理白族自治州",
 		"children": [{
 			"code": "532901",
@@ -9088,7 +9088,7 @@ export default[{
 			"name": "鹤庆县"
 		}]
 	}, {
-		"code": "5331",
+		"code": "533100",
 		"name": "德宏傣族景颇族自治州",
 		"children": [{
 			"code": "533102",
@@ -9107,7 +9107,7 @@ export default[{
 			"name": "陇川县"
 		}]
 	}, {
-		"code": "5333",
+		"code": "533300",
 		"name": "怒江傈僳族自治州",
 		"children": [{
 			"code": "533301",
@@ -9123,7 +9123,7 @@ export default[{
 			"name": "兰坪白族普米族自治县"
 		}]
 	}, {
-		"code": "5334",
+		"code": "533400",
 		"name": "迪庆藏族自治州",
 		"children": [{
 			"code": "533401",
@@ -9137,10 +9137,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "54",
+	"code": "540000",
 	"name": "西藏自治区",
 	"children": [{
-		"code": "5401",
+		"code": "540100",
 		"name": "拉萨市",
 		"children": [{
 			"code": "540102",
@@ -9180,7 +9180,7 @@ export default[{
 			"name": "达孜工业园区"
 		}]
 	}, {
-		"code": "5402",
+		"code": "540200",
 		"name": "日喀则市",
 		"children": [{
 			"code": "540202",
@@ -9238,7 +9238,7 @@ export default[{
 			"name": "岗巴县"
 		}]
 	}, {
-		"code": "5403",
+		"code": "540300",
 		"name": "昌都市",
 		"children": [{
 			"code": "540302",
@@ -9275,7 +9275,7 @@ export default[{
 			"name": "边坝县"
 		}]
 	}, {
-		"code": "5404",
+		"code": "540400",
 		"name": "林芝市",
 		"children": [{
 			"code": "540402",
@@ -9300,7 +9300,7 @@ export default[{
 			"name": "朗县"
 		}]
 	}, {
-		"code": "5405",
+		"code": "540500",
 		"name": "山南市",
 		"children": [{
 			"code": "540502",
@@ -9340,7 +9340,7 @@ export default[{
 			"name": "浪卡子县"
 		}]
 	}, {
-		"code": "5406",
+		"code": "540600",
 		"name": "那曲市",
 		"children": [{
 			"code": "540602",
@@ -9377,7 +9377,7 @@ export default[{
 			"name": "双湖县"
 		}]
 	}, {
-		"code": "5425",
+		"code": "542500",
 		"name": "阿里地区",
 		"children": [{
 			"code": "542521",
@@ -9403,10 +9403,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "61",
+	"code": "610000",
 	"name": "陕西省",
 	"children": [{
-		"code": "6101",
+		"code": "610100",
 		"name": "西安市",
 		"children": [{
 			"code": "610102",
@@ -9449,7 +9449,7 @@ export default[{
 			"name": "周至县"
 		}]
 	}, {
-		"code": "6102",
+		"code": "610200",
 		"name": "铜川市",
 		"children": [{
 			"code": "610202",
@@ -9465,7 +9465,7 @@ export default[{
 			"name": "宜君县"
 		}]
 	}, {
-		"code": "6103",
+		"code": "610300",
 		"name": "宝鸡市",
 		"children": [{
 			"code": "610302",
@@ -9505,7 +9505,7 @@ export default[{
 			"name": "太白县"
 		}]
 	}, {
-		"code": "6104",
+		"code": "610400",
 		"name": "咸阳市",
 		"children": [{
 			"code": "610402",
@@ -9551,7 +9551,7 @@ export default[{
 			"name": "彬州市"
 		}]
 	}, {
-		"code": "6105",
+		"code": "610500",
 		"name": "渭南市",
 		"children": [{
 			"code": "610502",
@@ -9588,7 +9588,7 @@ export default[{
 			"name": "华阴市"
 		}]
 	}, {
-		"code": "6106",
+		"code": "610600",
 		"name": "延安市",
 		"children": [{
 			"code": "610602",
@@ -9631,7 +9631,7 @@ export default[{
 			"name": "黄陵县"
 		}]
 	}, {
-		"code": "6107",
+		"code": "610700",
 		"name": "汉中市",
 		"children": [{
 			"code": "610702",
@@ -9668,7 +9668,7 @@ export default[{
 			"name": "佛坪县"
 		}]
 	}, {
-		"code": "6108",
+		"code": "610800",
 		"name": "榆林市",
 		"children": [{
 			"code": "610802",
@@ -9708,7 +9708,7 @@ export default[{
 			"name": "神木市"
 		}]
 	}, {
-		"code": "6109",
+		"code": "610900",
 		"name": "安康市",
 		"children": [{
 			"code": "610902",
@@ -9742,7 +9742,7 @@ export default[{
 			"name": "白河县"
 		}]
 	}, {
-		"code": "6110",
+		"code": "611000",
 		"name": "商洛市",
 		"children": [{
 			"code": "611002",
@@ -9768,10 +9768,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "62",
+	"code": "620000",
 	"name": "甘肃省",
 	"children": [{
-		"code": "6201",
+		"code": "620100",
 		"name": "兰州市",
 		"children": [{
 			"code": "620102",
@@ -9802,7 +9802,7 @@ export default[{
 			"name": "兰州新区"
 		}]
 	}, {
-		"code": "6202",
+		"code": "620200",
 		"name": "嘉峪关市",
 		"children": [{
 			"code": "620201100",
@@ -9824,7 +9824,7 @@ export default[{
 			"name": "长城区"
 		}]
 	}, {
-		"code": "6203",
+		"code": "620300",
 		"name": "金昌市",
 		"children": [{
 			"code": "620302",
@@ -9834,7 +9834,7 @@ export default[{
 			"name": "永昌县"
 		}]
 	}, {
-		"code": "6204",
+		"code": "620400",
 		"name": "白银市",
 		"children": [{
 			"code": "620402",
@@ -9853,7 +9853,7 @@ export default[{
 			"name": "景泰县"
 		}]
 	}, {
-		"code": "6205",
+		"code": "620500",
 		"name": "天水市",
 		"children": [{
 			"code": "620502",
@@ -9878,7 +9878,7 @@ export default[{
 			"name": "张家川回族自治县"
 		}]
 	}, {
-		"code": "6206",
+		"code": "620600",
 		"name": "武威市",
 		"children": [{
 			"code": "620602",
@@ -9894,7 +9894,7 @@ export default[{
 			"name": "天祝藏族自治县"
 		}]
 	}, {
-		"code": "6207",
+		"code": "620700",
 		"name": "张掖市",
 		"children": [{
 			"code": "620702",
@@ -9916,7 +9916,7 @@ export default[{
 			"name": "山丹县"
 		}]
 	}, {
-		"code": "6208",
+		"code": "620800",
 		"name": "平凉市",
 		"children": [{
 			"code": "620802",
@@ -9941,7 +9941,7 @@ export default[{
 			"name": "华亭市"
 		}]
 	}, {
-		"code": "6209",
+		"code": "620900",
 		"name": "酒泉市",
 		"children": [{
 			"code": "620902",
@@ -9966,7 +9966,7 @@ export default[{
 			"name": "敦煌市"
 		}]
 	}, {
-		"code": "6210",
+		"code": "621000",
 		"name": "庆阳市",
 		"children": [{
 			"code": "621002",
@@ -9994,7 +9994,7 @@ export default[{
 			"name": "镇原县"
 		}]
 	}, {
-		"code": "6211",
+		"code": "621100",
 		"name": "定西市",
 		"children": [{
 			"code": "621102",
@@ -10019,7 +10019,7 @@ export default[{
 			"name": "岷县"
 		}]
 	}, {
-		"code": "6212",
+		"code": "621200",
 		"name": "陇南市",
 		"children": [{
 			"code": "621202",
@@ -10050,7 +10050,7 @@ export default[{
 			"name": "两当县"
 		}]
 	}, {
-		"code": "6229",
+		"code": "622900",
 		"name": "临夏回族自治州",
 		"children": [{
 			"code": "622901",
@@ -10078,7 +10078,7 @@ export default[{
 			"name": "积石山保安族东乡族撒拉族自治县"
 		}]
 	}, {
-		"code": "6230",
+		"code": "623000",
 		"name": "甘南藏族自治州",
 		"children": [{
 			"code": "623001",
@@ -10107,10 +10107,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "63",
+	"code": "630000",
 	"name": "青海省",
 	"children": [{
-		"code": "6301",
+		"code": "630100",
 		"name": "西宁市",
 		"children": [{
 			"code": "630102",
@@ -10135,7 +10135,7 @@ export default[{
 			"name": "湟源县"
 		}]
 	}, {
-		"code": "6302",
+		"code": "630200",
 		"name": "海东市",
 		"children": [{
 			"code": "630202",
@@ -10157,7 +10157,7 @@ export default[{
 			"name": "循化撒拉族自治县"
 		}]
 	}, {
-		"code": "6322",
+		"code": "632200",
 		"name": "海北藏族自治州",
 		"children": [{
 			"code": "632221",
@@ -10173,7 +10173,7 @@ export default[{
 			"name": "刚察县"
 		}]
 	}, {
-		"code": "6323",
+		"code": "632300",
 		"name": "黄南藏族自治州",
 		"children": [{
 			"code": "632321",
@@ -10189,7 +10189,7 @@ export default[{
 			"name": "河南蒙古族自治县"
 		}]
 	}, {
-		"code": "6325",
+		"code": "632500",
 		"name": "海南藏族自治州",
 		"children": [{
 			"code": "632521",
@@ -10208,7 +10208,7 @@ export default[{
 			"name": "贵南县"
 		}]
 	}, {
-		"code": "6326",
+		"code": "632600",
 		"name": "果洛藏族自治州",
 		"children": [{
 			"code": "632621",
@@ -10230,7 +10230,7 @@ export default[{
 			"name": "玛多县"
 		}]
 	}, {
-		"code": "6327",
+		"code": "632700",
 		"name": "玉树藏族自治州",
 		"children": [{
 			"code": "632701",
@@ -10252,7 +10252,7 @@ export default[{
 			"name": "曲麻莱县"
 		}]
 	}, {
-		"code": "6328",
+		"code": "632800",
 		"name": "海西蒙古族藏族自治州",
 		"children": [{
 			"code": "632801",
@@ -10278,10 +10278,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "64",
+	"code": "640000",
 	"name": "宁夏回族自治区",
 	"children": [{
-		"code": "6401",
+		"code": "640100",
 		"name": "银川市",
 		"children": [{
 			"code": "640104",
@@ -10303,7 +10303,7 @@ export default[{
 			"name": "灵武市"
 		}]
 	}, {
-		"code": "6402",
+		"code": "640200",
 		"name": "石嘴山市",
 		"children": [{
 			"code": "640202",
@@ -10316,7 +10316,7 @@ export default[{
 			"name": "平罗县"
 		}]
 	}, {
-		"code": "6403",
+		"code": "640300",
 		"name": "吴忠市",
 		"children": [{
 			"code": "640302",
@@ -10335,7 +10335,7 @@ export default[{
 			"name": "青铜峡市"
 		}]
 	}, {
-		"code": "6404",
+		"code": "640400",
 		"name": "固原市",
 		"children": [{
 			"code": "640402",
@@ -10354,7 +10354,7 @@ export default[{
 			"name": "彭阳县"
 		}]
 	}, {
-		"code": "6405",
+		"code": "640500",
 		"name": "中卫市",
 		"children": [{
 			"code": "640502",
@@ -10368,10 +10368,10 @@ export default[{
 		}]
 	}]
 }, {
-	"code": "65",
+	"code": "650000",
 	"name": "新疆维吾尔自治区",
 	"children": [{
-		"code": "6501",
+		"code": "650100",
 		"name": "乌鲁木齐市",
 		"children": [{
 			"code": "650102",
@@ -10405,7 +10405,7 @@ export default[{
 			"name": "乌鲁木齐高新技术产业开发区"
 		}]
 	}, {
-		"code": "6502",
+		"code": "650200",
 		"name": "克拉玛依市",
 		"children": [{
 			"code": "650202",
@@ -10421,7 +10421,7 @@ export default[{
 			"name": "乌尔禾区"
 		}]
 	}, {
-		"code": "6504",
+		"code": "650400",
 		"name": "吐鲁番市",
 		"children": [{
 			"code": "650402",
@@ -10434,7 +10434,7 @@ export default[{
 			"name": "托克逊县"
 		}]
 	}, {
-		"code": "6505",
+		"code": "650500",
 		"name": "哈密市",
 		"children": [{
 			"code": "650502",
@@ -10447,7 +10447,7 @@ export default[{
 			"name": "伊吾县"
 		}]
 	}, {
-		"code": "6523",
+		"code": "652300",
 		"name": "昌吉回族自治州",
 		"children": [{
 			"code": "652301",
@@ -10472,7 +10472,7 @@ export default[{
 			"name": "木垒哈萨克自治县"
 		}]
 	}, {
-		"code": "6527",
+		"code": "652700",
 		"name": "博尔塔拉蒙古自治州",
 		"children": [{
 			"code": "652701",
@@ -10488,7 +10488,7 @@ export default[{
 			"name": "温泉县"
 		}]
 	}, {
-		"code": "6528",
+		"code": "652800",
 		"name": "巴音郭楞蒙古自治州",
 		"children": [{
 			"code": "652801",
@@ -10522,7 +10522,7 @@ export default[{
 			"name": "库尔勒经济技术开发区"
 		}]
 	}, {
-		"code": "6529",
+		"code": "652900",
 		"name": "阿克苏地区",
 		"children": [{
 			"code": "652901",
@@ -10553,7 +10553,7 @@ export default[{
 			"name": "柯坪县"
 		}]
 	}, {
-		"code": "6530",
+		"code": "653000",
 		"name": "克孜勒苏柯尔克孜自治州",
 		"children": [{
 			"code": "653001",
@@ -10569,7 +10569,7 @@ export default[{
 			"name": "乌恰县"
 		}]
 	}, {
-		"code": "6531",
+		"code": "653100",
 		"name": "喀什地区",
 		"children": [{
 			"code": "653101",
@@ -10609,7 +10609,7 @@ export default[{
 			"name": "塔什库尔干塔吉克自治县"
 		}]
 	}, {
-		"code": "6532",
+		"code": "653200",
 		"name": "和田地区",
 		"children": [{
 			"code": "653201",
@@ -10637,7 +10637,7 @@ export default[{
 			"name": "民丰县"
 		}]
 	}, {
-		"code": "6540",
+		"code": "654000",
 		"name": "伊犁哈萨克自治州",
 		"children": [{
 			"code": "654002",
@@ -10674,7 +10674,7 @@ export default[{
 			"name": "尼勒克县"
 		}]
 	}, {
-		"code": "6542",
+		"code": "654200",
 		"name": "塔城地区",
 		"children": [{
 			"code": "654201",
@@ -10699,7 +10699,7 @@ export default[{
 			"name": "和布克赛尔蒙古自治县"
 		}]
 	}, {
-		"code": "6543",
+		"code": "654300",
 		"name": "阿勒泰地区",
 		"children": [{
 			"code": "654301",
@@ -10724,7 +10724,7 @@ export default[{
 			"name": "吉木乃县"
 		}]
 	}, {
-		"code": "6590",
+		"code": "659000",
 		"name": "自治区直辖县级行政区划",
 		"children": [{
 			"code": "659001",

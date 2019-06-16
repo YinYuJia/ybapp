@@ -5,6 +5,7 @@
             v-if="type=='2'"
             :showToolbar="true"
             :slots="insuredCity"
+            :valueKey="'name'"
             @change="onInsuredChange"
             >
             <div class="btnBox">
@@ -16,6 +17,7 @@
             v-if="type=='3'"
             :showToolbar="true"
             :slots="fullCity"
+            :valueKey="'name'"
             @change="onInsuredChange"
             >
             <div class="btnBox">
@@ -42,8 +44,8 @@ export default {
             insuredCity:[
                 {
                     flex: 1,
-                    values: ["浙江省"],
-                    code:['330000'],
+                    values: [],
+                    code:[],
                     className: 'slot1'
                 },{
                     divider: true,
@@ -51,8 +53,8 @@ export default {
                     className: 'slot2'
                 },{
                     flex: 1,
-                    values: ["杭州市"],
-                    code:['330100'],
+                    values: [],
+                    code:[],
                     className: 'slot3'
                 }
             ],  //339900省本级
@@ -61,8 +63,8 @@ export default {
             fullCity:[
                 {
                     flex: 1,
-                    values: ["浙江省"],
-                    code:['330000'],                    
+                    values: [],
+                    code:[],                    
                     className: 'slot1'
                 },{
                     divider: true,
@@ -70,8 +72,8 @@ export default {
                     className: 'slot2'
                 },{
                     flex: 1,
-                    values: ["杭州市"],
-                    code:['330100'],
+                    values: [],
+                    code:[],
                     className: 'slot3'
                 },{
                     divider: true,
@@ -80,43 +82,42 @@ export default {
                 },
                 {
                     flex: 1,
-                    values: ["上城区","下城区","江干区","拱墅区","西湖区","滨江区","萧山区","余杭区","富阳区","临安区","桐庐县","淳安县","建德市"],
+                    values: [],
                     className: 'slot5'
                 }
             ],
             province: '', //省
             city: '', //市
             country: '', //区,县
-            codeprovice:"",
-            codecity:""
-
+            codeProvice: '',
+            codeCity: '',
+            codeCountry: '',
         }
     },
 
     created(){
         this.$nextTick(() =>{
-            // // 不赋值默认值就不会加载市区信息
-            // this.insuredCity[2].values = [''];
-            // this.fullCity[2].values = [''];
+            this.insuredCity[0].values = this.epFn.addressList();
+            this.fullCity[0].values = this.epFn.addressList();
         })
     },
     methods:{
         // 选择参保地
         onInsuredChange(picker, values){
-            // if(this.epFn.addressList()[values[0]]){
-            //     picker.setSlotValues(1,Object.keys(this.epFn.addressList()[values[0]]));
-            //     picker.setSlotValues(2,this.epFn.addressList()[values[0]][values[1]]);
-            // fullCity
-            // if(this.epFn.addressList()[values[0]]){
-            // picker.setSlotValues(1,Object.keys());
-            // picker.setSlotValues(2,this.epFn.addressList()[values[0]][values[1]]);
-                this.province = values[0];
-                this.city = values[1];
-                this.codeprovice=this.insuredCity[0].code[0]
-                this.codecity=this.insuredCity[2].code[0]
-                // this.insuredCity[]
-                // this.country = values[0];
-            // }
+            if(values[0] !== undefined){
+                picker.setSlotValues(1, values[0].children);
+                picker.setSlotValues(2, values[0].children[0].children);
+                this.province = values[0].name;
+                this.codeProvince = values[0].code;
+                if(values[1] !== undefined){
+                    this.city = values[1].name;
+                    this.codeCity = values[1].code;
+                }
+                if(values[2] !== undefined){
+                    this.country = values[2].name;
+                    this.codeCountry = values[2].code;
+                }
+            }
         },
         open(){
             this.showCityPicker = true;
@@ -124,16 +125,23 @@ export default {
         confirm(){
             this.showCityPicker = false;
             if(this.type == 2){
-                let address = this.province+this.city;
-                let code=this.codeprovice+this.codecity;
+                let address = this.province + this.city;
+                let code = [];
+                code.push(this.codeProvince,this.codeCity);
                 let obj = {
                     name: address,
                     code: code
                 };
                 this.$emit('confirm',obj);
             }else{
-                let address = this.province+this.city+this.country;
-                this.$emit('confirm',address);
+                let address = this.province + this.city + this.country;
+                let code = [];
+                code.push(this.codeProvince,this.codeCity,this.codeCountry);
+                let obj = {
+                    name: address,
+                    code: code
+                };
+                this.$emit('confirm',obj);
             }
         },
     }

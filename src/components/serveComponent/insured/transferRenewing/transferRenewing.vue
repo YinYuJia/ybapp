@@ -81,7 +81,6 @@ export default {
     watch: {
        form:{
             handler: function(val) {
-                console.log("监听",val)
                 // 判断不为空
                 if (val.AAA027000 != '' && val.AAB301000 != '' && val.AAE005 != '') {
                     this.canSubmit = true;
@@ -92,11 +91,6 @@ export default {
             deep:true
        } 
     },
-    mounted () {
-
-        
-        console.log(this.codein)
-    },
     methods:{
         // 选择转出地
         openOutCityPicker(){
@@ -104,27 +98,19 @@ export default {
         },
         chooseInCity(val){
             this.form.AAA027000= val.name;
-            let codein=val.code;
-            var str1=codein
-            this.form.AAS027=str1.substring(0,6)
-            this.form.AAA027=str1.substring(6,12)            
-            console.log(codein)
-            console.log(this.form.AAS027)
-            console.log(this.form.AAA027)
+            this.form.AAS027=val.code[0]
+            this.form.AAA027=val.code[1]
+            console.log(val.code);
         },
         // 选择转入地
         openInCityPicker(){
             this.$refs.outCityPicker.open();
         },
         chooseOutCity(val){
-            this.form.AAB301000 = val.name;
-            let codeout=val.code
-            var str2=codeout
-            this.form.AAS301=str2.substring(0,6)
-            this.form.AAB301=str2.substring(6,12)
-            console.log(codeout)
-            console.log(this.form.AAS301)
-            console.log(this.form.AAB301)
+            this.form.AAB301000= val.name;
+            this.form.AAS301=val.code[0]
+            this.form.AAB301=val.code[1]
+            console.log(val.code);
         },
         submit(){
             this.$router.push("/transferDetail");

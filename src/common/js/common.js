@@ -201,38 +201,7 @@ export default {
         return dataArray
     },  
 
-    provinceList:function(){
-      var name = [];
-      var code = [];
-      addressList.map((val,index)=>{
-        name.push(val.name);
-        code.push(val.code);
-      });
-      var list = [];
-      list.push(name);
-      list.push(code);
-      return list;
+    addressList: function(){
+      return addressList;
     },
-
-    CityList(code){
-      var cityList = [];
-      addressList.map((val,index)=>{
-        if(val.code == code){
-          cityList = val.children
-        }
-      });
-      var name = [];
-      var code = [];
-      cityList.map((val,index)=>{
-        name.push(val.name);
-        code.push(val.code);
-      })
-      var list = [];
-      list.push(name);
-      list.push(code);
-      return list;
-    }
-    
-
-
 }
