@@ -8,31 +8,30 @@ export default {
         console.log(a);
     },
     // 公用请求地址
-    // 开发地址
-    
-    // ApiUrl:function() {
-    //     return 'http://192.168.1.199:13030' // 吴学文
-    // },
-    
-    // ApiUrl1:function() {
-    //     return 'http://192.168.1.96:13030' // 胡伟
-    // },
 
-    // ApiUrl2:function() {
-    //     return 'http://192.168.1.157:13030' // 魏陈涛
-    // },
+    ApiUrl:function() {
+        return 'http://192.168.1.199:13030' // 吴学文
+    },
+    
+    ApiUrl1:function() {
+        return 'http://192.168.1.96:13030' // 胡伟
+    },
+
+    ApiUrl2:function() {
+        return 'http://192.168.1.157:13030' // 魏陈涛
+    },
     
 
     //打包测试地址
-    ApiUrl:function() {
-        return ''
-    },
-    ApiUrl1:function() {
-        return ''
-    },
-    ApiUrl2:function() {
-        return ''
-    },
+    // ApiUrl:function() {
+    //     return ''
+    // },
+    // ApiUrl1:function() {
+    //     return ''
+    // },
+    // ApiUrl2:function() {
+    //     return ''
+    // },
     SaveNativeData( data ) {
       return data
     },
