@@ -20,11 +20,11 @@ export default {
         }
     },
     created(){
-        console.log(this.$store.state.SET_NATIVEMSG.name)
+        // console.log(this.$store.state.SET_NATIVEMSG.name)
         this.form.name = this.$store.state.SET_NATIVEMSG.name 
         this.form.idNo = this.$store.state.SET_NATIVEMSG.idCard 
 
-        console.log('原生参数-----',this.$store.state.SET_NATIVEMSG)
+        // console.log('原生参数-----',this.$store.state.SET_NATIVEMSG)
     }
 }
 </script>

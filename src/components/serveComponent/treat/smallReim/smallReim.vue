@@ -86,10 +86,7 @@ export default {
         }
     },
     created() {
-        this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
-        this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
-        this.optionList = this.$store.state.SET_SELECTARRAY;
-        console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
+        this.form = this.$store.state.SET_SMALLREIM_OPERATION;
         this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
         this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
     },
@@ -97,7 +94,8 @@ export default {
         form: {
             handler: function(val) {
                 // 判断不为空
-                if (val.AAB301 != '' && val.ACK264 != '' && val.number != '' && val.AAE008 != '' && val.AAE009 != '' && val.AAE010 != '') {
+                // && val.number != ''   没字段
+                if (val.AAB301 != '' && val.ACK264 != ''  && val.AAE008 != '' && val.AAE009 != '' && val.AAE010 != '') {
                     this.canSubmit = true;
                 } else {
                     this.canSubmit = false;
@@ -136,11 +134,12 @@ export default {
         },
         // 提交
         submit() {
+            
             if (this.canSubmit == false) {
                 this.$toast('信息未填写完整');
                 return false;
             } else {
-                this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
+                this.$store.dispatch('SET_SMALLREIM_OPERATION', this.form);
 
                 // 封装数据
                 let params = this.formatSubmitData();
@@ -148,6 +147,7 @@ export default {
                 console.log('parmas------',params)
                 this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', params).then((resData) => {
                     console.log('返回成功信息',resData);
+                    this.$router.push('/smallReimDetail')
                 }).catch((error) => {
                     console.log(error)
                 })
@@ -156,15 +156,18 @@ export default {
         },
         formatSubmitData(){
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
-            // 日期传换成Number
-            submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
-            submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
+
+            submitForm.AAB301 = this.form.AAB301;//参保地
+            submitForm.ACK264 = this.form.ACK264;//发票费用总额
+            submitForm.AAE008 = this.form.AAE008;//收款开户行
+            submitForm.AAE009 = this.form.AAE009;//收款开户名
+            submitForm.AAE010 = this.form.AAE010;//收款银行账号
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAC003 = '胡';
                 submitForm.AAE135 = "113344223344536624";
             }
             // 请求参数封装

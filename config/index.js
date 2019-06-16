@@ -11,13 +11,13 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/ApiUrl':{
-        target: 'http://192.168.1.199:13030', // 吴学文
-        changeOrigin: true,
-        pathRewrite:{
-          '^/ApiUrl': ''
-        }
-      },
+      // '/ApiUrl':{
+      //   target: 'http://192.168.1.199:13030', // 吴学文
+      //   changeOrigin: true,
+      //   pathRewrite:{
+      //     '^/ApiUrl': ''
+      //   }
+      // },
       // '/ApiUrl1':{
       //   target: 'http://192.168.1.96:13030', // 胡伟
       //   changeOrigin: true,
@@ -25,19 +25,19 @@ module.exports = {
       //     '^/ApiUrl1': ''
       //   }
       // },
-      // '/ApiUrl2':{
-      //   target: 'http://192.168.1.157:13030', // 魏陈涛
-      //   changeOrigin: true,
-      //   pathRewrite:{
-      //     '^/ApiUrl2': ''
-      //   }
-      // }
+      '/ApiUrl2':{
+        target: 'http://192.168.1.157:13030', // 魏陈涛
+        changeOrigin: true,
+        pathRewrite:{
+          '^/ApiUrl2': ''
+        }
+      }
     },
 
     // Various Dev Server settings
     // 殷宇佳
     // host: 'localhost', 
-    host: '192.168.1.178',
+    host: '192.168.1.179',
  
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,

@@ -64,11 +64,11 @@ export default new Vuex.Store({  // 暴露与new vuex
 
         // 出境带药备案
         SET_ABROADTAKE_OPERATION:{
-          canbao: [], //参保地
-          start: '', //出境日期
-          end: '', //拟回国日期
-          organize: '',//取药机构
-          passport: '', //护照号码
+          AAB301: '', //参保地
+          AAE030: '', //出境日期
+          AAE031: '', //拟回国日期
+          AKB020: '',//取药机构
+          BKE260: '', //护照号码
         },
 
         // 家庭共济备案
@@ -119,11 +119,26 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE041: '', //退休工资
           BKE810: '', //提前退休类别
         },
+        //医保关系转移接续
         SET_TRANSFERRENEWING_OPERATION:{
-          AAA027: '', //转出地
-          AAB301: '', //转入地
-          phone: '' //手机号码
+          AAA027000:"",
+          AAA027:"", //转出地code
+          AAB301:"", //转入地code
+          AAB301000:"",
+          AAE005: '', //手机号码,
+          AAQ027:"",
+          AAQ301:""
+        },
+        //零星报销
+        SET_SMALLREIM_OPERATION:{
+          AAB301: '', //参保地
+          ACK264: '', //发票费用总额
+          number: '', //发票张数
+          AAE008: '', //收款开户行
+          AAE009: '', //收款开户名
+          AAE010: '', //收款银行账号
         }
+        
       },
       // 计算属性 getters
       getters:{
@@ -214,6 +229,10 @@ export default new Vuex.Store({  // 暴露与new vuex
           sessionStorage.setItem("SET_TRANSFERRENEWING_OPERATION",JSON.stringify(payload));
           state.SET_TRANSFERRENEWING_OPERATION = payload;
         },
+        SET_SMALLREIM_OPERATION(state,payload){
+          sessionStorage.setItem("SET_SMALLREIM_OPERATION",JSON.stringify(payload));
+          state.SET_SMALLREIM_OPERATION = payload;
+        },
       },
 
       actions:{ //添加actions
@@ -261,6 +280,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_TRANSFERRENEWING_OPERATION( context, payload ) {
           context.commit( 'SET_TRANSFERRENEWING_OPERATION', payload ); //context提交
+        },
+        SET_SMALLREIM_OPERATION( context, payload ) {
+          context.commit( 'SET_SMALLREIM_OPERATION', payload ); //context提交
         },
       }
 })

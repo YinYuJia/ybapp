@@ -98,6 +98,17 @@ import Footer from '../../common/Footer'
                     } else {
                         this.canSubmit = false;
                     }
+                    // 判断时间间隔
+                    if (val.AAE030 != '' && val.AAE031 != '') {
+                    let AAE030 = new Date(val.AAE030);
+                    let AAE031 = new Date(val.AAE031);
+                    let month = 24 * 3600 * 1000 * 30;
+                    let gap = AAE031 - AAE030;
+                    if (gap < month) {
+                        this.$toast('备案时间至少一个月');
+                        this.form.AAE031 = '';
+                    }
+                }
                 },
                 deep: true
             },
@@ -162,8 +173,8 @@ import Footer from '../../common/Footer'
             submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
             
             submitForm.AAB301 =  this.form.AAB301;
-            submitForm.AKB020 =  this.form.AKB020;
-            submitForm.BKE260 =  this.form.BKE260;
+            submitForm.AKB020 =  this.form.AKB020;//取药机构
+            submitForm.BKE260 =  this.form.BKE260;//护照号码
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

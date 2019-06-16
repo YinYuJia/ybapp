@@ -1,6 +1,6 @@
 <template>
     <div class="elseDetail">
-        <Title :title="'领取就医凭证'" :backRouter="'/elseWhere'"></Title>
+        <Title :title="'异地就医备案'" :backRouter="'/elseWhere'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
             <WorkProgress :currentStep="1"></WorkProgress>

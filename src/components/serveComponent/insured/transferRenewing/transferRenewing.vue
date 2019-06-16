@@ -23,13 +23,13 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>转出地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openOutCityPicker" type="text" v-model="form.AAA027" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openOutCityPicker" type="text" v-model="form.AAA027000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转入地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInCityPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openInCityPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -60,30 +60,40 @@ export default {
     data(){
         return{
             form:{
-                AAA027: '', //转出地
-                AAB301: '', //转入地
+                AAA027000:"",
+                AAA027:"", //转出地code
+                AAB301:"", //转入地code
+                AAB301000:"",
                 // phone: '' //手机号码
-                AAE005: '' //手机号码
+                AAE005: '', //手机号码,
+                AAQ027:"",
+                AAQ301:""
             },
             canSubmit: false,
         }
     },
     created () {
         this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
-        this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
-        this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+        this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name|| "胡"
+        this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard|| "113344223344536624"
     },
     watch: {
        form:{
             handler: function(val) {
                 // 判断不为空
-                if (val.AAA027 != '' && val.AAA027 != '' && val.AAE005 != '') {
+                if (val.AAA027000 != '' && val.AAB301000 != '' && val.AAE005 != '') {
                     this.canSubmit = true;
                 } else {
                     this.canSubmit = false;
                 }
-            }
+            },
+            deep:true
        } 
+    },
+    mounted () {
+
+        
+        console.log(this.codein)
     },
     methods:{
         // 选择转出地
@@ -91,27 +101,41 @@ export default {
             this.$refs.inCityPicker.open();
         },
         chooseInCity(val){
-            this.form.AAA027 = val;
+            this.form.AAA027000= val.name;
+            let codein=val.code;
+            var str1=codein
+            this.form.AAA027=str1.substring(0,6)
+            this.form.AAQ027=str1.substring(6,12)            
+            console.log(codein)
+            console.log(this.form.AAA027)
+            console.log(this.form.AAQ027)
         },
         // 选择转入地
         openInCityPicker(){
             this.$refs.outCityPicker.open();
         },
         chooseOutCity(val){
-            this.form.AAB301 = val;
+            this.form.AAB301000 = val.name;
+            let codeout=val.code
+            var str2=codeout
+            this.form.AAB301=str2.substring(0,6)
+            this.form.AAQ301=str2.substring(6,12)
+            console.log(codeout)
+            console.log(this.form.AAB301)
+            console.log(this.form.AAQ301)
         },
         submit(){
+            console.log(this.form)
             if (this.canSubmit == false) {
                 this.$toast('信息未填写完整');
                 return false;
             } else {
                 this.$store.dispatch('SET_TRANSFERRENEWING_OPERATION', this.form);
-
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1017/info', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl2() + '/h5/jy1017/info', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
@@ -125,7 +149,6 @@ export default {
                                 this.$toast('业务出错');
                                 return;
                             }
-                    
                 })
                 
             }
@@ -135,14 +158,16 @@ export default {
             submitForm.AAA027 =  this.form.AAA027;
             submitForm.AAB301 =  this.form.AAB301;
             submitForm.AAE005 =  this.form.AAE005;
+            submitForm.AAQ027 =  this.form.AAQ027;
+            submitForm.AAQ301 =  this.form.AAQ301;
             // 加入用户名和电子社保卡号
-            // if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-            //     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-            //     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-            // }else {
-            //     submitForm.AAC003 = '殷宇佳';
-            //     submitForm.AAE135 = "113344223344536624";
-            // }
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
+            }
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1017");
             return params;
