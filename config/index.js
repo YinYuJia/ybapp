@@ -31,7 +31,7 @@ module.exports = {
       //   pathRewrite:{
       //     '^/ApiUrl2': ''
       //   }
-      }
+      // }
     },
 
     // Various Dev Server settings
