@@ -114,6 +114,16 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
 
         // 零星报销
+        SET_SMALL_REIM_SUBMIT:{
+          AAS301: '330000', //参保地统筹省编码
+          AAB301: '330100', //参保地统筹市编码
+          AKC264: 0, //发票费用总额
+          AAE008: '', //收款开户行
+          AAE009: '', //收款开户名
+          AAE010: '', //收款银行账号
+          BKC013: '', //发票张数
+          AKB020: '', //机构编码（医院编码）
+        },
         SET_SMALL_REIM_1:{
           hospitalName: '', //就诊医院
           AKB020: '', //医院编码
@@ -233,6 +243,9 @@ export default new Vuex.Store({  // 暴露与new vuex
           sessionStorage.setItem("SET_NATIVEMSG",JSON.stringify(payload));
           state.SET_NATIVEMSG = payload;
         },
+        SET_SMALL_REIM_SUBMIT(state,payload){
+          state.SET_SMALL_REIM_SUBMIT = payload;
+        },
         SET_SMALL_REIM_1(state,payload){
           state.SET_SMALL_REIM_1 = payload;
         },
@@ -292,6 +305,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_USER_BASEINFO( context, payload ) {
           context.commit( 'SET_USER_BASEINFO', payload ); //context提交
+        },
+        SET_SMALL_REIM_SUBMIT( context, payload ) {
+          context.commit( 'SET_SMALL_REIM_SUBMIT', payload );
         },
         SET_SMALL_REIM_1( context, payload ) {
           context.commit( 'SET_SMALL_REIM_1', payload );

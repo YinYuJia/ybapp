@@ -9,15 +9,15 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>银行账号：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.account" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="number" v-model="form.AAE010" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户行：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.place" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE008" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户名：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.name" placeholder="请输入" readonly></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入"></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -27,7 +27,7 @@
             </div>
         </div>
         <!-- 按钮 -->
-        <Footer @submit="submit()" :canSubmit="true"></Footer>
+        <Footer @submit="submit()" :canSubmit="canSubmit"></Footer>
     </div>
 </template>
 
@@ -39,13 +39,27 @@ export default {
     components:{
         Title,WorkProgress,Footer
     },
+    watch:{
+        form: {
+            handler: function(val) {
+                // 判断不为空
+                if (val.AAE010 != '' && val.AAE008 != '' && val.AAE009 != '') {
+                    this.canSubmit = true;
+                } else {
+                    this.canSubmit = false;
+                }
+            },
+            deep: true
+        },
+    },
     data(){
         return{
             form:{
-                account: '', //银行账户
-                place: '', //开户行
-                name: '', //开户名
+                AAE010: '', //银行账户
+                AAE008: '', //开户行
+                AAE009: '', //开户名
             },
+            canSubmit: false,
             progress:[
                 {step:1,name:'申请报销'},
                 {step:2,name:'发票信息'},
@@ -54,9 +68,51 @@ export default {
             ],
         }
     },
+    created(){
+        console.log('submitForm',this.$store.state.SET_SMALL_REIM_SUBMIT);
+    },
     methods:{
         submit(){
-            this.$router.push('/reportComplete');
+            if(!this.canSubmit){
+                this.$toast("未填写完整");
+                return false;
+            }else{
+                let params = this.formatSubmitForm();
+                console.log(params);
+                this.$axios.post(this.epFn.ApiUrl2() + '/h5/jy1019/info', params).then((resData) => {
+                    console.log('返回成功信息',resData)
+                    //   成功   1000
+                    if ( resData.enCode == 1000 ) {
+                        this.$router.push("/reportComplete");
+                    }else if (resData.enCode == 1001 ) {
+                    //   失败  1001
+                        this.$toast(resData.msg);
+                        return;
+                    }else{
+                        this.$toast('业务出错');
+                        return;
+                    }
+                })
+                // this.$router.push('/reportComplete');
+            }
+        },
+        formatSubmitForm(){
+            let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
+            submitForm.AAE010 = this.form.AAE010;
+            submitForm.AAE008 = this.form.AAE008;
+            submitForm.AAE009 = this.form.AAE009;
+            this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1019);
+            return params;
         }
     }
 }

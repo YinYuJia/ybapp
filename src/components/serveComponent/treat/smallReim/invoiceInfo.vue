@@ -105,7 +105,6 @@ export default {
         // 封装发票
         this.invoices.forEach((val)=>{
             val.selected = false;
-            val.AKC264 = parseInt(val.AKC264);
         })
         console.log('发票',this.invoices);
     },
@@ -135,6 +134,10 @@ export default {
                 this.$toast('未选择任何发票');
                 return false;
             }else{
+                let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
+                submitForm.BKC013 = this.invoiceCount.count;
+                submitForm.AKC264 = this.invoiceCount.price;
+                this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
                 this.$router.push('/infoRecord');
             }
         },

@@ -117,6 +117,9 @@ export default {
                     //   成功   1000
                     if ( resData.enCode == 1000 ) {
                         this.$store.dispatch('SET_SMALL_REIM_2', resData.LS_DS1);
+                        let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
+                        submitForm.AKB020 = this.form.AKB020;
+                        this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
                         this.$router.push("/invoiceInfo");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
