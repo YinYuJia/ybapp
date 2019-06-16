@@ -114,17 +114,18 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
 
         // 零星报销
-        SET_SMALL_REIM:{
+        SET_SMALL_REIM_1:{
           hospitalName: '', //就诊医院
-          hospitalCode: '', //医院编码
-          ceshi: '', //测试
+          AKB020: '', //医院编码
+          AKA078: '', //就诊类型
+          AAE030: '' //就诊日期
         },
         //缴费年限核定
         SET_PAYLIMIT_OPERATION:{
           AKC412: '', //视作缴费年限
           BAC213: '', //缴费月数
           AAE041: '', //退休工资
-          BKE810: '', //提前退休类别
+          BKE810: '' //提前退休类别
         },
         SET_TRANSFERRENEWING_OPERATION:{
           AAA027: '', //转出地
@@ -213,8 +214,8 @@ export default new Vuex.Store({  // 暴露与new vuex
           sessionStorage.setItem("SET_NATIVEMSG",JSON.stringify(payload));
           state.SET_NATIVEMSG = payload;
         },
-        SET_SMALL_REIM(state,payload){
-          state.SET_SMALL_REIM = payload;
+        SET_SMALL_REIM_1(state,payload){
+          state.SET_SMALL_REIM_1 = payload;
         },
         SET_PAYLIMIT_OPERATION(state,payload){
           sessionStorage.setItem("SET_PAYLIMIT_OPERATION",JSON.stringify(payload));
@@ -266,8 +267,8 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_USER_BASEINFO( context, payload ) {
           context.commit( 'SET_USER_BASEINFO', payload ); //context提交
         },
-        SET_SMALL_REIM( context, payload ) {
-          context.commit( 'SET_SMALL_REIM', payload );
+        SET_SMALL_REIM_1( context, payload ) {
+          context.commit( 'SET_SMALL_REIM_1', payload );
         },
         SET_PAYLIMIT_OPERATION( context, payload ) {
           context.commit( 'SET_PAYLIMIT_OPERATION', payload ); //context提交

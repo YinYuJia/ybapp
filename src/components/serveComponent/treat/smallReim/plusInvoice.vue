@@ -17,11 +17,12 @@
                     <div class="InfoName"><span>发票日期：</span></div>
                     <div class="InfoText"><input type="text" v-model="form.invoiceDate" placeholder="请输入" readonly></div>
                 </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>上传图片：</span></div>
-                    <div class="UploadPhoto">
-                        <div class="SelectPhoto">+</div>
-                    </div>
+            </div>
+            <!-- 需要补充信息 -->
+            <div class="supplementInfo">
+                <div class="infoName">上传图片：</div>
+                <div class="photoBox">
+                    <svg-icon icon-class="serveComponent_upload" />
                 </div>
             </div>
         </div>
@@ -60,7 +61,7 @@ export default {
         height: 100%;
         margin-bottom: 1.4rem;
         .ReportInfo {
-            height: 7.2rem;
+            height: 3.6rem;
             width: 7.5rem;
             padding: 0 .3rem;
             background: white;
@@ -68,12 +69,11 @@ export default {
                 height: 1.2rem;
                 position: relative;
                 font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 justify-content: space-between;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     span {
                         height: .6rem;
@@ -83,7 +83,6 @@ export default {
                     }
                 }
                 .InfoText {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
@@ -91,7 +90,6 @@ export default {
                     input {
                         height: .6rem;
                         width: 4.5rem;
-                        opacity: 0.85;
                         font-family: PingFangSC-Regular;
                         font-size: .3rem;
                         color: #000000;
@@ -100,8 +98,24 @@ export default {
                         border: none;
                     }
                 }
-                &:last-child {
-                    border-bottom: none;
+            }
+        }
+        // 补充资料
+        .supplementInfo{
+            background: #FFF;
+            font-size: .28rem;
+            color: #000000;
+            line-height: 38px;
+            text-align: left;
+            padding: .1rem .3rem;
+            .infoName{
+                letter-spacing: 0;
+            }
+            .photoBox{
+                text-align: left;
+                .svg-icon{
+                    height: 1.5rem;
+                    width: 1.5rem;
                 }
             }
         }
