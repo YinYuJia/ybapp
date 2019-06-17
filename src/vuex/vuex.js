@@ -61,16 +61,22 @@ export default new Vuex.Store({  // 暴露与new vuex
 
         // 转外就医备案
         SET_TURNOUT_OPERATION:{
-          canbao: [], //参保地
-          start: '', //开始日期
-          city: [], //省市信息，提交时需要转成String
-          treatName: '',//疾病名称
-          treatment: '', //就诊疗程
+          AAA301000:"",//参保地
+          AAB301000: "",//转往地市
+          AAE030: '', //开始日期
+          AAE031: '', //结束日期
+          AAS301: "", //转往地省
+          AAB301: "", //转往地市
+          AAQ301: "", //转往地区
+          AKA121: '',//疾病名称
+          BKE255: '', //就诊疗程
+          photoIdList:[],//照片ID数组
+          BKZ019:""
         },
 
-        // 出境带药备案
+        // 出国带药备案
         SET_ABROADTAKE_OPERATION:{
-          AAB30100: '', //参保地
+          AAB301000: '', //参保地
           AAS301: '', //参保地省
           AAB301: '', //参保地市
           AAQ301: '', //参保地区
@@ -78,9 +84,9 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE030: '', //出境日期
           AAE031: '', //拟回国日期
           BKE260: '', //护照号码
-          BKZ019:"",//经办编号
+          AAA100:"",//参数类别
+          BKZ019:"",//经办编号 
           AAA100: 'AKB020',//参数类别
-          debugTest:"true"
         },
 
         // 家庭共济备案

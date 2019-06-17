@@ -8,19 +8,19 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.AAB301}}</div>
+                    <div class="InfoText">{{form.AAA301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期:</span></div>
-                    <div class="InfoText">{{form.start}}</div>
+                    <div class="InfoText">{{form.AAE030}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>结束日期:</span></div>
-                    <div class="InfoText">{{form.end}}</div>
+                    <div class="InfoText">{{form.AAE031}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转往地市:</span></div>
-                    <div class="InfoText">{{form.AAB301}}</div>
+                    <div class="InfoText">{{form.AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称:</span></div>
@@ -48,39 +48,73 @@ export default {
     data() {
       return {
         form: {
-            AAB301: '', //参保地
-            start: '', //开始日期
-            end: '', //结束日期
-            AAB301: '', //转往地市
+            AAA301000:"",//参保地
+            AAB301000: "",//转往地市
+            AAE030: '', //开始日期
+            AAE031: '', //结束日期
             AKA121: '',//疾病名称
             BKE255: '', //就诊疗程
+            BKZ019:""
         },
       }
     },
     created(){
         this.form = this.$store.state.SET_TURNOUT_OPERATION;
-    },
-    computed:{
-        canbaocity: function(){
-            return this.form.canbao.join(' ');
-        },
-        address: function(){
-            return this.form.city.join(' ');
-        }
+        let params=this.formatSubmitData();
+        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1009/getRecord', params).then((resData) => {
+            console.log('返回成功信息',resData)
+            //   成功   1000
+            if ( resData.enCode == 1000 ) {  
+                this.$toast("提交成功");
+            }else if (resData.enCode == 1001 ) {
+            //   失败  1001
+                this.$toast(resData.msg);
+                return;
+            }else{
+                this.$toast('业务出错');
+                return;
+            }
+        })
     },
     methods:{
-        back(){
-            this.$router.push("/turnOut");
-        },
         edit(){
             this.$router.push("/turnOut");
         },
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$toast("撤销请求");
+                this.form.AAA301000="",//参保地
+                this.form.AAB301000= "",//转往地市
+                this.form.AAE030= '', //开始日期
+                this.form.AAE031= '', //结束日期
+                this.form.AKA121= '',//疾病名称
+                this.form.BKE255= '', //就诊疗程
+                this.form.BKZ019=""
+                this.$store.dispatch('SET_TURNOUT_OPERATION', this.form);
+                this.$toast("撤销成功");
+                this.$router.push("/turnOut");
+
             });
         },
+        formatSubmitData(){
+            let submitForm ={}
+            console.log(submitForm)
+                submitForm.AGA002 =  "确认-00253-013";
+                // submitForm.debugTest=  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        }
     }
 }
 </script>
