@@ -18,7 +18,7 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊医院：</span></div>
-                    <div class="InfoText"><input @click="chooseHospital()" type="text" v-model="form.hospitalName" placeholder="请输入" readonly></div>
+                    <div class="InfoText"><input @click="chooseHospital()" type="text" v-model="form.hospitalName" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊类型：</span></div>
