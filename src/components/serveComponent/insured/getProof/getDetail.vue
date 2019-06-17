@@ -3,7 +3,7 @@
         <Title :title="'领取就医凭证'" :backRouter="'/getProof'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
-            <WorkProgress :currentStep="3"></WorkProgress>
+            <WorkProgress :currentStep="currentStep"></WorkProgress>
             <!-- <WorkProgress :currentStep="3" :progress=arr></WorkProgress> -->
             <!-- 信息 -->
             <div class="ReportInfo">
@@ -58,26 +58,29 @@ export default {
                 {step:4,name:'办结4'},
                 {step:5,name:'办结5'},
                 {step:6,name:'办结6'},
-            ]
+            ],
+            currentStep:1
         }
     },
     created(){
         // 请求参数封装
-        console.log();
         this.form = this.$store.state.SET_INSURED_PROOF
-        console.log(this.form,"成功参数");
-        
-        let submitForm = {
-            AGA002: '确认-00122-043',
-            AAC003: '吴学文',
-            AAE135: '333333'
-        };
+        let submitForm = {};
+         // 加入用户名和电子社保卡号
+        if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+            submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+            submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+        }else {
+            submitForm.AAC003 = '胡';
+            submitForm.AAE135 = "113344223344536624";
+        }
+        submitForm.AGA002= '确认-00122-043'
         const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
-        this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1009/getRecord', params)
+        this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1009/getRecord', params)
         .then((resData) => {
-            // console.log('返回成功信息',resData);
-        }).catch((error) => {
-            // console.log(error);
+            if(resData.encode==1000){
+                this.currentStep = Number(resData.LS_DS.BOD037)
+            }
         })
     },
     computed:{

@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.AAB301}}</div>
+                    <div class="InfoText">{{form.canbao}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>被授权人姓名:</span></div>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>绑定关系:</span></div>
-                    <div class="InfoText">{{form.AAE144}}</div>
+                    <div class="InfoText">{{form.AAE144 | relationship}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期:</span></div>
@@ -50,10 +50,30 @@ export default {
             AAE144: '',//绑定关系
             AAE030: '', //开始日期
         },
+        currentStep:1
       }
     },
     created(){
         this.form = this.$store.state.SET_FAMILYAID_OPERATION;
+        // 请求参数封装
+        // this.form = this.$store.state.SET_INSURED_PROOF
+        let submitForm = {};
+         // 加入用户名和电子社保卡号
+        if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+            submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+            submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+        }else {
+            submitForm.AAC003 = '胡';
+            submitForm.AAE135 = "113344223344536624";
+        }
+        submitForm.AGA002= '确认-00253-023'
+        const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
+        this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1009/getRecord', params)
+        .then((resData) => {
+            if(resData.encode==1000){
+                this.currentStep = Number(resData.LS_DS.BOD037)
+            }
+        })
     },
     methods:{
         edit(){

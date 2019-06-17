@@ -54,12 +54,12 @@
                     <div class="InfoName"><span>联系电话：</span></div>
                     <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系人电话号码"></div>
                 </div>
-                <div class="InfoLine">
+                <!-- <div class="InfoLine">
                     <div class="InfoName"><span>省市信息</span></div>
                     <div class="InfoText">
                          <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAE011" placeholder="请选择" readonly></div>
                     </div>
-                </div>
+                </div> -->
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址</span></div>
                     <div class="InfoText">
@@ -92,12 +92,11 @@ export default {
             form:{
                 AAE011: '', //收件人
                 AAE005: '', //联系电话
-                AAE011: '', //省市信息
+                // AAE011: '', //省市信息
                 AAE006: '', //详细地址
                 AAC050:'', //变更类型
                 BKA077 :'' ,//领取方式
             },
-            address:"",
             canSubmit: false,
             optionList: [], //所有地区
             AAC050s: [
@@ -130,7 +129,7 @@ export default {
                 }
                 // 如果需要邮寄
                 if(this.showMail == true){
-                    if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && this.address!='' && val.AAC050 != '' && val.BKA077 != '') {
+                    if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
                         this.canSubmit = true
                     }else {
                         this.canSubmit = false
@@ -142,9 +141,10 @@ export default {
     },
     created(){
         this.form = this.$store.state.SET_INSURED_PROOF;
-        if(!this.form.AAE011){
-            this.form.AAE011=this.$store.state.SET_NATIVEMSG.name
-        }
+        // 原生参数添加姓名等信息
+        // if(!this.form.AAE011){
+            // this.form.AAE011=this.$store.state.SET_NATIVEMSG.name
+        // }
         console.log('原生参数-----',this.$store.state.SET_NATIVEMSG)
     },
     methods:{
@@ -152,9 +152,10 @@ export default {
         openCityPicker(){
             this.$refs.cityPicker.open();
         },
+        // 取消三级联动
         chooseCity(val){
-            this.form.AAE011 = val;
-            console.log(val);
+        //     this.form.AAE011 = val;
+        //     console.log(val);
         },
         submit(){
             if(this.canSubmit == false){
@@ -162,14 +163,8 @@ export default {
                 return false;
             }else{
                 let params = this.formatSubmitData();
-                console.log(params,'1111111111111');
-                this.$store.dispatch('SET_INSURED_PROOF',params.submitForm);
-                console.log(this.$store.state.SET_INSURED_PROOF,"请求接口");
-                this.$router.push('/getDetail');
-                // console.log('parmas------',this.epFn.ApiUrl1())
                 this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1008/transactionVoucher', params.params)
                 .then((resData) => {
-                    console.log('返回成功信息',resData)
                     if(resData.enCode == '1000'){
                         this.$store.dispatch('SET_INSURED_PROOF',params.submitForm);
                         this.$router.push('/getDetail');
@@ -179,9 +174,6 @@ export default {
                 })
             }
         },
-        chooseInsured(val){
-            this.address = val
-        },
         openInsuredPicker(){
             this.$refs.insuredPicker.open();
         },
@@ -189,11 +181,6 @@ export default {
         formatSubmitData(){
             let submitForm = Object.assign({}, this.form)
             // let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
-            // 拼接地址
-            submitForm.AAE006 = this.address + submitForm.AAE006
-            console.log(this.form,'this.form');
-            console.log(submitForm,'submitForm');
-            
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

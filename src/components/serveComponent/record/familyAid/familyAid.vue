@@ -3,7 +3,7 @@
         <Title :title="'家庭共济备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <selectCity 
-            :type="2"
+            :type="3"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
@@ -23,7 +23,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.canbao" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -78,65 +78,89 @@ import Footer from '../../common/Footer'
                     BAC002: '', //被授权人身份证
                     AAE144: '',//绑定关系
                     AAE030: '', //开始日期
+                    canbao:''
                 },
                 dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
                 relationList: [{
-                        value: '配偶',
+                        value: '1',
                         label: '配偶'
                     },
                     {
-                        value: '子女',
+                        value: '2',
                         label: '子女'
                     },
                     {
-                        value: '父母',
+                        value: '5',
                         label: '父母'
                     }
                 ],
             }
         },
         created() {
-            // this.form = this.$store.state.SET_FAMILYAID_OPERATION;
+            this.form = this.$store.state.SET_FAMILYAID_OPERATION;
         },
+        watch:{
+        // 监听领取信息
+        form:{
+            handler:function(val){
+                if ( val.AAS301 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
+                    this.canSubmit = true
+                }else{
+                    this.canSubmit = false
+                }
+            },
+            deep: true
+        },
+    },
         methods: {
             // 选择参保地
             openInsuredPicker(){
                 this.$refs.insuredPicker.open();
             },
             chooseInsured(val){
-                this.form.AAB301 = val;
+                this.form.canbao = val.name;
+                this.form.AAS301 = val.code[0]
+                this.form.AAB301 = val.code[1]
+                this.form.AAQ301 = val.code[2]
             },
             // 选择开始日期
             openStartPicker(){
                 this.$refs.startPicker.open();
             },
             handleStartConfirm(val){
-                let date = this.util.formatDate(val,'yyyy-MM-dd');
+                let date = this.util.formatDate(val,'yyyyMMdd');
                 this.form.AAE030 = date;
+                console.log(this.form.AAE030);
             },
             submit() {
-                this.$store.dispatch('SET_TRANSFERRENEWING_OPERATION', this.form);
+                if(this.canSubmit == false){
+                this.$toast('信息未填写完整');
+                return false;
+            }else{
+                
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1022/info', params).then((resData) => {
-                        console.log('返回成功信息',resData)
-                        //   成功   1000
-                            if ( resData.enCode == 1000 ) {
-                                this.$toast("提交成功");
-                                this.$router.push('/familyDetail');
-                            }else if (resData.enCode == 1001 ) {
-                            //   失败  1001
-                                this.$toast(resData.msg);
-                                return;
-                            }else{
-                                this.$toast('业务出错');
-                                return;
-                            }
-                    
+                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1022/familyRecord', params).then((resData) => {
+                    console.log('返回成功信息',resData)
+                    //   成功   1000
+                    if ( resData.enCode == 1000 ) {
+                        this.$toast("提交成功");
+                        this.$store.dispatch('SET_FAMILYAID_OPERATION', this.form);
+                        this.$router.push('/familyDetail');
+                    }else if (resData.enCode == 1001 ) {
+                    //   失败  1001
+                        this.$toast(resData.msg);
+                        return;
+                    }else{
+                        this.$toast('业务出错');
+                        return;
+                    }
                 })
+            }
+                
             },
             formatSubmitData(){
                 let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
@@ -144,15 +168,15 @@ import Footer from '../../common/Footer'
                 submitForm.AAB301 =  this.form.AAB301;
                 submitForm.AAE005 =  this.form.AAE005;
                 // 加入用户名和电子社保卡号
-                // if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                //     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-                //     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-                // }else {
-                //     submitForm.AAC003 = '殷宇佳';
-                //     submitForm.AAE135 = "113344223344536624";
-                // }
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    submitForm.AAC003 = '殷宇佳';
+                    submitForm.AAE135 = "113344223344536624";
+                }
                 // 请求参数封装
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1017");
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1022");
                 return params;
             }
         }

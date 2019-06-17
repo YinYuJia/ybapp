@@ -15,7 +15,7 @@
             @confirm="handleEndConfirm">
         </mt-datetime-picker>
         <selectCity 
-            :type="2"
+            :type="3"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
@@ -35,7 +35,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                        <input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly>
+                        <input @click="openInsuredPicker" type="text" v-model="canbao" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -53,7 +53,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请地市</span></div>
                     <div class="InfoText">
-                        <input @click="openCityPicker" type="text" v-model="form.AAE011" placeholder="请选择" readonly>
+                        <input @click="openCityPicker" type="text" v-model="market" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -100,14 +100,20 @@ export default {
             // 提交信息
             form: {
                 AAB301: '', //参保地
+                AAS301: '', //参保地
+                AAQ301: '', //参保地
                 AAE030: '', //离杭日期
                 AAE031: '', //回杭日期
+                AAS011: '', //申请地市
                 AAE011: '', //申请地市
+                AAQ011: '', //申请地市
                 AAE006: '', //详细地址 
                 AKC030: '', //申请原因
                 AAE004: '', //联系人
                 AAE005: '', //联系电话
             },
+            canbao:"",
+            market:"",
             optionList: [], //存放城市数据
             canSubmit: false,
             dateVal: new Date(), //默认绑定的时间
@@ -172,7 +178,11 @@ export default {
             this.$refs.insuredPicker.open();
         },
         chooseInsured(val){
-            this.form.AAB301 = val;
+            console.log(val,val);
+            this.canbao = val.name
+            this.form.AAS301 = val.code[0]
+            this.form.AAB301 = val.code[1]
+            this.form.AAQ301 = val.code[2]
         },
         // 选择离开日期
         openStartPicker(){
@@ -195,7 +205,10 @@ export default {
             this.$refs.cityPicker.open();
         },
         chooseCity(val){
-            this.form.AAE011 = val;
+            this.market = val.name
+            this.form.AAS011 = val.code[0];
+            this.form.AAE011 = val.code[1];
+            this.form.AAQ011 = val.code[2];
             console.log(val);
         },
         // 提交
@@ -235,12 +248,6 @@ export default {
             submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
             submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
             
-            submitForm.AAE011 =  "460400";
-            submitForm.AAE004 =  this.form.AAE004;
-            submitForm.AKC030 =  this.form.AKC030;
-            submitForm.AAE006 =  this.form.AAE006;
-            submitForm.AAE005 =  this.form.AAE005;
-            submitForm.AAB301 =  "460400";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
