@@ -1,6 +1,7 @@
 <template>
     <div class="chronicDisease">
-        <Title :title="'规定病种备案'" :backRouter="'/'"></Title>
+        <div v-show="!isSearch">
+            <Title :title="'规定病种备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <selectCity 
             :type="3"
@@ -54,6 +55,9 @@
         </div>
         <!-- 按钮 -->
         <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
+        </div>
+        
+        <search-info-page  @childrenClick="childrenClick" v-if="isSearch"></search-info-page>
     </div>
 </template>
 
@@ -62,9 +66,10 @@ import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
 import selectCity from '../../common/selectCity'
 import Footer from '../../common/Footer'
+import SearchInfoPage from './searchInfoPage'
     export default {
         components:{
-        Title,userBaseInfo,selectCity,Footer
+        Title,userBaseInfo,selectCity,Footer,SearchInfoPage
     },
         data() {
             return {
@@ -83,6 +88,7 @@ import Footer from '../../common/Footer'
                     AAE030: '', //开始日期
                     BKE247: '', //病历本提取方式 1自取，2邮寄
                 },
+                isSearch:false,
                 dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
                 hospitalList: [
@@ -104,6 +110,13 @@ import Footer from '../../common/Footer'
             }
         },
         methods: {
+            chooseDisease(){
+                this.isSearch = true
+            },
+            childrenClick(code,name){
+                this.isSearch = false
+                this.form.AKA035 = name
+            },
             // 选择参保地
             openInsuredPicker(){
                 this.$refs.insuredPicker.open();

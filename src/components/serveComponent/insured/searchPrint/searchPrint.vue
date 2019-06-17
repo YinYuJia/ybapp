@@ -53,7 +53,9 @@ export default {
     data(){
         return{
             form:{
-                AAB301: '', //参保地
+                AAS301:'', //参保地
+                AAB301:'', //参保地
+                AAQ301:'', //参保地
                 AAE011: '' //缴费月数
             },
             canbao:"",
@@ -79,7 +81,7 @@ export default {
         }
     },
     created () {
-        // this.form = this.$store.state.SET_SEARCH_PRINT;
+        this.form = this.$store.state.SET_SEARCH_PRINT;
         // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
         // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
     },

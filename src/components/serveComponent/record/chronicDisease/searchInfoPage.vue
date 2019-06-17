@@ -43,7 +43,8 @@ export default {
             this.smallReimForm.AKB020 = code;
             this.smallReimForm.hospitalName = name;
             this.$store.dispatch('SET_SMALL_REIM_1', this.smallReimForm);
-            this.$router.push('/smallReim');
+            this.$emit('childrenClick',code,name)
+            // this.$router.push('/smallReim');
         }
     }
 }
