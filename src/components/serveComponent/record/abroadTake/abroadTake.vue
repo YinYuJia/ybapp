@@ -28,7 +28,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB30100" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -75,7 +75,7 @@ import Footer from '../../common/Footer'
         data() {
             return {
                 form: {
-                    AAB30100: '', //参保地
+                    AAB301000: '', //参保地
                     AAS301: '', //参保地省
                     AAB301: '', //参保地市
                     AAQ301: '', //参保地区
@@ -99,7 +99,7 @@ import Footer from '../../common/Footer'
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (val.AAB301 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' ) {
+                    if (val.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' ) {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
@@ -128,7 +128,7 @@ import Footer from '../../common/Footer'
                 this.$refs.insuredPicker.open();
             },
             chooseInsured(val){
-                this.form.AAB30100=val.name;
+                this.form.AAB301000=val.name;
                 this.form.AAS301=val.code[0]
                 this.form.AAB301=val.code[1]
                 this.form.AAQ301=val.code[2]
@@ -161,7 +161,7 @@ import Footer from '../../common/Footer'
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1021/info', params).then((resData) => {
+                this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1021/info', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
@@ -185,13 +185,13 @@ import Footer from '../../common/Footer'
 
             submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030).toString();
             submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031).toString();
-            console.log(typeof submitForm.AAE030)
             submitForm.AAS301 =  this.form.AAS301;//参保地省
             submitForm.AAB301 =  this.form.AAB301;//参保地市
             submitForm.AAQ301 =  this.form.AAQ301;//参保地区
             submitForm.AKB020 =  this.form.AKB020;//取药机构
             submitForm.BKE260 =  this.form.BKE260;//护照号码
             submitForm.BKZ019 =  this.form.BKZ019;//护照号码
+            // submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

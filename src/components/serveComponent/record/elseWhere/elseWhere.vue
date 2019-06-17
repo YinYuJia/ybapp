@@ -99,14 +99,13 @@ export default {
         return {
             // 提交信息
             form: {
-                AAB301: '', //参保地
-                AAS301: '', //参保地
-                AAQ301: '', //参保地
+                AAB301000:"",
+                AAS011000:"",
                 AAE030: '', //离杭日期
                 AAE031: '', //回杭日期
-                AAS011: '', //申请地市
-                AAE011: '', //申请地市
-                AAQ011: '', //申请地市
+                AAS011: '', //参保地省
+                AAE011: '', //参保地市
+                AAQ011: '', //参保地区
                 AAE006: '', //详细地址 
                 AKC030: '', //申请原因
                 AAE004: '', //联系人
@@ -114,10 +113,7 @@ export default {
                 AAS301: '',//申请地省
                 AAB301: '',//申请地市
                 AAQ301: '',//申请地区
-
             },
-            canbao:"",
-            market:"",
             optionList: [], //存放城市数据
             canSubmit: false,
             dateVal: new Date(), //默认绑定的时间

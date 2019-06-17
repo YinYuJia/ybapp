@@ -3,7 +3,7 @@
         <Title :title="'转外就医备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <selectCity 
-            :type="2"
+            :type="3"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
@@ -13,6 +13,12 @@
             ref="startPicker"
             v-model="dateVal"
             @confirm="handleStartConfirm">
+        </mt-datetime-picker>
+        <mt-datetime-picker
+            type="date"
+            ref="endPicker"
+            v-model="dateVal"
+            @confirm="handleEndConfirm">
         </mt-datetime-picker>
         <selectCity 
             :type="3"
@@ -36,11 +42,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>结束日期</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE031" placeholder="请选择" readonly></div>
+                    <div class="InfoText"><input @click="openEndPicker" type="text" v-model="form.AAE031" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转往地市</span></div>
-                    <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAB30100" placeholder="请选择" readonly></div>
+                    <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称</span></div>
@@ -76,12 +82,16 @@ import Footer from '../../common/Footer'
                 dddddd: "1111",
                 form: {
                     AAA301000:"",//参保地
-                    AAB30100: "",//转往地市
+                    AAB301000: "",//转往地市
                     AAE030: '', //开始日期
                     AAE031: '', //结束日期
+                    AAS301: "", //转往地省
                     AAB301: "", //转往地市
+                    AAQ301: "", //转往地区
                     AKA121: '',//疾病名称
                     BKE255: '', //就诊疗程
+                    photoIdList:[],//照片ID数组
+                    BKZ019:""
                 },
                 canSubmit: false,
                 dateVal: new Date(), //默认绑定的时间
@@ -92,6 +102,7 @@ import Footer from '../../common/Footer'
             }
         },
         created() {
+            console.log('form',this.form);
             this.form = this.$store.state.SET_TURNOUT_OPERATION;
             this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
             this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
@@ -100,11 +111,22 @@ import Footer from '../../common/Footer'
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (val.canbao != undefined && val.start != '' && val.city != undefined && val.treatName != '' && val.treatment != '') {
+                    if (val.AAA301000 != '' && val.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKA121 != '' && val.BKE255 != '' ) {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
                     }
+                    // 判断时间间隔
+                    if (val.AAE030 != '' && val.AAE031 != '') {
+                    let AAE030 = new Date(val.AAE030);
+                    let AAE031 = new Date(val.AAE031);
+                    let month = 24 * 3600 * 1000 * 30;
+                    let gap = AAE031 - AAE030;
+                    if (gap <= 0) {
+                        this.$toast('开始日期需大于结束日期');
+                        this.form.AAE031 = '';
+                    }
+                }
                 },
                 deep: true
             },
@@ -115,7 +137,7 @@ import Footer from '../../common/Footer'
                 this.$refs.insuredPicker.open();
             },
             chooseInsured(val){
-                this.form.canbao = val;
+                this.form.AAA301000=val.name
             },
             // 选择开始日期
             openStartPicker(){
@@ -123,27 +145,15 @@ import Footer from '../../common/Footer'
             },
             handleStartConfirm(val){
                 let date = this.util.formatDate(val,'yyyy-MM-dd');
-                this.form.start = date;
-                // 计算结束日期
-                this.getEndDate(date);
+                this.form.AAE030 = date;
             },
-            getEndDate(date){
-                let startYear = parseInt(date.substr(0,4));
-                let startMonth = parseInt(date.substr(5,2));
-                let endDay = date.substr(8,2)
-                let endMonth,endYear;
-                if(startMonth + 3 > 12){
-                    endMonth = startMonth + 3 - 12;
-                    endYear = startYear + 1;
-                }else{
-                    endMonth = startMonth + 3;
-                    endYear = startYear;
-                }
-                if(endMonth<10){
-                    endMonth = '0' + endMonth;
-                }
-                let end = endYear + '-' + endMonth + '-' + endDay;
-                this.form.end = end;
+            // 选择结束日期
+            openEndPicker(){
+                this.$refs.endPicker.open();
+            },
+            handleEndConfirm(val){
+                let date = this.util.formatDate(val,'yyyy-MM-dd');
+                this.form.AAE031 = date;
             },
             // 选择转往地市
             openCityPicker(){
@@ -161,13 +171,13 @@ import Footer from '../../common/Footer'
                 this.$toast('信息未填写完整');
                 return false;
             } else {
-                this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
+                this.$store.dispatch('SET_TURNOUT_OPERATION', this.form);
 
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1020/addRecord', params).then((resData) => {
+                this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1020/info', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
@@ -181,25 +191,26 @@ import Footer from '../../common/Footer'
                                 this.$toast('业务出错');
                                 return;
                             }
-                    
-                })
+                        })
                 
             }
             },
             formatSubmitData(){
                 let submitForm = {};
                 // 日期传换成Number
-                console.log()
+                console.log(this.form);
                 submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
                 submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
                 
                 submitForm.AAS301 =  this.form.AAS301;//参保地省
                 submitForm.AAB301 =  this.form.AAB301;//参保地市
                 submitForm.AAQ301 =  this.form.AAQ301;//参保地区
-                submitForm.AKB020 =  this.form.AKB020;//取药机构
-                submitForm.BKE260 =  this.form.BKE260;//护照号码
-                submitForm.BKZ019 =  this.form.BKZ019;//护照号码
-                submitForm.dibuger =  "true";
+                submitForm.AKA121 =  this.form.AKA121;//疾病名称
+                submitForm.BKE255 =  this.form.BKE255;//就诊疗程
+                submitForm.photoIdList =  this.form.photoIdList;//照片ID数组
+                submitForm.BKZ019 =  this.form.BKZ019;//经办编号
+                // submitForm.debugTest=  "true";
+                // submitForm.dibuger =  "true";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

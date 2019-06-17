@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.AAB301}}</div>
+                    <div class="InfoText">{{form.AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>出境日期:</span></div>
@@ -44,10 +44,7 @@ export default {
     data() {
       return {
         form: {
-            AAB30100: '', //参保地
-            AAS301: '', //参保地省
-            AAB301: '', //参保地市
-            AAQ301: '', //参保地区
+            AAB301000: '', //参保地
             AKB020: '',//取药机构
             AAE030: '', //出境日期
             AAE031: '', //拟回国日期
@@ -56,16 +53,16 @@ export default {
       }
     },
     created(){
+        
         this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
 
         let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1009/getRecord', params).then((resData) => {
+        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1009/getRecord', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
                 console.log(11111)
                 this.$toast("提交成功");
-                this.$router.push("/elseDetail");
             }else if (resData.enCode == 1001 ) {
             //   失败  1001
                 this.$toast(resData.msg);
@@ -88,13 +85,20 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
+                this.form.AAB301000= '', //参保地
+                this.form.AKB020= '',//取药机构
+                this.form.AAE030= '', //出境日期
+                this.form.AAE031= '', //拟回国日期
+                this.form.BKE260= '', //护照号码
                 this.$toast("撤销请求");
+                this.$router.push("/abroadTake");
             });
         },
         formatSubmitData(){
             let submitForm ={}
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-001";
+                submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
