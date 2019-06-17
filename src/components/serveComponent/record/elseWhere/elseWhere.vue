@@ -245,6 +245,8 @@ export default {
             // 日期传换成Number
             submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
             submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
+            submitForm.AAE301 = "646465",
+            submitForm.AAS301 = "445665"
             
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -255,6 +257,7 @@ export default {
                 submitForm.AAE135 = "113344223344536624";
             }
             // 请求参数封装
+            console.log('submitForm',submitForm)
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1012");
             return params;
         }
