@@ -99,13 +99,14 @@ export default {
         return {
             // 提交信息
             form: {
-                AAS011000:"",
-                AAB301000:"",
+                AAB301: '', //参保地
+                AAS301: '', //参保地
+                AAQ301: '', //参保地
                 AAE030: '', //离杭日期
                 AAE031: '', //回杭日期
-                AAS011: '', //参保地省
-                AAE011: '', //参保地市
-                AAQ011: '', //参保地区
+                AAS011: '', //申请地市
+                AAE011: '', //申请地市
+                AAQ011: '', //申请地市
                 AAE006: '', //详细地址 
                 AKC030: '', //申请原因
                 AAE004: '', //联系人
@@ -115,6 +116,8 @@ export default {
                 AAQ301: '',//申请地区
 
             },
+            canbao:"",
+            market:"",
             optionList: [], //存放城市数据
             canSubmit: false,
             dateVal: new Date(), //默认绑定的时间
@@ -247,12 +250,6 @@ export default {
             submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
             submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
             
-            submitForm.AAE011 =  "460400";
-            submitForm.AAE004 =  this.form.AAE004;
-            submitForm.AKC030 =  this.form.AKC030;
-            submitForm.AAE006 =  this.form.AAE006;
-            submitForm.AAE005 =  this.form.AAE005;
-            submitForm.AAB301 =  "460400";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

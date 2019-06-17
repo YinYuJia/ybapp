@@ -410,7 +410,25 @@
                 hidden: false
             }
         },
-        created() {},
+        created() {
+            this.$store.dispatch('SET_NATIVEMSG', {
+                title: "",
+                describe: "",
+                type: "",
+                typeItem: "",
+                name: sessionStorage.getItem("userName") ,
+                idCard:sessionStorage.getItem("idCard") ,
+                PublicHeader: {
+                    imei: '',
+                    mac: '',
+                    phoneModel: '',
+                    platform: '',
+                    signType: '',
+                    sign: '',
+                    version: 'v2.0',
+                }
+            });
+        },
         methods: {
             showWork(url,item,itemInfo) {
                 sessionStorage.setItem("item",item);

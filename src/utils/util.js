@@ -28,7 +28,16 @@ function DateToNumber(date){
     return parseInt(dateNum);
 }
 
+function checkPhone(phoneStr){ 
+    var phone = phoneStr
+    if(!(/^1[3456789]\d{9}$/.test(phone))){ 
+        return false; 
+    }
+    return true;
+  }
+
 export default{
     formatDate,
     DateToNumber,
+    checkPhone,
 }

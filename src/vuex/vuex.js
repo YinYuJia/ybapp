@@ -85,11 +85,12 @@ export default new Vuex.Store({  // 暴露与new vuex
 
         // 家庭共济备案
         SET_FAMILYAID_OPERATION:{
-          canbao: [], //参保地
-          name: '', //享受人姓名
-          idNo: '', //享受人身份证
-          relation: '',//绑定关系
-          start: '', //开始日期
+          AAB301: '', //参保地
+          BAC003: '', //被授权人姓名
+          BAC002: '', //被授权人身份证
+          AAE144: '',//绑定关系
+          AAE030: '', //开始日期
+          canbao:''
         },
 
         // 基本信息变更

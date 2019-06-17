@@ -113,7 +113,6 @@ Object.keys(filters).forEach(key => {
 
 function  paramStr(name){
   var url = window.location.href || window.location.hash
-  console.log('url当前地址',url)
   var after = url.split("?")[1];
   if (after) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -133,6 +132,12 @@ function  paramStr(name){
     }
   }
 }
+
+console.log(paramStr("userName") === undefined)
+
+sessionStorage.setItem("userName",paramStr("userName") || "张思佳")
+sessionStorage.setItem("idCard",paramStr("idCard") || "2305226164449855698")
+
 
 // router.beforeEach((to, from, next) => {
   
