@@ -74,7 +74,7 @@
                 </div>
             </div>
             <!-- 需要补充信息 -->
-            <div class="supplementInfo">
+            <div class="supplementInfo" v-if="needMoreInfo">
                 <div class="infoName">根据业务需要，需要您补充提交以下资料</div>
                 <div class="infoList">1、所需资料1</div>
                 <div class="infoList">2、所需资料2</div>
@@ -97,12 +97,17 @@ export default {
     components:{
         Title,WorkProgress,Footer
     },
+    created(){
+        let params = this.formatSubmitForm();
+        console.log(params);
+    },
     data(){
         return{
             invoices:[
                 {code:'9123910023010230120301',name:'骨科',cost:'10239.03'},
                 {code:'9123910023010230120302',name:'外科',cost:'102.88'},
-            ]
+            ],
+            needMoreInfo: true,
         }
     },
     methods:{
@@ -115,6 +120,17 @@ export default {
                 this.$toast("撤销请求");
             });
         },
+        // 封装提交参数
+        formatSubmitForm(){
+            let submitForm = {
+                AGA002: '给付-00007-019',
+                AAC003: this.$store.state.SET_NATIVEMSG.names,
+                AAE135: this.$store.state.SET_NATIVEMSG.idCard
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1009);
+            return params;
+        }
     }
 }
 </script>

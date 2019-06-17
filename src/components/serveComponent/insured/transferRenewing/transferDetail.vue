@@ -46,7 +46,8 @@ export default {
         this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
 
         let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1009/getRecord', params).then((resData) => {
+        console.log(params);
+        this.$axios.post(this.epFn.ApiUrl2() + '/h5/jy1016/info', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
@@ -76,20 +77,19 @@ export default {
             });
         },
         formatSubmitData(){
-            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
-            console.log(submitForm)
-                submitForm.AGA002 =  "公共服务-00512-001";
+            let submitForm = {};
+            submitForm.AGA002 =  "公共服务-00512-001";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
-                submitForm.AAE135 = "113344223344536624";
+                submitForm.AAC003 = '张三';
+                submitForm.AAE135 = "3302811";
             }
             
             // 请求参数封装
-            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
             return params;
         }
     }
