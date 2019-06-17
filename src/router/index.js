@@ -25,6 +25,7 @@ import turnDetail from '@/components/serveComponent/record/turnOut/turnDetail'
 import searchDisease from '@/components/serveComponent/record/turnOut/searchDisease'
 import abroadTake from '@/components/serveComponent/record/abroadTake/abroadTake'
 import abroadDetail from '@/components/serveComponent/record/abroadTake/abroadDetail'
+import searchTakeDrug from '@/components/serveComponent/record/abroadTake/searchTakeDrug'
 import familyAid from '@/components/serveComponent/record/familyAid/familyAid'
 import familyDetail from '@/components/serveComponent/record/familyAid/familyDetail'
 import specialDrug from '@/components/serveComponent/record/specialDrug/specialDrug'
@@ -146,6 +147,11 @@ export default new Router({
       path: '/abroadDetail',
       name: 'abroadDetail',
       component: abroadDetail
+    },
+    {
+      path: '/searchTakeDrug',
+      name: 'searchTakeDrug',
+      component: searchTakeDrug
     },
     {
       path: '/familyAid',

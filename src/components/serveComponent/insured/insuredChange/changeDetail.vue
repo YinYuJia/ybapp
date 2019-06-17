@@ -38,7 +38,9 @@ export default {
             form:{
                 AAE006: '', //家庭住址
                 AAE005: '', //手机号码
-                AAE007: '' //邮政编码
+                AAE007: '', //邮政编码
+                debugTest:"true"
+                
             },
         }
     },
@@ -50,7 +52,6 @@ export default {
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
                 this.$toast("提交成功");
-                this.$router.push("/elseDetail");
             }else if (resData.enCode == 1001 ) {
             //   失败  1001
                 this.$toast(resData.msg);
@@ -77,6 +78,8 @@ export default {
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
             console.log(submitForm)
             submitForm.AGA002 =  "公共服务-00501-004";
+            submitForm.debugTest =  "true";
+
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

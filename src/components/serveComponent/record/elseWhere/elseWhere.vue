@@ -35,7 +35,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                        <input @click="openInsuredPicker" type="text" v-model="canbao" placeholder="请选择" readonly>
+                        <input @click="openInsuredPicker" type="text" v-model="form.AAS011000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -53,7 +53,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请地市</span></div>
                     <div class="InfoText">
-                        <input @click="openCityPicker" type="text" v-model="market" placeholder="请选择" readonly>
+                        <input @click="openCityPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -111,6 +111,10 @@ export default {
                 AKC030: '', //申请原因
                 AAE004: '', //联系人
                 AAE005: '', //联系电话
+                AAS301: '',//申请地省
+                AAB301: '',//申请地市
+                AAQ301: '',//申请地区
+
             },
             canbao:"",
             market:"",
@@ -152,7 +156,7 @@ export default {
         form: {
             handler: function(val) {
                 // 判断不为空
-                if (val.AAB301 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != '' && val.AAE006 != '' && val.AKC030 != '' && val.AAE004 != '' && val.AAE005 != '') {
+                if (val.AAS011000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != '' && val.AAE006 != '' && val.AKC030 != '' && val.AAE004 != '' && val.AAE005 != '' && val.AAB301000 != '') {
                     this.canSubmit = true;
                 } else {
                     this.canSubmit = false;
@@ -178,11 +182,10 @@ export default {
             this.$refs.insuredPicker.open();
         },
         chooseInsured(val){
-            console.log(val,val);
-            this.canbao = val.name
-            this.form.AAS301 = val.code[0]
-            this.form.AAB301 = val.code[1]
-            this.form.AAQ301 = val.code[2]
+            this.form.AAS011000 =val.name, //参保地省
+            this.form.AAS011 =val.code[0], //参保地省
+            this.form.AAE011 =val.code[1], //参保地市
+            this.form.AAQ011 =val.code[2]  //参保地区
         },
         // 选择离开日期
         openStartPicker(){
@@ -205,11 +208,10 @@ export default {
             this.$refs.cityPicker.open();
         },
         chooseCity(val){
-            this.market = val.name
-            this.form.AAS011 = val.code[0];
-            this.form.AAE011 = val.code[1];
-            this.form.AAQ011 = val.code[2];
-            console.log(val);
+            this.form.AAB301000= val.name;
+            this.form.AAS301=val.code[0]
+            this.form.AAB301=val.code[1]
+            this.form.AAQ301=val.code[2]
         },
         // 提交
         submit() {
@@ -223,7 +225,7 @@ export default {
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1012/addRecord', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1012/addRecord', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
@@ -243,10 +245,10 @@ export default {
             }
         },
         formatSubmitData(){
-            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            let submitForm ={};
             // 日期传换成Number
-            submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030);
-            submitForm.AAE031 = this.util.DateToNumber(submitForm.AAE031);
+            submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
+            submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
             
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
