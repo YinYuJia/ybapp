@@ -134,6 +134,13 @@ function  paramStr(name){
   }
 }
 
+console.log(paramStr("userName") === undefined)
+console.log(paramStr("idCard"))
+
+sessionStorage.setItem("userName",paramStr("userName") || "张思佳")
+sessionStorage.setItem("idCard",paramStr("idCard") || "2305226164449855698")
+
+
 // router.beforeEach((to, from, next) => {
   
 //   const code = 'ybzdpycyysxzsb';
