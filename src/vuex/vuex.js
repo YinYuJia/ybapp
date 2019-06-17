@@ -96,14 +96,14 @@ export default new Vuex.Store({  // 暴露与new vuex
           BAC002: '', //被授权人身份证
           AAE144: '',//绑定关系
           AAE030: '', //开始日期
-          canbao:''
         },
 
         // 基本信息变更
         SET_BASEINFOCHANGE_OPERATION:{
-          address: '', //家庭地址
-          phone: '', //手机号码
-          code: '' //邮政编码
+          AAE006: '', //家庭住址
+          AAE005: '', //手机号码
+          AAE007: '', //邮政编码
+          BKZ019: '', //经办编号
         },
 
         // 领取就医凭证
@@ -129,7 +129,8 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_INSURED_CHANGE:{
           AAE006: '', //家庭住址
           AAE005: '', //手机号码
-          AAE007: '' //邮政编码
+          AAE007: '', //邮政编码
+          BKZ019: '', //经办编号
         },
 
         // 零星报销

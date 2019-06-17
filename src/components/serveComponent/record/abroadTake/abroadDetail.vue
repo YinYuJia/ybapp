@@ -24,7 +24,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>护照号码:</span></div>
-                    <div class="InfoText">{{form.BKE260}}</div>
+                    <div class="InfoText">{{form.BKE260 | tuoMin(3,3)}}</div>
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@ export default {
             let submitForm ={}
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-001";
-                submitForm.debugTest=  "true";
+                // submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

@@ -32,11 +32,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系人:</span></div>
-                    <div class="InfoText">{{form.AAE004}}</div>
+                    <div class="InfoText">{{form.AAE004 | tuoMin(0,1)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话:</span></div>
-                    <div class="InfoText">{{form.AAE005}}</div>
+                    <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@ export default {
         
         this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
         let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1009/getRecord', params).then((resData) => {
+        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1009/getRecord', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
@@ -106,9 +106,10 @@ export default {
             this.$router.push("/elseWhere");
         },
         formatSubmitData(){
-            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            let submitForm = {}
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-013";
+                submitForm.debugTest=  "true";
 
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
