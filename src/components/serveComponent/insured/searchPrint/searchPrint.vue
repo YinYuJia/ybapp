@@ -2,7 +2,7 @@
     <div class="searchPrint">
         <!-- 弹出框内容 -->
         <selectCity 
-            :type="2"
+            :type="3"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
@@ -17,7 +17,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="canbao" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -56,6 +56,7 @@ export default {
                 AAB301: '', //参保地
                 AAE011: '' //缴费月数
             },
+            canbao:"",
             options:[
                 {value: '12', label: '12个月'},
                 {value: '24', label: '24个月'},
@@ -78,18 +79,21 @@ export default {
         }
     },
     created () {
-        this.form = this.$store.state.SET_SEARCH_PRINT;
-        this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
-        this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+        // this.form = this.$store.state.SET_SEARCH_PRINT;
+        // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
+        // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
     },
     methods:{
         openInsuredPicker(){
             this.$refs.insuredPicker.open();
         },
         chooseInsured(val){
-            this.form.AAB301 = val;
+            this.canbao = val.name;
+            this.form.AAS301 = val.code[0]
+            this.form.AAB301 = val.code[1]
+            this.form.AAQ301 = val.code[2]
         },
-        search(){
+        submit(){
             if(this.canSubmit == false){
                 this.$toast('信息未填写完整');
                 return false;
@@ -104,7 +108,7 @@ export default {
                     submitForm.AAE135 = "330622197407215513";
                 }
                 // 暂时删除参保地
-                delete submitForm.AAB301
+                // delete submitForm.AAB301
                 
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1011');
                 

@@ -18,3 +18,13 @@ export function tuoMin(str, front, back) {
     }
     return str;
 }
+
+// 绑定关系
+export function relationship(val) {
+    let obj = {
+      "1": "配偶",
+      "2": "子女",
+      "5": "父母"
+    }
+    return obj[val]
+  }
