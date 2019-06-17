@@ -86,25 +86,7 @@
             //     })
             this.NameTitle = sessionStorage.getItem("item")
             this.describe = sessionStorage.getItem("itemInfo")
-            this.$store.dispatch('SET_NATIVEMSG', {
-                title: "",
-                describe: "",
-                type: "",
-                typeItem: "",
-                name: "张思佳",
-                idCard: "330165694569544567",
-                PublicHeader: {
-                    imei: '',
-                    mac: '',
-                    phoneModel: '',
-                    platform: '',
-                    signType: '',
-                    sign: '',
-                    version: 'v2.0',
-                }
-            });
-            sessionStorage.setItem("userName",'张思佳')
-            sessionStorage.setItem("idCard",'330165694569544567')
+            
         },
         methods: {
             handleSelect(key, keyPath) {

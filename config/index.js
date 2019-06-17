@@ -25,13 +25,13 @@ module.exports = {
       //     '^/ApiUrl1': ''
       //   }
       // },
-      '/ApiUrl2':{
-        target: 'http://192.168.1.157:13030', // 魏陈涛
-        changeOrigin: true,
-        pathRewrite:{
-          '^/ApiUrl2': ''
-        }
-      }
+      // '/ApiUrl2':{
+      //   target: 'http://192.168.1.157:13030', // 魏陈涛
+      //   changeOrigin: true,
+      //   pathRewrite:{
+      //     '^/ApiUrl2': ''
+      //   }
+      // }
     },
 
     // Various Dev Server settings
