@@ -41,6 +41,15 @@ import reportComplete from '@/components/serveComponent/treat/smallReim/reportCo
 import smallReimDetail from '@/components/serveComponent/treat/smallReim/smallReimDetail'
 import payLimit from '@/components/serveComponent/treat/payLimit/payLimit'
 import payLimitDetail from '@/components/serveComponent/treat/payLimit/payLimitDetail'
+import searchBaseInfo from '@/components/serveComponent/personal/searchBaseInfo/searchBaseInfo'
+import searchInsuredInfo from '@/components/serveComponent/personal/searchInsuredInfo/searchInsuredInfo'
+import searchInsuredResult from '@/components/serveComponent/personal/searchInsuredInfo/searchInsuredResult'
+import searchProgress from '@/components/serveComponent/personal/searchProgress/searchProgress'
+import searchFee from '@/components/serveComponent/personal/searchFee/searchFee'
+import searchFeeResult from '@/components/serveComponent/personal/searchFee/searchFeeResult'
+import searchRecord from '@/components/serveComponent/personal/searchRecord/searchRecord'
+import searchTreat from '@/components/serveComponent/personal/searchTreat/searchTreat'
+import searchTreatResult from '@/components/serveComponent/personal/searchTreat/searchTreatResult'
 
 Vue.use(Router)
 
@@ -217,6 +226,51 @@ export default new Router({
       path: '/payLimitDetail',
       name: 'payLimitDetail',
       component: payLimitDetail
+    },
+    {
+      path: '/searchBaseInfo',
+      name: 'searchBaseInfo',
+      component: searchBaseInfo
+    },
+    {
+      path: '/searchInsuredInfo',
+      name: 'searchInsuredInfo',
+      component: searchInsuredInfo
+    },
+    {
+      path: '/searchInsuredResult',
+      name: 'searchInsuredResult',
+      component: searchInsuredResult
+    },
+    {
+      path: '/searchProgress',
+      name: 'searchProgress',
+      component: searchProgress
+    },
+    {
+      path: '/searchFee',
+      name: 'searchFee',
+      component: searchFee
+    },
+    {
+      path: '/searchFeeResult',
+      name: 'searchFeeResult',
+      component: searchFeeResult
+    },
+    {
+      path: '/searchRecord',
+      name: 'searchRecord',
+      component: searchRecord
+    },
+    {
+      path: '/searchTreat',
+      name: 'searchTreat',
+      component: searchTreat
+    },
+    {
+      path: '/searchTreatResult',
+      name: 'searchTreatResult',
+      component: searchTreatResult
     }
     // // 办事
     // {
