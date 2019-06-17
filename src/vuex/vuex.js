@@ -58,7 +58,13 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAB301: '',//申请地市
           AAQ301: '',//申请地区
         },
-
+        // 打印参保证明
+        SET_SEARCH_PRINT:{
+          AAS301:'', //参保地
+          AAB301:'', //参保地
+          AAQ301:'', //参保地
+          AAE011: '24' //缴费月数
+        },
         // 转外就医备案
         SET_TURNOUT_OPERATION:{
           AAA301000:"",//参保地
