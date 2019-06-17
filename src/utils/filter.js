@@ -4,7 +4,7 @@ export function tuoMin(str, front, back) {
             let t = "************************"
             let ruten = str.substr(front, (str.length - front - back)); //提取字符串下标之间的字符。
             console.log('ruten',ruten)
-            return str.replace(ruten, t.substr(0,  1 ))
+            return str.replace(ruten, t.substr(0,  2 ))
         }
         if ( str.length == 2) {
             let t = "************************"

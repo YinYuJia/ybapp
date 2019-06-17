@@ -1,5 +1,5 @@
 <template>
-    <div class="familyAid">
+    <div class="specialDrug">
         <Title :title="'特治特药备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <selectCity 
@@ -213,14 +213,14 @@ import Footer from '../../common/Footer'
                 this.form.AAE030 = date;
             },
             submit() {
-                this.$router.push('/familyDetail');
+                this.$router.push('/');
             },
         }
     }
 </script>
 
 <style lang="less" scoped>
-.familyAid {
+.specialDrug {
     .Content {
         height: 100%;
         margin-bottom: 1.4rem;
@@ -274,11 +274,11 @@ import Footer from '../../common/Footer'
 </style>
 
 <style>
-.familyAid .el-input__prefix,
+.specialDrug .el-input__prefix,
 .el-input__suffix {
     display: none;
 }
-.familyAid .el-input__inner {
+.specialDrug .el-input__inner {
     border: none;
     text-align: right;
     padding-right: 0;
