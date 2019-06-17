@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.AAB301}}</div>
+                    <div class="InfoText">{{form.AAS011000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>拟离杭日期:</span></div>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>省市信息:</span></div>
-                    <div class="InfoText">{{form.AAE011}}</div>
+                    <div class="InfoText">{{form.AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址:</span></div>
@@ -56,14 +56,22 @@ export default {
     data() {
       return {
         form: {
-            AAE030: '', //离杭日期
-            AAE031: '', //回杭日期
-            AAE011: [], //省市信息，提交时需要转成String
-            AAE006: '', //详细地址 
-            AKC030: '', //申请原因
-            AAE004: '', //联系人
-            AAE005: '', //联系电话
-            AGA002:'',
+                AAS011000:"",
+                AAB301000:"",
+                AAE030: '', //离杭日期
+                AAE031: '', //回杭日期
+                AAS011: '', //参保地省
+                AAE011: '', //参保地市
+                AAQ011: '', //参保地区
+                AAE006: '', //详细地址 
+                AKC030: '', //申请原因
+                AAE004: '', //联系人
+                AAE005: '', //联系电话
+                AAS301: '',//申请地省
+                AAB301: '',//申请地市
+                AAQ301: '',//申请地区
+                AGA002:'',
+
         },
       }
     },
@@ -71,13 +79,12 @@ export default {
         
         this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
         let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1009/getRecord', params).then((resData) => {
+        this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1009/getRecord', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
                 console.log(11111)
                 this.$toast("提交成功");
-                this.$router.push("/elseDetail");
             }else if (resData.enCode == 1001 ) {
             //   失败  1001
                 this.$toast(resData.msg);
@@ -102,6 +109,7 @@ export default {
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-013";
+
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

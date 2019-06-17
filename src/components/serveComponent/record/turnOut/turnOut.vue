@@ -28,19 +28,19 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
-                    <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
+                    <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAA301000" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期</span></div>
-                    <div class="InfoText"><input @click="openStartPicker" type="text" v-model="form.start" placeholder="请选择" readonly></div>
+                    <div class="InfoText"><input @click="openStartPicker" type="text" v-model="form.AAE030" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>结束日期</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.end" placeholder="请选择" readonly></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE031" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转往地市</span></div>
-                    <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly></div>
+                    <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAB30100" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称</span></div>
@@ -75,10 +75,11 @@ import Footer from '../../common/Footer'
             return {
                 dddddd: "1111",
                 form: {
-                    AAB301: [], //参保地
-                    start: '', //开始日期
-                    end: '', //结束日期
-                    AAB301: [], //转往地市
+                    AAA301000:"",//参保地
+                    AAB30100: "",//转往地市
+                    AAE030: '', //开始日期
+                    AAE031: '', //结束日期
+                    AAB301: "", //转往地市
                     AKA121: '',//疾病名称
                     BKE255: '', //就诊疗程
                 },
@@ -149,12 +150,68 @@ import Footer from '../../common/Footer'
                 this.$refs.cityPicker.open();
             },
             chooseCity(val){
-                this.form.AAB301 = val;
-                console.log(val);
+                this.form.AAB301000= val.name;
+                this.form.AAS301=val.code[0]
+                this.form.AAB301=val.code[1]
+                this.form.AAQ301=val.code[2]
             },
             submit() {
-                this.$router.push('/turnDetail');
+                
+            if (this.canSubmit == false) {
+                this.$toast('信息未填写完整');
+                return false;
+            } else {
+                this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
+
+                // 封装数据
+                let params = this.formatSubmitData();
+                // 开始请求
+                console.log('parmas------',params)
+                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1020/addRecord', params).then((resData) => {
+                        console.log('返回成功信息',resData)
+                        //   成功   1000
+                            if ( resData.enCode == 1000 ) {
+                                this.$toast("提交成功");
+                                this.$router.push('/turnDetail');
+                            }else if (resData.enCode == 1001 ) {
+                            //   失败  1001
+                                this.$toast(resData.msg);
+                                return;
+                            }else{
+                                this.$toast('业务出错');
+                                return;
+                            }
+                    
+                })
+                
+            }
             },
+            formatSubmitData(){
+                let submitForm = {};
+                // 日期传换成Number
+                console.log()
+                submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
+                submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
+                
+                submitForm.AAS301 =  this.form.AAS301;//参保地省
+                submitForm.AAB301 =  this.form.AAB301;//参保地市
+                submitForm.AAQ301 =  this.form.AAQ301;//参保地区
+                submitForm.AKB020 =  this.form.AKB020;//取药机构
+                submitForm.BKE260 =  this.form.BKE260;//护照号码
+                submitForm.BKZ019 =  this.form.BKZ019;//护照号码
+                submitForm.dibuger =  "true";
+                // 加入用户名和电子社保卡号
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    submitForm.AAC003 = '胡';
+                    submitForm.AAE135 = "113344223344536624";
+                }
+                // 请求参数封装
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1020");
+                return params;
+            }
         }
     }
 </script>

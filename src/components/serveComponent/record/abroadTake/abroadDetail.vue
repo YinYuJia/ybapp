@@ -1,6 +1,6 @@
 <template>
     <div class="abroadDetail">
-        <Title :title="'带药备案'" :backRouter="'/abroadTake'"></Title>
+        <Title :title="'出国带药备案'" :backRouter="'/abroadTake'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
             <WorkProgress :currentStep="1"></WorkProgress>
@@ -44,10 +44,13 @@ export default {
     data() {
       return {
         form: {
-            AAB301: [], //参保地
+            AAB30100: '', //参保地
+            AAS301: '', //参保地省
+            AAB301: '', //参保地市
+            AAQ301: '', //参保地区
+            AKB020: '',//取药机构
             AAE030: '', //出境日期
             AAE031: '', //拟回国日期
-            AKB020: '',//取药机构
             BKE260: '', //护照号码
         },
       }
@@ -56,7 +59,7 @@ export default {
         this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
 
         let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1009/getRecord', params).then((resData) => {
+        this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1009/getRecord', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
@@ -73,11 +76,11 @@ export default {
             }
         })
     },
-    computed:{
-        canbaocity: function(){
-            return this.form.canbao.join(' ');
-        },
-    },
+    // computed:{
+    //     canbaocity: function(){
+    //         return this.form.canbao.join(' ');
+    //     },
+    // },
     methods:{
         edit(){
             this.$router.push("/abroadTake");
@@ -89,7 +92,7 @@ export default {
             });
         },
         formatSubmitData(){
-            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            let submitForm ={}
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-001";
             // 加入用户名和电子社保卡号

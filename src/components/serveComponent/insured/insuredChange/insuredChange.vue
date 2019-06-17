@@ -44,7 +44,9 @@ export default {
                 AAE006: '', //家庭住址
                 AAE005: '', //手机号码
                 AAE007: '', //邮政编码
-                BKZ019: '' //经办编号
+                BKZ019: '', //经办编号
+                debugTest:"true"
+
             },
             canSubmit: false,
         }
@@ -79,7 +81,7 @@ export default {
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl2() + '/h5/jy1010/info', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1010/info', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == '1000' ) {
@@ -102,6 +104,7 @@ export default {
             submitForm.AAE006 =  this.form.AAE006;
             submitForm.AAE007 =  this.form.AAE007;
             submitForm.BKZ019 =  this.form.BKZ019;
+            submitForm.debugTest ="true"
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
