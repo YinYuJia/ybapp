@@ -158,10 +158,13 @@ export default {
         //     console.log(val);
         },
         submit(){
-            if(!this.util.checkPhone(this.form.AAE005)){
-                this.$toast('请填写正确的联系电话');
-                return false;
+            if(this.showMail == true){
+                if(!this.util.checkPhone(this.form.AAE005)){
+                    this.$toast('请填写正确的联系电话');
+                    return false;
+                }
             }
+            
             if(this.canSubmit == false){
                 this.$toast('信息未填写完整');
                 return false;
