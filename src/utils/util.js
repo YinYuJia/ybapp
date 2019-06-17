@@ -36,8 +36,20 @@ function checkPhone(phoneStr){
     return true;
   }
 
+/**
+ * 身份证号码校验
+ */
+function idCard(value) {
+if (value && (!(/\d{17}[\d|x]|\d{15}/).test(value) || (value.length !== 15 && value.length !== 18))) {
+    return false; 
+} else {
+    return true; 
+}
+}
+
 export default{
     formatDate,
     DateToNumber,
     checkPhone,
+    idCard
 }

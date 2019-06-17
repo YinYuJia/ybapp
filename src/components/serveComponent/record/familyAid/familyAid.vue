@@ -134,6 +134,10 @@ import Footer from '../../common/Footer'
                 console.log(this.form.AAE030);
             },
             submit() {
+                if(!this.util.idCard(this.form.BAC002)){
+                    this.$toast('请填写正确的身份证号');
+                    return false;
+                }
                 if(this.canSubmit == false){
                 this.$toast('信息未填写完整');
                 return false;
