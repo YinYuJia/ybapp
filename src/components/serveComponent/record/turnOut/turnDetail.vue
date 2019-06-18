@@ -61,7 +61,7 @@ export default {
     created(){
         this.form = this.$store.state.SET_TURNOUT_OPERATION;
         let params=this.formatSubmitData();
-        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1009/getRecord', params).then((resData) => {
+        this.$axios.post(this.epFn.ApiUrl2()+ '/h5/jy1009/getRecord', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
