@@ -68,13 +68,11 @@ export default {
         edit(){
             this.$router.push('/insuredChange');
         },
+        // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.form.AAE006= '', //家庭住址
-                this.form.AAE005= '', //手机号码
-                this.form.AAE007= '', //邮政编码
-                this.$router.push('/insuredChange')
-                this.$toast("撤销请求");
+                this.$router.push('/');
+                this.$toast('撤销成功');
             });
         },
         formatSubmitData(){  

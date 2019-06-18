@@ -83,17 +83,8 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.form.AAA301000="",//参保地
-                this.form.AAB301000= "",//转往地市
-                this.form.AAE030= '', //开始日期
-                this.form.AAE031= '', //结束日期
-                this.form.AKA121= '',//疾病名称
-                this.form.BKE255= '', //就诊疗程
-                this.form.BKZ019=""
-                this.$store.dispatch('SET_TURNOUT_OPERATION', this.form);
-                this.$toast("撤销成功");
-                this.$router.push("/turnOut");
-
+                this.$router.push('/');
+                this.$toast('撤销成功');
             });
         },
         formatSubmitData(){

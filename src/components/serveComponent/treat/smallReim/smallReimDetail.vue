@@ -117,7 +117,8 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$toast("撤销请求");
+                this.$router.push('/');
+                this.$toast('撤销成功');
             });
         },
         // 封装提交参数

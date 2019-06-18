@@ -4,11 +4,9 @@
         <!-- 标题 -->
         <div class="IndexMenu">
             <div class="MenuLine">
-                <div class="MenuCell" @click="changeIndex(1)" :class="{'active': activeIndex == 1}">收件</div>
-                <div class="MenuCell" @click="changeIndex(2)" :class="{'active': activeIndex == 2}">受理</div>
-                <div class="MenuCell" @click="changeIndex(3)" :class="{'active': activeIndex == 3}">审核</div>
-                <div class="MenuCell" @click="changeIndex(4)" :class="{'active': activeIndex == 4}">办结</div>
-                <div class="MenuCell" @click="changeIndex(4)" :class="{'active': activeIndex == 5}">送达</div>
+                <div class="MenuCell" @click="changeIndex(1)" :class="{'active': activeIndex == 1}">待受理</div>
+                <div class="MenuCell" @click="changeIndex(2)" :class="{'active': activeIndex == 2}">受理中</div>
+                <div class="MenuCell" @click="changeIndex(3)" :class="{'active': activeIndex == 3}">已办结</div>
             </div>
         </div>
         <!-- 列表 -->
@@ -62,7 +60,7 @@ export default {
             display: flex;
             .MenuCell {
                 line-height: .62rem;
-                width: 25%;
+                width: 100%;
                 color: #1492FF;
                 text-align: center;
                 letter-spacing: 0;
