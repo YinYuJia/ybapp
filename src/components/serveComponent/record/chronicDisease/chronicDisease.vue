@@ -2,59 +2,107 @@
     <div class="chronicDisease">
         <div v-show="!isSearch">
             <Title :title="'规定病种备案'" :backRouter="'/'"></Title>
-        <!-- MintUI弹出框区域 -->
-        <selectCity 
-            :type="3"
-            ref="insuredPicker"
-            @confirm="chooseInsured"
-            >
-        </selectCity>
-        <mt-datetime-picker
-            type="date"
-            ref="startPicker"
-            v-model="dateVal"
-            @confirm="handleStartConfirm">
-        </mt-datetime-picker>
-        <!-- 弹出框区域结束 -->
-        <div class="Content">
-            <!-- 基本信息 -->
-            <userBaseInfo></userBaseInfo>
-            <!-- 列表信息 -->
-            <div class="ListInfo">
-                <div class="InfoLine">
-                    <div class="InfoName"><span>参保地</span></div>
-                    <div class="InfoText">
-                        <input @click="openInsuredPicker" type="text" v-model="form.canbao" placeholder="请选择" readonly>
+            <!-- MintUI弹出框区域 -->
+            <selectCity 
+                :type="3"
+                ref="insuredPicker"
+                @confirm="chooseInsured"
+                >
+            </selectCity>
+            <mt-datetime-picker
+                type="date"
+                ref="startPicker"
+                v-model="dateVal"
+                @confirm="handleStartConfirm">
+            </mt-datetime-picker>
+            <!-- 弹出框区域结束 -->
+            <div class="Content">
+                <!-- 基本信息 -->
+                <userBaseInfo></userBaseInfo>
+                <!-- 列表信息 -->
+                <div class="ListInfo">
+                    <div class="InfoLine">
+                        <div class="InfoName"><span>参保地</span></div>
+                        <div class="InfoText">
+                            <input @click="openInsuredPicker" type="text" v-model="form.canbao" placeholder="请选择" readonly>
+                            <svg-icon icon-class="serveComponent_arrowRight" />
+                        </div>
+                    </div>
+                    <div class="InfoLine">
+                        <div class="InfoName"><span>规定病种</span></div>
+                        <div class="InfoText">
+                            <input @click="chooseDisease()" type="text" v-model="form.AKA035" placeholder="请选择" readonly>
+                            <svg-icon icon-class="serveComponent_arrowRight" />
+                        </div>
+                    </div>
+                    <div class="InfoLine">
+                        <div class="InfoName"><span>疾病1</span></div>
+                        <div class="InfoText">
+                            <input @click="chooseDisease()" type="text" v-model="form.AKA121" placeholder="请选择" readonly>
+                            <svg-icon icon-class="serveComponent_arrowRight" />
+                        </div>
+                    </div>
+                    <div class="InfoLine">
+                        <div class="InfoName"><span>疾病2</span></div>
+                        <div class="InfoText">
+                            <input @click="chooseDisease()" type="text" v-model="form.AKA1211" placeholder="请选择" readonly>
+                            <svg-icon icon-class="serveComponent_arrowRight" />
+                        </div>
+                    </div>
+                    <div class="InfoLine">
+                        <div class="InfoName"><span>疾病3</span></div>
+                        <div class="InfoText">
+                            <input @click="chooseDisease()" type="text" v-model="form.AKA1212" placeholder="请选择" readonly>
+                            <svg-icon icon-class="serveComponent_arrowRight" />
+                        </div>
+                    </div>
+                    <div class="InfoLine">
+                        <div class="InfoName"><span>开始日期</span></div>
+                        <div class="InfoText">
+                            <input @click="openStartPicker()" type="text" v-model="form.AAE030" placeholder="请选择" readonly>
+                            <svg-icon icon-class="serveComponent_arrowRight" />
+                        </div>
+                    </div>
+                    <div class="InfoLine">
+                        <div class="InfoName"><span>病历提取</span></div>
+                        <div class="InfoText">
+                            <el-select v-model="form.BKE247" placeholder="请选择领取方式">
+                                <el-option
+                                v-for="item in option"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                                </el-option>
+                            </el-select>
+                            <svg-icon icon-class="serveComponent_arrowRight" />
+                        </div>
                     </div>
                 </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>规定病种</span></div>
-                    <div class="InfoText"><input @click="chooseDisease()" type="text" v-model="form.AKA035" placeholder="请输入" readonly></div>
+                <!-- 邮递信息 -->
+                <div class="MailInfo" v-if="showMail">
+                    <div class="InfoLine">
+                        <div class="InfoName"><span>收件人：</span></div>
+                        <div class="InfoText"><input type="text" v-model="form.AAE011" placeholder="请输入收件人姓名"></div>
+                    </div>
+                    <div class="InfoLine">
+                        <div class="InfoName"><span>联系电话：</span></div>
+                        <div class="InfoText"><input type="number" v-model="form.AAE005" placeholder="请输入联系人电话号码"></div>
+                    </div>
+                    <div class="InfoLine">
+                        <div class="InfoName"><span>详细地址</span></div>
+                        <div class="InfoText">
+                            <textarea v-model="form.AAE006" placeholder="请输入详细地址"></textarea>
+                        </div>
+                    </div>
                 </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>疾病1</span></div>
-                    <div class="InfoText"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>疾病2</span></div>
-                    <div class="InfoText"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>疾病3</span></div>
-                    <div class="InfoText"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>开始日期</span></div>
-                    <div class="InfoText"></div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>病历提取</span></div>
-                    <div class="InfoText"></div>
+                <!-- 提示 -->
+                <div class="Hint" v-if="showMail">
+                    <div class="HintTitle"><i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示</div>
+                    <div class="HintText">为保证您的正常领取，请务必填写正确、完整的邮递信息。具体送达时间以实际邮递情况为准。</div>
                 </div>
             </div>
-        </div>
-        <!-- 按钮 -->
-        <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
+            <!-- 按钮 -->
+            <Footer :canSubmit="true" @submit="submit()"></Footer>
         </div>
         
         <search-info-page  @childrenClick="childrenClick" v-if="isSearch"></search-info-page>
@@ -69,8 +117,8 @@ import Footer from '../../common/Footer'
 import SearchInfoPage from './searchInfoPage'
     export default {
         components:{
-        Title,userBaseInfo,selectCity,Footer,SearchInfoPage
-    },
+            Title,userBaseInfo,selectCity,Footer,SearchInfoPage
+        },
         data() {
             return {
                 form: {
@@ -87,10 +135,18 @@ import SearchInfoPage from './searchInfoPage'
                     AKA1212: '', //疾病名称3
                     AAE030: '', //开始日期
                     BKE247: '', //病历本提取方式 1自取，2邮寄
+                    AAE011: '', //收件人
+                    AAE005: '', //联系电话
+                    AAE006: '', //详细地址
                 },
                 isSearch:false,
                 dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
+                showMail: false,
+                option: [
+                    {value: '1',label: '自取'},
+                    {value: '2',label: '邮寄'}
+                ],
                 hospitalList: [
                     {value: '医院1',label: '医院1'},
                     {value: '医院2',label: '医院2'}
@@ -108,6 +164,18 @@ import SearchInfoPage from './searchInfoPage'
                     {value: '时期2',label: '时期2'}
                 ]
             }
+        },
+        watch:{
+            form:{
+                handler:function(val){
+                    if(val.BKE247 == '2'){
+                        this.showMail = true;
+                    }else{
+                        this.showMail = false;
+                    }
+                },
+                deep: true
+            },
         },
         methods: {
             chooseDisease(){
@@ -149,18 +217,17 @@ import SearchInfoPage from './searchInfoPage'
         margin-bottom: 1.4rem;
         .ListInfo {
             width: 7.5rem;
-            padding: 0 .3rem;
+            padding: 0 .28rem;
             background: white;
             .InfoLine {
                 height: 1.2rem;
                 position: relative;
                 font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 justify-content: space-between;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     span {
                         height: .6rem;
@@ -170,25 +237,110 @@ import SearchInfoPage from './searchInfoPage'
                     }
                 }
                 .InfoText {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
                     align-items: center;
                     input {
                         height: .6rem;
-                        opacity: 0.85;
                         font-family: PingFangSC-Regular;
-                        font-size: .3rem;
+                        font-size: .28rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                        text-align: right;
+                        border: none;
+                    }
+                    .svg-icon{
+                        margin-left: .23rem;
+                    }
+                }
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+        .MailInfo{
+            width: 7.5rem;
+            padding: 0 .3rem;
+            margin-top: .27rem;
+            background: white;
+            .InfoLine{
+                height: 1.2rem;
+                position: relative;
+                font-family: PingFangSC-Regular;
+                font-size: .28rem;
+                display: flex;
+                justify-content: space-between;
+                border-bottom: .01rem solid #D5D5D5;
+                .InfoName{
+                    line-height: 1.2rem;
+                    span{
+                        height: .6rem;
+                        line-height: .6rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                    }
+                }
+                .InfoText{
+                    line-height: 1.2rem;
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                    input{
+                        height: .6rem;
+                        font-family: PingFangSC-Regular;
+                        font-size: .28rem;
                         color: #000000;
                         letter-spacing: 0;
                         text-align: right;
                         border: none;
                     }
                 }
-                &:last-child {
+                &:last-child{
+                    height: 1.6rem;
                     border-bottom: none;
+                    .InfoText{
+                        display: flex;
+                        align-items: center;
+                    }
+                    textarea{
+                        height: .84rem;
+                        font-size: .3rem;
+                        opacity: 0.85;
+                        color: #000000;
+                        line-height: .42rem;
+                        text-align: right;
+                    }
                 }
+            }
+            .InfoLineAdress{
+                border:1px solid #ccc;
+                border-bottom:1px solid #ccc!important;
+                width:100%;
+                margin-top:-1px;
+                textarea{
+                    width: 100%;
+                    text-align: left !important;
+                }
+            }
+        }
+        .Hint{
+            margin-top: .45rem;
+            padding: 0 .3rem;
+            opacity: 0.45;
+            font-family: PingFangSC-Regular;
+            font-size: .24rem;
+            color: #000000;
+            text-align: left;
+            .HintTitle{
+                i{
+                    margin-right: .2rem;
+                    letter-spacing: 0;
+                }
+            }
+            .HintText{
+                margin-top: .28rem;
+                letter-spacing: 0;
             }
         }
     }
