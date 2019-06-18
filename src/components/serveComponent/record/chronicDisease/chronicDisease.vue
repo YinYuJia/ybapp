@@ -66,7 +66,7 @@ import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
 import selectCity from '../../common/selectCity'
 import Footer from '../../common/Footer'
-import SearchInfoPage from './searchInfoPage'
+import SearchInfoPage from '../../common/searchInfoPage'
     export default {
         components:{
         Title,userBaseInfo,selectCity,Footer,SearchInfoPage
