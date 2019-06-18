@@ -5,12 +5,17 @@
                 <span>{{btnText}}</span>
             </div>
         </footer>
-        <footer class="Footer" v-if="btnType == 2">
+        <!-- <footer class="Footer" v-if="btnType == 2">
             <div class="Btn">
                 <div class="ResetBtn" @click="backout()">撤销</div>
                 <div class="EditBtn" @click="edit()">编辑</div>
             </div>
-        </footer>       
+        </footer> -->
+        <footer class="Footer" v-if="btnType == 2">
+            <div class="Btn">
+                <div class="ResetBtn" @click="backout()">撤销</div>
+            </div>
+        </footer>
     </div>
 </template>
 
@@ -87,7 +92,7 @@ export default {
         justify-content: space-between;
         .ResetBtn {
             height: 1.05rem;
-            width: 3.45rem;
+            width: 7.1rem;
             border-radius: .05rem;
             line-height: 1.05rem;
             background: #FFF;;

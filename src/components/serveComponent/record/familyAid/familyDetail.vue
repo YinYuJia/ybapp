@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.canbao}}</div>
+                    <div class="InfoText">{{form.AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>被授权人姓名:</span></div>
@@ -44,34 +44,35 @@ export default {
     data() {
       return {
         form: {
-            AAB301: '', //参保地
             BAC003: '', //被授权人姓名
             BAC002: '', //被授权人身份证
             AAE144: '',//绑定关系
             AAE030: '', //开始日期
+            AAB301000:'',
+            AAS301:"",//参保地省
+            AAB301:"",//参保地市
+            AAQ301:"",//参保地区
+            BKZ019:""//经办编号
         },
         currentStep:1
       }
     },
     created(){
         this.form = this.$store.state.SET_FAMILYAID_OPERATION;
-        // 请求参数封装
-        // this.form = this.$store.state.SET_INSURED_PROOF
-        let submitForm = {};
-         // 加入用户名和电子社保卡号
-        if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-            submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-            submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-        }else {
-            submitForm.AAC003 = '胡';
-            submitForm.AAE135 = "113344223344536624";
-        }
-        submitForm.AGA002= '确认-00253-023'
-        const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
-        this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1009/getRecord', params)
-        .then((resData) => {
-            if(resData.encode==1000){
-                this.currentStep = Number(resData.LS_DS.BOD037)
+        let params=this.formatSubmitData();
+        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1009/getRecord', params).then((resData) => {
+            console.log('返回成功信息',resData)
+            //   成功   1000
+            if ( resData.enCode == 1000 ) {  
+                console.log(11111)
+                this.$toast("提交成功");
+            }else if (resData.enCode == 1001 ) {
+            //   失败  1001
+                this.$toast(resData.msg);
+                return;
+            }else{
+                this.$toast('业务出错');
+                return;
             }
         })
     },
@@ -82,9 +83,29 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$toast("撤销请求");
+                this.$router.push('/');
+                this.$toast('撤销成功');
             });
         },
+        formatSubmitData(){
+            let submitForm = {}
+            console.log(submitForm)
+                submitForm.AGA002 =  "确认-00253-013";
+                // submitForm.debugTest=  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        }
     }
 }
 </script>

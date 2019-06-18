@@ -105,11 +105,18 @@ export default {
         edit(){
             this.$router.push("/elseWhere");
         },
+        // 撤销提醒
+        backout(){
+            this.$messagebox.confirm('确定撤销吗?').then(() => {
+                this.$router.push('/');
+                this.$toast('撤销成功');
+            });
+        },
         formatSubmitData(){
             let submitForm = {}
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-013";
-                submitForm.debugTest=  "true";
+                // submitForm.debugTest=  "true";
 
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
