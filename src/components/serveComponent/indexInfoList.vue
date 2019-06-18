@@ -315,11 +315,11 @@
             </div>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/smallReim','待遇报销','基本医疗保险参保人员医疗费用零星报销')" >
-                        <svg-icon v-if="show" icon-class="indexInfoList-benanxinxi" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-benanxinxi1" />
+                    <div class="IconImg" @click="showWork('/searchBaseInfo','个人信息查询','基本医疗保险参保人员个人信息查询')" >
+                        <svg-icon v-if="show" icon-class="indexInfoList-xinxichaxun" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-xinxichaxun1" />
                     </div>
-                    <div class="IconText"><span>信息变更</span></div>
+                    <div class="IconText"><span>信息查询</span></div>
                 </el-col>
 
                 <el-col :span="6" class="IconBox">
@@ -418,7 +418,7 @@
                 idCard:sessionStorage.getItem("idCard") ,
                 PublicHeader: {
                     imei: '',
-                    mac: '',
+                    mac: '1111',
                     phoneModel: '',
                     platform: '',
                     signType: '',
