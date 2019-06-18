@@ -420,7 +420,7 @@
                 idCard:sessionStorage.getItem("idCard") ,
                 PublicHeader: {
                     imei: '',
-                    mac: '',
+                    mac: '1111',
                     phoneModel: '',
                     platform: '',
                     signType: '',
