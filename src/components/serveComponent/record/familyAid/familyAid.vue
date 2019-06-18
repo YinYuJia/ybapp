@@ -104,18 +104,18 @@ import Footer from '../../common/Footer'
             this.form = this.$store.state.SET_FAMILYAID_OPERATION;
         },
         watch:{
-        // 监听领取信息
-        form:{
-            handler:function(val){
-                if ( val.AAS301 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
-                    this.canSubmit = true
-                }else{
-                    this.canSubmit = false
-                }
+            // 监听领取信息
+            form:{
+                handler:function(val){
+                    if ( val.AAS301 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
+                        this.canSubmit = true
+                    }else{
+                        this.canSubmit = false
+                    }
+                },
+                deep: true
             },
-            deep: true
         },
-    },
         methods: {
             // 选择参保地
             openInsuredPicker(){

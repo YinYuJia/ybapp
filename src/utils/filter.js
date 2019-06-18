@@ -28,3 +28,12 @@ export function relationship(val) {
     }
     return obj[val]
   }
+
+// 是否邮寄
+export function isMail(val) {
+    let obj = {
+      "1": "自取",
+      "2": "邮寄"
+    }
+    return obj[val]
+  }

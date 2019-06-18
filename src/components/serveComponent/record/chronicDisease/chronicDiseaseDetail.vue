@@ -9,31 +9,31 @@
             <div class="ListInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText"></div>
+                    <div class="InfoText">{{form.canbao}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>规定病种:</span></div>
-                    <div class="InfoText"></div>
+                    <div class="InfoText">{{form.AKA035Name}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病1:</span></div>
-                    <div class="InfoText"></div>
+                    <div class="InfoText">{{form.AKA121}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病2:</span></div>
-                    <div class="InfoText"></div>
+                    <div class="InfoText">{{form.AKA1211}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病3:</span></div>
-                    <div class="InfoText"></div>
+                    <div class="InfoText">{{form.AKA1212}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期:</span></div>
-                    <div class="InfoText"></div>
+                    <div class="InfoText">{{form.AAE030}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>提取方式:</span></div>
-                    <div class="InfoText"></div>
+                    <div class="InfoText">{{form.BKE247 | isMail}}</div>
                 </div>
             </div>
             <div class="MailInfo" v-if="form.BKE247 == '2'">

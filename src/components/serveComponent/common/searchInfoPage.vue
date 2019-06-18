@@ -141,6 +141,7 @@ export default {
     },
     chooseHospital(code, name) {
         this.$emit('childrenClick',code,name);
+        this.showSearch = false
     }
   }
 };
