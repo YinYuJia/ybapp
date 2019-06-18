@@ -8,15 +8,15 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>家庭住址:</span></div>
-                    <div class="InfoText"><textarea v-model="form.address" readonly></textarea></div>
+                    <div class="InfoText"><textarea v-model="form.AAE006" readonly></textarea></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码:</span></div>
-                    <div class="InfoText">{{form.phone}}</div>
+                    <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>邮政编码:</span></div>
-                    <div class="InfoText">{{form.code}}</div>
+                    <div class="InfoText">{{form.AAE007}}</div>
                 </div>
             </div>
         </div>
@@ -36,14 +36,30 @@ export default {
     data() {
       return {
         form: {
-            address: '', //家庭地址
-            phone: '', //手机号码
-            code: '' //邮政编码
+                AAE006: '', //家庭住址
+                AAE005: '', //手机号码
+                AAE007: '', //邮政编码
+                BKZ019: '', //经办编号
         },
       }
     },
     created(){
         this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
+        let params=this.formatSubmitData();
+        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1009/getRecord', params).then((resData) => {
+            console.log('返回成功信息',resData)
+            //   成功   1000
+            if ( resData.enCode == 1000 ) {  
+                this.$toast("提交成功");
+            }else if (resData.enCode == 1001 ) {
+            //   失败  1001
+                this.$toast(resData.msg);
+                return;
+            }else{
+                this.$toast('业务出错');
+                return;
+            }
+        })
     },
     methods:{
         edit(){
@@ -52,10 +68,35 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
+<<<<<<< HEAD
                 this.$router.push('/');
                 this.$toast('撤销成功');
+=======
+                this.form.AAE006= '', //家庭住址
+                this.form.AAE005= '', //手机号码
+                this.form.AAE007= '', //邮政编码
+                this.$router.push('/baseInfoChange')
+                this.$toast("撤销请求");
+>>>>>>> 2be2e8c6526977594509dcd6b8d0a92ec0e28e5f
             });
         },
+        formatSubmitData(){  
+            let submitForm ={}
+            submitForm.AGA002 =  "公共服务-00501-004";
+            // submitForm.debugTest =  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        }
     }
 }
 </script>

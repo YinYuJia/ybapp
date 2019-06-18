@@ -23,7 +23,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.canbao" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -35,7 +35,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>被授权人身份证</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input type="text" v-model="form.BAC002" placeholder="请输入"></div>
+                        <div class="InfoText"><input type="number" v-model="form.BAC002" placeholder="请输入"></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -73,12 +73,14 @@ import Footer from '../../common/Footer'
             return {
                 dddddd: "1111",
                 form: {
-                    AAB301: '', //参保地
                     BAC003: '', //被授权人姓名
                     BAC002: '', //被授权人身份证
                     AAE144: '',//绑定关系
                     AAE030: '', //开始日期
-                    canbao:''
+                    AAB301000:'',
+                    AAS301:"",//参保地省
+                    AAB301:"",//参保地市
+                    AAQ301:""//参保地区
                 },
                 dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
@@ -119,17 +121,17 @@ import Footer from '../../common/Footer'
                 this.$refs.insuredPicker.open();
             },
             chooseInsured(val){
-                this.form.canbao = val.name;
-                this.form.AAS301 = val.code[0]
-                this.form.AAB301 = val.code[1]
-                this.form.AAQ301 = val.code[2]
+            this.form.AAB301000 =val.name, //参保地省
+            this.form.AAS301 =val.code[0], //参保地省
+            this.form.AAB301 =val.code[1], //参保地市
+            this.form.AAQ301 =val.code[2]  //参保地区
             },
             // 选择开始日期
             openStartPicker(){
                 this.$refs.startPicker.open();
             },
             handleStartConfirm(val){
-                let date = this.util.formatDate(val,'yyyyMMdd');
+                let date = this.util.formatDate(val,'yyyy-MM-dd');
                 this.form.AAE030 = date;
                 console.log(this.form.AAE030);
             },

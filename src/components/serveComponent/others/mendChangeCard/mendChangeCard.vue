@@ -43,11 +43,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系人电话号码"></div>
+                    <div class="InfoText"><input type="number" v-model="form.AAE005" placeholder="请输入联系人电话号码"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址：</span></div>
-                    <div class="InfoText"><textarea v-model="form.AAE006"></textarea></div>
+                    <div class="InfoText"><textarea type="text" v-model="form.AAE006"></textarea></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -72,11 +72,11 @@ export default {
     data(){
         return{
             form:{
-                'AAE011': '', //收件人
-                'AAE005': '', //联系电话
-                'AAE006': '', //地址
-                'AAC050':'', //变更类型
-                'BKA077' :'' ,//领取方式
+                AAE011: '', //收件人
+                AAE005: '', //联系电话
+                AAE006: '', //地址
+                AAC050: '', //变更类型
+                BKA077 :'' ,//领取方式
             },
             canSubmit: false,
             optionList: [], //所有地区

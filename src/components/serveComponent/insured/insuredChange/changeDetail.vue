@@ -12,7 +12,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码:</span></div>
-                    <div class="InfoText">{{form.AAE005}}</div>
+                    <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>邮政编码:</span></div>
@@ -39,7 +39,6 @@ export default {
                 AAE006: '', //家庭住址
                 AAE005: '', //手机号码
                 AAE007: '', //邮政编码
-                debugTest:"true"
                 
             },
         }
@@ -47,7 +46,7 @@ export default {
     created(){
         this.form = this.$store.state.SET_INSURED_CHANGE;
         let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1009/getRecord', params).then((resData) => {
+        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1009/getRecord', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
@@ -72,15 +71,22 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
+<<<<<<< HEAD
                 this.$router.push('/');
                 this.$toast('撤销成功');
+=======
+                this.form.AAE006= '', //家庭住址
+                this.form.AAE005= '', //手机号码
+                this.form.AAE007= '', //邮政编码
+                this.$router.push('/insuredChange')
+                this.$toast("撤销请求");
+>>>>>>> 2be2e8c6526977594509dcd6b8d0a92ec0e28e5f
             });
         },
-        formatSubmitData(){
-            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
-            console.log(submitForm)
+        formatSubmitData(){  
+            let submitForm ={}
             submitForm.AGA002 =  "公共服务-00501-004";
-            submitForm.debugTest =  "true";
+            // submitForm.debugTest =  "true";
 
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {

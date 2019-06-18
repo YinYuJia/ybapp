@@ -120,7 +120,12 @@ export default {
             console.log(val.code);
         },
         submit(){
-            console.log(this.form)
+            if(this.form.AAE005){
+                if(!this.util.checkPhone(this.form.AAE005)){
+                    this.$toast('请填写正确的联系电话');
+                    return false;
+                }
+            }
             if (this.canSubmit == false) {
                 this.$toast('信息未填写完整');
                 return false;
@@ -158,7 +163,7 @@ export default {
             submitForm.AAQ301 =  this.form.AAQ301;
             submitForm.AAE005 =  this.form.AAE005;
             submitForm.BKZ019 =  this.form.BKZ019;
-            submitForm.debugTest="true"
+            // submitForm.debugTest="true"
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

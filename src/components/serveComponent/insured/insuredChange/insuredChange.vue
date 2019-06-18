@@ -12,11 +12,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入手机号码"></div>
+                    <div class="InfoText"><input type="number" v-model="form.AAE005" placeholder="请输入手机号码"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>邮政编码：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE007" placeholder="请输入邮政编码"></div>
+                    <div class="InfoText"><input type="number" v-model="form.AAE007" placeholder="请输入邮政编码"></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -45,8 +45,6 @@ export default {
                 AAE005: '', //手机号码
                 AAE007: '', //邮政编码
                 BKZ019: '', //经办编号
-                debugTest:"true"
-
             },
             canSubmit: false,
         }
@@ -71,17 +69,29 @@ export default {
     },
     methods:{
         submit(){
+            if(this.form.AAE005){
+                if(!this.util.checkPhone(this.form.AAE005)){
+                    this.$toast('请填写正确的联系电话');
+                    return false;
+                }
+            }
+            if(this.form.AAE007){
+                if(!this.util.postOffic(this.form.AAE007)){
+                    this.$toast('请填写正确的邮政编码');
+                    return false;
+                }
+            }
+            
             if(this.canSubmit == false){
                 this.$toast('信息未填写完整');
                 return false;
             }else{
-                this.$router.push("/changeDetail");
                 this.$store.dispatch('SET_INSURED_CHANGE', this.form);
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1010/info', params).then((resData) => {
+                this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1010/info', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == '1000' ) {
@@ -99,12 +109,12 @@ export default {
             }
         },
         formatSubmitData(){
-            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            let submitForm = {}
             submitForm.AAE005 =  this.form.AAE005;            
             submitForm.AAE006 =  this.form.AAE006;
             submitForm.AAE007 =  this.form.AAE007;
             submitForm.BKZ019 =  this.form.BKZ019;
-            submitForm.debugTest ="true"
+            // submitForm.debugTest ="true"
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

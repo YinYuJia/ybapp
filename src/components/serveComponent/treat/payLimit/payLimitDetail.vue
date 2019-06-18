@@ -78,7 +78,7 @@ export default {
             });
         },
         formatSubmitData(){
-            let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
+            let submitForm = {}
                 console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-013";
                 // 加入用户名和电子社保卡号

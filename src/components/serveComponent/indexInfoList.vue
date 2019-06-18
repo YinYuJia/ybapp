@@ -166,15 +166,15 @@
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg" @click="showWork('/turnOut','备案服务','转外备案')">
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-zhuanwaibeian" />
-                        <svg-icon v-if="show" icon-class="indexInfoList-zhuanwaibeian1" />
+                        <svg-icon v-if="show" icon-class="indexInfoList-zhuanwaibeian" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-zhuanwaibeian1" />
                     </div>
                     <div class="IconText"><span>转外就医</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg" @click="showWork('/abroadTake','备案服务','出国带药')">
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-chuguodaiyao" />
-                        <svg-icon v-if="show" icon-class="indexInfoList-chuguodaiyao1" />
+                        <svg-icon v-if="show" icon-class="indexInfoList-chuguodaiyao" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-chuguodaiyao1" />
                     </div>
                     <div class="IconText"><span>出国带药</span></div>
                 </el-col>
