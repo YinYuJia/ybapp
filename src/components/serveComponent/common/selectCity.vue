@@ -99,6 +99,9 @@ export default {
         this.$nextTick(() =>{
             this.insuredCity[0].values = this.epFn.addressList();
             this.fullCity[0].values = this.epFn.addressList();
+            this.fullCity[0].defaultIndex=10
+            
+
         })
     },
     methods:{
@@ -106,10 +109,10 @@ export default {
         onInsuredChange(picker, values){
             if(values[0] !== undefined){
                 picker.setSlotValues(1, values[0].children);
-                picker.setSlotValues(2, values[0].children[0].children);
                 this.province = values[0].name;
                 this.codeProvince = values[0].code;
                 if(values[1] !== undefined){
+                    picker.setSlotValues(2, values[1].children);
                     this.city = values[1].name;
                     this.codeCity = values[1].code;
                 }

@@ -22,13 +22,13 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期：</span></div>
                     <div class="InfoText">
-                        <input @click="openStartPicker" type="text" v-model="form.start" placeholder="请选择" readonly>
+                        <input @click="openStartPicker" type="text" v-model="form.AAE030" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>结束日期：</span></div>
                     <div class="InfoText">
-                        <input @click="openEndPicker" type="text" v-model="form.end" placeholder="请选择" readonly>
+                        <input @click="openEndPicker" type="text" v-model="form.AAE031" placeholder="请选择" readonly>
                     </div>
                 </div>
             </div>
@@ -49,12 +49,39 @@ export default {
     data(){
         return{
             form:{
-                start: '', //开始日期
-                end: '', //结束日期
+                AAE030: '', //开始日期
+                AAE031: '', //结束日期
             },
             dateVal: new Date(), //默认绑定的时间
             canSubmit: false,
         }
+    },
+    created () {
+        this.form = this.$store.state.SET_SEARCHFEE_OPERATION;
+    },
+    watch: {
+        form: {
+            handler: function(val) {
+                // 判断不为空
+                if (val.AAE030 != '' && val.AAE031 != '') {
+                    this.canSubmit = true;
+                } else {
+                    this.canSubmit = false;
+                }
+                // 判断时间间隔
+                if (val.AAE030 != '' && val.AAE031 != '') {
+                    let AAE030 = new Date(val.AAE030);
+                    let AAE031 = new Date(val.AAE031);
+                    let month = 24 * 3600 * 1000 * 30;
+                    let gap = AAE031 - AAE030;
+                    if (gap <=0) {
+                        this.$toast('结束日期必须大于开始日期');
+                        this.form.AAE031 = '';
+                    }
+                }
+            },
+            deep: true
+        },
     },
     methods:{
         // 选择离开日期
@@ -63,7 +90,7 @@ export default {
         },
         handleStartConfirm(val){
             let date = this.util.formatDate(val,'yyyy-MM-dd');
-            this.form.start = date;
+            this.form.AAE030 = date;
         },
         // 选择回杭日期
         openEndPicker(){
@@ -71,11 +98,19 @@ export default {
         },
         handleEndConfirm(val){
             let date = this.util.formatDate(val,'yyyy-MM-dd');
-            this.form.end = date;
+            this.form.AAE031 = date;
         },
-        submit(){
-            this.$router.push('/searchFeeResult');
+        // 提交
+        submit() {
+            if (this.canSubmit == false) {
+                this.$toast('信息未填写完整');
+                return false;
+            } else {
+                this.$store.dispatch('SET_SEARCHFEE_OPERATION', this.form);
+                this.$router.push('/searchFeeResult')      
+            }
         },
+
     }
 }
 </script>
