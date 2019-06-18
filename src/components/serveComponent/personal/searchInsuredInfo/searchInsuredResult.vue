@@ -38,14 +38,8 @@ export default {
             //     {date: '201904', base: '7200', pay: '70.00', text: '已到账'},
             //     {date: '201903', base: '8000', pay: '80.00', text: '未到账'}
             // ],
-            form:{
-            },
-            List:[{
-                AAS301: '', //参保地省
-                AAB301: '', //参保地市
-                AAQ301: '', //参保地区
-                AAE091: '', //查询月数
-            }]
+            form:{},
+            List:[]
         }
     },
     created () {
@@ -58,6 +52,7 @@ export default {
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
                         this.List = [...this.List, ...resData.LS_DS];
+                        this.form =    {...this.form,...this.List[0]}
                         this.$toast("请求成功");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
