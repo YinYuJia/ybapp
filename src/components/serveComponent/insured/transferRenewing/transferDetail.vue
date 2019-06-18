@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>转出地:</span></div>
-                    <div class="InfoText">{{form.AAA301000}}</div>
+                    <div class="InfoText">{{form.AAA027000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转入地:</span></div>
