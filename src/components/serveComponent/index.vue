@@ -18,44 +18,55 @@
         <div class="describe">
             {{describe}}
         </div>
-        <div class="IndexMenu">
-            <div class="MenuLine">
-                <div class="MenuCell" @click="changeIndex(1)" :class="{'active': activeIndex == 1}">办事指南</div>
-                <div class="MenuCell" @click="changeIndex(2)" :class="{'active': activeIndex == 2}">政策解读</div>
-                <div class="MenuCell" @click="changeIndex(3)" :class="{'active': activeIndex == 3}">案例分析</div>
-                <div class="MenuCell" @click="changeIndex(4)" :class="{'active': activeIndex == 4}">常见问题</div>
+        <div class="Content">
+            <div class="ListInfo">
+                <div class="InfoLine" @click="changeIndex(1)">
+                    <div class="InfoName">办事指南</div>
+                </div>
+                <div class="SecondInfo" v-show="activeIndex == 1">
+                    <div class="SecondLine">
+                        <div class="InfoName">设立依据</div>
+                    </div>
+                    <div class="SecondLine">
+                        <div class="InfoName">受理条件</div>
+                    </div>
+                    <div class="SecondLine">
+                        <div class="InfoName">申请材料</div>
+                    </div>
+                    <div class="SecondLine">
+                        <div class="InfoName">办理流程</div>
+                    </div>
+                    <div class="SecondLine">
+                        <div class="InfoName">办理时限</div>
+                    </div>
+                    <div class="SecondLine">
+                        <div class="InfoName">咨询电话</div>
+                    </div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName">政策解读</div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName">案例分析</div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName">常见问题</div>
+                </div>
             </div>
         </div>
-        <div v-if="activeIndex == 1">
-            <!-- 办事指南 -->
-            <BusinessGuide info="1"></BusinessGuide>
-            <!-- 安卓字段 : {{getAndroidMsg}} -->
-        </div>
-        <div v-if="activeIndex == 2">
-            <!-- 政策解读 -->
-            <BusinessGuide info="2"></BusinessGuide>
-        </div>
-        <div v-if="activeIndex == 3">
-            <!-- 案例分析 -->
-            <BusinessGuide info="3"></BusinessGuide>
-        </div>
-        <div v-if="activeIndex == 4">
-            <!-- 常见问题 -->
-            <BusinessGuide info="4"></BusinessGuide>
-        </div>
-        <footer class="Footer">
-            <div class="SubmitBtn" @click="submit"><span>我要办事</span></div>
-        </footer>
+        <!-- 按钮 -->
+        <Footer :canSubmit="true" :btnText="'我要办事'" @submit="submit()"></Footer>
     </div>
 </template>
 
 <script>
     // SubmitReimbursement
     import BusinessGuide from './BusinessGuide'
+    import Footer from './common/Footer'
     export default {
         data() {
             return {
-                activeIndex: 1,
+                activeIndex: 0,
                 NameTitle: '安卓传过来的标题1',
                 describe: 'title的详细描述内容',
                 getAndroidMsg: null,
@@ -63,6 +74,7 @@
         },
         components: {
             'BusinessGuide': BusinessGuide,
+            'Footer': Footer
         },
         created() {
             // console.log(dd)
@@ -137,73 +149,53 @@
         text-align: center;
         color: #000;
     }
-    .IndexMenu {
-        height: 1.2rem;
-        width: 7.5rem;
-        background: #FFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .MenuLine {
-            height: .62rem;
-            width: 6.9rem;
-            background: #FFFFFF;
-            border: .01rem solid #1492FF;
-            border-radius: .05rem;
-            display: flex;
-            .MenuCell {
-                line-height: .62rem;
-                width: 25%;
-                color: #1492FF;
-                text-align: center;
-                letter-spacing: 0;
-                font-size: .28rem;
-                border-right: .01rem solid #1492FF;
-                &:first-child {
-                    border-top-left-radius: .05rem;
-                    border-bottom-left-radius: .05rem;
+    .Content {
+        height: 100%;
+        margin-bottom: 1.4rem;
+        .ListInfo {
+            width: 7.5rem;
+            margin: .15rem 0 0 0;
+            .InfoLine {
+                height: 1.2rem;
+                padding: 0 .3rem 0 .38rem;
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                border-bottom: .01rem solid #D3D3D3;
+                background: white;
+                .InfoName {
+                    font-family: PingFangSC-Regular;
+                    font-size: .32rem;
+                    height: 1.2rem;
+                    line-height: 1.2rem;
+                    color: #000000;
+                    letter-spacing: 0;
                 }
-                &:last-child {
-                    border-top-right-radius: .05rem;
-                    border-bottom-right-radius: .05rem;
-                    border-right: none;
+                &:last-child{
+                    border-bottom: none;
                 }
             }
-            .active {
-                color: #FFF;
-                background: #1492FF;
+            .SecondInfo{
+                margin-bottom: .15rem;
+                background: white;
+                padding-left: .67rem;
+                .SecondLine{
+                    height: 1.2rem;
+                    border-bottom: .01rem solid #D3D3D3;
+                    .InfoName {
+                        font-family: PingFangSC-Regular;
+                        font-size: .28rem;
+                        text-align: left;
+                        height: 1.2rem;
+                        line-height: 1.2rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                    }
+                    &:last-child{
+                        border-bottom: none;
+                    }
+                }
             }
         }
     }
-    .Footer {
-        height: 1.31rem;
-        width: 7.5rem;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 199;
-        display: flex;
-        justify-content: center;
-        .SubmitBtn {
-            height: 1.05rem;
-            width: 7.1rem;
-            border-radius: .05rem;
-            line-height: 1.05rem;
-            background: #1492FF;
-            font-family: PingFangSC-Regular;
-            font-size: .36rem;
-            color: #FFFFFF;
-            letter-spacing: 0;
-            text-align: center;
-        }
-    }
 </style>
-
-<style>
-    .Title .el-message-box {
-        width: 24px;
-    }
-</style>
-
-
-
