@@ -58,6 +58,8 @@ export default {
                 AAE010: '', //银行账户
                 AAE008: '', //开户行
                 AAE009: '', //开户名
+                LS_DS1:[],
+                
             },
             canSubmit: false,
             progress:[
@@ -70,6 +72,7 @@ export default {
     },
     created(){
         console.log('submitForm',this.$store.state.SET_SMALL_REIM_SUBMIT);
+        console.log("SET_SMALL_REIM_2",this.$store.state.SET_SMALL_REIM_2)
     },
     methods:{
         submit(){
@@ -101,6 +104,9 @@ export default {
             submitForm.AAE010 = this.form.AAE010;
             submitForm.AAE008 = this.form.AAE008;
             submitForm.AAE009 = this.form.AAE009;
+            submitForm.LS_DS1 = this.form.this.$store.state.SET_SMALL_REIM_2,
+            submitForm.LS_DS2 = [] 
+
             this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
