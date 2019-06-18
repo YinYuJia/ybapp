@@ -191,6 +191,19 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE009: '', //收款开户名
           AAE010: '', //收款银行账号
         },
+        //费用信息查询
+        SET_SEARCHFEE_OPERATION:{
+          AAE030: '', //开始日期
+          AAE031: '', //结束日期
+        },
+        //
+        SET_SEARCHINSUREDINFO_OPERATION:{
+          AAB301000: '', //参保地
+          AAS301: '', //参保地省
+          AAB301: '', //参保地市
+          AAQ301: '', //参保地区
+          AAE091: '', //查询月数
+        },
 
         // 慢性病备案
         SET_CHRONIC_DISEASE:{
@@ -315,9 +328,17 @@ export default new Vuex.Store({  // 暴露与new vuex
           sessionStorage.setItem("SET_SMALLREIM_OPERATION",JSON.stringify(payload));
           state.SET_SMALLREIM_OPERATION = payload;
         },
+        SET_SEARCHFEE_OPERATION(state,payload){
+          sessionStorage.setItem("SET_SEARCHFEE_OPERATION",JSON.stringify(payload));
+          state.SET_SEARCHFEE_OPERATION = payload;
+        },
+        SET_SEARCHINSUREDINFO_OPERATION(state,payload){
+          sessionStorage.setItem("SET_SEARCHINSUREDINFO_OPERATION",JSON.stringify(payload));
+          state.SET_SEARCHINSUREDINFO_OPERATION = payload;
+        },
         SET_CHRONIC_DISEASE(state,payload){
           state.SET_CHRONIC_DISEASE = payload;
-        },
+        }
       },
 
       actions:{ //添加actions
@@ -378,8 +399,14 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_SMALLREIM_OPERATION( context, payload ) {
           context.commit( 'SET_SMALLREIM_OPERATION', payload ); //context提交
         },
+        SET_SEARCHFEE_OPERATION( context, payload ) {
+          context.commit( 'SET_SEARCHFEE_OPERATION', payload ); //context提交
+        },
+        SET_SEARCHINSUREDINFO_OPERATION( context, payload ) {
+          context.commit( 'SET_SEARCHINSUREDINFO_OPERATION', payload );//context提交
+        }, 
         SET_CHRONIC_DISEASE( context, payload ) {
-          context.commit( 'SET_CHRONIC_DISEASE', payload );
+          context.commit( 'SET_CHRONIC_DISEASE', payload );//context提交
         },
       }
 })

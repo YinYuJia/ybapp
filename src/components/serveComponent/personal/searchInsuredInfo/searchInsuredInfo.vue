@@ -17,7 +17,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地：</span></div>
                     <div class="InfoText">
-                        <input @click="openInsuredPicker" type="text" v-model="form.canbao" placeholder="请选择" readonly>
+                        <input @click="openInsuredPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -48,7 +48,7 @@ export default {
     data(){
         return{
             form:{
-                canbao: '', //参保地
+                AAB301000: '', //参保地
                 AAS301: '', //参保地省
                 AAB301: '', //参保地市
                 AAQ301: '', //参保地区
@@ -62,18 +62,40 @@ export default {
             ],
         }
     },
+    watch: {
+        form: {
+            handler: function(val) {
+                // 判断不为空
+                if (val.AAB301000 != '' && val.AAE091 != '' ) {
+                    this.canSubmit = true;
+                } else {
+                    this.canSubmit = false;
+                }
+            },
+            deep: true
+        },
+    },
     methods:{
         // 选择参保地
         openInsuredPicker(){
             this.$refs.cityPicker.open();
         },
         chooseCity(val){
-            this.form.canbao = val.name;
+            this.form.AAB301000 = val.name;
             this.form.AAS301 = val.code[0];
             this.form.AAB301 = val.code[1];
             this.form.AAQ301 = val.code[2];
-            console.log(this.form);
-        }
+        },
+        // 提交
+        submit() {
+            if (this.canSubmit == false) {
+                this.$toast('信息未填写完整');
+                return false;
+            } else {
+                this.$store.dispatch('SET_SEARCHINSUREDINFO_OPERATION', this.form);
+                this.$router.push("/searchInsuredResult");
+            }
+        },
     }
 }
 </script>

@@ -35,6 +35,17 @@ export default {
     components:{
         Title
     },
+    data () {
+        return {
+            
+        }
+    },
+    created () {
+        
+    },
+    methods: {
+        
+    }
 }
 </script>
 

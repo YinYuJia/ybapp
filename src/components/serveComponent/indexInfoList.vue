@@ -323,9 +323,9 @@
                 </el-col>
 
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-canbaoxinxi" />
-                        <svg-icon v-if="show" icon-class="indexInfoList-canbaoxinxi1" />
+                    <div class="IconImg" @click="showWork('/searchInsuredInfo','参保信息查询','基本医疗保险参保人员参保信息查询')" >
+                        <svg-icon v-if="show" icon-class="indexInfoList-canbaoxinxi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-canbaoxinxi1" />
                     </div>
                     <div class="IconText"><span>参保信息</span></div>
                 </el-col>
@@ -337,9 +337,9 @@
                     <div class="IconText"><span>办事进度</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiaofeixinxi" />
-                        <svg-icon v-if="show" icon-class="indexInfoList-jiaofeixinxi1" />
+                    <div class="IconImg" @click="showWork('/searchFee','费用信息查询','基本医疗保险参保人员费用信息查询')">
+                        <svg-icon v-if="show" icon-class="indexInfoList-jiaofeixinxi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiaofeixinxi1" />
                     </div>
                     <div class="IconText"><span>费用信息</span></div>
                 </el-col>
