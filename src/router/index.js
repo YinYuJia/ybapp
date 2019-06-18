@@ -29,6 +29,7 @@ import searchTakeDrug from '@/components/serveComponent/record/abroadTake/search
 import familyAid from '@/components/serveComponent/record/familyAid/familyAid'
 import familyDetail from '@/components/serveComponent/record/familyAid/familyDetail'
 import specialDrug from '@/components/serveComponent/record/specialDrug/specialDrug'
+import specialDrugDetail from '@/components/serveComponent/record/specialDrug/specialDrugDetail'
 import chronicDisease from '@/components/serveComponent/record/chronicDisease/chronicDisease'
 import chronicDiseaseDetail from '@/components/serveComponent/record/chronicDisease/chronicDiseaseDetail'
 import searchInfoPage from '@/components/serveComponent/record/chronicDisease/searchInfoPage'
@@ -165,6 +166,11 @@ export default new Router({
       path: '/specialDrug',
       name: 'specialDrug',
       component: specialDrug
+    },
+    {
+      path: '/specialDrugDetail',
+      name: 'specialDrugDetail',
+      component: specialDrugDetail
     },
     {
       path: '/chronicDisease',
