@@ -80,7 +80,8 @@ import Footer from '../../common/Footer'
                     AAB301000:'',
                     AAS301:"",//参保地省
                     AAB301:"",//参保地市
-                    AAQ301:""//参保地区
+                    AAQ301:"",//参保地区
+                    BKZ019:""//经办编号
                 },
                 dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
@@ -149,7 +150,7 @@ import Footer from '../../common/Footer'
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1022/familyRecord', params).then((resData) => {
+                this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1022/familyRecord', params).then((resData) => {
                     console.log('返回成功信息',resData)
                     //   成功   1000
                     if ( resData.enCode == 1000 ) {
@@ -169,16 +170,24 @@ import Footer from '../../common/Footer'
                 
             },
             formatSubmitData(){
-                let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
-                submitForm.AAA027 =  this.form.AAA027;
-                submitForm.AAB301 =  this.form.AAB301;
-                submitForm.AAE005 =  this.form.AAE005;
+                let submitForm ={}
+                     // 日期传换成Number
+                    submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030).toString();
+                    submitForm.BAC003=this.form.BAC003,//被授权人姓名
+                    submitForm.BAC002=this.form.BAC002,//被授权人身份证
+                    submitForm.AAE144=this.form.AAE144,//绑定关系
+                    submitForm.AAS301=this.form.AAS301//参保地省
+                    submitForm.AAB301=this.form.AAB301//参保地市
+                    submitForm.AAQ301=this.form.AAQ301//参保地区
+                    submitForm.BKZ019=this.form.BKZ019//经办编号
+                    // submitForm.debugTest=  "true";
+
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 }else {
-                    submitForm.AAC003 = '殷宇佳';
+                    submitForm.AAC003 = '胡';
                     submitForm.AAE135 = "113344223344536624";
                 }
                 // 请求参数封装
