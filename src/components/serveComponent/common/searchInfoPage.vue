@@ -1,6 +1,21 @@
 <template>
-  <div class="SearchInfoPage">
-    <Title :title="title" :backRouter="'/chronicDisease'"></Title>
+  <div class="SearchInfoPage" v-if="showSearch">
+    <!-- 标题 -->
+    <div class="Title">
+        <el-row>
+            <el-col :span="6">
+                <div class="BackIcon" @click="back()">
+                    <svg-icon icon-class="serveComponent_back" />
+                    <span>返回</span>
+                </div>
+            </el-col>
+            <el-col :span="12">
+                <div class="NameTitle">{{title}}</div>
+            </el-col>
+            <el-col :span="6">
+            </el-col>
+        </el-row>
+    </div>
     <div class="SearchContent">
       <div class="SearchBox">
         <svg-icon icon-class="serveComponent_search"/>
@@ -8,14 +23,6 @@
         <div class="SearchBtn">搜索</div>
       </div>
     </div>
-    <!-- <div class="ListContent">
-      <div
-        class="List"
-        v-for="item in HospitalList"
-        :key="item.AKB020"
-        @click="chooseHospital(item.AKB020,item.hospitalName)"
-      >{{item.hospitalName}}</div>
-    </div> -->
 
     <mt-loadmore
       :bottom-method="loadBottom"
@@ -35,11 +42,7 @@
 </template>
 
 <script>
-import Title from "./Title";
 export default {
-  components: {
-    Title
-  },
   data() {
     return {
       HospitalList: [
@@ -53,7 +56,8 @@ export default {
         pageNum: "1",
         AAA102: ""
       },
-      allLoaded: true
+      allLoaded: true,
+      showSearch: false,
     };
   },
   props: {
@@ -109,11 +113,7 @@ export default {
     },
     formatSubmitData() {
       let submitForm = {};
-      // 日期传换成Number
-    //   submitForm.AAS301 = this.form.AAS301; //参保地省
-    //   submitForm.AAB301 = this.form.AAB301; //参保地市
-    //   submitForm.AAQ301 = this.form.AAQ301; //参保地区
-      submitForm.AAA102 = this.form.AAA102; //模糊查询
+      submitForm.AAA102 = this.params.AAA102; //模糊查询
       submitForm.AAA100 = this.type; //机构参数
       submitForm.pageNum = this.params.pageNum; //模糊查询
 
@@ -133,13 +133,14 @@ export default {
       );
       return params;
     },
+    open(){
+      this.showSearch = true;
+    },
+    back(){
+      this.showSearch = false;
+    },
     chooseHospital(code, name) {
-        this.$emit('childrenClick',code,name)
-    //   this.smallReimForm.AKB020 = code;
-    //   this.smallReimForm.hospitalName = name;
-    //   this.$store.dispatch("SET_SMALL_REIM_1", this.smallReimForm);
-    //   this.$emit("childrenClick", code, name);
-      // this.$router.push('/smallReim');
+        this.$emit('childrenClick',code,name);
     }
   }
 };
@@ -147,6 +148,31 @@ export default {
 
 <style lang="less" scoped>
 .SearchInfoPage {
+  background: #FFF;
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  .Title {
+    height: .8rem;
+    background-color: white;
+    line-height: .8rem;
+    .BackIcon{
+        display: flex;
+        align-items: center;
+        color: #1492FF;
+        font-size: .32rem;
+        .svg-icon{
+            height: .5rem;
+            width: .5rem;
+        }
+    }
+    .NameTitle {
+        color: #000000;
+        letter-spacing: 0;
+        font-size: .36rem;
+    }
+}
   .SearchContent {
     height: 1.18rem;
     width: 7.5rem;
