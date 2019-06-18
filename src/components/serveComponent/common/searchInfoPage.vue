@@ -32,12 +32,13 @@
       <ul class="ListContent">
         <li
           class="List"
-          v-for="item in HospitalList"
-          :key="item.AKB020"
+          v-for="(item,index) in List"
+          :key="index"
           @click="chooseHospital(item.AKB020,item.hospitalName)"
         >{{ item.hospitalName }}</li>
       </ul>
     </mt-loadmore>
+    <div class="footer" v-if="List.length < 20 && List.length >= 0">没有更多数据了~</div>
   </div>
 </template>
 
@@ -45,10 +46,42 @@
 export default {
   data() {
     return {
-      HospitalList: [
-        { AKB020: "3300001101019", hospitalName: "浙江中医药大学附属第三医院" },
+      List: [
+         { AKB020: "3300001101019", hospitalName: "浙江中医药大学附属第三医院" },
         { AKB020: "3300001102003", hospitalName: "杭州市第三人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" }
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+
       ],
       smallReimForm: {}, // 零星报销对象
       params: {
@@ -56,7 +89,7 @@ export default {
         pageNum: "1",
         AAA102: ""
       },
-      allLoaded: true,
+      allLoaded: false,
       showSearch: false,
     };
   },
@@ -70,15 +103,44 @@ export default {
         default: "标题"
     }
   },
+  mounted() {
+
+    //如果有保存医院列表就从session里获取，没有就发起请求
+    let List = JSON.parse(sessionStorage.getItem("pointList"));
+    let params = JSON.parse(sessionStorage.getItem("params"));
+
+    // let start =JSON.parse(sessionStorage.getItem('start'))
+    // console.log("start",start)
+    // console.log("params",params)
+    
+
+    if (List) {
+      this.List = List;
+      console.log("pointList",this.List.length)
+      
+      let pageNum=Math.ceil(this.List.length/params.pageSize);
+
+      console.log("pointList",List[0].totalPage)
+      console.log("paramsNum",pageNum)
+      this.status = '1';
+      this.params = params;
+        if(List[0].totalPage>pageNum){
+        this.allLoaded=false
+        }else{
+        this.allLoaded=true
+      }
+    }
+  },
   created() {
     this.init();
   },
   methods: {
     init() {
       // 封装数据
+      this.allLoaded = false;
       let params = this.formatSubmitData();
       // 开始请求
-      this.$axios.post("http://192.168.1.8:13010/app/jy2001/optionInformationList",params).then(resData => {
+      this.$axios.post(this.epFn.ApiUrl1()+"/app/jy2001/optionInformationList",params).then(resData => {
           console.log("返回成功信息", resData.LS_DS);
           //   成功   1000
           if (resData.enCode == 1000) {
@@ -108,8 +170,14 @@ export default {
     },
     loadBottom() {
         // 加载更多数据
+        console.log('加载')
+      if (!this.allLoaded) {
+        this.init();
+        
+      }
         this.allLoaded = true;// 若数据已全部获取完毕
         this.$refs.loadmore.onBottomLoaded();
+        
     },
     formatSubmitData() {
       let submitForm = {};
@@ -232,5 +300,11 @@ export default {
       }
     }
   }
+}
+.footer {
+  padding: 8px 0;
+  background: #f2f2f2;
+  font-size: 14px;
+  text-align: center;
 }
 </style>

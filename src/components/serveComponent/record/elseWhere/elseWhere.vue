@@ -168,6 +168,9 @@ export default {
                         this.form.AAE031 = '';
                     }
                 }
+                if(val.AAE005.length>11){
+                    this.$toast('手机号码不能超过11位');
+                }
             },
             deep: true
         },
