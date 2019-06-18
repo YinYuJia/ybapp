@@ -3,7 +3,7 @@
         <Title :title="'特治特药备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <selectCity 
-            :type="2"
+            :type="3"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
@@ -24,15 +24,17 @@
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
                         <input @click="openInsuredPicker" type="text" v-model="form.AAB301" placeholder="请选择" readonly>
+                        <svg-icon icon-class="serveComponent_arrowRight" />
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊机构</span></div>
                     <div class="InfoText">
                         <el-select v-model="form.AKB020" placeholder="请选择">
-                            <el-option v-for="item in hospitalList" :key="item.value" :label="item.label" :value="item.value">
+                            <el-option v-for="item in hospitalList" :key="item.value" :label="item.label" :value="item.value">                                
                             </el-option>
                         </el-select>
+                        <svg-icon icon-class="serveComponent_arrowRight" />
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -42,6 +44,7 @@
                             <el-option v-for="item in typeList" :key="item.value" :label="item.label" :value="item.value">
                             </el-option>
                         </el-select>
+                        <svg-icon icon-class="serveComponent_arrowRight" />
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -51,12 +54,14 @@
                             <el-option v-for="item in drugList" :key="item.value" :label="item.label" :value="item.value">
                             </el-option>
                         </el-select>
+                        <svg-icon icon-class="serveComponent_arrowRight" />
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称</span></div>
                     <div class="InfoText">
                         <input type="text" v-model="form.AKA121" placeholder="请选择">
+                        <svg-icon icon-class="serveComponent_arrowRight" />
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -66,72 +71,42 @@
                             <el-option v-for="item in drugTimeList" :key="item.value" :label="item.label" :value="item.value">
                             </el-option>
                         </el-select>
+                        <svg-icon icon-class="serveComponent_arrowRight" />
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>项目名称</span></div>
                     <div class="InfoText">
                         <input type="text" v-model="form.AKE002" placeholder="请选择">
+                        <svg-icon icon-class="serveComponent_arrowRight" />
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>剂量</span></div>
                     <div class="InfoText">
                         <input type="number" v-model="form.AAE030" placeholder="请选择">
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>单位</span></div>
-                    <div class="InfoText">
-                        <input type="text" v-model="form.AKA071" placeholder="请选择" readonly>
+                        <svg-icon icon-class="serveComponent_arrowRight" />
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>数量</span></div>
                     <div class="InfoText">
                         <input type="number" v-model="form.AKC226" placeholder="请选择">
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>备案剂量</span></div>
-                    <div class="InfoText">
-                        <input type="text" v-model="form.BKE249" placeholder="请选择" readonly>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>自理比例</span></div>
-                    <div class="InfoText">
-                        <input type="text" v-model="form.AKA069" placeholder="请选择" readonly>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>累计备案剂量</span></div>
-                    <div class="InfoText">
-                        <input type="text" v-model="form.BKE250" placeholder="请选择" readonly>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>剩余备案剂量</span></div>
-                    <div class="InfoText">
-                        <input type="text" v-model="form.BKE251" placeholder="请选择" readonly>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>实际使用量</span></div>
-                    <div class="InfoText">
-                        <input type="text" v-model="form.BKE252" placeholder="请选择" readonly>
-                    </div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>备案天数</span></div>
-                    <div class="InfoText">
-                        <input type="text" v-model="form.AKB063" placeholder="请选择" readonly>
+                        <svg-icon icon-class="serveComponent_arrowRight" />
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期</span></div>
                     <div class="InfoText">
                         <input @click="openStartPicker" type="text" v-model="form.AAE030" placeholder="请选择" readonly>
+                        <svg-icon icon-class="serveComponent_arrowRight" />
+                    </div>
+                </div>
+                <div class="InfoLine">
+                    <div class="InfoName"><span>结束日期</span></div>
+                    <div class="InfoText">
+                        <input @click="openStartPicker" type="text" v-model="form.AAE030" placeholder="请选择" readonly>
+                        <svg-icon icon-class="serveComponent_arrowRight" />
                     </div>
                 </div>
             </div>
@@ -225,7 +200,6 @@ import Footer from '../../common/Footer'
         height: 100%;
         margin-bottom: 1.4rem;
         .ReportInfo {
-            height: 20.4rem;
             width: 7.5rem;
             padding: 0 .3rem;
             background: white;
@@ -233,12 +207,11 @@ import Footer from '../../common/Footer'
                 height: 1.2rem;
                 position: relative;
                 font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 justify-content: space-between;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     span {
                         height: .6rem;
@@ -248,20 +221,20 @@ import Footer from '../../common/Footer'
                     }
                 }
                 .InfoText {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
                     align-items: center;
                     input {
                         height: .6rem;
-                        opacity: 0.85;
                         font-family: PingFangSC-Regular;
-                        font-size: .3rem;
                         color: #000000;
                         letter-spacing: 0;
                         text-align: right;
                         border: none;
+                    }
+                    .svg-icon{
+                        margin-left: .23rem;
                     }
                 }
                 &:last-child {

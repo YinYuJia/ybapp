@@ -65,7 +65,7 @@ export default {
                     flex: 1,
                     values: [],
                     code:[],                    
-                    className: 'slot1'
+                    className: 'slot1',
                 },{
                     divider: true,
                     content: '-',
@@ -106,6 +106,7 @@ export default {
         onInsuredChange(picker, values){
             if(values[0] !== undefined){
                 picker.setSlotValues(1, values[0].children);
+                console.log(values[0].children);
                 picker.setSlotValues(2, values[0].children[0].children);
                 this.province = values[0].name;
                 this.codeProvince = values[0].code;
