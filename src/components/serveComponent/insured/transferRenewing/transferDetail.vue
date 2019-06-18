@@ -16,7 +16,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码:</span></div>
-                    <div class="InfoText">{{form.AAE005}}</div>
+                    <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
             </div>
         </div>

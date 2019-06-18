@@ -77,7 +77,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE005" placeholder="请输入联系电话"></div>
+                    <div class="InfoText"><input type="number" v-model="form.AAE005" placeholder="请输入联系电话"></div>
                 </div>
             </div>
         </div>
@@ -211,6 +211,12 @@ export default {
         },
         // 提交
         submit() {
+            if(this.form.AAE005){
+                if(!this.util.checkPhone(this.form.AAE005)){
+                    this.$toast('请填写正确的联系电话');
+                    return false;
+                }
+            }
             if (this.canSubmit == false) {
                 this.$toast('信息未填写完整');
                 return false;
@@ -221,7 +227,7 @@ export default {
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1012/addRecord', params).then((resData) => {
+                this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1012/addRecord', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
@@ -245,7 +251,20 @@ export default {
             // 日期传换成Number
             submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
             submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
-            
+
+            submitForm.AAS301 = this.form.AAS301//申请地省
+            submitForm.AAB301 = this.form.AAB301//申请地市
+            submitForm.AAQ301 = this.form.AAQ301//申请地区
+            submitForm.AAE030=this.form.AAE030 //离杭日期
+            submitForm.AAE031=this.form.AAE031 //回杭日期
+            submitForm.AAS011=this.form.AAS011 //参保地省
+            submitForm.AAE011=this.form.AAE011 //参保地市
+            submitForm.AAQ011=this.form.AAQ011 //参保地区
+            submitForm.AAE006=this.form.AAE006 //详细地址 
+            submitForm.AKC030=this.form.AKC030 //申请原因
+            submitForm.AAE004=this.form.AAE004 //联系人
+            submitForm.AAE005=this.form.AAE005 //联系电话
+            submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
