@@ -104,7 +104,7 @@ export default {
             submitForm.AAE010 = this.form.AAE010;
             submitForm.AAE008 = this.form.AAE008;
             submitForm.AAE009 = this.form.AAE009;
-            submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2,
+            submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2;
             submitForm.LS_DS2 = [] 
 
             this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
