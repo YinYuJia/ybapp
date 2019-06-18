@@ -105,7 +105,7 @@
             <Footer :canSubmit="true" @submit="submit()"></Footer>
         </div>
         
-        <search-info-page  @childrenClick="childrenClick" v-if="isSearch"></search-info-page>
+        <SearchInfoPage ref="disease"></SearchInfoPage>
     </div>
 </template>
 
@@ -179,7 +179,7 @@ import SearchInfoPage from '../../common/searchInfoPage'
         },
         methods: {
             chooseDisease(val){
-                this.isSearch = true
+                this.$refs.disease.open();
             },
             childrenClick(code,name){
                 this.isSearch = false

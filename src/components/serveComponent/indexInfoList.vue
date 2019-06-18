@@ -189,15 +189,15 @@
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg" @click="showWork('/specialDrug','备案服务','特制特药备案')">
-                        <svg-icon v-if="show" icon-class="indexInfoList-teyaobeian" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-teyaobeian1" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-teyaobeian" />
+                        <svg-icon v-if="show" icon-class="indexInfoList-teyaobeian1" />
                     </div>
                     <div class="IconText"><span>特药备案</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg" @click="showWork('/chronicDisease','备案服务','规定（特殊慢性）病种待遇备案')">
-                        <svg-icon v-if="show" icon-class="indexInfoList-manbingbeian" />
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-manbingbeian1" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-manbingbeian" />
+                        <svg-icon v-if="show" icon-class="indexInfoList-manbingbeian1" />
                     </div>
                     <div class="IconText"><span>慢病备案</span></div>
                 </el-col>
