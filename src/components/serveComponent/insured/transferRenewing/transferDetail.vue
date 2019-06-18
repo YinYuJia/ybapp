@@ -66,14 +66,11 @@ export default {
         edit(){
             this.$router.push('/transferRenewing');
         },
+        // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.form.AAA027000="";
-                this.form.AAB301000="";
-                this.form.AAE005="";
-
-                this.$router.push('/transferRenewing')
-                this.$toast("撤销成功");
+                this.$router.push('/');
+                this.$toast('撤销成功');
             });
         },
         formatSubmitData(){

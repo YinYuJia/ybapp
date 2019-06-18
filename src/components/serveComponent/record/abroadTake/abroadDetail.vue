@@ -85,13 +85,8 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.form.AAB301000= '', //参保地
-                this.form.AKB020= '',//取药机构
-                this.form.AAE030= '', //出境日期
-                this.form.AAE031= '', //拟回国日期
-                this.form.BKE260= '', //护照号码
-                this.$toast("撤销请求");
-                this.$router.push("/abroadTake");
+                this.$router.push('/');
+                this.$toast('撤销成功');
             });
         },
         formatSubmitData(){

@@ -105,6 +105,13 @@ export default {
         edit(){
             this.$router.push("/elseWhere");
         },
+        // 撤销提醒
+        backout(){
+            this.$messagebox.confirm('确定撤销吗?').then(() => {
+                this.$router.push('/');
+                this.$toast('撤销成功');
+            });
+        },
         formatSubmitData(){
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
             console.log(submitForm)
