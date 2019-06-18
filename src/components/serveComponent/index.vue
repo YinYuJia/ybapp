@@ -22,6 +22,8 @@
             <div class="ListInfo">
                 <div class="InfoLine" @click="changeIndex(1)">
                     <div class="InfoName">办事指南</div>
+                    <svg-icon v-if="activeIndex == 1" icon-class="serveComponent_arrowUp" />
+                    <svg-icon v-if="activeIndex != 1" icon-class="serveComponent_arrowDown" />
                 </div>
                 <div class="SecondInfo" v-show="activeIndex == 1">
                     <div class="SecondLine">
@@ -45,12 +47,15 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName">政策解读</div>
+                    <svg-icon icon-class="serveComponent_arrowDown" />
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName">案例分析</div>
+                    <svg-icon icon-class="serveComponent_arrowDown" />
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName">常见问题</div>
+                    <svg-icon icon-class="serveComponent_arrowDown" />
                 </div>
             </div>
         </div>
@@ -109,7 +114,11 @@
                 this.$router.push('/')
             },
             changeIndex(index) {
-                this.activeIndex = index;
+                if(this.activeIndex == index){
+                    this.activeIndex = 0;
+                }else{
+                    this.activeIndex = index;
+                }
             },
             submit() {
                 console.log("路由参数", this.$route.params.info)
@@ -161,6 +170,7 @@
                 position: relative;
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 border-bottom: .01rem solid #D3D3D3;
                 background: white;
                 .InfoName {
@@ -170,6 +180,10 @@
                     line-height: 1.2rem;
                     color: #000000;
                     letter-spacing: 0;
+                }
+                .svg-icon{
+                    height: .3rem;
+                    width: .3rem;
                 }
                 &:last-child{
                     border-bottom: none;
