@@ -116,7 +116,7 @@ export default {
             let submitForm = {}
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-013";
-                submitForm.debugTest=  "true";
+                // submitForm.debugTest=  "true";
 
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {

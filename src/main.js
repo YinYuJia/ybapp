@@ -135,8 +135,8 @@ function  paramStr(name){
 
 console.log(paramStr("userName") === undefined)
 
-sessionStorage.setItem("userName",paramStr("userName") || "林江")
-sessionStorage.setItem("idCard",paramStr("idCard") || "331081198611144030")
+sessionStorage.setItem("userName",paramStr("userName") || "常瑞")
+sessionStorage.setItem("idCard",paramStr("idCard") || "330622197407215513")
 
 
 // router.beforeEach((to, from, next) => {

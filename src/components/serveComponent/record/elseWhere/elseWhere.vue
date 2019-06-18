@@ -264,7 +264,7 @@ export default {
             submitForm.AKC030=this.form.AKC030 //申请原因
             submitForm.AAE004=this.form.AAE004 //联系人
             submitForm.AAE005=this.form.AAE005 //联系电话
-            submitForm.debugTest=  "true";
+            // submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
@@ -274,6 +274,7 @@ export default {
                 submitForm.AAE135 = "113344223344536624";
             }
             // 请求参数封装
+            console.log('submitForm',submitForm)
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1012");
             return params;
         }

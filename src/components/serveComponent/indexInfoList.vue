@@ -134,7 +134,7 @@
                         <svg-icon v-if="show" icon-class="indexInfoList-xinxibiangeng" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-xinxibiangeng1" />
                     </div>
-                    <div class="IconText"><span>信息变更</span></div>
+                    <div class="IconText"><span>参保变更</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
                     <div class="IconImg" @click="showWork('/searchPrint','参保服务','打印信息')">
@@ -185,7 +185,6 @@
                     </div>
                     <div class="IconText"><span>家庭共济</span></div>
                 </el-col>
-                
             </el-row>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
@@ -202,7 +201,6 @@
                     </div>
                     <div class="IconText"><span>慢病备案</span></div>
                 </el-col>
-                
             </el-row>
             <div class="DepartmentsList">
                 <span></span>
@@ -317,9 +315,9 @@
             </div>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-benanxinxi" />
-                        <svg-icon v-if="show" icon-class="indexInfoList-benanxinxi1" />
+                    <div class="IconImg" @click="showWork('/smallReim','待遇报销','基本医疗保险参保人员医疗费用零星报销')" >
+                        <svg-icon v-if="show" icon-class="indexInfoList-benanxinxi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-benanxinxi1" />
                     </div>
                     <div class="IconText"><span>信息变更</span></div>
                 </el-col>
