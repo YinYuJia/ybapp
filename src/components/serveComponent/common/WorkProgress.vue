@@ -23,10 +23,11 @@ export default {
         progress:{
             type: Array,
             default:() => [
-                {step:1,name:'收件'},
+                {step:1,name:'申请'},
                 {step:2,name:'受理'},
                 {step:3,name:'审核'},
-                {step:4,name:'办结'}
+                {step:4,name:'办结'},
+                {step:5,name:'送达'}
             ]
         }
     },

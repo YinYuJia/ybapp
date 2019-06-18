@@ -204,7 +204,7 @@ import SearchInfoPage from '../../common/searchInfoPage'
                 this.form.AAE030 = date;
             },
             submit() {
-                this.$router.push('/');
+                this.$router.push('/chronicDiseaseDetail');
             },
         }
     }
