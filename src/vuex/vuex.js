@@ -196,7 +196,7 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE030: '', //开始日期
           AAE031: '', //结束日期
         },
-        //
+        //参保信息查询
         SET_SEARCHINSUREDINFO_OPERATION:{
           AAB301000: '', //参保地
           AAS301: '', //参保地省
@@ -439,4 +439,4 @@ export default new Vuex.Store({  // 暴露与new vuex
           context.commit( 'SET_SPECIAL_DRUG', payload );//context提交
         },
       }
-})
+})  

@@ -14,12 +14,6 @@
             v-model="dateVal"
             @confirm="handleStartConfirm">
         </mt-datetime-picker>
-        <mt-datetime-picker
-            type="date"
-            ref="endPicker"
-            v-model="dateVal"
-            @confirm="handleEndConfirm">
-        </mt-datetime-picker>
         <selectCity 
             :type="3"
             ref="cityPicker"
@@ -42,7 +36,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>结束日期</span></div>
-                    <div class="InfoText"><input @click="openEndPicker" type="text" v-model="form.AAE031" placeholder="请选择" readonly></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE031" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转往地市</span></div>
@@ -111,7 +105,7 @@ import Footer from '../../common/Footer'
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (val.AAA301000 != '' && val.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKA121 != '' && val.BKE255 != '' ) {
+                    if (val.AAA027000 != '' && val.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKA121 != '' && val.BKE255 != '' ) {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
@@ -144,16 +138,27 @@ import Footer from '../../common/Footer'
                 this.$refs.startPicker.open();
             },
             handleStartConfirm(val){
+                this.getEndDate(val);
                 let date = this.util.formatDate(val,'yyyy-MM-dd');
                 this.form.AAE030 = date;
             },
-            // 选择结束日期
-            openEndPicker(){
-                this.$refs.endPicker.open();
-            },
-            handleEndConfirm(val){
-                let date = this.util.formatDate(val,'yyyy-MM-dd');
-                this.form.AAE031 = date;
+            // 计算三个月后日期
+            getEndDate(val){
+                let year = val.getFullYear();
+                let month = val.getMonth()+1;
+                let day = val.getDate();
+                console.log(month);
+                
+                if(month + 3 > 12){
+                    year ++;
+                    month = month + 3 - 12;
+                }else{
+                    month += 3;
+                }
+                if(month < 10){
+                    month = '0' + month;
+                }
+                this.form.AAE031 = year + '-' + month + '-' + day;
             },
             // 选择转往地市
             openCityPicker(){
@@ -177,7 +182,7 @@ import Footer from '../../common/Footer'
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1020/info', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl2()+ '/h5/jy1020/info', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {

@@ -92,7 +92,15 @@ export default {
                 } else {
                     this.canSubmit = false;
                 }
-            },
+                // 判断转入转出地
+                if (val.AAA027000 != '' && val.AAB301000 != '') {
+                    if(val.AAA027000==val.AAB301000){
+                        this.$toast('转出地不能与转入地相同');
+                        this.form.AAB301000 = '';
+                    }
+                }
+                },
+
             deep:true
        } 
     },

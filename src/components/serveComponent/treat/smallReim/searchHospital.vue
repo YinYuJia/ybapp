@@ -4,7 +4,7 @@
         <div class="SearchContent">
             <div class="SearchBox">
                 <svg-icon icon-class="serveComponent_search" />
-                <input class="InputContent" placeholder="按疾病名称查找"/>
+                <input class="InputContent" placeholder="按医院名称查找"/>
                 <div class="SearchBtn">搜索</div>
             </div>
         </div>

@@ -6,6 +6,7 @@
             type="date"
             ref="timePicker"
             v-model="dateVal"
+            :endDate="endDate"
             @confirm="handleTimeConfirm">
         </mt-datetime-picker>
         <!-- 弹出框区域结束 -->
@@ -31,7 +32,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊日期：</span></div>
-                    <div class="InfoText"><input @click="openTimePicker()" type="text" v-model="form.AAE030" placeholder="请输入" readonly></div>
+                    <div class="InfoText"><input @click="openTimePicker()" type="text" v-model="form.AAE030" placeholder="请选择" readonly></div>
                 </div>
             </div>
         </div>
@@ -59,6 +60,7 @@ export default {
                 AAE030: '', //就诊日期
             },
             dateVal: new Date(), //默认绑定的时间
+            endDate: new Date(), //最晚选择时间
             canSubmit: false,
             progress:[
                 {step:1,name:'申请报销'},
