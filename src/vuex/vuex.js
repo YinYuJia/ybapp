@@ -203,7 +203,28 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAB301: '', //参保地市
           AAQ301: '', //参保地区
           AAE091: '', //查询月数
-        }
+        },
+
+        // 慢性病备案
+        SET_CHRONIC_DISEASE:{
+          canbao: '', //参保地
+          AAS301: '', //参保地省编码
+          AAB301: '', //参保地市编码
+          AAQ301: '', //参保地区编码
+          AKA035: '', //规定病种
+          AKA120: '', //疾病编码1
+          AKA121: '', //疾病名称1
+          AKA1201: '', //疾病编码2
+          AKA1211: '', //疾病名称2
+          AKA1202: '', //疾病编码3
+          AKA1212: '', //疾病名称3
+          AAE030: '', //开始日期
+          BKE247: '', //病历本提取方式 1自取，2邮寄
+          AAE011: '', //收件人
+          AAE005: '', //联系电话
+          AAE006: '', //详细地址
+      },
+        
       },
       // 计算属性 getters
       getters:{
@@ -315,6 +336,9 @@ export default new Vuex.Store({  // 暴露与new vuex
           sessionStorage.setItem("SET_SEARCHINSUREDINFO_OPERATION",JSON.stringify(payload));
           state.SET_SEARCHINSUREDINFO_OPERATION = payload;
         },
+        SET_CHRONIC_DISEASE(state,payload){
+          state.SET_CHRONIC_DISEASE = payload;
+        }
       },
 
       actions:{ //添加actions
@@ -379,7 +403,10 @@ export default new Vuex.Store({  // 暴露与new vuex
           context.commit( 'SET_SEARCHFEE_OPERATION', payload ); //context提交
         },
         SET_SEARCHINSUREDINFO_OPERATION( context, payload ) {
-          context.commit( 'SET_SEARCHINSUREDINFO_OPERATION', payload ); //context提交
+          context.commit( 'SET_SEARCHINSUREDINFO_OPERATION', payload );//context提交
+        }, 
+        SET_CHRONIC_DISEASE( context, payload ) {
+          context.commit( 'SET_CHRONIC_DISEASE', payload );//context提交
         },
       }
 })

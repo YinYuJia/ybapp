@@ -65,7 +65,7 @@ export default {
                     flex: 1,
                     values: [],
                     code:[],                    
-                    className: 'slot1'
+                    className: 'slot1',
                 },{
                     divider: true,
                     content: '-',

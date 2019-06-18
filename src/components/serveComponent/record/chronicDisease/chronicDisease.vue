@@ -178,7 +178,7 @@ import SearchInfoPage from '../../common/searchInfoPage'
             },
         },
         methods: {
-            chooseDisease(){
+            chooseDisease(val){
                 this.isSearch = true
             },
             childrenClick(code,name){
@@ -204,6 +204,7 @@ import SearchInfoPage from '../../common/searchInfoPage'
                 this.form.AAE030 = date;
             },
             submit() {
+                this.$store.dispatch('SET_CHRONIC_DISEASE',this.form);
                 this.$router.push('/chronicDiseaseDetail');
             },
         }

@@ -98,6 +98,9 @@ export default {
             currentStep:1
         }
     },
+    created(){
+        this.form = this.$store.state.SET_CHRONIC_DISEASE;
+    },
     methods:{
         // 撤销提醒
         backout(){
