@@ -162,7 +162,7 @@
       <Footer :canSubmit="canSubmit" @submit="submit()"></Footer>
     </div>
     <!-- 规定病种 -->
-    <SearchInfoPage ref="species" @childrenClick="speciesClick"></SearchInfoPage>
+    <SearchInfoPage ref="species"  @childrenClick="speciesClick"></SearchInfoPage>
     <!-- 疾病1 -->
     <SearchInfoPage ref="disease1" @childrenClick="disease1Click"></SearchInfoPage>
     <!-- 疾病2 -->
