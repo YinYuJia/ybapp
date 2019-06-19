@@ -114,8 +114,11 @@ export default {
         const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
         this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1009/getRecord', params)
         .then((resData) => {
-            if(resData.encode==1000){
-                this.currentStep = Number(resData.LS_DS.BOD037)
+            console.log(555555555,resData);
+            if(resData.enCode==1000){
+                this.currentStep = Number(resData.LS_DS[0].BOD037)
+            }else if(resData.encode==1001){
+                this.$toast(resData.msg)
             }
         })
     },

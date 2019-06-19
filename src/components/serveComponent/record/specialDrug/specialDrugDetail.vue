@@ -1,6 +1,6 @@
 <template>
     <div class="specialDrugDetail">
-        <Title :title="'特治特药备案'" :backRouter="'/chronicDisease'"></Title>
+        <Title :title="'特治特药备案'" :backRouter="'/specialDrug'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
             <WorkProgress :currentStep="currentStep" :progress="arr"></WorkProgress>
@@ -17,11 +17,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>项目类型:</span></div>
-                    <div class="InfoText">{{form.BKE253}}</div>
+                    <div class="InfoText">{{form.BKE253 | projectType}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>特治特药类型:</span></div>
-                    <div class="InfoText">{{form.BKE228}}</div>
+                    <div class="InfoText">{{form.BKE228 | specialType}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称:</span></div>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>用药时期:</span></div>
-                    <div class="InfoText">{{form.BKE248}}</div>
+                    <div class="InfoText">{{form.BKE248 | medicationDate}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>项目名称:</span></div>

@@ -37,3 +37,40 @@ export function isMail(val) {
     }
     return obj[val]
   }
+
+  // 项目类型
+export function projectType(val) {
+  let obj = {
+    "1": "药品",
+    "2": "诊疗"
+  }
+  return obj[val]
+}
+
+// 用药时期
+export function medicationDate(val) {
+  let obj = {
+    "0": "其它",
+    "1": "治疗期",
+    "2": "维护期",
+    "3": "住院期",
+  }
+  return obj[val]
+}
+
+// 特药特质类型
+export function specialType(val) {
+  let obj = {
+    "24": "高强度超声聚焦刀治疗",
+    "23": "太空仓全身红外热疗",
+    "22": "89锶-骨转移治疗",
+    "16": "盐酸埃克替尼片",
+    "15": "金黄色葡萄球菌滤液制剂",
+    "14": "聚肌胞",
+    "13": "胸腺肽",
+    "28": "特殊康复",
+    "12": "聚乙二醇干扰素",
+    "21": "催眠治疗"
+  }
+  return obj[val]
+}

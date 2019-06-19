@@ -43,6 +43,10 @@
             <span>就诊机构</span>
           </div>
           <div class="InfoText">
+            <input type="text" @click="org" v-model="form.AKB020" readonly placeholder="请选择">
+            <svg-icon icon-class="serveComponent_arrowRight"/>
+          </div>
+          <!-- <div class="InfoText">
             <el-select v-model="form.AKB020" placeholder="请选择">
               <el-option
                 v-for="item in hospitalList"
@@ -52,7 +56,7 @@
               ></el-option>
             </el-select>
             <svg-icon icon-class="serveComponent_arrowRight"/>
-          </div>
+          </div> -->
         </div>
         <div class="InfoLine">
           <div class="InfoName">
@@ -172,8 +176,11 @@
     </div>
     <!-- 按钮 -->
     <Footer :canSubmit="canSubmit" @submit="submit()"></Footer>
+    <!-- 就诊机构 -->
+    <SearchInfoPage ref="org" @childrenClick="orgClick"></SearchInfoPage>
     <!-- 疾病名称 -->
     <SearchInfoPage ref="species" @childrenClick="speciesClick"></SearchInfoPage>
+    <!-- 项目名称 -->
     <SearchInfoPage ref="project" @childrenClick="projectClick"></SearchInfoPage>
   </div>
 </template>
@@ -223,36 +230,27 @@ export default {
       dateVal: new Date(), //默认绑定的时间
       endDateVal: new Date(), //默认绑定的时间
       canSubmit: false,
-      hospitalList: [
-        { AAA102: "医院1", AAA103: "医院1" },
-        { AAA102: "医院2", AAA103: "医院2" }
-      ],
-      typeList: [
-        { AAA102: "类型1", AAA103: "类型1" },
-        { AAA102: "类型2", AAA103: "类型2" }
-      ],
-      drugList: [
-        { AAA102: "类型1", AAA103: "类型1" },
-        { AAA102: "类型2", AAA103: "类型2" }
-      ],
-      drugTimeList: [
-        { AAA102: "时期1", AAA103: "时期1" },
-        { AAA102: "时期2", AAA103: "时期2" }
-      ]
+      hospitalList: [],
+      typeList: [],
+      drugList: [],
+      drugTimeList: []
     };
   },
   created() {
     this.form = this.$store.state.SET_SPECIAL_DRUG;
+    
+  },
+  mounted(){
     /**
      * BKE253 项目类型
         BKE228 特药特治类型
         BKE248 用药时期
         AKB020 医疗机构
      */
-    // this.hospitalList = this.getSelect('AKB020')
-    // this.typeList = this.getSelect('BKE253')
-    // this.drugList = this.getSelect('BKE228')
-    // this.drugTimeList = this.getSelect('BKE248')
+    this.getSelect('AKB020')
+    this.getSelect('BKE253')
+    this.getSelect('BKE228')
+    this.getSelect('BKE248')
   },
   watch: {
     form: {
@@ -323,6 +321,9 @@ export default {
     project(val) {
       this.$refs.project.open();
     },
+    org(){
+        this.$refs.org.open();
+    },
     // 组件返回的数据
     speciesClick(code, name) {
       this.form.AKA121 = name;
@@ -331,6 +332,10 @@ export default {
     projectClick(code, name) {
       this.form.AKE002 = name;
       this.form.AKE001 = code;
+    },
+    orgClick(code, name) {
+      this.form.AKB020 = name;
+      // this.form.AKE001 = code;
     },
     submit() {
       if (this.canSubmit == false) {
@@ -346,6 +351,7 @@ export default {
           .post(this.epFn.ApiUrl1() + "/h5/jy1023/specialTreat", params)
           .then(resData => {
             if (resData.enCode == "1000") {
+              this.$toast(resData.msg)
               this.$store.dispatch("SET_SPECIAL_DRUG", this.form);
               this.$router.push("/specialDrugDetail");
             }
@@ -383,10 +389,27 @@ export default {
         "2001"
       );
       this.$axios
-        .post(this.epFn.ApiUrl1() + "/app/jy2001/optionInformationList", params)
+        .post(this.epFn.ApiUrl1() + "/h5/jy2001/optionInformationList", params)
         .then(resData => {
           if (resData.enCode == "1000") {
-              return resData
+              if(val == 'AKB020'){
+                console.log(5555555555,resData.LS_DS);
+                
+                this.hospitalList = resData.LS_DS
+                return
+              }
+              if(val == 'BKE253'){
+                this.typeList = resData.LS_DS
+                return
+              }
+              if(val == 'BKE228'){
+                this.drugList = resData.LS_DS
+                return
+              }
+              if(val == 'BKE248'){
+                this.drugTimeList = resData.LS_DS
+                return
+              }
           }
         });
     }

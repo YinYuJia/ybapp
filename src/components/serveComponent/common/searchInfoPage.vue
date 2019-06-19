@@ -34,11 +34,11 @@
           class="List"
           v-for="(item,index) in List"
           :key="index"
-          @click="chooseHospital(item.AKB020,item.hospitalName)"
-        >{{ item.hospitalName }}</li>
+          @click="chooseHospital(item.AAA102,item.AAA103)"
+        >{{ item.AAA103 }}</li>
       </ul>
     </mt-loadmore>
-    <div class="footer" v-if="List.length < 20 && List.length >= 0">没有更多数据了~</div>
+    <div class="footer" v-if="List.length < 15 && List.length >= 0">没有更多数据了~</div>
 </div>
   </div>
 </template>
@@ -47,24 +47,10 @@
 export default {
   data() {
     return {
-      List: [
-         { AKB020: "3300001101019", hospitalName: "浙江中医药大学附属第三医院" },
-        { AKB020: "3300001102003", hospitalName: "杭州市第三人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        
-      
-
-      ],
+      List: [],
       smallReimForm: {}, // 零星报销对象
       params: {
-        pageSize: 20,
+        pageSize: 15,
         pageNum: "1",
         AAA102: ""
       },
@@ -80,31 +66,30 @@ export default {
     },
     title:{
         type: String,
-        default: "标题"
+        default: "搜索"
     }
   },
   mounted() {
-
     //如果有保存医院列表就从session里获取，没有就发起请求
-    let List = JSON.parse(sessionStorage.getItem("pointList"));
-    let params = JSON.parse(sessionStorage.getItem("params"));
+    // let List = JSON.parse(sessionStorage.getItem("pointList"));
+    // let params = JSON.parse(sessionStorage.getItem("params"));
 
-    // let start =JSON.parse(sessionStorage.getItem('start'))
-    // console.log("start",start)
-    // console.log("params",params)
+    // // let start =JSON.parse(sessionStorage.getItem('start'))
+    // // console.log("start",start)
+    // // console.log("params",params)
     
 
-    if (List) {
-      this.List = List;
-      let pageNum=Math.ceil(this.List.length/params.pageSize);
+    // if (List) {
+    //   this.List = List;
+    //   let pageNum=Math.ceil(this.List.length/params.pageSize);
 
-      this.params = params;
-        if(List[0].pages>pageNum){
-        this.allLoaded=false
-        }else{
-        this.allLoaded=true
-      }
-    }
+    //   this.params = params;
+    //     if(List[0].pages>pageNum){
+    //     this.allLoaded=false
+    //     }else{
+    //     this.allLoaded=true
+    //   }
+    // }
   },
   created() {
     this.getList();
@@ -126,7 +111,7 @@ export default {
           console.log("返回成功信息", resData.LS_DS);
           //   成功   1000
           if (resData.enCode == 1000) {
-            this.$toast("提交成功");
+            // this.$toast("提交成功");
             if (resData.LS_DS.length > 0) {
               this.List = [...this.List, ...resData.LS_DS];
               let pageNum = Math.ceil(this.List.length / this.params.pageSize);
@@ -166,11 +151,16 @@ export default {
     },
     // 搜索
     search() {
-      this.allLoaded = true;
+      if(this.params.AAA102){
+        this.allLoaded = true;
       this.List = [];
       this.params.pageNum = 1;
       this.getList();
       console.log("清空List",this.List)
+      }else{
+        this.$toast("请输入查询条件")
+      }
+      
     },
     formatSubmitData() {
       let submitForm = {};
