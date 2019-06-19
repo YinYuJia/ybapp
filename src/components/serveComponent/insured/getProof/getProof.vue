@@ -52,7 +52,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话：</span></div>
-                    <div class="InfoText"><input type="number" v-model="form.AAE005" placeholder="请输入联系人电话号码"></div>
+                    <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入联系人电话号码"></div>
                 </div>
                 <!-- <div class="InfoLine">
                     <div class="InfoName"><span>省市信息</span></div>

@@ -12,11 +12,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码：</span></div>
-                    <div class="InfoText"><input type="number" v-model="form.AAE005" placeholder="请输入手机号码"></div>
+                    <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入手机号码"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>邮政编码：</span></div>
-                    <div class="InfoText"><input type="number" v-model="form.AAE007" placeholder="请输入邮政编码"></div>
+                    <div class="InfoText"><input type="tel" maxlength="6" v-model="form.AAE007" placeholder="请输入邮政编码"></div>
                 </div>
             </div>
             <!-- 提示 -->

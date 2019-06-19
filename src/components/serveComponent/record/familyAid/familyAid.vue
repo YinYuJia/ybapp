@@ -35,7 +35,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>被授权人身份证</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input type="number" v-model="form.BAC002" placeholder="请输入"></div>
+                        <div class="InfoText"><input type="tel" maxlength="18" v-model="form.BAC002" placeholder="请输入"></div>
                     </div>
                 </div>
                 <div class="InfoLine">
