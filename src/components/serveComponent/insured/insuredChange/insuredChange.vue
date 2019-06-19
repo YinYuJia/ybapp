@@ -11,7 +11,7 @@
                     <div class="InfoText"><textarea v-model="form.AAE006" placeholder="请输入家庭住址"></textarea></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>手机d号码：</span></div>
+                    <div class="InfoName"><span>手机号码：</span></div>
                     <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入手机号码"></div>
                 </div>
                 <div class="InfoLine">
