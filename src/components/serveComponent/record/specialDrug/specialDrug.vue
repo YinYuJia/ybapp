@@ -343,7 +343,7 @@ export default {
         console.log(params);
         
         this.$axios
-          .post(this.epFn.ApiUrl1() + "/h5/jy1023/specialTreat", params)
+          .post(this.epFn.ApiUrl() + "/h5/jy1023/specialTreat", params)
           .then(resData => {
             if (resData.enCode == "1000") {
               this.$store.dispatch("SET_SPECIAL_DRUG", this.form);
@@ -383,7 +383,7 @@ export default {
         "2001"
       );
       this.$axios
-        .post(this.epFn.ApiUrl1() + "/app/jy2001/optionInformationList", params)
+        .post(this.epFn.ApiUrl() + "/app/jy2001/optionInformationList", params)
         .then(resData => {
           if (resData.enCode == "1000") {
               return resData

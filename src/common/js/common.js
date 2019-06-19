@@ -35,9 +35,9 @@ export default {
     // ApiUrl2:function() {
     //     return ''
     // },
-    SaveNativeData( data ) {
-      return data
-    },
+    // SaveNativeData( data ) {
+    //   return data
+    // },
 
     // 公共请求参数封装 nativemsg 原生公共报文头 data 我们要穿的参数  tradeCode 交易号码
     commonRequsetData(nativemsg,data , tradeCode) {

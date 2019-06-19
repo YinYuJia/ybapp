@@ -53,7 +53,7 @@ export default {
 
         let params=this.formatSubmitData();
         console.log(params);
-        this.$axios.post(this.epFn.ApiUrl2() + '/h5/jy1016/info', params).then((resData) => {
+        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1016/info', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  

@@ -38,7 +38,7 @@ module.exports = {
     // 殷宇佳
     // host: 'localhost', 
     // host: '192.168.200.121',
-    host: '192.168.1.178',
+    host: '0.0.0.0',
  
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
