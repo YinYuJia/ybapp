@@ -192,6 +192,7 @@ export default {
         },
         handleStartConfirm(val){
             let date = this.util.formatDate(val,'yyyy-MM-dd');
+            console.log("data",date)
             this.form.AAE030 = date;
         },
         // 选择回杭日期
@@ -214,6 +215,8 @@ export default {
         },
         // 提交
         submit() {
+            console.log(this.form.AAE030)
+            console.log(this.form.AAE031)
             if(this.form.AAE005){
                 if(!this.util.checkPhone(this.form.AAE005)){
                     this.$toast('请填写正确的联系电话');
@@ -252,8 +255,8 @@ export default {
         formatSubmitData(){
             let submitForm ={};
             // 日期传换成Number
-            submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
-            submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
+            submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030).toString();
+            submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031).toString();
 
             submitForm.AAS301 = this.form.AAS301//申请地省
             submitForm.AAB301 = this.form.AAB301//申请地市
