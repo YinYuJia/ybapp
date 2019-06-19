@@ -19,11 +19,11 @@
     <div class="SearchContent">
       <div class="SearchBox">
         <svg-icon icon-class="serveComponent_search"/>
-        <input class="InputContent" placeholder="按疾病名称查找">
-        <div class="SearchBtn">搜索</div>
+        <input class="InputContent" v-model="params.AAA102" :placeholder="'查找'+title">
+        <div class="SearchBtn" @click="search">搜索</div>
       </div>
     </div>
-
+<div class="content" :style="{height: height,fontSize:'16px'}">
     <mt-loadmore
       :bottom-method="loadBottom"
       :bottom-all-loaded="allLoaded"
@@ -39,6 +39,7 @@
       </ul>
     </mt-loadmore>
     <div class="footer" v-if="List.length < 20 && List.length >= 0">没有更多数据了~</div>
+</div>
   </div>
 </template>
 
@@ -57,40 +58,19 @@ export default {
         { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
         { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
         { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
-        { AKB020: "3302001100003", hospitalName: "宁波市北仑区人民医院" },
+        
+      
 
       ],
       smallReimForm: {}, // 零星报销对象
       params: {
-        pageSize: 10,
+        pageSize: 20,
         pageNum: "1",
         AAA102: ""
       },
-      allLoaded: false,
+      allLoaded: true,
       showSearch: false,
+      height: window.innerHeight - 50 + "px"
     };
   },
   props: {
@@ -116,15 +96,10 @@ export default {
 
     if (List) {
       this.List = List;
-      console.log("pointList",this.List.length)
-      
       let pageNum=Math.ceil(this.List.length/params.pageSize);
 
-      console.log("pointList",List[0].totalPage)
-      console.log("paramsNum",pageNum)
-      this.status = '1';
       this.params = params;
-        if(List[0].totalPage>pageNum){
+        if(List[0].pages>pageNum){
         this.allLoaded=false
         }else{
         this.allLoaded=true
@@ -132,15 +107,22 @@ export default {
     }
   },
   created() {
-    this.init();
+    this.getList();
   },
   methods: {
-    init() {
+    // 获取医院列表
+    getList() {
       // 封装数据
-      this.allLoaded = false;
+      let This = this
+      setTimeout(function(){
+        This.allLoaded = false;
+
+      },100)
       let params = this.formatSubmitData();
       // 开始请求
-      this.$axios.post(this.epFn.ApiUrl1()+"/app/jy2001/optionInformationList",params).then(resData => {
+      console.log(params);
+      
+      this.$axios.post(this.epFn.ApiUrl1()+"/h5/jy2001/optionInformationList",params).then(resData => {
           console.log("返回成功信息", resData.LS_DS);
           //   成功   1000
           if (resData.enCode == 1000) {
@@ -150,12 +132,15 @@ export default {
               let pageNum = Math.ceil(this.List.length / this.params.pageSize);
               //向上取整
               this.params.pageNum = pageNum;
-              if (resData.page > pageNum) {
+              // 总页数
+              if (resData.pages > pageNum) {
                 this.params.pageNum += 1;
                 this.allLoaded = false;
                 sessionStorage.setItem("params", JSON.stringify(this.params));
-                sessionStorage.setItem("pointList", JSON.stringify(this.List));
+                // sessionStorage.setItem("pointList", JSON.stringify(this.List));
               }
+              sessionStorage.setItem("pointList", JSON.stringify(this.List));
+              sessionStorage.setItem("params", JSON.stringify(this.params));
               // sessionStorage.setItem("params", JSON.stringify(this.params));
             }
           } else if (resData.enCode == 1001) {
@@ -172,12 +157,20 @@ export default {
         // 加载更多数据
         console.log('加载')
       if (!this.allLoaded) {
-        this.init();
+        this.getList();
         
       }
         this.allLoaded = true;// 若数据已全部获取完毕
         this.$refs.loadmore.onBottomLoaded();
         
+    },
+    // 搜索
+    search() {
+      this.allLoaded = true;
+      this.List = [];
+      this.params.pageNum = 1;
+      this.getList();
+      console.log("清空List",this.List)
     },
     formatSubmitData() {
       let submitForm = {};
@@ -306,5 +299,8 @@ export default {
   background: #f2f2f2;
   font-size: 14px;
   text-align: center;
+}
+.content{
+  overflow: auto;
 }
 </style>
