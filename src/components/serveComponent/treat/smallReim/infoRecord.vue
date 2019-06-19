@@ -9,7 +9,7 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>银行账号：</span></div>
-                    <div class="InfoText"><input type="number" v-model="form.AAE010" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="tel" maxlength="19" v-model="form.AAE010" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户行：</span></div>
@@ -58,6 +58,8 @@ export default {
                 AAE010: '', //银行账户
                 AAE008: '', //开户行
                 AAE009: '', //开户名
+                LS_DS1:[],
+                
             },
             canSubmit: false,
             progress:[
@@ -70,6 +72,7 @@ export default {
     },
     created(){
         console.log('submitForm',this.$store.state.SET_SMALL_REIM_SUBMIT);
+        console.log("SET_SMALL_REIM_2",this.$store.state.SET_SMALL_REIM_2)
     },
     methods:{
         submit(){
@@ -79,7 +82,7 @@ export default {
             }else{
                 let params = this.formatSubmitForm();
                 console.log(params);
-                this.$axios.post(this.epFn.ApiUrl2() + '/h5/jy1019/info', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1019/info', params).then((resData) => {
                     console.log('返回成功信息',resData)
                     //   成功   1000
                     if ( resData.enCode == 1000 ) {
@@ -101,6 +104,9 @@ export default {
             submitForm.AAE010 = this.form.AAE010;
             submitForm.AAE008 = this.form.AAE008;
             submitForm.AAE009 = this.form.AAE009;
+            submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2;
+            submitForm.LS_DS2 = [] 
+
             this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {

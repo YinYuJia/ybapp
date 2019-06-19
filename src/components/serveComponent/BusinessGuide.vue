@@ -59,7 +59,7 @@
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData('a',submitForm,'1015');
                 console.log('parmas------',params)
-                this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1015/itemQuery', params)
+                this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1015/itemQuery', params)
                 .then((resData) => {
                     console.log('返回成功信息',resData);
                     let List = resData.LS_DS;

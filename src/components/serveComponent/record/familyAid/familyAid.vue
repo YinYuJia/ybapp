@@ -35,7 +35,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>被授权人身份证</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input type="number" v-model="form.BAC002" placeholder="请输入"></div>
+                        <div class="InfoText"><input type="tel" maxlength="18" v-model="form.BAC002" placeholder="请输入"></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -104,18 +104,18 @@ import Footer from '../../common/Footer'
             this.form = this.$store.state.SET_FAMILYAID_OPERATION;
         },
         watch:{
-        // 监听领取信息
-        form:{
-            handler:function(val){
-                if ( val.AAS301 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
-                    this.canSubmit = true
-                }else{
-                    this.canSubmit = false
-                }
+            // 监听领取信息
+            form:{
+                handler:function(val){
+                    if ( val.AAS301 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
+                        this.canSubmit = true
+                    }else{
+                        this.canSubmit = false
+                    }
+                },
+                deep: true
             },
-            deep: true
         },
-    },
         methods: {
             // 选择参保地
             openInsuredPicker(){
@@ -150,7 +150,7 @@ import Footer from '../../common/Footer'
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl2()+ '/h5/jy1022/familyRecord', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1022/familyRecord', params).then((resData) => {
                     console.log('返回成功信息',resData)
                     //   成功   1000
                     if ( resData.enCode == 1000 ) {

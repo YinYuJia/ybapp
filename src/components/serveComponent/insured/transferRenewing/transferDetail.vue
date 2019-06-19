@@ -3,7 +3,7 @@
         <Title :title="'医保转移接续'" :backRouter="'/transferRenewing'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
-            <WorkProgress :currentStep="1"></WorkProgress>
+            <WorkProgress :currentStep="1" :progress=arr ></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -40,6 +40,12 @@ export default {
                 AAB301000: '', //转入地
                 AAE005: '' //手机号码
             },
+            arr:[
+                {step:1,name:'收件'},
+                {step:2,name:'转移'},
+                {step:3,name:'接续'},
+                {step:4,name:'办结'},
+            ]
         }
     },
     created(){
@@ -47,7 +53,7 @@ export default {
 
         let params=this.formatSubmitData();
         console.log(params);
-        this.$axios.post(this.epFn.ApiUrl2() + '/h5/jy1016/info', params).then((resData) => {
+        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1016/info', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  

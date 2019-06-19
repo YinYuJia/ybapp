@@ -12,11 +12,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码：</span></div>
-                    <div class="InfoText"><input v-model="form.AAE005" type="number" placeholder="请输入手机号码"></div>
+                    <div class="InfoText"><input v-model="form.AAE005" type="tel" maxlength="11" placeholder="请输入手机号码"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>邮政编码：</span></div>
-                    <div class="InfoText"><input v-model="form.AAE007" type="number" placeholder="请输入邮政编码"></div>
+                    <div class="InfoText"><input v-model="form.AAE007" type="tel" maxlength="6" placeholder="请输入邮政编码"></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -64,7 +64,7 @@ export default {
     created(){
         this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
         let params = this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl2()+ '/h5/jy2002/getRecord', params).then((resData) => {
+        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy2002/getRecord', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
@@ -105,7 +105,7 @@ export default {
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl2()+ '/h5/jy1010/info', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1010/info', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == '1000' ) {

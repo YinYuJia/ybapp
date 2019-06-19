@@ -53,7 +53,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>护照号码</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input type="number" v-model="form.BKE260" placeholder="请输入"></div>
+                        <div class="InfoText"><input type="text" v-model="form.BKE260" placeholder="请输入"></div>
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@ import Footer from '../../common/Footer'
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl2()+ '/h5/jy1021/info', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1021/info', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {

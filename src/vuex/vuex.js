@@ -212,6 +212,7 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAB301: '', //参保地市编码
           AAQ301: '', //参保地区编码
           AKA035: '', //规定病种
+          AKA035Name: '', //规定病种
           AKA120: '', //疾病编码1
           AKA121: '', //疾病名称1
           AKA1201: '', //疾病编码2
@@ -219,11 +220,34 @@ export default new Vuex.Store({  // 暴露与new vuex
           AKA1202: '', //疾病编码3
           AKA1212: '', //疾病名称3
           AAE030: '', //开始日期
-          BKE247: '', //病历本提取方式 1自取，2邮寄
+          BKE247: '1', //病历本提取方式 1自取，2邮寄
           AAE011: '', //收件人
           AAE005: '', //联系电话
           AAE006: '', //详细地址
       },
+      // 特治特药备案
+      SET_SPECIAL_DRUG:{
+        canbao: '',
+        AAB301: '', //参保地
+        AKB020: '', //就诊机构
+        BKE253: '', //项目类型
+        BKE228: '',//特药特治类型
+        AKA120: '', //疾病编码
+        AKA121: '', //疾病名称
+        BKE248: '', //用药时期
+        AKE001: '', //项目编码
+        AKE002: '', //项目名称
+        AKA071: '', //单位剂量
+        AKC226: '', //数量
+        BKE249: '', //备案剂量
+        AKA069: '', //自理比例
+        BKE250: '', //累计备案剂量
+        BKE251: '', //剩余备案剂量
+        BKE252: '', //实际使用量
+        AKB063: '', //备案天数
+        AAE030: '', //开始日期
+        AAE031: '' //结束日期
+    },
         
       },
       // 计算属性 getters
@@ -338,6 +362,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_CHRONIC_DISEASE(state,payload){
           state.SET_CHRONIC_DISEASE = payload;
+        },
+        SET_SPECIAL_DRUG(state,payload){
+          state.SET_SPECIAL_DRUG = payload;
         }
       },
 
@@ -407,6 +434,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         }, 
         SET_CHRONIC_DISEASE( context, payload ) {
           context.commit( 'SET_CHRONIC_DISEASE', payload );//context提交
+        },
+        SET_SPECIAL_DRUG( context, payload ) {
+          context.commit( 'SET_SPECIAL_DRUG', payload );//context提交
         },
       }
 })  

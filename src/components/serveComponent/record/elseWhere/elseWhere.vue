@@ -77,7 +77,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话</span></div>
-                    <div class="InfoText"><input type="number" v-model="form.AAE005" placeholder="请输入联系电话"></div>
+                    <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入联系电话"></div>
                 </div>
             </div>
         </div>
@@ -168,6 +168,9 @@ export default {
                         this.form.AAE031 = '';
                     }
                 }
+                if(val.AAE005.length>11){
+                    this.$toast('手机号码不能超过11位');
+                }
             },
             deep: true
         },
@@ -227,7 +230,7 @@ export default {
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl2()+ '/h5/jy1012/addRecord', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1012/addRecord', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {

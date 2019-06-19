@@ -9,15 +9,15 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>视作缴费年限</span></div>
-                    <div class="InfoText"><input type="number" v-model="form.AKC412" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="tel" v-model="form.AKC412" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>缴费月数</span></div>
-                    <div class="InfoText"><input type="number" v-model="form.BAC213" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="tel" v-model="form.BAC213" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>退休工资</span></div>
-                    <div class="InfoText"><input type="number" v-model="form.AAE041" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="tel" v-model="form.AAE041" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>提前退休类别</span></div>
@@ -53,17 +53,30 @@ export default {
                 BKE810: '', //提前退休类别
             },
             canSubmit: false,
-            types: [{
-                    value: '类别1',
-                    label: '类别1'
+            types: [
+                {
+                    value: '0',
+                    label: '否'
                 },
                 {
-                    value: '类别2',
-                    label: '类别2'
+                    value: '1',
+                    label: '因病'
                 },
                 {
-                    value: '类别3',
-                    label: '类别3'
+                    value: '3',
+                    label: '特殊工种'
+                },
+                {
+                    value: '4',
+                    label: '符合浙委办[2009]14号'
+                },
+                {
+                    value: '5',
+                    label: '其他'
+                },
+                {
+                    value: '6',
+                    label: '浙政发[2015]37号'
                 }
             ],
         }

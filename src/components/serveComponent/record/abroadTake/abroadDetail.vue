@@ -20,7 +20,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>取药机构:</span></div>
-                    <div class="InfoText">{{form.AKB020}}</div>
+                    <div class="InfoText">{{AKB02000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>护照号码:</span></div>
@@ -43,6 +43,7 @@ export default {
     },
     data() {
       return {
+          AKB02000:"",
         form: {
             AAB301000: '', //参保地
             AKB020: '',//取药机构
@@ -55,9 +56,8 @@ export default {
     created(){
         
         this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
-
         let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl2()+ '/h5/jy1009/getRecord', params).then((resData) => {
+        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  

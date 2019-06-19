@@ -6,23 +6,23 @@
             <div class="ListInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>备案号：</span></div>
-                    <div class="InfoText">71823919391</div>
+                    <div class="InfoText">{{form.AAZ267}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>备案类型：</span></div>
-                    <div class="InfoText">备案类型信息</div>
+                    <div class="InfoText">{{form.AKA083}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>审核状态：</span></div>
-                    <div class="InfoText">审核状态信息与内容</div>
+                    <div class="InfoText">{{form.AAE016}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>备案来源：</span></div>
-                    <div class="InfoText">备案来源信息</div>
+                    <div class="InfoText">{{form.BKE258}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>备案期限：</span></div>
-                    <div class="InfoText">2019-02-02</div>
+                    <div class="InfoText">{{form.AAE031}}</div>
                 </div>
             </div>
         </div>
@@ -38,13 +38,13 @@ export default {
     data () {
         return {
             form:{
+                AAZ267:"",//备案号
+                AKA083:"",//备案类型
+                AAE016:"",//审核状态
+                BKE258:"",//备案来源
+                AAE031:"",//备案期限
             },
-            List:[{
-                AAS301: '', //参保地省
-                AAB301: '', //参保地市
-                AAQ301: '', //参保地区
-                AAE091: '', //查询月数
-            }] 
+            List:[] 
         }
     },
     created () {
@@ -52,11 +52,12 @@ export default {
         // 封装数据
         let params = this.formatSubmitData();
         // 开始请求
-        this.$axios.post(this.epFn.ApiUrl2()+ '/h5/jy1028/getInfo', params).then((resData) => {
+        this.$axios.post(this.epFn.ApiUrl()+'/h5/jy1028/recordInformationinquiry', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
                         this.List = [...this.List, ...resData.LS_DS];
+                        this.form ={...this.from,...this.List[0]}
                         this.$toast("请求成功");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
