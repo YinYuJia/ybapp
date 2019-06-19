@@ -14,30 +14,10 @@ export default {
         return 'http://192.168.1.8:13030' // 本地测试
     },
     
-    ApiUrl1:function() {
-        // return 'http://192.168.1.96:13030' // 胡伟
-        return 'http://192.168.1.8:13030' // 本地测试
-    },
-
-    ApiUrl2:function() {
-        // return 'http://192.168.1.157:13030' // 魏陈涛
-        return 'http://192.168.1.8:13030' // 本地测试
-    },
-    
-
     //打包测试地址
     // ApiUrl:function() {
     //     return ''
     // },
-    // ApiUrl1:function() {
-    //     return ''
-    // },
-    // ApiUrl2:function() {
-    //     return ''
-    // },
-    SaveNativeData( data ) {
-      return data
-    },
 
     // 公共请求参数封装 nativemsg 原生公共报文头 data 我们要穿的参数  tradeCode 交易号码
     commonRequsetData(nativemsg,data , tradeCode) {

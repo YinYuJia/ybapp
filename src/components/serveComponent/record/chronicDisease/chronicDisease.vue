@@ -162,7 +162,7 @@
       <Footer :canSubmit="canSubmit" @submit="submit()"></Footer>
     </div>
     <!-- 规定病种 -->
-    <SearchInfoPage ref="species" @childrenClick="speciesClick"></SearchInfoPage>
+    <SearchInfoPage ref="species"  @childrenClick="speciesClick"></SearchInfoPage>
     <!-- 疾病1 -->
     <SearchInfoPage ref="disease1" @childrenClick="disease1Click"></SearchInfoPage>
     <!-- 疾病2 -->
@@ -321,7 +321,7 @@ export default {
         //   this.$store.dispatch("SET_CHRONIC_DISEASE", this.form);
             //   this.$router.push("/chronicDiseaseDetail");
         let params = this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl1() + "/h5/jy1024/diseasesRecord",params)
+        this.$axios.post(this.epFn.ApiUrl() + "/h5/jy1024/diseasesRecord",params)
           .then(resData => {
             if (resData.enCode == "1000") {
               this.$store.dispatch("SET_CHRONIC_DISEASE", this.form);

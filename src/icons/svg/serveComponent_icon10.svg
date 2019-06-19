@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/面性/特药备案</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/面性/特药备案" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="yao-7" transform="translate(18.000000, 10.000000)">
+            <rect id="Rectangle-2" fill="#0284FD" fill-rule="nonzero" x="0" y="23" width="85" height="82.3700818" rx="2"></rect>
+            <path d="M55.9232827,77.880771 L46.3891355,77.880771 L46.3891355,87.0331308 C46.3891355,89.5603037 44.4105491,91.6094393 41.8129556,91.6094393 C39.2166472,91.6094393 37.1092991,89.5603037 37.1092991,87.0331308 L37.1092991,77.880771 L27.703528,77.880771 C25.1059346,77.880771 23,75.831764 23,73.3045911 C23,70.7774182 25.1059346,68.7285397 27.703528,68.7285397 L37.1092991,68.7285397 L37.1092991,59.5760514 C37.1092991,57.04875 39.2163902,55 41.8129556,55 C44.4105491,55 46.3891355,57.04875 46.3891355,59.5760514 L46.3891355,68.7285397 L55.9234112,68.7285397 C58.5198481,68.7285397 60.6259112,70.7774182 60.6259112,73.3045911 C60.6259112,75.831764 58.5198481,77.8806425 55.9234112,77.8806425 L55.9232827,77.880771 Z" id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
+            <rect id="Rectangle-3" fill="#FFFFFF" x="8" y="32" width="69" height="13" rx="1"></rect>
+            <rect id="Rectangle" fill="#0284FD" x="10" y="0" width="65" height="24" rx="2"></rect>
+        </g>
+    </g>
+</svg>

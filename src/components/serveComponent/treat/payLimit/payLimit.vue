@@ -127,7 +127,7 @@ export default {
                 let params = this.formatSubmitData();
                 // 开始请求
                 console.log('parmas------',params)
-                this.$axios.post("http://192.168.1.8:13030" + '/h5/jy1025/addRecord', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1025/addRecord', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
