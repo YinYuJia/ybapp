@@ -54,6 +54,7 @@ export default {
             AAQ301:"",//参保地区
             BKZ019:""//经办编号
         },
+        List:[],
         currentStep:1,
         arr: [
             {step:1,name:'申请'},
@@ -64,23 +65,8 @@ export default {
       }
     },
     created(){
-        this.form = this.$store.state.SET_FAMILYAID_OPERATION;
-        let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
-            console.log('返回成功信息',resData)
-            //   成功   1000
-            if ( resData.enCode == 1000 ) {  
-                this.currentStep = Number(resData.LS_DS.BOD037)
-                this.$toast("提交成功");
-            }else if (resData.enCode == 1001 ) {
-            //   失败  1001
-                this.$toast(resData.msg);
-                return;
-            }else{
-                this.$toast('业务出错');
-                return;
-            }
-        })
+        this.request();
+        this.request1();
     },
     methods:{
         edit(){
@@ -93,10 +79,67 @@ export default {
                 this.$toast('撤销成功');
             });
         },
+        request(){
+            let params=this.formatSubmitData();
+            this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1009/getRecord', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    console.log(11111)
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
         formatSubmitData(){
             let submitForm = {}
             console.log(submitForm)
-                submitForm.AGA002 =  "确认-00253-013";
+                submitForm.AGA002 =  "确认-00253-023";
+                // submitForm.debugTest=  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        },
+        request1(){
+
+            let params=this.formatSubmitData1();
+            this.$axios.post("http://192.168.1.8:13030" + '/h5/jy1016/info', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    this.List=[...this.List,...resData.LS_DS_11]
+                    this.form={...this.from,...this.List[0]}
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        formatSubmitData1(){
+            let submitForm = {}
+            console.log(submitForm)
+                submitForm.AGA002 =  "确认-00253-023";
                 // submitForm.debugTest=  "true";
 
             // 加入用户名和电子社保卡号

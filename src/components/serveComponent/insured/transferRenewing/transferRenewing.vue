@@ -162,15 +162,7 @@ export default {
             }
         },
         formatSubmitData(){
-            let submitForm = {};
-            submitForm.AAS027 =  this.form.AAS027;
-            submitForm.AAA027 =  this.form.AAA027;
-            submitForm.AAQ027 =  this.form.AAQ027;
-            submitForm.AAS301 =  this.form.AAS301;
-            submitForm.AAB301 =  this.form.AAB301;
-            submitForm.AAQ301 =  this.form.AAQ301;
-            submitForm.AAE005 =  this.form.AAE005;
-            submitForm.BKZ019 =  this.form.BKZ019;
+            let submitForm = Object.assign({},this.form);
             // submitForm.debugTest="true"
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
