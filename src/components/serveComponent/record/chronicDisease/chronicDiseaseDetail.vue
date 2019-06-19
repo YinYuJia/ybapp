@@ -112,7 +112,7 @@ export default {
         }
         submitForm.AGA002= '确认-00253-004'
         const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
-        this.$axios.post( this.epFn.ApiUrl1() +  '/h5/jy1009/getRecord', params)
+        this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1009/getRecord', params)
         .then((resData) => {
             console.log(555555555,resData);
             if(resData.enCode==1000){

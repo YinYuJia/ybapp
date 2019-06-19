@@ -114,7 +114,7 @@ export default {
                 
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1011');
                 
-                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1011/QueryInsurance', params)
+                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1011/QueryInsurance', params)
                     .then((resData) => {
                         console.log(resData);
                         

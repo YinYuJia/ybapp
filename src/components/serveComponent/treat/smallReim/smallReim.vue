@@ -114,7 +114,7 @@ export default {
                 // 封装数据
                 let params = this.formatSubmitData();
                 console.log(params);
-                this.$axios.post(this.epFn.ApiUrl1() + '/h5/jy1026/getInvoice', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1026/getInvoice', params).then((resData) => {
                     console.log('返回成功信息',resData) 
                     //   成功   1000
                     if ( resData.enCode == 1000 ) {
