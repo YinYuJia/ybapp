@@ -215,9 +215,9 @@
                     <div class="IconText"><span>零星报销</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiaofeinianxian" />
-                        <svg-icon v-if="show" icon-class="indexInfoList-jiaofeinianxian1" />
+                    <div class="IconImg" @click="showWork('/payLimit','待遇报销','视同缴费年限核定')">
+                        <svg-icon v-if="show" icon-class="indexInfoList-jiaofeinianxian" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-jiaofeinianxian1" />
                     </div>
                     <div class="IconText"><span>缴费年限</span></div>
                 </el-col>
@@ -315,7 +315,7 @@
             </div>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/searchBaseInfo','个人信息查询','基本医疗保险参保人员个人信息查询')" >
+                    <div class="IconImg" @click="showDetail('searchBaseInfo','个人信息查询')" >
                         <svg-icon v-if="show" icon-class="indexInfoList-xinxichaxun" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-xinxichaxun1" />
                     </div>
@@ -323,7 +323,7 @@
                 </el-col>
 
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/searchInsuredInfo','参保信息查询','基本医疗保险参保人员参保信息查询')" >
+                    <div class="IconImg" @click="showDetail('searchInsuredInfo','参保信息查询')" >
                         <svg-icon v-if="show" icon-class="indexInfoList-canbaoxinxi" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-canbaoxinxi1" />
                     </div>
@@ -337,7 +337,7 @@
                     <div class="IconText"><span>办事进度</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg" @click="showWork('/searchFee','费用信息查询','基本医疗保险参保人员费用信息查询')">
+                    <div class="IconImg" @click="showDetail('searchFee','费用信息查询')">
                         <svg-icon v-if="show" icon-class="indexInfoList-jiaofeixinxi" />
                         <svg-icon v-if="hidden" icon-class="indexInfoList-jiaofeixinxi1" />
                     </div>
@@ -353,9 +353,9 @@
             </el-row>
             <el-row class="IconList">
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
-                        <svg-icon v-if="hidden" icon-class="indexInfoList-benanxinxi" />
-                        <svg-icon v-if="show" icon-class="indexInfoList-benanxinxi1" />
+                    <div class="IconImg"  @click="showDetail('searchRecord','备案信息查询')" >
+                        <svg-icon v-if="show" icon-class="indexInfoList-benanxinxi" />
+                        <svg-icon v-if="hidden" icon-class="indexInfoList-benanxinxi1" />
                     </div>
                     <div class="IconText"><span>备案信息</span></div>
                 </el-col>
@@ -437,6 +437,15 @@
                         info: url,
                         item:item,
                         itemInfo:itemInfo
+                    }
+                })
+            },
+            showDetail(url,item) {
+                sessionStorage.setItem("item",item);
+                this.$router.push({
+                    name: url,
+                    params: {
+                        item:item,
                     }
                 })
             }
