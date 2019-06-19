@@ -1,7 +1,7 @@
 <template>
   <div class="SearchInfoPage" v-if="showSearch">
     <!-- 标题 -->
-    <div class="Title">
+    <div class="Title" id="title">
         <el-row>
             <el-col :span="6">
                 <div class="BackIcon" @click="back()">
@@ -16,47 +16,49 @@
             </el-col>
         </el-row>
     </div>
-    <div class="SearchContent">
+    <div class="SearchContent" id="searchContent">
       <div class="SearchBox">
         <svg-icon icon-class="serveComponent_search"/>
         <input class="InputContent" v-model="params.AAA102" :placeholder="'查找'+title">
         <div class="SearchBtn" @click="search">搜索</div>
       </div>
     </div>
-<div class="content" :style="{height: height,fontSize:'16px'}">
-    <mt-loadmore
-      :bottom-method="loadBottom"
-      :bottom-all-loaded="allLoaded"
-      ref="loadmore"
-    >
-      <ul class="ListContent">
-        <li
-          class="List"
-          v-for="(item,index) in List"
-          :key="index"
-          @click="chooseHospital(item.AAA102,item.AAA103)"
-        >{{ item.AAA103 }}</li>
-      </ul>
-    </mt-loadmore>
-    <div class="footer" v-if="List.length < 15 && List.length >= 0">没有更多数据了~</div>
-</div>
+    <div class="content1" :style="{height:height,fontSize:'16px'}">
+        <mt-loadmore
+          :bottom-method="loadBottom"
+          :bottom-all-loaded="allLoaded"
+          ref="loadmore"
+        >
+          <ul class="ListContent">
+            <li
+              class="List"
+              v-for="(item,index) in List"
+              :key="index"
+              @click="chooseHospital(item.AAA102,item.AAA103)"
+            >{{ item.AAA103 }}</li>
+          </ul>
+        </mt-loadmore>
+        <div class="footer" v-if="allLoaded">没有更多数据了~</div>
+    </div>
   </div>
 </template>
 
 <script>
+// import { nextTick } from 'q';
 export default {
   data() {
     return {
       List: [],
       smallReimForm: {}, // 零星报销对象
       params: {
-        pageSize: 15,
+        pageSize: 10,
         pageNum: "1",
         AAA102: ""
       },
       allLoaded: true,
       showSearch: false,
-      height: window.innerHeight - 50 + "px"
+      heightTop:0,
+      height: 0
     };
   },
   props: {
@@ -69,7 +71,22 @@ export default {
         default: "搜索"
     }
   },
+  watch:{
+    showSearch(){
+      if(this.showSearch){
+          this.$nextTick(()=>{
+            let heightTop =  document.getElementById("searchContent").offsetHeight + document.getElementById("title").offsetHeight
+            console.log(heightTop);
+            
+            this.height = window.innerHeight -heightTop + "px"
+          })
+      }
+    }
+  },
   mounted() {
+    
+    // document.getElementById("SearchContent").offsetHeight
+    // document.getElementById("title").offsetHeight
     //如果有保存医院列表就从session里获取，没有就发起请求
     // let List = JSON.parse(sessionStorage.getItem("pointList"));
     // let params = JSON.parse(sessionStorage.getItem("params"));
@@ -98,11 +115,6 @@ export default {
     // 获取医院列表
     getList() {
       // 封装数据
-      let This = this
-      setTimeout(function(){
-        This.allLoaded = false;
-
-      },100)
       let params = this.formatSubmitData();
       // 开始请求
       console.log(params);
@@ -119,6 +131,8 @@ export default {
               this.params.pageNum = pageNum;
               // 总页数
               if (resData.pages > pageNum) {
+                console.log(pageNum,666666666);
+                
                 this.params.pageNum += 1;
                 this.allLoaded = false;
                 sessionStorage.setItem("params", JSON.stringify(this.params));
@@ -143,7 +157,6 @@ export default {
         console.log('加载')
       if (!this.allLoaded) {
         this.getList();
-        
       }
         this.allLoaded = true;// 若数据已全部获取完毕
         this.$refs.loadmore.onBottomLoaded();
@@ -266,23 +279,30 @@ export default {
       }
     }
   }
-  .ListContent {
-    width: 7.5rem;
-    background: #fff;
-    padding: 0 0.37rem;
-    .List {
-      height: 1.2rem;
-      font-size: 0.28rem;
-      color: #000;
-      letter-spacing: 0;
-      line-height: 1.2rem;
-      text-align: left;
-      border-bottom: 0.01rem solid #d5d5d5;
-      &:last-child {
-        border-bottom: none;
+  .content1{
+    overflow: auto;
+    // position: fixed;
+    // top: 2rem;
+    // height: 100%;
+    .ListContent {
+      width: 7.5rem;
+      background: #fff;
+      padding: 0 0.37rem;
+      .List {
+        height: 1.2rem;
+        font-size: 0.28rem;
+        color: #000;
+        letter-spacing: 0;
+        line-height: 1.2rem;
+        text-align: left;
+        border-bottom: 0.01rem solid #d5d5d5;
+        &:last-child {
+          border-bottom: none;
+        }
       }
-    }
+    }  
   }
+  
 }
 .footer {
   padding: 8px 0;
@@ -290,7 +310,5 @@ export default {
   font-size: 14px;
   text-align: center;
 }
-.content{
-  overflow: auto;
-}
+
 </style>
