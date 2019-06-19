@@ -129,7 +129,7 @@
             <span>剂量</span>
           </div>
           <div class="InfoText">
-            <input type="number" v-model="form.AKA071" placeholder="请选择">
+            <input type="tel" v-model="form.AKA071" placeholder="请选择">
             <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
         </div>
@@ -138,7 +138,7 @@
             <span>数量</span>
           </div>
           <div class="InfoText">
-            <input type="number" v-model="form.AKC226" placeholder="请选择">
+            <input type="tel" v-model="form.AKC226" placeholder="请选择">
             <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
         </div>

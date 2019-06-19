@@ -360,7 +360,8 @@
                     <div class="IconText"><span>备案信息</span></div>
                 </el-col>
                 <el-col :span="6" class="IconBox">
-                    <div class="IconImg">
+                    <!-- @click="showDetail('searchTreat','就诊信息查询')" -->
+                    <div class="IconImg" >
                         <svg-icon v-if="hidden" icon-class="indexInfoList-jiuzhenxinxi" />
                         <svg-icon v-if="show" icon-class="indexInfoList-jiuzhenxinxi1" />
                     </div>

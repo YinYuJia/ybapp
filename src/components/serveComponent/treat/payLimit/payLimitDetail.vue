@@ -20,7 +20,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>提前退休类别:</span></div>
-                    <div class="InfoText">{{form.BKE810}}</div>
+                    <div class="InfoText">{{form.BKE810 | trtireType}}</div>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@ export default {
     components:{
         Title,WorkProgress,Footer
     },
-    data() {
+    data() { 
         return {
             form: {},
             List:[]
@@ -46,6 +46,7 @@ export default {
     created () {
         this.request();
         this.request1();
+
     },
     methods:{
         edit(){
@@ -123,7 +124,7 @@ export default {
                     submitForm.AAE135 = "113344223344536624";
                 }      
                 // 请求参数封装
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
                 return params;
         }
     }

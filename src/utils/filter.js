@@ -73,4 +73,37 @@ export function specialType(val) {
     "21": "催眠治疗"
   }
   return obj[val]
+/*退休类别过滤*/
+export function trtireType(value) {
+  let str = "";
+  switch (parseInt(value)) {
+    case 0:
+      str = "否";
+      break;  
+
+    case 1:
+      str = "因病";
+      break;
+
+    case 3:
+      str = "特殊工种";
+      break;
+
+    case 4:
+      str = "符合浙委办[2009]14号";
+      break;
+
+    case 5:
+      str = "其他";
+      break;
+
+    case 6:
+      str = "浙政发[2015]37号";
+      break;
+
+      
+    default:
+      break;
+  }
+  return str;
 }
