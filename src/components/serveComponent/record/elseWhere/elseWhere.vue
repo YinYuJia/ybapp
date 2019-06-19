@@ -256,13 +256,13 @@ export default {
             let submitForm ={};
             // 日期传换成Number
             submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030).toString();
+            console.log('submitForm.AAE030 ',submitForm.AAE030 )
             submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031).toString();
+            console.log('submitForm.AAE031 ',submitForm.AAE031 )
 
             submitForm.AAS301 = this.form.AAS301//申请地省
             submitForm.AAB301 = this.form.AAB301//申请地市
-            submitForm.AAQ301 = this.form.AAQ301//申请地区
-            submitForm.AAE030=this.form.AAE030 //离杭日期
-            submitForm.AAE031=this.form.AAE031 //回杭日期
+            submitForm.AAQ301 = this.form.AAQ301//申请地区//离杭日期
             submitForm.AAS011=this.form.AAS011 //参保地省
             submitForm.AAE011=this.form.AAE011 //参保地市
             submitForm.AAQ011=this.form.AAQ011 //参保地区
@@ -282,6 +282,7 @@ export default {
             // 请求参数封装
             console.log('submitForm',submitForm)
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1012");
+            console.log("params444444444444444444444",params)
             return params;
         }
     }
