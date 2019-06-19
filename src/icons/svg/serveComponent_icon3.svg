@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/面性/医保账户</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/面性/医保账户" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="yibaoxinxi" transform="translate(5.000000, 12.000000)">
+            <path d="M110,25 L110,29 L-2.13162821e-14,29 L-2.13162821e-14,25 L-2.13162821e-14,2 C-2.14515528e-14,0.8954305 0.8954305,2.02906125e-16 2,0 L108,0 C109.104569,-2.02906125e-16 110,0.8954305 110,2 L110,25 Z M2,41 L108,41 C109.104569,41 110,41.8954305 110,43 L110,95 C110,96.1045695 109.104569,97 108,97 L2,97 C0.8954305,97 -2.11810113e-14,96.1045695 -2.13162821e-14,95 L-2.13162821e-14,43 C-2.14515528e-14,41.8954305 0.8954305,41 2,41 Z" id="Shape" fill="#0284FD" fill-rule="nonzero"></path>
+            <rect id="Rectangle" fill="#0284FD" fill-rule="nonzero" x="0" y="41" width="110" height="8"></rect>
+            <g id="Group" transform="translate(62.000000, 54.000000)" fill="#FFFFFF">
+                <path d="M4.23702992,9.80551901 L27.0670205,9.80551901 C29.3531822,9.80551901 31.2065054,12.0440775 31.2065054,14.805593 C31.2065054,17.5671086 29.3533048,19.805519 27.0668979,19.805519 L4.2371525,19.805519 C1.95074565,19.805519 0.097544988,17.5669605 0.097544988,14.805445 C0.097544988,12.0439294 1.95074565,9.80551901 4.2371525,9.80551901 L4.23702992,9.80551901 Z" id="Path" fill-rule="nonzero"></path>
+                <rect id="Rectangle-2" transform="translate(16.000000, 15.461538) rotate(90.000000) translate(-16.000000, -15.461538) " x="0.769230769" y="10.4615385" width="30.4615385" height="10" rx="4.46153846"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

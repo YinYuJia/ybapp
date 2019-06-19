@@ -48,11 +48,12 @@ if (value && (!(/\d{17}[\d|x]|\d{15}/).test(value) || (value.length !== 15 && va
 }
 //邮政编码校验
 function postOffic(value){
-    if(value && (!(/[1-9][0-9]{5}/).test(value))){
+    if(value && (!(/[1-9][0-9]{5}/).test(value))){  
         return false
     }else{
         return true
     }
+  
 } 
 
 //护照号校验
