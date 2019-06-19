@@ -73,6 +73,7 @@ export function specialType(val) {
     "21": "催眠治疗"
   }
   return obj[val]
+}
 /*退休类别过滤*/
 export function trtireType(value) {
   let str = "";
