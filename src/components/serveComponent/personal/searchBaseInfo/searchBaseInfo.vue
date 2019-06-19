@@ -6,75 +6,75 @@
             <div class="ListInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>姓名：</span></div>
-                    <div class="InfoText">{{this.List.AAC003 |tuoMin(0.1)}}</div>
+                    <div class="InfoText">{{form.AAC003 |tuoMin(0.1)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>社会保障号：</span></div>
-                    <div class="InfoText">{{this.List.AAE135 | tuoMin(1,1)}}</div>
+                    <div class="InfoText">{{form.AAE135 | tuoMin(1,1)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>性别：</span></div>
-                    <div class="InfoText">{{this.List.AAC004}}</div>
+                    <div class="InfoText">{{form.AAC004}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>出生日期：</span></div>
-                    <div class="InfoText">{{this.List.AAC006}}</div>
+                    <div class="InfoText">{{form.AAC006}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>参加工作日期：</span></div>
-                    <div class="InfoText">{{this.List.AAC007}}</div>
+                    <div class="InfoText">{{form.AAC007}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>人员性质：</span></div>
-                    <div class="InfoText">{{this.List.AAC021}}</div>
+                    <div class="InfoText">{{form.AAC021}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保状态：</span></div>
-                    <div class="InfoText">{{this.List.AAC008}}</div>
+                    <div class="InfoText">{{form.AAC008}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>待遇状态：</span></div>
-                    <div class="InfoText">{{this.List.AAC031}}</div>
+                    <div class="InfoText">{{form.AAC031}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>用工形式：</span></div>
-                    <div class="InfoText">{{this.List.AAC013}}</div>
+                    <div class="InfoText">{{form.AAC013}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>邮政编码：</span></div>
-                    <div class="InfoText">{{this.List.AAE007}}</div>
+                    <div class="InfoText">{{form.AAE007}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话：</span></div>
-                    <div class="InfoText">{{this.List.AAE005 | tuoMin(3,4)}}</div>
+                    <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>地址：</span></div>
-                    <div class="InfoText">{{this.List.AAE006}}</div>
+                    <div class="InfoText">{{form.AAE006}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>部门：</span></div>
-                    <div class="InfoText">{{this.List.AAC026}}</div>
+                    <div class="InfoText">{{form.AAC026}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>上年账户结余：</span></div>
-                    <div class="InfoText">{{this.List.BKC102}}</div>
+                    <div class="InfoText">{{form.BKC102}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>当年账户划入金额：</span></div>
-                    <div class="InfoText">{{this.List.BKC101}}</div>
+                    <div class="InfoText">{{form.BKC101}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>当年账户支出累计：</span></div>
-                    <div class="InfoText">{{this.List.BKC103}}</div>
+                    <div class="InfoText">{{form.BKC103}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>历年账户支出累计：</span></div>
-                    <div class="InfoText">{{this.List.BKC104}}</div>
+                    <div class="InfoText">{{form.BKC104}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>当年账户余额：</span></div>
-                    <div class="InfoText">{{this.List.BKC105}}</div>
+                    <div class="InfoText">{{form.BKC105}}</div>
                 </div>
             </div>
         </div>
@@ -89,7 +89,8 @@ export default {
     },
     data () {
         return {
-            List:[]
+            List:[],
+            form:{}
         }
     },
     created () {
@@ -97,12 +98,13 @@ export default {
         let params = this.formatSubmitData();
         // 开始请求
         console.log('parmas------',params)
-        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1013/info', params).then((resData) => {
+        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1013/info', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
                         if(resData.LS_DS){
                             this.List = [...this.List, ...resData.LS_DS];
+                            this.form={...this.form,...this.List}
                         }
                         this.$toast("提交成功");
                     }else if (resData.enCode == 1001 ) {

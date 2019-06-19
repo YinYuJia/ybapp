@@ -13,7 +13,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName">医疗机构：</div>
-                    <div class="InfoText">{{item.AKB021}}</div>
+                    <div class="InfoText">{{item.AKB021 | tooLong}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName">总费用：</div>
@@ -53,15 +53,20 @@ export default {
             // ],
             form:{
             },
-            List:[{
-                AKE010:"",//结算日期
-                AKA130:"",//医疗类别
-                AKB021:"",//医疗机构名称
-                AKC264:"",//医疗总费用
-                BKE450:"",//医保支付
-                BKE452:""//现金支付
-            }  
+            List:[
+                // AKE010:"",//结算日期
+                // AKA130:"",//医疗类别
+                // AKB021:"",//医疗机构名称
+                // AKC264:"",//医疗总费用
+                // BKE450:"",//医保支付
+                // BKE452:""//现金支付
+              
             ]
+        }
+    },
+    filters:{
+        tooLong(val){
+            return val.slice(0,13) + '...';
         }
     },
     created () {
@@ -70,37 +75,38 @@ export default {
         let params = this.formatSubmitData();
         // 开始请求
         console.log('parmas------',params)
-        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1027/getRecord', params).then((resData) => {
+        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1027/getRecord', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 //   成功   1000
-                    if ( resData.enCode == 1000 ) {
-                        this.List = [...this.List, ...resData.LS_DS];
-                        this.$toast("请求成功");
-                    }else if (resData.enCode == 1001 ) {
-                    //   失败  1001
-                        this.$toast(resData.msg);
-                        return;
-                    }else{
-                        this.$toast('业务出错');
-                        return;
-                    }
-            
+                if ( resData.enCode == 1000 ) {
+                    this.List = [...this.List, ...resData.LS_DS];
+                    this.$toast("请求成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
         })
-        this.List.AKC264
     },
     methods: {
         formatSubmitData(){
             let submitForm ={};
             // 日期传换成Number
-            submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
-            submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
+            // submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
+            submitForm.AAE030 ='2019-06-13';
+            submitForm.AAE031 ='2019-07-18';
+            // submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
             // submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
+                // submitForm.AAC003 = '胡';
+                submitForm.AAC003 = '殷宇佳';
                 submitForm.AAE135 = "113344223344536624";
             }
             // 请求参数封装

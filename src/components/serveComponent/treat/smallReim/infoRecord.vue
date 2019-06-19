@@ -17,7 +17,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户名：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入" readonly></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -73,6 +73,7 @@ export default {
     created(){
         console.log('submitForm',this.$store.state.SET_SMALL_REIM_SUBMIT);
         console.log("SET_SMALL_REIM_2",this.$store.state.SET_SMALL_REIM_2)
+        this.form.AAE009 = this.$store.state.SET_NATIVEMSG.name
     },
     methods:{
         submit(){
