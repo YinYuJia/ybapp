@@ -3,7 +3,7 @@
         <Title :title="'家庭共济备案'" :backRouter="'/familyAid'"></Title>
         <div class="Content">
             <!-- 事项进度 -->
-            <WorkProgress :currentStep="1"></WorkProgress>
+            <WorkProgress :currentStep="currentStep" :progress="arr"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -54,7 +54,13 @@ export default {
             AAQ301:"",//参保地区
             BKZ019:""//经办编号
         },
-        currentStep:1
+        currentStep:1,
+        arr: [
+            {step:1,name:'申请'},
+            {step:2,name:'受理'},
+            {step:3,name:'办结'},
+            {step:4,name:'送达'}
+        ],
       }
     },
     created(){
@@ -64,7 +70,7 @@ export default {
             console.log('返回成功信息',resData)
             //   成功   1000
             if ( resData.enCode == 1000 ) {  
-                console.log(11111)
+                this.currentStep = Number(resData.LS_DS.BOD037)
                 this.$toast("提交成功");
             }else if (resData.enCode == 1001 ) {
             //   失败  1001

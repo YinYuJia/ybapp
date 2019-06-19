@@ -79,7 +79,7 @@ export default {
         this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1009/getRecord', params)
         .then((resData) => {
             if(resData.encode==1000){
-                this.currentStep = Number(resData.LS_DS.BOD037)
+                this.currentStep = Number(resData.LS_DS[0].BOD037)
             }
         })
     },
