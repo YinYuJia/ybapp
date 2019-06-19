@@ -74,7 +74,7 @@ export default {
             let params = this.formatSubmitData();
             // 开始请求
             console.log('parmas------',params)
-            this.$axios.post('http://192.168.1.96:13010/app/jy2001/optionInformationList', params).then((resData) => {
+            this.$axios.post('http://192.168.1.96:13010/h5/jy2001/optionInformationList', params).then((resData) => {
                 console.log('返回成功信息',resData.LS_DS)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
