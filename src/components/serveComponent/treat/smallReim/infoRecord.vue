@@ -9,7 +9,7 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>银行账号：</span></div>
-                    <div class="InfoText"><input type="number" v-model="form.AAE010" placeholder="请输入"></div>
+                    <div class="InfoText"><input maxlength="23" type="tel" v-model="form.AAE010" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户行：</span></div>
