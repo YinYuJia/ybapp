@@ -121,7 +121,6 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
-                this.$router.push("/payLimitDetail");
                 this.$store.dispatch('SET_PAYLIMIT_OPERATION', this.form);     
                 // 封装数据
                 let params = this.formatSubmitData();
