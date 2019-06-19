@@ -20,7 +20,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>提前退休类别:</span></div>
-                    <div class="InfoText">{{BKE81000}}</div>
+                    <div class="InfoText">{{form.BKE810 | trtireType}}</div>
                 </div>
             </div>
         </div>
@@ -37,10 +37,8 @@ export default {
     components:{
         Title,WorkProgress,Footer
     },
-    data() {
-        
+    data() { 
         return {
-            BKE81000:"",
             form: {},
             List:[]
         }
@@ -86,19 +84,6 @@ export default {
                 if ( resData.enCode == 1000 ) {  
                     this.List=[...this.List,...resData.LS_DS_13]
                     this.form={...this.from,...this.List[0]}
-                    if(this.form.BKE81==0){
-                        this.BKE81000="否"
-                    }else if(this.form.BKE81==1){
-                        this.BKE81000="因病"
-                    }else if(this.form.BKE81==3){
-                        this.BKE81000="特殊工种"
-                    }else if(this.form.BKE81==4){
-                        this.BKE81000="符合浙委办[2009]14号"
-                    }else if(this.form.BKE81==5){
-                        this.BKE81000="其他"
-                    }else if(this.form.BKE81==6){
-                        this.BKE81000="浙政发[2015]37号"
-                    }
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001

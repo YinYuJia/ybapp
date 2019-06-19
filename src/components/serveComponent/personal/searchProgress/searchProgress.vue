@@ -9,16 +9,23 @@
                 <div class="MenuCell" @click="changeIndex(3)" :class="{'active': activeIndex == 3}">已办结</div>
             </div>
         </div>
-        <!-- 列表 -->
-        <div class="ListInfo">
-            <div class="ListLine" v-for="(item,index) in itemGroup" :key="index">
-                <div class="InfoName">
-                    <div class="InfoHead">{{item.name}}</div>
-                    <div class="InfoDate">{{item.date}}</div>
-                </div>
-                <svg-icon icon-class="serveComponent_arrowRight" />
-            </div>
+        <mt-loadmore v-show="itemGroup.length" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+            <!-- 列表 -->
+            <ul class="ListInfo">
+                <li class="ListLine" v-for="(item,index) in itemGroup" :key="index">
+                    <div class="InfoName">
+                        <div class="InfoHead">{{item.name}}</div>
+                        <div class="InfoDate">{{item.date}}</div>
+                    </div>
+                    <svg-icon icon-class="serveComponent_arrowRight" />
+                </li>
+            </ul>
+        </mt-loadmore>
+        <div v-show="!itemGroup.length">
+        <div class="pic_null"></div>
+        <div class="tip">暂无事项~~~</div>
         </div>
+        
     </div>
 </template>
 <script>
@@ -30,17 +37,30 @@ export default {
     },
     data(){
         return{
+            allLoaded: true,
             activeIndex: 1,
+            pageNum:1,
             itemGroup: [
-                {name: '基本医疗保险', date: '2019-05-19 12:09:31'},
-                {name: '领取基本医疗保险就医凭证', date: '2019-05-19 12:09:31'},
-                {name: '基本医疗保险职工参保信息变更登记', date: '2019-05-19 12:09:31'},
-                {name: '参保人员查询打印社会保险信息', date: '2019-05-19 12:09:31'},
+                // {name: '基本医疗保险', date: '2019-05-19 12:09:31'},
+                // {name: '领取基本医疗保险就医凭证', date: '2019-05-19 12:09:31'},
+                // {name: '基本医疗保险职工参保信息变更登记', date: '2019-05-19 12:09:31'},
+                // {name: '参保人员查询打印社会保险信息', date: '2019-05-19 12:09:31'},
             ],
+
 
         }
     },
+    created () {
+        this.request();  
+    },
     methods:{
+        loadBottom() {
+        if (!this.allLoaded) {
+            this.showList();
+        }
+        this.allLoaded = true;
+        this.$refs.loadmore.onBottomLoaded();
+        },
         changeIndex(index){
             this.activeIndex=index;
             this.itemGroup=[];
@@ -60,25 +80,23 @@ export default {
                 this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1014/getInfo', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
-                            if ( resData.enCode == 1000 ) {
-                                this.$router.push('/searchInsuredResult')
-                                this.$toast("请求成功");
-                            }else if (resData.enCode == 1001 ) {
-                            //   失败  1001
-                                this.$toast(resData.msg);
-                                return;
-                            }else{
-                                this.$toast('业务出错');
-                                return;
-                            }
+                        if ( resData.enCode == 1000 ) {
+                            this.$router.push('/searchInsuredResult')
+                            this.$toast("请求成功");
+                        }else if (resData.enCode == 1001 ) {
+                        //   失败  1001
+                            this.$toast(resData.msg);
+                            return;
+                        }else{
+                            this.$toast('业务出错');
+                            return;
+                        }
                 })
         },
         formatSubmitData(){
                 let submitForm ={};
-                submitForm.AAS301 = this.form.AAS301//申请地省
-                submitForm.AAB301 = this.form.AAB301//申请地市
-                submitForm.AAQ301 = this.form.AAQ301//申请地区
-                submitForm.AAE091 = this.form.AAE091//缴费月数
+                submitForm.BOD037 = ""//办件状态
+                submitForm.pageNum = this.form.pageNum//页码
                 // submitForm.debugTest=  "true";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -255,6 +273,11 @@ export default {
                 border-bottom: none;
             }
         }
+    }
+    .tip {
+        font-size: 16px;
+        color: #353535;
+        text-align: center;
     }
 }
 </style>
