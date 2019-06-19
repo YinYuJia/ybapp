@@ -75,7 +75,7 @@
             <div class="ChooseBox">
                 <div class="Name"><span>总金额:</span></div>
                 <div class="InputBox">
-                    <input type="number" placeholder="请输入总金额" v-model="form.TotalSum">
+                    <input type="tel" placeholder="请输入总金额" v-model="form.TotalSum">
                 </div>
             </div>
             <div class="ChooseBox">

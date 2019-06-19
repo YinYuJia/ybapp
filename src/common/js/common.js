@@ -10,17 +10,18 @@ export default {
     // 公用请求地址
 
     ApiUrl:function() {
-        return 'http://192.168.1.8:13030' // 吴学文
+        // return 'http://192.168.1.199:13030' // 吴学文
+        return 'http://192.168.1.8:13030' // 本地测试
     },
     
     ApiUrl1:function() {
         // return 'http://192.168.1.96:13030' // 胡伟
-        return 'http://192.168.1.8:13030' // 吴学文
+        return 'http://192.168.1.8:13030' // 本地测试
     },
 
     ApiUrl2:function() {
-        return 'http://192.168.1.8:13030' // 魏陈涛
-        return 'http://192.168.1.199:13030' // 吴学文
+        // return 'http://192.168.1.157:13030' // 魏陈涛
+        return 'http://192.168.1.8:13030' // 本地测试
     },
     
 
