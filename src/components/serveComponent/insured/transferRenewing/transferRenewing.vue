@@ -80,7 +80,7 @@ export default {
     },
     created () {
         this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
-        this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name|| "胡"
+        this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name|| "殷宇佳"
         this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard|| "113344223344536624"
     },
     watch: {
@@ -169,7 +169,7 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
+                submitForm.AAC003 = '殷宇佳';
                 submitForm.AAE135 = "113344223344536624";
             }
             // 请求参数封装
