@@ -17,7 +17,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="canbao" placeholder="请选择" disabled readonly></div>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="canbao" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
