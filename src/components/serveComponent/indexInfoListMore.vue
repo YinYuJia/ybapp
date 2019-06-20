@@ -145,7 +145,7 @@ export default {
         let titleHeight = document.getElementById('title').offsetHeight;
         this.containerHeight = (window.innerHeight - titleHeight) * 2 - titleHeight + 'px';
         // 注册滚动监听
-        window.addEventListener('scroll', this.handleScroll);
+        // window.addEventListener('scroll', this.handleScroll);
     },
     methods:{
         changeIndex(chooseId,index){
@@ -156,7 +156,6 @@ export default {
             window.scrollTo(0,scrollHieght - titleHeight);
         },
         handleScroll(){
-            console.log("111");
         }
     }
 }

@@ -46,6 +46,7 @@ import plusInvoice from '@/components/serveComponent/treat/smallReim/plusInvoice
 import infoRecord from '@/components/serveComponent/treat/smallReim/infoRecord'
 import reportComplete from '@/components/serveComponent/treat/smallReim/reportComplete'
 import smallReimDetail from '@/components/serveComponent/treat/smallReim/smallReimDetail'
+import invoiceDetail from '@/components/serveComponent/treat/smallReim/invoiceDetail'
 import payLimit from '@/components/serveComponent/treat/payLimit/payLimit'
 import payLimitDetail from '@/components/serveComponent/treat/payLimit/payLimitDetail'
 import searchBaseInfo from '@/components/serveComponent/personal/searchBaseInfo/searchBaseInfo'
@@ -258,6 +259,11 @@ export default new Router({
       path: '/smallReimDetail',
       name: 'smallReimDetail',
       component: smallReimDetail
+    },
+    {
+      path: '/invoiceDetail',
+      name: 'invoiceDetail',
+      component: invoiceDetail
     },
     {
       path: '/payLimit',

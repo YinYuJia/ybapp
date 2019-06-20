@@ -66,20 +66,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
     export default {
-=======
-import Title from '../../common/Title'
-import userBaseInfo from '../../common/userBaseInfo'
-import selectCity from '../../common/selectCity'
-import Footer from '../../common/Footer'
-import SearchInfoPage from "../../common/searchInfoPage";
-
-    export default {
-        components: {
-            Title,userBaseInfo,selectCity,Footer,SearchInfoPage
-        },
->>>>>>> 2ae9dce2b69ab216f3cc6d5b06b77ab2868b7c9e
         data() {
             return {
                 form: {
