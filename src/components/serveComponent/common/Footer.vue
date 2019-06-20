@@ -35,8 +35,8 @@ export default {
             default: '确认提交'
         },
         handleNumber:{
-            type: Number,
-            default: 0
+            type: Number|String,
+            default: ''
         }
     },
     methods:{
