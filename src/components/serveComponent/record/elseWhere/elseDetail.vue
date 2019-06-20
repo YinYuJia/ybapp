@@ -56,45 +56,28 @@ export default {
     data() {
       return {
         form: {
-                AAS011000:"",
-                AAB301000:"",
-                AAE030: '', //离杭日期
-                AAE031: '', //回杭日期
-                AAS011: '', //参保地省
-                AAE011: '', //参保地市
-                AAQ011: '', //参保地区
-                AAE006: '', //详细地址 
-                AKC030: '', //申请原因
-                AAE004: '', //联系人
-                AAE005: '', //联系电话
-                AAS301: '',//申请地省
-                AAB301: '',//申请地市
-                AAQ301: '',//申请地区
-                AGA002:'',
-
+                // AAS011000:"",
+                // AAB301000:"",
+                // AAE030: '', //离杭日期
+                // AAE031: '', //回杭日期
+                // AAS011: '', //参保地省
+                // AAE011: '', //参保地市
+                // AAQ011: '', //参保地区
+                // AAE006: '', //详细地址 
+                // AKC030: '', //申请原因
+                // AAE004: '', //联系人
+                // AAE005: '', //联系电话
+                // AAS301: '',//申请地省
+                // AAB301: '',//申请地市
+                // AAQ301: '',//申请地区
+                // AGA002:'',
         },
+        List:[]
       }
     },
-    created(){
-        
-        this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
-        let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
-            console.log('返回成功信息',resData)
-            //   成功   1000
-            if ( resData.enCode == 1000 ) {  
-                console.log(11111)
-                this.$toast("提交成功");
-            }else if (resData.enCode == 1001 ) {
-            //   失败  1001
-                this.$toast(resData.msg);
-                return;
-            }else{
-                this.$toast('业务出错');
-                return;
-            }
-        })
-
+    created(){      
+        this.request();
+        this.request1();
     },
     computed:{
         // address: function(){
@@ -112,7 +95,63 @@ export default {
                 this.$toast('撤销成功');
             });
         },
+        request(){
+            let params=this.formatSubmitData();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    console.log(11111)
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        request1(){
+            let params=this.formatSubmitData1();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1016/info', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    this.List=[...this.List,...resData.LS_DS_06]
+                    this.form={...this.form,...this.List[0]}
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
         formatSubmitData(){
+            let submitForm = {}
+            console.log(submitForm)
+                submitForm.AGA002 =  "确认-00253-013";
+                // submitForm.debugTest=  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '胡';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        },
+        formatSubmitData1(){
             let submitForm = {}
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-013";

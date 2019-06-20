@@ -141,11 +141,17 @@ export default {
         }
     },
     mounted(){
+<<<<<<< HEAD
         this.headerSwiper = new Swiper('.swiper-container', {
             slidesPerView: 3.5, //显示的范围
             observer:true,//修改swiper自己或子元素时，自动初始化swiper
             observeParents:true,//修改swiper的父元素时，自动初始化swiper
             freeMode: true, //去除惯性
+=======
+        new Swiper('.swiper-container', {
+            slidesPerView: 2, //显示的范围
+            spaceBetween: -8, //间隔大小
+>>>>>>> f2c48cedd4af3d01b4621ff1762e6b3eeeb962b2
         })
     },
     methods:{

@@ -38,6 +38,8 @@
         </div>
         <!-- 按钮 -->
         <Footer :canSubmit="canSubmit" :btnText="'下一步'" @submit="submit()"></Footer>
+    <SearchInfoPage ref="hospita" @childrenClick="hospitaClick" title="选择医院"></SearchInfoPage>
+
     </div>
 </template>
 
@@ -46,9 +48,11 @@ import Title from '../../common/Title'
 import WorkProgress from '../../common/WorkProgress'
 import userBaseInfo from '../../common/userBaseInfo'
 import Footer from '../../common/Footer'
+import SearchInfoPage from "../../common/searchInfoPage";
+
 export default {
     components: {
-        Title,WorkProgress,userBaseInfo,Footer
+        Title,WorkProgress,userBaseInfo,Footer,SearchInfoPage
     },
     data() {
         return {
@@ -93,8 +97,13 @@ export default {
     methods: {
         // 选择就诊医院
         chooseHospital(){
-            this.$store.dispatch('SET_SMALL_REIM_1', this.form);
-            this.$router.push('/searchHospital');
+            this.$refs.hospita.open();
+            // this.$store.dispatch('SET_SMALL_REIM_1', this.form);
+            // this.$router.push('/searchHospital');
+        },
+        hospitaClick(code,name){
+            this.form.hospitalName = name
+            this.form.AKB020 = code
         },
         // 选择就诊日期
         openTimePicker(){
@@ -138,7 +147,7 @@ export default {
         formatSubmitData(){
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
             delete submitForm.hospitalName; //删除医院名称
-            submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030).toString(); //改变日期格式
+            submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030) //改变日期格式
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

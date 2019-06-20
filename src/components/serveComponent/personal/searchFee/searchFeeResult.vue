@@ -75,7 +75,8 @@ export default {
         let params = this.formatSubmitData();
         // 开始请求
         console.log('parmas------',params)
-        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1027/getRecord', params).then((resData) => {
+        console.log('this.epFn.ApiUrl()',this.epFn.ApiUrl())
+        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1027/getRecord', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
@@ -95,18 +96,16 @@ export default {
         formatSubmitData(){
             let submitForm ={};
             // 日期传换成Number
-            // submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
-            submitForm.AAE030 ='2019-06-13';
-            submitForm.AAE031 ='2019-07-18';
-            // submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
+            submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030).toString();
+            submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031).toString();
             // submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                // submitForm.AAC003 = '胡';
-                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAC003 = '胡';
+
                 submitForm.AAE135 = "113344223344536624";
             }
             // 请求参数封装
