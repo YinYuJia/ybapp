@@ -3,7 +3,7 @@
         <Title :title="'转外就医备案'" :backRouter="'/turnOut'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
-            <WorkProgress :currentStep="1"></WorkProgress>
+            <WorkProgress :currentStep="currentStep"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊疗程:</span></div>
-                    <div class="InfoText">{{form.BKE255}}</div>
+                    <div class="InfoText">{{form.BKE255 | medicaladvice }}</div>
                 </div>
             </div>
         </div>
@@ -56,6 +56,7 @@ export default {
             // BKE255: '', //就诊疗程
             // BKZ019:""
         },
+        currentStep:1,
         List:[]
       }
     },
@@ -81,6 +82,7 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
+                    this.currentStep = Number(resData.LS_DS[0].BOD037) 
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001

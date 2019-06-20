@@ -141,7 +141,7 @@ export default {
         }
     },
     created() {
-        this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
+        // this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
         this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
         this.optionList = this.$store.state.SET_SELECTARRAY;
         console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
