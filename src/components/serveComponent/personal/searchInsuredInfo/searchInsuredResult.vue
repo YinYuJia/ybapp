@@ -47,12 +47,11 @@ export default {
         // 封装数据
         let params = this.formatSubmitData();
         // 开始请求
-        this.$axios.post("http://192.168.1.8:13030"+ '/h5/jy1016/info', params).then((resData) => {
+        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1014/getInfo', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        this.List = [...this.List, ...resData.LS_DS];
-                        this.form =    {...this.form,...this.List[0]}
+                        this.List=[...this.List,...this.resData.LS_DS]
                         this.$toast("请求成功");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
@@ -62,26 +61,30 @@ export default {
                         this.$toast('业务出错');
                         return;
                     }
+            
         })
     },
     methods: {
-     formatSubmitData(){
-            let submitForm ={};
-            submitForm.AGA002 = ""
-            // submitForm.debugTest=  "true";
-            // 加入用户名和电子社保卡号
-            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-            }else {
-                submitForm.AAC003 = '胡';
-                submitForm.AAE135 = "113344223344536624";
+        formatSubmitData(){
+                let submitForm ={};
+                submitForm.AAS301 = this.form.AAS301//申请地省
+                submitForm.AAB301 = this.form.AAB301//申请地市
+                submitForm.AAQ301 = this.form.AAQ301//申请地区
+                submitForm.AAE091 = this.form.AAE091//缴费月数
+                // submitForm.debugTest=  "true";
+                // 加入用户名和电子社保卡号
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    submitForm.AAC003 = '胡';
+                    submitForm.AAE135 = "113344223344536624";
+                }
+                // 请求参数封装
+                console.log('submitForm',submitForm)
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1014");
+                return params;
             }
-            // 请求参数封装
-            console.log('submitForm',submitForm)
-            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1014");
-            return params;
-        }
     }
 }
 </script>

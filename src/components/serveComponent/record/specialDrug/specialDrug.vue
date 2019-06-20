@@ -372,7 +372,7 @@ export default {
         submitForm.AAC003 = "鲁伟兴";
         submitForm.AAE135 = "330622197407215513";
       }
-      submitForm.debugTest = "true";
+      // submitForm.debugTest = "true";
       // 请求参数封装
       const params = this.epFn.commonRequsetData(
         this.$store.state.SET_NATIVEMSG.PublicHeader,

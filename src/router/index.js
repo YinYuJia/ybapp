@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from '@/components/serveComponent/index'
 import indexInfoList from '@/components/serveComponent/indexInfoList'
 import indexInfoList1 from '@/components/serveComponent/indexInfoList1'
+import indexInfoListMore from '@/components/serveComponent/indexInfoListMore'
 
 import First from '@/components/First';
 
@@ -76,6 +77,11 @@ export default new Router({
       path: '/indexInfoList1',
       name: 'indexInfoList1',
       component: indexInfoList1
+    },
+    {
+      path: '/indexInfoListMore',
+      name: 'indexInfoListMore',
+      component: indexInfoListMore
     },
 
     {
