@@ -74,6 +74,18 @@ export function specialType(val) {
   }
   return obj[val]
 }
+
+// 特药特质类型 AKC030 
+export function AKC030 (val) {
+  let obj = {
+    "1": "退休异地安置",
+    "2": "在职驻外工作",
+    "3": "异地探亲",
+    "4": "异地生育",
+    "5": "子女统筹异地学习/抚养"
+  }
+  return obj[val]
+}
 /*退休类别过滤*/
 export function trtireType(value) {
   let str = "";

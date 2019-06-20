@@ -28,7 +28,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请原因:</span></div>
-                    <div class="InfoText">{{form.AKC030}}</div>
+                    <div class="InfoText">{{form.AKC030 | AKC030}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系人:</span></div>
