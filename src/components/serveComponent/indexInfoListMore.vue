@@ -18,7 +18,7 @@ import Swiper from 'swiper';
 export default {
     mounted(){
         new Swiper('.swiper-container', {
-            slidesPerView: 1.5, //显示的范围
+            slidesPerView: 2, //显示的范围
             spaceBetween: -8, //间隔大小
         })
     },

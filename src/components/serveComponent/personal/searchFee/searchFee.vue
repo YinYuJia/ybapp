@@ -57,7 +57,7 @@ export default {
         }
     },
     created () {
-        this.form = this.$store.state.SET_SEARCHFEE_OPERATION;
+        // this.form = this.$store.state.SET_SEARCHFEE_OPERATION;
     },
     watch: {
         form: {

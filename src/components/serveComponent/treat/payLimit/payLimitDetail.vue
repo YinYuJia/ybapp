@@ -44,7 +44,7 @@ export default {
         }
     },
     created () {
-        // this.request();
+        this.request();
         this.request1();
 
     },
