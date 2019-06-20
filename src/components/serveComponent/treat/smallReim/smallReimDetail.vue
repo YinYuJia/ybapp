@@ -8,63 +8,78 @@
         
         <div class="Content">
             <!-- 列表 -->
-            <div class="MailInfo">
+            <div class="ListInfo">
                 <div class="InfoLine">
-                    <div class="InfoName"><span>报销总额:</span></div>
-                    <div class="InfoText">19940.13</div>
+                    <div class="InfoName"><span>发票总额:</span></div>
+                    <div class="InfoText"><span>19940.13</span></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>报销张数:</span></div>
-                    <div class="InfoText">10</div>
-                </div>
-                <div class="InfoLine">
-                    <div class="InfoName"><span>医保报销金额:</span></div>
-                    <div class="InfoText active">
-                        <span>1000.12</span>
-                        <div class="detailBtn">查看明细</div>
-                    </div>
+                    <div class="InfoName"><span>发票张数:</span></div>
+                    <div class="InfoText"><span>10</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请时间:</span></div>
-                    <div class="InfoText">2019-01-02 13:13:41</div>
+                    <div class="InfoText"><span>2019-01-02 13:13:41</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>进度时间:</span></div>
-                    <div class="InfoText">2019-01-12 15:11:23</div>
+                    <div class="InfoText"><span>2019-01-12 15:11:23</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>收款开户行:</span></div>
-                    <div class="InfoText">中国工商银行</div>
+                    <div class="InfoText"><span>中国工商银行</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>收款开户名:</span></div>
-                    <div class="InfoText">王某某</div>
+                    <div class="InfoText"><span>**某</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>收款银行账号:</span></div>
-                    <div class="InfoText">6222 9090 1391 0012 412</div>
+                    <div class="InfoText"><span>6222 90** **** ***2 412</span></div>
                 </div>
-                <!-- 进度时间 -->
-                <ProgressDate></ProgressDate>
             </div>
             <!-- 发票信息 -->
-            <div class="invoiceContent">
-                <div class="invoiceHint">发票附件:</div>
+            <div class="invoiceContent" v-if="!invoiceComplete">
+                <div class="invoiceHint">报销明细</div>
+                <!-- 报销中状态 -->
                 <div class="invoiceList" v-for="item in invoices" :key="item.code">
-                    <div class="invoicePhoto"></div>
-                    <div class="textBox">
-                        <div class="textLine">
-                            <span class="textName">发票号</span>
-                            <span class="textInfo">{{item.code}}</span>
+                    <div class="textLine">
+                        <span class="textName">发票号</span>
+                        <span class="textInfo">{{item.code}}</span>
+                    </div>
+                    <div class="textLine">
+                        <span class="textName">发票金额</span>
+                        <span class="textInfo">{{item.cost}}</span>
+                    </div>
+                    <div class="textLine">
+                        <span class="textName">状态</span>
+                        <span class="textInfo warn">{{item.state}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="invoiceContent" v-if="invoiceComplete">
+                <div class="invoiceHint">报销明细</div>
+                <!-- 报销完成状态 -->
+                <div class="invoiceList2" v-for="item in invoices" :key="item.code">
+                    <div class="textLine">
+                        <div class="textHeader" @click="showInvoiceDetail()">
+                            <span>医保报销金额：</span>
+                            <span class="active">￥1000.31</span>
+                            <svg-icon icon-class="serveComponent_arrowRight" />
                         </div>
-                        <div class="textLine">
-                            <span class="textName">科室名称</span>
-                            <span class="textInfo">{{item.name}}</span>
-                        </div>
-                        <div class="textLine">
-                            <span class="textName">总费用</span>
-                            <span class="textInfo">{{item.cost}}</span>
-                        </div>
+                        <div class="textInfo">已报销</div>
+                    </div>
+                    <div class="textLine">
+                        <span class="textName">发票金额</span>
+                        <span class="textInfo">{{item.code}}</span>
+                    </div>
+                    <div class="textLine">
+                        <span class="textName">发票金额</span>
+                        <span class="textInfo">{{item.cost}}</span>
+                    </div>
+                    <div class="textLine">
+                        <span class="textName">说明</span>
+                        <span class="textInfo">{{item.state}}</span>
                     </div>
                 </div>
             </div>
@@ -99,9 +114,11 @@ export default {
     },
     data(){
         return{
+            invoiceComplete: true,
             invoices:[
-                {code:'9123910023010230120301',name:'骨科',cost:'10239.03'},
-                {code:'9123910023010230120302',name:'外科',cost:'102.88'},
+                {code:'9123910023010230120301',state:'报销中',cost:'10239.03'},
+                {code:'9123910023010230120302',state:'报销中',cost:'102.88'},
+                {code:'9123910023010230120303',state:'报销中',cost:'2019.28'},
             ],
             needMoreInfo: true,
         }
@@ -116,6 +133,9 @@ export default {
                 this.$router.push('/Index');
                 this.$toast('撤销成功');
             });
+        },
+        showInvoiceDetail(){
+            this.$router.push('/invoiceDetail')
         },
         // 封装提交参数
         formatSubmitForm(){
@@ -146,7 +166,7 @@ export default {
     }
     .Content{
         margin-bottom: 1.6rem;
-        .MailInfo{
+        .ListInfo{
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;
@@ -154,9 +174,8 @@ export default {
             .InfoLine{
                 height: 1.2rem;
                 position: relative;
-                font-family: PingFangSC-Regular;
-                font-size: .28rem;
                 display: flex;
+                font-size: .28rem;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName{
                     width: 2.2rem;
@@ -165,18 +184,23 @@ export default {
                     span{
                         height: .6rem;
                         line-height: .6rem;
-                        color: #000000;
+                        color: #666;
                         letter-spacing: 0;
                     }
                 }
                 .InfoText{
                     width: 5rem;
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     letter-spacing: 0;
                     display: flex;
                     position: relative;
                     align-items: center;
+                    span{
+                        height: .6rem;
+                        line-height: .6rem;
+                        color: #000;
+                        letter-spacing: 0;
+                    }
                 }
                 .active{
                     font-size: .36rem;
@@ -194,51 +218,92 @@ export default {
                         letter-spacing: 0;
                     }
                 }
+                &:last-child{
+                    border-bottom: none;
+                }
             }
         }
         // 发票信息
         .invoiceContent{
             background: #FFF;
-            padding: 0 .3rem;
+            margin-top: .3rem;
+            padding: 0 .4rem;
             .invoiceHint{
+                height: .8rem;
+                padding-top: .4rem;
                 font-size: .28rem;
                 color: #000;
                 letter-spacing: 0;
                 text-align: left;
-                padding-top: .4rem;
             }
+            // 报销中状态
             .invoiceList{
-                height: 2.83rem;
-                border-bottom: .02rem solid #D3D3D3;
+                height: 2.8rem;
+                padding: .6rem 0;
+                border-bottom: .01rem solid #D5D5D5;
                 display: flex;
-                align-items: center;
-                .invoicePhoto{
-                    height: 1.5rem;
-                    width: 1.5rem;
-                    background: #D8D8D8;
-                }
-                .textBox{
-                    height: 1.5rem;
-                    width: 5rem;
+                flex-direction: column;
+                justify-content: space-between;
+                .textLine{
                     display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    .textLine{
-                        display: flex;
-                        margin-left: .28rem;
-                        .textName{
-                            width: 1.4rem;
-                            font-size: .28rem;
-                            text-align: left;
-                            color: #666666;
-                            letter-spacing: 0;
-                        }
+                    font-size: .28rem;
+                    .textName{
+                        width: 1.4rem;
+                        text-align: left;
+                        color: #666666;
+                        letter-spacing: 0;
+                    }
+                    .textInfo{
+                        color: #000000;
+                        letter-spacing: 0;
+                    }
+                    .warn{
+                        color: #FFA007;
+                    }
+                }
+                &:last-child{
+                    border-bottom: none;
+                }
+            }
+            // 报销完成状态
+            .invoiceList2{
+                height: 3.3rem;
+                padding: .42rem 0 .58rem 0;
+                border-bottom: .01rem solid #D5D5D5;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .textLine{
+                    display: flex;
+                    font-size: .28rem;
+                    &:first-child{
+                        justify-content: space-between;
                         .textInfo{
-                            font-size: .28rem;
-                            color: #000000;
-                            letter-spacing: 0;
+                            color: #007CEA;
                         }
                     }
+                    .textHeader{
+                        width: 4.1rem;
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: .28rem;
+                        .active{
+                            color: #007CEA;
+                        }
+                    }
+                    .textName{
+                        width: 1.4rem;
+                        text-align: left;
+                        color: #666666;
+                        letter-spacing: 0;
+                    }
+                    .textInfo{
+                        color: #000000;
+                        letter-spacing: 0;
+                    }
+                }
+                &:last-child{
+                    border-bottom: none;
                 }
             }
         }
@@ -247,7 +312,7 @@ export default {
             height: 3rem;
             background: #FFF;
             padding: 0 .3rem;
-            border-bottom: .02rem solid #D3D3D3;
+            margin-top: .3rem;
             .infoName{
                 height: 1.07rem;
                 line-height: 1.07rem;
@@ -272,6 +337,7 @@ export default {
             line-height: 38px;
             text-align: left;
             padding: .1rem .3rem;
+            margin-top: .3rem;
             .infoName{
                 letter-spacing: 0;
             }
