@@ -86,6 +86,14 @@ export function AKC030 (val) {
   }
   return obj[val]
 }
+// 就诊疗程 BKE255
+export function medicaladvice (val) {
+  let obj = {
+    "1": "就诊",
+    "2": "复诊",
+  }
+  return obj[val]
+}
 /*退休类别过滤*/
 export function trtireType(value) {
   let str = "";

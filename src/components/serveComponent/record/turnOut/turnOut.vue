@@ -83,8 +83,8 @@
                 canSubmit: false,
                 dateVal: new Date(), //默认绑定的时间
                 treatment: [
-                    {value:'初诊', label:'初诊'},
-                    {value:'复诊', value:'复诊'}
+                    {value:'1', label:'初诊'},
+                    {value:'2', label:'复诊'}
                 ],
             }
         },

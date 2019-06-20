@@ -32,15 +32,15 @@ export default {
     data() {
       return {
         form: {
-                AAE006: '', //家庭住址
-                AAE005: '', //手机号码
-                AAE007: '', //邮政编码
-                BKZ019: '', //经办编号
+                // AAE006: '', //家庭住址
+                // AAE005: '', //手机号码
+                // AAE007: '', //邮政编码
+                // BKZ019: '', //经办编号
         },
       }
     },
     created(){
-        this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
+        // this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
         let params=this.formatSubmitData();
         this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
             console.log('返回成功信息',resData)
@@ -70,7 +70,7 @@ export default {
         },
         formatSubmitData(){  
             let submitForm ={}
-            submitForm.AGA002 =  "公共服务-00501-004";
+            submitForm.AGA002 =  "公共服务-00501-005";
             // submitForm.debugTest =  "true";
 
             // 加入用户名和电子社保卡号

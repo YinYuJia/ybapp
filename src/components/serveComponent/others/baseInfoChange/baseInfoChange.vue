@@ -56,25 +56,8 @@ export default {
         }
     },
     created(){
-        this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
-        let params = this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy2002/getRecord', params).then((resData) => {
-                console.log('返回成功信息',resData)
-                //   成功   1000
-                    if ( resData.enCode == 1000 ) {
-                        this.form =resData;
-                        this.$toast("请求成功");
-                        this.$store.dispatch('SET_BASEINFOCHANGE_OPERATION', this.form);
-                    }else if (resData.enCode == 1001 ) {
-                    //   失败  1001
-                        this.$toast(resData.msg);
-                        return;
-                    }else{
-                        this.$toast('业务出错');
-                        return;
-                    }
-            
-        })
+        // this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
+
     },
     methods:{
         submit(){

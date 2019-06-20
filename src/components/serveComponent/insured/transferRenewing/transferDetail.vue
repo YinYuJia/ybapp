@@ -3,7 +3,7 @@
         <Title :title="'医保转移接续'" :backRouter="'/transferRenewing'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
-            <WorkProgress :currentStep="1" :progress=arr ></WorkProgress>
+            <WorkProgress :currentStep="currentStep" :progress=arr ></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -41,28 +41,15 @@ export default {
                 {step:2,name:'转移'},
                 {step:3,name:'接续'},
                 {step:4,name:'办结'},
-            ]
+            ],
+            currentStep:1,
+            List:[]
         }
     },
     created(){
-        this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
-
-        let params=this.formatSubmitData();
-        console.log(params);
-        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1016/info', params).then((resData) => {
-            console.log('返回成功信息',resData)
-            //   成功   1000
-            if ( resData.enCode == 1000 ) {  
-                this.$toast("提交成功");
-            }else if (resData.enCode == 1001 ) {
-            //   失败  1001
-                this.$toast(resData.msg);
-                return;
-            }else{
-                this.$toast('业务出错');
-                return;
-            }
-        })
+        // this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
+        this.request();
+        this.request1();
     },
     methods:{
         edit(){
@@ -75,22 +62,79 @@ export default {
                 this.$toast('撤销成功');
             });
         },
-        formatSubmitData(){
-            let submitForm = {};
+        request(){
+            let params=this.formatSubmitData();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) { 
+                    this.currentStep = Number(resData.LS_DS[0].BOD037) 
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        request1(){
+            let params=this.formatSubmitData1();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1016/info', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    this.List=[...this.List,...resData.LS_DS_07]
+                    this.form={...this.form,...this.List[0]}
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        formatSubmitData(){  
+            let submitForm ={}
             submitForm.AGA002 =  "公共服务-00512-001";
+            // submitForm.debugTest =  "true";
+
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '张三';
-                submitForm.AAE135 = "3302811";
+                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        },
+        formatSubmitData1(){
+            let submitForm = {}
+            console.log(submitForm)
+                submitForm.AGA002 =  "公共服务-00512-001";
+                // submitForm.debugTest=  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAE135 = "113344223344536624";
             }
             
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
             return params;
-        }
+        },
     }
 }
 </script>
