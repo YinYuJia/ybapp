@@ -13,7 +13,7 @@
                 <div class="btn" @click="confirm()">确定</div>
             </div>
         </mt-picker>
-        <mt-picker
+        <mt-picker 
             v-if="type=='3'"
             :showToolbar="true"
             :slots="fullCity"
