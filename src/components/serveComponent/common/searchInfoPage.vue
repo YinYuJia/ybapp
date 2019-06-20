@@ -51,7 +51,7 @@ export default {
       List: [],
       smallReimForm: {}, // 零星报销对象
       params: {
-        pageSize: 10,
+        pageSize: 15,
         pageNum: "1",
         AAA102: ""
       },

@@ -118,23 +118,23 @@ export default {
             canSubmit: false,
             dateVal: new Date(), //默认绑定的时间
             reportReason: [{
-                    value: '退休异地安置',
+                    value: '1',
                     label: '退休异地安置'
                 },
                 {
-                    value: '在职驻外工作学习',
+                    value: '2',
                     label: '在职驻外工作学习'
                 },
                 {
-                    value: '异地探亲',
+                    value: '3',
                     label: '异地探亲'
                 },
                 {
-                    value: '异地生育',
+                    value: '4',
                     label: '异地生育'
                 },
                 {
-                    value: '子女统筹异地学习/抚养',
+                    value: '5',
                     label: '子女统筹异地学习/抚养'
                 },
             ],
