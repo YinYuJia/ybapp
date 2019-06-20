@@ -255,9 +255,9 @@ export default {
         formatSubmitData(){
             let submitForm ={};
             // 日期传换成Number
-            submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030).toString();
+            submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030)
             console.log('submitForm.AAE030 ',submitForm.AAE030 )
-            submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031).toString();
+            submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031)
             console.log('submitForm.AAE031 ',submitForm.AAE031 )
 
             submitForm.AAS301 = this.form.AAS301//申请地省

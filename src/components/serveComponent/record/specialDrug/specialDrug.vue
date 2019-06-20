@@ -361,8 +361,8 @@ export default {
     // 提交信息封装
     formatSubmitData() {
       let submitForm = Object.assign({}, this.form);
-      submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030).toString();
-      submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031).toString();
+      submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030)
+      submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031)
       // let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
       // 加入用户名和电子社保卡号
       if (this.$store.state.SET_NATIVEMSG.name !== undefined) {

@@ -190,8 +190,8 @@ import Footer from '../../common/Footer'
             let submitForm = {};
             // 日期传换成Number
 
-            submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030).toString();
-            submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031).toString();
+            submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
+            submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
             submitForm.AAS301 =  this.form.AAS301;//参保地省
             submitForm.AAB301 =  this.form.AAB301;//参保地市
             submitForm.AAQ301 =  this.form.AAQ301;//参保地区
