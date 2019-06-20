@@ -87,6 +87,7 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAB301: '', //参保地市
           AAQ301: '', //参保地区
           AKB020: '',//取药机构
+          AKB020Name: '',//取药机构
           AAE030: '', //出境日期
           AAE031: '', //拟回国日期
           BKE260: '', //护照号码
