@@ -47,7 +47,7 @@
                     <div class="InfoName"><span>取药机构</span></div>
                     <div class="InfoText">
                         <!-- @click="gotoTakeDrug()" -->
-                        <div class="InfoText"><input type="text" v-model="form.AKB020" placeholder="请选择"   ></div>
+                        <div class="InfoText"><input type="text" @click="chooseHospital" v-model="form.AKB020Name" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -60,6 +60,8 @@
         </div>
         <!-- 按钮 -->
         <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
+    <SearchInfoPage ref="hospita" @childrenClick="hospitaClick" title="取药机构"></SearchInfoPage>
+
     </div>
 </template>
 
@@ -68,9 +70,11 @@ import Title from '../../common/Title'
 import userBaseInfo from '../../common/userBaseInfo'
 import selectCity from '../../common/selectCity'
 import Footer from '../../common/Footer'
+import SearchInfoPage from "../../common/searchInfoPage";
+
     export default {
         components: {
-            Title,userBaseInfo,selectCity,Footer
+            Title,userBaseInfo,selectCity,Footer,SearchInfoPage
         },
         data() {
             return {
@@ -80,6 +84,7 @@ import Footer from '../../common/Footer'
                     AAB301: '', //参保地市
                     AAQ301: '', //参保地区
                     AKB020: '',//取药机构
+                    AKB020Name: '',//取药机构
                     AAE030: '', //出境日期
                     AAE031: '', //拟回国日期
                     BKE260: '', //护照号码
@@ -122,6 +127,16 @@ import Footer from '../../common/Footer'
         methods: {
             gotoTakeDrug(){
                 this.$router.push('/searchTakeDrug')
+            },
+             // 选择取药机构
+            chooseHospital(){
+                this.$refs.hospita.open();
+                // this.$store.dispatch('SET_SMALL_REIM_1', this.form);
+                // this.$router.push('/searchHospital');
+            },
+            hospitaClick(code,name){
+                this.form.AKB020Name = name
+                this.form.AKB020 = code
             },
             // 选择参保地
             openInsuredPicker(){

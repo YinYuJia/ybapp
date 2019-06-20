@@ -107,6 +107,7 @@ export default {
     methods:{
         // 选择参保地
         onInsuredChange(picker, values){
+            this.country = "";
             if(values[0] !== undefined){
                 picker.setSlotValues(1, values[0].children);
                 this.province = values[0].name;

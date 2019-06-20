@@ -28,7 +28,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请原因:</span></div>
-                    <div class="InfoText">{{form.AKC030}}</div>
+                    <div class="InfoText">{{form.AKC030 | AKC030}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系人:</span></div>
@@ -143,7 +143,7 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
+                submitForm.AAC003 = '殷宇佳';
                 submitForm.AAE135 = "113344223344536624";
             }
             
@@ -162,7 +162,7 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
+                submitForm.AAC003 = '殷宇佳';
                 submitForm.AAE135 = "113344223344536624";
             }
             

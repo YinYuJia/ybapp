@@ -334,8 +334,8 @@ export default {
       this.form.AKE001 = code;
     },
     orgClick(code, name) {
-      this.form.AKB020 = name;
-      // this.form.AKE001 = code;
+      this.form.AKB020 = code;
+      this.form.AKB020Name = name;
     },
     submit() {
       if (this.canSubmit == false) {
