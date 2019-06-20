@@ -85,7 +85,7 @@ export default {
                 {step:3,name:'信息录入'},
                 {step:4,name:'申报完成'}
             ],
-            hasInvoice: true, //是否有发票信息
+            hasInvoice: false, //是否有发票信息
             // invoices:[  //发票信息
             //     {BKE100:'9123910023010230120301',BKA104:'骨科',AKC264: 10239.03,selected: false},
             //     {BKE100:'9123910023010230120302',BKA104:'外科',AKC264: 102.88,selected: false},
