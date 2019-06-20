@@ -14,7 +14,7 @@
             <!-- 填写进度 -->
             <WorkProgress :currentStep="1" :progress="progress"></WorkProgress>
             <!-- 基本信息 -->
-            <userBaseInfo style="background:white"></userBaseInfo>
+            <UserBaseInfo style="background:white"></UserBaseInfo>
             <!-- 列表信息 -->
             <div class="ReportInfo">
                 <div class="InfoLine">
@@ -44,16 +44,8 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import WorkProgress from '../../common/WorkProgress'
-import userBaseInfo from '../../common/userBaseInfo'
-import Footer from '../../common/Footer'
-import SearchInfoPage from "../../common/searchInfoPage";
 
 export default {
-    components: {
-        Title,WorkProgress,userBaseInfo,Footer,SearchInfoPage
-    },
     data() {
         return {
             // 提交信息

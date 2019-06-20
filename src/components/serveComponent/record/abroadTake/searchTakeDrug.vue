@@ -11,7 +11,7 @@
       <div class="ListContent" :style="{height: height}">
         <mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
           <ul class="border_bottom">
-            <li  v-if="isShow" v-for="item in List" class="List" @click="check(item)"
+            <li v-for="(item,index) in List" :key="index" class="List" @click="check(item)"
             >
               <h4 class="name">{{ item && item.AAA101 }}</h4>
               <!-- <div class="info">
@@ -30,11 +30,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
 export default {
-    components: {
-        Title
-    },
     data(){
         return{
             form:{},

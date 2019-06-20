@@ -34,13 +34,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import WorkProgress from '../../common/WorkProgress'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,WorkProgress,Footer
-    },
     data() {
       return {
           AKB02000:"",

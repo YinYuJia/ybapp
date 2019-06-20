@@ -16,7 +16,7 @@
         </mt-datetime-picker>
         <div class="Content">
             <!-- 基本信息 -->
-            <userBaseInfo></userBaseInfo>
+            <UserBaseInfo></UserBaseInfo>
             <!-- 变更信息 -->
             <div class="ListInfo">
                 <div class="InfoLine">
@@ -39,13 +39,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import userBaseInfo from '../../common/userBaseInfo'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,userBaseInfo,Footer
-    },
     data(){
         return{
             form:{

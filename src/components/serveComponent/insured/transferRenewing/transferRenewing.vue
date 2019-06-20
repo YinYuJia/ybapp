@@ -2,22 +2,22 @@
     <div class="insuredChange">
         <Title :title="'医保转移接续'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
-        <selectCity 
+        <SelectCity 
             :type="3"
             ref="inCityPicker"
             @confirm="chooseInCity"
             >
-        </selectCity>
-        <selectCity 
+        </SelectCity>
+        <SelectCity 
             :type="3"
             ref="outCityPicker"
             @confirm="chooseOutCity"
             >
-        </selectCity>
+        </SelectCity>
         <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
-            <userBaseInfo></userBaseInfo>
+            <UserBaseInfo></UserBaseInfo>
             <!-- 变更信息 -->
             <div class="ReportInfo">
                 <div class="InfoLine">
@@ -49,14 +49,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import userBaseInfo from '../../common/userBaseInfo'
-import selectCity from '../../common/selectCity'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,userBaseInfo,selectCity,Footer
-    },
     data(){
         return{
             form:{

@@ -3,7 +3,7 @@
         <Title :title="'社保卡补卡换卡'" :backRouter="'/'"></Title>
         <div class="Content">
             <!-- 用户信息 -->
-            <userBaseInfo></userBaseInfo>
+            <UserBaseInfo></UserBaseInfo>
             <!-- 领取信息 -->
             <div class="GetInfo">
                 <div class="InfoLine">
@@ -62,13 +62,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import userBaseInfo from '../../common/userBaseInfo'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,userBaseInfo,Footer
-    },
     data(){
         return{
             form:{

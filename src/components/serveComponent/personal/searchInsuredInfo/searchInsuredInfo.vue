@@ -2,16 +2,16 @@
     <div class="searchInsuredInfo">
         <Title :title="'个人参保信息'" :backRouter="'/'"></Title>
         <!-- 弹出区域 -->
-        <selectCity 
+        <SelectCity 
             :type="3"
             ref="cityPicker"
             @confirm="chooseCity"
             >
-        </selectCity>
+        </SelectCity>
         <!-- 弹出区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
-            <userBaseInfo></userBaseInfo>
+            <UserBaseInfo></UserBaseInfo>
             <!-- 变更信息 -->
             <div class="ListInfo">
                 <div class="InfoLine">
@@ -37,14 +37,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import userBaseInfo from '../../common/userBaseInfo'
-import selectCity from '../../common/selectCity'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,userBaseInfo,selectCity,Footer
-    },
     data(){
         return{
             form:{
