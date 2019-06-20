@@ -147,7 +147,7 @@ export default {
         formatSubmitData(){
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
             delete submitForm.hospitalName; //删除医院名称
-            submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030).toString(); //改变日期格式
+            submitForm.AAE030 = this.util.DateToNumber(submitForm.AAE030) //改变日期格式
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

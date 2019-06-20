@@ -25,7 +25,7 @@ function padLeftZero (str) {
 // 日期转换为Number
 function DateToNumber(date){
     let dateNum = date.replace(/-/g,'');
-    return parseInt(dateNum);
+    return dateNum
 }
 
 function checkPhone(phoneStr){ 

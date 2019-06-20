@@ -172,7 +172,7 @@ import Footer from '../../common/Footer'
             formatSubmitData(){
                 let submitForm ={}
                      // 日期传换成Number
-                    submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030).toString();
+                    submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030)
                     submitForm.BAC003=this.form.BAC003,//被授权人姓名
                     submitForm.BAC002=this.form.BAC002,//被授权人身份证
                     submitForm.AAE144=this.form.AAE144,//绑定关系

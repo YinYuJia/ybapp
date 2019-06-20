@@ -192,6 +192,7 @@ export default {
         },
         handleStartConfirm(val){
             let date = this.util.formatDate(val,'yyyy-MM-dd');
+            console.log("data",date)
             this.form.AAE030 = date;
         },
         // 选择回杭日期
@@ -214,6 +215,8 @@ export default {
         },
         // 提交
         submit() {
+            console.log(this.form.AAE030)
+            console.log(this.form.AAE031)
             if(this.form.AAE005){
                 if(!this.util.checkPhone(this.form.AAE005)){
                     this.$toast('请填写正确的联系电话');
@@ -276,6 +279,7 @@ export default {
             // 请求参数封装
             console.log('submitForm',submitForm)
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1012");
+            console.log("params444444444444444444444",params)
             return params;
         }
     }
