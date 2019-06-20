@@ -57,7 +57,7 @@
                     <svg-icon icon-class="serveComponent_icon11" />
                     <div class="text">就医凭证</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="goRouter('/indexInfoListMore')">
                     <svg-icon icon-class="serveComponent_icon12" />
                     <div class="text">更多</div>
                 </div>
@@ -112,11 +112,18 @@ export default {
             spaceBetween: -8, //间隔大小
             slidesOffsetBefore: 10, //靠左偏移量
             slidesOffsetAfter: 10, //靠左偏移量
+            observer:true,//修改swiper自己或子元素时，自动初始化swiper
+            observeParents:true,//修改swiper的父元素时，自动初始化swiper
         })
     },
     filters:{
         msgLength: function(val){
             return val.slice(0,20) + '...';
+        }
+    },
+    methods:{
+        goRouter(route){
+            this.$router.push(route);
         }
     }
 }
