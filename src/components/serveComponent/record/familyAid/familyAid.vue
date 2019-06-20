@@ -94,7 +94,7 @@
             }
         },
         created() {
-            this.form = this.$store.state.SET_FAMILYAID_OPERATION;
+            // this.form = this.$store.state.SET_FAMILYAID_OPERATION;
         },
         watch:{
             // 监听领取信息
@@ -180,7 +180,7 @@
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 }else {
-                    submitForm.AAC003 = '胡';
+                    submitForm.AAC003 = '殷宇佳';
                     submitForm.AAE135 = "113344223344536624";
                 }
                 // 请求参数封装

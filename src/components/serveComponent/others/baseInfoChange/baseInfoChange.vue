@@ -8,15 +8,15 @@
             <div class="ChangeInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>家庭住址：</span></div>
-                    <div class="InfoText"><textarea v-model="form.AAE006" type="text" placeholder="请输入家庭住址"></textarea></div>
+                    <div class="InfoText"><textarea v-model="form.AAE006" type="text" placeholder="请输入"></textarea></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码：</span></div>
-                    <div class="InfoText"><input v-model="form.AAE005" type="tel" maxlength="11" placeholder="请输入手机号码"></div>
+                    <div class="InfoText"><input v-model="form.AAE005" type="tel" maxlength="11" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>邮政编码：</span></div>
-                    <div class="InfoText"><input v-model="form.AAE007" type="tel" maxlength="6" placeholder="请输入邮政编码"></div>
+                    <div class="InfoText"><input v-model="form.AAE007" type="tel" maxlength="6" placeholder="请输入"></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -128,7 +128,7 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
+                submitForm.AAC003 = '殷宇佳';
                 submitForm.AAE135 = "113344223344536624";
             }
             // 请求参数封装

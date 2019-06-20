@@ -71,7 +71,6 @@ export default {
         let params = this.formatSubmitData();
         // 开始请求
         console.log('parmas------',params)
-        console.log('this.epFn.ApiUrl()',this.epFn.ApiUrl())
         this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1027/getRecord', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 //   成功   1000
@@ -100,7 +99,7 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
+                submitForm.AAC003 = '殷宇佳';
 
                 submitForm.AAE135 = "113344223344536624";
             }

@@ -63,6 +63,7 @@ export default {
     created(){
         this.request();
         this.request1();
+        
     },
     methods:{
         edit(){
@@ -81,7 +82,6 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    console.log(11111)
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
@@ -104,7 +104,7 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
+                submitForm.AAC003 = '殷宇佳';
                 submitForm.AAE135 = "113344223344536624";
             }
             
@@ -143,7 +143,7 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
+                submitForm.AAC003 = '殷宇佳';
                 submitForm.AAE135 = "113344223344536624";
             }
             

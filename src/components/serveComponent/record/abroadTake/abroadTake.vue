@@ -47,7 +47,7 @@
                     <div class="InfoName"><span>取药机构</span></div>
                     <div class="InfoText">
                         <!-- @click="gotoTakeDrug()" -->
-                        <div class="InfoText"><input type="text" v-model="form.AKB020" placeholder="请选择"   ></div>
+                        <div class="InfoText"><input type="text" @click="chooseHospital" v-model="form.AKB020Name" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -60,11 +60,26 @@
         </div>
         <!-- 按钮 -->
         <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
+    <SearchInfoPage ref="hospita" @childrenClick="hospitaClick" title="取药机构"></SearchInfoPage>
+
     </div>
 </template>
 
 <script>
+<<<<<<< HEAD
     export default {
+=======
+import Title from '../../common/Title'
+import userBaseInfo from '../../common/userBaseInfo'
+import selectCity from '../../common/selectCity'
+import Footer from '../../common/Footer'
+import SearchInfoPage from "../../common/searchInfoPage";
+
+    export default {
+        components: {
+            Title,userBaseInfo,selectCity,Footer,SearchInfoPage
+        },
+>>>>>>> 2ae9dce2b69ab216f3cc6d5b06b77ab2868b7c9e
         data() {
             return {
                 form: {
@@ -73,6 +88,7 @@
                     AAB301: '', //参保地市
                     AAQ301: '', //参保地区
                     AKB020: '',//取药机构
+                    AKB020Name: '',//取药机构
                     AAE030: '', //出境日期
                     AAE031: '', //拟回国日期
                     BKE260: '', //护照号码
@@ -115,6 +131,16 @@
         methods: {
             gotoTakeDrug(){
                 this.$router.push('/searchTakeDrug')
+            },
+             // 选择取药机构
+            chooseHospital(){
+                this.$refs.hospita.open();
+                // this.$store.dispatch('SET_SMALL_REIM_1', this.form);
+                // this.$router.push('/searchHospital');
+            },
+            hospitaClick(code,name){
+                this.form.AKB020Name = name
+                this.form.AKB020 = code
             },
             // 选择参保地
             openInsuredPicker(){
@@ -197,7 +223,7 @@
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
+                submitForm.AAC003 = '殷宇佳';
                 submitForm.AAE135 = "113344223344536624";
             }
             // 请求参数封装

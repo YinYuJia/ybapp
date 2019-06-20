@@ -59,7 +59,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址</span></div>
                     <div class="InfoText">
-                        <textarea v-model="form.AAE006" placeholder="请输入详细地址"></textarea>
+                        <textarea v-model="form.AAE006" placeholder="请输入"></textarea>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -73,11 +73,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系人</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE004" placeholder="请输入联系人"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE004" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话</span></div>
-                    <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入联系电话"></div>
+                    <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入"></div>
                 </div>
             </div>
         </div>
@@ -163,6 +163,13 @@ export default {
                 }
                 if(val.AAE005.length>11){
                     this.$toast('手机号码不能超过11位');
+                }
+                // 判断转入转出地
+                if (val.AAS011000 != '' && val.AAB301000 != '') {
+                    if(val.AAS011000==val.AAB301000){
+                        this.$toast('参保地不能与申请地市相同');
+                        this.form.AAB301000 = '';
+                    }
                 }
             },
             deep: true
@@ -253,13 +260,13 @@ export default {
             submitForm.AAS301 = this.form.AAS301//申请地省
             submitForm.AAB301 = this.form.AAB301//申请地市
             submitForm.AAQ301 = this.form.AAQ301//申请地区
-            submitForm.AAS011=this.form.AAS011 //参保地省
-            submitForm.AAE011=this.form.AAE011 //参保地市
-            submitForm.AAQ011=this.form.AAQ011 //参保地区
-            submitForm.AAE006=this.form.AAE006 //详细地址 
-            submitForm.AKC030=this.form.AKC030 //申请原因
-            submitForm.AAE004=this.form.AAE004 //联系人
-            submitForm.AAE005=this.form.AAE005 //联系电话
+            submitForm.AAS011=  this.form.AAS011 //参保地省
+            submitForm.AAE011=  this.form.AAE011 //参保地市
+            submitForm.AAQ011=  this.form.AAQ011 //参保地区
+            submitForm.AAE006=  this.form.AAE006 //详细地址 
+            submitForm.AKC030=  this.form.AKC030 //申请原因
+            submitForm.AAE004=  this.form.AAE004 //联系人
+            submitForm.AAE005=  this.form.AAE005 //联系电话
             // submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {

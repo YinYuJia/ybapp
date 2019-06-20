@@ -89,10 +89,7 @@
             }
         },
         created() {
-            console.log('form',this.form);
-            this.form = this.$store.state.SET_TURNOUT_OPERATION;
-            this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
-            this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+
         },
         watch: {
             form: {
@@ -113,7 +110,14 @@
                         this.$toast('开始日期需大于结束日期');
                         this.form.AAE031 = '';
                     }
-                }
+                    }
+                    // 判断转入转出地
+                    if (val.AAA301000 != '' && val.AAB301000 != '') {
+                        if(val.AAA301000==val.AAB301000){
+                            this.$toast('转出地不能与转入地相同');
+                            this.form.AAB301000 = '';
+                        }
+                    }
                 },
                 deep: true
             },
@@ -169,7 +173,7 @@
                 this.$toast('信息未填写完整');
                 return false;
             } else {
-                this.$store.dispatch('SET_TURNOUT_OPERATION', this.form);
+                // this.$store.dispatch('SET_TURNOUT_OPERATION', this.form);
 
                 // 封装数据
                 let params = this.formatSubmitData();
@@ -214,7 +218,7 @@
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 }else {
-                    submitForm.AAC003 = '胡';
+                    submitForm.AAC003 = '殷宇佳';
                     submitForm.AAE135 = "113344223344536624";
                 }
                 // 请求参数封装

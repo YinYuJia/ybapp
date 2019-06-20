@@ -138,7 +138,7 @@
               <span>联系电话：</span>
             </div>
             <div class="InfoText">
-              <input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入联系人电话号码">
+              <input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入">
             </div>
           </div>
           <div class="InfoLine">
@@ -146,7 +146,7 @@
               <span>详细地址</span>
             </div>
             <div class="InfoText">
-              <textarea v-model="form.AAE006" placeholder="请输入详细地址"></textarea>
+              <textarea v-model="form.AAE006" placeholder="请输入"></textarea>
             </div>
           </div>
         </div>

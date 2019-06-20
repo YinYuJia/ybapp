@@ -44,33 +44,21 @@ export default {
     data() {
       return {
         form: {
-            AAA301000:"",//参保地
-            AAB301000: "",//转往地市
-            AAE030: '', //开始日期
-            AAE031: '', //结束日期
-            AKA121: '',//疾病名称
-            BKE255: '', //就诊疗程
-            BKZ019:""
+            // AAA301000:"",//参保地
+            // AAB301000: "",//转往地市
+            // AAE030: '', //开始日期
+            // AAE031: '', //结束日期
+            // AKA121: '',//疾病名称
+            // BKE255: '', //就诊疗程
+            // BKZ019:""
         },
+        List:[]
       }
     },
     created(){
-        this.form = this.$store.state.SET_TURNOUT_OPERATION;
-        let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
-            console.log('返回成功信息',resData)
-            //   成功   1000
-            if ( resData.enCode == 1000 ) {  
-                this.$toast("提交成功");
-            }else if (resData.enCode == 1001 ) {
-            //   失败  1001
-                this.$toast(resData.msg);
-                return;
-            }else{
-                this.$toast('业务出错');
-                return;
-            }
-        })
+        // this.form = this.$store.state.SET_TURNOUT_OPERATION;
+        this.request();
+        this.request1();
     },
     methods:{
         edit(){
@@ -83,10 +71,46 @@ export default {
                 this.$toast('撤销成功');
             });
         },
+        request(){
+            let params=this.formatSubmitData();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        request1(){
+            let params=this.formatSubmitData1();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1016/info', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                this.List=[...this.List,...resData.LS_DS_09]
+                this.form={...this.form,...this.List[0]}
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
         formatSubmitData(){
             let submitForm ={}
             console.log(submitForm)
-                submitForm.AGA002 =  "确认-00253-013";
+                submitForm.AGA002 =  "确认-00253-002";
                 // submitForm.debugTest=  "true";
 
             // 加入用户名和电子社保卡号
@@ -94,7 +118,26 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '胡';
+                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        },
+        formatSubmitData1(){
+            let submitForm ={}
+            console.log(submitForm)
+                submitForm.AGA002 =  "确认-00253-002";
+                // submitForm.debugTest=  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '殷宇佳';
                 submitForm.AAE135 = "113344223344536624";
             }
             
