@@ -32,12 +32,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,Footer
-    },
     data(){
         return{
             form:{

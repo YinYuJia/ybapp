@@ -15,6 +15,8 @@
                     <div class="InfoName"><span>领取方式:</span></div>
                     <div class="InfoText">{{mailType}}</div>
                 </div>
+                <!-- 进度时间 -->
+                <ProgressDate></ProgressDate>
             </div>
             <div class="MailInfo" v-if="form.BKA077 == '1'">
                 <div class="InfoLine">
@@ -41,13 +43,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import WorkProgress from '../../common/WorkProgress'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,WorkProgress,Footer
-    },
     data(){
         return{
             form: {},
@@ -119,7 +115,6 @@ export default {
     .Content{
         margin-bottom: 1.4rem;
         .ReportInfo{
-            height: 2.4rem;
             width: 7.5rem;
             padding: 0 .3rem;
             background: white;

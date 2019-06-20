@@ -44,6 +44,8 @@
                     <div class="InfoName"><span>收款银行账号:</span></div>
                     <div class="InfoText">6222 9090 1391 0012 412</div>
                 </div>
+                <!-- 进度时间 -->
+                <ProgressDate></ProgressDate>
             </div>
             <!-- 发票信息 -->
             <div class="invoiceContent">
@@ -90,13 +92,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import WorkProgress from '../../common/WorkProgress'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,WorkProgress,Footer
-    },
     created(){
         let params = this.formatSubmitForm();
         console.log(params);
@@ -117,7 +113,7 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$router.push('/');
+                this.$router.push('/Index');
                 this.$toast('撤销成功');
             });
         },
@@ -151,7 +147,6 @@ export default {
     .Content{
         margin-bottom: 1.6rem;
         .MailInfo{
-            height: 9.6rem;
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;

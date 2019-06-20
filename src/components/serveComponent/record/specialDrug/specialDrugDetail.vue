@@ -51,6 +51,8 @@
                     <div class="InfoName"><span>结束日期:</span></div>
                     <div class="InfoText">{{form.AAE031}}</div>
                 </div>
+                <!-- 进度时间 -->
+                <ProgressDate></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -59,13 +61,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import WorkProgress from '../../common/WorkProgress'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,WorkProgress,Footer
-    },
     data(){
         return{
             form: {
@@ -128,7 +124,7 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$router.push('/');
+                this.$router.push('/Index');
                 this.$toast('撤销成功');
             });
         },

@@ -47,6 +47,9 @@ export default vConsole;
 // 全局注册组件
 Vue.component('swipe', Swipe);
 Vue.component('swipe-item', SwipeItem);
+// 全局组件
+import GlobalComponent from './common/js/globalComponents'
+Vue.use(GlobalComponent);
 
 import '../node_modules/swiper/dist/css/swiper.css'
 Vue.use(ElementUI)
