@@ -34,11 +34,11 @@ export default {
     data () {
         return {
             form:{
-                AAZ267:"",//备案号
-                AKA083:"",//备案类型
-                AAE016:"",//审核状态
-                BKE258:"",//备案来源
-                AAE031:"",//备案期限
+                // AAZ267:"",//备案号
+                // AKA083:"",//备案类型
+                // AAE016:"",//审核状态
+                // BKE258:"",//备案来源
+                // AAE031:"",//备案期限
             },
             List:[] 
         }
@@ -52,8 +52,7 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        this.List = [...this.List, ...resData.LS_DS];
-                        this.form ={...this.from,...this.List[0]}
+                        this.form ={...this.from,...resData.LS_DS}
                         this.$toast("请求成功");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
