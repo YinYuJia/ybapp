@@ -55,7 +55,7 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$router.push('/');
+                this.$router.push('/Index');
                 this.$toast('撤销成功');
             });
         },
