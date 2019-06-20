@@ -39,7 +39,10 @@ export default {
 
 <style lang="less" scoped>
 .Title {
+    position: fixed;
+    top: 0;
     height: .8rem;
+    width: 7.5rem;
     background-color: white;
     line-height: .8rem;
     .BackIcon{
