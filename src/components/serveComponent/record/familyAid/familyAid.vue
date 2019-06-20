@@ -101,7 +101,7 @@ import Footer from '../../common/Footer'
             }
         },
         created() {
-            this.form = this.$store.state.SET_FAMILYAID_OPERATION;
+            // this.form = this.$store.state.SET_FAMILYAID_OPERATION;
         },
         watch:{
             // 监听领取信息
