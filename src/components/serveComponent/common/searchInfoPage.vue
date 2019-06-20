@@ -13,7 +13,7 @@
                 <div class="NameTitle">{{title}}</div>
             </el-col>
             <el-col :span="6">
-            </el-col>
+            </el-col> 
         </el-row>
     </div>
     <div class="SearchContent" id="searchContent">
