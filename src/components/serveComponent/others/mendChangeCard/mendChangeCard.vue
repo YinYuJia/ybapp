@@ -39,11 +39,11 @@
             <div class="MailInfo" v-if="showMail">
                 <div class="InfoLine">
                     <div class="InfoName"><span>收件人：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE011" placeholder="请输入收件人姓名"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE011" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系电话：</span></div>
-                    <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入联系人电话号码"></div>
+                    <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址：</span></div>
