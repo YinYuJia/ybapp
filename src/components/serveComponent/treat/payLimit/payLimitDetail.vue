@@ -22,6 +22,8 @@
                     <div class="InfoName"><span>提前退休类别:</span></div>
                     <div class="InfoText">{{form.BKE810 | trtireType}}</div>
                 </div>
+                <!-- 进度时间 -->
+                <ProgressDate></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -30,13 +32,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import WorkProgress from '../../common/WorkProgress'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,WorkProgress,Footer
-    },
     data() { 
         return {
             form: {},
@@ -56,7 +52,7 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$router.push('/');
+                this.$router.push('/Index');
                 this.$toast('撤销成功');
             });
         },
@@ -138,7 +134,6 @@ export default {
 .payLimitDetail{
     .Content{
         .MailInfo{
-            height: 4.8rem;
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;

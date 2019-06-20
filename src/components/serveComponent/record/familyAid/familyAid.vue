@@ -2,12 +2,12 @@
     <div class="familyAid">
         <Title :title="'家庭共济备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
-        <selectCity 
+        <SelectCity 
             :type="3"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
-        </selectCity>
+        </SelectCity>
         <mt-datetime-picker
             type="date"
             ref="startPicker"
@@ -17,7 +17,7 @@
         <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
-            <userBaseInfo></userBaseInfo>
+            <UserBaseInfo></UserBaseInfo>
             <!-- 申报信息 -->
             <div class="ReportInfo">
                 <div class="InfoLine">
@@ -61,14 +61,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import userBaseInfo from '../../common/userBaseInfo'
-import selectCity from '../../common/selectCity'
-import Footer from '../../common/Footer'
     export default {
-        components:{
-        Title,userBaseInfo,selectCity,Footer
-    },
         data() {
             return {
                 dddddd: "1111",

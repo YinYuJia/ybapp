@@ -3,7 +3,7 @@
     <div v-show="!isSearch">
       <Title :title="'规定病种备案'" :backRouter="'/'"></Title>
       <!-- MintUI弹出框区域 -->
-      <selectCity :type="3" ref="insuredPicker" @confirm="chooseInsured"></selectCity>
+      <SelectCity :type="3" ref="insuredPicker" @confirm="chooseInsured"></SelectCity>
       <mt-datetime-picker
         type="date"
         ref="startPicker"
@@ -13,7 +13,7 @@
       <!-- 弹出框区域结束 -->
       <div class="Content">
         <!-- 基本信息 -->
-        <userBaseInfo></userBaseInfo>
+        <UserBaseInfo></UserBaseInfo>
         <!-- 列表信息 -->
         <div class="ListInfo">
           <div class="InfoLine">
@@ -173,19 +173,7 @@
 </template>
 
 <script>
-import Title from "../../common/Title";
-import userBaseInfo from "../../common/userBaseInfo";
-import selectCity from "../../common/selectCity";
-import Footer from "../../common/Footer";
-import SearchInfoPage from "../../common/searchInfoPage";
 export default {
-  components: {
-    Title,
-    userBaseInfo,
-    selectCity,
-    Footer,
-    SearchInfoPage
-  },
   data() {
     return {
       form: {

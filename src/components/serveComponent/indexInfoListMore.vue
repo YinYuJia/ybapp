@@ -1,24 +1,20 @@
 <template>
     <div class="indexInfoListMore">
-        <Title :title="'更多医保服务'" :backRouter="'/indexInfoList1'"></Title>
-        <div class="infoListHeader">
+        <div class="infoListHeader" id="title">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" @click="changeIndex(1)" :class="{'active': activeIndex == 1}">参保服务</div>
-                    <div class="swiper-slide" @click="changeIndex(2)" :class="{'active': activeIndex == 2}">备案服务</div>
-                    <div class="swiper-slide" @click="changeIndex(3)" :class="{'active': activeIndex == 3}">待遇服务</div>
-                    <div class="swiper-slide" @click="changeIndex(4)" :class="{'active': activeIndex == 4}">其他服务</div>
-                    <div class="swiper-slide" @click="changeIndex(5)" :class="{'active': activeIndex == 5}">555服务</div>
-                    <div class="swiper-slide" @click="changeIndex(6)" :class="{'active': activeIndex == 6}">666服务</div>
-                    <div class="swiper-slide" @click="changeIndex(7)" :class="{'active': activeIndex == 7}">777服务</div>
+                    <div class="swiper-slide" @click="changeIndex('insured',1)" :class="{'active': activeIndex == 1}">参保服务</div>
+                    <div class="swiper-slide" @click="changeIndex('record',2)" :class="{'active': activeIndex == 2}">备案服务</div>
+                    <div class="swiper-slide" @click="changeIndex('treat',3)" :class="{'active': activeIndex == 3}">待遇服务</div>
+                    <div class="swiper-slide" @click="changeIndex('others',4)" :class="{'active': activeIndex == 4}">其他服务</div>
                 </div>
             </div>
         </div>
         <!-- 图标列表 -->
-        <div class="iconContainer">
+        <div class="iconContainer" :style="{height:containerHeight}">
             <!-- 参保服务 -->
             <div class="iconList">
-                <div class="iconContent">
+                <div class="iconContent" id="insured">
                     <div class="iconBox">
                         <svg-icon icon-class="serveComponent_icon5" />
                         <div class="text">就医凭证</div>
@@ -40,7 +36,7 @@
             <!-- 备案服务 -->
             <div class="iconList">
                 <div class="listHeader">备案服务</div>
-                <div class="iconContent">
+                <div class="iconContent" id="record">
                     <div class="iconBox">
                         <svg-icon icon-class="serveComponent_icon5" />
                         <div class="text">异地备案</div>
@@ -70,7 +66,7 @@
             <!-- 待遇服务 -->
             <div class="iconList">
                 <div class="listHeader">待遇服务</div>
-                <div class="iconContent">
+                <div class="iconContent" id="treat">
                     <div class="iconBox">
                         <svg-icon icon-class="serveComponent_icon5" />
                         <div class="text">零星报销</div>
@@ -96,7 +92,7 @@
             <!-- 其他服务 -->
             <div class="iconList">
                 <div class="listHeader">其他服务</div>
-                <div class="iconContent">
+                <div class="iconContent" id="others">
                     <div class="iconBox">
                         <svg-icon icon-class="serveComponent_icon5" />
                         <div class="text">信息变更</div>
@@ -128,16 +124,13 @@
 </template>
 
 <script>
-import Title from './common/Title'
 import Swiper from 'swiper';
 export default {
-    components:{
-        Title
-    },
     data(){
         return{
             activeIndex: 1,
             headerSwiper: {},
+            containerHeight: 0,
         }
     },
     mounted(){
@@ -146,12 +139,24 @@ export default {
             observer:true,//修改swiper自己或子元素时，自动初始化swiper
             observeParents:true,//修改swiper的父元素时，自动初始化swiper
             freeMode: true, //去除惯性
-        })
+        });
+        // 计算留白高度
+        let lastContentHeight = document.getElementById('others').offsetHeight;
+        let titleHeight = document.getElementById('title').offsetHeight;
+        this.containerHeight = (window.innerHeight - titleHeight) * 2 - titleHeight + 'px';
+        // 注册滚动监听
+        window.addEventListener('scroll', this.handleScroll);
     },
     methods:{
-        changeIndex(index){
+        changeIndex(chooseId,index){
             this.activeIndex = index;
-            this.headerSwiper.slideTo(index-2,200);
+            this.headerSwiper.slideTo(index-1,200);
+            let scrollHieght = document.getElementById(chooseId).offsetTop;
+            let titleHeight = document.getElementById('title').offsetHeight;
+            window.scrollTo(0,scrollHieght - titleHeight);
+        },
+        handleScroll(){
+            console.log("111");
         }
     }
 }
@@ -165,7 +170,7 @@ export default {
         width: 7.5rem;
         background: #FFF;
         position: fixed;
-        top: 0.8rem;
+        top: 0;
         .swiper-container{
             height: 100%;
             width: 100%;
@@ -192,7 +197,7 @@ export default {
     .iconContainer{
         background: #FFF;
         padding: 0 .2rem;
-        margin-top: 1.74rem;
+        margin-top: .94rem;
         .iconList{
             .listHeader{
                 height: .8rem;

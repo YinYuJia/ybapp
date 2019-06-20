@@ -71,12 +71,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import WorkProgress from '../../common/WorkProgress'
 export default {
-    components: {
-        Title,WorkProgress
-    },
     data() {
         return {
             // 提交信息

@@ -60,13 +60,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import WorkProgress from '../../common/WorkProgress'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,WorkProgress,Footer
-    },
     data(){
         return{
             form: {
@@ -107,7 +101,7 @@ export default {
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$router.push('/');
+                this.$router.push('/Index');
                 this.$toast('撤销成功');
             });
         },

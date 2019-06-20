@@ -18,6 +18,8 @@
                     <div class="InfoName"><span>邮政编码:</span></div>
                     <div class="InfoText">{{form.AAE007}}</div>
                 </div>
+                <!-- 进度时间 -->
+                <ProgressDate></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -26,13 +28,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import WorkProgress from '../../common/WorkProgress'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,WorkProgress,Footer
-    },
     data(){
         return{
             form:{
@@ -147,7 +143,6 @@ export default {
     .Content{
         margin-bottom: 1.4rem;
         .MailInfo{
-            height: 4rem;
             width: 7.5rem;
             padding: 0 .3rem;
             background: white;

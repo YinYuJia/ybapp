@@ -4,7 +4,7 @@
         <Title :title="'缴费年限核定'" :backRouter="'/'"></Title>
         <div class="Content">
             <!-- 基本信息 -->
-            <userBaseInfo></userBaseInfo>
+            <UserBaseInfo></UserBaseInfo>
             <!-- 列表信息 -->
             <div class="ReportInfo">
                 <div class="InfoLine">
@@ -36,13 +36,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
-import userBaseInfo from '../../common/userBaseInfo'
-import Footer from '../../common/Footer'
 export default {
-    components:{
-        Title,userBaseInfo,Footer
-    },
     data() {
         return {
             // 提交信息

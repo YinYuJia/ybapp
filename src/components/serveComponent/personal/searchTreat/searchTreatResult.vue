@@ -37,11 +37,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
 export default {
-    components:{
-        Title
-    },
     data(){
         return{
             arr: [

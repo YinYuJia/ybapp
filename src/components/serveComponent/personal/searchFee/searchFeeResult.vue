@@ -33,11 +33,7 @@
 </template>
 
 <script>
-import Title from '../../common/Title'
 export default {
-    components:{
-        Title
-    },
     //.parseFloat(a.toFixed(2))保留两位小数
     data(){
         return{
