@@ -22,6 +22,8 @@
                     <div class="InfoName"><span>提前退休类别:</span></div>
                     <div class="InfoText">{{form.BKE810 | trtireType}}</div>
                 </div>
+                <!-- 进度时间 -->
+                <ProgressDate></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -130,7 +132,6 @@ export default {
 .payLimitDetail{
     .Content{
         .MailInfo{
-            height: 4.8rem;
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;

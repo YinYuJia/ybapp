@@ -15,7 +15,7 @@
                     <div class="InfoName"><span>领取方式:</span></div>
                     <div class="InfoText">{{mailType}}</div>
                 </div>
-                <!-- 进度时间按 -->
+                <!-- 进度时间 -->
                 <ProgressDate></ProgressDate>
             </div>
             <div class="MailInfo" v-if="form.BKA077 == '1'">

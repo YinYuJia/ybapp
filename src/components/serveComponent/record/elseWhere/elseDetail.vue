@@ -38,6 +38,8 @@
                     <div class="InfoName"><span>联系电话:</span></div>
                     <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
+                <!-- 进度时间 -->
+                <ProgressDate></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -173,7 +175,6 @@ export default {
 .elseDetail{
     .Content{
         .MailInfo{
-            height: 10rem;
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;

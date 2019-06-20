@@ -51,6 +51,8 @@
                     <div class="InfoName"><span>结束日期:</span></div>
                     <div class="InfoText">{{form.AAE031}}</div>
                 </div>
+                <!-- 进度时间 -->
+                <ProgressDate></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->

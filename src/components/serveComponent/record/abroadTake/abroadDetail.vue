@@ -26,6 +26,8 @@
                     <div class="InfoName"><span>护照号码:</span></div>
                     <div class="InfoText">{{form.BKE260 | tuoMin(3,3)}}</div>
                 </div>
+                <!-- 进度时间 -->
+                <ProgressDate></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -111,7 +113,6 @@ export default {
 .abroadDetail{
     .Content{
         .MailInfo{
-            height: 6rem;
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;

@@ -30,6 +30,8 @@
                     <div class="InfoName"><span>就诊疗程:</span></div>
                     <div class="InfoText">{{form.BKE255}}</div>
                 </div>
+                <!-- 进度时间 -->
+                <ProgressDate></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -109,7 +111,6 @@ export default {
 .turnDetail{
     .Content{
         .MailInfo{
-            height: 7.2rem;
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;
