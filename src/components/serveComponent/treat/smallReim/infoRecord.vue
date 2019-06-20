@@ -125,7 +125,7 @@ export default {
                 submitForm.AAE135 = "113344223344536624";
             }
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2002');
-             this.$axios.post(this.epFn.ApiUrl() + '/h5/jy2002/info', params).then((resData) => {
+             this.$axios.post(this.epFn.ApiUrl() + '/h5/jy2002/getRecord', params).then((resData) => {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
                      this.form.AAE010 = resData.AAE010 //银行账户

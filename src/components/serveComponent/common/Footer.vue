@@ -45,7 +45,7 @@ export default {
         },
         backout(){
             // this.$emit('backout');
-            if(handleNumber){
+            if(this.handleNumber){
                 this.$messagebox.confirm('确定撤销吗?').then(() => {
                     const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,{BKZ019:this.handleNumber},'1032)');
                     this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1032/getRecord', params)

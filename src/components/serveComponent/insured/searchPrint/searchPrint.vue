@@ -75,10 +75,12 @@ export default {
     },
     created () {
         this.form = this.$store.state.SET_SEARCH_PRINT;
+        this.getLand()
         // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
         // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
     },
     methods:{
+        // 获取参保地
         getLand(){
             let submitForm = {}
              if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -93,6 +95,8 @@ export default {
                 .then((resData) => {
                     if(resData.enCode==1000){
                         // 参保地信息
+                        this.canbao = resData.RegionName
+                        this.form.AAB301 = resData.AAB301
                     }
                 })
                 .catch((error) => {
@@ -189,6 +193,7 @@ export default {
                             letter-spacing: 0;
                             text-align: right;
                             border: none;
+                            background: #ffffff;
                         }
                     }
                     &:last-child {
