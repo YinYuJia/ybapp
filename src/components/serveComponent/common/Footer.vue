@@ -33,6 +33,10 @@ export default {
         btnText:{
             type: String,
             default: '确认提交'
+        },
+        handleNumber:{
+            type: Number,
+            default: 0
         }
     },
     methods:{
@@ -40,7 +44,21 @@ export default {
             this.$emit('submit');
         },
         backout(){
-            this.$emit('backout');
+            // this.$emit('backout');
+            if(handleNumber){
+                this.$messagebox.confirm('确定撤销吗?').then(() => {
+                    const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,{BKZ019:this.handleNumber},'1032)');
+                    this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1032/getRecord', params)
+                    .then((resData) => {
+                        if(resData.encode==1000){
+                            this.$router.push('/Index');
+                            this.$toast('撤销成功');
+                        }
+                    })
+                });
+            }else{
+                this.$toast('经办编号必填');
+            }
         },
         edit(){
             this.$emit('edit');

@@ -100,7 +100,7 @@ export default {
             // 提交信息
             form: {
                 AAB301000:"",
-                AAS011000:"",
+                AAS011000:"浙江省湖州市吴兴区",
                 AAE030: '', //离杭日期
                 AAE031: '', //回杭日期
                 AAS011: '', //参保地省
@@ -141,7 +141,7 @@ export default {
         }
     },
     created() {
-        this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
+        // this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
         this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
         this.optionList = this.$store.state.SET_SELECTARRAY;
         console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
