@@ -38,7 +38,7 @@
             </div>
         </div>
         <!-- 底部 -->
-        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <Footer :btnType="2" @backout="backout()" @edit="edit()" handleNumber="123"></Footer>
     </div>
 </template>
 

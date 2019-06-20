@@ -93,16 +93,18 @@
             <!-- 需要补充信息 -->
             <div class="supplementInfo" v-if="needMoreInfo">
                 <div class="infoName">根据业务需要，需要您补充提交以下资料</div>
-                <div class="infoList">1、所需资料1</div>
-                <div class="infoList">2、所需资料2</div>
-                <div class="infoList">3、所需资料3</div>
+                <div class="infoList" v-for="item in moreInfoList" :key="item.BKE262">
+                    {{BKE262}}、{{BKE265}}（{{BKE266}}）
+                </div>
                 <div class="photoBox">
                     <svg-icon icon-class="serveComponent_upload" />
                 </div>
             </div>
         </div>
         <!-- 按钮 -->
-        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <Footer v-if="!needMoreInfo" :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <!-- 补齐材料提交 -->
+        <Footer v-if="needMoreInfo" :btnType="1" :canSubmit="true"></Footer>
     </div>
 </template>
 
@@ -110,7 +112,8 @@
 export default {
     created(){
         let params = this.formatSubmitForm();
-        console.log(params);
+        // this.needSubmitInfo();  //判断是否需要提交资料
+        console.log(params);        
     },
     data(){
         return{
@@ -120,11 +123,12 @@ export default {
                 {code:'9123910023010230120302',state:'报销中',cost:'102.88'},
                 {code:'9123910023010230120303',state:'报销中',cost:'2019.28'},
             ],
-            needMoreInfo: true,
+            needMoreInfo: false,
+            moreInfoList: [],
+            currentStep:1,
             form:{},
             form1:{},
             form2:{},
-            currentStep:1,
         }
     },
     methods:{
@@ -141,6 +145,34 @@ export default {
         showInvoiceDetail(){
             this.$router.push('/invoiceDetail')
         },
+        needSubmitInfo(){
+            // 加入用户名和电子社保卡号
+            let submitForm = {};
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1029');
+            this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1029/expenseAccount', params).then((resData) => {
+                console.log('返回成功信息',resData);
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    this.needMoreInfo = true;
+                    this.moreInfoList = resData.LS_DS1;
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
         // 封装提交参数
         formatSubmitForm(){
             let submitForm = {
@@ -149,7 +181,7 @@ export default {
                 AAE135: this.$store.state.SET_NATIVEMSG.idCard
             }
             // 请求参数封装
-            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,1009);
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
             return params;
         },
         request(){
@@ -176,9 +208,9 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
-                    this.form={...this.form,...resData.LS_DS_08.LS_DS0} 
-                    this.form1={...this.form1,...resData.LS_DS_08.LS_DS1} 
-                    this.form2={...this.form2,...resData.LS_DS_08.LS_DS2} 
+                    this.form={...this.form,...resData.LS_DS_13.LS_DS0} 
+                    this.form1={...this.form1,...resData.LS_DS_13.LS_DS1} 
+                    this.form2={...this.form2,...resData.LS_DS_13.LS_DS2} 
                     // console.log(this.List)
                     
                     // this.form={...this.from,...this.List[0]}

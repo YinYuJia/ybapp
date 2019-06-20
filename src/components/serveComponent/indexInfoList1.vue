@@ -12,7 +12,7 @@
                 </div>
                 <div class="iconBox">
                     <svg-icon icon-class="serveComponent_icon2" />
-                    <div class="text">缴费支付</div>
+                    <div class="text">支付码</div>
                 </div>
                 <div class="iconBox">
                     <svg-icon icon-class="serveComponent_icon3" />
@@ -82,7 +82,7 @@
             </swipe>
         </div>
         <!-- 热点资讯 -->
-        <div class="hotMsg">
+        <!-- <div class="hotMsg">
             <div class="hotHeader">热点资讯</div>
             <div class="msgLine" v-for="(item,index) in hotMsg" :key="index">
                 <div class="textBox">
@@ -91,7 +91,7 @@
                 </div>
                 <div class="imgBox"></div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -243,8 +243,8 @@ export default {
     }
     // 轮播图
     .carousel{
-        height: 2.48rem;
-        padding-bottom: .48rem;
+        height: 4.48rem;
+        padding-bottom: 2.48rem;
         background: #FFF;
         .c-swipe{
             height: 100%;
