@@ -3,7 +3,7 @@
         <Title :title="'出国带药备案'" :backRouter="'/abroadTake'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
-            <WorkProgress :currentStep="1"></WorkProgress>
+            <WorkProgress :currentStep="currentStep"></WorkProgress>
             <!-- 列表信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>取药机构:</span></div>
-                    <div class="InfoText">{{AKB02000}}</div>
+                    <div class="InfoText">{{form.AKB020}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>护照号码:</span></div>
@@ -39,35 +39,22 @@
 export default {
     data() {
       return {
-          AKB02000:"",
+        AKB02000:"",
         form: {
-            AAB301000: '', //参保地
-            AKB020: '',//取药机构
-            AAE030: '', //出境日期
-            AAE031: '', //拟回国日期
-            BKE260: '', //护照号码
+            // AAB301000: '', //参保地
+            // AKB020: '',//取药机构
+            // AAE030: '', //出境日期
+            // AAE031: '', //拟回国日期
+            // BKE260: '', //护照号码
         },
+        currentStep:1,
+        List:[]
       }
     },
     created(){
-        
-        this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
-        let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
-            console.log('返回成功信息',resData)
-            //   成功   1000
-            if ( resData.enCode == 1000 ) {  
-                console.log(11111)
-                this.$toast("提交成功");
-            }else if (resData.enCode == 1001 ) {
-            //   失败  1001
-                this.$toast(resData.msg);
-                return;
-            }else{
-                this.$toast('业务出错');
-                return;
-            }
-        })
+        this.request();
+        this.request1();
+        // this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
     },
     // computed:{
     //     canbaocity: function(){
@@ -84,6 +71,43 @@ export default {
                 this.$router.push('/Index');
                 this.$toast('撤销成功');
             });
+        },
+        request(){
+            let params=this.formatSubmitData();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {
+                    this.currentStep = Number(resData.LS_DS[0].BOD037)   
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        request1(){
+            let params=this.formatSubmitData1();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1016/info', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    this.List=[...this.List,...resData.LS_DS_10]
+                    this.form={...this.form,...this.List[0]}
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
         },
         formatSubmitData(){
             let submitForm ={}
@@ -102,7 +126,27 @@ export default {
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
             return params;
-        }
+        },
+        formatSubmitData1(){
+            let submitForm = {}
+            console.log(submitForm)
+                submitForm.AGA002 =  "确认-00253-001";
+                // submitForm.debugTest=  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
+            return params;
+        },
+
 
     }
 }

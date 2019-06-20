@@ -3,7 +3,7 @@
         <Title :title="'异地就医备案'" :backRouter="'/elseWhere'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
-            <WorkProgress :currentStep="1"></WorkProgress>
+            <WorkProgress :currentStep="currentStep"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -43,7 +43,7 @@
             </div>
         </div>
         <!-- 底部 -->
-        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <Footer :btnType="2" @backout="backout()" :handleNumber="123" @edit="edit()"></Footer>
     </div>
 </template>
 
@@ -68,6 +68,7 @@ export default {
                 // AAQ301: '',//申请地区
                 // AGA002:'',
         },
+        currentStep:1,
         List:[]
       }
     },
@@ -97,7 +98,7 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    console.log(11111)
+                    this.currentStep = Number(resData.LS_DS[0].BOD037) 
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001

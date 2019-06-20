@@ -17,7 +17,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="canbao" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="canbao" placeholder="请选择" disabled readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -75,10 +75,34 @@ export default {
     },
     created () {
         this.form = this.$store.state.SET_SEARCH_PRINT;
+        this.getLand()
         // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
         // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
     },
     methods:{
+        // 获取参保地
+        getLand(){
+            let submitForm = {}
+             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1033');
+            this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1033/getRecord', params)
+                .then((resData) => {
+                    if(resData.enCode==1000){
+                        // 参保地信息
+                        this.canbao = resData.RegionName
+                        this.form.AAB301 = resData.AAB301
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
         openInsuredPicker(){
             this.$refs.insuredPicker.open();
         },
@@ -169,6 +193,7 @@ export default {
                             letter-spacing: 0;
                             text-align: right;
                             border: none;
+                            background: #ffffff;
                         }
                     }
                     &:last-child {

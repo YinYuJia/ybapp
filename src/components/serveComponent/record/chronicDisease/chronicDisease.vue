@@ -243,7 +243,7 @@ export default {
     }
   },
     created(){
-        this.form = this.$store.state.SET_CHRONIC_DISEASE;
+        // this.form = this.$store.state.SET_CHRONIC_DISEASE;
     },
   methods: {
     //  本页面的点击

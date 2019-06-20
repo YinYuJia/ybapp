@@ -3,7 +3,7 @@
         <Title :title="'缴费年限核定'" :backRouter="'/payLimit'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
-            <WorkProgress :currentStep="1"></WorkProgress>
+            <WorkProgress :currentStep="currentStep"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -36,7 +36,8 @@ export default {
     data() { 
         return {
             form: {},
-            List:[]
+            List:[],
+            currentStep:1,
         }
     },
     created () {
@@ -62,6 +63,7 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     this.$toast("提交成功");
+                    this.currentStep = Number(resData.LS_DS[0].BOD037) 
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);

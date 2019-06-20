@@ -76,7 +76,7 @@ export default {
                 AKA1202: '', //疾病编码3
                 AKA1212: '', //疾病名称3
                 AAE030: '', //开始日期
-                BKE247: '1', //病历本提取方式 1自取，2邮寄
+                BKE247: '', //病历本提取方式 1自取，2邮寄
                 AAE011: '', //收件人
                 AAE005: '', //联系电话
                 AAE006: '', //详细地址
@@ -89,40 +89,94 @@ export default {
                 {step:5,name:'办结5'},
                 {step:6,name:'办结6'},
             ],
-            currentStep:1
+            currentStep:1,
+            List:[]
         }
     },
     created(){
-        this.form = this.$store.state.SET_CHRONIC_DISEASE;
-
-        let submitForm = {};
-         // 加入用户名和电子社保卡号
-        if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-            submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-            submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-        }else {
-            submitForm.AAC003 = '殷宇佳';
-            submitForm.AAE135 = "113344223344536624";
-        }
-        submitForm.AGA002= '确认-00253-004'
-        const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
-        this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1009/getRecord', params)
-        .then((resData) => {
-            console.log(555555555,resData);
-            if(resData.enCode==1000){
-                this.currentStep = Number(resData.LS_DS[0].BOD037)
-            }else if(resData.encode==1001){
-                this.$toast(resData.msg)
-            }
-        })
+        // this.form = this.$store.state.SET_CHRONIC_DISEASE;
     },
     methods:{
+        //
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {
                 this.$router.push('/Index');
                 this.$toast('撤销成功');
             });
+        },
+        request(){
+            let params=this.formatSubmitData();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) { 
+                    this.currentStep = Number(resData.LS_DS[0].BOD037) 
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        request1(){
+            let params=this.formatSubmitData1();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1016/info', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    this.List=[...this.List,...resData.LS_DS_14]
+                    this.form={...this.form,...this.List[0]}
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        formatSubmitData(){  
+            let submitForm ={}
+            submitForm.AGA002 =  "确认-00253-004";
+            // submitForm.debugTest =  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            return params;
+        },
+        formatSubmitData1(){
+            let submitForm = {}
+            console.log(submitForm)
+                submitForm.AGA002 =  "确认-00253-004";
+                // submitForm.debugTest=  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '殷宇佳';
+                submitForm.AAE135 = "113344223344536624";
+            }
+            
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
+            return params;
         },
     }
 }

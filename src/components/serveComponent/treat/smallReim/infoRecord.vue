@@ -67,7 +67,8 @@ export default {
     created(){
         console.log('submitForm',this.$store.state.SET_SMALL_REIM_SUBMIT);
         console.log("SET_SMALL_REIM_2",this.$store.state.SET_SMALL_REIM_2)
-        this.form.AAE009 = this.$store.state.SET_NATIVEMSG.name
+        this.getUserInfo()
+        // this.form.AAE009 = this.$store.state.SET_NATIVEMSG.name
     },
     methods:{
         submit(){
@@ -114,6 +115,32 @@ export default {
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1019');
             return params;
+        },
+        getUserInfo(){
+            let submitForm = {}
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAE135 = "113344223344536624";
+            }
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2002');
+             this.$axios.post(this.epFn.ApiUrl() + '/h5/jy2002/getRecord', params).then((resData) => {
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {
+                     this.form.AAE010 = resData.AAE010 //银行账户
+                     this.form.AAE008 = resData.AAE008  //开户行
+                     this.form.AAE009 = resData.AAE009   //开户名
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+
         }
     }
 }

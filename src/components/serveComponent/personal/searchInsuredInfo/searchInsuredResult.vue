@@ -66,7 +66,7 @@ export default {
                 submitForm.AAS301 = this.form.AAS301//申请地省
                 submitForm.AAB301 = this.form.AAB301//申请地市
                 submitForm.AAQ301 = this.form.AAQ301//申请地区
-                submitForm.AAE091 = this.form.AAE091//缴费月数
+                submitForm.AAE091 = this.form.AAE091.toString()//缴费月数
                 // submitForm.debugTest=  "true";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
