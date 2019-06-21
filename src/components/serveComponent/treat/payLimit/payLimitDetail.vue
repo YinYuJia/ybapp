@@ -62,8 +62,13 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    this.$toast("提交成功");
-                    this.currentStep = Number(resData.LS_DS[0].BOD037) 
+                    console.log("resData.LS_DS.length",resData.LS_DS.length)
+                    if (resData.LS_DS.length > 0 ) {
+                       this.currentStep = Number(resData.LS_DS[0].BOD037) 
+                    }else{
+                        this.$toast("暂无状态信息")
+                    }
+                    
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);
@@ -84,7 +89,6 @@ export default {
                     // console.log(this.List)
                     this.handleNumber = resData.LS_DS_13.BKZ019
                     // this.form={...this.from,...this.List[0]}
-                    this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);
