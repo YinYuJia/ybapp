@@ -118,7 +118,7 @@ export default {
         },
         getUserInfo(){
             let submitForm = {}
-            // 加入用户名和电子社保卡号
+            // 加入电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {

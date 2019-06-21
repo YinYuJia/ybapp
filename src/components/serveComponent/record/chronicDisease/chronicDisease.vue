@@ -135,7 +135,7 @@
           </div>
           <div class="InfoLine">
             <div class="InfoName">
-              <span>联系电话：</span>
+              <span>手机号码：</span>
             </div>
             <div class="InfoText">
               <input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入">
@@ -192,7 +192,7 @@ export default {
         AAE030: "", //开始日期
         BKE247: "1", //病历本提取方式 1自取，2邮寄
         AAE011: "", //收件人
-        AAE005: "", //联系电话
+        AAE005: "", //手机号码
         AAE006: "" //详细地址
       },
       isSearch: false,
@@ -297,7 +297,7 @@ export default {
     submit() {
       if (this.showMail == true) {
         if (!this.util.checkPhone(this.form.AAE005)) {
-          this.$toast("请填写正确的联系电话");
+          this.$toast("请填写正确的手机号码");
           return false;
         }
       }

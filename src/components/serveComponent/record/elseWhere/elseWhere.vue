@@ -76,7 +76,7 @@
                     <div class="InfoText"><input type="text" v-model="form.AAE004" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>联系电话</span></div>
+                    <div class="InfoName"><span>手机号码</span></div>
                     <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入"></div>
                 </div>
             </div>
@@ -102,7 +102,7 @@ export default {
                 AAE006: '', //详细地址 
                 AKC030: '', //申请原因
                 AAE004: '', //联系人
-                AAE005: '', //联系电话
+                AAE005: '', //手机号码
                 AAS301: '',//申请地省
                 AAB301: '',//申请地市
                 AAQ301: '',//申请地区
@@ -219,7 +219,7 @@ export default {
             console.log(this.form.AAE031)
             if(this.form.AAE005){
                 if(!this.util.checkPhone(this.form.AAE005)){
-                    this.$toast('请填写正确的联系电话');
+                    this.$toast('请填写正确的手机号码');
                     return false;
                 }
             }
@@ -266,7 +266,7 @@ export default {
             submitForm.AAE006=  this.form.AAE006 //详细地址 
             submitForm.AKC030=  this.form.AKC030 //申请原因
             submitForm.AAE004=  this.form.AAE004 //联系人
-            submitForm.AAE005=  this.form.AAE005 //联系电话
+            submitForm.AAE005=  this.form.AAE005 //手机号码
             // submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {

@@ -43,7 +43,7 @@
                     <div class="InfoText">{{form.AAE011 | tuoMin(1,0)}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>联系电话:</span></div>
+                    <div class="InfoName"><span>手机号码:</span></div>
                     <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
                 <div class="InfoLine">
@@ -80,7 +80,7 @@ export default {
                 AAE030: '', //开始日期
                 BKE247: '', //病历本提取方式 1自取，2邮寄
                 AAE011: '', //收件人
-                AAE005: '', //联系电话
+                AAE005: '', //手机号码
                 AAE006: '', //详细地址
             },
             arr: [

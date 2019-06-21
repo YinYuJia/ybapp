@@ -51,7 +51,7 @@
                     <div class="InfoText"><input type="text" v-model="form.AAE011" placeholder="请输入收件人姓名"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>联系电话：</span></div>
+                    <div class="InfoName"><span>手机号码：</span></div>
                     <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入"></div>
                 </div>
                 <!-- <div class="InfoLine">
@@ -84,7 +84,7 @@ export default {
         return{
             form:{
                 AAE011: '', //收件人
-                AAE005: '', //联系电话
+                AAE005: '', //手机号码
                 // AAE011: '', //省市信息
                 AAE006: '', //详细地址
                 AAC050:'', //变更类型
@@ -153,7 +153,7 @@ export default {
         submit(){
             if(this.showMail == true){
                 if(!this.util.checkPhone(this.form.AAE005)){
-                    this.$toast('请填写正确的联系电话');
+                    this.$toast('请填写正确的手机号码');
                     return false;
                 }
             }

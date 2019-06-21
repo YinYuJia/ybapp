@@ -42,7 +42,7 @@
                     <div class="InfoText"><input type="text" v-model="form.AAE011" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>联系电话：</span></div>
+                    <div class="InfoName"><span>手机号码：</span></div>
                     <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
@@ -67,7 +67,7 @@ export default {
         return{
             form:{
                 AAE011: '', //收件人
-                AAE005: '', //联系电话
+                AAE005: '', //手机号码
                 AAE006: '', //地址
                 AAC050: '', //变更类型
                 BKA077 :'' ,//领取方式

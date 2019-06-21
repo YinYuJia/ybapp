@@ -53,7 +53,7 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE006: '', //详细地址 
           AKC030: '', //申请原因
           AAE004: '', //联系人
-          AAE005: '', //联系电话
+          AAE005: '', //手机号码
           AAS301: '',//申请地省
           AAB301: '',//申请地市
           AAQ301: '',//申请地区
@@ -120,7 +120,7 @@ export default new Vuex.Store({  // 暴露与new vuex
         // 领取就医凭证
         SET_INSURED_PROOF:{
           AAE011: '', //收件人
-          AAE005: '', //联系电话
+          AAE005: '', //手机号码
           AAE006: '', //地址
           AAC050:'', //变更类型
           BKA077 :'0' ,//领取方式
@@ -223,7 +223,7 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE030: '', //开始日期
           BKE247: '1', //病历本提取方式 1自取，2邮寄
           AAE011: '', //收件人
-          AAE005: '', //联系电话
+          AAE005: '', //手机号码
           AAE006: '', //详细地址
       },
       // 特治特药备案
