@@ -35,7 +35,7 @@
                     <div class="InfoText">{{form.AAE004 | tuoMin(0,1)}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>联系电话:</span></div>
+                    <div class="InfoName"><span>手机号码:</span></div>
                     <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
                 <!-- 进度时间 -->
@@ -62,7 +62,7 @@ export default {
                 // AAE006: '', //详细地址 
                 // AKC030: '', //申请原因
                 // AAE004: '', //联系人
-                // AAE005: '', //联系电话
+                // AAE005: '', //手机号码
                 // AAS301: '',//申请地省
                 // AAB301: '',//申请地市
                 // AAQ301: '',//申请地区

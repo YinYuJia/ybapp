@@ -76,7 +76,7 @@
                     <div class="InfoText"><input type="text" v-model="form.AAE004" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>联系电话</span></div>
+                    <div class="InfoName"><span>手机号码</span></div>
                     <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入"></div>
                 </div>
             </div>
@@ -221,7 +221,7 @@ export default {
             console.log(this.form.AAE031)
             if(this.form.AAE005){
                 if(!this.util.checkPhone(this.form.AAE005)){
-                    this.$toast('请填写正确的联系电话');
+                    this.$toast('请填写正确的手机号码');
                     return false;
                 }
             }

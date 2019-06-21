@@ -9,7 +9,7 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>银行账号：</span></div>
-                    <div class="InfoText"><input type="tel" maxlength="19" v-model="form.AAE010" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="tel" maxlength="23" v-model="form.AAE010" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户行：</span></div>
@@ -33,19 +33,6 @@
 
 <script>
 export default {
-    watch:{
-        form: {
-            handler: function(val) {
-                // 判断不为空
-                if (val.AAE010 != '' && val.AAE008 != '' && val.AAE009 != '') {
-                    this.canSubmit = true;
-                } else {
-                    this.canSubmit = false;
-                }
-            },
-            deep: true
-        },
-    },
     data(){
         return{
             form:{
@@ -53,7 +40,6 @@ export default {
                 AAE008: '', //开户行
                 AAE009: '', //开户名
                 LS_DS1:[],
-                
             },
             canSubmit: false,
             progress:[
@@ -67,8 +53,28 @@ export default {
     created(){
         console.log('submitForm',this.$store.state.SET_SMALL_REIM_SUBMIT);
         console.log("SET_SMALL_REIM_2",this.$store.state.SET_SMALL_REIM_2)
-        this.getUserInfo()
+        this.getUserInfo();
         // this.form.AAE009 = this.$store.state.SET_NATIVEMSG.name
+    },
+    watch:{
+        form: {
+            handler: function(val) {
+                // 判断不为空
+                if (val.AAE010 != '' && val.AAE008 != '' && val.AAE009 != '') {
+                    this.canSubmit = true;
+                } else {
+                    this.canSubmit = false;
+                }
+            },
+            deep: true
+        },
+        'form.AAE010': function(val){
+            this.$nextTick(()=>{
+                if(val.length != 0){
+                    this.form.AAE010 = val.replace(/\D/g,'').replace(/....(?!$)/g,'$& ');
+                }
+            })
+        }
     },
     methods:{
         submit(){
@@ -97,7 +103,7 @@ export default {
         },
         formatSubmitForm(){
             let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
-            submitForm.AAE010 = this.form.AAE010;
+            submitForm.AAE010 = this.form.AAE010.replace(/\s+/g,'');
             submitForm.AAE008 = this.form.AAE008;
             submitForm.AAE009 = this.form.AAE009;
             submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2;
@@ -118,7 +124,7 @@ export default {
         },
         getUserInfo(){
             let submitForm = {}
-            // 加入用户名和电子社保卡号
+            // 加入电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {

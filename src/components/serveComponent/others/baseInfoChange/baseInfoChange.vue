@@ -63,7 +63,7 @@ export default {
         submit(){
             if(this.form.AAE005){
                 if(!this.util.checkPhone(this.form.AAE005)){
-                    this.$toast('请填写正确的联系电话');
+                    this.$toast('请填写正确的手机号码');
                     return false;
                 }
             }
