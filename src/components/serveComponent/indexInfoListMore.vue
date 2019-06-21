@@ -16,19 +16,19 @@
             <div class="iconList">
                 <div class="iconContent" id="insured">
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon5" />
+                        <svg-icon icon-class="serveComponent_icon_1" />
                         <div class="text">就医凭证</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon6" />
-                        <div class="text">信息变更</div>
+                        <svg-icon icon-class="serveComponent_icon_2" />
+                        <div class="text">参保变更</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon7" />
+                        <svg-icon icon-class="serveComponent_icon_3" />
                         <div class="text">打印信息</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_4" />
                         <div class="text">转移接续</div>
                     </div>
                 </div>
@@ -38,27 +38,27 @@
                 <div class="listHeader">备案服务</div>
                 <div class="iconContent" id="record">
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon5" />
+                        <svg-icon icon-class="serveComponent_icon_5" />
                         <div class="text">异地备案</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon6" />
+                        <svg-icon icon-class="serveComponent_icon_6" />
                         <div class="text">转外就医</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon7" />
+                        <svg-icon icon-class="serveComponent_icon_7" />
                         <div class="text">出国带药</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_8" />
                         <div class="text">家庭共济</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_9" />
                         <div class="text">特药备案</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_10" />
                         <div class="text">规定病种</div>
                     </div>
                 </div>
@@ -68,23 +68,23 @@
                 <div class="listHeader">待遇服务</div>
                 <div class="iconContent" id="treat">
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon5" />
+                        <svg-icon icon-class="serveComponent_icon_11" />
                         <div class="text">零星报销</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon6" />
+                        <svg-icon icon-class="serveComponent_icon_12" />
                         <div class="text">缴费年限</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon7" />
+                        <svg-icon icon-class="serveComponent_icon_13" />
                         <div class="text">平产/剖腹</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_14" />
                         <div class="text">流产/引产</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_15" />
                         <div class="text">未就业配偶</div>
                     </div>
                 </div>
@@ -94,27 +94,27 @@
                 <div class="listHeader">其他服务</div>
                 <div class="iconContent" id="others">
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon5" />
-                        <div class="text">信息变更</div>
+                        <svg-icon icon-class="serveComponent_icon_16" />
+                        <div class="text">信息查询</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon6" />
+                        <svg-icon icon-class="serveComponent_icon_17" />
                         <div class="text">参保信息</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon7" />
+                        <svg-icon icon-class="serveComponent_icon_18" />
                         <div class="text">办事进度</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_19" />
                         <div class="text">费用信息</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_20" />
                         <div class="text">备案信息</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_21" />
                         <div class="text">就诊信息</div>
                     </div>
                 </div>
@@ -141,10 +141,12 @@ export default {
             freeMode: true, //去除惯性
         });
         // 计算留白高度
-        let lastContentHeight = document.getElementById('others').offsetHeight;
-        let titleHeight = document.getElementById('title').offsetHeight;
-        this.containerHeight = (window.innerHeight - titleHeight) * 2 - titleHeight + 'px';
-        // 注册滚动监听
+        this.$nextTick(()=>{
+            let lastContentHeight = document.getElementById('others').offsetHeight;
+            let titleHeight = document.getElementById('title').offsetHeight;
+            let offsetHeight = document.getElementById('others').offsetTop;
+            this.containerHeight = offsetHeight + window.innerHeight - (titleHeight * 2) + 'px'
+        });
         // window.addEventListener('scroll', this.handleScroll);
     },
     methods:{
