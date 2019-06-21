@@ -202,7 +202,6 @@ export default {
             .InfoLine{
                 height: 1.2rem;
                 position: relative;
-                font-family: PingFangSC-Regular;
                 font-size: .28rem;
                 display: flex;
                 border-bottom: .01rem solid #D5D5D5;
@@ -214,7 +213,7 @@ export default {
                         height: .6rem;
                         line-height: .6rem;
                         letter-spacing: 0;
-                        color: #000;
+                        color: #666;
                     }
                 }
                 .InfoText{
@@ -222,7 +221,7 @@ export default {
                     display: flex;
                     position: relative;
                     align-items: center;
-                    color: #333;
+                    color: #000;
                 }
                 &:last-child{
                     border-bottom: none;
