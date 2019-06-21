@@ -3,7 +3,7 @@
         <Title :title="'个人参保信息'" :backRouter="'/'"></Title>
         <!-- 弹出区域 -->
         <SelectCity 
-            :type="3"
+            :type="2"
             ref="cityPicker"
             @confirm="chooseCity"
             >

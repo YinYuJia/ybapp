@@ -3,7 +3,7 @@
         <Title :title="'转外就医备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <SelectCity 
-            :type="3"
+            :type="2"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
@@ -66,7 +66,6 @@
     export default {
         data() {
             return {
-                dddddd: "1111",
                 form: {
                     AAA301000:"",//参保地
                     AAB301000: "",//转往地市
@@ -92,8 +91,12 @@
             }
         },
         created() {
+            console.log(this.$store.state.SET_USER_DETAILINFO,55555555555);
+            
             this.form.AAA301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+            // this.form.AAA301000 = "杭州"
             this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+            // this.form.AAB301 = "12344"
         },
         watch: {
             form: {
@@ -169,6 +172,8 @@
                 this.$refs.cityPicker.open();
             },
             chooseCity(val){
+                console.log(val);
+                
                 this.form.AAB301000= val.name;
                 this.form.AAS027=val.code[0]
                 this.form.AAB027=val.code[1]
@@ -205,7 +210,7 @@
             }
             },
             formatSubmitData(){
-                let submitForm = {};
+                let submitForm = JSON.parse(JSON.stringify(this.form));
                 // 日期传换成Number
                 console.log(this.form);
 

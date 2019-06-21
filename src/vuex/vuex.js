@@ -271,6 +271,8 @@ export default new Vuex.Store({  // 暴露与new vuex
           return state.SET_USER_BASEINFO=JSON.parse(sessionStorage.getItem('SET_USER_BASEINFO'));
         },
         SET_USER_DETAILINFO:( state ) => {
+          console.log(JSON.parse(sessionStorage.getItem('SET_USER_DETAILINFO')),7777777);
+          
           return state.SET_USER_DETAILINFO=JSON.parse(sessionStorage.getItem('SET_USER_DETAILINFO'));
         },
         SET_NATIVEMSG:( state ) => {

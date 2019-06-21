@@ -2,7 +2,7 @@
     <div class="searchPrint">
         <!-- 弹出框内容 -->
         <SelectCity 
-            :type="3"
+            :type="2"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
