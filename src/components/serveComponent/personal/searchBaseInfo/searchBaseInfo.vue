@@ -45,7 +45,7 @@
                     <div class="InfoText">{{form.AAE007}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>联系电话：</span></div>
+                    <div class="InfoName"><span>手机号码：</span></div>
                     <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
                 <div class="InfoLine">
@@ -101,7 +101,6 @@ export default {
                         if(resData.LS_DS){ 
                             this.form={...this.form,...resData.LS_DS}
                         }
-                        // this.$toast("提交成功");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
                         this.$toast(resData.msg);

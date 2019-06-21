@@ -3,7 +3,7 @@
         <Title :title="'个人参保信息'" :backRouter="'/'"></Title>
         <!-- 弹出区域 -->
         <SelectCity 
-            :type="3"
+            :type="2"
             ref="cityPicker"
             @confirm="chooseCity"
             >
@@ -54,6 +54,10 @@ export default {
                 {value: "24" ,label: '24'},
             ],
         }
+    },
+    created(){
+        this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+        this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
     },
     watch: {
         form: {

@@ -3,7 +3,7 @@
         <Title :title="'家庭共济备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <SelectCity 
-            :type="3"
+            :type="2"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
@@ -95,6 +95,8 @@
         },
         created() {
             // this.form = this.$store.state.SET_FAMILYAID_OPERATION;
+            this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+            this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
         },
         watch:{
             // 监听领取信息

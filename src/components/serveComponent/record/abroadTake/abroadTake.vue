@@ -3,7 +3,7 @@
         <Title :title="'出国带药备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <SelectCity 
-            :type="3"
+            :type="2"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
@@ -57,6 +57,16 @@
                     </div>
                 </div>
             </div>
+            <!-- 附件上传 -->
+            <div class="supplementInfo">
+                <div class="infoName">附件上传，请选择下述其中一项附件内容进行上传</div>
+                <div class="infoList">
+                    1、出国带药备案表（医院盖章）
+                </div>
+                <div class="photoBox">
+                    <svg-icon icon-class="serveComponent_upload" />
+                </div>
+            </div>
         </div>
         <!-- 按钮 -->
         <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
@@ -90,6 +100,8 @@
                 // this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
                 this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
                 this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;  
+                this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+                this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
         },
         watch: {
             form: {
@@ -239,7 +251,6 @@
                 justify-content: space-between;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     span {
                         height: .6rem;
@@ -249,15 +260,12 @@
                     }
                 }
                 .InfoText {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
                     align-items: center;
                     input {
                         height: .6rem;
-                        opacity: 0.85;
-                        font-family: PingFangSC-Regular;
                         font-size: .3rem;
                         color: #000000;
                         letter-spacing: 0;
@@ -267,6 +275,29 @@
                 }
                 &:last-child {
                     border-bottom: none;
+                }
+            }
+        }
+        // 补充资料
+        .supplementInfo{
+            background: #FFF;
+            font-size: .28rem;
+            color: #000000;
+            line-height: 38px;
+            text-align: left;
+            padding: .1rem .3rem;
+            margin-top: .3rem;
+            .infoName{
+                letter-spacing: 0;
+            }
+            .infoList{
+                letter-spacing: 0;
+            }
+            .photoBox{
+                text-align: left;
+                .svg-icon{
+                    height: 1.5rem;
+                    width: 1.5rem;
                 }
             }
         }

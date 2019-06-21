@@ -2,7 +2,7 @@
   <div class="specialDrug">
     <Title :title="'特治特药备案'" :backRouter="'/'"></Title>
     <!-- MintUI弹出框区域 -->
-    <SelectCity :type="3" ref="insuredPicker" @confirm="chooseInsured"></SelectCity>
+    <SelectCity :type="2" ref="insuredPicker" @confirm="chooseInsured"></SelectCity>
     <mt-datetime-picker
       type="date"
       ref="startPicker"
@@ -129,8 +129,7 @@
             <span>剂量</span>
           </div>
           <div class="InfoText">
-            <input type="tel" v-model="form.AKA071" placeholder="请选择">
-            <svg-icon icon-class="serveComponent_arrowRight"/>
+            <input type="tel" v-model="form.AKA071" placeholder="请输入">
           </div>
         </div>
         <div class="InfoLine">
@@ -138,8 +137,7 @@
             <span>数量</span>
           </div>
           <div class="InfoText">
-            <input type="tel" v-model="form.AKC226" placeholder="请选择">
-            <svg-icon icon-class="serveComponent_arrowRight"/>
+            <input type="tel" v-model="form.AKC226" placeholder="请输入">
           </div>
         </div>
         <div class="InfoLine">
@@ -226,7 +224,8 @@ export default {
   },
   created() {
     this.form = this.$store.state.SET_SPECIAL_DRUG;
-    
+    this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
+    this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
   },
   mounted(){
     /**
@@ -268,7 +267,7 @@ export default {
           let month = 24 * 3600 * 1000 * 30;
           let gap = AAE031 - AAE030;
           if (gap <= 0) {
-            this.$toast("回国日期需大于出境日期");
+            this.$toast("结束日期必须大于开始日期");
             this.form.AAE031 = "";
           }
         }

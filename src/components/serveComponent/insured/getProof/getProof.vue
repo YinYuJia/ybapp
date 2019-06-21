@@ -51,7 +51,7 @@
                     <div class="InfoText"><input type="text" v-model="form.AAE011" placeholder="请输入收件人姓名"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>联系电话：</span></div>
+                    <div class="InfoName"><span>手机号码：</span></div>
                     <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入"></div>
                 </div>
                 <!-- <div class="InfoLine">
@@ -84,7 +84,7 @@ export default {
         return{
             form:{
                 AAE011: '', //收件人
-                AAE005: '', //联系电话
+                AAE005: '', //手机号码
                 // AAE011: '', //省市信息
                 AAE006: '', //详细地址
                 AAC050:'', //变更类型
@@ -122,6 +122,7 @@ export default {
                 }
                 // 如果需要邮寄
                 if(this.showMail == true){
+                    this.getMailInfo(); //自动获取邮寄信息
                     if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
                         this.canSubmit = true
                     }else {
@@ -153,7 +154,7 @@ export default {
         submit(){
             if(this.showMail == true){
                 if(!this.util.checkPhone(this.form.AAE005)){
-                    this.$toast('请填写正确的联系电话');
+                    this.$toast('请填写正确的手机号码');
                     return false;
                 }
             }
@@ -192,6 +193,32 @@ export default {
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1008');
             return {params,submitForm};
+        },
+        // 获取邮寄信息
+        getMailInfo(){
+            let submitForm = {}
+            // 加入电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAE135 = "113344223344536624";
+            }
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2002');
+             this.$axios.post(this.epFn.ApiUrl() + '/h5/jy2002/getRecord', params).then((resData) => {
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {
+                     this.form.AAE011 = resData.AAE011 //收件人
+                     this.form.AAE005 = resData.AAE005  //手机号码
+                     this.form.AAE006 = resData.AAE006   //详细地址
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
         }
     }
 }
@@ -203,47 +230,44 @@ export default {
         height: 100%;
         margin-bottom: 1.4rem;
         .GetInfo{
-            height: 2.4rem;
             width: 7.5rem;
             padding: 0 .3rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;
                 position: relative;
-                font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 justify-content: space-between;
+                border-bottom: .01rem solid #D5D5D5;
                 .InfoName{
                     color: #000000;
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     letter-spacing: 0;
                 }
                 .InfoText{
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     align-items: center;
                 }
+                &:last-child{
+                    border-bottom: none;
+                }
             }
         }
         .MailInfo{
-            height: 5.2rem;
             width: 7.5rem;
-            padding: 0 .3rem;
+            padding: 0 .28rem;
             margin-top: .27rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;
                 position: relative;
-                font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 justify-content: space-between;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName{
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     span{
                         height: .6rem;
@@ -253,16 +277,13 @@ export default {
                     }
                 }
                 .InfoText{
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
                     align-items: center;
                     input{
                         height: .6rem;
-                        opacity: 0.85;
-                        font-family: PingFangSC-Regular;
-                        font-size: .3rem;
+                        font-size: .28rem;
                         color: #000000;
                         letter-spacing: 0;
                         text-align: right;
@@ -279,7 +300,6 @@ export default {
                     textarea{
                         height: .84rem;
                         font-size: .3rem;
-                        opacity: 0.85;
                         color: #000000;
                         line-height: .42rem;
                         text-align: right;

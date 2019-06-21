@@ -3,7 +3,7 @@
     <div v-show="!isSearch">
       <Title :title="'规定病种备案'" :backRouter="'/'"></Title>
       <!-- MintUI弹出框区域 -->
-      <SelectCity :type="3" ref="insuredPicker" @confirm="chooseInsured"></SelectCity>
+      <SelectCity :type="2" ref="insuredPicker" @confirm="chooseInsured"></SelectCity>
       <mt-datetime-picker
         type="date"
         ref="startPicker"
@@ -135,7 +135,7 @@
           </div>
           <div class="InfoLine">
             <div class="InfoName">
-              <span>联系电话：</span>
+              <span>手机号码：</span>
             </div>
             <div class="InfoText">
               <input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入">
@@ -192,7 +192,7 @@ export default {
         AAE030: "", //开始日期
         BKE247: "1", //病历本提取方式 1自取，2邮寄
         AAE011: "", //收件人
-        AAE005: "", //联系电话
+        AAE005: "", //手机号码
         AAE006: "" //详细地址
       },
       isSearch: false,
@@ -244,6 +244,8 @@ export default {
   },
     created(){
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
+        this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
+        this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
     },
   methods: {
     //  本页面的点击
@@ -297,7 +299,7 @@ export default {
     submit() {
       if (this.showMail == true) {
         if (!this.util.checkPhone(this.form.AAE005)) {
-          this.$toast("请填写正确的联系电话");
+          this.$toast("请填写正确的手机号码");
           return false;
         }
       }
