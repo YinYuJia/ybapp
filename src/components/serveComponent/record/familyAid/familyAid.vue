@@ -95,6 +95,8 @@
         },
         created() {
             // this.form = this.$store.state.SET_FAMILYAID_OPERATION;
+            this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+            this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
         },
         watch:{
             // 监听领取信息

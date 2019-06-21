@@ -92,20 +92,20 @@ export default {
         return {
             // 提交信息
             form: {
-                AAB301000:"",
-                AAS011000:"",
+                AAB301000:"",//申请地
+                AAS011000:"",//参保地
                 AAE030: '', //离杭日期
                 AAE031: '', //回杭日期
-                AAS011: '', //参保地省
-                AAE011: '', //参保地市
-                AAQ011: '', //参保地区
+                AAS011: '', //申请地省
+                AAE011: '', //申请市
+                AAQ011: '', //申请地区
                 AAE006: '', //详细地址 
                 AKC030: '', //申请原因
                 AAE004: '', //联系人
                 AAE005: '', //联系电话
-                AAS301: '',//申请地省
-                AAB301: '',//申请地市
-                AAQ301: '',//申请地区
+                AAS301: '',//参保地省
+                AAB301: '',//参保地市
+                AAQ301: '',//参保地区
             },
             optionList: [], //存放城市数据
             canSubmit: false,
@@ -140,6 +140,8 @@ export default {
         console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
         this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
         this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+        this.form.AAS011000 = this.$store.state.SET_USER_DETAILINFO.regionName
+        this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
     },
     watch: {
         form: {
@@ -182,9 +184,9 @@ export default {
         },
         chooseInsured(val){
             this.form.AAS011000 =val.name, //参保地省
-            this.form.AAS011 =val.code[0], //参保地省
-            this.form.AAE011 =val.code[1], //参保地市
-            this.form.AAQ011 =val.code[2]  //参保地区
+            this.form.AAS301 =val.code[0], //参保地省
+            this.form.AAB301 =val.code[1], //参保地市
+            this.form.AAQ301 =val.code[2]  //参保地区
         },
         // 选择离开日期
         openStartPicker(){
@@ -209,9 +211,9 @@ export default {
         },
         chooseCity(val){
             this.form.AAB301000= val.name;
-            this.form.AAS301=val.code[0]
-            this.form.AAB301=val.code[1]
-            this.form.AAQ301=val.code[2]
+            this.form.AAS011=val.code[0]
+            this.form.AAE011=val.code[1]
+            this.form.AAQ011=val.code[2]
         },
         // 提交
         submit() {
@@ -253,20 +255,20 @@ export default {
             }
         },
         formatSubmitData(){
-            let submitForm ={};
+            let submitForm = Object.assign({}, this.form);
             // 日期传换成Number
             submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030).toString();
             submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031).toString();
-            submitForm.AAS301 = this.form.AAS301//申请地省
-            submitForm.AAB301 = this.form.AAB301//申请地市
-            submitForm.AAQ301 = this.form.AAQ301//申请地区
-            submitForm.AAS011=  this.form.AAS011 //参保地省
-            submitForm.AAE011=  this.form.AAE011 //参保地市
-            submitForm.AAQ011=  this.form.AAQ011 //参保地区
-            submitForm.AAE006=  this.form.AAE006 //详细地址 
-            submitForm.AKC030=  this.form.AKC030 //申请原因
-            submitForm.AAE004=  this.form.AAE004 //联系人
-            submitForm.AAE005=  this.form.AAE005 //联系电话
+            // submitForm.AAS301 = this.form.AAS301//申请地省
+            // submitForm.AAB301 = this.form.AAB301//申请地市
+            // submitForm.AAQ301 = this.form.AAQ301//申请地区
+            // submitForm.AAS011=  this.form.AAS011 //参保地省
+            // submitForm.AAE011=  this.form.AAE011 //参保地市
+            // submitForm.AAQ011=  this.form.AAQ011 //参保地区
+            // submitForm.AAE006=  this.form.AAE006 //详细地址 
+            // submitForm.AKC030=  this.form.AKC030 //申请原因
+            // submitForm.AAE004=  this.form.AAE004 //联系人
+            // submitForm.AAE005=  this.form.AAE005 //联系电话
             // submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {

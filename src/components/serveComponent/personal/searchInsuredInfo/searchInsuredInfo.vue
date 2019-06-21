@@ -55,6 +55,10 @@ export default {
             ],
         }
     },
+    created(){
+        this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+        this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+    },
     watch: {
         form: {
             handler: function(val) {
