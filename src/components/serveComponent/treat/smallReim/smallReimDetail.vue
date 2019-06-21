@@ -4,7 +4,7 @@
         <Title :title="'零星报销'" :backRouter="'/reportComplete'"></Title>
         <div class="secondTitle">基本医疗保险参保人员医疗费用零星报销</div>
         <!-- 办事进度 -->
-        <WorkProgress :currentStep="1"></WorkProgress>
+        <WorkProgress :currentStep="currentStep"></WorkProgress>
         
         <div class="Content">
             <!-- 列表 -->
@@ -125,6 +125,10 @@ export default {
             ],
             needMoreInfo: false,
             moreInfoList: [],
+            currentStep:1,
+            form:{},
+            form1:{},
+            form2:{},
         }
     },
     methods:{
@@ -179,6 +183,79 @@ export default {
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
             return params;
+        },
+        request(){
+            let params=this.formatSubmitData();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    this.$toast("提交成功");
+                    this.currentStep = Number(resData.LS_DS[0].BOD037) 
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        request1(){
+            let params=this.formatSubmitData1();
+            this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1031/info', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {
+                    this.form={...this.form,...resData.LS_DS_13.LS_DS0} 
+                    this.form1={...this.form1,...resData.LS_DS_13.LS_DS1} 
+                    this.form2={...this.form2,...resData.LS_DS_13.LS_DS2} 
+                    // console.log(this.List)
+                    
+                    // this.form={...this.from,...this.List[0]}
+                    this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        formatSubmitData(){
+            let submitForm = {}
+                console.log(submitForm)
+                submitForm.AGA002 =  "给付-00007-019";
+                // 加入用户名和电子社保卡号
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    submitForm.AAC003 = '殷宇佳';
+                    submitForm.AAE135 = "113344223344536624";
+                }      
+                // 请求参数封装
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+                return params;
+        },
+        formatSubmitData1(){
+            let submitForm = {}
+                console.log(submitForm)
+                submitForm.AGA002 =  "给付-00007-019";
+                // 加入用户名和电子社保卡号
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    submitForm.AAC003 = '殷宇佳';
+                    submitForm.AAE135 = "113344223344536624";
+                }      
+                // 请求参数封装
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1031");
+                return params;
         }
     }
 }

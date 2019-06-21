@@ -94,8 +94,7 @@ export default {
             let params=this.formatSubmitData1();
             this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1016/info', params).then((resData) => {
                 console.log('返回成功信息',resData)
-                this.List=[...this.List,...resData.LS_DS_09]
-                this.form={...this.form,...this.List[0]}
+                this.form={...this.form,...resData.LS_DS_09 }
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     this.$toast("提交成功");

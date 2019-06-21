@@ -36,7 +36,6 @@ export default {
     data() { 
         return {
             form: {},
-            List:[],
             currentStep:1,
         }
     },
@@ -79,9 +78,11 @@ export default {
             this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1016/info', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 //   成功   1000
-                if ( resData.enCode == 1000 ) {  
-                    this.List=[...this.List,...resData.LS_DS_13]
-                    this.form={...this.from,...this.List[0]}
+                if ( resData.enCode == 1000 ) {
+                    this.form={...this.form,...resData.LS_DS_13 } 
+                    // console.log(this.List)
+                    
+                    // this.form={...this.from,...this.List[0]}
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
