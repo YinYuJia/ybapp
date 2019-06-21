@@ -143,7 +143,7 @@ export default {
             let offsetHeight = document.getElementById('others').offsetTop;
             this.containerHeight = offsetHeight + window.innerHeight - (titleHeight * 2) + 'px'
         });
-        // window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('scroll', this.handleScroll);
     },
     methods:{
         changeIndex(chooseId,index){
@@ -154,6 +154,25 @@ export default {
             window.scrollTo(0,scrollHieght - titleHeight);
         },
         handleScroll(){
+            let titleHeight = document.getElementById('title').offsetHeight;;
+            let scroll_1 = document.getElementById('insured').offsetTop - titleHeight;
+            let scroll_2 = document.getElementById('record').offsetTop - titleHeight;
+            let scroll_3 = document.getElementById('treat').offsetTop - titleHeight;
+            let scroll_4 = document.getElementById('others').offsetTop - titleHeight;
+            let pageHeight = window.pageYOffset;
+            if(pageHeight > scroll_1 && pageHeight < scroll_2){
+                this.activeIndex = 1;
+                this.headerSwiper.slideTo(0,200);
+            }else if(pageHeight > scroll_2 && pageHeight < scroll_3){
+                this.activeIndex = 2;
+                this.headerSwiper.slideTo(1,200);
+            }else if(pageHeight > scroll_3 && pageHeight < scroll_4){
+                this.activeIndex = 3;
+                this.headerSwiper.slideTo(2,200);
+            }else if(pageHeight == scroll_4){
+                this.activeIndex = 4;
+                this.headerSwiper.slideTo(3,200);
+            }
         },
         showWork(url,item,itemInfo) {
             sessionStorage.setItem("item",item);
