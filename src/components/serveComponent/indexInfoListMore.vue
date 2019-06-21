@@ -15,20 +15,20 @@
             <!-- 参保服务 -->
             <div class="iconList">
                 <div class="iconContent" id="insured">
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon5" />
+                    <div class="iconBox" @click="showWork('/getProof','参保服务','领取就医凭证')">
+                        <svg-icon icon-class="serveComponent_icon_1" />
                         <div class="text">就医凭证</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon6" />
-                        <div class="text">信息变更</div>
+                    <div class="iconBox" @click="showWork('/insuredChange','参保服务','信息变更')">
+                        <svg-icon icon-class="serveComponent_icon_2" />
+                        <div class="text">参保变更</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon7" />
+                    <div class="iconBox" @click="showWork('/searchPrint','参保服务','打印信息')">
+                        <svg-icon icon-class="serveComponent_icon_3" />
                         <div class="text">打印信息</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                    <div class="iconBox" @click="showWork('/transferRenewing','参保服务','关系转移接续')">
+                        <svg-icon icon-class="serveComponent_icon_4" />
                         <div class="text">转移接续</div>
                     </div>
                 </div>
@@ -37,28 +37,28 @@
             <div class="iconList">
                 <div class="listHeader">备案服务</div>
                 <div class="iconContent" id="record">
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon5" />
+                    <div class="iconBox" @click="showWork('/elseWhere','备案服务','异地就医备案')">
+                        <svg-icon icon-class="serveComponent_icon_5" />
                         <div class="text">异地备案</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon6" />
+                    <div class="iconBox" @click="showWork('/turnOut','备案服务','转外备案')">
+                        <svg-icon icon-class="serveComponent_icon_6" />
                         <div class="text">转外就医</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon7" />
+                    <div class="iconBox" @click="showWork('/abroadTake','备案服务','出国带药')">
+                        <svg-icon icon-class="serveComponent_icon_7" />
                         <div class="text">出国带药</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                    <div class="iconBox" @click="showWork('/familyAid','备案服务','家庭共济')">
+                        <svg-icon icon-class="serveComponent_icon_8" />
                         <div class="text">家庭共济</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                    <div class="iconBox" @click="showWork('/specialDrug','备案服务','特制特药备案')">
+                        <svg-icon icon-class="serveComponent_icon_9" />
                         <div class="text">特药备案</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                    <div class="iconBox" @click="showWork('/chronicDisease','备案服务','规定（特殊慢性）病种待遇备案')">
+                        <svg-icon icon-class="serveComponent_icon_10" />
                         <div class="text">规定病种</div>
                     </div>
                 </div>
@@ -67,24 +67,24 @@
             <div class="iconList">
                 <div class="listHeader">待遇服务</div>
                 <div class="iconContent" id="treat">
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon5" />
+                    <div class="iconBox" @click="showWork('/smallReim','待遇报销','基本医疗保险参保人员医疗费用零星报销')">
+                        <svg-icon icon-class="serveComponent_icon_11" />
                         <div class="text">零星报销</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon6" />
+                    <div class="iconBox" @click="showWork('/payLimit','待遇报销','视同缴费年限核定')">
+                        <svg-icon icon-class="serveComponent_icon_12" />
                         <div class="text">缴费年限</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon7" />
+                        <svg-icon icon-class="serveComponent_icon_13" />
                         <div class="text">平产/剖腹</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_14" />
                         <div class="text">流产/引产</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                        <svg-icon icon-class="serveComponent_icon_15" />
                         <div class="text">未就业配偶</div>
                     </div>
                 </div>
@@ -93,29 +93,25 @@
             <div class="iconList">
                 <div class="listHeader">其他服务</div>
                 <div class="iconContent" id="others">
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon5" />
-                        <div class="text">信息变更</div>
+                    <div class="iconBox" @click="showDetail('searchBaseInfo','个人信息查询')">
+                        <svg-icon icon-class="serveComponent_icon_16" />
+                        <div class="text">信息查询</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon6" />
+                    <div class="iconBox" @click="showDetail('searchInsuredInfo','参保信息查询')">
+                        <svg-icon icon-class="serveComponent_icon_17" />
                         <div class="text">参保信息</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon7" />
+                    <div class="iconBox" @click="showDetail('searchProgress','我的事项')">
+                        <svg-icon icon-class="serveComponent_icon_18" />
                         <div class="text">办事进度</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                    <div class="iconBox" @click="showDetail('searchFee','费用信息查询')">
+                        <svg-icon icon-class="serveComponent_icon_19" />
                         <div class="text">费用信息</div>
                     </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
+                    <div class="iconBox" @click="showDetail('searchRecord','备案信息查询')">
+                        <svg-icon icon-class="serveComponent_icon_20" />
                         <div class="text">备案信息</div>
-                    </div>
-                    <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon8" />
-                        <div class="text">就诊信息</div>
                     </div>
                 </div>
             </div>
@@ -141,11 +137,13 @@ export default {
             freeMode: true, //去除惯性
         });
         // 计算留白高度
-        let lastContentHeight = document.getElementById('others').offsetHeight;
-        let titleHeight = document.getElementById('title').offsetHeight;
-        this.containerHeight = (window.innerHeight - titleHeight) * 2 - titleHeight + 'px';
-        // 注册滚动监听
-        // window.addEventListener('scroll', this.handleScroll);
+        this.$nextTick(()=>{
+            let lastContentHeight = document.getElementById('others').offsetHeight;
+            let titleHeight = document.getElementById('title').offsetHeight;
+            let offsetHeight = document.getElementById('others').offsetTop;
+            this.containerHeight = offsetHeight + window.innerHeight - (titleHeight * 2) + 'px'
+        });
+        window.addEventListener('scroll', this.handleScroll);
     },
     methods:{
         changeIndex(chooseId,index){
@@ -156,6 +154,46 @@ export default {
             window.scrollTo(0,scrollHieght - titleHeight);
         },
         handleScroll(){
+            let titleHeight = document.getElementById('title').offsetHeight;;
+            let scroll_1 = document.getElementById('insured').offsetTop - titleHeight;
+            let scroll_2 = document.getElementById('record').offsetTop - titleHeight;
+            let scroll_3 = document.getElementById('treat').offsetTop - titleHeight;
+            let scroll_4 = document.getElementById('others').offsetTop - titleHeight;
+            let pageHeight = window.pageYOffset;
+            if(pageHeight > scroll_1 && pageHeight < scroll_2){
+                this.activeIndex = 1;
+                this.headerSwiper.slideTo(0,200);
+            }else if(pageHeight > scroll_2 && pageHeight < scroll_3){
+                this.activeIndex = 2;
+                this.headerSwiper.slideTo(1,200);
+            }else if(pageHeight > scroll_3 && pageHeight < scroll_4){
+                this.activeIndex = 3;
+                this.headerSwiper.slideTo(2,200);
+            }else if(pageHeight == scroll_4){
+                this.activeIndex = 4;
+                this.headerSwiper.slideTo(3,200);
+            }
+        },
+        showWork(url,item,itemInfo) {
+            sessionStorage.setItem("item",item);
+            sessionStorage.setItem("itemInfo",itemInfo);
+            this.$router.push({
+                name: 'Index',
+                params: {
+                    info: url,
+                    item:item,
+                    itemInfo:itemInfo
+                }
+            })
+        },
+        showDetail(url,item) {
+            sessionStorage.setItem("item",item);
+            this.$router.push({
+                name: url,
+                params: {
+                    item:item,
+                }
+            })
         }
     }
 }

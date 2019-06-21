@@ -27,33 +27,33 @@
         <!-- 图标列表 -->
         <div class="iconContent">
             <div class="iconList">
-                <div class="iconBox">
-                    <svg-icon icon-class="serveComponent_icon5" />
+                <div class="iconBox" @click="showWork('/smallReim','待遇报销','基本医疗保险参保人员医疗费用零星报销')">
+                    <svg-icon icon-class="serveComponent_icon_11" />
                     <div class="text">零星报销</div>
                 </div>
-                <div class="iconBox">
-                    <svg-icon icon-class="serveComponent_icon6" />
+                <div class="iconBox" @click="showWork('/transferRenewing','参保服务','关系转移接续')">
+                    <svg-icon icon-class="serveComponent_icon_4" />
                     <div class="text">转移接续</div>
                 </div>
-                <div class="iconBox">
-                    <svg-icon icon-class="serveComponent_icon7" />
-                    <div class="text">就诊信息</div>
+                <div class="iconBox" @click="showDetail('searchFee','费用信息查询')">
+                    <svg-icon icon-class="serveComponent_icon_19" />
+                    <div class="text">费用信息</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="showDetail('searchProgress','我的事项')">
                     <svg-icon icon-class="serveComponent_icon8" />
                     <div class="text">办事进度</div>
                 </div>
             </div>
             <div class="iconList">
-                <div class="iconBox">
+                <div class="iconBox" @click="showWork('/elseWhere','备案服务','异地就医备案')">
                     <svg-icon icon-class="serveComponent_icon9" />
                     <div class="text">异地备案</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="showWork('/specialDrug','备案服务','特制特药备案')">
                     <svg-icon icon-class="serveComponent_icon10" />
                     <div class="text">特药备案</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="showWork('/getProof','参保服务','领取就医凭证')">
                     <svg-icon icon-class="serveComponent_icon11" />
                     <div class="text">就医凭证</div>
                 </div>
@@ -160,6 +160,27 @@ export default {
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1033");
             return params;
         },
+        showWork(url,item,itemInfo) {
+            sessionStorage.setItem("item",item);
+            sessionStorage.setItem("itemInfo",itemInfo);
+            this.$router.push({
+                name: 'Index',
+                params: {
+                    info: url,
+                    item:item,
+                    itemInfo:itemInfo
+                }
+            })
+        },
+        showDetail(url,item) {
+            sessionStorage.setItem("item",item);
+            this.$router.push({
+                name: url,
+                params: {
+                    item:item,
+                }
+            })
+        }
     }
 }
 </script>
