@@ -208,9 +208,11 @@
                 let submitForm = {};
                 // 日期传换成Number
                 console.log(this.form);
+
                 submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
                 submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
-                
+                submitForm.AAS027 =  this.form.AAS027;//转往地省
+                submitForm.AAB027 =  this.form.AAB027;//转往地市
                 submitForm.AAS301 =  this.form.AAS301;//参保地省
                 submitForm.AAB301 =  this.form.AAB301;//参保地市
                 submitForm.AAQ301 =  this.form.AAQ301;//参保地区
