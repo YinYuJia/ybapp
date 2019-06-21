@@ -15,7 +15,7 @@
             @confirm="handleEndConfirm">
         </mt-datetime-picker>
         <SelectCity 
-            :type="3"
+            :type="2"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >

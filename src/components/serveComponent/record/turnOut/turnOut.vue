@@ -3,7 +3,7 @@
         <Title :title="'转外就医备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <SelectCity 
-            :type="3"
+            :type="2"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
@@ -66,7 +66,6 @@
     export default {
         data() {
             return {
-                dddddd: "1111",
                 form: {
                     AAA301000:"",//参保地
                     AAB301000: "",//转往地市
@@ -92,8 +91,12 @@
             }
         },
         created() {
+            console.log(this.$store.state.SET_USER_DETAILINFO,55555555555);
+            
             this.form.AAA301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+            // this.form.AAA301000 = "杭州"
             this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+            // this.form.AAB301 = "12344"
         },
         watch: {
             form: {
@@ -169,6 +172,8 @@
                 this.$refs.cityPicker.open();
             },
             chooseCity(val){
+                console.log(val);
+                
                 this.form.AAB301000= val.name;
                 this.form.AAS027=val.code[0]
                 this.form.AAB027=val.code[1]
@@ -205,19 +210,19 @@
             }
             },
             formatSubmitData(){
-                let submitForm = {};
+                let submitForm = JSON.parse(JSON.stringify(this.form));
                 // 日期传换成Number
                 console.log(this.form);
                 submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
                 submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
                 
-                submitForm.AAS301 =  this.form.AAS301;//参保地省
-                submitForm.AAB301 =  this.form.AAB301;//参保地市
-                submitForm.AAQ301 =  this.form.AAQ301;//参保地区
-                submitForm.AKA121 =  this.form.AKA121;//疾病名称
-                submitForm.BKE255 =  this.form.BKE255;//就诊疗程
-                submitForm.photoIdList =  this.form.photoIdList;//照片ID数组
-                submitForm.BKZ019 =  this.form.BKZ019;//经办编号
+                // submitForm.AAS301 =  this.form.AAS301;//参保地省
+                // submitForm.AAB301 =  this.form.AAB301;//参保地市
+                // submitForm.AAQ301 =  this.form.AAQ301;//参保地区
+                // submitForm.AKA121 =  this.form.AKA121;//疾病名称
+                // submitForm.BKE255 =  this.form.BKE255;//就诊疗程
+                // submitForm.photoIdList =  this.form.photoIdList;//照片ID数组
+                // submitForm.BKZ019 =  this.form.BKZ019;//经办编号
                 // submitForm.debugTest=  "true";
                 // submitForm.dibuger =  "true";
                 // 加入用户名和电子社保卡号

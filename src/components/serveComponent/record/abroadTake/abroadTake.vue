@@ -3,7 +3,7 @@
         <Title :title="'出国带药备案'" :backRouter="'/'"></Title>
         <!-- MintUI弹出框区域 -->
         <SelectCity 
-            :type="3"
+            :type="2"
             ref="insuredPicker"
             @confirm="chooseInsured"
             >
