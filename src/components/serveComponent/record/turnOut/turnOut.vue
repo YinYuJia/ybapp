@@ -213,16 +213,18 @@
                 let submitForm = JSON.parse(JSON.stringify(this.form));
                 // 日期传换成Number
                 console.log(this.form);
+
                 submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
                 submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
-                
-                // submitForm.AAS301 =  this.form.AAS301;//参保地省
-                // submitForm.AAB301 =  this.form.AAB301;//参保地市
-                // submitForm.AAQ301 =  this.form.AAQ301;//参保地区
-                // submitForm.AKA121 =  this.form.AKA121;//疾病名称
-                // submitForm.BKE255 =  this.form.BKE255;//就诊疗程
-                // submitForm.photoIdList =  this.form.photoIdList;//照片ID数组
-                // submitForm.BKZ019 =  this.form.BKZ019;//经办编号
+                submitForm.AAS027 =  this.form.AAS027;//转往地省
+                submitForm.AAB027 =  this.form.AAB027;//转往地市
+                submitForm.AAS301 =  this.form.AAS301;//参保地省
+                submitForm.AAB301 =  this.form.AAB301;//参保地市
+                submitForm.AAQ301 =  this.form.AAQ301;//参保地区
+                submitForm.AKA121 =  this.form.AKA121;//疾病名称
+                submitForm.BKE255 =  this.form.BKE255;//就诊疗程
+                submitForm.photoIdList =  this.form.photoIdList;//照片ID数组
+                submitForm.BKZ019 =  this.form.BKZ019;//经办编号
                 // submitForm.debugTest=  "true";
                 // submitForm.dibuger =  "true";
                 // 加入用户名和电子社保卡号

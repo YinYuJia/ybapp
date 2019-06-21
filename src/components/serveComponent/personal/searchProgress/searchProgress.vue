@@ -9,21 +9,25 @@
                 <div class="MenuCell" @click="changeIndex(3)" :class="{'active': activeIndex == 3}">已办结</div>
             </div>
         </div>
-        <mt-loadmore v-show="itemGroup.length" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+        <mt-loadmore 
+        :bottom-method="loadBottom"
+        :bottom-all-loaded="allLoaded" 
+        
+        ref="loadmore">
             <!-- 列表 -->
             <ul class="ListInfo">
-                <li class="ListLine" v-for="(item,index) in itemGroup" :key="index">
+                <li class="ListLine" v-for="(item,index) in itemGroup" :key="index" @click="gotoplace(item)">
                     <div class="InfoName">
-                        <div class="InfoHead">{{item.name}}</div>
-                        <div class="InfoDate">{{item.date}}</div>
+                        <div class="InfoHead">{{item.AGA004}}</div>
+                        <div class="InfoDate">{{item.AAE036}}</div>
                     </div>
                     <svg-icon icon-class="serveComponent_arrowRight" />
                 </li>
             </ul>
         </mt-loadmore>
-        <div v-show="!itemGroup.length">
+        <div v-if="isShow">
         <div class="pic_null"></div>
-        <div class="tip">暂无事项~~~</div>
+        <div class="tip">没有更多事项了~~~</div>
         </div>
         
     </div>
@@ -34,41 +38,46 @@ export default {
         return{
             allLoaded: true,
             activeIndex: 1,
-            pageNum:1,
+            pageSize:10,
+            pageNum:"1",
             itemGroup: [
                 // {name: '基本医疗保险', date: '2019-05-19 12:09:31'},
                 // {name: '领取基本医疗保险就医凭证', date: '2019-05-19 12:09:31'},
                 // {name: '基本医疗保险职工参保信息变更登记', date: '2019-05-19 12:09:31'},
                 // {name: '参保人员查询打印社会保险信息', date: '2019-05-19 12:09:31'},
             ],
-
+            BOD037:"1",
+            totalPage:"",
+            isShow:false
 
         }
     },
     created () {
-        this.request();  
+        this.getList();
     },
     methods:{
-        loadBottom() {
-        if (!this.allLoaded) {
-            this.showList();
-        }
-        this.allLoaded = true;
-        this.$refs.loadmore.onBottomLoaded();
+        gotoplace(item){
+            console.log("item",item)
         },
         changeIndex(index){
             this.activeIndex=index;
             this.itemGroup=[];
             if(index==1){
-                this.request();
+                this.BOD037="1";
+                this.pageNum="1";
+                this.getList();
             }else if(index==2){
-                this.request1();
+                this.BOD037="2";
+                this.pageNum="1";
+                this.getList();
             }else if(index==3){
-                this.request2();
+                this.BOD037="3";
+                this.pageNum="1";
+                this.getList();
             }
 
         },
-        request(){
+        getList(){
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
@@ -76,7 +85,33 @@ export default {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                         if ( resData.enCode == 1000 ) {
-                            this.$router.push('/searchInsuredResult');
+                            if(resData.LS_DS.length>0&&resData.LS_DS.length<10){
+                                this.isShow=true;
+                            }
+                            this.$toast("请求成功");
+                            if(resData.LS_DS.length>0){
+                                this.itemGroup=[...this.itemGroup,...resData.LS_DS]
+                                //向上取整
+                                let Num=Math.ceil(resData.pages/this.pageSize);
+                                    this.totalPage=Num;
+                                    console.log("totalPage",this.totalPage)                   
+                                    let Num111=Number(this.pageNum);
+                                    this.pageNum=Num111                        
+                                if(this.totalPage>this.pageNum){
+                                    console.log("up",Num111)
+                                    this.pageNum+=1;
+                                    console.log("down",this.pageNum)
+                                    let Num222=this.pageNum.toString();
+                                    this.pageNum=Num222
+                                    console.log('pageNum',this.pageNum)
+                                    this.allLoaded=false
+                                    console.log(this.allLoaded)
+                                }else{
+                                    // this.allLoaded=true
+                                    this.isShow=true;
+                                }
+                            }
+
                         }else if (resData.enCode == 1001 ) {
                         //   失败  1001
                             this.$toast(resData.msg);
@@ -89,9 +124,8 @@ export default {
         },
         formatSubmitData(){
                 let submitForm ={};
-                submitForm.BOD037 = 1//办件状态
+                submitForm.BOD037 = "1"//办件状态
                 submitForm.pageNum = this.pageNum//页码
-                // submitForm.debugTest=  "true";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
@@ -104,87 +138,23 @@ export default {
                 console.log('submitForm',submitForm)
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1018");
                 return params;
-            },
-        request1(){
-                // 封装数据
-                let params = this.formatSubmitData1();
-                // 开始请求
-                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1018/getList', params).then((resData) => {
-                        console.log('返回成功信息',resData)
-                        //   成功   1000
-                            if ( resData.enCode == 1000 ) {
-                                this.$router.push('/searchInsuredResult');
-                            }else if (resData.enCode == 1001 ) {
-                            //   失败  1001
-                                this.$toast(resData.msg);
-                                return;
-                            }else{
-                                this.$toast('业务出错');
-                                return;
-                            }
-                })
         },
-        formatSubmitData1(){
-                let submitForm ={};
-                submitForm.BOD037 = 2//办件状态
-                submitForm.pageNum = this.pageNum//页码
-                // submitForm.debugTest=  "true";
-                // 加入用户名和电子社保卡号
-                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-                }else {
-                    submitForm.AAC003 = '殷宇佳';
-                    submitForm.AAE135 = "113344223344536624";
-                }
-                // 请求参数封装
-                console.log('submitForm',submitForm)
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1018");
-                return params;
-            },
-        request2(){
-                // 封装数据
-                let params = this.formatSubmitData2();
-                // 开始请求
-                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1018/getList', params).then((resData) => {
-                        console.log('返回成功信息',resData)
-                        //   成功   1000
-                            if ( resData.enCode == 1000 ) {
-                                this.$router.push('/searchInsuredResult');
-                            }else if (resData.enCode == 1001 ) {
-                            //   失败  1001
-                                this.$toast(resData.msg);
-                                return;
-                            }else{
-                                this.$toast('业务出错');
-                                return;
-                            }
-                })
+        loadBottom() {
+        console.log("加载")
+        if (!this.allLoaded) {
+            this.getList();
+        }
+        this.allLoaded = true;
+        this.$refs.loadmore.onBottomLoaded();
         },
-        formatSubmitData2(){
-                let submitForm ={};
-                submitForm.BOD037 = 3//办件状态
-                submitForm.pageNum = this.pageNum//页码
-                // submitForm.debugTest=  "true";
-                // 加入用户名和电子社保卡号
-                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-                }else {
-                    submitForm.AAC003 = '殷宇佳';
-                    submitForm.AAE135 = "113344223344536624";
-                }
-                // 请求参数封装
-                console.log('submitForm',submitForm)
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1018");
-                return params;
-            },
     }
 }
 </script>
 
 <style lang="less" scoped>
 .searchProgress{
+    overflow: auto;
+    font-size: 0.32rem;
     .IndexMenu {
         height: 1.2rem;
         width: 7.5rem;
