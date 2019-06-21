@@ -53,7 +53,9 @@ export default {
       params: {
         pageSize: 15,
         pageNum: "1",
-        AAA102: ""
+        AAA102: "",
+        AAE013: "",
+        AAA052: ""
       },
       allLoaded: true,
       showSearch: false,
@@ -66,6 +68,14 @@ export default {
     type: {
       type: String,
       default: 'AKB020'
+    },
+    AAE013: {
+      type: String|Number,
+      default: ''
+    },
+    AAA052: {
+      type: String|Number,
+      default: ''
     },
     title:{
         type: String,
@@ -110,7 +120,7 @@ export default {
     // }
   },
   created() {
-    this.getList();
+    
   },
   methods: {
     // 获取医院列表
@@ -118,8 +128,6 @@ export default {
       // 封装数据
       let params = this.formatSubmitData();
       // 开始请求
-      console.log(params);
-      
       this.$axios.post(this.epFn.ApiUrl()+"/h5/jy2001/optionInformationList",params).then(resData => {
           console.log("返回成功信息", resData.LS_DS);
           //   成功   1000
@@ -186,8 +194,9 @@ export default {
       let submitForm = {};
       submitForm.AAA102 = this.params.AAA102; //模糊查询
       submitForm.AAA100 = this.type; //机构参数
-      submitForm.pageNum = this.params.pageNum; //模糊查询
-
+      submitForm.pageNum = this.params.pageNum; //页码
+      submitForm.AAE013 = this.AAE013 //关联性类别码
+      submitForm.AAA052 = this.AAA052  //关联性类别值
       // 加入用户名和电子社保卡号
       if (this.$store.state.SET_NATIVEMSG.name !== undefined) {
         submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
@@ -205,13 +214,19 @@ export default {
       return params;
     },
     open(){
+      this.allLoaded = true
       this.showSearch = true;
+      this.params.pageNum = 1
+      this.getList();
     },
     back(){
+      this.List = []
       this.showSearch = false;
+      
     },
     chooseHospital(code, name) {
         this.$emit('childrenClick',code,name);
+        this.List = []
         this.showSearch = false
     }
   }
