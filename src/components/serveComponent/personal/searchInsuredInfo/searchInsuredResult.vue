@@ -13,7 +13,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName">个人缴费：</div>
-                    <div class="InfoText">{{item.AAE180}}</div>
+                    <div class="InfoText">{{item.AIC149}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName">到账情况：</div>
@@ -35,7 +35,12 @@ export default {
             //     {date: '201903', base: '8000', pay: '80.00', text: '未到账'}
             // ],
             form:{},
-            List:[]
+            List:[{
+                AAE003:"",
+                AAE180:"",
+                AIC149:"",
+                AAE078:""
+            }]
         }
     },
     created () {
