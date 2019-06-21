@@ -31,7 +31,7 @@
             </div>
         </div>
         <!-- 底部 -->
-        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <Footer :btnType="2" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
 </template>
 
@@ -52,6 +52,7 @@ export default {
         },
         List:[],
         currentStep:1,
+        handleNumber:'',
         arr: [
             {step:1,name:'申请'},
             {step:2,name:'受理'},
@@ -121,6 +122,7 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     this.form={...this.from,...resData.LS_DS_11}
+                    this.handleNumber = resData.LS_DS_11.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001

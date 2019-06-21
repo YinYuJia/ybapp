@@ -126,6 +126,7 @@ export default {
             needMoreInfo: false,
             moreInfoList: [],
             currentStep:1,
+            handleNumber:'',
             form:{},
             form1:{},
             form2:{},
