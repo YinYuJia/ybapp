@@ -76,8 +76,7 @@ export default {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                         if ( resData.enCode == 1000 ) {
-                            this.$router.push('/searchInsuredResult')
-                            this.$toast("请求成功");
+                            this.$router.push('/searchInsuredResult');
                         }else if (resData.enCode == 1001 ) {
                         //   失败  1001
                             this.$toast(resData.msg);
@@ -114,8 +113,7 @@ export default {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
-                                this.$router.push('/searchInsuredResult')
-                                this.$toast("请求成功");
+                                this.$router.push('/searchInsuredResult');
                             }else if (resData.enCode == 1001 ) {
                             //   失败  1001
                                 this.$toast(resData.msg);
@@ -154,8 +152,7 @@ export default {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
-                                this.$router.push('/searchInsuredResult')
-                                this.$toast("请求成功");
+                                this.$router.push('/searchInsuredResult');
                             }else if (resData.enCode == 1001 ) {
                             //   失败  1001
                                 this.$toast(resData.msg);

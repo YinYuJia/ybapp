@@ -101,7 +101,6 @@ export default {
                         if(resData.LS_DS){ 
                             this.form={...this.form,...resData.LS_DS}
                         }
-                        // this.$toast("提交成功");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
                         this.$toast(resData.msg);

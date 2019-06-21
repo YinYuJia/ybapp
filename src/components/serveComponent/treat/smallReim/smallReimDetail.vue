@@ -123,7 +123,7 @@ export default {
                 {code:'9123910023010230120302',state:'报销中',cost:'102.88'},
                 {code:'9123910023010230120303',state:'报销中',cost:'2019.28'},
             ],
-            needMoreInfo: false,
+            needMoreInfo: true,
             moreInfoList: [],
             currentStep:1,
             handleNumber:'',
