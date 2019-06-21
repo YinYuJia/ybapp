@@ -28,18 +28,18 @@
         <div class="iconContent">
             <div class="iconList">
                 <div class="iconBox" @click="showWork('/smallReim','待遇报销','基本医疗保险参保人员医疗费用零星报销')">
-                    <svg-icon icon-class="serveComponent_icon5" />
+                    <svg-icon icon-class="serveComponent_icon_11" />
                     <div class="text">零星报销</div>
                 </div>
                 <div class="iconBox" @click="showWork('/transferRenewing','参保服务','关系转移接续')">
-                    <svg-icon icon-class="serveComponent_icon6" />
+                    <svg-icon icon-class="serveComponent_icon_4" />
                     <div class="text">转移接续</div>
                 </div>
                 <div class="iconBox" @click="showDetail('searchFee','费用信息查询')">
                     <svg-icon icon-class="serveComponent_icon_19" />
                     <div class="text">费用信息</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="showDetail('searchProgress','我的事项')">
                     <svg-icon icon-class="serveComponent_icon8" />
                     <div class="text">办事进度</div>
                 </div>
