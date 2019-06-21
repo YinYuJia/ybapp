@@ -116,6 +116,30 @@ export default {
             observeParents:true,//修改swiper的父元素时，自动初始化swiper
         })
     },
+    created(){
+        // 获取参保地
+        // name: sessionStorage.getItem("userName") ,
+                // idCard:sessionStorage.getItem("idCard") ,
+        // /h5/jy1033/getRecord
+        let params=this.formatSubmitData();
+        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1033/getRecord', params).then((resData) => {
+            console.log('返回成功信息',resData)
+            //   成功   1000
+            if ( resData.enCode == 1000 ) {  
+                this.$store.dispatch('SET_USER_DETAILINFO',{
+                    insured: resData.AAB301,
+                    regionName:resData.RegionName || '杭州市'
+                })
+            }else if (resData.enCode == 1001 ) {
+            //   失败  1001
+                this.$toast(resData.msg);
+                return;
+            }else{
+                this.$toast('业务出错');
+                return;
+            }
+        })
+    },
     filters:{
         msgLength: function(val){
             return val.slice(0,20) + '...';
@@ -124,7 +148,18 @@ export default {
     methods:{
         goRouter(route){
             this.$router.push(route);
-        }
+        },
+        formatSubmitData(){  
+            let submitForm ={}
+
+            // 加入用户名和电子社保卡号
+          
+            submitForm.AAC003 = '殷宇佳'
+            submitForm.AAE135 = '113344223344536624'
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1033");
+            return params;
+        },
     }
 }
 </script>

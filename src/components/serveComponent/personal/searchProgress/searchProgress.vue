@@ -72,7 +72,7 @@ export default {
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
-                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1014/getInfo', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1018/getList', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                         if ( resData.enCode == 1000 ) {
@@ -89,8 +89,8 @@ export default {
         },
         formatSubmitData(){
                 let submitForm ={};
-                submitForm.BOD037 = ""//办件状态
-                submitForm.pageNum = this.form.pageNum//页码
+                submitForm.BOD037 = 1//办件状态
+                submitForm.pageNum = this.pageNum//页码
                 // submitForm.debugTest=  "true";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -102,14 +102,14 @@ export default {
                 }
                 // 请求参数封装
                 console.log('submitForm',submitForm)
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1014");
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1018");
                 return params;
             },
         request1(){
                 // 封装数据
                 let params = this.formatSubmitData1();
                 // 开始请求
-                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1014/getInfo', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1018/getList', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
@@ -126,10 +126,8 @@ export default {
         },
         formatSubmitData1(){
                 let submitForm ={};
-                submitForm.AAS301 = this.form.AAS301//申请地省
-                submitForm.AAB301 = this.form.AAB301//申请地市
-                submitForm.AAQ301 = this.form.AAQ301//申请地区
-                submitForm.AAE091 = this.form.AAE091//缴费月数
+                submitForm.BOD037 = 2//办件状态
+                submitForm.pageNum = this.pageNum//页码
                 // submitForm.debugTest=  "true";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -141,14 +139,14 @@ export default {
                 }
                 // 请求参数封装
                 console.log('submitForm',submitForm)
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1014");
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1018");
                 return params;
             },
         request2(){
                 // 封装数据
                 let params = this.formatSubmitData2();
                 // 开始请求
-                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1014/getInfo', params).then((resData) => {
+                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1018/getList', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
@@ -165,10 +163,8 @@ export default {
         },
         formatSubmitData2(){
                 let submitForm ={};
-                submitForm.AAS301 = this.form.AAS301//申请地省
-                submitForm.AAB301 = this.form.AAB301//申请地市
-                submitForm.AAQ301 = this.form.AAQ301//申请地区
-                submitForm.AAE091 = this.form.AAE091//缴费月数
+                submitForm.BOD037 = 3//办件状态
+                submitForm.pageNum = this.pageNum//页码
                 // submitForm.debugTest=  "true";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -180,7 +176,7 @@ export default {
                 }
                 // 请求参数封装
                 console.log('submitForm',submitForm)
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1014");
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1018");
                 return params;
             },
     }

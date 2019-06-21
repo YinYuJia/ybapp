@@ -72,9 +72,12 @@
                     AAB301000: "",//转往地市
                     AAE030: '', //开始日期
                     AAE031: '', //结束日期
-                    AAS301: "", //转往地省
-                    AAB301: "", //转往地市
-                    AAQ301: "", //转往地区
+                    AAS301: "", //参保地省
+                    AAB301: "", //参保地市
+                    AAQ301: "", //参保地区
+                    AAS027:"",	//转往省
+                    AAB027:"",	//转往市
+                    AAQ027:"",  //转往区
                     AKA121: '',//疾病名称
                     BKE255: '', //就诊疗程
                     photoIdList:[],//照片ID数组
@@ -89,7 +92,8 @@
             }
         },
         created() {
-
+            this.form.AAA301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+            this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
         },
         watch: {
             form: {
@@ -129,6 +133,9 @@
             },
             chooseInsured(val){
                 this.form.AAA301000=val.name
+                this.form.AAS301=val.code[0]
+                this.form.AAB301=val.code[1]
+                this.form.AAQ301=val.code[2]
             },
             // 选择开始日期
             openStartPicker(){
@@ -163,9 +170,9 @@
             },
             chooseCity(val){
                 this.form.AAB301000= val.name;
-                this.form.AAS301=val.code[0]
-                this.form.AAB301=val.code[1]
-                this.form.AAQ301=val.code[2]
+                this.form.AAS027=val.code[0]
+                this.form.AAB027=val.code[1]
+                this.form.AAQ027=val.code[2]
             },
             submit() {
                 

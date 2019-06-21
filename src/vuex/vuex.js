@@ -40,7 +40,11 @@ export default new Vuex.Store({  // 暴露与new vuex
           name: '张*佳', //姓名
           idNo: '3301**********4567', //身份证号
         },
-
+        // 用户详细信息
+        SET_USER_DETAILINFO:{
+          AAB301: '', //参保地code
+          regionName:'' //参保地name
+        },
         // 异地就医备案
         SET_ELSEWHERE_OPERATION:{
           AAB301000:"",
@@ -266,6 +270,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_USER_BASEINFO:( state ) => {
           return state.SET_USER_BASEINFO=JSON.parse(sessionStorage.getItem('SET_USER_BASEINFO'));
         },
+        SET_USER_DETAILINFO:( state ) => {
+          return state.SET_USER_DETAILINFO=JSON.parse(sessionStorage.getItem('SET_USER_DETAILINFO'));
+        },
         SET_NATIVEMSG:( state ) => {
           return state.SET_NATIVEMSG=JSON.parse(sessionStorage.getItem('SET_NATIVEMSG'));
         },
@@ -327,6 +334,10 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_USER_BASEINFO(state,payload){
           sessionStorage.setItem("SET_USER_BASEINFO",JSON.stringify(payload));
           state.SET_USER_BASEINFO = payload;
+        },
+        SET_USER_DETAILINFO(state,payload){
+          sessionStorage.setItem("SET_USER_DETAILINFO",JSON.stringify(payload));
+          state.SET_USER_DETAILINFO = payload;
         },
         SET_NATIVEMSG(state,payload){
           sessionStorage.setItem("SET_NATIVEMSG",JSON.stringify(payload));
@@ -408,6 +419,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_USER_BASEINFO( context, payload ) {
           context.commit( 'SET_USER_BASEINFO', payload ); //context提交
+        },
+        SET_USER_DETAILINFO( context, payload ) {
+          context.commit( 'SET_USER_DETAILINFO', payload ); //context提交
         },
         SET_SMALL_REIM_SUBMIT( context, payload ) {
           context.commit( 'SET_SMALL_REIM_SUBMIT', payload );
