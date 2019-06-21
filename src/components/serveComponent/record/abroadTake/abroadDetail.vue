@@ -27,11 +27,11 @@
                     <div class="InfoText">{{form.BKE260 | tuoMin(3,3)}}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate></ProgressDate>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
-        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <Footer :btnType="2" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
 </template>
 
@@ -48,6 +48,7 @@ export default {
             // BKE260: '', //护照号码
         },
         currentStep:1,
+        handleNumber:'',
         List:[]
       }
     },
@@ -78,7 +79,7 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
-                    this.currentStep = Number(resData.LS_DS[0].BOD037)   
+                    // this.currentStep = Number(resData.LS_DS[0].BOD037)   
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
@@ -97,7 +98,9 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     this.List=[...this.List,...resData.LS_DS_10]
+                    console.log('this.List',this.List)
                     this.form={...this.form,...this.List[0]}
+                    this.handleNumber = resData.LS_DS_10.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001

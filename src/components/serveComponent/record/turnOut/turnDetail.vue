@@ -31,11 +31,11 @@
                     <div class="InfoText">{{form.BKE255 | medicaladvice }}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate></ProgressDate>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
-        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <Footer :btnType="2" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
 </template>
 
@@ -53,6 +53,7 @@ export default {
             // BKZ019:""
         },
         currentStep:1,
+        handleNumber:'',
         List:[]
       }
     },
@@ -94,8 +95,8 @@ export default {
             let params=this.formatSubmitData1();
             this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1016/info', params).then((resData) => {
                 console.log('返回成功信息',resData)
-                this.List=[...this.List,...resData.LS_DS_09]
-                this.form={...this.form,...this.List[0]}
+                this.form={...this.form,...resData.LS_DS_09 }
+                this.handleNumber = resData.LS_DS_09.BKZ019
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     this.$toast("提交成功");
@@ -144,7 +145,7 @@ export default {
             }
             
             // 请求参数封装
-            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
             return params;
         }
     }

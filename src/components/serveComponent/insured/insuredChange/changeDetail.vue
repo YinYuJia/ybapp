@@ -19,7 +19,7 @@
                     <div class="InfoText">{{form.AAE007}}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate></ProgressDate>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -85,8 +85,9 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    this.List=[...this.List,...resData.LS_DS_05]
-                    this.form={...this.form,...this.List[0]}
+                    this.form={...this.form,...resData.LS_DS_05}
+                    // this.List=[...this.List,...resData.LS_DS_05]
+                    // this.form={...this.form,...this.List[0]}
                     this.handleNumber = resData.LS_DS_05.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {

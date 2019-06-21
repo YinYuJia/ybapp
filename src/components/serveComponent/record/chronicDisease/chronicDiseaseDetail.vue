@@ -35,6 +35,7 @@
                     <div class="InfoName"><span>提取方式:</span></div>
                     <div class="InfoText">{{form.BKE247 | isMail}}</div>
                 </div>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
             <div class="MailInfo" v-if="form.BKE247 == '2'">
                 <div class="InfoLine">
@@ -53,9 +54,10 @@
             <div class="searchPlace" v-if="form.BKE247 == '1'">
                 <div class="searchBtn">点击查看附近领取网点</div>
             </div>
+            
         </div>
         <!-- 底部 -->
-        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <Footer :btnType="2" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
 </template>
 
@@ -90,11 +92,14 @@ export default {
                 {step:6,name:'办结6'},
             ],
             currentStep:1,
+            handleNumber:'',
             List:[]
         }
     },
     created(){
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
+        this.request();
+        this.request1();
     },
     methods:{
         //
@@ -129,8 +134,8 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    this.List=[...this.List,...resData.LS_DS_14]
-                    this.form={...this.form,...this.List[0]}
+                    this.form={...this.form,...resData.LS_DS_14}
+                    this.handleNumber = resData.LS_DS_14.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001

@@ -23,11 +23,11 @@
                     <div class="InfoText">{{form.BKE810 | trtireType}}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate></ProgressDate>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
-        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <Footer :btnType="2" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
 </template>
 
@@ -36,8 +36,8 @@ export default {
     data() { 
         return {
             form: {},
-            List:[],
             currentStep:1,
+            handleNumber:'',
         }
     },
     created () {
@@ -79,9 +79,11 @@ export default {
             this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1016/info', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 //   成功   1000
-                if ( resData.enCode == 1000 ) {  
-                    this.List=[...this.List,...resData.LS_DS_13]
-                    this.form={...this.from,...this.List[0]}
+                if ( resData.enCode == 1000 ) {
+                    this.form={...this.form,...resData.LS_DS_13 } 
+                    // console.log(this.List)
+                    this.handleNumber = resData.LS_DS_13.BKZ019
+                    // this.form={...this.from,...this.List[0]}
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001

@@ -44,7 +44,7 @@ export default {
             this.$emit('submit');
         },
         backout(){
-            this.$emit('backout');
+            // this.$emit('backout');
             if(this.handleNumber){
                 this.$messagebox.confirm('确定撤销吗?').then(() => {
                     const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,{BKZ019:this.handleNumber},'1032)');
@@ -57,7 +57,7 @@ export default {
                     })
                 });
             }else{
-                this.$toast('经办编号必填');
+                this.$toast('没有信息，不可撤销');
             }
         },
         edit(){

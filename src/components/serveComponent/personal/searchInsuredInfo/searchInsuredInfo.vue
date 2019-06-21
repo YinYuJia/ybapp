@@ -45,13 +45,13 @@ export default {
                 AAS301: '', //参保地省
                 AAB301: '', //参保地市
                 AAQ301: '', //参保地区
-                AAE091: '', //查询月数
+                AAE091: '24', //查询月数
             },
             canSubmit: false, //是否能提交
             months: [
-                {value: 6 ,label: '6个月'},
-                {value: 12 ,label: '12个月'},
-                {value: 24 ,label: '24个月'},
+                {value: "6" ,label: '6'},
+                {value: "12" ,label: '12'},
+                {value: "24" ,label: '24'},
             ],
         }
     },
