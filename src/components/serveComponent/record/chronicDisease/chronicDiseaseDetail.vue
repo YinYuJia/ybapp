@@ -35,6 +35,7 @@
                     <div class="InfoName"><span>提取方式:</span></div>
                     <div class="InfoText">{{form.BKE247 | isMail}}</div>
                 </div>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
             <div class="MailInfo" v-if="form.BKE247 == '2'">
                 <div class="InfoLine">
@@ -53,6 +54,7 @@
             <div class="searchPlace" v-if="form.BKE247 == '1'">
                 <div class="searchBtn">点击查看附近领取网点</div>
             </div>
+            
         </div>
         <!-- 底部 -->
         <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
@@ -95,6 +97,8 @@ export default {
     },
     created(){
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
+        this.request();
+        this.request1();
     },
     methods:{
         //

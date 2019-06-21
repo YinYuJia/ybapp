@@ -16,7 +16,7 @@
                     <div class="InfoText">{{mailType}}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate></ProgressDate>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
             <div class="MailInfo" v-if="form.BKA077 == '1'">
                 <div class="InfoLine">

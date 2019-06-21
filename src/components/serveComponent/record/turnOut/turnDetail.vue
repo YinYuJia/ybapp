@@ -31,7 +31,7 @@
                     <div class="InfoText">{{form.BKE255 | medicaladvice }}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate></ProgressDate>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -143,7 +143,7 @@ export default {
             }
             
             // 请求参数封装
-            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
             return params;
         }
     }

@@ -27,7 +27,7 @@
                     <div class="InfoText">{{form.AAE030}}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate></ProgressDate>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->

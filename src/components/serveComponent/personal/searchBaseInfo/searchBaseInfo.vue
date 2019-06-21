@@ -98,10 +98,10 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        if(resData.LS_DS){
+                        if(resData.LS_DS){ 
                             this.form={...this.form,...resData.LS_DS}
                         }
-                        this.$toast("提交成功");
+                        // this.$toast("提交成功");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
                         this.$toast(resData.msg);
