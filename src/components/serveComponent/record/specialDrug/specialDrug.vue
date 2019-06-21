@@ -129,8 +129,7 @@
             <span>剂量</span>
           </div>
           <div class="InfoText">
-            <input type="tel" v-model="form.AKA071" placeholder="请选择">
-            <svg-icon icon-class="serveComponent_arrowRight"/>
+            <input type="tel" v-model="form.AKA071" placeholder="请输入">
           </div>
         </div>
         <div class="InfoLine">
@@ -138,8 +137,7 @@
             <span>数量</span>
           </div>
           <div class="InfoText">
-            <input type="tel" v-model="form.AKC226" placeholder="请选择">
-            <svg-icon icon-class="serveComponent_arrowRight"/>
+            <input type="tel" v-model="form.AKC226" placeholder="请输入">
           </div>
         </div>
         <div class="InfoLine">
@@ -268,7 +266,7 @@ export default {
           let month = 24 * 3600 * 1000 * 30;
           let gap = AAE031 - AAE030;
           if (gap <= 0) {
-            this.$toast("回国日期需大于出境日期");
+            this.$toast("结束日期必须大于开始日期");
             this.form.AAE031 = "";
           }
         }
