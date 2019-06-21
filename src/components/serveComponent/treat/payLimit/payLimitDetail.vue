@@ -27,7 +27,7 @@
             </div>
         </div>
         <!-- 底部 -->
-        <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <Footer :btnType="2" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
 </template>
 
@@ -37,6 +37,7 @@ export default {
         return {
             form: {},
             currentStep:1,
+            handleNumber:'',
         }
     },
     created () {
@@ -81,7 +82,7 @@ export default {
                 if ( resData.enCode == 1000 ) {
                     this.form={...this.form,...resData.LS_DS_13 } 
                     // console.log(this.List)
-                    
+                    this.handleNumber = resData.LS_DS_13.BKZ019
                     // this.form={...this.from,...this.List[0]}
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
