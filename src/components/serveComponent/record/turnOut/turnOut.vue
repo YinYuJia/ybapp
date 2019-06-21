@@ -241,13 +241,11 @@
             .InfoLine {
                 height: 1.2rem;
                 position: relative;
-                font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 justify-content: space-between;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     span {
                         height: .6rem;
@@ -257,7 +255,6 @@
                     }
                 }
                 .InfoText {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
@@ -265,9 +262,7 @@
                     input {
                         height: .6rem;
                         width: 4.5rem;
-                        opacity: 0.85;
-                        font-family: PingFangSC-Regular;
-                        font-size: .3rem;
+                        font-size: .28rem;
                         color: #000000;
                         letter-spacing: 0;
                         text-align: right;

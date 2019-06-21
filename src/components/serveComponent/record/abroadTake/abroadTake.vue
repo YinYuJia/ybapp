@@ -234,7 +234,7 @@
                 height: 1.2rem;
                 position: relative;
                 font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 justify-content: space-between;
                 border-bottom: .01rem solid #D5D5D5;
