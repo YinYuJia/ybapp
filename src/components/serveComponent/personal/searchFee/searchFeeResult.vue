@@ -129,11 +129,13 @@ export default {
                 display: flex;
                 .InfoName{
                     width: 3rem;
+                    color: #666;
                     text-align: left;
                     letter-spacing: 0;
                 }
                 .InfoText{
                     width: 100%;
+                    color: #000;
                     letter-spacing: 0;
                     text-align: left;
                 }

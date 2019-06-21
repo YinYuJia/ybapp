@@ -16,7 +16,7 @@
                     <div class="InfoText">{{mailType}}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate></ProgressDate>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
             <div class="MailInfo" v-if="form.BKA077 == '1'">
                 <div class="InfoLine">
@@ -116,8 +116,11 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) { 
-                    this.currentStep = Number(resData.LS_DS[0].BOD037) 
-                    this.$toast("提交成功");
+                    if (resData.LS_DS.length > 0 ) {
+                       this.currentStep = Number(resData.LS_DS[0].BOD037) 
+                    }else{
+                        this.$toast("暂无状态信息")
+                    }
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);
@@ -210,7 +213,7 @@ export default {
                         height: .6rem;
                         line-height: .6rem;
                         letter-spacing: 0;
-                        color: #000;
+                        color: #666;
                     }
                 }
                 .InfoText{
@@ -218,7 +221,7 @@ export default {
                     display: flex;
                     position: relative;
                     align-items: center;
-                    color: #333;
+                    color: #000;
                 }
                 &:last-child{
                     border-bottom: none;

@@ -19,7 +19,7 @@
                     <div class="InfoText">{{form.AAE007}}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate></ProgressDate>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -67,8 +67,11 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    this.currentStep = Number(resData.LS_DS[0].BOD037) 
-                    this.$toast("提交成功");
+                    if (resData.LS_DS.length > 0 ) {
+                       this.currentStep = Number(resData.LS_DS[0].BOD037) 
+                    }else{
+                        this.$toast("暂无状态信息")
+                    }
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);
@@ -152,7 +155,6 @@ export default {
             .InfoLine{
                 height: 1.2rem;
                 position: relative;
-                font-family: PingFangSC-Regular;
                 font-size: .28rem;
                 display: flex;
                 border-bottom: .01rem solid #D5D5D5;
@@ -164,7 +166,7 @@ export default {
                         height: .6rem;
                         line-height: .6rem;
                         letter-spacing: 0;
-                        color: #000;
+                        color: #666;
                     }
                 }
                 .InfoText{
@@ -172,7 +174,7 @@ export default {
                     display: flex;
                     position: relative;
                     align-items: center;
-                    color: #333;
+                    color: #000;
                 }
                 &:first-child{
                     height: 1.6rem;
@@ -182,7 +184,7 @@ export default {
                             border: none;
                             width: 5rem;
                             line-height: .45rem;
-                            color: #333;
+                            color: #000;
                         }
                     }
                 }

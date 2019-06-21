@@ -98,10 +98,10 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        if(resData.LS_DS){
+                        if(resData.LS_DS){ 
                             this.form={...this.form,...resData.LS_DS}
                         }
-                        this.$toast("提交成功");
+                        // this.$toast("提交成功");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
                         this.$toast(resData.msg);
@@ -145,7 +145,6 @@ export default {
             .InfoLine{
                 height: 1.2rem;
                 position: relative;
-                font-family: PingFangSC-Regular;
                 font-size: .28rem;
                 display: flex;
                 border-bottom: .01rem solid #D5D5D5;
@@ -156,14 +155,14 @@ export default {
                     span{
                         height: .6rem;
                         line-height: .6rem;
-                        color: #000000;
+                        color: #666;
                         letter-spacing: 0;
                     }
                 }
                 .InfoText{
                     width: 100%;
                     line-height: 1.2rem;
-                    color: #333;
+                    color: #000;
                     display: flex;
                     position: relative;
                     letter-spacing: 0;
@@ -176,6 +175,7 @@ export default {
                         height: 1.6rem;
                         textarea{
                             width: 100%;
+                            color: #000;
                             border: none;
                             opacity: 0.85;
                             line-height: .45rem;

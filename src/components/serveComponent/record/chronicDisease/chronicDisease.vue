@@ -424,7 +424,6 @@ export default {
           align-items: center;
           input {
             height: 0.6rem;
-            font-family: PingFangSC-Regular;
             font-size: 0.28rem;
             color: #000000;
             letter-spacing: 0;

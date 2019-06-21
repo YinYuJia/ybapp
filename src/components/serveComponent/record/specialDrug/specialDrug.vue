@@ -418,7 +418,6 @@ export default {
       .InfoLine {
         height: 1.2rem;
         position: relative;
-        font-family: PingFangSC-Regular;
         font-size: 0.28rem;
         display: flex;
         justify-content: space-between;
@@ -439,7 +438,6 @@ export default {
           align-items: center;
           input {
             height: 0.6rem;
-            font-family: PingFangSC-Regular;
             color: #000000;
             letter-spacing: 0;
             text-align: right;

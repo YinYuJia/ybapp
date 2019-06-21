@@ -35,6 +35,7 @@
                     <div class="InfoName"><span>提取方式:</span></div>
                     <div class="InfoText">{{form.BKE247 | isMail}}</div>
                 </div>
+                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
             <div class="MailInfo" v-if="form.BKE247 == '2'">
                 <div class="InfoLine">
@@ -53,6 +54,7 @@
             <div class="searchPlace" v-if="form.BKE247 == '1'">
                 <div class="searchBtn">点击查看附近领取网点</div>
             </div>
+            
         </div>
         <!-- 底部 -->
         <Footer :btnType="2" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
@@ -96,6 +98,8 @@ export default {
     },
     created(){
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
+        this.request();
+        this.request1();
     },
     methods:{
         //
@@ -112,8 +116,11 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) { 
-                    this.currentStep = Number(resData.LS_DS[0].BOD037) 
-                    this.$toast("提交成功");
+                    if (resData.LS_DS.length > 0 ) {
+                       this.currentStep = Number(resData.LS_DS[0].BOD037) 
+                    }else{
+                        this.$toast("暂无状态信息")
+                    }
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);
@@ -194,7 +201,6 @@ export default {
             .InfoLine{
                 height: 1.2rem;
                 position: relative;
-                font-family: PingFangSC-Regular;
                 font-size: .28rem;
                 display: flex;
                 border-bottom: .01rem solid #D5D5D5;
@@ -206,7 +212,7 @@ export default {
                         height: .6rem;
                         line-height: .6rem;
                         letter-spacing: 0;
-                        color: #000;
+                        color: #666;
                     }
                 }
                 .InfoText{
@@ -214,7 +220,7 @@ export default {
                     display: flex;
                     position: relative;
                     align-items: center;
-                    color: #333;
+                    color: #000;
                 }
                 &:last-child{
                     border-bottom: none;
@@ -242,7 +248,7 @@ export default {
                         height: .6rem;
                         line-height: .6rem;
                         letter-spacing: 0;
-                        color: #000;
+                        color: #666;
                     }
                 }
                 .InfoText{
@@ -250,7 +256,7 @@ export default {
                     display: flex;
                     position: relative;
                     align-items: center;
-                    color: #333;
+                    color: #000;
                 }
                 &:last-child{
                     border-bottom: none;
@@ -260,7 +266,7 @@ export default {
                             border: none;
                             width: 5rem;
                             line-height: .45rem;
-                            color: #333;
+                            color: #000;
                             padding: 0;
                         }
                     }

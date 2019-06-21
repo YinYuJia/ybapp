@@ -160,12 +160,12 @@
             },
             submit() {
                 
-            if(this.form.BKE260){
-                if(!this.util.passPort(this.form.BKE260)){
-                    this.$toast('请填写正确的护照号(第一位英文字母+8个数字)');
-                    return false;
-                }
-            }
+            // if(this.form.BKE260){
+            //     if(!this.util.passPort(this.form.BKE260)){
+            //         this.$toast('请填写正确的护照号(第一位英文字母+8个数字)');
+            //         return false;
+            //     }
+            // }
             if (this.canSubmit == false) {
                 this.$toast('信息未填写完整');
                 return false;
@@ -236,7 +236,7 @@
                 height: 1.2rem;
                 position: relative;
                 font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 justify-content: space-between;
                 border-bottom: .01rem solid #D5D5D5;
