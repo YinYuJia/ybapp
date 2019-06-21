@@ -62,7 +62,7 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    console.log("resData.LS_DS.length",resData.LS_DS.length)
+                    // console.log("resData.LS_DS.length",resData.LS_DS.length)
                     if (resData.LS_DS.length > 0 ) {
                        this.currentStep = Number(resData.LS_DS[0].BOD037) 
                     }else{
