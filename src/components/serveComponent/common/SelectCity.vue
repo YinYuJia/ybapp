@@ -99,8 +99,9 @@ export default {
         this.$nextTick(() =>{
             this.insuredCity[0].values = this.epFn.addressList();
             this.fullCity[0].values = this.epFn.addressList();
-            this.fullCity[0].defaultIndex=10;
-            this.insuredCity[0].defaultIndex = 10;
+            this.fullCity[0].defaultIndex=10
+            this.insuredCity[0].defaultIndex=10
+
         })
     },
     methods:{

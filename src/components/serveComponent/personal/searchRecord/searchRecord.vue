@@ -18,7 +18,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>备案来源：</span></div>
-                    <div class="InfoText">{{form.BKE258}}</div>
+                    <div class="InfoText">{{form.BKE258 || "暂无"}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>备案期限：</span></div>
@@ -52,7 +52,7 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        this.form ={...this.from,...resData.LS_DS}
+                        this.form ={...this.from,...resData.LS_DS[0]}
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
                         this.$toast(resData.msg);

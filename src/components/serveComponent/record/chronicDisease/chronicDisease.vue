@@ -3,7 +3,7 @@
     <div v-show="!isSearch">
       <Title :title="'规定病种备案'" :backRouter="'/'"></Title>
       <!-- MintUI弹出框区域 -->
-      <SelectCity :type="3" ref="insuredPicker" @confirm="chooseInsured"></SelectCity>
+      <SelectCity :type="2" ref="insuredPicker" @confirm="chooseInsured"></SelectCity>
       <mt-datetime-picker
         type="date"
         ref="startPicker"
