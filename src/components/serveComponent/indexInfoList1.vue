@@ -6,11 +6,11 @@
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇总浙江省医疗保障服务</div>
             <div class="headerPad">
-                <div class="iconBox">
+                <div class="iconBox" @click="changeUsername()">
                     <svg-icon icon-class="serveComponent_icon1" />
                     <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="changeUserCode()">
                     <svg-icon icon-class="serveComponent_icon2" />
                     <div class="text">支付码</div>
                 </div>
@@ -97,6 +97,7 @@
 
 <script>
 import Swiper from 'swiper';
+import { MessageBox } from 'mint-ui'
 export default {
     data(){
         return{
@@ -117,6 +118,7 @@ export default {
         })
     },
     created(){
+        this.setNativeMsg();
         this.epFn.setTitle('医疗保障专区')
         // 获取参保地
         // name: sessionStorage.getItem("userName") ,
@@ -150,6 +152,25 @@ export default {
         goRouter(route){
             this.$router.push(route);
         },
+        setNativeMsg(){
+            this.$store.dispatch('SET_NATIVEMSG', {
+                title: "",
+                describe: "",
+                type: "",
+                typeItem: "",
+                name: sessionStorage.getItem("userName") ,
+                idCard:sessionStorage.getItem("idCard") ,
+                PublicHeader: {
+                    imei: '',
+                    mac: '1111',
+                    phoneModel: '',
+                    platform: '',
+                    signType: '',
+                    sign: '',
+                    version: 'v2.0',
+                }
+            });
+        },
         formatSubmitData(){  
             let submitForm ={}
 
@@ -160,6 +181,24 @@ export default {
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1033");
             return params;
+        },
+        changeUsername(){
+            let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+            MessageBox.prompt('用户名','').then(({ value, action }) => {
+                user.name = value;
+                this.$store.dispatch('SET_USER_BASEINFO',user);
+                sessionStorage.setItem('userName',value);
+                this.setNativeMsg();
+            });
+        },
+        changeUserCode(){
+            let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+            MessageBox.prompt('社保卡号','').then(({ value, action }) => {
+                user.idNo = value;
+                this.$store.dispatch('SET_USER_BASEINFO',user);
+                sessionStorage.setItem('idCard',value);
+                this.setNativeMsg();
+            });
         },
         showWork(url,item,itemInfo) {
             sessionStorage.setItem('itemUrl',url);
