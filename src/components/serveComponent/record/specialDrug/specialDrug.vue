@@ -179,7 +179,7 @@
     <!-- 疾病名称 -->
     <SearchInfoPage ref="species" :AAE013="AAE013One" :AAA052="AAA052One" type="AKA120" @childrenClick="speciesClick"></SearchInfoPage>
     <!-- 项目名称 -->
-    <SearchInfoPage ref="project" :AAE013="AAE013two" :AAA052="AAA052two" type=AKE001 @childrenClick="projectClick"></SearchInfoPage>
+    <SearchInfoPage ref="project" :AAE013="AAE013Two" :AAA052="AAA052Two" type=AKE001 @childrenClick="projectClick"></SearchInfoPage>
   </div>
 </template>
 
@@ -246,6 +246,10 @@ export default {
     this.getSelect('BKE253')
     
     this.getSelect('BKE248')
+    
+  },
+  destroyed(){
+    // window.removeEventListener('popstate', this.fun, false);//false阻止默认事件
   },
   watch: {
     form: {
@@ -315,11 +319,11 @@ export default {
         if(val!=oldVal){
           // 如果修改 重新请求
           this.AAE013One = 'BKE228'
-          this.AAE013two = 'BKE228'
+          this.AAE013Two = 'BKE228'
 
           this.AAA052One = val
           
-          this.AAA052two = val
+          this.AAA052Two = val
           this.form.AKA121=""
           this.form.AKE002=""
         }
@@ -327,6 +331,10 @@ export default {
     }
   },
   methods: {
+    fun(){
+      console.log("监听到了");
+
+    },
     // 选择参保地
     openInsuredPicker() {
       this.$refs.insuredPicker.open();
@@ -487,6 +495,7 @@ export default {
           position: relative;
           align-items: center;
           input {
+            background-color: #fff;
             height: 0.6rem;
             color: #000000;
             letter-spacing: 0;
@@ -516,5 +525,8 @@ export default {
   text-align: right;
   padding-right: 0;
   padding-left: 0;
+}
+/deep/ .el-input.is-disabled .el-input__inner{
+  background-color: #fff;
 }
 </style>
