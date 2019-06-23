@@ -145,6 +145,7 @@ export default {
 <style lang="less" scoped>
 .searchTreat{
     .Content{
+        margin-bottom: 1.4rem;
         .ListInfo{
             width: 7.5rem;
             padding: 0 .3rem;

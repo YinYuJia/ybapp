@@ -160,6 +160,7 @@ export default {
 <style lang="less" scoped>
 .turnDetail{
     .Content{
+        margin-bottom: 1.4rem;
         .MailInfo{
             width: 7.5rem;
             padding: 0 .3rem;
