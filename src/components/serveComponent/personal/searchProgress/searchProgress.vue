@@ -53,6 +53,7 @@ export default {
         }
     },
     created () {
+        this.epFn.setTitle('我的事项')
         this.getList();
     },
     methods:{

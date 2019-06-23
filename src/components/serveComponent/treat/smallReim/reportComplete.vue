@@ -32,6 +32,9 @@ export default {
             ],
         }
     },
+    created(){
+        this.epFn.setTitle('零星报销')
+    },
     methods:{
         submit(){
             this.$router.push('/smallReimDetail');

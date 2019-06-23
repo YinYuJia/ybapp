@@ -262,6 +262,7 @@ export default {
     }
   },
     created(){
+        this.epFn.setTitle('规定病种备案')
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
         this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
         this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301

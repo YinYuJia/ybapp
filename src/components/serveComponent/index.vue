@@ -83,6 +83,7 @@
             'Footer': Footer
         },
         created() {
+            
             // console.log(dd)
             // dd.ready({
             //     developer: 'daip@dtdream.com',
@@ -105,6 +106,7 @@
             this.itemUrl = sessionStorage.getItem('itemUrl');
             this.NameTitle = sessionStorage.getItem("item")
             this.describe = sessionStorage.getItem("itemInfo")
+            this.epFn.setTitle(this.NameTitle)
             
         },
         methods: {

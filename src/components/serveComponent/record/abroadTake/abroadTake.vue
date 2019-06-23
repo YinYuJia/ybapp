@@ -97,11 +97,12 @@
             }
         },
         created () {
-                // this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
-                this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
-                this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;  
-                this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
-                this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+            this.epFn.setTitle('出国带药备案')
+            // this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
+            this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
+            this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;  
+            this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+            this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
         },
         watch: {
             form: {

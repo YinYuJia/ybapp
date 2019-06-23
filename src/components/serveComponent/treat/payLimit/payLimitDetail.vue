@@ -41,6 +41,7 @@ export default {
         }
     },
     created () {
+        this.epFn.setTitle('缴费年限核定')
         this.request();
         this.request1();
 

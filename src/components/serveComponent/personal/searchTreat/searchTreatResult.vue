@@ -62,6 +62,9 @@ export default {
             ]
         }
     },
+    created(){
+        this.epFn.setTitle('就诊信息查询')
+    }
 }
 </script>
 

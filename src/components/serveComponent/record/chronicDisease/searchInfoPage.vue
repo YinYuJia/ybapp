@@ -32,7 +32,7 @@ export default {
         }
     },
     created(){
-
+        this.epFn.setTitle('疾病选择')
     },
     methods:{
         chooseHospital(code,name){

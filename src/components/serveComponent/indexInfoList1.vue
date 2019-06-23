@@ -117,6 +117,7 @@ export default {
         })
     },
     created(){
+        this.epFn.setTitle('医疗保障专区')
         // 获取参保地
         // name: sessionStorage.getItem("userName") ,
                 // idCard:sessionStorage.getItem("idCard") ,
