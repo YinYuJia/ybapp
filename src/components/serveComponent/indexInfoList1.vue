@@ -6,11 +6,11 @@
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇总浙江省医疗保障服务</div>
             <div class="headerPad">
-                <div class="iconBox">
+                <div class="iconBox" @click="changeUsername()">
                     <svg-icon icon-class="serveComponent_icon1" />
                     <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="changeUserCode()">
                     <svg-icon icon-class="serveComponent_icon2" />
                     <div class="text">支付码</div>
                 </div>
@@ -97,6 +97,7 @@
 
 <script>
 import Swiper from 'swiper';
+import { MessageBox } from 'mint-ui'
 export default {
     data(){
         return{
@@ -159,6 +160,21 @@ export default {
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1033");
             return params;
+        },
+        changeUsername(){
+            let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+            MessageBox.prompt('用户名','').then(({ value, action }) => {
+                user.name = value;
+                this.$store.dispatch('SET_USER_BASEINFO',user);
+            });
+        },
+        changeUserCode(){
+            let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+            MessageBox.prompt('社保卡号','').then(({ value, action }) => {
+                user.idNo = value;
+                this.$store.dispatch('SET_USER_BASEINFO',user);
+                console.log(this.$store.state.SET_USER_BASEINFO);
+            });
         },
         showWork(url,item,itemInfo) {
             sessionStorage.setItem('itemUrl',url);
