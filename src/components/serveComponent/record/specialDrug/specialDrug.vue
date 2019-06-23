@@ -390,8 +390,8 @@ export default {
         this.$toast("信息未填写完整");
         return false;
       } else {
-        this.$store.dispatch("SET_SPECIAL_DRUG", this.form);
-        this.$router.push("/specialDrugDetail");
+        // this.$store.dispatch("SET_SPECIAL_DRUG", this.form);
+        // this.$router.push("/specialDrugDetail");
         let params = this.formatSubmitData();
         console.log(params);
         
