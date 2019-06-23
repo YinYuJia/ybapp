@@ -39,6 +39,7 @@ export default {
 
 <style lang="less" scoped>
 .Title {
+    display: none;
     height: .8rem;
     width: 7.5rem;
     background-color: white;

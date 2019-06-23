@@ -132,6 +132,7 @@
 
 <style lang="less" scoped>
     .Title {
+        display: none;
         height: .8rem;
         background-color: white;
         line-height: .8rem;

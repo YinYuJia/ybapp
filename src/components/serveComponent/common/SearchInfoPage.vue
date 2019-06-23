@@ -118,11 +118,18 @@ export default {
     //     this.allLoaded=true
     //   }
     // }
+    
   },
   created() {
     
   },
+  destroyed(){
+    window.removeEventListener('popstate', this.back, false);//false阻止默认事件
+  },
   methods: {
+    fun(){
+      // alert(33)
+    },
     // 获取医院列表
     getList() {
       // 封装数据
@@ -218,6 +225,10 @@ export default {
       this.showSearch = true;
       this.params.pageNum = 1
       this.getList();
+      if (window.history && window.history.pushState) {
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', this.back, false);//false阻止默认事件
+      }
     },
     back(){
       this.List = []
@@ -241,6 +252,7 @@ export default {
   top: 0;
   height: 100%;
   .Title {
+    display: none;
     height: .8rem;
     background-color: white;
     line-height: .8rem;
