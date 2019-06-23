@@ -129,6 +129,9 @@ export default {
             containerHeight: 0,
         }
     },
+    created(){
+        this.epFn.setTitle('医疗保障专区')
+    },
     mounted(){
         this.headerSwiper = new Swiper('.swiper-container', {
             slidesPerView: 3.5, //显示的范围
@@ -175,6 +178,7 @@ export default {
             }
         },
         showWork(url,item,itemInfo) {
+            sessionStorage.setItem('itemUrl',url);
             sessionStorage.setItem("item",item);
             sessionStorage.setItem("itemInfo",itemInfo);
             this.$router.push({
@@ -187,6 +191,7 @@ export default {
             })
         },
         showDetail(url,item) {
+            sessionStorage.setItem('itemUrl',url);
             sessionStorage.setItem("item",item);
             this.$router.push({
                 name: url,

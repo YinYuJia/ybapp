@@ -44,6 +44,7 @@ export default {
     },
     created(){
         // this.form = this.$store.state.SET_INSURED_CHANGE;
+        this.epFn.setTitle('参保信息变更')
         this.request();
         this.request1();
     },

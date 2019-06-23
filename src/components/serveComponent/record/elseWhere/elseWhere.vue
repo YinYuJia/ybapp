@@ -134,6 +134,7 @@ export default {
         }
     },
     created() {
+        this.epFn.setTitle('异地就医备案')
         // this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
         this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
         this.optionList = this.$store.state.SET_SELECTARRAY;

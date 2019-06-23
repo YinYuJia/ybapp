@@ -134,6 +134,7 @@ export default {
         },
     },
     created(){
+        this.epFn.setTitle('领取就医凭证')
         this.form = this.$store.state.SET_INSURED_PROOF;
         // 原生参数添加姓名等信息
         // if(!this.form.AAE011){

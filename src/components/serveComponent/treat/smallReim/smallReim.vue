@@ -84,6 +84,7 @@ export default {
         },
     },
     created() {
+        this.epFn.setTitle('零星报销')
         this.form = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_1));
     },
     methods: {

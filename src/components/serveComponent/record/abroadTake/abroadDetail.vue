@@ -53,6 +53,7 @@ export default {
       }
     },
     created(){
+        this.epFn.setTitle('出国带药备案')
         this.request();
         this.request1();
         // this.form = this.$store.state.SET_ABROADTAKE_OPERATION;

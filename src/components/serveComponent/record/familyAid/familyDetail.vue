@@ -62,6 +62,7 @@ export default {
       }
     },
     created(){
+        this.epFn.setTitle('家庭共济备案')
         this.request();
         this.request1();
         

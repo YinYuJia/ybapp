@@ -75,6 +75,7 @@ export default {
         }
     },
     created () {
+        this.epFn.setTitle('打印参保证明')
         this.form = this.$store.state.SET_SEARCH_PRINT;
         this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
         this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301

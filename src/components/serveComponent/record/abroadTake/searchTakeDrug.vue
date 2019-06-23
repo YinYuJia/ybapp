@@ -50,6 +50,7 @@ export default {
         }
     },
     created(){
+        this.epFn.setTitle('取药机构')
         // 获取VUEX信息
         this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
         console.log(this.form)
