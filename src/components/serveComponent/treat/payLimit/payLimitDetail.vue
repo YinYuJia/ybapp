@@ -120,7 +120,7 @@ export default {
             let submitForm = {}
                 console.log(submitForm)
                 submitForm.AGA002 =  "确认-00123-004";
-                submitForm.lx="1";
+                submitForm.lx="2";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
