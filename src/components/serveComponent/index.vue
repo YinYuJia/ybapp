@@ -72,6 +72,7 @@
         data() {
             return {
                 activeIndex: 0,
+                itemUrl: '',
                 NameTitle: '安卓传过来的标题1',
                 describe: 'title的详细描述内容',
                 getAndroidMsg: null,
@@ -101,6 +102,7 @@
             //         onSuccess: function(data) {},
             //         onFail: function(error) {}
             //     })
+            this.itemUrl = sessionStorage.getItem('itemUrl');
             this.NameTitle = sessionStorage.getItem("item")
             this.describe = sessionStorage.getItem("itemInfo")
             
@@ -121,8 +123,8 @@
                 }
             },
             submit() {
-                console.log("路由参数", this.$route.params.info)
-                this.$router.push(this.$route.params.info)
+                console.log("路由参数", this.itemUrl)
+                this.$router.push(this.itemUrl)
             },
         }
     }
