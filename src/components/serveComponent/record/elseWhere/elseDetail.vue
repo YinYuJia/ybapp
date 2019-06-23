@@ -74,6 +74,7 @@ export default {
       }
     },
     created(){      
+        this.epFn.setTitle('异地就医备案')
         this.request();
         this.request1();
     },

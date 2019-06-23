@@ -10,9 +10,15 @@ export default {
     // 公用请求地址
 
     ApiUrl:function() {
-        // return 'http://192.168.1.199:13030' // 吴学文
-        return 'http://192.168.1.8:13030' // 本地测试
+        return 'http://192.168.1.187:13030' // 吴学文
+        // return 'http://59.202.42.147:13030' // 本地测试
     },
+    
+    //打包测试地址
+    // ApiUrl:function() {
+    //     // return 'http://192.168.1.199:13030' // 吴学文
+    //     return 'http://192.168.1.8:13030' // 本地测试
+    // },
     
     //打包测试地址
     // ApiUrl:function() {
@@ -27,6 +33,23 @@ export default {
             ...nativemsg
           }
         return commonData
+    },
+    setTitle(title){
+      dd.ready({
+        developer: 'daip@dtdream.com',
+        usage: [
+          'dd.biz.navigation.setTitle',
+        ],
+        remark: '描述业务场景'
+      }, function() {
+        dd.biz.navigation.setTitle({
+          title: title,
+          onSuccess: function(data) {
+            console.log(data,5555)
+          },
+          onFail: function(error) {}
+      })
+      })
     },
     IndexList:function() {
          return {

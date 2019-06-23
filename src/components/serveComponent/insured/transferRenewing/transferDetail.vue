@@ -48,6 +48,7 @@ export default {
         }
     },
     created(){
+        this.epFn.setTitle('医保转移接续')
         // this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
         this.request();
         this.request1();

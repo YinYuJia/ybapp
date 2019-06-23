@@ -111,6 +111,7 @@
 <script>
 export default {
     created(){
+        this.epFn.setTitle('零星报销')
         let params = this.formatSubmitForm();
         // this.needSubmitInfo();  //判断是否需要提交资料
         console.log(params);        

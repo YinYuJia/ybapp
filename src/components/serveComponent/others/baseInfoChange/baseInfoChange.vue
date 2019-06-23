@@ -56,6 +56,7 @@ export default {
         }
     },
     created(){
+        this.epFn.setTitle('人员基本信息变更')
         // this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
 
     },

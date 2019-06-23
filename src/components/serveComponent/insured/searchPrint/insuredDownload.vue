@@ -10,6 +10,9 @@
 
 <script>
 export default {
+    created(){
+        this.epFn.setTitle('打印参保证明')
+    },
     methods:{
         
     }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/面性/转外就医</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/面性/转外就医" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M35,33 L35,43 L17,43 C15.8954305,43 15,43.8954305 15,45 L15,95 C15,96.1045695 15.8954305,97 17,97 L82,97 C83.1045695,97 84,96.1045695 84,95 L84,78 L93,78 L93,104 C93,105.104569 92.1045695,106 91,106 L8,106 C6.8954305,106 6,105.104569 6,104 L6,35 C6,33.8954305 6.8954305,33 8,33 L35,33 Z" id="Combined-Shape" fill="#FD9933"></path>
+        <path d="M24.538919,76.0097171 C24.538919,76.0097171 49.6603863,41.107801 80.9907902,49.8772371 L80.9907902,70.4161795 L113.101432,46.349682 C115.903696,43.855118 115.222361,42.3935454 112.464055,39.8440351 L81.4193717,13.052199 L81.4193717,34.6021541 C81.4193717,34.6021541 33.956722,30.2174361 24.538919,76.0097171 Z" id="Path" fill="#FD9933" fill-rule="nonzero"></path>
+        <polygon id="Rectangle-21" fill="#FD9933" points="35 33 50.9345703 33 35 43"></polygon>
+        <polygon id="Rectangle-21-Copy" fill="#FD9933" transform="translate(88.500000, 75.014771) scale(1, -1) rotate(90.000000) translate(-88.500000, -75.014771) " points="85.4852295 70.5147705 91.5147705 70.5147705 85.4852295 79.5147705"></polygon>
+    </g>
+</svg>

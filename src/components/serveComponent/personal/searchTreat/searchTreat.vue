@@ -74,6 +74,9 @@ export default {
             deep: true
         },
     },
+    created(){
+        this.epFn.setTitle('就诊信息查询')
+    },
     methods:{
         // 选择开始日期
         openStartPicker(){

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/面性/打印信息</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/面性/打印信息" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dayin-2" transform="translate(1.000000, 5.000000)">
+            <rect id="Rectangle-2" fill="#0284FD" x="0" y="30" width="118" height="54" rx="2"></rect>
+            <circle id="Oval" fill="#FFFFFF" cx="101" cy="48" r="6"></circle>
+            <rect id="Rectangle-3" fill="#0284FD" x="24" y="62" width="70" height="46"></rect>
+            <rect id="Rectangle" fill="#0284FD" fill-rule="nonzero" x="24" y="0" width="71" height="24" rx="2"></rect>
+            <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="82.9243077 96.0824615 36 96.0824615 36 66 82.9288205 66 82.9288205 96.0824615"></polygon>
+        </g>
+    </g>
+</svg>

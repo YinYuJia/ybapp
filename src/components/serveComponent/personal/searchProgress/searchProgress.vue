@@ -53,11 +53,33 @@ export default {
         }
     },
     created () {
+        this.epFn.setTitle('我的事项')
         this.getList();
     },
     methods:{
         gotoplace(item){
             console.log("item",item)
+            console.log("item.bkz019",item.BKZ019);
+            let submitForm = {};
+            submitForm.BKZ019 = item.BKZ019;
+            console.log(submitForm);
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1034");
+            // 开始请求
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1034/info', params).then((resData) => {
+                    console.log('返回成功信息',resData)
+                    //   成功   1000
+                    if ( resData.enCode == 1000 ) {
+                    }else if (resData.enCode == 1001 ) {
+                    //   失败  1001
+                        this.$toast(resData.msg);
+                        return;
+                    }else{
+                        this.$toast('业务出错');
+                        return;
+                    }
+            })
+            // this.itemInof()
+
         },
         changeIndex(index){
             this.activeIndex=index;
@@ -77,6 +99,39 @@ export default {
             }
 
         },
+        itemInof() {
+                let params = this.formatSubmitData2();
+                // 开始请求
+                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1018/getList', params).then((resData) => {
+                        console.log('返回成功信息',resData)
+                        //   成功   1000
+                        if ( resData.enCode == 1000 ) {
+                              console.log("请求成功")
+                        }else if (resData.enCode == 1001 ) {
+                        //   失败  1001
+                            this.$toast(resData.msg);
+                            return;
+                        }else{
+                            this.$toast('业务出错');
+                            return;
+                        }
+                })
+        },
+        formatSubmitData2(){
+            let submitForm = {}
+                console.log(submitForm)
+                // 加入用户名和电子社保卡号
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    submitForm.AAC003 = '殷宇佳';
+                    submitForm.AAE135 = "113344223344536624";
+                }      
+                // 请求参数封装
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1034");
+                return params;
+        },
         getList(){
                 // 封装数据
                 let params = this.formatSubmitData();
@@ -88,7 +143,6 @@ export default {
                             if(resData.LS_DS.length>0&&resData.LS_DS.length<10){
                                 this.isShow=true;
                             }
-                            this.$toast("请求成功");
                             if(resData.LS_DS.length>0){
                                 this.itemGroup=[...this.itemGroup,...resData.LS_DS]
                                 //向上取整

@@ -40,6 +40,9 @@ export default {
             ]
         }
     },
+    created(){
+        this.epFn.setTitle('疾病诊断')
+    },
     methods:{
         back(){
             this.$router.push('/turnOut')

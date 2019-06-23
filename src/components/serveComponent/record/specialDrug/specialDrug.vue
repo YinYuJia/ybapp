@@ -43,7 +43,7 @@
             <span>就诊机构</span>
           </div>
           <div class="InfoText">
-            <input type="text" @click="org" v-model="form.AKB020" readonly placeholder="请选择">
+            <input type="text" @click="org" v-model="form.AKB020Name" readonly placeholder="请选择">
             <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
           <!-- <div class="InfoText">
@@ -79,7 +79,7 @@
             <span>特治特药类型</span>
           </div>
           <div class="InfoText">
-            <el-select v-model="form.BKE228" placeholder="请选择">
+            <el-select v-model="form.BKE228" placeholder="请选择" :disabled="oneDisabled">
               <el-option
                 v-for="item in drugList"
                 :key="item.AAA102"
@@ -95,7 +95,7 @@
             <span>疾病名称</span>
           </div>
           <div class="InfoText">
-            <input type="text" @click="species" v-model="form.AKA121" readonly placeholder="请选择">
+            <input type="text" @click="species" v-model="form.AKA121" :class="{disabledInput:twoDisabled}" :disabled="twoDisabled" readonly placeholder="请选择">
             <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
         </div>
@@ -120,7 +120,7 @@
             <span>项目名称</span>
           </div>
           <div class="InfoText">
-            <input type="text" @click="project" v-model="form.AKE002" placeholder="请选择">
+            <input type="text" @click="project" :class="{disabledInput:threeDisabled}" v-model="form.AKE002" :disabled="threeDisabled" placeholder="请选择">
             <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
         </div>
@@ -177,9 +177,9 @@
     <!-- 就诊机构 -->
     <SearchInfoPage ref="org" @childrenClick="orgClick"></SearchInfoPage>
     <!-- 疾病名称 -->
-    <SearchInfoPage ref="species" @childrenClick="speciesClick"></SearchInfoPage>
+    <SearchInfoPage ref="species" :AAE013="AAE013One" :AAA052="AAA052One" type="AKA120" @childrenClick="speciesClick"></SearchInfoPage>
     <!-- 项目名称 -->
-    <SearchInfoPage ref="project" @childrenClick="projectClick"></SearchInfoPage>
+    <SearchInfoPage ref="project" :AAE013="AAE013Two" :AAA052="AAA052Two" type=AKE001 @childrenClick="projectClick"></SearchInfoPage>
   </div>
 </template>
 
@@ -188,12 +188,20 @@
 export default {
   data() {
     return {
+      oneDisabled: true,
+      twoDisabled: true,
+      threeDisabled: true,
+      AAE013One:'',
+      AAE013Two:'',
+      AAA052One:'',
+      AAA052Two:'',
       form: {
         canbao: "",
         AAS301: "", //参保地
         AAB301: "", //参保地
         AAQ301: "", //参保地
         AKB020: "", //就诊机构
+        AKB020Name:"",
         BKE253: "", //项目类型
         BKE228: "", //特药特治类型
         AKA120: "", //疾病编码
@@ -223,6 +231,7 @@ export default {
     };
   },
   created() {
+    this.epFn.setTitle('特治特药备案')
     this.form = this.$store.state.SET_SPECIAL_DRUG;
     this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
     this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
@@ -234,14 +243,18 @@ export default {
         BKE248 用药时期
         AKB020 医疗机构
      */
-    this.getSelect('AKB020')
+    // this.getSelect('AKB020')
     this.getSelect('BKE253')
-    this.getSelect('BKE228')
+    
     this.getSelect('BKE248')
+    
+  },
+  destroyed(){
+    // window.removeEventListener('popstate', this.fun, false);//false阻止默认事件
   },
   watch: {
     form: {
-      handler: function(val) {
+      handler: function(val,oldVal) {
         // 判断不为空
         if (
           val.AAS301 != "" &&
@@ -271,11 +284,58 @@ export default {
             this.form.AAE031 = "";
           }
         }
+        
+        
       },
       deep: true
+    },
+    'form.BKE253'(val,oldVal){
+      // 项目类型
+        if(val ==""){
+          this.oneDisabled = true
+          this.form.BKE228 = ""
+        }else{
+          // 获取特药特治类型列表
+          this.oneDisabled = false
+          if(val!=oldVal){
+            // 如果项目类型修改了 重新请求
+            this.getSelect('BKE228',"BKE253",val)
+            this.form.BKE228=""
+          }
+        }
+      
+    },
+    'form.BKE228'(val,oldVal){
+       // 特治特药类型
+      if(val ==""){
+        this.twoDisabled = true
+        this.threeDisabled = true
+        this.form.AKA121 = ""
+        this.form.AKE001 = ""
+          
+      }else{
+        // 获取疾病名称和项目名称
+        this.twoDisabled = false
+        this.threeDisabled = false
+        if(val!=oldVal){
+          // 如果修改 重新请求
+          this.AAE013One = 'BKE228'
+          this.AAE013Two = 'BKE228'
+
+          this.AAA052One = val
+          
+          this.AAA052Two = val
+          this.form.AKA121=""
+          this.form.AKE002=""
+        }
+      }
     }
   },
   methods: {
+    fun(){
+      console.log("监听到了");
+
+    },
     // 选择参保地
     openInsuredPicker() {
       this.$refs.insuredPicker.open();
@@ -323,6 +383,7 @@ export default {
     orgClick(code, name) {
       this.form.AKB020 = code;
       this.form.AKB020Name = name;
+      // alert(name)
     },
     submit() {
       if (this.canSubmit == false) {
@@ -368,8 +429,8 @@ export default {
       );
       return params;
     },
-    getSelect(val) {
-      let submitForm = { AAA100: val, pageNum: "1" };
+    getSelect(val,AAE013,AAA052) {
+      let submitForm = { AAA100: val, pageNum: "1",AAE013:AAE013,AAA052:AAA052 };
       const params = this.epFn.commonRequsetData(
         this.$store.state.SET_NATIVEMSG.PublicHeader,
         submitForm,
@@ -382,7 +443,7 @@ export default {
               if(val == 'AKB020'){
                 console.log(5555555555,resData.LS_DS);
                 
-                this.hospitalList = resData.LS_DS
+                // this.hospitalList = resData.LS_DS
                 return
               }
               if(val == 'BKE253'){
@@ -435,6 +496,7 @@ export default {
           position: relative;
           align-items: center;
           input {
+            background-color: #fff;
             height: 0.6rem;
             color: #000000;
             letter-spacing: 0;
@@ -452,6 +514,9 @@ export default {
     }
   }
 }
+/deep/ .el-input.is-disabled .el-input__inner{
+  background-color: rgba(0, 0, 0, 0) !important;
+}
 </style>
 
 <style>
@@ -465,4 +530,5 @@ export default {
   padding-right: 0;
   padding-left: 0;
 }
+
 </style>

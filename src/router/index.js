@@ -65,7 +65,7 @@ export default new Router({
   routes: [
     // 首页
     {
-      path: '/',
+      path: '/indexInfoList1',
       name: 'indexInfoListComponent',
       component: indexInfoList
     },
@@ -75,7 +75,7 @@ export default new Router({
       component: Index
     },
     {
-      path: '/indexInfoList1',
+      path: '/',
       name: 'indexInfoList1',
       component: indexInfoList1
     },
