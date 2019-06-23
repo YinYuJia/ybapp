@@ -238,6 +238,7 @@
 .abroadTake {
     .Content {
         height: 100%;
+        margin-bottom: 1.4rem;
         .ReportInfo {
             height: 6rem;
             width: 7.5rem;

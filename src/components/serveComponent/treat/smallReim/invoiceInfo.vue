@@ -147,6 +147,7 @@ export default {
         height: 100%;
         padding: 0 .4rem;
         background: #FFF;
+        margin-bottom: 1.4rem;
         // 自动获取发票信息
         .invoiceContent{
             .invoiceHint{

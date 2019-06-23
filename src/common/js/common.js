@@ -10,7 +10,14 @@ export default {
     // 公用请求地址
 
     ApiUrl:function() {
-        return 'http://10.85.159.203:13030' // 吴学文
+        // return 'http://10.85.159.203:13030' // 吴学文
+        console.log('process.env.NODE_ENV',process.env.NODE_ENV)
+        if(process.env.NODE_ENV == 'development') {
+          return 'http://59.202.42.147:8000/api'
+        }else{
+          return ''
+        }
+
         // return 'http://59.202.42.147:13030' // 本地测试
     },
     

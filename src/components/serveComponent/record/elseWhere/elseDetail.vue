@@ -185,11 +185,11 @@ export default {
 <style lang="less" scoped>
 .elseDetail{
     .Content{
+        margin-bottom: 1.4rem;
         .MailInfo{
             width: 7.5rem;
             padding: 0 .3rem;
             margin-top: .15rem;
-            margin-bottom: 1.4rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;

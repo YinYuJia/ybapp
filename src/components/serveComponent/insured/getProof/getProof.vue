@@ -122,7 +122,7 @@ export default {
                 }
                 // 如果需要邮寄
                 if(this.showMail == true){
-                    this.getMailInfo(); //自动获取邮寄信息
+
                     if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
                         this.canSubmit = true
                     }else {
@@ -134,8 +134,28 @@ export default {
         },
     },
     created(){
+        // 获取位置
+        let This = this 
+        dd.ready({
+            developer: 'daip@dtdream.com',
+            usage: [
+                'dd.device.location.get',
+            ],
+            remark: '描述业务场景'
+            }, function() {
+            dd.device.location.get ({
+                onSuccess: function(data) {
+                    console.log(data,1111)
+                },
+                onFail: function(error) {
+                    This.$toast(error)
+                    console.log(error,22222)
+                }
+            })
+        })
         this.epFn.setTitle('领取就医凭证')
         this.form = this.$store.state.SET_INSURED_PROOF;
+        this.getMailInfo(); //自动获取邮寄信息
         // 原生参数添加姓名等信息
         // if(!this.form.AAE011){
             // this.form.AAE011=this.$store.state.SET_NATIVEMSG.name
@@ -213,7 +233,7 @@ export default {
                      this.form.AAE006 = resData.AAE006   //详细地址
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
-                    this.$toast(resData.msg);
+                    // this.$toast(resData.msg);
                     return;
                 }else{
                     this.$toast('业务出错');
