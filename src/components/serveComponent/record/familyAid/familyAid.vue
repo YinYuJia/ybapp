@@ -103,7 +103,7 @@
             // 监听领取信息
             form:{
                 handler:function(val){
-                    if ( val.AAS301 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
+                    if ( val.AAB301 != '' && val.BAC003 != '' && val.BAC002 != '' && val.AAE144 != '' && val.AAE030 != '') {
                         this.canSubmit = true
                     }else{
                         this.canSubmit = false

@@ -172,6 +172,7 @@ export default {
             let submitForm = {}
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00122-043";
+                submitForm.lx="1";
                 // submitForm.debugTest=  "true";
 
             // 加入用户名和电子社保卡号
