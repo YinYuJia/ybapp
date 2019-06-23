@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.AAB301000}}</div>
+                    <div class="InfoText">{{AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>被授权人姓名:</span></div>
@@ -38,13 +38,13 @@
 <script>
 export default {
     data() {
-      return {
+      return {            
+        AAB301000:'',
         form: {
             BAC003: '', //被授权人姓名
             BAC002: '', //被授权人身份证
             AAE144: '',//绑定关系
             AAE030: '', //开始日期
-            AAB301000:'',
             AAS301:"",//参保地省
             AAB301:"",//参保地市
             AAQ301:"",//参保地区
@@ -123,7 +123,8 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     if (resData.LS_DS.length > 0 ) {
-                       this.currentStep = Number(resData.LS_DS[0].BOD037) 
+                        this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
+                        this.form={...this.form,...resData.LS_DS_11}
                     }else{
                         this.$toast("暂无状态信息")
                     }

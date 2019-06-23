@@ -24,7 +24,7 @@
               <input
                 @click="openInsuredPicker"
                 type="text"
-                v-model="form.canbao"
+                v-model="AAB30100"
                 placeholder="请选择"
                 readonly
               >
@@ -181,9 +181,9 @@
 <script>
 export default {
   data() {
-    return {
+    return {        
+      AAB301000: "", //参保地
       form: {
-        canbao: "", //参保地
         AAS301: "", //参保地省编码
         AAB301: "", //参保地市编码
         AAQ301: "", //参保地区编码
@@ -267,8 +267,8 @@ export default {
     created(){
         this.epFn.setTitle('规定病种备案')
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
-        this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
-        this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+        // this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
+        // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
     },
   methods: {
     //  本页面的点击
@@ -306,7 +306,7 @@ export default {
       this.$refs.insuredPicker.open();
     },
     chooseInsured(val) {
-      this.form.canbao = val.name;
+      this.AAB301000 = val.name;
       this.form.AAS301 = val.code[0];
       this.form.AAB301 = val.code[1];
       this.form.AAQ301 = val.code[2];

@@ -8,11 +8,11 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>转出地:</span></div>
-                    <div class="InfoText">{{form.AAA027000}}</div>
+                    <div class="InfoText">{{AAA027000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转入地:</span></div>
-                    <div class="InfoText">{{form.AAB301000}}</div>
+                    <div class="InfoText">{{AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码:</span></div>
@@ -31,11 +31,9 @@
 export default {
     data(){
         return{
-            form:{
-                AAA027000: '', //转出地
-                AAB301000: '', //转入地
-                AAE005: '' //手机号码
-            },
+            AAA027000: '', //转出地
+            AAB301000: '', //转入地
+            form:{},
             arr:[
                 {step:1,name:'收件'},
                 {step:2,name:'转移'},
@@ -92,7 +90,8 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     this.form={...this.form,...resData.LS_DS_07}
-                    this.form.AAA027000=this.from.AAS027VALUE+this.form.AAA027VALUE+this.form.AAQ027VALUE
+                    this.AAA027000=this.from.AAS027VALUE+this.form.AAA027VALUE+this.form.AAQ027VALUE
+                    this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
                     this.handleNumber = resData.LS_DS_07.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {

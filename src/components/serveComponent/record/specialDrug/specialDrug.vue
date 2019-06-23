@@ -31,7 +31,7 @@
             <input
               @click="openInsuredPicker"
               type="text"
-              v-model="form.canbao"
+              v-model="AAB30100"
               placeholder="请选择"
               readonly
             >
@@ -194,9 +194,9 @@ export default {
       AAE013One:'',
       AAE013Two:'',
       AAA052One:'',
-      AAA052Two:'',
+      AAA052Two:'',       
+      AAB30100: "",
       form: {
-        canbao: "",
         AAS301: "", //参保地
         AAB301: "", //参保地
         AAQ301: "", //参保地
@@ -233,8 +233,8 @@ export default {
   created() {
     this.epFn.setTitle('特治特药备案')
     this.form = this.$store.state.SET_SPECIAL_DRUG;
-    this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
-    this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+    // this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
+    // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
   },
   mounted(){
     /**
@@ -341,7 +341,7 @@ export default {
       this.$refs.insuredPicker.open();
     },
     chooseInsured(val) {
-      this.form.canbao = val.name;
+      this.AAB30100 = val.name;
       this.form.AAS301 = val.code[0];
       this.form.AAB301 = val.code[1];
       this.form.AAQ301 = val.code[2];

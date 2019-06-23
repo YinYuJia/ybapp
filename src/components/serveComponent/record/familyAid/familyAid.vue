@@ -23,7 +23,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -65,12 +65,12 @@
         data() {
             return {
                 dddddd: "1111",
+                AAB301000:'',
                 form: {
                     BAC003: '', //被授权人姓名
                     BAC002: '', //被授权人身份证
                     AAE144: '',//绑定关系
                     AAE030: '', //开始日期
-                    AAB301000:'',
                     AAS301:"",//参保地省
                     AAB301:"",//参保地市
                     AAQ301:"",//参保地区
@@ -96,8 +96,8 @@
         created() {
             this.epFn.setTitle('家庭共济备案')
             // this.form = this.$store.state.SET_FAMILYAID_OPERATION;
-            this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
-            this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+            // this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+            // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
         },
         watch:{
             // 监听领取信息
@@ -118,7 +118,7 @@
                 this.$refs.insuredPicker.open();
             },
             chooseInsured(val){
-            this.form.AAB301000 =val.name, //参保地省
+            this.AAB301000 =val.name, //参保地省
             this.form.AAS301 =val.code[0], //参保地省
             this.form.AAB301 =val.code[1], //参保地市
             this.form.AAQ301 =val.code[2]  //参保地区

@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.AAA301000}}</div>
+                    <div class="InfoText">{{AAA027000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期:</span></div>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转往地市:</span></div>
-                    <div class="InfoText">{{form.AAB301000}}</div>
+                    <div class="InfoText">{{AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称:</span></div>
@@ -42,10 +42,11 @@
 <script>
 export default {
     data() {
-      return {
+      return {            
+        AAA027000:"",//参保地
+        AAB301000: "",//转往地市
         form: {
-            // AAA301000:"",//参保地
-            // AAB301000: "",//转往地市
+
             // AAE030: '', //开始日期
             // AAE031: '', //结束日期
             // AKA121: '',//疾病名称
@@ -100,6 +101,8 @@ export default {
             this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1016/info', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 this.form={...this.form,...resData.LS_DS_09 }
+                this.AAA027000=this.from.AAS027VALUE+this.form.AAA027VALUE+this.form.AAQ027VALUE
+                this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
                 this.handleNumber = resData.LS_DS_09.BKZ019
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  

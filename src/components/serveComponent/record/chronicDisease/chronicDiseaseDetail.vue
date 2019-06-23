@@ -9,7 +9,7 @@
             <div class="ListInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.canbao}}</div>
+                    <div class="InfoText">{{AAB30100}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>规定病种:</span></div>
@@ -64,9 +64,9 @@
 <script>
 export default {
     data(){
-        return{
+        return{               
+            AAB30100: '', //参保地
             form: {
-                canbao: '', //参保地
                 AAS301: '', //参保地省编码
                 AAB301: '', //参保地市编码
                 AAQ301: '', //参保地区编码
@@ -139,6 +139,7 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     this.form={...this.form,...resData.LS_DS_14}
+                    this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
                     this.handleNumber = resData.LS_DS_14.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {

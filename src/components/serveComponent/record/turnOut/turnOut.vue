@@ -28,7 +28,7 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
-                    <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAA301000" placeholder="请选择" readonly></div>
+                    <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="AAA027000" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期</span></div>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转往地市</span></div>
-                    <div class="InfoText"><input @click="openCityPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly></div>
+                    <div class="InfoText"><input @click="openCityPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称</span></div>
@@ -65,10 +65,10 @@
 <script>
     export default {
         data() {
-            return {
+            return {          
+                AAA027000:"",//参保地
+                AAB301000: "",//转往地市
                 form: {
-                    AAA301000:"",//参保地
-                    AAB301000: "",//转往地市
                     AAE030: '', //开始日期
                     AAE031: '', //结束日期
                     AAS301: "", //参保地省
@@ -94,9 +94,9 @@
             this.epFn.setTitle('转外就医备案')
             console.log(this.$store.state.SET_USER_DETAILINFO,55555555555);
             
-            this.form.AAA301000 = this.$store.state.SET_USER_DETAILINFO.regionName
-            // this.form.AAA301000 = "杭州"
-            this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+            // this.form.AAA301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+            // // this.form.AAA301000 = "杭州"
+            // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
             // this.form.AAB301 = "12344"
         },
         watch: {
@@ -136,10 +136,10 @@
                 this.$refs.insuredPicker.open();
             },
             chooseInsured(val){
-                this.form.AAA301000=val.name
-                this.form.AAS301=val.code[0]
-                this.form.AAB301=val.code[1]
-                this.form.AAQ301=val.code[2]
+                this.form.AAA027000=val.name
+                this.form.AAS027=val.code[0]
+                this.form.AAB027=val.code[1]
+                this.form.AAQ027=val.code[2]
             },
             // 选择开始日期
             openStartPicker(){
@@ -176,9 +176,9 @@
                 console.log(val);
                 
                 this.form.AAB301000= val.name;
-                this.form.AAS027=val.code[0]
-                this.form.AAB027=val.code[1]
-                this.form.AAQ027=val.code[2]
+                this.form.AAS301=val.code[0]
+                this.form.AAB301=val.code[1]
+                this.form.AAQ301=val.code[2]
             },
             submit() {
                 

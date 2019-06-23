@@ -35,7 +35,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                        <input @click="openInsuredPicker" type="text" v-model="form.AAS011000" placeholder="请选择" readonly>
+                        <input @click="openInsuredPicker" type="text" v-model="AAS011000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -53,7 +53,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请地市</span></div>
                     <div class="InfoText">
-                        <input @click="openCityPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly>
+                        <input @click="openCityPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -90,10 +90,10 @@
 export default {
     data() {
         return {
-            // 提交信息
+            // 提交信息                
+            AAB301000:"",//申请地
+            AAS011000:"",//参保地
             form: {
-                AAB301000:"",//申请地
-                AAS011000:"",//参保地
                 AAE030: '', //离杭日期
                 AAE031: '', //回杭日期
                 AAS011: '', //申请地省
@@ -139,10 +139,10 @@ export default {
         this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
         this.optionList = this.$store.state.SET_SELECTARRAY;
         console.log('11111---publicHeader---', this.$store.state.SET_NATIVEMSG.PublicHeader)
-        this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
-        this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-        this.form.AAS011000 = this.$store.state.SET_USER_DETAILINFO.regionName
-        this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+        // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
+        // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+        // // this.form.AAS011000 = this.$store.state.SET_USER_DETAILINFO.regionName
+        // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
     },
     watch: {
         form: {
@@ -184,7 +184,7 @@ export default {
             this.$refs.insuredPicker.open();
         },
         chooseInsured(val){
-            this.form.AAS011000 =val.name, //参保地省
+            this.AAS011000 =val.name, //参保地省
             this.form.AAS301 =val.code[0], //参保地省
             this.form.AAB301 =val.code[1], //参保地市
             this.form.AAQ301 =val.code[2]  //参保地区
@@ -211,7 +211,7 @@ export default {
             this.$refs.cityPicker.open();
         },
         chooseCity(val){
-            this.form.AAB301000= val.name;
+            this.AAB301000= val.name;
             this.form.AAS011=val.code[0]
             this.form.AAE011=val.code[1]
             this.form.AAQ011=val.code[2]

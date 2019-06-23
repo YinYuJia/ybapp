@@ -28,7 +28,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -78,9 +78,9 @@
 <script>
     export default {
         data() {
-            return {
+            return {           
+                AAB301000: '', //参保地
                 form: {
-                    AAB301000: '', //参保地
                     AAS301: '', //参保地省
                     AAB301: '', //参保地市
                     AAQ301: '', //参保地区
@@ -99,10 +99,10 @@
         created () {
             this.epFn.setTitle('出国带药备案')
             // this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
-            this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
-            this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;  
-            this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
-            this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+            // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
+            // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;  
+            // this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
+            // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
         },
         watch: {
             form: {
@@ -147,7 +147,7 @@
                 this.$refs.insuredPicker.open();
             },
             chooseInsured(val){
-                this.form.AAB301000=val.name;
+                this.AAB301000=val.name;
                 this.form.AAS301=val.code[0]
                 this.form.AAB301=val.code[1]
                 this.form.AAQ301=val.code[2]

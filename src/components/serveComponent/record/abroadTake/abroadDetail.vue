@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{form.AAB301000}}</div>
+                    <div class="InfoText">{{AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>出境日期:</span></div>
@@ -40,6 +40,7 @@ export default {
     data() {
       return {
         AKB02000:"",
+        AAB301000:"",
         form: {
             // AAB301000: '', //参保地
             // AKB020: '',//取药机构
@@ -102,6 +103,7 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     this.form={...this.form,...resData.LS_DS_10}
+                    this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
                     this.handleNumber = resData.LS_DS_10.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
