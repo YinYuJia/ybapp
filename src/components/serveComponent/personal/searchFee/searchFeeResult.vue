@@ -66,6 +66,7 @@ export default {
         }
     },
     created () {
+        this.epFn.setTitle('个人费用查询')
         this.form= this.$store.state.SET_SEARCHFEE_OPERATION
         // 封装数据
         let params = this.formatSubmitData();

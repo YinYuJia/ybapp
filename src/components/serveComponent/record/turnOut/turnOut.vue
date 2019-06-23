@@ -91,6 +91,7 @@
             }
         },
         created() {
+            this.epFn.setTitle('转外就医备案')
             console.log(this.$store.state.SET_USER_DETAILINFO,55555555555);
             
             this.form.AAA301000 = this.$store.state.SET_USER_DETAILINFO.regionName

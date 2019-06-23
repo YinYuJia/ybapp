@@ -144,7 +144,7 @@ sessionStorage.setItem("idCard",paramStr("idCard") || "330622197407215513")
 
 // router.beforeEach((to, from, next) => {
   
-//   const code = 'ybzdpycyysxzsb';
+//   const code = 'yibaozs';
 //   const pwd = 'ybzdpycyysxzbpwd';
 //       var ticket = paramStr("ticket") || "8afac0cc6ac672af016b4beac17d55f9-ticket";
 //        console.log('ticket-------------',ticket)

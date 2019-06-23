@@ -61,6 +61,7 @@ export default {
         }
     },
     created(){
+        this.epFn.setTitle('领取就医凭证')
         // 请求参数封装
         // this.form = this.$store.state.SET_INSURED_PROOF
         // let submitForm = {};

@@ -90,6 +90,7 @@ export default {
         }
     },
     created () {
+        this.epFn.setTitle('个人基础信息')
         // 封装数据
         let params = this.formatSubmitData();
         // 开始请求

@@ -40,6 +40,7 @@ export default {
       }
     },
     created(){
+        this.epFn.setTitle('人员基本信息变更')
         // this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
         let params=this.formatSubmitData();
         this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1009/getRecord', params).then((resData) => {

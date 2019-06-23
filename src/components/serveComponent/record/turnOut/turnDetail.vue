@@ -58,6 +58,7 @@ export default {
       }
     },
     created(){
+        this.epFn.setTitle('转外就医备案')
         // this.form = this.$store.state.SET_TURNOUT_OPERATION;
         this.request();
         this.request1();

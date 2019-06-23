@@ -56,6 +56,7 @@ export default {
         }
     },
     created(){
+        this.epFn.setTitle('参保信息变更')
         let params = this.formatSubmitData();
         this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy2002/getRecord', params).then((resData) => {
                 console.log('返回成功信息',resData)

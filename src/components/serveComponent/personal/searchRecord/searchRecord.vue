@@ -44,6 +44,7 @@ export default {
         }
     },
     created () {
+        this.epFn.setTitle('个人备案信息')
         this.form = this.$store.state.SET_SEARCHINSUREDINFO_OPERATION;
         // 封装数据
         let params = this.formatSubmitData();

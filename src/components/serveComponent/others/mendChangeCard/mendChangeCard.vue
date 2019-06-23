@@ -120,6 +120,7 @@ export default {
         },
     },
     created(){
+        this.epFn.setTitle('社保卡补卡换卡')
         // this.form = this.$store.state.SET_INSURED_PROOF;
     },
     methods:{

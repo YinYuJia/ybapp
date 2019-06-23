@@ -32,6 +32,7 @@ export default {
         }
     },
     created(){
+        this.epFn.setTitle('选择医院')
         // 获取VUEX信息
         this.smallReimForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_1));
         // this.smallReimForm = this.$store.state.SET_SMALL_REIM;

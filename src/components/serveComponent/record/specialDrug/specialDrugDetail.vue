@@ -100,6 +100,7 @@ export default {
         }
     },
     created(){   
+        this.epFn.setTitle('特治特药备案')
         // this.form = this.$store.state.SET_SPECIAL_DRUG;
         this.request();
         this.request1();
