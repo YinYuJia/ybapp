@@ -122,7 +122,7 @@ export default {
                 }
                 // 如果需要邮寄
                 if(this.showMail == true){
-                    this.getMailInfo(); //自动获取邮寄信息
+
                     if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
                         this.canSubmit = true
                     }else {
@@ -136,6 +136,7 @@ export default {
     created(){
         this.epFn.setTitle('领取就医凭证')
         this.form = this.$store.state.SET_INSURED_PROOF;
+        this.getMailInfo(); //自动获取邮寄信息
         // 原生参数添加姓名等信息
         // if(!this.form.AAE011){
             // this.form.AAE011=this.$store.state.SET_NATIVEMSG.name
