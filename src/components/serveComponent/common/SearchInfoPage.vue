@@ -252,6 +252,7 @@ export default {
   top: 0;
   height: 100%;
   .Title {
+    display: none;
     height: .8rem;
     background-color: white;
     line-height: .8rem;
