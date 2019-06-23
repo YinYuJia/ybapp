@@ -10,7 +10,7 @@ export default {
     // 公用请求地址
 
     ApiUrl:function() {
-        return 'http://192.168.1.187:13030' // 吴学文
+        return 'http://10.85.159.203:13030' // 吴学文
         // return 'http://59.202.42.147:13030' // 本地测试
     },
     
