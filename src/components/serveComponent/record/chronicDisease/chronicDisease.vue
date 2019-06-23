@@ -52,6 +52,7 @@
             </div>
             <div class="InfoText">
               <input
+                :class="{disabledInput:disabledOne}"
                 @click="disease1()"
                 :disabled="disabledOne"
                 type="text"
@@ -68,6 +69,7 @@
             </div>
             <div class="InfoText">
               <input
+                :class="{disabledInput:disabledOne}"
                 @click="disease2()"
                 :disabled="disabledOne"
                 type="text"
@@ -84,6 +86,7 @@
             </div>
             <div class="InfoText">
               <input
+                :class="{disabledInput:disabledOne}"
                 @click="disease3()"
                 :disabled="disabledOne"
                 type="text"
@@ -398,6 +401,7 @@ export default {
           position: relative;
           align-items: center;
           input {
+            background-color: #fff;
             height: 0.6rem;
             font-family: PingFangSC-Regular;
             font-size: 0.28rem;
@@ -443,6 +447,7 @@ export default {
           position: relative;
           align-items: center;
           input {
+            background-color: #fff;
             height: 0.6rem;
             font-size: 0.28rem;
             color: #000000;

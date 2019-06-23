@@ -95,7 +95,7 @@
             <span>疾病名称</span>
           </div>
           <div class="InfoText">
-            <input type="text" @click="species" v-model="form.AKA121" :disabled="twoDisabled" readonly placeholder="请选择">
+            <input type="text" @click="species" v-model="form.AKA121" :class="{disabledInput:twoDisabled}" :disabled="twoDisabled" readonly placeholder="请选择">
             <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
         </div>
@@ -120,7 +120,7 @@
             <span>项目名称</span>
           </div>
           <div class="InfoText">
-            <input type="text" @click="project" v-model="form.AKE002" :disabled="threeDisabled" placeholder="请选择">
+            <input type="text" @click="project" :class="{disabledInput:threeDisabled}" v-model="form.AKE002" :disabled="threeDisabled" placeholder="请选择">
             <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
         </div>
@@ -514,6 +514,9 @@ export default {
     }
   }
 }
+/deep/ .el-input.is-disabled .el-input__inner{
+  background-color: rgba(0, 0, 0, 0) !important;
+}
 </style>
 
 <style>
@@ -527,7 +530,5 @@ export default {
   padding-right: 0;
   padding-left: 0;
 }
-/deep/ .el-input.is-disabled .el-input__inner{
-  background-color: #fff;
-}
+
 </style>

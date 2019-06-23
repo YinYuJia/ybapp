@@ -16,6 +16,12 @@ export default {
     
     //打包测试地址
     // ApiUrl:function() {
+    //     // return 'http://192.168.1.199:13030' // 吴学文
+    //     return 'http://192.168.1.8:13030' // 本地测试
+    // },
+    
+    //打包测试地址
+    // ApiUrl:function() {
     //     return ''
     // },
     
