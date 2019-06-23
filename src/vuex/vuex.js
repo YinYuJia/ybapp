@@ -235,6 +235,7 @@ export default new Vuex.Store({  // 暴露与new vuex
         canbao: '',
         AAB301: '', //参保地
         AKB020: '', //就诊机构
+        AKB020Name:"",
         BKE253: '', //项目类型
         BKE228: '',//特药特治类型
         AKA120: '', //疾病编码

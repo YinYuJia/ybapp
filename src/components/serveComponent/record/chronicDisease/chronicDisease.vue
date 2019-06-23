@@ -53,6 +53,7 @@
             <div class="InfoText">
               <input
                 @click="disease1()"
+                :disabled="disabledOne"
                 type="text"
                 v-model="form.AKA121"
                 placeholder="请选择"
@@ -68,6 +69,7 @@
             <div class="InfoText">
               <input
                 @click="disease2()"
+                :disabled="disabledOne"
                 type="text"
                 v-model="form.AKA1211"
                 placeholder="请选择"
@@ -83,6 +85,7 @@
             <div class="InfoText">
               <input
                 @click="disease3()"
+                :disabled="disabledOne"
                 type="text"
                 v-model="form.AKA1212"
                 placeholder="请选择"
@@ -162,13 +165,13 @@
       <Footer :canSubmit="canSubmit" @submit="submit()"></Footer>
     </div>
     <!-- 规定病种 -->
-    <SearchInfoPage ref="species"  @childrenClick="speciesClick"></SearchInfoPage>
+    <SearchInfoPage ref="species" type="AKA035"  @childrenClick="speciesClick"></SearchInfoPage>
     <!-- 疾病1 -->
-    <SearchInfoPage ref="disease1" @childrenClick="disease1Click"></SearchInfoPage>
+    <SearchInfoPage ref="disease1" type="AKA130" AAE013="AKA035" :AAA052="form.AKA035" @childrenClick="disease1Click"></SearchInfoPage>
     <!-- 疾病2 -->
-    <SearchInfoPage ref="disease2" @childrenClick="disease2Click"></SearchInfoPage>
+    <SearchInfoPage ref="disease2" type="AKA130" AAE013="AKA035" :AAA052="form.AKA035" @childrenClick="disease2Click"></SearchInfoPage>
     <!-- 疾病3 -->
-    <SearchInfoPage ref="disease3" @childrenClick="disease3Click"></SearchInfoPage>
+    <SearchInfoPage ref="disease3" type="AKA130" AAE013="AKA035" :AAA052="form.AKA035" @childrenClick="disease3Click"></SearchInfoPage>
   </div>
 </template>
 
@@ -195,6 +198,7 @@ export default {
         AAE005: "", //手机号码
         AAE006: "" //详细地址
       },
+      disabledOne: true,
       isSearch: false,
       dateVal: new Date(), //默认绑定的时间
       canSubmit: false,
@@ -240,6 +244,21 @@ export default {
         }
       },
       deep: true
+    },
+    'form.AKA035Name'(val,oldVal){
+      if(val == ''){
+        this.disabledOne = true
+      }else{
+        this.disabledOne = false
+        if(val!=oldVal){
+          this.form.AKA120= "" 
+          this.form.AKA121= "" 
+          this.form.AKA1201= "" 
+          this.form.AKA1211= "" 
+          this.form.AKA1202= "" 
+          this.form.AKA1212= "" 
+        }
+      }
     }
   },
     created(){

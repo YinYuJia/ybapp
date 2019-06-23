@@ -38,7 +38,7 @@
             >{{ item.AAA103 }}</li>
           </ul>
         </mt-loadmore>
-        <div class="footer" v-if="allLoaded">没有更多数据了~</div>
+        <div class="footer" v-if="isShow">没有更多数据了~</div>
     </div>
   </div>
 </template>
@@ -53,18 +53,29 @@ export default {
       params: {
         pageSize: 15,
         pageNum: "1",
-        AAA102: ""
+        AAA102: "",
+        AAE013: "",
+        AAA052: ""
       },
       allLoaded: true,
       showSearch: false,
       heightTop:0,
-      height: 0
+      height: 0,
+      isShow:false
     };
   },
   props: {
     type: {
       type: String,
       default: 'AKB020'
+    },
+    AAE013: {
+      type: String|Number,
+      default: ''
+    },
+    AAA052: {
+      type: String|Number,
+      default: ''
     },
     title:{
         type: String,
@@ -109,7 +120,7 @@ export default {
     // }
   },
   created() {
-    this.getList();
+    
   },
   methods: {
     // 获取医院列表
@@ -117,12 +128,13 @@ export default {
       // 封装数据
       let params = this.formatSubmitData();
       // 开始请求
-      console.log(params);
-      
       this.$axios.post(this.epFn.ApiUrl()+"/h5/jy2001/optionInformationList",params).then(resData => {
           console.log("返回成功信息", resData.LS_DS);
           //   成功   1000
           if (resData.enCode == 1000) {
+            if(resData.pages<=15){
+              this.isShow = true
+            }
             // this.$toast("提交成功");
             if (resData.LS_DS.length > 0) {
               this.List = [...this.List, ...resData.LS_DS];
@@ -131,16 +143,18 @@ export default {
               this.params.pageNum = pageNum;
               // 总页数
               if (resData.pages > pageNum) {
-                console.log(pageNum,666666666);
-                
                 this.params.pageNum += 1;
                 this.allLoaded = false;
                 sessionStorage.setItem("params", JSON.stringify(this.params));
                 // sessionStorage.setItem("pointList", JSON.stringify(this.List));
+              }else{
+                this.isShow = true
               }
               sessionStorage.setItem("pointList", JSON.stringify(this.List));
               sessionStorage.setItem("params", JSON.stringify(this.params));
               // sessionStorage.setItem("params", JSON.stringify(this.params));
+            }else{
+                this.isShow = true
             }
           } else if (resData.enCode == 1001) {
             //   失败  1001
@@ -165,6 +179,7 @@ export default {
     // 搜索
     search() {
       if(this.params.AAA102){
+        this.isShow=false
         this.allLoaded = true;
       this.List = [];
       this.params.pageNum = 1;
@@ -179,8 +194,9 @@ export default {
       let submitForm = {};
       submitForm.AAA102 = this.params.AAA102; //模糊查询
       submitForm.AAA100 = this.type; //机构参数
-      submitForm.pageNum = this.params.pageNum; //模糊查询
-
+      submitForm.pageNum = this.params.pageNum; //页码
+      submitForm.AAE013 = this.AAE013 //关联性类别码
+      submitForm.AAA052 = this.AAA052  //关联性类别值
       // 加入用户名和电子社保卡号
       if (this.$store.state.SET_NATIVEMSG.name !== undefined) {
         submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
@@ -198,13 +214,19 @@ export default {
       return params;
     },
     open(){
+      this.allLoaded = true
       this.showSearch = true;
+      this.params.pageNum = 1
+      this.getList();
     },
     back(){
+      this.List = []
       this.showSearch = false;
+      
     },
     chooseHospital(code, name) {
         this.$emit('childrenClick',code,name);
+        this.List = []
         this.showSearch = false
     }
   }
