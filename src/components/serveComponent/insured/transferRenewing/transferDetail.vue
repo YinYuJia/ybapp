@@ -91,6 +91,7 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     this.form={...this.form,...resData.LS_DS_07}
+                    this.form.AAA027000=this.from.AAS027VALUE+this.form.AAA027VALUE+this.form.AAQ027VALUE
                     this.handleNumber = resData.LS_DS_07.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {

@@ -99,7 +99,7 @@ export default {
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
                         if(resData.LS_DS){ 
-                            this.form={...this.form,...resData.LS_DS}
+                            this.form={...this.form,...resData.LS_DS[0]}
                         }
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
