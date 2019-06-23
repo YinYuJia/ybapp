@@ -175,6 +175,7 @@ export default {
             }
         },
         showWork(url,item,itemInfo) {
+            sessionStorage.setItem('itemUrl',url);
             sessionStorage.setItem("item",item);
             sessionStorage.setItem("itemInfo",itemInfo);
             this.$router.push({
@@ -187,6 +188,7 @@ export default {
             })
         },
         showDetail(url,item) {
+            sessionStorage.setItem('itemUrl',url);
             sessionStorage.setItem("item",item);
             this.$router.push({
                 name: url,
