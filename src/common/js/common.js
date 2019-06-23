@@ -9,10 +9,10 @@ export default {
     },
     // 公用请求地址
 
-    ApiUrl:function() {
-        return 'http://10.85.159.203:13030' // 吴学文
-        // return 'http://59.202.42.147:13030' // 本地测试
-    },
+    // ApiUrl:function() {
+    //     return 'http://10.85.159.203:13030' // 吴学文
+    //     // return 'http://59.202.42.147:13030' // 本地测试
+    // },
     
     //打包测试地址
     // ApiUrl:function() {
@@ -21,9 +21,9 @@ export default {
     // },
     
     //打包测试地址
-    // ApiUrl:function() {
-    //     return ''
-    // },
+    ApiUrl:function() {
+        return ''
+    },
     
     // 公共请求参数封装 nativemsg 原生公共报文头 data 我们要穿的参数  tradeCode 交易号码
     commonRequsetData(nativemsg,data , tradeCode) {
