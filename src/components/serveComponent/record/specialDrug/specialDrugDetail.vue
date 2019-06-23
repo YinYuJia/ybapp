@@ -146,7 +146,7 @@ export default {
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
                 submitForm.AAC003 = '殷宇佳';
-                submitForm.AAE135 = "113344223344536624";
+                submitForm.AAE135 = "330622197407215513";
             }
             
             // 请求参数封装
@@ -177,7 +177,7 @@ export default {
             let submitForm = {}
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-023";
-                submitForm.lx="1";
+                submitForm.lx="2";
                 // submitForm.debugTest=  "true";
 
             // 加入用户名和电子社保卡号
@@ -186,7 +186,7 @@ export default {
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
                 submitForm.AAC003 = '殷宇佳';
-                submitForm.AAE135 = "113344223344536624";
+                submitForm.AAE135 = "330622197407215513";
             }
             
             // 请求参数封装
