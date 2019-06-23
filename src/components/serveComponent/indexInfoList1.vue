@@ -118,6 +118,7 @@ export default {
         })
     },
     created(){
+        this.setNativeMsg();
         this.epFn.setTitle('医疗保障专区')
         // 获取参保地
         // name: sessionStorage.getItem("userName") ,
@@ -151,6 +152,25 @@ export default {
         goRouter(route){
             this.$router.push(route);
         },
+        setNativeMsg(){
+            this.$store.dispatch('SET_NATIVEMSG', {
+                title: "",
+                describe: "",
+                type: "",
+                typeItem: "",
+                name: sessionStorage.getItem("userName") ,
+                idCard:sessionStorage.getItem("idCard") ,
+                PublicHeader: {
+                    imei: '',
+                    mac: '1111',
+                    phoneModel: '',
+                    platform: '',
+                    signType: '',
+                    sign: '',
+                    version: 'v2.0',
+                }
+            });
+        },
         formatSubmitData(){  
             let submitForm ={}
 
@@ -167,6 +187,8 @@ export default {
             MessageBox.prompt('用户名','').then(({ value, action }) => {
                 user.name = value;
                 this.$store.dispatch('SET_USER_BASEINFO',user);
+                sessionStorage.setItem('userName',value);
+                this.setNativeMsg();
             });
         },
         changeUserCode(){
@@ -174,7 +196,8 @@ export default {
             MessageBox.prompt('社保卡号','').then(({ value, action }) => {
                 user.idNo = value;
                 this.$store.dispatch('SET_USER_BASEINFO',user);
-                console.log(this.$store.state.SET_USER_BASEINFO);
+                sessionStorage.setItem('idCard',value);
+                this.setNativeMsg();
             });
         },
         showWork(url,item,itemInfo) {
