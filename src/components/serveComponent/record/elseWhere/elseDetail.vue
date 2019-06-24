@@ -153,8 +153,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '殷宇佳';
-                submitForm.AAE135 = "330622197407215513";
+                submitForm.AAC003 = '许肖军';
+                submitForm.AAE135 = "332625197501010910";
             }
             
             // 请求参数封装
@@ -173,8 +173,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '殷宇佳';
-                submitForm.AAE135 = "330622197407215513";
+                submitForm.AAC003 = '许肖军';
+                submitForm.AAE135 = "332625197501010910";
             }
             
             // 请求参数封装

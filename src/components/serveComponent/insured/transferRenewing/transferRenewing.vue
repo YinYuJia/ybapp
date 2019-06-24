@@ -74,8 +74,8 @@ export default {
     created () {
         this.epFn.setTitle('医保转移接续')
         // this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
-        // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name|| "殷宇佳"
-        // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard|| "330622197407215513"
+        // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name|| "许肖军"
+        // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard|| "332625197501010910"
     },
     watch: {
        form:{
@@ -163,8 +163,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '殷宇佳';
-                submitForm.AAE135 = "330622197407215513";
+                submitForm.AAC003 = '许肖军';
+                submitForm.AAE135 = "332625197501010910";
             }
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1017");

@@ -10,7 +10,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>社会保障号：</span></div>
-                    <div class="InfoText">{{form.AAE135 | tuoMin(1,1)}}</div>
+                    <div class="InfoText">{{form.AAC002 | tuoMin(1,1)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>性别：</span></div>
@@ -124,8 +124,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '殷宇佳';
-                submitForm.AAE135 = "330622197407215513";
+                submitForm.AAC003 = '许肖军';
+                submitForm.AAE135 = "332625197501010910";
             }
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1013");
