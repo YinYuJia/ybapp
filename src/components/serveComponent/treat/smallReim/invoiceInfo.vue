@@ -131,7 +131,8 @@ export default {
         // 上传图片附件
         uploadImg(){
             let This = this
-            dd.ready({
+            if(this.$isSdk){
+                dd.ready({
                 developer: 'daip@dtdream.com',
                 usage: [
                     'dd.device.notification.chooseImage',
@@ -185,6 +186,8 @@ export default {
                         }
                     })
             })
+            }
+            
         },
         // 选择发票
         chooseInvoice(invoice){
