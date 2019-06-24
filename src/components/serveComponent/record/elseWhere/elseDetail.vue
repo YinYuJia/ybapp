@@ -32,7 +32,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>联系人:</span></div>
-                    <div class="InfoText">{{form.AAE004 | tuoMin(0,1)}}</div>
+                    <div class="InfoText">{{form.AAE004 | tuoMin(0,2)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码:</span></div>

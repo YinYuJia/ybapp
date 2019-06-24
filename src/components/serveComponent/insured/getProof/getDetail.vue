@@ -21,7 +21,7 @@
             <div class="MailInfo" v-if="form.BKA077 == '1'">
                 <div class="InfoLine">
                     <div class="InfoName"><span>收件人:</span></div>
-                    <div class="InfoText">{{form.AAE011 | tuoMin(0,1)}}</div>
+                    <div class="InfoText">{{form.AAE011 | tuoMin(0,2)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>手机号码:</span></div>
