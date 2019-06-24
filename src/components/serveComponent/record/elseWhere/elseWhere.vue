@@ -148,7 +148,10 @@ export default {
         form: {
             handler: function(val) {
                 // 判断不为空
-                if (val.AAS011000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AAE011 != '' && val.AAE006 != '' && val.AKC030 != '' && val.AAE004 != '' && val.AAE005 != '' && val.AAB301000 != '') {
+                if (val.AAS011 != '' && val.AAE030 != '' && val.AAE031 != '' 
+                 && val.AAE011 != '' && val.AAE006 != '' && val.AKC030 != '' 
+                 && val.AAE004 != '' && val.AAE005 != '' && val.AAB301 != ''
+                 && val.AAQ011 != '' && val.AAS301 != '') {
                     this.canSubmit = true;
                 } else {
                     this.canSubmit = false;
@@ -168,10 +171,13 @@ export default {
                     this.$toast('手机号码不能超过11位');
                 }
                 // 判断转入转出地
-                if (val.AAS011000 != '' && val.AAB301000 != '') {
-                    if(val.AAS011000==val.AAB301000){
+                if (val.AAE011 != '' && val.AAB301 != '') {
+                    if(val.AAE011==val.AAB301){
                         this.$toast('参保地不能与申请地市相同');
-                        this.form.AAB301000 = '';
+                        this.AAB301000 = '';
+                        this.form.AAS301="";
+                        this.form.AAB301="";
+                        this.form.AAQ301="";
                     }
                 }
             },
