@@ -89,9 +89,11 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    this.form={...this.form,...resData.LS_DS_05}
                     // this.List=[...this.List,...resData.LS_DS_05]
                     // this.form={...this.form,...this.List[0]}
+                    let LS=resData.LS_DS_05
+                    this.form={...this.form,...LS}
+                    console.log("form",this.form)
                     this.handleNumber = resData.LS_DS_05.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {

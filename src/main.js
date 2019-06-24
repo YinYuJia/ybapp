@@ -145,8 +145,7 @@ sessionStorage.setItem("idCard",paramStr("idCard") || "330622197407215513")
 
 // router.beforeEach((to, from, next) => {
   
-//   const code = 'ybzdpycyysxzsb';
-//   const pwd = 'ybzdpycyysxzbpwd';
+//   const code = 'yibaozs';
 //       var ticket = paramStr("ticket") || "8afac0cc6ac672af016b4beac17d55f9-ticket";
 //        console.log('ticket-------------',ticket)
 //        var token = sessionStorage.getItem("getToken")
@@ -179,9 +178,7 @@ sessionStorage.setItem("idCard",paramStr("idCard") || "330622197407215513")
 //                       axios.post("/userInfo" , {
 //                         "token":result0.token
 //                         }).then(result1=>{
-                        
-//                               console.log('result1',result1)
-
+//                             console.log('result1',result1)
 //                         })
 //                     });
 //             } else {

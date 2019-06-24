@@ -75,7 +75,7 @@
                     AAB301: "", //参保地市
                     AAQ301: "", //参保地区
                     AAS027:"",	//转往省
-                    AAB027:"",	//转往市
+                    AAA027:"",	//转往市
                     AAQ027:"",  //转往区
                     AKA121: '',//疾病名称
                     BKE255: '', //就诊疗程
@@ -120,10 +120,13 @@
                     }
                     }
                     // 判断转入转出地
-                    if (val.AAA301000 != '' && val.AAB301000 != '') {
-                        if(val.AAA301000==val.AAB301000){
+                    if (val.AAA027 != '' && val.AAB301 != '') {
+                        if(val.AAA027==val.AAB301){
                             this.$toast('转出地不能与转入地相同');
-                            this.form.AAB301000 = '';
+                            this.AAB301000 = '';
+                            this.form.AAS301="";
+                            this.form.AAB301="";
+                            this.form.AAQ301="";
                         }
                     }
                 },
@@ -136,9 +139,9 @@
                 this.$refs.insuredPicker.open();
             },
             chooseInsured(val){
-                this.form.AAA027000=val.name
+                this.AAA027000=val.name
                 this.form.AAS027=val.code[0]
-                this.form.AAB027=val.code[1]
+                this.form.AAA027=val.code[1]
                 this.form.AAQ027=val.code[2]
             },
             // 选择开始日期
@@ -175,7 +178,7 @@
             chooseCity(val){
                 console.log(val);
                 
-                this.form.AAB301000= val.name;
+                this.AAB301000= val.name;
                 this.form.AAS301=val.code[0]
                 this.form.AAB301=val.code[1]
                 this.form.AAQ301=val.code[2]
@@ -211,21 +214,22 @@
             }
             },
             formatSubmitData(){
-                let submitForm = JSON.parse(JSON.stringify(this.form));
+                // let submitForm = JSON.parse(JSON.stringify(this.form));
+                let submitForm ={};
                 // 日期传换成Number
                 console.log(this.form);
 
                 submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
                 submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
-                // submitForm.AAS027 =  this.form.AAS027;//转往地省
-                // submitForm.AAB027 =  this.form.AAB027;//转往地市
-                // submitForm.AAS301 =  this.form.AAS301;//参保地省
-                // submitForm.AAB301 =  this.form.AAB301;//参保地市
-                // submitForm.AAQ301 =  this.form.AAQ301;//参保地区
-                // submitForm.AKA121 =  this.form.AKA121;//疾病名称
-                // submitForm.BKE255 =  this.form.BKE255;//就诊疗程
-                // submitForm.photoIdList =  this.form.photoIdList;//照片ID数组
-                // submitForm.BKZ019 =  this.form.BKZ019;//经办编号
+                submitForm.AAS027 =  this.form.AAS027;//转往地省
+                submitForm.AAA027 =  this.form.AAA027;//转往地市
+                submitForm.AAS301 =  this.form.AAS301;//参保地省
+                submitForm.AAB301 =  this.form.AAB301;//参保地市
+                submitForm.AAQ301 =  this.form.AAQ301;//参保地区
+                submitForm.AKA121 =  this.form.AKA121;//疾病名称
+                submitForm.BKE255 =  this.form.BKE255;//就诊疗程
+                submitForm.photoIdList =  this.form.photoIdList;//照片ID数组
+                submitForm.BKZ019 =  this.form.BKZ019;//经办编号
                 // submitForm.debugTest=  "true";
                 // submitForm.dibuger =  "true";
                 // 加入用户名和电子社保卡号
