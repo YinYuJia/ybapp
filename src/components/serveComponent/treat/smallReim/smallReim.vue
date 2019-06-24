@@ -107,8 +107,8 @@ export default {
         },
         handleTypeConfirm(val){
             console.log(val);
-            this.form.AKA078 = val.label;
-            this.AKA078VALUE = val.name;
+            this.form.AKA078 = val.value;
+            this.AKA078VALUE = val.label;
         },
         // 选择就诊日期
         openTimePicker(){

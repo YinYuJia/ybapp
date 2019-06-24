@@ -14,6 +14,13 @@
             v-model="dateVal"
             @confirm="handleStartConfirm">
         </mt-datetime-picker>
+        <SelectCity 
+            :type="1"
+            ref="relatePicker"
+            :propArr="relationList"
+            @confirm="handleRelateConfirm"
+            >
+        </SelectCity>
         <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
@@ -41,10 +48,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>绑定关系</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.AAE144" placeholder="请选择">
-                            <el-option v-for="item in relationList" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>
+                        <input @click="openRelatePicker()" type="text" v-model="AAE144VALUE" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -76,6 +80,7 @@
                     AAQ301:"",//参保地区
                     BKZ019:""//经办编号
                 },
+                AAE144VALUE: '',
                 dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
                 relationList: [{
@@ -131,6 +136,15 @@
                 let date = this.util.formatDate(val,'yyyy-MM-dd');
                 this.form.AAE030 = date;
                 console.log(this.form.AAE030);
+            },
+            // 选择月数
+            openRelatePicker(){
+                this.$refs.relatePicker.open();
+            },
+            handleRelateConfirm(val){
+                console.log(val);
+                this.form.AAE144 = val.value;
+                this.AAE144VALUE = val.label;
             },
             submit() {
                 if(!this.util.idCard(this.form.BAC002)){

@@ -130,7 +130,7 @@ export default {
         }
     },
     destroyed(){
-        window.removeEventListener('scroll', this.handleScroll());
+        window.removeEventListener('scroll', this.handleScroll);
     },
     created(){
         this.epFn.setTitle('医疗保障专区')
