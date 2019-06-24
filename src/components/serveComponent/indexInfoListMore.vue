@@ -129,6 +129,9 @@ export default {
             containerHeight: 0,
         }
     },
+    destroyed(){
+        window.removeEventListener('scroll', this.handleScroll());
+    },
     created(){
         this.epFn.setTitle('医疗保障专区')
     },

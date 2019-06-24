@@ -24,7 +24,7 @@
               <input
                 @click="openInsuredPicker"
                 type="text"
-                v-model="AAB30100"
+                v-model="AAB301000"
                 placeholder="请选择"
                 readonly
               >
@@ -353,10 +353,10 @@ export default {
         submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
         submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
       } else {
-        submitForm.AAC003 = "鲁伟兴";
+        submitForm.AAC003 = "殷宇佳";
         submitForm.AAE135 = "330622197407215513";
       }
-      submitForm.debugTest = "true"
+      // submitForm.debugTest = "true"
       // 请求参数封装
       const params = this.epFn.commonRequsetData(
         this.$store.state.SET_NATIVEMSG.PublicHeader,

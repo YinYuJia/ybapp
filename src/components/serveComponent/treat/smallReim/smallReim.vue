@@ -9,6 +9,13 @@
             :endDate="endDate"
             @confirm="handleTimeConfirm">
         </mt-datetime-picker>
+        <SelectCity 
+            :type="1"
+            ref="typePicker"
+            :propArr="typeArr"
+            @confirm="handleTypeConfirm"
+            >
+        </SelectCity>
         <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 填写进度 -->
@@ -23,12 +30,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊类型：</span></div>
-                    <div class="InfoText">
-                        <el-select v-model="form.AKA078" placeholder="请选择">
-                            <el-option v-for="item in type" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>
-                    </div>
+                    <div class="InfoText"><input @click="openTypePicker()" type="text" v-model="AKA078VALUE" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊日期：</span></div>
@@ -55,6 +57,7 @@ export default {
                 AKA078: '', //就诊类型
                 AAE030: '', //就诊日期
             },
+            AKA078VALUE: '', //就诊类型中文
             dateVal: new Date(), //默认绑定的时间
             endDate: new Date(), //最晚选择时间
             canSubmit: false,
@@ -64,9 +67,9 @@ export default {
                 {step:3,name:'信息录入'},
                 {step:4,name:'申报完成'}
             ],
-            type: [ //就诊类型
-                {value: '1',label: '门诊'},
-                {value: '3',label: '住院'}
+            typeArr: [ //就诊类型
+                {value: '1',name: '门诊'},
+                {value: '3',name: '住院'}
             ],
         }
     },
@@ -97,6 +100,15 @@ export default {
         hospitaClick(code,name){
             this.form.hospitalName = name
             this.form.AKB020 = code
+        },
+        // 选择就诊类型
+        openTypePicker(){
+            this.$refs.typePicker.open();
+        },
+        handleTypeConfirm(val){
+            console.log(val);
+            this.form.AKA078 = val.label;
+            this.AKA078VALUE = val.name;
         },
         // 选择就诊日期
         openTimePicker(){

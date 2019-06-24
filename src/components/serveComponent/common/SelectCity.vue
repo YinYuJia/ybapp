@@ -2,6 +2,18 @@
     <!-- 城市选择 -->
     <mt-popup class="cityPicker" v-model="showCityPicker" position="bottom" >
         <mt-picker
+            v-if="type=='1'"
+            :showToolbar="true"
+            :slots="chooseArr"
+            :valueKey="'name'"
+            @change="onChooseChange"
+            >
+            <div class="btnBox">
+                <div class="btn" @click="showCityPicker=!showCityPicker">取消</div>
+                <div class="btn" @click="chooseData()">确定</div>
+            </div>
+        </mt-picker>
+        <mt-picker
             v-if="type=='2'"
             :showToolbar="true"
             :slots="insuredCity"
@@ -35,6 +47,9 @@ export default {
         type:{
             type: Number,
             required: true
+        },
+        propArr:{
+            type: Array
         }
     },
     data(){
@@ -86,12 +101,21 @@ export default {
                     className: 'slot5'
                 }
             ],
+            chooseArr:[
+                {
+                    flex: 1,
+                    values: [],
+                    className: 'slot1',
+                }
+            ],
             province: '', //省
             city: '', //市
             country: '', //区,县
             codeProvice: '',
             codeCity: '',
             codeCountry: '',
+            choosed: '', //用户选择的选项
+            label: '', //选项绑定的值
         }
     },
 
@@ -99,9 +123,8 @@ export default {
         this.$nextTick(() =>{
             this.insuredCity[0].values = this.epFn.addressList();
             this.fullCity[0].values = this.epFn.addressList();
-            this.fullCity[0].defaultIndex=10
-            this.insuredCity[0].defaultIndex=10
-
+            this.fullCity[0].defaultIndex=10;
+            this.insuredCity[0].defaultIndex=10;
         })
     },
     methods:{
@@ -123,8 +146,15 @@ export default {
                 }
             }
         },
+        onChooseChange(picker, values){
+            this.choosed = values[0].name;
+            this.label = values[0].value;
+        },
         open(){
             this.showCityPicker = true;
+            if(this.propArr != undefined){
+                this.chooseArr[0].values = JSON.parse(JSON.stringify(this.propArr));
+            }
         },
         confirm(){
             this.showCityPicker = false;
@@ -148,6 +178,14 @@ export default {
                 this.$emit('confirm',obj);
             }
         },
+        chooseData(){
+            this.showCityPicker = false;
+            let obj = {
+                name: this.choosed,
+                label: this.label
+            };
+            this.$emit('confirm',obj);
+        }
     }
 }
 </script>
