@@ -12,7 +12,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>被授权人姓名:</span></div>
-                    <div class="InfoText">{{form.BAC003 | tuoMin(0,1)}}</div>
+                    <div class="InfoText">{{form.BAC003 |tuoMin(0,2)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>被授权人身份证:</span></div>
