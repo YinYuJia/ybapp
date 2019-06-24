@@ -86,7 +86,10 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
-                    this.form={...this.form,...resData.LS_DS_13 } 
+                    // this.form={...this.form,...resData.LS_DS_13 } 
+                    let LS=resData.LS_DS_13
+                    this.form={...this.form,...LS}
+                    console.log("form",this.form)
                     // console.log(this.List)
                     this.handleNumber = resData.LS_DS_13.BKZ019
                     // this.form={...this.from,...this.List[0]}

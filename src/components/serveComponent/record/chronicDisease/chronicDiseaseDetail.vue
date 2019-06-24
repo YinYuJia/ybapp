@@ -138,7 +138,9 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    this.form={...this.form,...resData.LS_DS_14}
+                    let LS=resData.LS_DS_14
+                    this.form={...this.form,...LS}
+                    console.log("form",this.form)
                     this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
                     this.handleNumber = resData.LS_DS_14.BKZ019
                     this.$toast("提交成功");

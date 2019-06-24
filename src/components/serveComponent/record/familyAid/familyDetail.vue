@@ -123,8 +123,10 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
                     if (resData.LS_DS.length > 0 ) {
+                        let LS=resData.LS_DS_11
+                        this.form={...this.form,...LS}
+                        console.log("form",this.form)
                         this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
-                        this.form={...this.form,...resData.LS_DS_11}
                     }else{
                         this.$toast("暂无状态信息")
                     }
