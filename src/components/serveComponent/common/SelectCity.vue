@@ -5,7 +5,7 @@
             v-if="type=='1'"
             :showToolbar="true"
             :slots="chooseArr"
-            :valueKey="'name'"
+            :valueKey="'label'"
             @change="onChooseChange"
             >
             <div class="btnBox">
@@ -114,8 +114,8 @@ export default {
             codeProvice: '',
             codeCity: '',
             codeCountry: '',
-            choosed: '', //用户选择的选项
-            label: '', //选项绑定的值
+            label: '', //用户选择的选项
+            value: '', //选项绑定的值
         }
     },
 
@@ -147,8 +147,10 @@ export default {
             }
         },
         onChooseChange(picker, values){
-            this.choosed = values[0].name;
-            this.label = values[0].value;
+            if(values[0]!=undefined){
+                this.label = values[0].label;
+                this.value = values[0].value;
+            }
         },
         open(){
             this.showCityPicker = true;
@@ -181,8 +183,8 @@ export default {
         chooseData(){
             this.showCityPicker = false;
             let obj = {
-                name: this.choosed,
-                label: this.label
+                label: this.label,
+                value: this.value
             };
             this.$emit('confirm',obj);
         }

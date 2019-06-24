@@ -68,8 +68,8 @@ export default {
                 {step:4,name:'申报完成'}
             ],
             typeArr: [ //就诊类型
-                {value: '1',name: '门诊'},
-                {value: '3',name: '住院'}
+                {value: '1',label: '门诊'},
+                {value: '3',label: '住院'}
             ],
         }
     },
@@ -191,13 +191,11 @@ export default {
             .InfoLine {
                 height: 1.2rem;
                 position: relative;
-                font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 justify-content: space-between;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     span {
                         height: .6rem;
@@ -207,7 +205,6 @@ export default {
                     }
                 }
                 .InfoText {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
@@ -215,9 +212,7 @@ export default {
                     input {
                         width: 4rem;
                         height: .6rem;
-                        opacity: 0.85;
-                        font-family: PingFangSC-Regular;
-                        font-size: .3rem;
+                        font-size: .28rem;
                         color: #000000;
                         letter-spacing: 0;
                         text-align: right;
