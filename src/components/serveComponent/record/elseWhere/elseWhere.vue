@@ -35,7 +35,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                        <input @click="openInsuredPicker" type="text" v-model="AAS011000" placeholder="请选择" readonly>
+                        <input @click="openInsuredPicker" type="text" v-model="form.AAS011000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -53,7 +53,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请地市</span></div>
                     <div class="InfoText">
-                        <input @click="openCityPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly>
+                        <input @click="openCityPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -91,9 +91,10 @@ export default {
     data() {
         return {
             // 提交信息                
-            AAB301000:"",//申请地
-            AAS011000:"",//参保地
+            
             form: {
+                AAB301000:"",//申请地
+                AAS011000:"",//参保地
                 AAE030: '', //离杭日期
                 AAE031: '', //回杭日期
                 AAS011: '', //申请地省
@@ -190,7 +191,7 @@ export default {
             this.$refs.insuredPicker.open();
         },
         chooseInsured(val){
-            this.AAS011000 =val.name, //参保地省
+            this.form.AAS011000 =val.name, //参保地省
             this.form.AAS301 =val.code[0], //参保地省
             this.form.AAB301 =val.code[1], //参保地市
             this.form.AAQ301 =val.code[2]  //参保地区
@@ -217,7 +218,7 @@ export default {
             this.$refs.cityPicker.open();
         },
         chooseCity(val){
-            this.AAB301000= val.name;
+            this.form.AAB301000= val.name;
             this.form.AAS011=val.code[0]
             this.form.AAE011=val.code[1]
             this.form.AAQ011=val.code[2]
@@ -283,7 +284,7 @@ export default {
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
                 submitForm.AAC003 = '殷宇佳';
-                submitForm.AAE135 = "113344223344536624";
+                submitForm.AAE135 = "330622197407215513";
             }
             // 请求参数封装
             console.log('submitForm',submitForm)

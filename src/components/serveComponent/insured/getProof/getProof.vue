@@ -222,7 +222,7 @@ export default {
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAE135 = "113344223344536624";
+                submitForm.AAE135 = "330622197407215513";
             }
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2002');
              this.$axios.post(this.epFn.ApiUrl() + '/h5/jy2002/getRecord', params).then((resData) => {

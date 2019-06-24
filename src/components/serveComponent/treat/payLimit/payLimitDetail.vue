@@ -113,7 +113,7 @@ export default {
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 }else {
                     submitForm.AAC003 = '殷宇佳';
-                    submitForm.AAE135 = "113344223344536624";
+                    submitForm.AAE135 = "330622197407215513";
                 }      
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
@@ -130,7 +130,7 @@ export default {
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 }else {
                     submitForm.AAC003 = '殷宇佳';
-                    submitForm.AAE135 = "113344223344536624";
+                    submitForm.AAE135 = "330622197407215513";
                 }      
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");

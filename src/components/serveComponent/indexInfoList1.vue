@@ -118,7 +118,7 @@ export default {
         })
     },
     created(){
-        // console.log('dddddddddddddddddd',dd)
+        console.log('dddddddddddddddddd',dd)
         // this.setNativeMsg();
         this.epFn.setTitle('医疗保障专区')
         // 获取参保地
@@ -178,7 +178,7 @@ export default {
             // 加入用户名和电子社保卡号
           
             submitForm.AAC003 = '殷宇佳'
-            submitForm.AAE135 = '113344223344536624'
+            submitForm.AAE135 = '330622197407215513'
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1033");
             return params;
