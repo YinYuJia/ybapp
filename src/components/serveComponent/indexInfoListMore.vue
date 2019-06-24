@@ -71,7 +71,7 @@
                         <svg-icon icon-class="serveComponent_icon_11" />
                         <div class="text">零星报销</div>
                     </div>
-                    <div class="iconBox" @click="showWork('/payLimit','待遇报销','视同缴费年限核定')">
+                    <div class="iconBox" @click="showWork('/payLimit','缴费年限','视同缴费年限核定')">
                         <svg-icon icon-class="serveComponent_icon_12" />
                         <div class="text">缴费年限</div>
                     </div>
@@ -128,6 +128,9 @@ export default {
             headerSwiper: {},
             containerHeight: 0,
         }
+    },
+    destroyed(){
+        window.removeEventListener('scroll', this.handleScroll());
     },
     created(){
         this.epFn.setTitle('医疗保障专区')
