@@ -52,7 +52,6 @@ export default {
         dd.biz.navigation.setTitle({
           title: title,
           onSuccess: function(data) {
-            console.log(data,5555)
           },
           onFail: function(error) {}
       })

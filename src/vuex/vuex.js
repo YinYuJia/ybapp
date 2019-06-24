@@ -83,7 +83,12 @@ export default new Vuex.Store({  // 暴露与new vuex
           photoIdList:[],//照片ID数组
           BKZ019:""
         },
-
+        // 手动添加发票信息
+        SET_PLUSINVOICE:{
+          invoiceCode: '', //发票号码
+          invoicePrice: '', //发票金额
+          invoiceDate: '', //发票日期
+        },
         // 出国带药备案
         SET_ABROADTAKE_OPERATION:{
           AAB301000: '', //参保地
@@ -167,8 +172,10 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_SMALL_REIM_2:{
           eleInvoices: [], //电子发票信息
+          invoicesImg: [], //附件信息信息
         },
-
+        // 零星报销的图片集合，只供页面跳转使用，不上传后台
+        SET_ENCLOSURE:[],
         //缴费年限核定
         SET_PAYLIMIT_OPERATION:{
           AKC412: '', //视作缴费年限
@@ -322,6 +329,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_ABROADTAKE_OPERATION(state,payload){
           state.SET_ABROADTAKE_OPERATION = payload
         },
+        SET_PLUSINVOICE(state,payload){
+          state.SET_PLUSINVOICE = payload
+        },
         SET_FAMILYAID_OPERATION(state,payload){
           state.SET_FAMILYAID_OPERATION = payload
         },
@@ -354,6 +364,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_SMALL_REIM_2(state,payload){
           state.SET_SMALL_REIM_2 = payload;
+        },
+        SET_ENCLOSURE(state,payload){
+          state.SET_ENCLOSURE = payload;
         },
         SET_PAYLIMIT_OPERATION(state,payload){
           sessionStorage.setItem("SET_PAYLIMIT_OPERATION",JSON.stringify(payload));
@@ -408,6 +421,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_ABROADTAKE_OPERATION( context, payload ) {
           context.commit( 'SET_ABROADTAKE_OPERATION', payload ); //context提交
         },
+        SET_PLUSINVOICE( context, payload ) {
+          context.commit( 'SET_PLUSINVOICE', payload ); //context提交
+        },
         SET_FAMILYAID_OPERATION( context, payload ) {
           context.commit( 'SET_FAMILYAID_OPERATION', payload ); //context提交
         },
@@ -434,6 +450,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_SMALL_REIM_2( context, payload ) {
           context.commit( 'SET_SMALL_REIM_2', payload );
+        },
+        SET_ENCLOSURE( context, payload ) {
+          context.commit( 'SET_ENCLOSURE', payload );
         },
         SET_PAYLIMIT_OPERATION( context, payload ) {
           context.commit( 'SET_PAYLIMIT_OPERATION', payload ); //context提交
