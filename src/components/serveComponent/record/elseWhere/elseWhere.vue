@@ -26,6 +26,13 @@
             @confirm="chooseCity"
             >
         </SelectCity>
+        <SelectCity 
+            :type="1"
+            ref="reasonPicker"
+            :propArr="reportReason"
+            @confirm="handleReasonConfirm"
+            >
+        </SelectCity>
         <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
@@ -35,7 +42,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                        <input @click="openInsuredPicker" type="text" v-model="form.AAS011000" placeholder="请选择" readonly>
+                        <input @click="openInsuredPicker" type="text" v-model="AAS011000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -53,7 +60,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请地市</span></div>
                     <div class="InfoText">
-                        <input @click="openCityPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly>
+                        <input @click="openCityPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -65,10 +72,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请原因</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.AKC030" placeholder="请选择">
-                            <el-option v-for="item in reportReason" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>
+                        <input @click="openReasonPicker()" type="text" v-model="AKC030VALUE" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -91,10 +95,10 @@ export default {
     data() {
         return {
             // 提交信息                
-            
-            form: {
                 AAB301000:"",//申请地
                 AAS011000:"",//参保地
+            form: {
+
                 AAE030: '', //离杭日期
                 AAE031: '', //回杭日期
                 AAS011: '', //申请地省
@@ -108,6 +112,7 @@ export default {
                 AAB301: '',//参保地市
                 AAQ301: '',//参保地区
             },
+            AKC030VALUE: '', //申请原因绑定值
             optionList: [], //存放城市数据
             canSubmit: false,
             dateVal: new Date(), //默认绑定的时间
@@ -191,7 +196,7 @@ export default {
             this.$refs.insuredPicker.open();
         },
         chooseInsured(val){
-            this.form.AAS011000 =val.name, //参保地省
+            this.AAS011000 =val.name, //参保地省
             this.form.AAS301 =val.code[0], //参保地省
             this.form.AAB301 =val.code[1], //参保地市
             this.form.AAQ301 =val.code[2]  //参保地区
@@ -218,10 +223,19 @@ export default {
             this.$refs.cityPicker.open();
         },
         chooseCity(val){
-            this.form.AAB301000= val.name;
+            this.AAB301000= val.name;
             this.form.AAS011=val.code[0]
             this.form.AAE011=val.code[1]
             this.form.AAQ011=val.code[2]
+        },
+        // 选择申请原因
+        openReasonPicker(){
+            this.$refs.reasonPicker.open();
+        },
+        handleReasonConfirm(val){
+            console.log(val);
+            this.form.AKC030 = val.value;
+            this.AKC030VALUE = val.label;
         },
         // 提交
         submit() {

@@ -75,7 +75,8 @@ export default {
     methods:{
         uploadImg(){
             let This = this
-            dd.ready({
+            if(this.$isSdk){
+                dd.ready({
                 developer: 'daip@dtdream.com',
                 usage: [
                     'dd.device.notification.chooseImage',
@@ -129,6 +130,8 @@ export default {
                         }
                     })
             })
+            }
+            
         },
         submit(){
             if(this.canSubmit &&this.form.photoId){

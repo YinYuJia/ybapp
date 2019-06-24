@@ -8,6 +8,13 @@
             @confirm="chooseCity"
             >
         </SelectCity>
+        <SelectCity 
+            :type="1"
+            ref="monthPicker"
+            :propArr="months"
+            @confirm="handleMonthConfirm"
+            >
+        </SelectCity>
         <!-- 弹出区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
@@ -23,10 +30,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>查询月数：</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.AAE091" placeholder="请选择">
-                            <el-option v-for="item in months" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>
+                        <input @click="openMonthPicker()" type="text" v-model="AAE091VALUE" placeholder="请选择" readonly>
                     </div>
                 </div>
             </div>
@@ -47,11 +51,12 @@ export default {
                 AAQ301: '', //参保地区
                 AAE091: '24', //查询月数
             },
+            AAE091VALUE: '',
             canSubmit: false, //是否能提交
             months: [
-                {value: "6" ,label: '6'},
-                {value: "12" ,label: '12'},
-                {value: "24" ,label: '24'},
+                {value: "6" ,label: '6个月'},
+                {value: "12" ,label: '12个月'},
+                {value: "24" ,label: '24个月'},
             ],
         }
     },
@@ -83,6 +88,15 @@ export default {
             this.form.AAS301 = val.code[0];
             this.form.AAB301 = val.code[1];
             this.form.AAQ301 = val.code[2];
+        },
+        // 选择月数
+        openMonthPicker(){
+            this.$refs.monthPicker.open();
+        },
+        handleMonthConfirm(val){
+            console.log(val);
+            this.form.AAE091 = val.value;
+            this.AAE091VALUE = val.label;
         },
         // 提交
         submit() {

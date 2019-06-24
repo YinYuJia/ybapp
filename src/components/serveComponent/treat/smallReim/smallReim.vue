@@ -9,6 +9,13 @@
             :endDate="endDate"
             @confirm="handleTimeConfirm">
         </mt-datetime-picker>
+        <SelectCity 
+            :type="1"
+            ref="typePicker"
+            :propArr="typeArr"
+            @confirm="handleTypeConfirm"
+            >
+        </SelectCity>
         <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 填写进度 -->
@@ -23,12 +30,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊类型：</span></div>
-                    <div class="InfoText">
-                        <el-select v-model="form.AKA078" placeholder="请选择">
-                            <el-option v-for="item in type" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>
-                    </div>
+                    <div class="InfoText"><input @click="openTypePicker()" type="text" v-model="AKA078VALUE" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊日期：</span></div>
@@ -55,6 +57,7 @@ export default {
                 AKA078: '', //就诊类型
                 AAE030: '', //就诊日期
             },
+            AKA078VALUE: '', //就诊类型中文
             dateVal: new Date(), //默认绑定的时间
             endDate: new Date(), //最晚选择时间
             canSubmit: false,
@@ -64,7 +67,7 @@ export default {
                 {step:3,name:'信息录入'},
                 {step:4,name:'申报完成'}
             ],
-            type: [ //就诊类型
+            typeArr: [ //就诊类型
                 {value: '1',label: '门诊'},
                 {value: '3',label: '住院'}
             ],
@@ -98,6 +101,15 @@ export default {
             this.form.hospitalName = name
             this.form.AKB020 = code
         },
+        // 选择就诊类型
+        openTypePicker(){
+            this.$refs.typePicker.open();
+        },
+        handleTypeConfirm(val){
+            console.log(val);
+            this.form.AKA078 = val.value;
+            this.AKA078VALUE = val.label;
+        },
         // 选择就诊日期
         openTimePicker(){
             this.$refs.timePicker.open();
@@ -108,6 +120,13 @@ export default {
         },
         // 提交
         submit(){
+            // 暂时可跳转
+            // this.$store.dispatch('SET_SMALL_REIM_2');
+            let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
+            submitForm.AKB020 = this.form.AKB020;
+            this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
+            this.$store.dispatch('SET_SMALL_REIM_1', this.form);
+            this.$router.push("/invoiceInfo");
             if(!this.canSubmit){
                 this.$toast('信息未填写完整');
                 return false;
@@ -124,6 +143,7 @@ export default {
                         let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
                         submitForm.AKB020 = this.form.AKB020;
                         this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
+                        this.$store.dispatch('SET_SMALL_REIM_1', this.form);
                         this.$router.push("/invoiceInfo");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
@@ -171,13 +191,11 @@ export default {
             .InfoLine {
                 height: 1.2rem;
                 position: relative;
-                font-family: PingFangSC-Regular;
-                font-size: .3rem;
+                font-size: .28rem;
                 display: flex;
                 justify-content: space-between;
                 border-bottom: .01rem solid #D5D5D5;
                 .InfoName {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     span {
                         height: .6rem;
@@ -187,7 +205,6 @@ export default {
                     }
                 }
                 .InfoText {
-                    opacity: 0.85;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
@@ -195,9 +212,7 @@ export default {
                     input {
                         width: 4rem;
                         height: .6rem;
-                        opacity: 0.85;
-                        font-family: PingFangSC-Regular;
-                        font-size: .3rem;
+                        font-size: .28rem;
                         color: #000000;
                         letter-spacing: 0;
                         text-align: right;

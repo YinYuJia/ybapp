@@ -13,7 +13,8 @@ export default {
         // return 'http://10.85.159.203:13030' // 吴学文
         console.log('process.env.NODE_ENV',process.env.NODE_ENV)
         if(process.env.NODE_ENV == 'development') {
-          return 'http://59.202.42.147:8000/api'
+          return 'http://59.202.42.147:8000/api' //服务器
+          // return 'http://192.168.1.189:13030' //吴学文
         }else{
           return ''
         }
@@ -42,20 +43,23 @@ export default {
         return commonData
     },
     setTitle(title){
-      dd.ready({
-        developer: 'daip@dtdream.com',
-        usage: [
-          'dd.biz.navigation.setTitle',
-        ],
-        remark: '描述业务场景'
-      }, function() {
-        dd.biz.navigation.setTitle({
-          title: title,
-          onSuccess: function(data) {
-          },
-          onFail: function(error) {}
-      })
-      })
+      if(this.$isSdk){
+        dd.ready({
+          developer: 'daip@dtdream.com',
+          usage: [
+            'dd.biz.navigation.setTitle',
+          ],
+          remark: '描述业务场景'
+        }, function() {
+          dd.biz.navigation.setTitle({
+            title: title,
+            onSuccess: function(data) {
+            },
+            onFail: function(error) {}
+        })
+        })
+      }
+      
     },
     IndexList:function() {
          return {

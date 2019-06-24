@@ -115,13 +115,24 @@ export default {
         this.invoices.forEach((val)=>{
             val.selected = false;
         })
+        if(!this.hasInvoice){
+            let index = 0
+            let price = 0
+            for(let i=0;i<this.invoices.length;i++){
+                index = i+1
+                price += parseFloat(this.invoices[i].AAE036)
+            }
+            this.invoiceCount.count = index
+            this.invoiceCount.price = price
+        }
         console.log('发票',this.invoices);
     },
     methods: {
         // 上传图片附件
         uploadImg(){
             let This = this
-            dd.ready({
+            if(this.$isSdk){
+                dd.ready({
                 developer: 'daip@dtdream.com',
                 usage: [
                     'dd.device.notification.chooseImage',
@@ -175,6 +186,8 @@ export default {
                         }
                     })
             })
+            }
+            
         },
         // 选择发票
         chooseInvoice(invoice){

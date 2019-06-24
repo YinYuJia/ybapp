@@ -131,8 +131,8 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE011: '', //收件人
           AAE005: '', //手机号码
           AAE006: '', //地址
-          AAC050:'', //变更类型
-          BKA077 :'0' ,//领取方式
+          AAC050: '', //变更类型
+          BKA077: '0',//领取方式
         },
         SET_PUBLICHEADER:{  imei:	'移动设备身份码',
         mac:	'设备编号',
@@ -172,7 +172,7 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_SMALL_REIM_2:{
           eleInvoices: [], //电子发票信息
-          invoicesImg: [], //附件信息信息
+          invoicesImg: [], //附件信息信息  图片id
         },
         // 零星报销的图片集合，只供页面跳转使用，不上传后台
         SET_ENCLOSURE:[],

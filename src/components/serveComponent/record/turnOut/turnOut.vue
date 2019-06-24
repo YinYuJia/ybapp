@@ -20,6 +20,13 @@
             @confirm="chooseCity"
             >
         </SelectCity>
+        <SelectCity 
+            :type="1"
+            ref="treatPicker"
+            :propArr="treatment"
+            @confirm="handleTreatConfirm"
+            >
+        </SelectCity>
         <!-- 弹出框区域结束 -->
         <div class="Content">
             <!-- 基本信息 -->
@@ -49,10 +56,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>就医疗程</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.BKE255" placeholder="请选择">
-                            <el-option v-for="item in treatment" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>
+                        <input @click="openTreatPicker()" type="text" v-model="BKE255VALUE" placeholder="请选择" readonly>
                     </div>
                 </div>
             </div>
@@ -82,6 +86,7 @@
                     photoIdList:[],//照片ID数组
                     BKZ019:""
                 },
+                BKE255VALUE: '',
                 canSubmit: false,
                 dateVal: new Date(), //默认绑定的时间
                 treatment: [
@@ -182,6 +187,15 @@
                 this.form.AAS301=val.code[0]
                 this.form.AAB301=val.code[1]
                 this.form.AAQ301=val.code[2]
+            },
+            // 选择就医疗程
+            openTreatPicker(){
+                this.$refs.treatPicker.open();
+            },
+            handleTreatConfirm(val){
+                console.log(val);
+                this.form.BKE255 = val.value;
+                this.BKE255VALUE = val.label;
             },
             submit() {
                 
