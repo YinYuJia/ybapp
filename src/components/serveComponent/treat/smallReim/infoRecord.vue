@@ -17,7 +17,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户名：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入" readonly></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入"></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -104,13 +104,19 @@ export default {
         },
         formatSubmitForm(){
             let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
+            let submitForm1 = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_1));
+            let submitForm2 = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2));
+            console.log(this.$store.state.SET_SMALL_REIM_SUBMIT,'this.$store.state.SET_SMALL_REIM_SUBMIT');
+            console.log(this.$store.state.SET_SMALL_REIM_1,'this.$store.state.SET_SMALL_REIM_1');
+            console.log(this.$store.state.SET_SMALL_REIM_2,'this.$store.state.SET_SMALL_REIM_2');
+            
             submitForm.AAE010 = this.form.AAE010.replace(/\s+/g,'');
             submitForm.AAE008 = this.form.AAE008;
             submitForm.AAE009 = this.form.AAE009;
             submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2;
             submitForm.LS_DS2 = [] 
 
-            this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
+            // this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

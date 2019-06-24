@@ -43,21 +43,23 @@ export default {
         return commonData
     },
     setTitle(title){
-      dd.ready({
-        developer: 'daip@dtdream.com',
-        usage: [
-          'dd.biz.navigation.setTitle',
-        ],
-        remark: '描述业务场景'
-      }, function() {
-        dd.biz.navigation.setTitle({
-          title: title,
-          onSuccess: function(data) {
-            console.log(data,5555)
-          },
-          onFail: function(error) {}
-      })
-      })
+      if(this.$isSdk){
+        dd.ready({
+          developer: 'daip@dtdream.com',
+          usage: [
+            'dd.biz.navigation.setTitle',
+          ],
+          remark: '描述业务场景'
+        }, function() {
+          dd.biz.navigation.setTitle({
+            title: title,
+            onSuccess: function(data) {
+            },
+            onFail: function(error) {}
+        })
+        })
+      }
+      
     },
     IndexList:function() {
          return {

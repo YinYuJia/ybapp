@@ -32,18 +32,20 @@
             <div class="manualContent" v-if="!hasInvoice">
                 <div class="invoiceHint">暂无报销条目，请手动填写/上传发票信息</div>
                 <div class="invoiceList" v-for="item in invoices" :key="item.BKE100">
-                    <div class="invoicePhoto"></div>
+                    <div class="invoicePhoto">
+                        <img :src="item.photoUrl" class="pic">
+                    </div>
                     <div class="textBox">
                         <div class="textLine">
-                            <span class="textName">发票号</span>
+                            <span class="textName">发票号码</span>
                             <span class="textInfo">{{item.BKE100}}</span>
                         </div>
                         <div class="textLine">
-                            <span class="textName">科室名称</span>
-                            <span class="textInfo">{{item.BKA104}}</span>
+                            <span class="textName">发票金额</span>
+                            <span class="textInfo">{{item.AAE036}}</span>
                         </div>
                         <div class="textLine">
-                            <span class="textName">总费用</span>
+                            <span class="textName">发票日期</span>
                             <span class="textInfo">{{item.AKC264}}</span>
                         </div>
                     </div>
@@ -54,7 +56,13 @@
         <!-- 资料上传 -->
         <div class="dataUpload">
             <div class="uploadHint">病例资料（如出院小结、用药清单、医嘱等）</div>
-            <div class="uploadBtn"><i class="el-icon-plus"></i></div>
+            <div class="picWrap">
+                <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
+                    <img :src="item" class="pic" />
+                </div>
+                <div class="uploadBtn" @click="uploadImg"><i class="el-icon-plus"></i></div>
+            </div>
+            
         </div>
         <!-- 按钮 -->
         <footer class="Footer">
@@ -90,21 +98,97 @@ export default {
             //     {BKE100:'9123910023010230120301',BKA104:'骨科',AKC264: 10239.03,selected: false},
             //     {BKE100:'9123910023010230120302',BKA104:'外科',AKC264: 102.88,selected: false},
             // ],
-            invoices: [],
+            invoices: [],//发票信息
+            picArr: [],//附件集合
             invoiceCount: {price:0,count:0}, // 发票合计
         }
     },
     created() {
         this.epFn.setTitle('零星报销')
         // 获取VUEX信息
-        this.invoices = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2));
+        this.invoices = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2.eleInvoices));
+        // 附件集合
+        this.picArr = JSON.parse(JSON.stringify(this.$store.state.SET_ENCLOSURE));
         // 封装发票
+        console.log(this.invoices,'invoices');
+        
         this.invoices.forEach((val)=>{
             val.selected = false;
         })
+        if(!this.hasInvoice){
+            let index = 0
+            let price = 0
+            for(let i=0;i<this.invoices.length;i++){
+                index = i+1
+                price += parseFloat(this.invoices[i].AAE036)
+            }
+            this.invoiceCount.count = index
+            this.invoiceCount.price = price
+        }
         console.log('发票',this.invoices);
     },
     methods: {
+        // 上传图片附件
+        uploadImg(){
+            let This = this
+            if(this.$isSdk){
+                dd.ready({
+                developer: 'daip@dtdream.com',
+                usage: [
+                    'dd.device.notification.chooseImage',
+                ],
+                remark: '描述业务场景'
+                }, function() {
+                    dd.device.notification.chooseImage ({
+                        onSuccess: function(data) {
+                            console.log(data.picPath[0],'请求图片成功');
+                            if(data.result){
+                                // 获取图片
+                                This.picArr.push(data.picPath[0])
+                                This.$store.dispatch('SET_ENCLOSURE',This.picArr)
+                                let submitForm = {}; 
+                                 // 加入用户名和电子社保卡号
+                                if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                                    submitForm.AAC003 = This.$store.state.SET_NATIVEMSG.name;
+                                    submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
+                                }else {
+                                    submitForm.AAC003 = '殷宇佳';
+                                    submitForm.AAE135 = "330622197407215513";
+                                }
+                                // 加入子项编码
+                                submitForm.AGA002 = '给付-00007-019'
+                                submitForm.photoList = data.picPath[0]
+                                submitForm.PTX001 = '2'
+                                const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
+                                // 图片上传后台
+                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/info', params).then((resData) => {
+                                    console.log('返回成功信息',resData) 
+                                    //   成功   1000
+                                    if ( resData.enCode == 1000 ) {
+                                        let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                                        SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
+                                        this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                                    }else if (resData.enCode == 1001 ) {
+                                    //   失败  1001
+                                        This.$toast(resData.msg);
+                                        return;
+                                    }else{
+                                        This.$toast('业务出错');
+                                        return;
+                                    }
+                                })
+                            }
+                        },
+                        onFail: function(error) {
+                            this.$toast(error)
+                            console.log("请求图片失败",error);
+                            
+                        }
+                    })
+            })
+            }
+            
+        },
         // 选择发票
         chooseInvoice(invoice){
             invoice.selected = !invoice.selected;
@@ -231,6 +315,10 @@ export default {
                     height: 1.5rem;
                     width: 1.5rem;
                     background: #D8D8D8;
+                    .pic{
+                        width: 1.5rem;
+                        height: 1.5rem;
+                    }
                 }
                 .textBox{
                     height: 1.5rem;
@@ -277,6 +365,10 @@ export default {
         background: #FFF;
         margin: .16rem 0 1.4rem 0;
         padding: .37rem .4rem;
+        .picWrap{
+            display: flex;
+            flex-wrap: wrap;
+        }
         .uploadHint{
             font-size: .28rem;
             color: #000000;
@@ -287,10 +379,15 @@ export default {
             height: 1.5rem;
             width: 1.5rem;
             margin-top: .32rem;
+            margin-right: .1rem;
             background:  #EFEFEF;
             color: #999;
             font-size: .32rem;
             line-height: 1.5rem;
+            .pic{
+                height: 1.5rem;
+                width: 1.5rem;
+            }
         }
     }
     // 底部

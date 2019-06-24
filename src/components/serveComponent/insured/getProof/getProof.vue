@@ -136,23 +136,26 @@ export default {
     created(){
         // 获取位置
         let This = this 
-        dd.ready({
-            developer: 'daip@dtdream.com',
-            usage: [
-                'dd.device.location.get',
-            ],
-            remark: '描述业务场景'
-            }, function() {
-            dd.device.location.get ({
-                onSuccess: function(data) {
-                    console.log(data,1111)
-                },
-                onFail: function(error) {
-                    This.$toast(error)
-                    console.log(error,22222)
-                }
+        if(this.$isSdk){
+            dd.ready({
+                developer: 'daip@dtdream.com',
+                usage: [
+                    'dd.device.location.get',
+                ],
+                remark: '描述业务场景'
+                }, function() {
+                dd.device.location.get ({
+                    onSuccess: function(data) {
+                        console.log(data,1111)
+                    },
+                    onFail: function(error) {
+                        This.$toast(error)
+                        console.log(error,22222)
+                    }
+                })
             })
-        })
+        }
+        
         this.epFn.setTitle('领取就医凭证')
         this.form = this.$store.state.SET_INSURED_PROOF;
         this.getMailInfo(); //自动获取邮寄信息
