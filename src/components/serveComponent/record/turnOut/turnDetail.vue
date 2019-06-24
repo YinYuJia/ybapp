@@ -100,7 +100,10 @@ export default {
             let params=this.formatSubmitData1();
             this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1016/info', params).then((resData) => {
                 console.log('返回成功信息',resData)
-                this.form={...this.form,...resData.LS_DS_09 }
+                // this.form={...this.form,...resData.LS_DS_09 }
+                let LS=resData.LS_DS_09
+                this.form={...this.form,...LS}
+                console.log("form",this.form)
                 this.AAA027000=this.from.AAS027VALUE+this.form.AAA027VALUE+this.form.AAQ027VALUE
                 this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
                 this.handleNumber = resData.LS_DS_09.BKZ019
