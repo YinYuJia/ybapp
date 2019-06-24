@@ -172,7 +172,7 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_SMALL_REIM_2:{
           eleInvoices: [], //电子发票信息
-          invoicesImg: [], //附件信息信息
+          invoicesImg: [], //附件信息信息  图片id
         },
         // 零星报销的图片集合，只供页面跳转使用，不上传后台
         SET_ENCLOSURE:[],

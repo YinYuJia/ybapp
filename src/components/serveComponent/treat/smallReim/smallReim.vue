@@ -108,6 +108,13 @@ export default {
         },
         // 提交
         submit(){
+            // 暂时可跳转
+            // this.$store.dispatch('SET_SMALL_REIM_2');
+            let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
+            submitForm.AKB020 = this.form.AKB020;
+            this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
+            this.$store.dispatch('SET_SMALL_REIM_1', this.form);
+            this.$router.push("/invoiceInfo");
             if(!this.canSubmit){
                 this.$toast('信息未填写完整');
                 return false;
@@ -124,6 +131,7 @@ export default {
                         let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
                         submitForm.AKB020 = this.form.AKB020;
                         this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
+                        this.$store.dispatch('SET_SMALL_REIM_1', this.form);
                         this.$router.push("/invoiceInfo");
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
