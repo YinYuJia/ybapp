@@ -33,7 +33,7 @@
                 policy: '', //政策解读
                 CaseAnalysis: '',//案例分析
                 question: '', //常见问题
-                name:"殷宇佳"
+                name:"许肖军"
             }
         },
         created() {

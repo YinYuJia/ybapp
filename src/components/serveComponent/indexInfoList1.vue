@@ -177,8 +177,8 @@ export default {
 
             // 加入用户名和电子社保卡号
           
-            submitForm.AAC003 = '殷宇佳'
-            submitForm.AAE135 = '330622197407215513'
+            submitForm.AAC003 = '许肖军'
+            submitForm.AAE135 = '332625197501010910'
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1033");
             return params;
