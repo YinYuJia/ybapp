@@ -2,6 +2,13 @@
     <div class="payLimit">
         <!-- 标题 -->
         <Title :title="'缴费年限核定'" :backRouter="'/'"></Title>
+        <SelectCity 
+            :type="1"
+            ref="typePicker"
+            :propArr="types"
+            @confirm="handleTypeConfirm"
+            >
+        </SelectCity>
         <div class="Content">
             <!-- 基本信息 -->
             <UserBaseInfo></UserBaseInfo>
@@ -22,10 +29,11 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>提前退休类别</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.BKE810" placeholder="请选择">
+                        <div class="InfoText"><input @click="openTypePicker()" type="text" v-model="BKE810VALUE" placeholder="请选择" readonly></div>
+                        <!-- <el-select v-model="form.BKE810" placeholder="请选择">
                             <el-option v-for="item in types" :key="item.value" :label="item.label" :value="item.value">
                             </el-option>
-                        </el-select>
+                        </el-select> -->
                     </div>
                 </div>
             </div>
@@ -40,6 +48,7 @@ export default {
     data() {
         return {
             // 提交信息
+            BKE810VALUE:"",
             form: {
                 AKC412: '', //视作缴费年限
                 BAC213: '', //缴费月数
@@ -191,7 +200,16 @@ export default {
             // // 请求参数封装
             // const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1014");
             // return params;
-        }
+        },
+        // 选择变更类型
+        openTypePicker(){
+            this.$refs.typePicker.open();
+        },
+        handleTypeConfirm(val){
+            console.log(val);
+            this.form.BKE810 = val.value;
+            this.BKE810VALUE = val.label;
+        },
     }
 }
 </script>

@@ -131,8 +131,8 @@ export default new Vuex.Store({  // 暴露与new vuex
           AAE011: '', //收件人
           AAE005: '', //手机号码
           AAE006: '', //地址
-          AAC050:'', //变更类型
-          BKA077 :'0' ,//领取方式
+          AAC050: '', //变更类型
+          BKA077: '0',//领取方式
         },
         SET_PUBLICHEADER:{  imei:	'移动设备身份码',
         mac:	'设备编号',

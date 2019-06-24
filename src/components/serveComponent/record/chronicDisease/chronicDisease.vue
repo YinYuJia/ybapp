@@ -24,7 +24,7 @@
               <input
                 @click="openInsuredPicker"
                 type="text"
-                v-model="AAB30100"
+                v-model="AAB301000"
                 placeholder="请选择"
                 readonly
               >
@@ -356,7 +356,7 @@ export default {
         submitForm.AAC003 = "许肖军";
         submitForm.AAE135 = "332625197501010910";
       }
-      submitForm.debugTest = "true"
+      // submitForm.debugTest = "true"
       // 请求参数封装
       const params = this.epFn.commonRequsetData(
         this.$store.state.SET_NATIVEMSG.PublicHeader,

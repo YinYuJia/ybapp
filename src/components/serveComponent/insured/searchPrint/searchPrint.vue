@@ -7,6 +7,13 @@
             @confirm="chooseInsured"
             >
         </SelectCity>
+        <SelectCity 
+            :type="1"
+            ref="monthPicker"
+            :propArr="options"
+            @confirm="handleMonthConfirm"
+            >
+        </SelectCity>
         <!-- 弹出框结束 -->
         <Title :title="'打印参保证明'" :backRouter="'/'"></Title>
         <div class="Content">
@@ -17,21 +24,13 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="form.canbao" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="canbao" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>查询月数：</span></div>
                     <div class="InfoText">
-                        <el-select v-model="form.AAE011" placeholder="请选择">
-                            <el-option
-                            v-for="item in options"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                            </el-option>
-                        </el-select>
-                        <i class="el-icon-arrow-right" style="font-size:0.4rem; margin-left:0.23rem"></i>
+                        <input @click="openMonthPicker()" type="text" v-model="AAE011VALUE" placeholder="请选择" readonly>
                     </div>
                 </div>
             </div>
@@ -46,13 +45,13 @@ export default {
     data(){
         return{
             form:{
-                canbao:"",
                 AAS301:'', //参保地
                 AAB301:'', //参保地
                 AAQ301:'', //参保地
                 AAE011: '' //缴费月数
             },
-            
+            canbao:"",
+            AAE011VALUE: '',
             options:[
                 {value: '12', label: '12个月'},
                 {value: '24', label: '24个月'},
@@ -83,14 +82,25 @@ export default {
         // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
     },
     methods:{
+        // 选择参保地
         openInsuredPicker(){
             this.$refs.insuredPicker.open();
         },
         chooseInsured(val){
+            console.log(val);
             this.canbao = val.name;
             this.form.AAS301 = val.code[0]
             this.form.AAB301 = val.code[1]
             this.form.AAQ301 = val.code[2]
+        },
+        // 选择月数
+        openMonthPicker(){
+            this.$refs.monthPicker.open();
+        },
+        handleMonthConfirm(val){
+            console.log(val);
+            this.form.AAE011 = val.value;
+            this.AAE011VALUE = val.label;
         },
         submit(){
             if(this.canSubmit == false){

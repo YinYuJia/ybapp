@@ -9,6 +9,20 @@
             @confirm="chooseCity"
             >
         </SelectCity>
+        <SelectCity 
+            :type="1"
+            ref="typePicker"
+            :propArr="AAC050s"
+            @confirm="handleTypeConfirm"
+            >
+        </SelectCity>
+        <SelectCity 
+            :type="1"
+            ref="wayPicker"
+            :propArr="BKA077s"
+            @confirm="handleWayConfirm"
+            >
+        </SelectCity>
         <!-- 弹出区域结束 -->
         <div class="Content">
             <!-- 用户信息 -->
@@ -17,31 +31,11 @@
             <div class="GetInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>类型：</span></div>
-                    <div class="InfoText">
-                        <el-select v-model="form.AAC050" placeholder="请选择类型">
-                            <el-option
-                            v-for="item in AAC050s"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                            </el-option>
-                        </el-select>
-                        <i class="el-icon-arrow-right" style="font-size:0.4rem; margin-left:0.23rem"></i>
-                    </div>
+                    <div class="InfoText"><input @click="openTypePicker()" type="text" v-model="AAC050VALUE" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>领取方式：</span></div>
-                    <div class="InfoText">
-                        <el-select v-model="form.BKA077" placeholder="请选择领取方式">
-                            <el-option
-                            v-for="item in BKA077s"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                            </el-option>
-                        </el-select>
-                        <i class="el-icon-arrow-right" style="font-size:0.4rem; margin-left:0.23rem"></i>
-                    </div>
+                    <div class="InfoText"><input @click="openWayPicker()" type="text" v-model="BKA077VALUE" placeholder="请选择" readonly></div>
                 </div>
             </div>
             <!-- 邮递信息 -->
@@ -90,6 +84,8 @@ export default {
                 AAC050:'', //变更类型
                 BKA077 :'' ,//领取方式
             },
+            AAC050VALUE: '',
+            BKA077VALUE: '',
             canSubmit: false,
             optionList: [], //所有地区
             AAC050s: [
@@ -174,6 +170,24 @@ export default {
         chooseCity(val){
         //     this.form.AAE011 = val;
         //     console.log(val);
+        },
+        // 选择变更类型
+        openTypePicker(){
+            this.$refs.typePicker.open();
+        },
+        handleTypeConfirm(val){
+            console.log(val);
+            this.form.AAC050 = val.value;
+            this.AAC050VALUE = val.label;
+        },
+        // 选择领取方式
+        openWayPicker(){
+            this.$refs.wayPicker.open();
+        },
+        handleWayConfirm(val){
+            console.log(val);
+            this.form.BKA077 = val.value;
+            this.BKA077VALUE = val.label;
         },
         submit(){
             if(this.showMail == true){
@@ -269,10 +283,20 @@ export default {
                     line-height: 1.2rem;
                     letter-spacing: 0;
                 }
-                .InfoText{
+                .InfoText {
                     line-height: 1.2rem;
                     display: flex;
+                    position: relative;
                     align-items: center;
+                    input {
+                        width: 4rem;
+                        height: .6rem;
+                        font-size: .28rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                        text-align: right;
+                        border: none;
+                    }
                 }
                 &:last-child{
                     border-bottom: none;
@@ -300,12 +324,13 @@ export default {
                         letter-spacing: 0;
                     }
                 }
-                .InfoText{
+                .InfoText {
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
                     align-items: center;
-                    input{
+                    input {
+                        width: 4rem;
                         height: .6rem;
                         font-size: .28rem;
                         color: #000000;
