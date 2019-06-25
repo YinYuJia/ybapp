@@ -145,13 +145,13 @@ sessionStorage.setItem("idCard",paramStr("idCard") || "332625197501010910")
 
 // router.beforeEach((to, from, next) => {
   
-//   const code = 'yibaozs';
+//       const code = 'yibaozs';
 //       var ticket = paramStr("ticket") || "8afac0cc6ac672af016b4beac17d55f9-ticket";
 //        console.log('ticket-------------',ticket)
 //        var token = sessionStorage.getItem("getToken")
 //        console.log('token-------------',token)
 //           if ( token != "" && token != undefined && token != null) {
-//             axios.post("/userInfo" , {
+//             axios.post("http://192.168.1.172:8080/ybypse/userInfo" , {
 //               "token":token
 //               }).then(result1=>{
 //                     console.log('result1',result1)
@@ -160,7 +160,7 @@ sessionStorage.setItem("idCard",paramStr("idCard") || "332625197501010910")
 //             if (ticket != "" && ticket != undefined && ticket != null) {
 //                      // http://192.168.200.130:80 光耀地址
 //                     //  http://192.168.200.130:7777
-//                     axios.post("/ticketInfo" , {
+//                     axios.post("http://192.168.1.172:8080/ybypse/ticketInfo" , {
 //                       "st":ticket
 //                     }).then(result0 => {
 //                       console.log('result0',result0)
@@ -175,7 +175,7 @@ sessionStorage.setItem("idCard",paramStr("idCard") || "332625197501010910")
 //                         // return;
 //                       }
                       
-//                       axios.post("/userInfo" , {
+//                       axios.post("http://192.168.1.172:8080/ybypse/userInfo" , {
 //                         "token":result0.token
 //                         }).then(result1=>{
 //                             console.log('result1',result1)

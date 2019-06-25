@@ -60,6 +60,16 @@
                     </div>
                 </div>
             </div>
+            <!-- 附件上传 -->
+            <div class="supplementInfo">
+                <div class="infoName">附件上传，请选择下述其中一项附件内容进行上传</div>
+                <div class="infoList">
+                    1、《基本医疗保险参保人员转外就医备案表》（医院盖章）
+                </div>
+                <div class="photoBox">
+                    <svg-icon icon-class="serveComponent_upload" />
+                </div>
+            </div>
         </div>
         <!-- 按钮 -->
         <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
@@ -304,6 +314,29 @@
                 }
                 &:last-child {
                     border-bottom: none;
+                }
+            }
+        }
+        // 附件上传
+        .supplementInfo{
+            background: #FFF;
+            font-size: .28rem;
+            color: #000000;
+            line-height: 38px;
+            text-align: left;
+            padding: .1rem .3rem;
+            margin-top: .3rem;
+            .infoName{
+                letter-spacing: 0;
+            }
+            .infoList{
+                letter-spacing: 0;
+            }
+            .photoBox{
+                text-align: left;
+                .svg-icon{
+                    height: 1.5rem;
+                    width: 1.5rem;
                 }
             }
         }

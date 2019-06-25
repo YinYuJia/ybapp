@@ -339,8 +339,9 @@ export default {
   
 }
 .footer {
+  border-top: 0.01rem solid #d5d5d5;
   padding: 8px 0;
-  background: #f2f2f2;
+  background: white;
   font-size: 14px;
   text-align: center;
 }

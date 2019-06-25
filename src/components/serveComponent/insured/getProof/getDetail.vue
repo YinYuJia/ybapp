@@ -24,7 +24,7 @@
                     <div class="InfoText">{{form.AAE011 | tuoMin(0,2)}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>手机号码:</span></div>
+                    <div class="InfoName"><span>联系方式:</span></div>
                     <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
                 <div class="InfoLine">
