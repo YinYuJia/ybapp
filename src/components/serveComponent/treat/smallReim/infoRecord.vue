@@ -17,7 +17,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户名：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入" readonly></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -51,11 +51,12 @@ export default {
         }
     },
     created(){
+        this.form = this.$store.state.SET_SMALL_REIM_SUBMIT 
         this.epFn.setTitle('零星报销')
         console.log('submitForm',this.$store.state.SET_SMALL_REIM_SUBMIT);
         console.log("SET_SMALL_REIM_2",this.$store.state.SET_SMALL_REIM_2)
         this.getUserInfo();
-        // this.form.AAE009 = this.$store.state.SET_NATIVEMSG.name
+        this.form.AAE009 = this.$store.state.SET_NATIVEMSG.name || "许肖军"
     },
     watch:{
         form: {
@@ -113,9 +114,18 @@ export default {
             submitForm.AAE010 = this.form.AAE010.replace(/\s+/g,'');
             submitForm.AAE008 = this.form.AAE008;
             submitForm.AAE009 = this.form.AAE009;
-            submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2;
-            submitForm.LS_DS2 = [] 
+            submitForm.photoIdList = this.$store.state.SET_SMALL_REIM_2.invoicesImg
+            submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2.eleInvoices;
+            // submitForm.LS_DS2 = [] 
+            // 有电子发票
+            if(this.$store.state.IS_INVOICE){
 
+            }else{
+                // 手动添加发票
+                // submitForm.LS_DS1 = []
+                // let invoiceList = 
+                // for(let i=0;i<)
+            }
             // this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
