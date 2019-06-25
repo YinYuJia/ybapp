@@ -52,6 +52,7 @@ import GlobalComponent from './common/js/globalComponents'
 Vue.use(GlobalComponent);
 
 import '../node_modules/swiper/dist/css/swiper.css'
+import { nextTick } from 'q';
 Vue.use(ElementUI)
 
 
@@ -144,8 +145,8 @@ function  paramStr(name){
 
 console.log(paramStr("userName") === undefined)
 
-sessionStorage.setItem("userName",paramStr("userName") || "许肖军")
-sessionStorage.setItem("idCard",paramStr("idCard") || "332625197501010910")
+sessionStorage.setItem("userName","许肖军")
+sessionStorage.setItem("idCard","332625197501010910")
 
 
 // router.beforeEach((to, from, next) => {
@@ -160,6 +161,13 @@ sessionStorage.setItem("idCard",paramStr("idCard") || "332625197501010910")
 //               "token":token
 //               }).then(result1=>{
 //                     console.log('result1-----------------',result1)
+//                       if ( result1.result == "0") {
+//                         sessionStorage.setItem("userName",result1.username)
+//                         sessionStorage.setItem("idCard",result1.idnum)
+//                         next()
+//                       }else{
+//                         MessageBox.alert(result1.errmsg);
+//                       }
 //               })
 //           }else{
 //             if (ticket != "" && ticket != undefined && ticket != null) {
@@ -183,6 +191,13 @@ sessionStorage.setItem("idCard",paramStr("idCard") || "332625197501010910")
 //                         "token":result0.token
 //                         }).then(result1=>{
 //                             console.log('result1------------------',result1)
+//                                if ( result1.result == "0") {
+//                                 sessionStorage.setItem("userName",result1.username)
+//                                  sessionStorage.setItem("idCard",result1.idnum)
+//                                  next()
+//                                }else{
+//                                 MessageBox.alert(result1.errmsg);
+//                                }
 //                         })
 //                     });
 //             } else {
