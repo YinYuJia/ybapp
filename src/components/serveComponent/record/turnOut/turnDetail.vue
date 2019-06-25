@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{AAA027000}}</div>
+                    <div class="InfoText">{{AAS027000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期:</span></div>
@@ -43,7 +43,7 @@
 export default {
     data() {
       return {            
-        AAA027000:"",//参保地
+        AAS027000:"",//参保地
         AAB301000: "",//转往地市
         form: {
 
@@ -103,8 +103,11 @@ export default {
                 // this.form={...this.form,...resData.LS_DS_09 }
                 let LS=resData.LS_DS_09
                 this.form={...this.form,...LS}
-                console.log("form",this.form.AAS027VALUE) 
-                this.AAA027000=this.form.AAS027VALUE+this.form.AAB027VALUE
+                console.log("form",this.form.AAS027VALUE)
+                if(this.form.AAQ301VALUE==undefined){
+                    this.form.AAQ301VALUE='省本级';
+                } 
+                this.AAS027000=this.form.AAS027VALUE+this.form.AAB027VALUE
                 this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
                 this.handleNumber = resData.LS_DS_09.BKZ019
                 //   成功   1000

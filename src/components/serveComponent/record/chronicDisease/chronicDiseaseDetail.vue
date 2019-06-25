@@ -9,7 +9,7 @@
             <div class="ListInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{AAB30100}}</div>
+                    <div class="InfoText">{{AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>规定病种:</span></div>
@@ -141,7 +141,7 @@ export default {
                     let LS=resData.LS_DS_14
                     this.form={...this.form,...LS}
                     console.log("form",this.form)
-                    this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
+                    this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE
                     this.handleNumber = resData.LS_DS_14.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {

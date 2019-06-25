@@ -42,7 +42,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                        <input @click="openInsuredPicker" type="text" v-model="AAS011000" placeholder="请选择" readonly>
+                        <input @click="openInsuredPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -60,7 +60,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请地市</span></div>
                     <div class="InfoText">
-                        <input @click="openCityPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly>
+                        <input @click="openCityPicker" type="text" v-model="AAS011000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -94,9 +94,9 @@
 export default {
     data() {
         return {
-            // 提交信息                
-                AAB301000:"",//申请地
+            // 提交信息   
                 AAS011000:"",//参保地
+                AAB301000:"",//申请地
             form: {
 
                 AAE030: '', //离杭日期
@@ -104,13 +104,14 @@ export default {
                 AAS011: '', //申请地省
                 AAE011: '', //申请市
                 AAQ011: '', //申请地区
-                AAE006: '', //详细地址 
-                AKC030: '', //申请原因
                 AAE004: '', //联系人
+                AKC030: '', //申请原因
+                AAE006: '', //详细地址 
                 AAE005: '', //联系电话
-                AAS301: '',//参保地省
                 AAB301: '',//参保地市
-                AAQ301: '',//参保地区
+                AAS301: '',//参保地省
+                
+                // AAQ301: '',//参保地区
             },
             AKC030VALUE: '', //申请原因绑定值
             optionList: [], //存放城市数据
@@ -154,10 +155,10 @@ export default {
         form: {
             handler: function(val) {
                 // 判断不为空
-                if (val.AAS011 != '' && val.AAE030 != '' && val.AAE031 != '' 
-                 && val.AAE011 != '' && val.AAE006 != '' && val.AKC030 != '' 
-                 && val.AAE004 != '' && val.AAE005 != '' && val.AAB301 != ''
-                 && val.AAQ011 != '' && val.AAS301 != '') {
+                if (val.AAE030 != '' && val.AAE031 != '' && val.AAS011 != '' 
+                 && val.AAE011 != '' && val.AAE006 != '' 
+                 && val.AKC030 != '' && val.AAE004 != '' && val.AAE005 != ''
+                 && val.AAS301 != '' && val.AAB301 != '') {
                     this.canSubmit = true;
                 } else {
                     this.canSubmit = false;
@@ -179,11 +180,11 @@ export default {
                 // 判断转入转出地
                 if (val.AAE011 != '' && val.AAB301 != '') {
                     if(val.AAE011==val.AAB301){
-                        this.$toast('参保地不能与申请地市相同');
-                        this.AAB301000 = '';
-                        this.form.AAS301="";
-                        this.form.AAB301="";
-                        this.form.AAQ301="";
+                        this.$toast('申请地市不能与参保地相同');
+                        this.AAS011000 = '';
+                        this.form.AAS011="";
+                        this.form.AAE011="";
+                        this.form.AAQ011="";
                     }
                 }
             },
@@ -196,10 +197,10 @@ export default {
             this.$refs.insuredPicker.open();
         },
         chooseInsured(val){
-            this.AAS011000 =val.name, //参保地省
-            this.form.AAS301 =val.code[0], //参保地省
-            this.form.AAB301 =val.code[1], //参保地市
-            this.form.AAQ301 =val.code[2]  //参保地区
+            this.AAB301000 =val.name, //参保地省
+            this.form.AAS301 =val.code[0]; //参保地省
+            this.form.AAB301 =val.code[1]; //参保地市
+            // this.form.AAQ301 =val.code[2]  //参保地区
         },
         // 选择离开日期
         openStartPicker(){
@@ -223,7 +224,7 @@ export default {
             this.$refs.cityPicker.open();
         },
         chooseCity(val){
-            this.AAB301000= val.name;
+            this.AAS011000= val.name;
             this.form.AAS011=val.code[0]
             this.form.AAE011=val.code[1]
             this.form.AAQ011=val.code[2]

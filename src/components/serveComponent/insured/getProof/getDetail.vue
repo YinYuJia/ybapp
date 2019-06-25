@@ -142,8 +142,6 @@ export default {
                     let LS=resData.LS_DS_04
                     this.form={...this.form,...LS}
                     console.log("form",this.form)
-                    this.AAA027000=this.form.AAS027VALUE+this.form.AAA027VALUE+this.form.AAQ027VALUE;
-                    this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE;
                     this.handleNumber = resData.LS_DS_04.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {

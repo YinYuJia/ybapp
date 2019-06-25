@@ -3028,7 +3028,8 @@ export default[{
 	"children": [{
 		"code": "339900",
 		"name": "省本级",
-		"children": []
+		"children": [
+		]
 	},{
 		"code": "330100",
 		"name": "杭州市",

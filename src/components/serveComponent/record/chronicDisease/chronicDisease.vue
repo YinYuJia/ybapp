@@ -309,7 +309,6 @@ export default {
       this.AAB301000 = val.name;
       this.form.AAS301 = val.code[0];
       this.form.AAB301 = val.code[1];
-      this.form.AAQ301 = val.code[2];
     },
     // 选择开始日期
     openStartPicker() {

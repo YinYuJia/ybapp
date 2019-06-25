@@ -39,7 +39,7 @@
 export default {
     data() {
       return {
-        AKB02000:"",
+        AKB0200:"",
         AAB301000:"",
         form: {
             // AAB301000: '', //参保地
@@ -105,7 +105,7 @@ export default {
                     let LS=resData.LS_DS_10
                     this.form={...this.form,...LS}
                     console.log("form",this.form)
-                    this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
+                    this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE
                     this.handleNumber = resData.LS_DS_10.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
