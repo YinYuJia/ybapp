@@ -443,6 +443,8 @@ export default {
       return params;
     },
     getSelect(val,AAE013,AAA052) {
+      AAE013 = AAE013 || ''
+      AAA052 = AAA052 || ''
       let submitForm = { AAA100: val, pageNum: "1",AAE013:AAE013,AAA052:AAA052 };
       const params = this.epFn.commonRequsetData(
         this.$store.state.SET_NATIVEMSG.PublicHeader,

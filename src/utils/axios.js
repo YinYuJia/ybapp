@@ -21,6 +21,9 @@ axios.interceptors.response.use((response) => {
     // token 已过期，重定向到登录页面
     let newRes = response.data;
     console.log('响应拦截器',newRes)
+    if ( newRes.result ) {
+        return newRes
+    }
     // if(newRes.code == -1 ){
     //     // 系统异常
     //     console.log(newRes.data.msg);

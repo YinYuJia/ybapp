@@ -24,7 +24,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>退休工资</span></div>
-                    <div class="InfoText"><input type="tel" v-model="form.AAE041" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="tel" maxlength="4" v-model="form.AAE041" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>提前退休类别</span></div>
