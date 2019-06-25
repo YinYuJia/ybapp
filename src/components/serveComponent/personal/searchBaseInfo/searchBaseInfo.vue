@@ -50,7 +50,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>地址：</span></div>
-                    <div class="InfoText">{{form.AAE006}}</div>
+                    <div class="InfoText"><textarea v-model="form.AAE006" readonly></textarea></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>部门：</span></div>
@@ -177,7 +177,7 @@ export default {
                             width: 100%;
                             color: #000;
                             border: none;
-                            opacity: 0.85;
+                            text-align: right;
                             line-height: .45rem;
                             padding: 0;
                         }
