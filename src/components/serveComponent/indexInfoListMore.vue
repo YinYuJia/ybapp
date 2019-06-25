@@ -61,6 +61,8 @@
                         <svg-icon icon-class="serveComponent_icon_10" />
                         <div class="text">规定病种</div>
                     </div>
+                    <div class="iconBox"></div>
+                    <div class="iconBox"></div>
                 </div>
             </div>
             <!-- 待遇服务 -->
@@ -87,6 +89,9 @@
                         <svg-icon icon-class="serveComponent_icon_15" />
                         <div class="text">未就业配偶</div>
                     </div>
+                    <div class="iconBox"></div>
+                    <div class="iconBox"></div>
+                    <div class="iconBox"></div>
                 </div>
             </div>
             <!-- 其他服务 -->
@@ -113,6 +118,9 @@
                         <svg-icon icon-class="serveComponent_icon_20" />
                         <div class="text">备案信息</div>
                     </div>
+                    <div class="iconBox"></div>
+                    <div class="iconBox"></div>
+                    <div class="iconBox"></div>
                 </div>
             </div>
         </div>
@@ -255,11 +263,12 @@ export default {
             }
             .iconContent{
                 display: flex;
+                justify-content: space-around;
                 flex-wrap: wrap;
                 padding: .2rem 0 .44rem 0;
                 .iconBox{
                     height: 1.4rem;
-                    width: 1.775rem;
+                    width: 1.7rem;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-around;
