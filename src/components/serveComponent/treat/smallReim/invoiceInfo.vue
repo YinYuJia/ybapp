@@ -60,10 +60,10 @@
             <div class="picWrap">
                 <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
                     <img :src="item" class="pic" />
+                    <svg-icon icon-class="serveComponent_delete" />
                 </div>
-                <div class="uploadBtn" @click="uploadImg"><i class="el-icon-plus"></i></div>
+                <svg-icon @click="uploadImg" icon-class="serveComponent_upload" />
             </div>
-            
         </div>
         <!-- 按钮 -->
         <footer class="Footer">
@@ -376,33 +376,41 @@ export default {
     }
     // 资料上传
     .dataUpload{
-        height: 2.8rem;
         background: #FFF;
         margin: .16rem 0 1.4rem 0;
         padding: .37rem .4rem;
         .picWrap{
             display: flex;
             flex-wrap: wrap;
+            margin-top: .2rem;
+            .uploadBtn{
+                position: relative;
+                height: 1.5rem;
+                width: 1.5rem;
+                margin: .1rem .15rem 0 0;
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+                .svg-icon{
+                    position: absolute;
+                    height: .4rem;
+                    width: .4rem;
+                    top: -0.2rem;
+                    right: -0.2rem;
+                }
+            }
+            .svg-icon{
+                margin: .1rem .15rem 0 0;
+                height: 1.5rem;
+                width: 1.5rem;
+            }
         }
         .uploadHint{
             font-size: .28rem;
             color: #000000;
             letter-spacing: 0;
             text-align: left;
-        }
-        .uploadBtn{
-            height: 1.5rem;
-            width: 1.5rem;
-            margin-top: .32rem;
-            margin-right: .1rem;
-            background:  #EFEFEF;
-            color: #999;
-            font-size: .32rem;
-            line-height: 1.5rem;
-            .pic{
-                height: 1.5rem;
-                width: 1.5rem;
-            }
         }
     }
     // 底部

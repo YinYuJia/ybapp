@@ -60,24 +60,19 @@
                     </div>
                 </div>
             </div>
-            <!-- 附件上传 -->
-            <!-- <div class="supplementInfo">
-                <div class="infoName">附件上传，请选择下述其中一项附件内容进行上传</div>
-                <div class="infoList">
+            <!-- 资料上传 -->
+            <div class="dataUpload">
+                <div class="uploadHint">附件上传，请选择下述其中一项附件内容进行上传</div>
+                <div class="uploadList">
                     1、《基本医疗保险参保人员转外就医备案表》（医院盖章）
                 </div>
-                
-            </div> -->
-             <!-- 资料上传 -->
-            <div class="dataUpload">
-                <div class="uploadHint">病例资料（如出院小结、用药清单、医嘱等）</div>
                 <div class="picWrap">
                     <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
                         <img :src="item" class="pic" />
+                        <svg-icon icon-class="serveComponent_delete" />
                     </div>
-                    <div class="uploadBtn" @click="uploadImg"><i class="el-icon-plus"></i></div>
+                    <svg-icon @click="uploadImg" icon-class="serveComponent_upload" />
                 </div>
-                
             </div>
         </div>
         <!-- 按钮 -->
@@ -389,58 +384,48 @@
                 }
             }
         }
-        // 附件上传
-        .supplementInfo{
-            background: #FFF;
-            font-size: .28rem;
-            color: #000000;
-            line-height: 38px;
-            text-align: left;
-            padding: .1rem .3rem;
-            margin-top: .3rem;
-            .infoName{
-                letter-spacing: 0;
-            }
-            .infoList{
-                letter-spacing: 0;
-            }
-            .photoBox{
-                text-align: left;
-                .svg-icon{
-                    height: 1.5rem;
-                    width: 1.5rem;
-                }
-            }
-        }
         // 资料上传
         .dataUpload{
-            height: 2.8rem;
             background: #FFF;
             margin: .16rem 0 1.4rem 0;
             padding: .37rem .4rem;
+            .uploadList{
+                margin-top: .1rem;
+                font-size: .28rem;
+                text-align: left;
+            }
             .picWrap{
                 display: flex;
                 flex-wrap: wrap;
+                margin-top: .2rem;
+                .uploadBtn{
+                    position: relative;
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    margin: .1rem .15rem 0 0;
+                    img{
+                        height: 100%;
+                        width: 100%;
+                    }
+                    .svg-icon{
+                        position: absolute;
+                        height: .4rem;
+                        width: .4rem;
+                        top: -0.2rem;
+                        right: -0.2rem;
+                    }
+                }
+                .svg-icon{
+                    margin: .1rem .15rem 0 0;
+                    height: 1.5rem;
+                    width: 1.5rem;
+                }
             }
             .uploadHint{
                 font-size: .28rem;
                 color: #000000;
                 letter-spacing: 0;
                 text-align: left;
-            }
-            .uploadBtn{
-                height: 1.5rem;
-                width: 1.5rem;
-                margin-top: .32rem;
-                margin-right: .1rem;
-                background:  #EFEFEF;
-                color: #999;
-                font-size: .32rem;
-                line-height: 1.5rem;
-                .pic{
-                    height: 1.5rem;
-                    width: 1.5rem;
-                }
             }
         }
     }
