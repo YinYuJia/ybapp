@@ -3,7 +3,7 @@
         <Title :title="'缴费年限核定'" :backRouter="'/payLimit'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
-            <WorkProgress :currentStep="currentStep"></WorkProgress>
+            <WorkProgress :currentStep="currentStep" :progress="arr"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -38,6 +38,12 @@ export default {
             form: {},
             currentStep:1,
             handleNumber:'',
+            arr: [
+                {step:1,name:'申请'},
+                {step:2,name:'受理'},
+                {step:3,name:'办结'},
+                {step:4,name:'送达'}
+            ],
         }
     },
     created () {
