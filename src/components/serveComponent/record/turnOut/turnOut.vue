@@ -156,6 +156,7 @@
         methods: {
              // 上传图片附件
         uploadImg(){
+            console.log("zhaopian")
             let This = this
             if(this.$isSdk){
                 dd.ready({
