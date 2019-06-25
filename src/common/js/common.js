@@ -14,7 +14,7 @@ export default {
         console.log('process.env.NODE_ENV',process.env.NODE_ENV)
         if(process.env.NODE_ENV == 'development') {
           // return 'http://59.202.42.147:8000/api' //服务器
-          return 'http://192.168.1.189:13030' //吴学文
+          return 'http://192.168.1.139:13030' //吴学文
         }else{
           return ''
         }

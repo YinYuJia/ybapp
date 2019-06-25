@@ -13,15 +13,15 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>就诊机构:</span></div>
-                    <div class="InfoText">{{form.AKB020}}</div>
+                    <div class="InfoText">{{form.AKB020VALUE}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>项目类型:</span></div>
-                    <div class="InfoText">{{form.BKE253 | projectType}}</div>
+                    <div class="InfoText">{{form.BKE253VALUE}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>特治特药类型:</span></div>
-                    <div class="InfoText">{{form.BKE228 | specialType}}</div>
+                    <div class="InfoText">{{form.BKE228VALUE}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称:</span></div>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>用药时期:</span></div>
-                    <div class="InfoText">{{form.BKE248 | medicationDate}}</div>
+                    <div class="InfoText">{{form.BKE248VALUE}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>项目名称:</span></div>
@@ -180,7 +180,7 @@ export default {
         formatSubmitData1(){
             let submitForm = {}
             console.log(submitForm)
-                submitForm.AGA002 =  "确认-00253-023";
+                submitForm.AGA002 =  "确认-00253-003";
                 submitForm.lx="2";
                 // submitForm.debugTest=  "true";
 

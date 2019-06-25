@@ -114,17 +114,22 @@ export default {
             submitForm.AAE010 = this.form.AAE010.replace(/\s+/g,'');
             submitForm.AAE008 = this.form.AAE008;
             submitForm.AAE009 = this.form.AAE009;
-            submitForm.photoIdList = this.$store.state.SET_SMALL_REIM_2.invoicesImg
-            submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2.eleInvoices;
+            submitForm.photoIdList = []
+            
             // submitForm.LS_DS2 = [] 
             // 有电子发票
             if(this.$store.state.IS_INVOICE){
-
+                submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2.eleInvoices;
             }else{
                 // 手动添加发票
-                // submitForm.LS_DS1 = []
-                // let invoiceList = 
-                // for(let i=0;i<)
+                submitForm.LS_DS1 = []
+                let invoiceList = []
+                let eleInvoices = this.$store.state.SET_SMALL_REIM_2.eleInvoices
+                for(let i=0;i<eleInvoices.length;i++){
+                    invoiceList.push(eleInvoices[i].photoId)
+                }
+                // submitForm.photoIdList = [...this.$store.state.SET_SMALL_REIM_2.invoicesImg,...invoiceList]
+                submitForm.photoIdList = [85]
             }
             // this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
             // 加入用户名和电子社保卡号
@@ -152,7 +157,7 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
                      this.form.AAE010 = resData.AAE010 //银行账户
-                     this.form.AAE008 = resData.BAC049  //开户行
+                     this.form.AAE008 = resData.AAE008  //开户行
                      this.form.AAE009 = resData.AAE009   //开户名
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
