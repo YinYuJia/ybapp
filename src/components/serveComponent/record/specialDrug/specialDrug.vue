@@ -31,7 +31,7 @@
             <input
               @click="openInsuredPicker"
               type="text"
-              v-model="AAB30100"
+              v-model="AAB301000"
               placeholder="请选择"
               readonly
             >
@@ -205,7 +205,7 @@ export default {
       AAE013Two:'',
       AAA052One:'',
       AAA052Two:'',       
-      AAB30100: "",
+      AAB301000: "",
       form: {
         AAS301: "", //参保地
         AAB301: "", //参保地
@@ -351,10 +351,9 @@ export default {
       this.$refs.insuredPicker.open();
     },
     chooseInsured(val) {
-      this.AAB30100 = val.name;
+      this.AAB301000 = val.name;
       this.form.AAS301 = val.code[0];
       this.form.AAB301 = val.code[1];
-      this.form.AAQ301 = val.code[2];
     },
     // 选择开始日期
     openStartPicker() {

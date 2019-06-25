@@ -129,11 +129,28 @@ export default {
         this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1033/getRecord', params).then((resData) => {
             console.log('返回成功信息',resData)
             //   成功   1000
-            if ( resData.enCode == 1000 ) {  
-                this.$store.dispatch('SET_USER_DETAILINFO',{
-                    insured: resData.AAB301,
-                    regionName:resData.RegionName || '杭州市'
-                })
+            if ( resData.enCode == 1000 ) {
+                if(resData.AAB301){
+                    this.$store.dispatch('SET_USER_DETAILINFO',{
+                        insured: resData.AAB301,
+                        regionName:resData.RegionName || '杭州市'
+                    })
+                }else{
+                    dd.ready({
+                        developer: 'daip@dtdream.com',
+                        usage: [
+                            'dd.device.location.get',
+                        ],
+                        remark: '获取当前位置'
+                    }, function() {
+                        dd.device.location.get ({
+                            onSuccess: function(data) {
+                                console.log(data)
+                            },
+                            onFail: function(error) {}
+                        })
+                    })
+                }
             }else if (resData.enCode == 1001 ) {
             //   失败  1001
                 this.$toast(resData.msg);
@@ -142,6 +159,21 @@ export default {
                 this.$toast('业务出错');
                 return;
             }
+        })
+
+        dd.ready({
+            developer: 'daip@dtdream.com',
+            usage: [
+                'dd.device.location.get',
+            ],
+            remark: '获取当前位置'
+        }, function() {
+            dd.device.location.get ({
+                onSuccess: function(data) {
+                    console.log(data);
+                },
+                onFail: function(error) {}
+            })
         })
     },
     filters:{

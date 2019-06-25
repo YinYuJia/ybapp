@@ -4,7 +4,7 @@
         <Title :title="'零星报销'" :backRouter="'/reportComplete'"></Title>
         <div class="secondTitle">基本医疗保险参保人员医疗费用零星报销</div>
         <!-- 办事进度 -->
-        <WorkProgress :currentStep="currentStep"></WorkProgress>
+        <WorkProgress :currentStep="currentStep" :progress="arr"></WorkProgress>
         
         <div class="Content">
             <!-- 列表 -->
@@ -131,6 +131,13 @@ export default {
             form:{},
             form1:{},
             form2:{},
+            arr: [
+                {step:1,name:'申请'},
+                {step:2,name:'受理'},
+                {step:3,name:'审核'},
+                {step:4,name:'审批'},
+                {step:5,name:'财务支付'}
+            ],
         }
     },
     methods:{

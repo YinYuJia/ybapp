@@ -123,10 +123,9 @@
                 this.$refs.insuredPicker.open();
             },
             chooseInsured(val){
-            this.AAB301000 =val.name, //参保地省
-            this.form.AAS301 =val.code[0], //参保地省
-            this.form.AAB301 =val.code[1], //参保地市
-            this.form.AAQ301 =val.code[2]  //参保地区
+            this.AAB301000 =val.name;//参保地省
+            this.form.AAS301 =val.code[0]; //参保地省
+            this.form.AAB301 =val.code[1]; //参保地市
             },
             // 选择开始日期
             openStartPicker(){

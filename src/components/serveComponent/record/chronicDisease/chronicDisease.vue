@@ -77,6 +77,7 @@
                 placeholder="请选择"
                 readonly
               >
+              <svg-icon v-if="this.form.AKA1211 != ''" icon-class="serveComponent_delete" @click="deleteText(2)"/>
               <svg-icon icon-class="serveComponent_arrowRight"/>
             </div>
           </div>
@@ -94,6 +95,7 @@
                 placeholder="请选择"
                 readonly
               >
+              <svg-icon v-if="this.form.AKA1212 != ''" icon-class="serveComponent_delete" @click="deleteText(3)"/>
               <svg-icon icon-class="serveComponent_arrowRight"/>
             </div>
           </div>
@@ -331,7 +333,6 @@ export default {
       this.AAB301000 = val.name;
       this.form.AAS301 = val.code[0];
       this.form.AAB301 = val.code[1];
-      this.form.AAQ301 = val.code[2];
     },
     // 选择开始日期
     openStartPicker() {
@@ -340,6 +341,16 @@ export default {
     handleStartConfirm(val) {
       let date = this.util.formatDate(val, "yyyy-MM-dd");
       this.form.AAE030 = date;
+    },
+    // 清空疾病选择
+    deleteText(val){
+      if(val == 2){
+        this.form.AKA1201 = '';
+        this.form.AKA1211 = '';
+      }else if(val == 3){
+        this.form.AKA1202 = '';
+        this.form.AKA1212 = '';
+      }
     },
     submit() {
       if (this.showMail == true) {

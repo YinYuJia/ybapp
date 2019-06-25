@@ -152,7 +152,7 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
                      this.form.AAE010 = resData.AAE010 //银行账户
-                     this.form.AAE008 = resData.AAE008  //开户行
+                     this.form.AAE008 = resData.BAC049  //开户行
                      this.form.AAE009 = resData.AAE009   //开户名
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001

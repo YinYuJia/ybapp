@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{AAS011000}}</div>
+                    <div class="InfoText">{{AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>拟离杭日期:</span></div>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>省市信息:</span></div>
-                    <div class="InfoText">{{AAB301000}}</div>
+                    <div class="InfoText">{{AAS011000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>详细地址:</span></div>
@@ -128,8 +128,13 @@ export default {
                     let LS=resData.LS_DS_06
                     this.form={...this.form,...LS}
                     console.log("form",this.form)
-                    this.AAS011000=this.from.AAS011VALUE+this.form.AAE011VALUE+this.form.AAQ011VALUE    
-                    this.AAB301000=this.from.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
+                    console.log("form1",this.form.AAQ011VALUE)
+                    console.log("form2",this.form.AAB301VALUE)
+                    if(this.form.AAQ011VALUE==undefined){
+                        this.form.AAQ011VALUE="";
+                    }
+                    this.AAS011000=this.form.AAS011VALUE+this.form.AAE011VALUE+this.form.AAQ011VALUE    
+                    this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE
                     this.handleNumber = resData.LS_DS_06.BKZ019
                     this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
