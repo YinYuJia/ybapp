@@ -49,6 +49,7 @@
                             <span class="textInfo">{{item.AKC264}}</span>
                         </div>
                     </div>
+                    <div class="deleteBtn">删除</div>
                 </div>
                 <div class="plusInvoice" @click="plusInvoice()">+ 添加发票信息</div>
             </div>
@@ -231,7 +232,6 @@ export default {
         height: 100%;
         padding: 0 .4rem;
         background: #FFF;
-        margin-bottom: 1.4rem;
         // 自动获取发票信息
         .invoiceContent{
             .invoiceHint{
@@ -307,7 +307,8 @@ export default {
                 padding-top: .4rem;
             }
             .invoiceList{
-                height: 2.95rem;
+                position: relative;
+                height: 3.35rem;
                 border-bottom: .02rem solid #D3D3D3;
                 display: flex;
                 align-items: center;
@@ -343,13 +344,26 @@ export default {
                         }
                     }
                 }
+                .deleteBtn{
+                    position: absolute;
+                    bottom: .3rem;
+                    right: .37rem;
+                    height: .6rem;
+                    line-height: .6rem;
+                    width: 1.1rem;
+                    border: .01rem solid #1492FF;
+                    border-radius: .05rem;
+                    font-size: .28rem;
+                    color: #1492FF;
+                    letter-spacing: 0;
+                }
                 &:last-child{
                     border-bottom: none;
                 }
             }
             .plusInvoice{
                 height: .85rem;
-                margin-bottom: .56rem;
+                margin: .47rem 0;
                 border: .01rem solid #1492FF;
                 border-radius: .05rem;
                 font-size: .28rem;
