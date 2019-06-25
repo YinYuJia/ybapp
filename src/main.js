@@ -57,8 +57,13 @@ Vue.use(ElementUI)
 
 Vue.prototype.epFn = epFn
 Vue.prototype.$axios = axios
-Vue.prototype.$isSdk = true
 Vue.config.productionTip = false;
+ if(process.env.NODE_ENV == 'development') {
+  Vue.prototype.$isSdk = true
+}else{
+  Vue.prototype.$isSdk = false
+
+}
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })

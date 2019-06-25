@@ -50,7 +50,7 @@ export default {
                 BKE100: '', //发票号码
                 AAE036: '', //发票金额
                 AKC264: '', //发票日期,
-                photoId: '11',//图片id
+                photoId: '',//图片id
                 photoUrl:''//图片URL
             },
             canSubmit: false
@@ -105,6 +105,9 @@ export default {
                                 submitForm.AGA002 = '给付-00007-019'
                                 submitForm.photoList = data.picPath[0]
                                 submitForm.PTX001 = '1'
+                                submitForm.BKE100 = this.form.BKE100
+                                submitForm.AAE036 = this.form.AAE036
+                                submitForm.AKC264 = this.form.AKC264
                                 const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
                                 // /h5/jy2006/updPhoto
                                 This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/info', params).then((resData) => {
@@ -134,7 +137,8 @@ export default {
             
         },
         submit(){
-            if(this.canSubmit &&this.form.photoId){
+            // if(this.canSubmit &&this.form.photoId){
+            if(this.canSubmit){
                 // 因为接口不对，暂留信息
                 let submitForm = JSON.parse(JSON.stringify(this.form));
                 let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2

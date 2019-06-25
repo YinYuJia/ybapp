@@ -191,11 +191,14 @@
     <!-- 规定病种 -->
     <SearchInfoPage ref="species" type="AKA035"  @childrenClick="speciesClick"></SearchInfoPage>
     <!-- 疾病1 -->
-    <SearchInfoPage ref="disease1" type="AKA130" AAE013="AKA035" :AAA052="form.AKA035" @childrenClick="disease1Click"></SearchInfoPage>
+    <SearchInfoPage ref="disease1" type="AKA120" @childrenClick="disease1Click"></SearchInfoPage>
+    <!-- <SearchInfoPage ref="disease1" type="AKA130" AAE013="AKA035" :AAA052="form.AKA035" @childrenClick="disease1Click"></SearchInfoPage> -->
     <!-- 疾病2 -->
-    <SearchInfoPage ref="disease2" type="AKA130" AAE013="AKA035" :AAA052="form.AKA035" @childrenClick="disease2Click"></SearchInfoPage>
+    <SearchInfoPage ref="disease2" type="AKA120" @childrenClick="disease2Click"></SearchInfoPage>
+    <!-- <SearchInfoPage ref="disease2" type="AKA130" AAE013="AKA035" :AAA052="form.AKA035" @childrenClick="disease2Click"></SearchInfoPage> -->
     <!-- 疾病3 -->
-    <SearchInfoPage ref="disease3" type="AKA130" AAE013="AKA035" :AAA052="form.AKA035" @childrenClick="disease3Click"></SearchInfoPage>
+    <!-- <SearchInfoPage ref="disease3" type="AKA130" AAE013="AKA035" :AAA052="form.AKA035" @childrenClick="disease3Click"></SearchInfoPage> -->
+    <SearchInfoPage ref="disease3" type="AKA120" @childrenClick="disease3Click"></SearchInfoPage>
   </div>
 </template>
 

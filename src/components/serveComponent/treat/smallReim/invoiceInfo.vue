@@ -105,6 +105,7 @@ export default {
         }
     },
     created() {
+        this.hasInvoice = this.$store.state.IS_INVOICE
         this.epFn.setTitle('零星报销')
         // 获取VUEX信息
         this.invoices = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2.eleInvoices));
