@@ -51,7 +51,7 @@ export default {
                 AAQ301: '', //参保地区
                 AAE091: '24', //查询月数
             },
-            AAE091VALUE: '',
+            AAE091VALUE: '24个月',
             canSubmit: false, //是否能提交
             months: [
                 {value: "6" ,label: '6个月'},
