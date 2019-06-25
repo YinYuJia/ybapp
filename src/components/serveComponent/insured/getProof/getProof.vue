@@ -45,7 +45,7 @@
                     <div class="InfoText"><input type="text" v-model="form.AAE011" placeholder="请输入收件人姓名"></div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>手机号码：</span></div>
+                    <div class="InfoName"><span>联系方式：</span></div>
                     <div class="InfoText"><input type="tel" maxlength="11" v-model="form.AAE005" placeholder="请输入"></div>
                 </div>
                 <!-- <div class="InfoLine">
@@ -118,7 +118,7 @@ export default {
                 }
                 // 如果需要邮寄
                 if(this.showMail == true){
-
+                    this.getMailInfo(); //自动获取邮寄信息
                     if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
                         this.canSubmit = true
                     }else {
@@ -154,7 +154,6 @@ export default {
         
         this.epFn.setTitle('领取就医凭证')
         this.form = this.$store.state.SET_INSURED_PROOF;
-        this.getMailInfo(); //自动获取邮寄信息
         // 原生参数添加姓名等信息
         // if(!this.form.AAE011){
             // this.form.AAE011=this.$store.state.SET_NATIVEMSG.name
@@ -190,12 +189,12 @@ export default {
             this.BKA077VALUE = val.label;
         },
         submit(){
-            if(this.showMail == true){
-                if(!this.util.checkPhone(this.form.AAE005)){
-                    this.$toast('请填写正确的手机号码');
-                    return false;
-                }
-            }
+            // if(this.showMail == true){
+            //     if(!this.util.checkPhone(this.form.AAE005)){
+            //         this.$toast('请填写正确的手机号码');
+            //         return false;
+            //     }
+            // }
             
             if(this.canSubmit == false){
                 this.$toast('信息未填写完整');
@@ -245,7 +244,7 @@ export default {
             this.$axios.post(this.epFn.ApiUrl() + '/h5/jy2002/getRecord', params).then((resData) => {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
-                     this.form.AAE011 = resData.AAE011 //收件人
+                     this.form.AAE011 = resData.AAE009 //收件人
                      this.form.AAE005 = resData.AAE005  //手机号码
                      this.form.AAE006 = resData.AAE006   //详细地址
                 }else if (resData.enCode == 1001 ) {

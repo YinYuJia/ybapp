@@ -17,7 +17,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户名：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE009" placeholder="请输入" readonly></div>
                 </div>
             </div>
             <!-- 提示 -->
@@ -142,7 +142,7 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
                      this.form.AAE010 = resData.AAE010 //银行账户
-                     this.form.AAE008 = resData.AAE008  //开户行
+                     this.form.AAE008 = resData.BAC049  //开户行
                      this.form.AAE009 = resData.AAE009   //开户名
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
