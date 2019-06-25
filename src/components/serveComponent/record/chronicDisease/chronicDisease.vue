@@ -77,6 +77,7 @@
                 placeholder="请选择"
                 readonly
               >
+              <svg-icon v-if="this.form.AKA1211 != ''" icon-class="serveComponent_delete" @click="deleteText(2)"/>
               <svg-icon icon-class="serveComponent_arrowRight"/>
             </div>
           </div>
@@ -94,6 +95,7 @@
                 placeholder="请选择"
                 readonly
               >
+              <svg-icon v-if="this.form.AKA1212 != ''" icon-class="serveComponent_delete" @click="deleteText(3)"/>
               <svg-icon icon-class="serveComponent_arrowRight"/>
             </div>
           </div>
@@ -162,6 +164,25 @@
             <i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示
           </div>
           <div class="HintText">为保证您的正常领取，请务必填写正确、完整的邮递信息。具体送达时间以实际邮递情况为准。</div>
+        </div>
+        <!-- 附件上传 -->
+        <div class="supplementInfo">
+            <div class="infoName">附件上传，请选择下述至少2项附件内容进行上传</div>
+            <div class="infoList">
+                1、规定病种待遇备案表（医院盖章）（必选）
+            </div>
+            <div class="infoList">
+                2、确诊的病理切片报告复印件
+            </div>
+            <div class="infoList">
+                3、出院记录
+            </div>
+            <div class="infoList">
+                4、病历原件
+            </div>
+            <div class="photoBox">
+                <svg-icon icon-class="serveComponent_upload" />
+            </div>
         </div>
       </div>
       <!-- 按钮 -->
@@ -318,6 +339,16 @@ export default {
     handleStartConfirm(val) {
       let date = this.util.formatDate(val, "yyyy-MM-dd");
       this.form.AAE030 = date;
+    },
+    // 清空疾病选择
+    deleteText(val){
+      if(val == 2){
+        this.form.AKA1201 = '';
+        this.form.AKA1211 = '';
+      }else if(val == 3){
+        this.form.AKA1202 = '';
+        this.form.AKA1212 = '';
+      }
     },
     submit() {
       if (this.showMail == true) {
@@ -502,6 +533,29 @@ export default {
         margin-top: 0.28rem;
         letter-spacing: 0;
       }
+    }
+    // 补充资料
+    .supplementInfo{
+        background: #FFF;
+        font-size: .28rem;
+        color: #000000;
+        line-height: 38px;
+        text-align: left;
+        padding: .1rem .3rem;
+        margin-top: .3rem;
+        .infoName{
+            letter-spacing: 0;
+        }
+        .infoList{
+            letter-spacing: 0;
+        }
+        .photoBox{
+            text-align: left;
+            .svg-icon{
+                height: 1.5rem;
+                width: 1.5rem;
+            }
+        }
     }
   }
 }

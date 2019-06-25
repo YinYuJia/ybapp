@@ -85,7 +85,7 @@ export default {
                 BKA077 :'' ,//领取方式
             },
             AAC050VALUE: '',
-            BKA077VALUE: '',
+            BKA077VALUE: '自取',
             canSubmit: false,
             optionList: [], //所有地区
             AAC050s: [
