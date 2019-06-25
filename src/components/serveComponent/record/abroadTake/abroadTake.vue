@@ -57,14 +57,18 @@
                     </div>
                 </div>
             </div>
-            <!-- 附件上传 -->
-            <div class="supplementInfo">
-                <div class="infoName">附件上传，请选择下述其中一项附件内容进行上传</div>
-                <div class="infoList">
+            <!-- 资料上传 -->
+            <div class="dataUpload">
+                <div class="uploadHint">附件上传，请选择下述其中一项附件内容进行上传</div>
+                <div class="uploadList">
                     1、出国带药备案表（医院盖章）
                 </div>
-                <div class="photoBox">
-                    <svg-icon icon-class="serveComponent_upload" />
+                <div class="picWrap">
+                    <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
+                        <img :src="item" class="pic" />
+                        <svg-icon icon-class="serveComponent_delete" />
+                    </div>
+                    <svg-icon  @click="uploadImg()" icon-class="serveComponent_upload" />
                 </div>
             </div>
         </div>
@@ -91,6 +95,7 @@
                     BKE260: '', //护照号码
                     AAA100:"",//参数类别
                     BKZ019:"",//经办编号
+                    photoUrl: '',
                 },
                 dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
@@ -167,6 +172,59 @@
             handleEndConfirm(val){
                 let date = this.util.formatDate(val,'yyyy-MM-dd');
                 this.form.AAE031 = date;
+            },
+            // 上传图片
+            uploadImg(){
+                let _this = this;
+                if(this.$isSdk){
+                    dd.ready({
+                        developer: 'daip@dtdream.com',
+                        usage: [
+                            'dd.device.notification.chooseImage',
+                        ],
+                        remark: '描述业务场景'
+                    }, function() {
+                        dd.device.notification.chooseImage ({
+                            onSuccess: function(data) {
+                                console.log('照片上传成功',data.picPath[0]);
+                                if(data.result){
+                                    // 页面中添加照片
+                                    _this.form.photoUrl = data.picPath[0];
+                                    let submitForm = {};
+                                     // 加入用户名和电子社保卡号
+                                    if (_this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                                        submitForm.AAC003 = _this.$store.state.SET_NATIVEMSG.name;
+                                        submitForm.AAE135 = _this.$store.state.SET_NATIVEMSG.idCard;
+                                    }else {
+                                        submitForm.AAC003 = '许肖军';
+                                        submitForm.AAE135 = "332625197501010910";
+                                    }
+                                    // 加入子项编码
+                                    submitForm.AGA002 = '确认-00253-001';
+                                    submitForm.photoList = data.picPath[0];
+                                    submitForm.PTX001 = '2';
+                                    const params = _this.epFn.commonRequsetData(_this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
+                                    _this.$axios.post(_this.epFn.ApiUrl() + '/h5/jy2006/info', params).then((resData) => {
+                                        console.log('返回成功信息',resData) 
+                                        //   成功   1000
+                                        if ( resData.enCode == 1000 ) {
+                                            _this.form.photoId = resData.photoId
+                                        }else if (resData.enCode == 1001 ) {
+                                        //   失败  1001
+                                            _this.$toast(resData.msg);
+                                            return;
+                                        }else{
+                                            _this.$toast('业务出错');
+                                            return;
+                                        }
+                                    })
+
+                                }
+                        },
+                            onFail: function(error) {}
+                        })
+                    })
+                }
             },
             submit() {
                 
@@ -279,27 +337,48 @@
                 }
             }
         }
-        // 补充资料
-        .supplementInfo{
+        // 资料上传
+        .dataUpload{
             background: #FFF;
-            font-size: .28rem;
-            color: #000000;
-            line-height: 38px;
-            text-align: left;
-            padding: .1rem .3rem;
-            margin-top: .3rem;
-            .infoName{
-                letter-spacing: 0;
-            }
-            .infoList{
-                letter-spacing: 0;
-            }
-            .photoBox{
+            margin: .16rem 0 1.4rem 0;
+            padding: .37rem .4rem;
+            .uploadList{
+                margin-top: .1rem;
+                font-size: .28rem;
                 text-align: left;
+            }
+            .picWrap{
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: .2rem;
+                .uploadBtn{
+                    position: relative;
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    margin: .1rem .15rem 0 0;
+                    img{
+                        height: 100%;
+                        width: 100%;
+                    }
+                    .svg-icon{
+                        position: absolute;
+                        height: .4rem;
+                        width: .4rem;
+                        top: -0.2rem;
+                        right: -0.2rem;
+                    }
+                }
                 .svg-icon{
+                    margin: .1rem .15rem 0 0;
                     height: 1.5rem;
                     width: 1.5rem;
                 }
+            }
+            .uploadHint{
+                font-size: .28rem;
+                color: #000000;
+                letter-spacing: 0;
+                text-align: left;
             }
         }
     }

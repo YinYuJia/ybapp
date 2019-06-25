@@ -49,6 +49,7 @@
                             <span class="textInfo">{{item.AKC264}}</span>
                         </div>
                     </div>
+                    <div class="deleteBtn">删除</div>
                 </div>
                 <div class="plusInvoice" @click="plusInvoice()">+ 添加发票信息</div>
             </div>
@@ -59,10 +60,10 @@
             <div class="picWrap">
                 <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
                     <img :src="item" class="pic" />
+                    <svg-icon icon-class="serveComponent_delete" />
                 </div>
-                <div class="uploadBtn" @click="uploadImg"><i class="el-icon-plus"></i></div>
+                <svg-icon @click="uploadImg" icon-class="serveComponent_upload" />
             </div>
-            
         </div>
         <!-- 按钮 -->
         <footer class="Footer">
@@ -232,7 +233,6 @@ export default {
         height: 100%;
         padding: 0 .4rem;
         background: #FFF;
-        margin-bottom: 1.4rem;
         // 自动获取发票信息
         .invoiceContent{
             .invoiceHint{
@@ -308,7 +308,8 @@ export default {
                 padding-top: .4rem;
             }
             .invoiceList{
-                height: 2.95rem;
+                position: relative;
+                height: 3.35rem;
                 border-bottom: .02rem solid #D3D3D3;
                 display: flex;
                 align-items: center;
@@ -344,13 +345,26 @@ export default {
                         }
                     }
                 }
+                .deleteBtn{
+                    position: absolute;
+                    bottom: .3rem;
+                    right: .37rem;
+                    height: .6rem;
+                    line-height: .6rem;
+                    width: 1.1rem;
+                    border: .01rem solid #1492FF;
+                    border-radius: .05rem;
+                    font-size: .28rem;
+                    color: #1492FF;
+                    letter-spacing: 0;
+                }
                 &:last-child{
                     border-bottom: none;
                 }
             }
             .plusInvoice{
                 height: .85rem;
-                margin-bottom: .56rem;
+                margin: .47rem 0;
                 border: .01rem solid #1492FF;
                 border-radius: .05rem;
                 font-size: .28rem;
@@ -362,33 +376,41 @@ export default {
     }
     // 资料上传
     .dataUpload{
-        height: 2.8rem;
         background: #FFF;
         margin: .16rem 0 1.4rem 0;
         padding: .37rem .4rem;
         .picWrap{
             display: flex;
             flex-wrap: wrap;
+            margin-top: .2rem;
+            .uploadBtn{
+                position: relative;
+                height: 1.5rem;
+                width: 1.5rem;
+                margin: .1rem .15rem 0 0;
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+                .svg-icon{
+                    position: absolute;
+                    height: .4rem;
+                    width: .4rem;
+                    top: -0.2rem;
+                    right: -0.2rem;
+                }
+            }
+            .svg-icon{
+                margin: .1rem .15rem 0 0;
+                height: 1.5rem;
+                width: 1.5rem;
+            }
         }
         .uploadHint{
             font-size: .28rem;
             color: #000000;
             letter-spacing: 0;
             text-align: left;
-        }
-        .uploadBtn{
-            height: 1.5rem;
-            width: 1.5rem;
-            margin-top: .32rem;
-            margin-right: .1rem;
-            background:  #EFEFEF;
-            color: #999;
-            font-size: .32rem;
-            line-height: 1.5rem;
-            .pic{
-                height: 1.5rem;
-                width: 1.5rem;
-            }
         }
     }
     // 底部
