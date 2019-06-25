@@ -79,7 +79,7 @@
                     AAB301: "", //参保地市
                     AAQ301: "", //参保地区
                     AAS027:"",	//转往省
-                    AAA027:"",	//转往市
+                    AAB027:"",	//转往市
                     AAQ027:"",  //转往区
                     AKA121: '',//疾病名称
                     BKE255: '', //就诊疗程
@@ -125,8 +125,8 @@
                     }
                     }
                     // 判断转入转出地
-                    if (val.AAA027 != '' && val.AAB301 != '') {
-                        if(val.AAA027==val.AAB301){
+                    if (val.AAB027 != '' && val.AAB301 != '') {
+                        if(val.AAB027==val.AAB301){
                             this.$toast('转出地不能与转入地相同');
                             this.AAB301000 = '';
                             this.form.AAS301="";
@@ -146,7 +146,7 @@
             chooseInsured(val){
                 this.AAA027000=val.name
                 this.form.AAS027=val.code[0]
-                this.form.AAA027=val.code[1]
+                this.form.AAB027=val.code[1]
                 this.form.AAQ027=val.code[2]
             },
             // 选择开始日期
@@ -236,7 +236,7 @@
                 submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030);
                 submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031);
                 submitForm.AAS027 =  this.form.AAS027;//转往地省
-                submitForm.AAA027 =  this.form.AAA027;//转往地市
+                submitForm.AAB027 =  this.form.AAB027;//转往地市
                 submitForm.AAS301 =  this.form.AAS301;//参保地省
                 submitForm.AAB301 =  this.form.AAB301;//参保地市
                 submitForm.AAQ301 =  this.form.AAQ301;//参保地区
