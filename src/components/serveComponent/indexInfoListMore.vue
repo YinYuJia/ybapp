@@ -158,6 +158,7 @@ export default {
             this.containerHeight = offsetHeight + window.innerHeight - (titleHeight * 2) + 'px'
         });
         window.addEventListener('scroll', this.handleScroll);
+        // window.addEventListener('touchmove',this.handleScroll);
     },
     methods:{
         changeIndex(chooseId,index){
@@ -173,20 +174,33 @@ export default {
             let scroll_2 = document.getElementById('record').offsetTop - titleHeight;
             let scroll_3 = document.getElementById('treat').offsetTop - titleHeight;
             let scroll_4 = document.getElementById('others').offsetTop - titleHeight;
-            let pageHeight = window.pageYOffset;
+            let pageHeight = this.getScrollTop();
             if(pageHeight > scroll_1 && pageHeight < scroll_2){
+                console.log("进入1");
                 this.activeIndex = 1;
                 this.headerSwiper.slideTo(0,200);
             }else if(pageHeight > scroll_2 && pageHeight < scroll_3){
+                console.log("进入2");
                 this.activeIndex = 2;
                 this.headerSwiper.slideTo(1,200);
             }else if(pageHeight > scroll_3 && pageHeight < scroll_4){
+                console.log("进入3");
                 this.activeIndex = 3;
                 this.headerSwiper.slideTo(2,200);
             }else if(pageHeight == scroll_4){
+                console.log("进入4");
                 this.activeIndex = 4;
                 this.headerSwiper.slideTo(3,200);
             }
+        },
+        getScrollTop() {  
+            var scrollPos;  
+            if (window.pageYOffset) {  
+            scrollPos = window.pageYOffset; }  
+            else if (document.compatMode && document.compatMode != 'BackCompat')  
+            { scrollPos = document.documentElement.scrollTop; }  
+            else if (document.body) { scrollPos = document.body.scrollTop; }   
+            return scrollPos;   
         },
         showWork(url,item,itemInfo) {
             sessionStorage.setItem('itemUrl',url);
