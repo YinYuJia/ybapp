@@ -204,6 +204,7 @@ export default {
                 let params = this.formatSubmitData();
                 this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1008/transactionVoucher', params.params)
                 .then((resData) => {
+
                     if(resData.enCode == '1000'){
                         this.$store.dispatch('SET_INSURED_PROOF',params.submitForm);
                         this.$router.push('/getDetail');
