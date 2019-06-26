@@ -5,12 +5,14 @@
         <mt-datetime-picker
             type="date"
             ref="startPicker"
+            :startDate="startDate"
             v-model="dateVal"
             @confirm="handleStartConfirm">
         </mt-datetime-picker>
         <mt-datetime-picker
             type="date"
             ref="endPicker"
+            :startDate="startDate"
             v-model="dateVal"
             @confirm="handleEndConfirm">
         </mt-datetime-picker>
@@ -113,6 +115,7 @@ export default {
                 
                 // AAQ301: '',//参保地区
             },
+            startDate: new Date(),
             AKC030VALUE: '', //申请原因绑定值
             optionList: [], //存放城市数据
             canSubmit: false,
@@ -170,7 +173,7 @@ export default {
                     let month = 24 * 3600 * 1000 * 30;
                     let gap = AAE031 - AAE030;
                     if (gap < month) {
-                        this.$toast('备案时间至少一个月');
+                        this.$toast('备案时间至少一个月且不能小于拟离杭日期');
                         this.form.AAE031 = '';
                     }
                 }
