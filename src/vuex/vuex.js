@@ -262,7 +262,6 @@ export default new Vuex.Store({  // 暴露与new vuex
         AKB063: '', //备案天数
         AAE030: '', //开始日期
         AAE031: '', //结束日期
-        photoIdList:[],//照片ID数组
     },
         
       },

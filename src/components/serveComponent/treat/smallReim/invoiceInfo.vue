@@ -166,8 +166,6 @@ export default {
                         onSuccess: function(data) {
                             console.log(data.picPath[0],'请求图片成功');
                             if(data.result){
-                                // 获取图片
-                                This.picArr.push(data.picPath[0])
                                 This.$store.dispatch('SET_ENCLOSURE',This.picArr)
                                 let submitForm = {}; 
                                  // 加入用户名和电子社保卡号
@@ -187,6 +185,8 @@ export default {
                                 This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
                                     //   成功   1000
                                     if ( resData.enCode == 1000 ) {
+                                        // 获取图片
+                                        This.picArr.push(data.picPath[0])
                                         This.picArrNum.push(resData.photoId)
                                     }else if (resData.enCode == 1001 ) {
                                     //   失败  1001

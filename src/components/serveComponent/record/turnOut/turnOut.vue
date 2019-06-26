@@ -158,8 +158,6 @@
                             onSuccess: function(data) {
                                 console.log(data.picPath[0],'请求图片成功');
                                 if(data.result){
-                                    // 获取图片
-                                    This.picArr.push(data.picPath[0])
                                     // This.$store.dispatch('SET_ENCLOSURE',This.picArr)
                                     let submitForm = {}; 
                                     // 加入用户名和电子社保卡号
@@ -180,6 +178,8 @@
                                         console.log('返回成功信息',resData) 
                                         //   成功   1000
                                         if ( resData.enCode == 1000 ) {
+                                            // 获取图片
+                                            This.picArr.push(data.picPath[0]);
                                             This.form.photoIdList.push(resData.photoId);
                                             // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
                                             // SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
@@ -207,8 +207,10 @@
             },
             // 删除图片
             deletePic(item,index){
+                console.log('删除图片',this.form.photoIdList);
                 this.picArr.splice(index,1)
-                this.picArrNum.splice(index,1)
+                this.form.photoIdList.splice(index,1)
+                console.log('删除后',this.form.photoIdList);
             },
             // 选择参保地
             openInsuredPicker(){

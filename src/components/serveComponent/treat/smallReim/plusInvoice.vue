@@ -94,8 +94,6 @@ export default {
                             
                             console.log(data.picPath[0],'请求图片成功');
                             if(data.result){
-                                // 获取图片
-                                This.form.photoUrl = data.picPath[0]
                                 let submitForm = {}; 
                                  // 加入用户名和电子社保卡号
                                 if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -119,6 +117,8 @@ export default {
                                     console.log('返回成功信息',resData) 
                                     //   成功   1000
                                     if ( resData.enCode == 1000 ) {
+                                        // 获取图片
+                                        This.form.photoUrl = data.picPath[0]
                                         This.form.photoId = resData.photoId
                                     }else if (resData.enCode == 1001 ) {
                                     //   失败  1001
