@@ -28,7 +28,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input  type="text" v-model="AAB301000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -104,6 +104,16 @@
         },
         created () {
             this.epFn.setTitle('出国带药备案')
+
+        let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+           let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+
+           console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+           this.AAB301000 = GinsengLandName
+           this.form.AAB301 = GinsengLandCode
+           this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
+           console.log('this.form.AAS301',this.form.AAS301)
+           console.log('this.form.AAB301',this.form.AAB301)
             // this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
             // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
             // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;  

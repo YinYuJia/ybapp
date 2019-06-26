@@ -29,7 +29,6 @@
             </div>
             <div class="InfoText">
               <input
-                @click="openInsuredPicker"
                 type="text"
                 v-model="AAB301000"
                 placeholder="请选择"
@@ -298,6 +297,15 @@ export default {
   },
     created(){
         this.epFn.setTitle('规定病种备案')
+                   let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+           let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+
+           console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+           this.AAB301000 = GinsengLandName
+           this.form.AAB301 = GinsengLandCode
+           this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
+           console.log('this.form.AAS301',this.form.AAS301)
+           console.log('this.form.AAB301',this.form.AAB301)
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
         // this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
         // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301

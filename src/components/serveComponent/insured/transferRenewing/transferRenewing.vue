@@ -23,7 +23,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>转出地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openOutCityPicker" type="text" v-model="form.AAA027000" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openOutCityPicker" type="text" v-model="AAA027000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -52,6 +52,7 @@
 export default {
     data(){
         return{
+            AAA027000:'',
             form:{
                 AAA027000:"",
                 AAS027:"", //转出地省code
@@ -73,6 +74,15 @@ export default {
     },
     created () {
         this.epFn.setTitle('医保转移接续')
+            let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+            let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+
+            console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+            this.AAA027000 = GinsengLandName
+            this.form.AAS027 = GinsengLandCode
+            this.form.AAA027 = GinsengLandCode.substring(0,2) + '0000'
+            console.log('this.form.AAS027',this.form.AAS027)
+            console.log('this.form.AAA027',this.form.AAA027)
         // this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
         // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name|| "许肖军"
         // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard|| "332625197501010910"
@@ -81,7 +91,7 @@ export default {
        form:{
             handler: function(val) {
                 // 判断不为空
-                if (val.AAA027000 != '' && val.AAB301000 != '' && val.AAE005 != '') {
+                if ( val.AAB301000 != '' && val.AAE005 != '') {
                     this.canSubmit = true;
                 } else {
                     this.canSubmit = false;
