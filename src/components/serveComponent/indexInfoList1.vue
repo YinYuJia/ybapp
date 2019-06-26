@@ -69,7 +69,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon13" /></div>
                     <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon14" /></div>
-                    <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon13" /></div>
+                    <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon16" /></div>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
             <swipe>
                 <swipe-item><svg-icon icon-class="serveComponent_icon15" /></swipe-item>
                 <swipe-item><svg-icon icon-class="serveComponent_icon15" /></swipe-item>
-                <swipe-item><svg-icon icon-class="serveComponent_icon16" /></swipe-item>
+                <swipe-item><svg-icon icon-class="serveComponent_icon15" /></swipe-item>
             </swipe>
         </div>
         <!-- 热点资讯 -->
