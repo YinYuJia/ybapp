@@ -224,7 +224,7 @@ export default {
             border-radius: .05rem;
             display: flex;
             .MenuCell {
-                line-height: .62rem;
+                line-height: .6rem;
                 width: 100%;
                 color: #1492FF;
                 text-align: center;
