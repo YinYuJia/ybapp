@@ -13,7 +13,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>规定病种:</span></div>
-                    <div class="InfoText">{{form.AKA035Name}}</div>
+                    <div class="InfoText">{{form.AKA035VALUE}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病1:</span></div>
@@ -65,7 +65,7 @@
 export default {
     data(){
         return{               
-            AAB30100: '', //参保地
+            AAB301000: '', //参保地
             form: {
                 AAS301: '', //参保地省编码
                 AAB301: '', //参保地市编码

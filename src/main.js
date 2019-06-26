@@ -52,13 +52,19 @@ import GlobalComponent from './common/js/globalComponents'
 Vue.use(GlobalComponent);
 
 import '../node_modules/swiper/dist/css/swiper.css'
+import { nextTick } from 'q';
 Vue.use(ElementUI)
 
 
 Vue.prototype.epFn = epFn
 Vue.prototype.$axios = axios
-Vue.prototype.$isSdk = true
 Vue.config.productionTip = false;
+ if(process.env.NODE_ENV == 'development') {
+  Vue.prototype.$isSdk = true
+}else{
+  Vue.prototype.$isSdk = true
+
+}
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
@@ -139,33 +145,39 @@ function  paramStr(name){
 
 console.log(paramStr("userName") === undefined)
 
-sessionStorage.setItem("userName",paramStr("userName") || "许肖军")
-sessionStorage.setItem("idCard",paramStr("idCard") || "332625197501010910")
+sessionStorage.setItem("userName","许肖军")
+sessionStorage.setItem("idCard","332625197501010910")
 
 
 // router.beforeEach((to, from, next) => {
   
 //       const code = 'yibaozs';
-//       var ticket = paramStr("ticket") || "8afac0cc6ac672af016b4beac17d55f9-ticket";
+//       var ticket = paramStr("ticket") || "8afac0cc6b84c4aa016b8e7fb4662798-ticket";
 //        console.log('ticket-------------',ticket)
 //        var token = sessionStorage.getItem("getToken")
 //        console.log('token-------------',token)
 //           if ( token != "" && token != undefined && token != null) {
-//             axios.post("http://192.168.1.172:8080/ybypse/userInfo" , {
+//             axios.post("http://192.168.1.172:8094/userInfo" , {
 //               "token":token
 //               }).then(result1=>{
-//                     console.log('result1',result1)
+//                     console.log('result1-----------------',result1)
+//                       if ( result1.result == "0") {
+//                         sessionStorage.setItem("userName",result1.username)
+//                         sessionStorage.setItem("idCard",result1.idnum)
+//                         next()
+//                       }else{
+//                         MessageBox.alert(result1.errmsg);
+//                       }
 //               })
 //           }else{
 //             if (ticket != "" && ticket != undefined && ticket != null) {
 //                      // http://192.168.200.130:80 光耀地址
 //                     //  http://192.168.200.130:7777
-//                     axios.post("http://192.168.1.172:8080/ybypse/ticketInfo" , {
+//                     axios.post("http://192.168.1.172:8094/ticketInfo" , {
 //                       "st":ticket
 //                     }).then(result0 => {
-//                       console.log('result0',result0)
-//                       console.log('result-typeof--获取',typeof result0.result)
-                     
+//                       console.log('result0----------------------',result0)
+
 //                       if ( result0.result == "0") {
 //                         sessionStorage.setItem("getToken",result0.token)
 //                         console.log(sessionStorage.getItem("getToken"))
@@ -175,10 +187,17 @@ sessionStorage.setItem("idCard",paramStr("idCard") || "332625197501010910")
 //                         // return;
 //                       }
                       
-//                       axios.post("http://192.168.1.172:8080/ybypse/userInfo" , {
+//                       axios.post("http://192.168.1.172:8094/userInfo" , {
 //                         "token":result0.token
 //                         }).then(result1=>{
-//                             console.log('result1',result1)
+//                             console.log('result1------------------',result1)
+//                                if ( result1.result == "0") {
+//                                 sessionStorage.setItem("userName",result1.username)
+//                                  sessionStorage.setItem("idCard",result1.idnum)
+//                                  next()
+//                                }else{
+//                                 MessageBox.alert(result1.errmsg);
+//                                }
 //                         })
 //                     });
 //             } else {

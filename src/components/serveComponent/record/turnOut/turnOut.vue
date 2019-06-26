@@ -60,14 +60,18 @@
                     </div>
                 </div>
             </div>
-            <!-- 附件上传 -->
-            <div class="supplementInfo">
-                <div class="infoName">附件上传，请选择下述其中一项附件内容进行上传</div>
-                <div class="infoList">
+            <!-- 资料上传 -->
+            <div class="dataUpload">
+                <div class="uploadHint">附件上传，请选择下述其中一项附件内容进行上传</div>
+                <div class="uploadList">
                     1、《基本医疗保险参保人员转外就医备案表》（医院盖章）
                 </div>
-                <div class="photoBox">
-                    <svg-icon icon-class="serveComponent_upload" />
+                <div class="picWrap">
+                    <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
+                        <img :src="item" class="pic" />
+                        <svg-icon icon-class="serveComponent_delete" />
+                    </div>
+                    <svg-icon @click="uploadImg" icon-class="serveComponent_upload" />
                 </div>
             </div>
         </div>
@@ -80,6 +84,7 @@
     export default {
         data() {
             return {          
+                picArr: [],//附件集合
                 AAS027000:"",//参保地
                 AAB301000: "",//转往地市
                 form: {
@@ -149,6 +154,69 @@
             },
         },
         methods: {
+             // 上传图片附件
+        uploadImg(){
+            console.log("zhaopian")
+            let This = this
+            if(this.$isSdk){
+                dd.ready({
+                developer: 'daip@dtdream.com',
+                usage: [
+                    'dd.device.notification.chooseImage',
+                ],
+                remark: '描述业务场景'
+                }, function() {
+                    dd.device.notification.chooseImage ({
+                        onSuccess: function(data) {
+                            console.log(data.picPath[0],'请求图片成功');
+                            if(data.result){
+                                // 获取图片
+                                This.picArr.push(data.picPath[0])
+                                // This.$store.dispatch('SET_ENCLOSURE',This.picArr)
+                                let submitForm = {}; 
+                                 // 加入用户名和电子社保卡号
+                                if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                                    submitForm.AAC003 = This.$store.state.SET_NATIVEMSG.name;
+                                    submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
+                                }else {
+                                    submitForm.AAC003 = '许肖军';
+                                    submitForm.AAE135 = "332625197501010910";
+                                }
+                                // 加入子项编码
+                                submitForm.AGA002 = '确认-00253-002'
+                                submitForm.photoList = data.picPath[0]
+                                submitForm.PTX001 = '2'
+                                const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
+                                // 图片上传后台
+                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
+                                    console.log('返回成功信息',resData) 
+                                    //   成功   1000
+                                    if ( resData.enCode == 1000 ) {
+                                        this.form.photoIdList.push(resData.photoId)
+                                        // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                                        // SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
+                                        // this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                                    }else if (resData.enCode == 1001 ) {
+                                    //   失败  1001
+                                        This.$toast(resData.msg);
+                                        return;
+                                    }else{
+                                        This.$toast('业务出错');
+                                        return;
+                                    }
+                                })
+                            }
+                        },
+                        onFail: function(error) {
+                            this.$toast(error)
+                            console.log("请求图片失败",error);
+                            
+                        }
+                    })
+            })
+            }
+            
+        },
             // 选择参保地
             openInsuredPicker(){
                 this.$refs.insuredPicker.open();
@@ -317,27 +385,48 @@
                 }
             }
         }
-        // 附件上传
-        .supplementInfo{
+        // 资料上传
+        .dataUpload{
             background: #FFF;
-            font-size: .28rem;
-            color: #000000;
-            line-height: 38px;
-            text-align: left;
-            padding: .1rem .3rem;
-            margin-top: .3rem;
-            .infoName{
-                letter-spacing: 0;
-            }
-            .infoList{
-                letter-spacing: 0;
-            }
-            .photoBox{
+            margin: .16rem 0 1.4rem 0;
+            padding: .37rem .4rem;
+            .uploadList{
+                margin-top: .1rem;
+                font-size: .28rem;
                 text-align: left;
+            }
+            .picWrap{
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: .2rem;
+                .uploadBtn{
+                    position: relative;
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    margin: .1rem .15rem 0 0;
+                    img{
+                        height: 100%;
+                        width: 100%;
+                    }
+                    .svg-icon{
+                        position: absolute;
+                        height: .4rem;
+                        width: .4rem;
+                        top: -0.2rem;
+                        right: -0.2rem;
+                    }
+                }
                 .svg-icon{
+                    margin: .1rem .15rem 0 0;
                     height: 1.5rem;
                     width: 1.5rem;
                 }
+            }
+            .uploadHint{
+                font-size: .28rem;
+                color: #000000;
+                letter-spacing: 0;
+                text-align: left;
             }
         }
     }

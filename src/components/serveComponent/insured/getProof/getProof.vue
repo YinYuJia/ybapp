@@ -130,6 +130,7 @@ export default {
         },
     },
     created(){
+        this.form = this.$store.state.SET_INSURED_PROOF;
         // 获取位置
         let This = this 
         if(this.$isSdk){
@@ -152,8 +153,7 @@ export default {
             })
         }
         
-        this.epFn.setTitle('领取就医凭证')
-        this.form = this.$store.state.SET_INSURED_PROOF;
+        this.epFn.setTitle('领取就医凭证');
         // 原生参数添加姓名等信息
         // if(!this.form.AAE011){
             // this.form.AAE011=this.$store.state.SET_NATIVEMSG.name

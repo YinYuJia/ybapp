@@ -174,6 +174,8 @@ export default new Vuex.Store({  // 暴露与new vuex
           eleInvoices: [], //电子发票信息
           invoicesImg: [], //附件信息信息  图片id
         },
+        // 是否有发票信息
+        IS_INVOICE:false,
         // 零星报销的图片集合，只供页面跳转使用，不上传后台
         SET_ENCLOSURE:[],
         //缴费年限核定
@@ -365,6 +367,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_SMALL_REIM_2(state,payload){
           state.SET_SMALL_REIM_2 = payload;
         },
+        IS_INVOICE(state,payload){
+          state.IS_INVOICE = payload;
+        },
         SET_ENCLOSURE(state,payload){
           state.SET_ENCLOSURE = payload;
         },
@@ -450,6 +455,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_SMALL_REIM_2( context, payload ) {
           context.commit( 'SET_SMALL_REIM_2', payload );
+        },
+        IS_INVOICE( context, payload ) {
+          context.commit( 'IS_INVOICE', payload );
         },
         SET_ENCLOSURE( context, payload ) {
           context.commit( 'SET_ENCLOSURE', payload );
