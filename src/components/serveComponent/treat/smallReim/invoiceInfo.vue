@@ -188,9 +188,6 @@ export default {
                                     //   成功   1000
                                     if ( resData.enCode == 1000 ) {
                                         This.picArrNum.push(resData.photoId)
-                                        
-                                        console.log(This.$store.state.SET_SMALL_REIM_2,'照片数组');
-                                        
                                     }else if (resData.enCode == 1001 ) {
                                     //   失败  1001
                                         This.$toast(resData.msg);
