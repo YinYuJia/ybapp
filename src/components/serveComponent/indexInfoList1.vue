@@ -104,6 +104,7 @@
             <p>本服务由浙江政务服务网提供</p>
             <p>服务咨询热线 : <span class="bottomSpan">{{tel}}</span> </p>
         </div>
+
     </div>
 </template>
 
@@ -116,6 +117,7 @@
         data() {
             return {
                 tel:"0571-88808880",
+                imgurl:"",
                 hotMsg: [ //热点资讯
                     {
                         text: '“数字经济”：开启浙江经济增长新“大时代”',
@@ -202,6 +204,7 @@
             }
         },
         methods: {
+
             goRouter(route) {
                 this.$router.push(route);
             },
