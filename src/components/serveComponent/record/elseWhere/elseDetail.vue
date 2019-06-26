@@ -78,6 +78,13 @@ export default {
         this.epFn.setTitle('异地就医备案')
         this.request();
         this.request1();
+        if (window.history && window.history.pushState) {
+            history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', this.back, false);//false阻止默认事件
+        }
+    },
+    destroyed(){
+        window.removeEventListener('popstate', this.back, false);//false阻止默认事件
     },
     computed:{
         // address: function(){
@@ -85,6 +92,9 @@ export default {
         // }
     },
     methods:{
+        back(){
+            this.$router.push('/')
+        },
         edit(){
             this.$router.push("/elseWhere");
         },

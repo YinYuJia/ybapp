@@ -110,7 +110,7 @@ export default {
                                 submitForm.AKC264 = this.form.AKC264
                                 const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
                                 // /h5/jy2006/updPhoto
-                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/info', params).then((resData) => {
+                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
                                     console.log('返回成功信息',resData) 
                                     //   成功   1000
                                     if ( resData.enCode == 1000 ) {
