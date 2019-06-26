@@ -53,7 +53,6 @@
           </div>
           <div class="InfoText">
             <input
-              @click="openInsuredPicker"
               type="text"
               v-model="AAB301000"
               placeholder="请选择"
@@ -128,7 +127,7 @@
             <span>项目名称</span>
           </div>
           <div class="InfoText">
-            <input type="text" @click="project" :class="{disabledInput:threeDisabled}" v-model="form.AKE002" :disabled="threeDisabled" placeholder="请选择">
+            <input type="text" @click="project" :class="{disabledInput:threeDisabled}" v-model="form.AKE002" :disabled="threeDisabled" placeholder="请选择" readonly>
           </div>
         </div>
         <div class="InfoLine">
@@ -256,6 +255,15 @@ export default {
   },
   created() {
     this.epFn.setTitle('特治特药备案')
+               let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+           let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+
+           console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+           this.AAB301000 = GinsengLandName
+           this.form.AAB301 = GinsengLandCode
+           this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
+           console.log('this.form.AAS301',this.form.AAS301)
+           console.log('this.form.AAB301',this.form.AAB301)
     // this.form = this.$store.state.SET_SPECIAL_DRUG;
     // this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
     // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
@@ -448,9 +456,11 @@ export default {
           .post(this.epFn.ApiUrl() + "/h5/jy1023/specialTreat", params)
           .then(resData => {
             if (resData.enCode == "1000") {
-              this.$toast(resData.msg)
+              
               this.$store.dispatch("SET_SPECIAL_DRUG", this.form);
               this.$router.push("/specialDrugDetail");
+            }else{
+              this.$toast(resData.msg)
             }
           });
       }

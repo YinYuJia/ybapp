@@ -11,31 +11,31 @@
             <div class="ListInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>发票总额:</span></div>
-                    <div class="InfoText"><span>19940.13</span></div>
+                    <div class="InfoText"><span>{{form3.AKC264}}</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>发票张数:</span></div>
-                    <div class="InfoText"><span>10</span></div>
+                    <div class="InfoText"><span>{{form3.BKC013}}</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>申请时间:</span></div>
-                    <div class="InfoText"><span>2019-01-02 13:13:41</span></div>
+                    <div class="InfoText"><span>{{form3.AAE036}}</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>进度时间:</span></div>
-                    <div class="InfoText"><span>2019-01-12 15:11:23</span></div>
+                    <div class="InfoText"><span></span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>收款开户行:</span></div>
-                    <div class="InfoText"><span>中国工商银行</span></div>
+                    <div class="InfoText"><span>{{form3.AAE008}}</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>收款开户名:</span></div>
-                    <div class="InfoText"><span>**某</span></div>
+                    <div class="InfoText"><span>{{form3.AAE009 |tuoMin(0,1)}}</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>收款银行账号:</span></div>
-                    <div class="InfoText"><span>6222 90** **** ***2 412</span></div>
+                    <div class="InfoText"><span>{{form3.AAE010|tuoMin(1,1)}}</span></div>
                 </div>
             </div>
             <!-- 发票信息 -->
@@ -61,37 +61,43 @@
                 <div class="invoiceHint">报销明细</div>
                 <!-- 报销完成状态 -->
                 <div class="invoiceList2" v-for="item in invoices" :key="item.code">
-                    <div class="textLine">
-                        <div class="textHeader" @click="showInvoiceDetail()">
+                    <!-- <div class="textLine"> -->
+                        <!-- <div class="textHeader" @click="showInvoiceDetail()">
                             <span>医保报销金额：</span>
                             <span class="active">￥1000.31</span>
                             <svg-icon icon-class="serveComponent_arrowRight" />
                         </div>
-                        <div class="textInfo">已报销</div>
-                    </div>
+                        <div class="textInfo">已报销</div> -->
+                    <!-- </div> -->
                     <div class="textLine">
+                        <span class="textName">发票号码</span>
+                        <span class="textInfo">{{item.BKE100}}</span>
+                    </div>
+                    <div class="textLine">  
                         <span class="textName">发票金额</span>
-                        <span class="textInfo">{{item.code}}</span>
+                        <span class="textInfo">{{item.BKE472}}</span>
                     </div>
-                    <div class="textLine">
-                        <span class="textName">发票金额</span>
-                        <span class="textInfo">{{item.cost}}</span>
-                    </div>
-                    <div class="textLine">
+                    <!-- <div class="textLine">
                         <span class="textName">说明</span>
                         <span class="textInfo">{{item.state}}</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!-- 病例资料 -->
             <div class="caseInfo">
                 <div class="infoName">病例资料（如出院小结、用药清单、医嘱等）</div>
                 <div class="photoBox">
-                    <svg-icon icon-class="serveComponent_photo" />
+                     <div class="picWrap">
+                        <div class="uploadBtn" v-for="(item,index) in picList" :key="index">
+                            <img :src="item" class="pic" />
+                            <!-- <span>{{item}}</span> -->
+                        </div>
+                    </div>
+                    <!-- <svg-icon icon-class="serveComponent_photo" /> -->
                 </div>
             </div>
             <!-- 需要补充信息 -->
-            <div class="supplementInfo" v-if="needMoreInfo">
+            <!-- <div class="supplementInfo" v-if="needMoreInfo">
                 <div class="infoName">根据业务需要，需要您补充提交以下资料</div>
                 <div class="infoList" v-for="item in moreInfoList" :key="item.BKE262">
                     {{BKE262}}、{{BKE265}}（{{BKE266}}）
@@ -99,12 +105,14 @@
                 <div class="photoBox">
                     <svg-icon icon-class="serveComponent_upload" />
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- 按钮 -->
-        <Footer v-if="!needMoreInfo" :btnType="2" @backout="backout()" @edit="edit()"></Footer>
+        <!-- <Footer v-if="!needMoreInfo" :btnType="2" @backout="backout()" @edit="edit()"></Footer> -->
         <!-- 补齐材料提交 -->
-        <Footer v-if="needMoreInfo" :btnType="1" :canSubmit="true"></Footer>
+        <!-- <Footer v-if="needMoreInfo" :btnType="1" :canSubmit="true"></Footer> -->
+        <!-- 撤销按钮 -->
+        <Footer :btnType="2" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>
 </template>
 
@@ -114,17 +122,14 @@ export default {
         this.epFn.setTitle('零星报销')
         let params = this.formatSubmitForm();
         this.request1()
+        this.request2()
         // this.needSubmitInfo();  //判断是否需要提交资料
-        console.log(params);        
+        console.log(params);
     },
     data(){
         return{
             invoiceComplete: true,
-            invoices:[
-                {code:'9123910023010230120301',state:'报销中',cost:'10239.03'},
-                {code:'9123910023010230120302',state:'报销中',cost:'102.88'},
-                {code:'9123910023010230120303',state:'报销中',cost:'2019.28'},
-            ],
+            invoices:[],
             needMoreInfo: true,
             moreInfoList: [],
             currentStep:1,
@@ -132,6 +137,7 @@ export default {
             form:{},
             form1:{},
             form2:{},
+            form3:{},
             arr: [
                 {step:1,name:'申请'},
                 {step:2,name:'受理'},
@@ -139,6 +145,7 @@ export default {
                 {step:4,name:'审批'},
                 {step:5,name:'财务支付'}
             ],
+            picList:[]
         }
     },
     methods:{
@@ -221,10 +228,12 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
-                    this.form={...this.form,...resData.LS_DS_13.LS_DS0} 
-                    this.form1={...this.form1,...resData.LS_DS_13.LS_DS1} 
-                    this.form2={...this.form2,...resData.LS_DS_13.LS_DS2} 
+                    // this.form={...this.form,...resData.LS_DS_13.LS_DS0} 
+                    // this.form1={...this.form1,...resData.LS_DS_13.LS_DS1} 
+                    // this.form2={...this.form2,...resData.LS_DS_13.LS_DS2} 
                     // console.log(this.List)
+                    this.invoices = resData.LS_DS1
+                    console.log('数据最新resData.LS_DS111',resData.LS_DS1);
                     
                     // this.form={...this.from,...this.List[0]}
                 }else if (resData.enCode == 1001 ) {
@@ -268,7 +277,60 @@ export default {
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1031");
                 return params;
-        }
+        },
+        request2(){
+            let params=this.formatSubmitData2();
+            this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1016/info', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {  
+                    // this.form3={...this.form3,...resData.LS_DS_08}
+                    let LS=resData.LS_DS_08
+                    this.form3={...this.form3,...LS}
+                    console.log("form",this.form)
+                    this.handleNumber = resData.LS_DS_08.BKZ019
+                    this.picList = []
+                    
+                    for(let i=0;i<resData.LS_DS_08.photoList.length;i++){
+                        this.picList.push(resData.LS_DS_08.photoList[i].PUL002)
+                        
+                    }
+                        console.log('我要的数据',this.picList);
+                    // alert(this.picList.photoList[0].PUL002)
+                    // alert(1)
+                    console.log("this.picList.photoList[0].PUL002",resData.LS_DS_08.photoList);
+                    
+                    // this.$toast("提交成功");
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        },
+        formatSubmitData2(){
+            let submitForm = {}
+            console.log(submitForm)
+                submitForm.AGA002 =  "给付-00007-019";
+                submitForm.lx="2";
+                // submitForm.debugTest=  "true";
+
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '许肖军';
+                submitForm.AAE135 = "332625197501010910";
+            }
+            
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
+            return params;
+        },
     }
 }
 </script>
@@ -388,7 +450,7 @@ export default {
             }
             // 报销完成状态
             .invoiceList2{
-                height: 3.3rem;
+                height: 2.3rem;
                 padding: .42rem 0 .58rem 0;
                 border-bottom: .01rem solid #D5D5D5;
                 display: flex;
@@ -397,12 +459,12 @@ export default {
                 .textLine{
                     display: flex;
                     font-size: .28rem;
-                    &:first-child{
-                        justify-content: space-between;
-                        .textInfo{
-                            color: #007CEA;
-                        }
-                    }
+                    // &:first-child{
+                    //     justify-content: space-between;
+                    //     .textInfo{
+                    //         color: #007CEA;
+                    //     }
+                    // }
                     .textHeader{
                         width: 4.1rem;
                         display: flex;
@@ -473,6 +535,33 @@ export default {
                 }
             }
         }
+    }
+}
+.picWrap{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: .2rem;
+    .uploadBtn{
+        position: relative;
+        height: 1.5rem;
+        width: 1.5rem;
+        margin: .1rem .15rem 0 0;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+        .svg-icon{
+            position: absolute;
+            height: .4rem;
+            width: .4rem;
+            top: -0.2rem;
+            right: -0.2rem;
+        }
+    }
+    .svg-icon{
+        margin: .1rem .15rem 0 0;
+        height: 1.5rem;
+        width: 1.5rem;
     }
 }
 </style>

@@ -30,7 +30,6 @@ export default {
         return commonData
     },
     setTitle(title){
-      if(this.$isSdk){
         dd.ready({
           developer: 'daip@dtdream.com',
           usage: [
@@ -45,8 +44,6 @@ export default {
             onFail: function(error) {}
         })
         })
-      }
-      
     },
     IndexList:function() {
          return {

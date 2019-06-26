@@ -218,10 +218,21 @@ export default {
         deletePic(item,index){
             this.picArr.splice(index,1)
             this.picArrNum.splice(index,1)
+            let picArrNum = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2));
+            picArrNum.invoicesImg = this.picArrNum
+            this.$store.dispatch('SET_SMALL_REIM_2',picArrNum)
+
+            let picArr = JSON.parse(JSON.stringify(this.$store.state.SET_ENCLOSURE));
+            picArr = this.picArr
+            this.$store.dispatch('SET_SMALL_REIM_2',picArr)
         },
         // 删除手动添加发票
         deleteBtn(item,index){
             this.invoices.splice(index,1)
+            let invoices = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2));
+            invoices.eleInvoices = this.invoices
+            this.$store.dispatch('SET_SMALL_REIM_2',invoices)
+
         },
         // 选择发票
         chooseInvoice(invoice){
@@ -247,6 +258,10 @@ export default {
             this.$router.push('/plusInvoice');
         },
         submit(){
+            if(!this.picArr.length){
+                this.$toast('请上传附件信息');
+                return false;
+            }
             if(this.invoiceCount.count == 0){
                 this.$toast('未选择任何发票');
                 return false;

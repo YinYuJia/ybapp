@@ -113,6 +113,17 @@
         created() {
             this.epFn.setTitle('转外就医备案')
             console.log(this.$store.state.SET_USER_DETAILINFO,55555555555);
+
+
+           let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+           let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+
+           console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+           this.AAS027000 = GinsengLandName
+           this.form.AAB027 = GinsengLandCode
+           this.form.AAS027 = GinsengLandCode.substring(0,2) + '0000'
+           console.log('this.form.AAS027',this.form.AAS027)
+           console.log('this.form.AAB027',this.form.AAB027)
             
             // this.form.AAA301000 = this.$store.state.SET_USER_DETAILINFO.regionName
             // // this.form.AAA301000 = "杭州"

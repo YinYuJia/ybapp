@@ -161,6 +161,26 @@ export default {
         // window.addEventListener('touchmove',this.handleScroll);
     },
     methods:{
+        // gotoSDK(){
+        //     console.log(111)
+        //     let url =
+        //         location.href.substring(0, location.href.indexOf("#")) +
+        //         // "#/payDetail?obj=" +
+        //         // JSON.stringify(item) +
+        //         "&signNo=" +
+        //         "2037EAE0AC692753452C80EA73580B86" +
+        //         "&idCard=" +
+        //         "331081198611144030" +
+        //         "&name=" +
+        //         "林江";
+        //     let ua = navigator.userAgent;
+        //     let isIos = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        //     if (isIos) {
+        //         window.webkit.messageHandlers.goToPay.postMessage(url);
+        //     } else {
+        //         window.EPSdk.newHtml(url);
+        //     }
+        // },
         changeIndex(chooseId,index){
             this.activeIndex = index;
             this.headerSwiper.slideTo(index-1,200);

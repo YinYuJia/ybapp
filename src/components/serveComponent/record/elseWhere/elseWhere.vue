@@ -5,12 +5,14 @@
         <mt-datetime-picker
             type="date"
             ref="startPicker"
+            :startDate="startDate"
             v-model="dateVal"
             @confirm="handleStartConfirm">
         </mt-datetime-picker>
         <mt-datetime-picker
             type="date"
             ref="endPicker"
+            :startDate="startDate"
             v-model="dateVal"
             @confirm="handleEndConfirm">
         </mt-datetime-picker>
@@ -42,7 +44,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                        <input @click="openInsuredPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly>
+                        <input  type="text" v-model="AAB301000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -113,6 +115,7 @@ export default {
                 
                 // AAQ301: '',//参保地区
             },
+            startDate: new Date(),
             AKC030VALUE: '', //申请原因绑定值
             optionList: [], //存放城市数据
             canSubmit: false,
@@ -142,6 +145,19 @@ export default {
     },
     created() {
         this.epFn.setTitle('异地就医备案')
+           let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+           let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+
+           console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+           this.AAB301000 = GinsengLandName
+           this.form.AAB301 = GinsengLandCode
+           this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
+           console.log('this.form.AAS301',this.form.AAS301)
+           console.log('this.form.AAB301',this.form.AAB301)
+
+           
+                                
+
         // this.form = this.$store.state.SET_ELSEWHERE_OPERATION;
         this.$store.dispatch('SET_SELECTARRAY', this.epFn.ChinaJsonDatas());
         this.optionList = this.$store.state.SET_SELECTARRAY;
@@ -170,7 +186,7 @@ export default {
                     let month = 24 * 3600 * 1000 * 30;
                     let gap = AAE031 - AAE030;
                     if (gap < month) {
-                        this.$toast('备案时间至少一个月');
+                        this.$toast('备案时间至少一个月且不能小于拟离杭日期');
                         this.form.AAE031 = '';
                     }
                 }

@@ -6,7 +6,7 @@
             <div class="ListInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>姓名：</span></div>
-                    <div class="InfoText">{{form.AAC003 |tuoMin(0.1)}}</div>
+                    <div class="InfoText">{{form.AAC003 |tuoMin(0,2)}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>社会保障号：</span></div>
