@@ -6,19 +6,19 @@
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇总浙江省医疗保障服务</div>
             <div class="headerPad">
-                <div class="iconBox" @click="changeUsername()">
+                <div class="iconBox" @click="changeUsername(true)">
                     <svg-icon icon-class="serveComponent_icon1" />
                     <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox" @click="changeUserCode()">
+                <div class="iconBox" @click="changeUserCode(true)">
                     <svg-icon icon-class="serveComponent_icon2" />
                     <div class="text">支付码</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="yibaozhanghu">
                     <svg-icon icon-class="serveComponent_icon3" />
                     <div class="text">医保账户</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="yibaozhanghu">
                     <svg-icon icon-class="serveComponent_icon4" />
                     <div class="text">移动支付</div>
                 </div>
@@ -203,6 +203,9 @@
             }
         },
         methods: {
+            yibaozhanghu() {
+                 this.$toast("功能正在建设中")
+            },
 
             goRouter(route) {
                 this.$router.push(route);
@@ -235,7 +238,8 @@
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader, submitForm, "1033");
                 return params;
             },
-            changeUsername() {
+            changeUsername(str) { 
+                if (str) {
                 let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
                 MessageBox.prompt('用户名', '').then(({
                     value,
@@ -246,9 +250,14 @@
                     sessionStorage.setItem('userName', value);
                     this.setNativeMsg();
                 });
+                }else{
+                      this.$toast("功能正在建设中")
+                }
+
             },
-            changeUserCode() {
-                let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+            changeUserCode(str) {
+                if(str) {
+                                   let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
                 MessageBox.prompt('社保卡号', '').then(({
                     value,
                     action
@@ -258,6 +267,10 @@
                     sessionStorage.setItem('idCard', value);
                     this.setNativeMsg();
                 });
+                }else{
+                    this.$toast('功能正在建设中')
+                }
+
             },
             showWork(url, item, itemInfo) {
                 sessionStorage.setItem('itemUrl', url);
