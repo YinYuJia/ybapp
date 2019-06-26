@@ -75,7 +75,6 @@ export default {
                 console.log('返回成功信息',resData.LS_DS)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        this.$toast("提交成功");
                         if (resData.LS_DS.length > 0) {
                             this.List = [...this.List, ...resData.LS_DS];
                             let pageNum=Math.ceil(this.List.length/this.params.pageSize);

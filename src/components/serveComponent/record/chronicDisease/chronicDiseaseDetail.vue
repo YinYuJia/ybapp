@@ -142,8 +142,8 @@ export default {
                     this.form={...this.form,...LS}
                     console.log("form",this.form)
                     this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE
+                    this.form.AAE030=this.util.NumberToDate(this.form.AAE030)
                     this.handleNumber = resData.LS_DS_14.BKZ019
-                    this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);
