@@ -4,7 +4,7 @@
         <div class="UserPhoto"><svg-icon icon-class="serveComponent_userIcon" /></div>
         <div class="UserInfo">
             <div class="UserName">{{form.name|tuoMin(0,2)}}</div>
-            <div class="UserId">{{form.idNo|tuoMin(1,1)}}</div>
+            <div class="UserId">{{form.idNo|tuoMin(4,4)}}</div>
         </div>
     </div>
 </template>
