@@ -88,6 +88,7 @@ export default {
                 AAE030: "", //开始日期
                 AAE031: "" //结束日期
             },
+            AAB301000: "",
             arr: [
                 {step:1,name:'申请'},
                 {step:2,name:'受理'},

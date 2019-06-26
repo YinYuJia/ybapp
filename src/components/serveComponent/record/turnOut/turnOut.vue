@@ -154,69 +154,68 @@
             },
         },
         methods: {
-             // 上传图片附件
-        uploadImg(){
-            console.log("zhaopian")
-            let This = this
-            if(this.$isSdk){
-                dd.ready({
-                developer: 'daip@dtdream.com',
-                usage: [
-                    'dd.device.notification.chooseImage',
-                ],
-                remark: '描述业务场景'
-                }, function() {
-                    dd.device.notification.chooseImage ({
-                        onSuccess: function(data) {
-                            console.log(data.picPath[0],'请求图片成功');
-                            if(data.result){
-                                // 获取图片
-                                This.picArr.push(data.picPath[0])
-                                // This.$store.dispatch('SET_ENCLOSURE',This.picArr)
-                                let submitForm = {}; 
-                                 // 加入用户名和电子社保卡号
-                                if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                                    submitForm.AAC003 = This.$store.state.SET_NATIVEMSG.name;
-                                    submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
-                                }else {
-                                    submitForm.AAC003 = '许肖军';
-                                    submitForm.AAE135 = "332625197501010910";
-                                }
-                                // 加入子项编码
-                                submitForm.AGA002 = '确认-00253-002'
-                                submitForm.photoList = data.picPath[0]
-                                submitForm.PTX001 = '2'
-                                const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
-                                // 图片上传后台
-                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
-                                    console.log('返回成功信息',resData) 
-                                    //   成功   1000
-                                    if ( resData.enCode == 1000 ) {
-                                        This.form.photoIdList.push(resData.photoId);
-                                        // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
-                                        // SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
-                                        // this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
-                                    }else if (resData.enCode == 1001 ) {
-                                    //   失败  1001
-                                        This.$toast(resData.msg);
-                                        return;
-                                    }else{
-                                        This.$toast('业务出错');
-                                        return;
+            // 上传图片附件
+            uploadImg(){
+                let This = this
+                if(this.$isSdk){
+                    dd.ready({
+                    developer: 'daip@dtdream.com',
+                    usage: [
+                        'dd.device.notification.chooseImage',
+                    ],
+                    remark: '描述业务场景'
+                    }, function() {
+                        dd.device.notification.chooseImage ({
+                            onSuccess: function(data) {
+                                console.log(data.picPath[0],'请求图片成功');
+                                if(data.result){
+                                    // 获取图片
+                                    This.picArr.push(data.picPath[0])
+                                    // This.$store.dispatch('SET_ENCLOSURE',This.picArr)
+                                    let submitForm = {}; 
+                                    // 加入用户名和电子社保卡号
+                                    if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                                        submitForm.AAC003 = This.$store.state.SET_NATIVEMSG.name;
+                                        submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
+                                    }else {
+                                        submitForm.AAC003 = '许肖军';
+                                        submitForm.AAE135 = "332625197501010910";
                                     }
-                                })
+                                    // 加入子项编码
+                                    submitForm.AGA002 = '确认-00253-002'
+                                    submitForm.photoList = data.picPath[0]
+                                    submitForm.PTX001 = '2'
+                                    const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
+                                    // 图片上传后台
+                                    This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
+                                        console.log('返回成功信息',resData) 
+                                        //   成功   1000
+                                        if ( resData.enCode == 1000 ) {
+                                            This.form.photoIdList.push(resData.photoId);
+                                            // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                                            // SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
+                                            // this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                                        }else if (resData.enCode == 1001 ) {
+                                        //   失败  1001
+                                            This.$toast(resData.msg);
+                                            return;
+                                        }else{
+                                            This.$toast('业务出错');
+                                            return;
+                                        }
+                                    })
+                                }
+                            },
+                            onFail: function(error) {
+                                this.$toast(error)
+                                console.log("请求图片失败",error);
+                                
                             }
-                        },
-                        onFail: function(error) {
-                            this.$toast(error)
-                            console.log("请求图片失败",error);
-                            
-                        }
-                    })
-            })
-            }
-            
-        },
+                        })
+                })
+                }
+                
+            },
             // 选择参保地
             openInsuredPicker(){
                 this.$refs.insuredPicker.open();
