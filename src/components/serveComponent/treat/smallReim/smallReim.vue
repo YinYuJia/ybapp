@@ -144,8 +144,23 @@ export default {
                         }else{
                             this.$store.dispatch('IS_INVOICE',false)
                         }
+                        let arr = resData.LS_DS1
+                        if(resData.LS_DS1.length>0){
+                            for(let i=0;i<arr.length;i++){
+                                arr[i].BKA102 = arr[i].eInvoiceCode
+                                arr[i].BKE100 = arr[i].eInvoiceNum
+                                arr[i].BKA104 = arr[i].invoicePartyName
+                                arr[i].BKA105 = arr[i].payerPartyName
+                                arr[i].AKC264 = arr[i].amount
+                                arr[i].AAE036 = arr[i].eInvoiceDate
+                                // resData.LS_DS1.AAE036 = resData.LS_DS1.eInvoiceStatus
+                                arr[i].BKE554 = resData.LS_DS1.inVoiceFileURL
+                            }
+                            console.log('发票信息',arr);
+                        }
+                        // log
                         let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
-                        SET_SMALL_REIM_2.eleInvoices = resData.LS_DS1
+                        SET_SMALL_REIM_2.eleInvoices = arr
                         this.$store.dispatch('SET_SMALL_REIM_2', SET_SMALL_REIM_2);
                         let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
                         submitForm.AKB020 = this.form.AKB020;

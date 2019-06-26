@@ -120,6 +120,13 @@ export default {
             // 有电子发票
             if(this.$store.state.IS_INVOICE){
                 submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2.eleInvoices;
+                for(let i=0;i<submitForm.LS_DS1.length;i++){
+                    if(!submitForm.LS_DS1[i].selected){
+                        submitForm.LS_DS1.splice(i,1)
+                        i--
+                        // delete submitForm.LS_DS1[i]
+                    }
+                }
             }else{
                 // 手动添加发票
                 submitForm.LS_DS1 = []

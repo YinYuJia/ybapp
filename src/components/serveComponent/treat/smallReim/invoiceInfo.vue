@@ -7,7 +7,7 @@
             <!-- 自动获取发票信息 -->
             <div class="invoiceContent" v-if="hasInvoice">
                 <div class="invoiceHint">请选择您的报销条目</div>
-                <div class="invoiceList" v-for="item in invoices" :key="item.BKE100">
+                <div class="invoiceList" v-for="(item,index) in invoices" :key="index">
                     <div class="selectIcon" @click="chooseInvoice(item)">
                         <svg-icon v-if="item.selected" icon-class="serveComponent_select" />
                     </div>
@@ -17,13 +17,14 @@
                             <span class="textName">发票号</span>
                             <span class="textInfo active">{{item.BKE100}}</span>
                         </div>
-                        <div class="textLine">
-                            <span class="textName">科室名称</span>
-                            <span class="textInfo">{{item.BKA104}}</span>
-                        </div>
+                       
                         <div class="textLine">
                             <span class="textName">总费用</span>
                             <span class="textInfo">{{item.AKC264}}</span>
+                        </div>
+                         <div class="textLine">
+                            <span class="textName">发票日期</span>
+                            <span class="textInfo">{{item.AAE036}}</span>
                         </div>
                     </div>
                 </div>
@@ -42,11 +43,11 @@
                         </div>
                         <div class="textLine">
                             <span class="textName">发票金额</span>
-                            <span class="textInfo">{{item.AAE036}}</span>
+                            <span class="textInfo">{{item.AKC264}}</span>
                         </div>
                         <div class="textLine">
                             <span class="textName">发票日期</span>
-                            <span class="textInfo">{{item.AKC264}}</span>
+                            <span class="textInfo">{{item.AAE036}}</span>
                         </div>
                     </div>
                     <div class="deleteBtn">删除</div>
@@ -109,14 +110,17 @@ export default {
         this.epFn.setTitle('零星报销')
         // 获取VUEX信息
         this.invoices = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2.eleInvoices));
+        console.log('发票信息',this.invoices);
+        
         // 附件集合
         this.picArr = JSON.parse(JSON.stringify(this.$store.state.SET_ENCLOSURE));
         // 封装发票
-        console.log(this.invoices,'invoices');
+        
         
         this.invoices.forEach((val)=>{
             val.selected = false;
         })
+        console.log(this.invoices,'55555');
         if(!this.hasInvoice){
             let index = 0
             let price = 0
@@ -198,7 +202,7 @@ export default {
             var count = 0;
             this.invoices.forEach((val)=>{
                 if(val.selected == true){
-                    price += val.AKC264;
+                    price += parseInt(val.AKC264);
                     count++;
                 }
             });
@@ -220,6 +224,11 @@ export default {
                 submitForm.BKC013 = this.invoiceCount.count;
                 submitForm.AKC264 = this.invoiceCount.price;
                 this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
+                
+                let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                SET_SMALL_REIM_2.eleInvoices = this.invoices
+                this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                console.log(111,this.invoices);
                 this.$router.push('/infoRecord');
             }
         },
