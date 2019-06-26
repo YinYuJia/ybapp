@@ -127,7 +127,7 @@
             <span>项目名称</span>
           </div>
           <div class="InfoText">
-            <input type="text" @click="project" :class="{disabledInput:threeDisabled}" v-model="form.AKE002" :disabled="threeDisabled" placeholder="请选择">
+            <input type="text" @click="project" :class="{disabledInput:threeDisabled}" v-model="form.AKE002" :disabled="threeDisabled" placeholder="请选择" readonly>
           </div>
         </div>
         <div class="InfoLine">
