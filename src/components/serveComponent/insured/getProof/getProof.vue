@@ -207,6 +207,8 @@ export default {
                     if(resData.enCode == '1000'){
                         this.$store.dispatch('SET_INSURED_PROOF',params.submitForm);
                         this.$router.push('/getDetail');
+                    }else{
+                        this.$toast(resData.msg)
                     }
                 }).catch((error) => {
                     console.log(error)

@@ -30,7 +30,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="AAB301000" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input  type="text" v-model="AAB301000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -100,6 +100,16 @@
         },
         created() {
             this.epFn.setTitle('家庭共济备案')
+
+                       let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+           let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+
+           console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+           this.AAB301000 = GinsengLandName
+           this.form.AAB301 = GinsengLandCode
+           this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
+           console.log('this.form.AAS301',this.form.AAS301)
+           console.log('this.form.AAB301',this.form.AAB301)
             // this.form = this.$store.state.SET_FAMILYAID_OPERATION;
             // this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
             // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301

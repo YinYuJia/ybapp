@@ -151,6 +151,8 @@
                 //   成功   1000
                 if (resData.enCode == 1000) {
                     if (resData.AAB301) {
+                        sessionStorage.setItem("GinsengLandCode",resData.AAB301)
+                        sessionStorage.setItem("GinsengLandName",resData.RegionName)
                         this.$store.dispatch('SET_USER_DETAILINFO', {
                             insured: resData.AAB301,
                             regionName: resData.RegionName || '杭州市'
