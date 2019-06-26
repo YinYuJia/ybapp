@@ -165,6 +165,8 @@ export default {
                     this.form={...this.form,...LS}
                     console.log("form",this.form)
                     this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE
+                    this.form.AAE030=this.util.NumberToDate(this.form.AAE030)
+                    this.form.AAE031=this.util.NumberToDate(this.form.AAE031)
                     this.handleNumber = resData.LS_DS_12.BKZ019
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
