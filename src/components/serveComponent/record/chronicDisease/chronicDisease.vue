@@ -10,6 +10,13 @@
         v-model="dateVal"
         @confirm="handleStartConfirm"
       ></mt-datetime-picker>
+      <SelectCity 
+        :type="1"
+        ref="typePicker"
+        :propArr="option"
+        @confirm="handleTypeConfirm"
+        >
+      </SelectCity>
       <!-- 弹出框区域结束 -->
       <div class="Content">
         <!-- 基本信息 -->
@@ -22,13 +29,11 @@
             </div>
             <div class="InfoText">
               <input
-                @click="openInsuredPicker"
                 type="text"
                 v-model="AAB301000"
                 placeholder="请选择"
                 readonly
               >
-              <svg-icon icon-class="serveComponent_arrowRight"/>
             </div>
           </div>
           <div class="InfoLine">
@@ -43,7 +48,6 @@
                 placeholder="请选择"
                 readonly
               >
-              <svg-icon icon-class="serveComponent_arrowRight"/>
             </div>
           </div>
           <div class="InfoLine">
@@ -60,7 +64,6 @@
                 placeholder="请选择"
                 readonly
               >
-              <svg-icon icon-class="serveComponent_arrowRight"/>
             </div>
           </div>
           <div class="InfoLine">
@@ -78,7 +81,6 @@
                 readonly
               >
               <svg-icon v-if="this.form.AKA1211 != ''" icon-class="serveComponent_delete" @click="deleteText(2)"/>
-              <svg-icon icon-class="serveComponent_arrowRight"/>
             </div>
           </div>
           <div class="InfoLine">
@@ -96,7 +98,6 @@
                 readonly
               >
               <svg-icon v-if="this.form.AKA1212 != ''" icon-class="serveComponent_delete" @click="deleteText(3)"/>
-              <svg-icon icon-class="serveComponent_arrowRight"/>
             </div>
           </div>
           <div class="InfoLine">
@@ -111,7 +112,6 @@
                 placeholder="请选择"
                 readonly
               >
-              <svg-icon icon-class="serveComponent_arrowRight"/>
             </div>
           </div>
           <div class="InfoLine">
@@ -119,15 +119,15 @@
               <span>病历提取</span>
             </div>
             <div class="InfoText">
-              <el-select v-model="form.BKE247" placeholder="请选择领取方式">
+              <!-- <el-select v-model="form.BKE247" placeholder="请选择领取方式">
                 <el-option
                   v-for="item in option"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
                 ></el-option>
-              </el-select>
-              <svg-icon icon-class="serveComponent_arrowRight"/>
+              </el-select> -->
+              <input @click="openTypePicker()" type="text" v-model="BKE247VALUE" placeholder="请选择" readonly>
             </div>
           </div>
         </div>
@@ -231,6 +231,7 @@ export default {
         AAE006: "", //详细地址
         photoIdList:[],//照片ID数组
       },
+      BKE247VALUE: "", //病历提取方式值
       disabledOne: true,
       isSearch: false,
       dateVal: new Date(), //默认绑定的时间
@@ -296,6 +297,15 @@ export default {
   },
     created(){
         this.epFn.setTitle('规定病种备案')
+                   let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+           let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+
+           console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+           this.AAB301000 = GinsengLandName
+           this.form.AAB301 = GinsengLandCode
+           this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
+           console.log('this.form.AAS301',this.form.AAS301)
+           console.log('this.form.AAB301',this.form.AAB301)
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
         // this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
         // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
@@ -347,6 +357,15 @@ export default {
     handleStartConfirm(val) {
       let date = this.util.formatDate(val, "yyyy-MM-dd");
       this.form.AAE030 = date;
+    },
+    // 选择病历提取方式
+    openTypePicker(){
+      this.$refs.typePicker.open();
+    },
+    handleTypeConfirm(val){
+      this.form.BKE247 = val.value;
+      this.BKE247VALUE = val.label;
+      console.log(this.form.BKE247);
     },
     // 清空疾病选择
     deleteText(val){

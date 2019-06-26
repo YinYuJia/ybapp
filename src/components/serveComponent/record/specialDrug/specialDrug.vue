@@ -17,6 +17,30 @@
       :startDate="startDate"
       @confirm="handleEndConfirm"
     ></mt-datetime-picker>
+    <!-- 项目类型 -->
+    <SelectCity 
+        :type="1"
+        ref="projectTypePicker"
+        :propArr="typeList"
+        @confirm="handleProjectTypeConfirm"
+        >
+    </SelectCity>
+    <!-- 特质特药类型 -->
+    <SelectCity 
+        :type="1"
+        ref="drugPicker"
+        :propArr="drugList"
+        @confirm="handleDrugConfirm"
+        >
+    </SelectCity>
+    <!-- 用药时期 -->
+    <SelectCity 
+        :type="1"
+        ref="drugTimePicker"
+        :propArr="drugTimeList"
+        @confirm="handleDrugTimeConfirm"
+        >
+    </SelectCity>
     <!-- 弹出框区域结束 -->
     <div class="Content">
       <!-- 基本信息 -->
@@ -29,13 +53,11 @@
           </div>
           <div class="InfoText">
             <input
-              @click="openInsuredPicker"
               type="text"
               v-model="AAB301000"
               placeholder="请选择"
               readonly
             >
-            <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
         </div>
         <div class="InfoLine">
@@ -44,34 +66,14 @@
           </div>
           <div class="InfoText">
             <input type="text" @click="org" v-model="form.AKB020Name" readonly placeholder="请选择">
-            <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
-          <!-- <div class="InfoText">
-            <el-select v-model="form.AKB020" placeholder="请选择">
-              <el-option
-                v-for="item in hospitalList"
-                :key="item.AAA102"
-                :label="item.AAA103"
-                :value="item.AAA102"
-              ></el-option>
-            </el-select>
-            <svg-icon icon-class="serveComponent_arrowRight"/>
-          </div> -->
         </div>
         <div class="InfoLine">
           <div class="InfoName">
             <span>项目类型</span>
           </div>
           <div class="InfoText">
-            <el-select v-model="form.BKE253" placeholder="请选择">
-              <el-option
-                v-for="item in typeList"
-                :key="item.AAA102"
-                :label="item.AAA103"
-                :value="item.AAA102"
-              ></el-option>
-            </el-select>
-            <svg-icon icon-class="serveComponent_arrowRight"/>
+            <input @click="openProjectTypePicker()" type="text" v-model="BKE253VALUE" placeholder="请选择" readonly>
           </div>
         </div>
         <div class="InfoLine">
@@ -79,15 +81,14 @@
             <span>特治特药类型</span>
           </div>
           <div class="InfoText">
-            <el-select v-model="form.BKE228" placeholder="请选择" :disabled="oneDisabled">
-              <el-option
-                v-for="item in drugList"
-                :key="item.AAA102"
-                :label="item.AAA103"
-                :value="item.AAA102"
-              ></el-option>
-            </el-select>
-            <svg-icon icon-class="serveComponent_arrowRight"/>
+            <input 
+              @click="openDrugPicker()" 
+              type="text" v-model="BKE228VALUE" 
+              placeholder="请选择" 
+              readonly 
+              :disabled="oneDisabled"
+              :class="{disabledInput:oneDisabled}"
+              >
           </div>
         </div>
         <div class="InfoLine">
@@ -95,8 +96,14 @@
             <span>疾病名称</span>
           </div>
           <div class="InfoText">
-            <input type="text" @click="species" v-model="form.AKA121" :class="{disabledInput:twoDisabled}" :disabled="twoDisabled" readonly placeholder="请选择">
-            <svg-icon icon-class="serveComponent_arrowRight"/>
+            <input 
+              type="text" 
+              @click="species" 
+              v-model="form.AKA121" 
+              :class="{disabledInput:twoDisabled}" 
+              :disabled="twoDisabled" 
+              readonly 
+              placeholder="请选择">
           </div>
         </div>
         <div class="InfoLine">
@@ -104,15 +111,15 @@
             <span>用药时期</span>
           </div>
           <div class="InfoText">
-            <el-select v-model="form.BKE248" placeholder="请选择">
+            <!-- <el-select v-model="form.BKE248" placeholder="请选择">
               <el-option
                 v-for="item in drugTimeList"
                 :key="item.AAA102"
                 :label="item.AAA103"
                 :value="item.AAA102"
               ></el-option>
-            </el-select>
-            <svg-icon icon-class="serveComponent_arrowRight"/>
+            </el-select> -->
+            <input @click="openDrugTimePicker()" type="text" v-model="BKE248VALUE" placeholder="请选择" readonly>
           </div>
         </div>
         <div class="InfoLine">
@@ -121,7 +128,6 @@
           </div>
           <div class="InfoText">
             <input type="text" @click="project" :class="{disabledInput:threeDisabled}" v-model="form.AKE002" :disabled="threeDisabled" placeholder="请选择">
-            <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
         </div>
         <div class="InfoLine">
@@ -152,7 +158,6 @@
               placeholder="请选择"
               readonly
             >
-            <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
         </div>
         <div class="InfoLine">
@@ -167,7 +172,6 @@
               placeholder="请选择"
               readonly
             >
-            <svg-icon icon-class="serveComponent_arrowRight"/>
           </div>
         </div>
       </div>
@@ -236,6 +240,9 @@ export default {
         AAE030: "", //开始日期
         AAE031: "", //结束日期
       },
+      BKE253VALUE: "", //项目类型值
+      BKE228VALUE: "", //特治特药类型值
+      BKE248VALUE: "", //用药时期值
       startDate: new Date(),
       dateVal: new Date(), //默认绑定的时间
       endDateVal: new Date(), //默认绑定的时间
@@ -248,6 +255,15 @@ export default {
   },
   created() {
     this.epFn.setTitle('特治特药备案')
+               let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+           let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+
+           console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+           this.AAB301000 = GinsengLandName
+           this.form.AAB301 = GinsengLandCode
+           this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
+           console.log('this.form.AAS301',this.form.AAS301)
+           console.log('this.form.AAB301',this.form.AAB301)
     // this.form = this.$store.state.SET_SPECIAL_DRUG;
     // this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
     // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
@@ -308,15 +324,17 @@ export default {
     'form.BKE253'(val,oldVal){
       // 项目类型
         if(val ==""){
-          this.oneDisabled = true
-          this.form.BKE228 = ""
+          this.oneDisabled = true;
+          this.form.BKE228 = "";
+          this.BKE228VALUE = "";
         }else{
           // 获取特药特治类型列表
           this.oneDisabled = false
           if(val!=oldVal){
             // 如果项目类型修改了 重新请求
-            this.getSelect('BKE228',"BKE253",val)
-            this.form.BKE228=""
+            this.getSelect('BKE228',"BKE253",val);
+            this.form.BKE228="";
+            this.BKE228VALUE = "";
           }
         }
       
@@ -360,6 +378,30 @@ export default {
       this.AAB301000 = val.name;
       this.form.AAS301 = val.code[0];
       this.form.AAB301 = val.code[1];
+    },
+    // 选择项目类型
+    openProjectTypePicker(){
+      this.$refs.projectTypePicker.open();
+    },
+    handleProjectTypeConfirm(val){
+      this.form.BKE253 = val.value;
+      this.BKE253VALUE = val.label;
+    },
+    // 选择特治特药类型
+    openDrugPicker(){
+      this.$refs.drugPicker.open();
+    },
+    handleDrugConfirm(val){
+      this.form.BKE228 = val.value;
+      this.BKE228VALUE = val.label;
+    },
+    // 选择用药时期
+    openDrugTimePicker(){
+      this.$refs.drugTimePicker.open();
+    },
+    handleDrugTimeConfirm(val){
+      this.form.BKE248 = val.value;
+      this.BKE248VALUE = val.label;
     },
     // 选择开始日期
     openStartPicker() {
@@ -467,15 +509,33 @@ export default {
                 return
               }
               if(val == 'BKE253'){
-                this.typeList = resData.LS_DS
+                this.typeList = [];
+                resData.LS_DS.forEach(ele => {
+                  let obj = new Object();
+                  obj.value = ele.AAA102;
+                  obj.label = ele.AAA103;
+                  this.typeList.push(obj);
+                });
                 return
               }
               if(val == 'BKE228'){
-                this.drugList = resData.LS_DS
+                this.drugList = [];
+                resData.LS_DS.forEach(ele =>{
+                  let obj = new Object();
+                  obj.value = ele.AAA102;
+                  obj.label = ele.AAA103;
+                  this.drugList.push(obj);
+                })
                 return
               }
               if(val == 'BKE248'){
-                this.drugTimeList = resData.LS_DS
+                this.drugTimeList = [];
+                resData.LS_DS.forEach(ele =>{
+                  let obj = new Object();
+                  obj.value = ele.AAA102;
+                  obj.label = ele.AAA103;
+                  this.drugTimeList.push(obj);
+                })
                 return
               }
           }
