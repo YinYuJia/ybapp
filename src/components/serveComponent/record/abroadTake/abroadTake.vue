@@ -66,7 +66,7 @@
                 <div class="picWrap">
                     <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
                         <img :src="item" class="pic" />
-                        <svg-icon icon-class="serveComponent_delete" />
+                        <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)"/>
                     </div>
                     <svg-icon  @click="uploadImg()" icon-class="serveComponent_upload" />
                 </div>
@@ -189,8 +189,6 @@
                             onSuccess: function(data) {
                                 console.log('照片上传成功',data.picPath[0]);
                                 if(data.result){
-                                    // 页面中添加照片
-                                    _this.picArr.push(data.picPath[0])
                                     let submitForm = {};
                                      // 加入用户名和电子社保卡号
                                     if (_this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -209,6 +207,8 @@
                                         console.log('返回成功信息',resData) 
                                         //   成功   1000
                                         if ( resData.enCode == 1000 ) {
+                                            // 页面中添加照片
+                                            _this.picArr.push(data.picPath[0])
                                             _this.form.photoIdList.push(resData.photoId);
                                         }else if (resData.enCode == 1001 ) {
                                         //   失败  1001
@@ -226,6 +226,13 @@
                         })
                     })
                 }
+            },
+            // 删除图片
+            deletePic(item,index){
+                console.log('删除图片',this.form.photoIdList);
+                this.picArr.splice(index,1)
+                this.form.photoIdList.splice(index,1)
+                console.log('删除后',this.form.photoIdList);
             },
             submit() {
                 

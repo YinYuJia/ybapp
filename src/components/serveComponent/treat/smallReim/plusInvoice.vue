@@ -119,6 +119,7 @@ export default {
                                     console.log('返回成功信息',resData) 
                                     //   成功   1000
                                     if ( resData.enCode == 1000 ) {
+                                        // 获取图片
                                         This.form.photoUrl = data.picPath[0]
                                         This.form.photoId = resData.photoId
                                     }else if (resData.enCode == 1001 ) {

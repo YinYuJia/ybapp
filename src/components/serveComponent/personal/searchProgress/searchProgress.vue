@@ -2,29 +2,30 @@
     <div class="searchProgress">
         <Title :title="'我的事项'" :backRouter="'/'"></Title>
         <!-- 标题 -->
-        <div class="IndexMenu">
+        <div class="IndexMenu" id="titleContent">
             <div class="MenuLine">
                 <div class="MenuCell" @click="changeIndex(1)" :class="{'active': activeIndex == 1}">待受理</div>
                 <div class="MenuCell" @click="changeIndex(2)" :class="{'active': activeIndex == 2}">受理中</div>
                 <div class="MenuCell" @click="changeIndex(3)" :class="{'active': activeIndex == 3}">已办结</div>
             </div>
         </div>
-        <mt-loadmore 
-        :bottom-method="loadBottom"
-        :bottom-all-loaded="allLoaded" 
-        
-        ref="loadmore">
-            <!-- 列表 -->
-            <ul class="ListInfo">
-                <li class="ListLine" v-for="(item,index) in itemGroup" :key="index" @click="gotoplace(item)">
-                    <div class="InfoName">
-                        <div class="InfoHead">{{item.AGA004}}</div>
-                        <div class="InfoDate">{{item.AAE036}}</div>
-                    </div>
-                    <svg-icon icon-class="serveComponent_arrowRight" />
-                </li>
-            </ul>
-        </mt-loadmore>
+        <div class="content" :style="{height:height,fontSize:'16px'}">
+            <mt-loadmore 
+            :bottom-method="loadBottom"
+            :bottom-all-loaded="allLoaded" 
+            ref="loadmore">
+                <!-- 列表 -->
+                <ul class="ListInfo">
+                    <li class="ListLine" v-for="(item,index) in itemGroup" :key="index" @click="gotoplace(item)">
+                        <div class="InfoName">
+                            <div class="InfoHead">{{item.AGA004}}</div>
+                            <div class="InfoDate">{{item.AAE036}}</div>
+                        </div>
+                        <svg-icon icon-class="serveComponent_arrowRight" />
+                    </li>
+                </ul>
+            </mt-loadmore>
+        </div>
         <div v-if="isShow">
         <div class="pic_null"></div>
         <div class="tip">没有更多事项了~~~</div>
@@ -48,12 +49,21 @@ export default {
             ],
             BOD037:"1",
             totalPage:"",
-            isShow:false
+            isShow:false,
+            height: 0,
 
         }
     },
     created () {
         this.epFn.setTitle('我的事项')
+
+        this.$nextTick(()=>{
+        let heightTop =  document.getElementById("titleContent").offsetHeight;
+        console.log(heightTop);
+        
+        this.height = window.innerHeight -heightTop + "px"
+        })
+
         this.getList();
     },
     methods:{
@@ -99,39 +109,39 @@ export default {
             }
 
         },
-        itemInof() {
-                let params = this.formatSubmitData2();
-                // 开始请求
-                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1018/getList', params).then((resData) => {
-                        console.log('返回成功信息',resData)
-                        //   成功   1000
-                        if ( resData.enCode == 1000 ) {
-                              console.log("请求成功")
-                        }else if (resData.enCode == 1001 ) {
-                        //   失败  1001
-                            this.$toast(resData.msg);
-                            return;
-                        }else{
-                            this.$toast('业务出错');
-                            return;
-                        }
-                })
-        },
-        formatSubmitData2(){
-            let submitForm = {}
-                console.log(submitForm)
-                // 加入用户名和电子社保卡号
-                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-                }else {
-                    submitForm.AAC003 = '许肖军';
-                    submitForm.AAE135 = "332625197501010910";
-                }      
-                // 请求参数封装
-                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1034");
-                return params;
-        },
+        // itemInof() {
+        //         let params = this.formatSubmitData2();
+        //         // 开始请求
+        //         this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1018/getList', params).then((resData) => {
+        //                 console.log('返回成功信息',resData)
+        //                 //   成功   1000
+        //                 if ( resData.enCode == 1000 ) {
+        //                       console.log("请求成功")
+        //                 }else if (resData.enCode == 1001 ) {
+        //                 //   失败  1001
+        //                     this.$toast(resData.msg);
+        //                     return;
+        //                 }else{
+        //                     this.$toast('业务出错');
+        //                     return;
+        //                 }
+        //         })
+        // },
+        // formatSubmitData2(){
+        //     let submitForm = {}
+        //         console.log(submitForm)
+        //         // 加入用户名和电子社保卡号
+        //         if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+        //             submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+        //             submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+        //         }else {
+        //             submitForm.AAC003 = '许肖军';
+        //             submitForm.AAE135 = "332625197501010910";
+        //         }      
+        //         // 请求参数封装
+        //         const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1034");
+        //         return params;
+        // },
         getList(){
                 // 封装数据
                 let params = this.formatSubmitData();
@@ -178,7 +188,7 @@ export default {
         },
         formatSubmitData(){
                 let submitForm ={};
-                submitForm.BOD037 = "1"//办件状态
+                submitForm.BOD037 = this.BOD037//办件状态
                 submitForm.pageNum = this.pageNum//页码
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -230,6 +240,7 @@ export default {
                 text-align: center;
                 letter-spacing: 0;
                 font-size: .28rem;
+                border-top: .01rem solid #1492FF;
                 border-right: .01rem solid #1492FF;
                 &:first-child {
                     border-top-left-radius: .05rem;

@@ -183,7 +183,7 @@
             <div class="picWrap">
                 <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
                     <img :src="item" class="pic" />
-                    <svg-icon icon-class="serveComponent_delete" />
+                    <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)"/>
                 </div>
                 <svg-icon  @click="uploadImg()" icon-class="serveComponent_upload" />
             </div>
@@ -420,8 +420,6 @@ export default {
                   onSuccess: function(data) {
                       console.log(data.picPath[0],'请求图片成功');
                       if(data.result){
-                          // 获取图片
-                          This.picArr.push(data.picPath[0])
                           // This.$store.dispatch('SET_ENCLOSURE',This.picArr)
                           let submitForm = {}; 
                           // 加入用户名和电子社保卡号
@@ -442,6 +440,8 @@ export default {
                               console.log('返回成功信息',resData) 
                               //   成功   1000
                               if ( resData.enCode == 1000 ) {
+                                  // 获取图片
+                                  This.picArr.push(data.picPath[0])
                                   This.form.photoIdList.push(resData.photoId);
                               }else if (resData.enCode == 1001 ) {
                               //   失败  1001
@@ -463,6 +463,13 @@ export default {
       })
       }
       
+  },
+  // 删除图片
+  deletePic(item,index){
+      console.log('删除图片',this.form.photoIdList);
+      this.picArr.splice(index,1)
+      this.form.photoIdList.splice(index,1)
+      console.log('删除后',this.form.photoIdList);
   },
   }
 };
