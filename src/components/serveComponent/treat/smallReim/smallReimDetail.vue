@@ -124,7 +124,7 @@ export default {
         this.request1()
         this.request2()
         // this.needSubmitInfo();  //判断是否需要提交资料
-        console.log(params);        
+        console.log(params);
     },
     data(){
         return{

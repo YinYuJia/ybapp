@@ -127,7 +127,7 @@
             <span>项目名称</span>
           </div>
           <div class="InfoText">
-            <input type="text" @click="project" :class="{disabledInput:threeDisabled}" v-model="form.AKE002" :disabled="threeDisabled" placeholder="请选择">
+            <input type="text" @click="project" :class="{disabledInput:threeDisabled}" v-model="form.AKE002" :disabled="threeDisabled" placeholder="请选择" readonly>
           </div>
         </div>
         <div class="InfoLine">
@@ -456,9 +456,11 @@ export default {
           .post(this.epFn.ApiUrl() + "/h5/jy1023/specialTreat", params)
           .then(resData => {
             if (resData.enCode == "1000") {
-              this.$toast(resData.msg)
+              
               this.$store.dispatch("SET_SPECIAL_DRUG", this.form);
               this.$router.push("/specialDrugDetail");
+            }else{
+              this.$toast(resData.msg)
             }
           });
       }

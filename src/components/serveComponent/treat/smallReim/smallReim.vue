@@ -151,7 +151,7 @@ export default {
                                     arr[i].AKC264 = arr[i].amount
                                     arr[i].AAE036 = arr[i].eInvoiceDate
                                     // resData.LS_DS1.AAE036 = resData.LS_DS1.eInvoiceStatus
-                                    arr[i].BKE554 = resData.LS_DS1.inVoiceFileURL
+                                    arr[i].BKE554 = resData.LS_DS1.invoiceFileURL
                                 }
                                 console.log('发票信息',arr);
                             }
