@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>申请地市</span></div>
+                    <div class="InfoName"><span>转往地市</span></div>
                     <div class="InfoText">
                         <input @click="openCityPicker" type="text" v-model="AAS011000" placeholder="请选择" readonly>
                     </div>

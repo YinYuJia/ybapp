@@ -69,6 +69,7 @@ export default {
 
 <style lang="less" scoped>
 .Footer {
+    user-select:none;
     height: 1.31rem;
     width: 7.5rem;
     position: fixed;
