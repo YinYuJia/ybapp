@@ -248,7 +248,7 @@ export default {
   },
   created() {
     this.epFn.setTitle('特治特药备案')
-    this.form = this.$store.state.SET_SPECIAL_DRUG;
+    // this.form = this.$store.state.SET_SPECIAL_DRUG;
     // this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
     // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
   },
