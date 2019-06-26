@@ -224,12 +224,13 @@ export default {
             border-radius: .05rem;
             display: flex;
             .MenuCell {
-                line-height: .6rem;
+                line-height: .62rem;
                 width: 100%;
                 color: #1492FF;
                 text-align: center;
                 letter-spacing: 0;
                 font-size: .28rem;
+                border-top: .01rem solid #1492FF;
                 border-right: .01rem solid #1492FF;
                 &:first-child {
                     border-top-left-radius: .05rem;
