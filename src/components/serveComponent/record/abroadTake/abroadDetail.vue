@@ -27,7 +27,7 @@
                     <div class="InfoText">{{form.BKE260 | tuoMin(3,3)}}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
+                <ProgressDate nameWidth="1.8rem"  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -57,6 +57,11 @@ export default {
         this.epFn.setTitle('出国带药备案')
         this.request();
         this.request1();
+        
+        if (window.history && window.history.pushState) {
+            history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', this.back, false);//false阻止默认事件
+        }
         // this.form = this.$store.state.SET_ABROADTAKE_OPERATION;
     },
     // computed:{
@@ -64,7 +69,13 @@ export default {
     //         return this.form.canbao.join(' ');
     //     },
     // },
+    destroyed(){
+        window.removeEventListener('popstate', this.back, false);//false阻止默认事件
+    },
     methods:{
+        back(){
+            this.$router.push('/')
+        },
         edit(){
             this.$router.push("/abroadTake");
         },

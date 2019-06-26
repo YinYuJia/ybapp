@@ -261,7 +261,7 @@ export default new Vuex.Store({  // 暴露与new vuex
         BKE252: '', //实际使用量
         AKB063: '', //备案天数
         AAE030: '', //开始日期
-        AAE031: '' //结束日期
+        AAE031: '', //结束日期
     },
         
       },

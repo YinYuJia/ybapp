@@ -52,7 +52,7 @@
                     <div class="InfoText">{{form.AAE031}}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
+                <ProgressDate nameWidth="2rem"  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -88,6 +88,7 @@ export default {
                 AAE030: "", //开始日期
                 AAE031: "" //结束日期
             },
+            AAB301000: "",
             arr: [
                 {step:1,name:'申请'},
                 {step:2,name:'受理'},
@@ -104,8 +105,19 @@ export default {
         // this.form = this.$store.state.SET_SPECIAL_DRUG;
         this.request();
         this.request1();
+        
+        if (window.history && window.history.pushState) {
+            history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', this.back, false);//false阻止默认事件
+        }
+    },
+    destroyed(){
+        window.removeEventListener('popstate', this.back, false);//false阻止默认事件
     },
     methods:{
+        back(){
+            this.$router.push('/')
+        },
         // 撤销提醒
         backout(){
             this.$messagebox.confirm('确定撤销吗?').then(() => {

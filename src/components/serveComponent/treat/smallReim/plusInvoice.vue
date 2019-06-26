@@ -19,11 +19,11 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>发票金额：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AAE036" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AKC264" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>发票日期：</span></div>
-                    <div class="InfoText"><input @click="openTimePicker()" type="text" v-model="form.AKC264" placeholder="请输入" readonly></div>
+                    <div class="InfoText"><input @click="openTimePicker()" type="text" v-model="form.AAE036" placeholder="请输入" readonly></div>
                 </div>
             </div>
             <!-- 需要补充信息 -->
@@ -48,8 +48,8 @@ export default {
             endDate: new Date(), //最晚选择时间
             form:{
                 BKE100: '', //发票号码
-                AAE036: '', //发票金额
-                AKC264: '', //发票日期,
+                AKC264: '', //发票金额
+                AAE036: '', //发票日期,
                 photoId: '',//图片id
                 photoUrl:''//图片URL
             },
@@ -58,12 +58,13 @@ export default {
     },
     created(){
         this.epFn.setTitle('零星报销')
+        console.log(this.$store.state,'this.$store.state.SET_SMALL_REIM_2');
     },
     watch: {
         form: {
             handler: function(val) {
                 // 判断不为空
-                if (val.BKE100 != '' && val.AAE036 != '' && val.AKC264 != '') {
+                if (val.BKE100 != '' && val.AKC264 != '' && val.AAE036 != '' && val.photoId !='') {
                     this.canSubmit = true;
                 } else {
                     this.canSubmit = false;
@@ -74,6 +75,10 @@ export default {
     },
     methods:{
         uploadImg(){
+            if(this.form.BKE100==''||this.form.AKC264==''||this.form.AAE036==''){
+                this.$toast("请先填写发票信息")
+                return
+            }
             let This = this
             if(this.$isSdk){
                 dd.ready({
@@ -89,9 +94,6 @@ export default {
                             
                             console.log(data.picPath[0],'请求图片成功');
                             if(data.result){
-                                // 获取图片
-                                This.form.photoUrl = data.picPath[0]
-                                alert(This.form.photoUrl)
                                 let submitForm = {}; 
                                  // 加入用户名和电子社保卡号
                                 if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -105,15 +107,18 @@ export default {
                                 submitForm.AGA002 = '给付-00007-019'
                                 submitForm.photoList = data.picPath[0]
                                 submitForm.PTX001 = '1'
-                                submitForm.BKE100 = this.form.BKE100
-                                submitForm.AAE036 = this.form.AAE036
-                                submitForm.AKC264 = this.form.AKC264
+                                // 发票信息
+                                submitForm.BKE100 = This.form.BKE100
+                                submitForm.AKC264 = This.form.AKC264
+                                submitForm.AAE036 = This.form.AAE036
                                 const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
                                 // /h5/jy2006/updPhoto
-                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/info', params).then((resData) => {
+                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
                                     console.log('返回成功信息',resData) 
                                     //   成功   1000
                                     if ( resData.enCode == 1000 ) {
+                                        // 获取图片
+                                        This.form.photoUrl = data.picPath[0]
                                         This.form.photoId = resData.photoId
                                     }else if (resData.enCode == 1001 ) {
                                     //   失败  1001
@@ -127,7 +132,7 @@ export default {
                             }
                         },
                         onFail: function(error) {
-                            this.$toast(error)
+                            This.$toast(error)
                             console.log("请求图片失败",error);
                             
                         }
@@ -142,6 +147,8 @@ export default {
                 // 因为接口不对，暂留信息
                 let submitForm = JSON.parse(JSON.stringify(this.form));
                 let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                console.log(this.$store.state.SET_SMALL_REIM_2,'this.$store.state.SET_SMALL_REIM_2');
+                
                 SET_SMALL_REIM_2.eleInvoices.push(submitForm)
                 this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
                 this.$router.push('invoiceInfo')
@@ -172,7 +179,7 @@ export default {
         // 封装提交的数据
         formatSubmitData(){
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
-            submitForm.AKC264 = this.util.DateToNumber(submitForm.AKC264) //改变日期格式
+            submitForm.AAE036 = this.util.DateToNumber(submitForm.AAE036) //改变日期格式
             submitForm.AKB020 = this.$store.state.SET_SMALL_REIM_SUBMIT.AKB020
             // 加入用户名和电子社保卡号
             // if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -192,7 +199,7 @@ export default {
         },
         handleTimeConfirm(val){
             let date = this.util.formatDate(val,'yyyy-MM-dd');
-            this.form.AKC264 = date;
+            this.form.AAE036 = date;
         }
     }
 }

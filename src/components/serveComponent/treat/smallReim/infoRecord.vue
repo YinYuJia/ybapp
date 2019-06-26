@@ -114,22 +114,39 @@ export default {
             submitForm.AAE010 = this.form.AAE010.replace(/\s+/g,'');
             submitForm.AAE008 = this.form.AAE008;
             submitForm.AAE009 = this.form.AAE009;
-            submitForm.photoIdList = []
+           
             
             // submitForm.LS_DS2 = [] 
             // 有电子发票
             if(this.$store.state.IS_INVOICE){
-                submitForm.LS_DS1 = this.$store.state.SET_SMALL_REIM_2.eleInvoices;
+                submitForm.photoIdList = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2.invoicesImg));
+                submitForm.photoIdList = submitForm.photoIdList.join(',')
+                console.log('submitForm.photoIdList',submitForm.photoIdList);
+                
+                submitForm.LS_DS1 = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2.eleInvoices))
+                for(let i=0;i<submitForm.LS_DS1.length;i++){
+                    if(!submitForm.LS_DS1[i].selected){
+                        submitForm.LS_DS1.splice(i,1)
+                        i--
+                        // delete submitForm.LS_DS1[i]
+                    }
+                }
             }else{
+
+                // eleInvoices: [], //电子发票信息
+                //   invoicesImg: [], //附件信息信息  图片id
                 // 手动添加发票
                 submitForm.LS_DS1 = []
-                let invoiceList = []
-                let eleInvoices = this.$store.state.SET_SMALL_REIM_2.eleInvoices
+                // let invoiceList = []
+                let eleInvoicesArr = []
+                let eleInvoices = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2.eleInvoices));
                 for(let i=0;i<eleInvoices.length;i++){
-                    invoiceList.push(eleInvoices[i].photoId)
+                    eleInvoicesArr.push(eleInvoices[i].photoId)
                 }
-                // submitForm.photoIdList = [...this.$store.state.SET_SMALL_REIM_2.invoicesImg,...invoiceList]
-                submitForm.photoIdList = [85]
+                eleInvoicesArr = eleInvoicesArr.join(',')
+                let invoicesImgArr = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2.invoicesImg));
+                invoicesImgArr = invoicesImgArr.join(',')
+                submitForm.photoIdList = eleInvoicesArr + ',' + invoicesImgArr
             }
             // this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
             // 加入用户名和电子社保卡号

@@ -34,7 +34,6 @@ function NumberToDate(number){
         let num = number.toString();
         let result = num.slice(0,4) + '-' + num.slice(4,6) + '-' + num.slice(6,8);
         return result;
-        return number
 
 }
 

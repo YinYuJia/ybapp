@@ -1,11 +1,11 @@
 <template>
     <div class="progressTime">
         <div class="InfoLine">
-            <div class="InfoName"><span>申请时间:</span></div>
+            <div class="InfoName" :style="{'width': nameWidth}"><span>申请时间:</span></div>
             <div class="InfoText">{{replyDate}}</div>
         </div>
         <div class="InfoLine">
-            <div class="InfoName"><span>进度时间:</span></div>
+            <div class="InfoName" :style="{'width': nameWidth}"><span>进度时间:</span></div>
             <div class="InfoText">{{progressDate}}</div>
         </div>
     </div>
@@ -21,6 +21,10 @@ export default {
         progressDate:{
             type: String,
             default: ''
+        },
+        nameWidth:{
+            type: String,
+            default: '1.5rem'
         }
     }
 }
@@ -36,7 +40,6 @@ export default {
         display: flex;
         border-bottom: .01rem solid #D5D5D5;
         .InfoName{
-            width: 1.5rem;
             line-height: 1.2rem;
             text-align: left;
             span{

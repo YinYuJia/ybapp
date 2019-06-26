@@ -69,7 +69,7 @@
                 <div class="picWrap">
                     <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
                         <img :src="item" class="pic" />
-                        <svg-icon icon-class="serveComponent_delete" />
+                        <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)" />
                     </div>
                     <svg-icon @click="uploadImg" icon-class="serveComponent_upload" />
                 </div>
@@ -128,17 +128,6 @@
                     } else {
                         this.canSubmit = false;
                     }
-                    // 判断时间间隔
-                    if (val.AAE030 != '' && val.AAE031 != '') {
-                    let AAE030 = new Date(val.AAE030);
-                    let AAE031 = new Date(val.AAE031);
-                    let month = 24 * 3600 * 1000 * 30;
-                    let gap = AAE031 - AAE030;
-                    if (gap <= 0) {
-                        this.$toast('开始日期需大于结束日期');
-                        this.form.AAE031 = '';
-                    }
-                    }
                     // 判断转入转出地
                     if (val.AAB027 != '' && val.AAB301 != '') {
                         if(val.AAB027==val.AAB301){
@@ -154,69 +143,75 @@
             },
         },
         methods: {
-             // 上传图片附件
-        uploadImg(){
-            console.log("zhaopian")
-            let This = this
-            if(this.$isSdk){
-                dd.ready({
-                developer: 'daip@dtdream.com',
-                usage: [
-                    'dd.device.notification.chooseImage',
-                ],
-                remark: '描述业务场景'
-                }, function() {
-                    dd.device.notification.chooseImage ({
-                        onSuccess: function(data) {
-                            console.log(data.picPath[0],'请求图片成功');
-                            if(data.result){
-                                // 获取图片
-                                This.picArr.push(data.picPath[0])
-                                // This.$store.dispatch('SET_ENCLOSURE',This.picArr)
-                                let submitForm = {}; 
-                                 // 加入用户名和电子社保卡号
-                                if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                                    submitForm.AAC003 = This.$store.state.SET_NATIVEMSG.name;
-                                    submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
-                                }else {
-                                    submitForm.AAC003 = '许肖军';
-                                    submitForm.AAE135 = "332625197501010910";
-                                }
-                                // 加入子项编码
-                                submitForm.AGA002 = '确认-00253-002'
-                                submitForm.photoList = data.picPath[0]
-                                submitForm.PTX001 = '2'
-                                const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
-                                // 图片上传后台
-                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
-                                    console.log('返回成功信息',resData) 
-                                    //   成功   1000
-                                    if ( resData.enCode == 1000 ) {
-                                        This.form.photoIdList.push(resData.photoId);
-                                        // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
-                                        // SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
-                                        // this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
-                                    }else if (resData.enCode == 1001 ) {
-                                    //   失败  1001
-                                        This.$toast(resData.msg);
-                                        return;
-                                    }else{
-                                        This.$toast('业务出错');
-                                        return;
+            // 上传图片附件
+            uploadImg(){
+                let This = this
+                if(this.$isSdk){
+                    dd.ready({
+                    developer: 'daip@dtdream.com',
+                    usage: [
+                        'dd.device.notification.chooseImage',
+                    ],
+                    remark: '描述业务场景'
+                    }, function() {
+                        dd.device.notification.chooseImage ({
+                            onSuccess: function(data) {
+                                console.log(data.picPath[0],'请求图片成功');
+                                if(data.result){
+                                    // This.$store.dispatch('SET_ENCLOSURE',This.picArr)
+                                    let submitForm = {}; 
+                                    // 加入用户名和电子社保卡号
+                                    if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                                        submitForm.AAC003 = This.$store.state.SET_NATIVEMSG.name;
+                                        submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
+                                    }else {
+                                        submitForm.AAC003 = '许肖军';
+                                        submitForm.AAE135 = "332625197501010910";
                                     }
-                                })
+                                    // 加入子项编码
+                                    submitForm.AGA002 = '确认-00253-002'
+                                    submitForm.photoList = data.picPath[0]
+                                    submitForm.PTX001 = '2'
+                                    const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
+                                    // 图片上传后台
+                                    This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
+                                        console.log('返回成功信息',resData) 
+                                        //   成功   1000
+                                        if ( resData.enCode == 1000 ) {
+                                            // 获取图片
+                                            This.picArr.push(data.picPath[0]);
+                                            This.form.photoIdList.push(resData.photoId);
+                                            // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                                            // SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
+                                            // this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                                        }else if (resData.enCode == 1001 ) {
+                                        //   失败  1001
+                                            This.$toast(resData.msg);
+                                            return;
+                                        }else{
+                                            This.$toast('业务出错');
+                                            return;
+                                        }
+                                    })
+                                }
+                            },
+                            onFail: function(error) {
+                                this.$toast(error)
+                                console.log("请求图片失败",error);
+                                
                             }
-                        },
-                        onFail: function(error) {
-                            this.$toast(error)
-                            console.log("请求图片失败",error);
-                            
-                        }
-                    })
-            })
-            }
-            
-        },
+                        })
+                })
+                }
+                
+            },
+            // 删除图片
+            deletePic(item,index){
+                console.log('删除图片',this.form.photoIdList);
+                this.picArr.splice(index,1)
+                this.form.photoIdList.splice(index,1)
+                console.log('删除后',this.form.photoIdList);
+            },
             // 选择参保地
             openInsuredPicker(){
                 this.$refs.insuredPicker.open();
@@ -235,23 +230,13 @@
                 let date = this.util.formatDate(val,'yyyy-MM-dd');
                 this.form.AAE030 = date;
             },
-            // 计算三个月后日期
+            // 计算90天后日期
             getEndDate(val){
-                let year = val.getFullYear();
-                let month = val.getMonth()+1;
-                let day = val.getDate();
-                console.log(month);
-                
-                if(month + 3 > 12){
-                    year ++;
-                    month = month + 3 - 12;
-                }else{
-                    month += 3;
-                }
-                if(month < 10){
-                    month = '0' + month;
-                }
-                this.form.AAE031 = year + '-' + month + '-' + day;
+                let start = val.getTime();
+                let end = start + (24*3600*90*1000);
+                let date = this.util.formatDate(new Date(end),'yyyy-MM-dd');
+                console.log(date);
+                this.form.AAE031 = date;
             },
             // 选择转往地市
             openCityPicker(){
