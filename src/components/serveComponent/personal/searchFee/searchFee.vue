@@ -51,7 +51,10 @@ export default {
         }
     },
     created () {
-        this.epFn.setTitle('个人费用查询')
+        this.epFn.setTitle('个人费用查询');
+        this.form.AAE031 = this.util.formatDate(new Date(),'yyyy-MM-dd');
+        // 计算三个月前日期
+        this.getStartDate(new Date());
         // this.form = this.$store.state.SET_SEARCHFEE_OPERATION;
     },
     watch: {
@@ -79,6 +82,13 @@ export default {
         },
     },
     methods:{
+        // 计算三个月前日期
+        getStartDate(val){
+            let end = val.getTime();
+            let start = end - (24*3600*90*1000);
+            let date = this.util.formatDate(new Date(start),'yyyy-MM-dd');
+            this.form.AAE030 = date;
+        },
         // 选择离开日期
         openStartPicker(){
             this.$refs.startPicker.open();
