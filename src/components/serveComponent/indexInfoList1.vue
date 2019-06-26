@@ -78,7 +78,7 @@
             <swipe>
                 <swipe-item><svg-icon icon-class="serveComponent_icon15" /></swipe-item>
                 <swipe-item><svg-icon icon-class="serveComponent_icon15" /></swipe-item>
-                <swipe-item><svg-icon icon-class="serveComponent_icon15" /></swipe-item>
+                <swipe-item><svg-icon icon-class="serveComponent_icon16" /></swipe-item>
             </swipe>
         </div>
         <!-- 热点资讯 -->
