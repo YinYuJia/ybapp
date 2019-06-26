@@ -82,7 +82,8 @@
 <script>
     export default {
         data() {
-            return {           
+            return {
+                picArr: [],//附件集合
                 AAB301000: '', //参保地
                 form: {
                     AAS301: '', //参保地省
