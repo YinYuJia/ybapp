@@ -15,19 +15,19 @@
             <!-- 参保服务 -->
             <div class="iconList">
                 <div class="iconContent" id="insured">
-                    <div class="iconBox" @click="showWork('/getProof','参保服务','领取就医凭证')">
+                    <div class="iconBox" @click="showDetail('getProof','领取就医凭证')">
                         <svg-icon icon-class="serveComponent_icon_1" />
                         <div class="text">就医凭证</div>
                     </div>
-                    <div class="iconBox" @click="showWork('/insuredChange','参保服务','信息变更')">
+                    <div class="iconBox" @click="showDetail('insuredChange','参保信息变更')">
                         <svg-icon icon-class="serveComponent_icon_2" />
                         <div class="text">参保变更</div>
                     </div>
-                    <div class="iconBox" @click="showWork('/searchPrint','参保服务','打印信息')">
+                    <div class="iconBox" @click="showDetail('searchPrint','打印信息')">
                         <svg-icon icon-class="serveComponent_icon_3" />
                         <div class="text">打印信息</div>
                     </div>
-                    <div class="iconBox" @click="showWork('/transferRenewing','参保服务','关系转移接续')">
+                    <div class="iconBox" @click="showDetail('transferRenewing','关系转移接续')">
                         <svg-icon icon-class="serveComponent_icon_4" />
                         <div class="text">转移接续</div>
                     </div>
@@ -37,27 +37,27 @@
             <div class="iconList">
                 <div class="listHeader">备案服务</div>
                 <div class="iconContent" id="record">
-                    <div class="iconBox" @click="showWork('/elseWhere','备案服务','异地就医备案')">
+                    <div class="iconBox" @click="showDetail('elseWhere','异地就医备案')">
                         <svg-icon icon-class="serveComponent_icon_5" />
                         <div class="text">异地备案</div>
                     </div>
-                    <div class="iconBox" @click="showWork('/turnOut','备案服务','转外备案')">
+                    <div class="iconBox" @click="showDetail('turnOut','转外备案')">
                         <svg-icon icon-class="serveComponent_icon_6" />
                         <div class="text">转外就医</div>
                     </div>
-                    <div class="iconBox" @click="showWork('/abroadTake','备案服务','出国带药')">
+                    <div class="iconBox" @click="showDetail('abroadTake','出国带药')">
                         <svg-icon icon-class="serveComponent_icon_7" />
                         <div class="text">出国带药</div>
                     </div>
-                    <div class="iconBox" @click="showWork('/familyAid','备案服务','家庭共济')">
+                    <div class="iconBox" @click="showDetail('familyAid','家庭共济')">
                         <svg-icon icon-class="serveComponent_icon_8" />
                         <div class="text">家庭共济</div>
                     </div>
-                    <div class="iconBox" @click="showWork('/specialDrug','备案服务','特制特药备案')">
+                    <div class="iconBox" @click="showDetail('specialDrug','特制特药备案')">
                         <svg-icon icon-class="serveComponent_icon_9" />
                         <div class="text">特药备案</div>
                     </div>
-                    <div class="iconBox" @click="showWork('/chronicDisease','备案服务','规定（特殊慢性）病种待遇备案')">
+                    <div class="iconBox" @click="showDetail('chronicDisease','规定（特殊慢性）病种待遇备案')">
                         <svg-icon icon-class="serveComponent_icon_10" />
                         <div class="text">规定病种</div>
                     </div>
@@ -69,11 +69,11 @@
             <div class="iconList">
                 <div class="listHeader">待遇服务</div>
                 <div class="iconContent" id="treat">
-                    <div class="iconBox" @click="showWork('/smallReim','待遇报销','基本医疗保险参保人员医疗费用零星报销')">
+                    <div class="iconBox" @click="showDetail('smallReim','基本医疗保险参保人员医疗费用零星报销')">
                         <svg-icon icon-class="serveComponent_icon_11" />
                         <div class="text">零星报销</div>
                     </div>
-                    <div class="iconBox" @click="showWork('/payLimit','缴费年限','视同缴费年限核定')">
+                    <div class="iconBox" @click="showDetail('payLimit','视同缴费年限核定')">
                         <svg-icon icon-class="serveComponent_icon_12" />
                         <div class="text">缴费年限</div>
                     </div>

@@ -27,11 +27,11 @@
         <!-- 图标列表 -->
         <div class="iconContent">
             <div class="iconList">
-                <div class="iconBox" @click="showWork('/smallReim','待遇报销','基本医疗保险参保人员医疗费用零星报销')">
+                <div class="iconBox" @click="showDetail('smallReim','基本医疗保险参保人员医疗费用零星报销')">
                     <svg-icon icon-class="serveComponent_icon_11" />
                     <div class="text">零星报销</div>
                 </div>
-                <div class="iconBox" @click="showWork('/transferRenewing','参保服务','关系转移接续')">
+                <div class="iconBox" @click="showDetail('transferRenewing','关系转移接续')">
                     <svg-icon icon-class="serveComponent_icon_4" />
                     <div class="text">转移接续</div>
                 </div>
@@ -45,19 +45,19 @@
                 </div>
             </div>
             <div class="iconList">
-                <div class="iconBox" @click="showWork('/elseWhere','备案服务','异地就医备案')">
+                <div class="iconBox" @click="showDetail('elseWhere','异地就医备案')">
                     <svg-icon icon-class="serveComponent_icon9" />
                     <div class="text">异地备案</div>
                 </div>
-                <div class="iconBox" @click="showWork('/specialDrug','备案服务','特制特药备案')">
+                <div class="iconBox" @click="showDetail('specialDrug','特制特药备案')">
                     <svg-icon icon-class="serveComponent_icon10" />
                     <div class="text">特药备案</div>
                 </div>
-                <div class="iconBox" @click="showWork('/getProof','参保服务','领取就医凭证')">
+                <div class="iconBox" @click="showDetail('getProof','领取就医凭证')">
                     <svg-icon icon-class="serveComponent_icon11" />
                     <div class="text">就医凭证</div>
                 </div>
-                <div class="iconBox" @click="goRouter('/indexInfoListMore')">
+                <div class="iconBox" @click="goRouter('indexInfoListMore')">
                     <svg-icon icon-class="serveComponent_icon12" />
                     <div class="text">更多</div>
                 </div>

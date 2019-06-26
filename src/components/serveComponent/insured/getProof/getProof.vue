@@ -129,6 +129,7 @@ export default {
         },
     },
     created(){
+        console.log("----this.$router.params----",this.$route.params)
         this.getMailInfo(); //自动获取邮寄信息
         this.form = this.$store.state.SET_INSURED_PROOF;
         // 获取位置

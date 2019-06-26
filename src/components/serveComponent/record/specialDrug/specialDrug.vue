@@ -573,6 +573,7 @@ export default {
           position: relative;
           align-items: center;
           input {
+            width: 4rem;
             background-color: #fff;
             height: 0.6rem;
             color: #000000;
