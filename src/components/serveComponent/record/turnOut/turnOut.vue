@@ -69,7 +69,7 @@
                 <div class="picWrap">
                     <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
                         <img :src="item" class="pic" />
-                        <svg-icon icon-class="serveComponent_delete" />
+                        <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)" />
                     </div>
                     <svg-icon @click="uploadImg" icon-class="serveComponent_upload" />
                 </div>
@@ -204,6 +204,11 @@
                 })
                 }
                 
+            },
+            // 删除图片
+            deletePic(item,index){
+                this.picArr.splice(index,1)
+                this.picArrNum.splice(index,1)
             },
             // 选择参保地
             openInsuredPicker(){
