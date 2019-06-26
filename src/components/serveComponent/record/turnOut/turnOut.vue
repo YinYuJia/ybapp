@@ -128,17 +128,6 @@
                     } else {
                         this.canSubmit = false;
                     }
-                    // 判断时间间隔
-                    if (val.AAE030 != '' && val.AAE031 != '') {
-                    let AAE030 = new Date(val.AAE030);
-                    let AAE031 = new Date(val.AAE031);
-                    let month = 24 * 3600 * 1000 * 30;
-                    let gap = AAE031 - AAE030;
-                    if (gap <= 0) {
-                        this.$toast('开始日期需大于结束日期');
-                        this.form.AAE031 = '';
-                    }
-                    }
                     // 判断转入转出地
                     if (val.AAB027 != '' && val.AAB301 != '') {
                         if(val.AAB027==val.AAB301){
@@ -234,23 +223,13 @@
                 let date = this.util.formatDate(val,'yyyy-MM-dd');
                 this.form.AAE030 = date;
             },
-            // 计算三个月后日期
+            // 计算90天后日期
             getEndDate(val){
-                let year = val.getFullYear();
-                let month = val.getMonth()+1;
-                let day = val.getDate();
-                console.log(month);
-                
-                if(month + 3 > 12){
-                    year ++;
-                    month = month + 3 - 12;
-                }else{
-                    month += 3;
-                }
-                if(month < 10){
-                    month = '0' + month;
-                }
-                this.form.AAE031 = year + '-' + month + '-' + day;
+                let start = val.getTime();
+                let end = start + (24*3600*90*1000);
+                let date = this.util.formatDate(new Date(end),'yyyy-MM-dd');
+                console.log(date);
+                this.form.AAE031 = date;
             },
             // 选择转往地市
             openCityPicker(){
