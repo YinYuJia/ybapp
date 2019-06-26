@@ -98,8 +98,7 @@
                     AAQ027:"",  //转往区
                     AKA121: '',//疾病名称
                     BKE255: '', //就诊疗程
-                    // photoIdList:[],//照片ID数组
-                    photoIdList: '',
+                    photoIdList:[],//照片ID数组
                     BKZ019:""
                 },
                 BKE255VALUE: '',
@@ -193,10 +192,7 @@
                                     console.log('返回成功信息',resData) 
                                     //   成功   1000
                                     if ( resData.enCode == 1000 ) {
-                                        console.log('photoId',resData.photoId);
-                                        // This.form.photoIdList.push(resData.photoId);
-                                        This.form.photoIdList += ',' + resData.photoId;
-                                        console.log(This.form.photoIdList);
+                                        This.form.photoIdList.push(resData.photoId);
                                         // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
                                         // SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
                                         // this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
@@ -323,7 +319,7 @@
                 submitForm.AAQ301 =  this.form.AAQ301;//参保地区
                 submitForm.AKA121 =  this.form.AKA121;//疾病名称
                 submitForm.BKE255 =  this.form.BKE255;//就诊疗程
-                submitForm.photoIdList =  this.form.photoIdList.replace(',','');//照片ID数组
+                submitForm.photoIdList =  this.form.photoIdList.join(',');//照片ID数组
                 submitForm.BKZ019 =  this.form.BKZ019;//经办编号
                 // submitForm.debugTest=  "true";
                 // submitForm.dibuger =  "true";
