@@ -414,9 +414,11 @@ export default {
           .post(this.epFn.ApiUrl() + "/h5/jy1023/specialTreat", params)
           .then(resData => {
             if (resData.enCode == "1000") {
-              this.$toast(resData.msg)
+              
               this.$store.dispatch("SET_SPECIAL_DRUG", this.form);
               this.$router.push("/specialDrugDetail");
+            }else{
+              this.$toast(resData.msg)
             }
           });
       }
