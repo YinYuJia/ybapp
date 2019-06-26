@@ -62,7 +62,7 @@ Vue.config.productionTip = false;
  if(process.env.NODE_ENV == 'development') {
   Vue.prototype.$isSdk = true
 }else{
-  Vue.prototype.$isSdk = false
+  Vue.prototype.$isSdk = true
 
 }
 Object.keys(filters).forEach(key => {
