@@ -155,8 +155,8 @@ export default new Vuex.Store({  // 暴露与new vuex
 
         // 零星报销
         SET_SMALL_REIM_SUBMIT:{
-          AAS301: '330000', //参保地统筹省编码
-          AAB301: '330100', //参保地统筹市编码
+          AAS301: '', //参保地统筹省编码
+          AAB301: '', //参保地统筹市编码
           AKC264: 0, //发票费用总额
           AAE008: '', //收款开户行
           AAE009: '', //收款开户名
