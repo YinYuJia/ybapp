@@ -7,7 +7,7 @@
             <!-- 自动获取发票信息 -->
             <div class="invoiceContent" v-if="hasInvoice">
                 <div class="invoiceHint">请选择您的报销条目</div>
-                <div class="invoiceList" v-for="item in invoices" :key="item.BKE100">
+                <div class="invoiceList" v-for="(item,index) in invoices" :key="index">
                     <div class="selectIcon" @click="chooseInvoice(item)">
                         <svg-icon v-if="item.selected" icon-class="serveComponent_select" />
                     </div>
@@ -17,13 +17,14 @@
                             <span class="textName">发票号</span>
                             <span class="textInfo active">{{item.BKE100}}</span>
                         </div>
-                        <div class="textLine">
-                            <span class="textName">科室名称</span>
-                            <span class="textInfo">{{item.BKA104}}</span>
-                        </div>
+                       
                         <div class="textLine">
                             <span class="textName">总费用</span>
                             <span class="textInfo">{{item.AKC264}}</span>
+                        </div>
+                         <div class="textLine">
+                            <span class="textName">发票日期</span>
+                            <span class="textInfo">{{item.AAE036}}</span>
                         </div>
                     </div>
                 </div>
@@ -42,11 +43,11 @@
                         </div>
                         <div class="textLine">
                             <span class="textName">发票金额</span>
-                            <span class="textInfo">{{item.AAE036}}</span>
+                            <span class="textInfo">{{item.AKC264}}</span>
                         </div>
                         <div class="textLine">
                             <span class="textName">发票日期</span>
-                            <span class="textInfo">{{item.AKC264}}</span>
+                            <span class="textInfo">{{item.AAE036}}</span>
                         </div>
                     </div>
                     <div class="deleteBtn">删除</div>
@@ -60,7 +61,7 @@
             <div class="picWrap">
                 <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
                     <img :src="item" class="pic" />
-                    <svg-icon icon-class="serveComponent_delete" />
+                    <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)" />
                 </div>
                 <svg-icon @click="uploadImg" icon-class="serveComponent_upload" />
             </div>
@@ -101,28 +102,48 @@ export default {
             // ],
             invoices: [],//发票信息
             picArr: [],//附件集合
+            picArrNum: [],//附件图片id集合
             invoiceCount: {price:0,count:0}, // 发票合计
         }
     },
     created() {
+        this.picArrNum = this.$store.state.SET_SMALL_REIM_2.invoicesImg
         this.hasInvoice = this.$store.state.IS_INVOICE
         this.epFn.setTitle('零星报销')
         // 获取VUEX信息
         this.invoices = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2.eleInvoices));
+        console.log('发票信息',this.invoices);
+        
         // 附件集合
         this.picArr = JSON.parse(JSON.stringify(this.$store.state.SET_ENCLOSURE));
         // 封装发票
-        console.log(this.invoices,'invoices');
         
-        this.invoices.forEach((val)=>{
-            val.selected = false;
-        })
-        if(!this.hasInvoice){
+        
+        console.log(this.invoices,'55555');
+        // 有发票信息
+        if(this.hasInvoice){
+           
+            if(!this.invoices[0].hasOwnProperty('selected')){
+                 this.invoices.forEach((val)=>{
+                    val.selected = true;
+                })
+            }
             let index = 0
             let price = 0
+             for(let i=0;i<this.invoices.length;i++){
+                if(this.invoices[i].selected){
+                    index = i+1
+                    price += parseFloat(this.invoices[i].AKC264)
+                }
+            }
+            this.invoiceCount.count = index
+            this.invoiceCount.price = price
+        }
+        if(!this.hasInvoice){
+            
             for(let i=0;i<this.invoices.length;i++){
                 index = i+1
-                price += parseFloat(this.invoices[i].AAE036)
+                price += parseFloat(this.invoices[i].AKC264)
             }
             this.invoiceCount.count = index
             this.invoiceCount.price = price
@@ -163,13 +184,13 @@ export default {
                                 submitForm.PTX001 = '2'
                                 const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
                                 // 图片上传后台
-                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/info', params).then((resData) => {
-                                    console.log('返回成功信息',resData) 
+                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
                                     //   成功   1000
                                     if ( resData.enCode == 1000 ) {
-                                        let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
-                                        SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
-                                        this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                                        This.picArrNum.push(resData.photoId)
+                                        
+                                        console.log(This.$store.state.SET_SMALL_REIM_2,'照片数组');
+                                        
                                     }else if (resData.enCode == 1001 ) {
                                     //   失败  1001
                                         This.$toast(resData.msg);
@@ -191,6 +212,11 @@ export default {
             }
             
         },
+        // 删除图片
+        deletePic(item,index){
+            this.picArr.splice(index,1)
+            this.picArrNum.splice(index,1)
+        },
         // 选择发票
         chooseInvoice(invoice){
             invoice.selected = !invoice.selected;
@@ -198,7 +224,7 @@ export default {
             var count = 0;
             this.invoices.forEach((val)=>{
                 if(val.selected == true){
-                    price += val.AKC264;
+                    price += parseInt(val.AKC264);
                     count++;
                 }
             });
@@ -220,7 +246,18 @@ export default {
                 submitForm.BKC013 = this.invoiceCount.count;
                 submitForm.AKC264 = this.invoiceCount.price;
                 this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
+                
+                let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                SET_SMALL_REIM_2.eleInvoices = this.invoices
+                SET_SMALL_REIM_2.invoicesImg = this.picArrNum
+                this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                console.log(333,this.invoices.length);
+                console.log(222,this.$store.state.SET_SMALL_REIM_2.eleInvoices.length);
+                
                 this.$router.push('/infoRecord');
+                // let SET_SMALL_REIM_2 = This.$store.state.SET_SMALL_REIM_2
+                // .push()
+                // This.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
             }
         },
     }

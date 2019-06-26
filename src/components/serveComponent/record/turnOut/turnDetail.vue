@@ -31,7 +31,7 @@
                     <div class="InfoText">{{form.BKE255 | medicaladvice }}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
+                <ProgressDate nameWidth="1.8rem"  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
         <!-- 底部 -->
@@ -63,8 +63,19 @@ export default {
         // this.form = this.$store.state.SET_TURNOUT_OPERATION;
         this.request();
         this.request1();
+        if (window.history && window.history.pushState) {
+            history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', this.back, false);//false阻止默认事件
+        }
+    },
+    destroyed(){
+        window.removeEventListener('popstate', this.back, false);//false阻止默认事件
     },
     methods:{
+        
+        back(){
+            this.$router.push('/')
+        },
         edit(){
             this.$router.push("/turnOut");
         },
@@ -107,9 +118,6 @@ export default {
                 if(this.form.AAQ301VALUE==undefined){
                     this.form.AAQ301VALUE='省本级';
                 } 
-                console.log(typeof(this.form.AAE030))
-                this.form.AAE030=this.util.NumberToDate(this.form.AAE030)
-                this.form.AAE031=this.util.NumberToDate(this.form.AAE031)
                 this.AAS027000=this.form.AAS027VALUE+this.form.AAB027VALUE
                 this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
                 this.handleNumber = resData.LS_DS_09.BKZ019
