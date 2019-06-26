@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="88px" viewBox="0 0 160 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>药品目录</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="160" height="88" rx="4"></rect>
+        <filter x="-14.7%" y="-5.4%" width="119.6%" height="121.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="-5" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 0.792156863   0 0 0 0 0.88627451   0 0 0 0 0.968627451  0 0 0 0.307942708 0" type="matrix" in="shadowOffsetOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="药品目录" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="定点药店">
+            <g id="Group-4">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#FD9933" xlink:href="#path-1"></use>
+                <g id="Group-23-Copy-2" mask="url(#mask-2)">
+                    <g transform="translate(35.000000, 29.000000)">
+                        <path d="M128.470588,31.8363636 C126.959927,31.8363636 125.735294,33.1062469 125.735294,34.6727273 L125.735294,49.3272727 C125.735294,50.8937531 126.959927,52.1636364 128.470588,52.1636364 L148.529412,52.1636364 C150.040073,52.1636364 151.264706,50.8937531 151.264706,49.3272727 L151.264706,34.6727273 C151.264706,33.1062469 150.040073,31.8363636 148.529412,31.8363636 L128.470588,31.8363636 Z M154,35.1454545 L151.264706,35.1454545 L151.264706,48.3818182 L154,48.3818182 L154,49.3272727 C154,52.4602335 151.550734,55 148.529412,55 L128.470588,55 C125.449266,55 123,52.4602335 123,49.3272727 L123,34.6727273 C123,31.5397665 125.449266,29 128.470588,29 L148.529412,29 C151.550734,29 154,31.5397665 154,34.6727273 L154,35.1454545 Z" id="Combined-Shape" stroke="none" fill="#126FC8" fill-rule="nonzero"></path>
+                        <rect id="Rectangle-32" stroke="#C86412" stroke-width="2" fill="none" x="39" y="39" width="37" height="9" rx="4.5"></rect>
+                        <rect id="Rectangle-30" stroke="none" fill="#D55D36" fill-rule="evenodd" x="53" y="0" width="28" height="4" rx="2"></rect>
+                        <rect id="Rectangle-27" stroke="#FFE29B" stroke-width="2" fill="#FFFFFF" fill-rule="evenodd" x="49" y="4" width="35" height="50" rx="4"></rect>
+                        <path d="M76,4 L58,4 L58,6 C58,7.1045695 58.8954305,8 60,8 L74,8 C75.1045695,8 76,7.1045695 76,6 L76,4 Z" id="Combined-Shape" stroke="#ECCF67" stroke-width="2" fill="none"></path>
+                        <circle id="Oval-6-Copy" stroke="#F3E382" stroke-width="2" fill="none" cx="57" cy="48" r="3"></circle>
+                        <rect id="Rectangle-33" stroke="none" fill="#C86412" fill-rule="evenodd" x="48" y="47" width="6" height="2"></rect>
+                        <rect id="Rectangle-28" stroke="none" fill="#D8D8D8" fill-rule="evenodd" x="53" y="14" width="9" height="11"></rect>
+                        <rect id="Rectangle-29" stroke="none" fill="#D8D8D8" fill-rule="evenodd" x="53" y="29" width="26" height="2" rx="1"></rect>
+                        <rect id="Rectangle-29-Copy-5" stroke="none" fill="#D8D8D8" fill-rule="evenodd" x="64" y="22" width="9" height="2" rx="1"></rect>
+                        <rect id="Rectangle-29-Copy-6" stroke="none" fill="#ECD067" fill-rule="evenodd" x="64" y="18" width="9" height="2" rx="1"></rect>
+                        <rect id="Rectangle-29-Copy-7" stroke="none" fill="#ECD067" fill-rule="evenodd" x="64" y="14" width="15" height="2" rx="1"></rect>
+                        <rect id="Rectangle-29-Copy-2" stroke="none" fill="#D8D8D8" fill-rule="evenodd" x="53" y="34" width="26" height="2" rx="1"></rect>
+                        <rect id="Rectangle-29-Copy-3" stroke="none" fill="#D8D8D8" fill-rule="evenodd" x="53" y="38" width="26" height="2" rx="1"></rect>
+                        <rect id="Rectangle-29-Copy-4" stroke="none" fill="#D8D8D8" fill-rule="evenodd" x="53" y="42" width="26" height="2" rx="1"></rect>
+                        <g id="Group-18" filter="url(#filter-3)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(79.000000, 8.000000)">
+                            <rect id="Rectangle-26" stroke="#D55D36" stroke-width="4" x="9.28571429" y="2" width="32.4285714" height="9.93939394" rx="4.96969697"></rect>
+                            <rect id="Rectangle-25" fill="#F3E382" x="5.00892857" y="5.57575758" width="6.375" height="5.57575758" rx="2"></rect>
+                            <rect id="Rectangle-25-Copy" fill="#F3E382" x="39.6160714" y="5.57575758" width="6.375" height="5.57575758" rx="2"></rect>
+                            <rect id="Rectangle-23" fill="#FFFFFF" x="0" y="7.8989899" width="51" height="38.1010101" rx="6"></rect>
+                            <ellipse id="Oval-5" fill="#ECD067" cx="25.5" cy="27.4141414" rx="10.0178571" ry="10.2222222"></ellipse>
+                            <path d="M24.1060606,26.5555556 L24.1060606,23.8512807 L26.8939394,23.8512807 L26.8939394,26.5555556 L29.5982143,26.5555556 L29.5982143,29.3434343 L26.8939394,29.3434343 L26.8939394,32.0477092 L24.1060606,32.0477092 L24.1060606,29.3434343 L21.4017857,29.3434343 L21.4017857,26.5555556 L24.1060606,26.5555556 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                        </g>
+                        <path d="M26.2154114,21.8262841 L26.2154114,25.7853015 L22,31.7711714 L22,51.0164445 C23.1415906,53.0054815 24.337846,54 25.5887662,54 C26.8396864,54 29.0150194,54 32.1147653,54 C34.0382551,52.6660351 35,51.6715165 35,51.0164445 C35,50.3613724 35,43.9462814 35,31.7711714 L30.6828143,25.7853015 L30.6828143,21 L26.2154114,21 L26.2154114,21.8262841 Z" id="Path-80" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+                        <rect id="Rectangle-41" stroke="none" fill="#ECD067" fill-rule="evenodd" x="24" y="35" width="9" height="6" rx="3"></rect>
+                        <path d="M28.3333333,37.3333333 L28.3333333,36 L29.6666667,36 L29.6666667,37.3333333 L31,37.3333333 L31,38.6666667 L29.6666667,38.6666667 L29.6666667,40 L28.3333333,40 L28.3333333,38.6666667 L27,38.6666667 L27,37.3333333 L28.3333333,37.3333333 Z" id="Combined-Shape-Copy-2" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+                        <rect id="Rectangle-43" stroke="none" fill="#ECD067" fill-rule="evenodd" x="24" y="43" width="9" height="2"></rect>
+                        <rect id="Rectangle-44" stroke="none" fill="#F3E382" fill-rule="evenodd" x="25" y="19" width="7" height="4" rx="1"></rect>
+                        <rect id="Rectangle-42" stroke="none" fill="#E44D1C" fill-rule="evenodd" x="11" y="52" width="264" height="11" rx="5.5"></rect>
+                    </g>
+                </g>
+            </g>
+            <text id="药品目录" font-family="PingFangSC-Medium, PingFang SC" font-size="16" font-weight="400" fill="#FFFFFF">
+                <tspan x="11" y="27">药品目录</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

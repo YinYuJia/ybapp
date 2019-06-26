@@ -67,12 +67,9 @@
         <div class="banner">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <svg-icon icon-class="serveComponent_icon13" /></div>
-                    <div class="swiper-slide">
-                        <svg-icon icon-class="serveComponent_icon14" /></div>
-                    <div class="swiper-slide">
-                        <svg-icon icon-class="serveComponent_icon13" /></div>
+                    <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon13" /></div>
+                    <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon14" /></div>
+                    <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon16" /></div>
                 </div>
             </div>
         </div>
