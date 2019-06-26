@@ -58,7 +58,7 @@ export default {
     },
     created(){
         this.epFn.setTitle('零星报销')
-        console.log(this.$store.state,'this.$store.state.SET_SMALL_REIM_2');
+        console.log(this.$store.state.SET_SMALL_REIM_2,'this.$store.state.SET_SMALL_REIM_2');
     },
     watch: {
         form: {
@@ -94,6 +94,8 @@ export default {
                             
                             console.log(data.picPath[0],'请求图片成功');
                             if(data.result){
+                                // 获取图片
+                                
                                 let submitForm = {}; 
                                  // 加入用户名和电子社保卡号
                                 if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -158,6 +160,10 @@ export default {
                     console.log('返回成功信息',resData) 
                     //   成功   1000
                     if ( resData.enCode == 1000 ) {
+                        // if(resData.BKE521==1){
+                        //     this.$toast("该发票未找到，请填写正确的信息")
+                        //     return
+                        // }
                         // let submitForm = JSON.parse(JSON.stringify(this.form));
                         // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
                         // SET_SMALL_REIM_2.eleInvoices.push(submitForm)
@@ -181,14 +187,15 @@ export default {
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
             submitForm.AAE036 = this.util.DateToNumber(submitForm.AAE036) //改变日期格式
             submitForm.AKB020 = this.$store.state.SET_SMALL_REIM_SUBMIT.AKB020
+            submitForm.AKA078 = this.$store.state.SET_SMALL_REIM_1.AKA078
             // 加入用户名和电子社保卡号
-            // if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-            //     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-            //     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
-            // }else {
-            //     submitForm.AAC003 = '许肖军';
-            //     submitForm.AAE135 = "332625197501010910";
-            // }
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                submitForm.AAC003 = '许肖军';
+                submitForm.AAE135 = "332625197501010910";
+            }
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2003');
             return params;

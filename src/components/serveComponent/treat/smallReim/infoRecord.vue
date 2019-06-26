@@ -136,6 +136,8 @@ export default {
                 // eleInvoices: [], //电子发票信息
                 //   invoicesImg: [], //附件信息信息  图片id
                 // 手动添加发票
+                console.log('SET_SMALL_REIM_2',this.$store.state.SET_SMALL_REIM_2);
+                
                 submitForm.LS_DS1 = []
                 // let invoiceList = []
                 let eleInvoicesArr = []

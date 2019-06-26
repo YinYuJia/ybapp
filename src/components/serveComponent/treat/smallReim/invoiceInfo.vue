@@ -32,7 +32,7 @@
             <!-- 手动添加发票信息 -->
             <div class="manualContent" v-if="!hasInvoice">
                 <div class="invoiceHint">暂无报销条目，请手动填写/上传发票信息</div>
-                <div class="invoiceList" v-for="item in invoices" :key="item.BKE100">
+                <div class="invoiceList" v-for="(item,index) in invoices" :key="index">
                     <div class="invoicePhoto">
                         <img :src="item.photoUrl" class="pic">
                     </div>
@@ -50,7 +50,7 @@
                             <span class="textInfo">{{item.AAE036}}</span>
                         </div>
                     </div>
-                    <div class="deleteBtn">删除</div>
+                    <div class="deleteBtn" @click="deleteBtn(item,index)">删除</div>
                 </div>
                 <div class="plusInvoice" @click="plusInvoice()">+ 添加发票信息</div>
             </div>
@@ -107,9 +107,12 @@ export default {
         }
     },
     created() {
-        this.picArrNum = this.$store.state.SET_SMALL_REIM_2.invoicesImg
+        console.log(33333,this.$store.state.SET_SMALL_REIM_2);
+        this.picArrNum = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2.invoicesImg));    
         this.hasInvoice = this.$store.state.IS_INVOICE
         this.epFn.setTitle('零星报销')
+        
+        
         // 获取VUEX信息
         this.invoices = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2.eleInvoices));
         console.log('发票信息',this.invoices);
@@ -140,7 +143,8 @@ export default {
             this.invoiceCount.price = price
         }
         if(!this.hasInvoice){
-            
+            let index = 0
+            let price = 0
             for(let i=0;i<this.invoices.length;i++){
                 index = i+1
                 price += parseFloat(this.invoices[i].AKC264)
@@ -166,7 +170,8 @@ export default {
                         onSuccess: function(data) {
                             console.log(data.picPath[0],'请求图片成功');
                             if(data.result){
-                                This.$store.dispatch('SET_ENCLOSURE',This.picArr)
+                                // 获取图片
+                                
                                 let submitForm = {}; 
                                  // 加入用户名和电子社保卡号
                                 if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -185,8 +190,8 @@ export default {
                                 This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
                                     //   成功   1000
                                     if ( resData.enCode == 1000 ) {
-                                        // 获取图片
                                         This.picArr.push(data.picPath[0])
+                                        This.$store.dispatch('SET_ENCLOSURE',This.picArr)
                                         This.picArrNum.push(resData.photoId)
                                     }else if (resData.enCode == 1001 ) {
                                     //   失败  1001
@@ -214,6 +219,10 @@ export default {
             this.picArr.splice(index,1)
             this.picArrNum.splice(index,1)
         },
+        // 删除手动添加发票
+        deleteBtn(item,index){
+            this.invoices.splice(index,1)
+        },
         // 选择发票
         chooseInvoice(invoice){
             invoice.selected = !invoice.selected;
@@ -232,6 +241,9 @@ export default {
         },
         // 添加新发票
         plusInvoice(){
+            let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                SET_SMALL_REIM_2.eleInvoices = this.invoices
+                this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
             this.$router.push('/plusInvoice');
         },
         submit(){
@@ -247,14 +259,11 @@ export default {
                 let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
                 SET_SMALL_REIM_2.eleInvoices = this.invoices
                 SET_SMALL_REIM_2.invoicesImg = this.picArrNum
-                this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
-                console.log(333,this.invoices.length);
-                console.log(222,this.$store.state.SET_SMALL_REIM_2.eleInvoices.length);
+                console.log(this.picArrNum);
                 
+                this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
                 this.$router.push('/infoRecord');
-                // let SET_SMALL_REIM_2 = This.$store.state.SET_SMALL_REIM_2
-                // .push()
-                // This.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+               
             }
         },
     }
