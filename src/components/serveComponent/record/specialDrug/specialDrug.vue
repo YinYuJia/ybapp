@@ -203,6 +203,7 @@ export default {
   data() {
     return {
       picArr: [],//附件集合
+      photoIdList:[],//照片ID数组
       oneDisabled: true,
       twoDisabled: true,
       threeDisabled: true,
@@ -234,7 +235,6 @@ export default {
         AKB063: "", //备案天数
         AAE030: "", //开始日期
         AAE031: "", //结束日期
-        photoIdList:[],//照片ID数组
       },
       startDate: new Date(),
       dateVal: new Date(), //默认绑定的时间
@@ -426,7 +426,7 @@ export default {
       let submitForm = Object.assign({}, this.form);
       submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030)
       submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031)
-      submitForm.photoIdList = this.form.photoIdList.join(',');//照片ID数组
+      submitForm.photoIdList = this.photoIdList.join(',');//照片ID数组
       // let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
       // 加入用户名和电子社保卡号
       if (this.$store.state.SET_NATIVEMSG.name !== undefined) {
@@ -494,8 +494,6 @@ export default {
                     onSuccess: function(data) {
                         console.log(data.picPath[0],'请求图片成功');
                         if(data.result){
-                            // 获取图片
-                            This.picArr.push(data.picPath[0])
                             // This.$store.dispatch('SET_ENCLOSURE',This.picArr)
                             let submitForm = {}; 
                             // 加入用户名和电子社保卡号
@@ -516,7 +514,9 @@ export default {
                                 console.log('返回成功信息',resData) 
                                 //   成功   1000
                                 if ( resData.enCode == 1000 ) {
-                                    This.form.photoIdList.push(resData.photoId);
+                                    // 获取图片
+                                    This.picArr.push(data.picPath[0])
+                                    This.photoIdList.push(resData.photoId);
                                 }else if (resData.enCode == 1001 ) {
                                 //   失败  1001
                                     This.$toast(resData.msg);
@@ -540,8 +540,10 @@ export default {
     },
     // 删除图片
     deletePic(item,index){
+        console.log('删除图片',this.photoIdList);
         this.picArr.splice(index,1)
-        this.picArrNum.splice(index,1)
+        this.photoIdList.splice(index,1)
+        console.log('删除后',this.photoIdList);
     },
   }
 };
