@@ -35,12 +35,7 @@ export default {
             //     {date: '201903', base: '8000', pay: '80.00', text: '未到账'}
             // ],
             form:{},
-            List:[{
-                AAE003:"",
-                AAE180:"",
-                AIC149:"",
-                AAE078:""
-            }]
+            List:[]
         }
     },
     created () {
@@ -51,9 +46,10 @@ export default {
         // 开始请求
         this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1014/getInfo', params).then((resData) => {
                 console.log('返回成功信息',resData)
+                console.log('返回成功信息111',resData.LS_DS)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        this.List=[...this.List,...this.resData.LS_DS]
+                        this.List=[...this.List,...resData.LS_DS]
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
                         this.$toast(resData.msg);

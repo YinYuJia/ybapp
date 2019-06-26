@@ -163,7 +163,6 @@
                     console.log('返回成功信息',resData)
                     //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        this.$toast("提交成功");
                         this.$store.dispatch('SET_FAMILYAID_OPERATION', this.form);
                         this.$router.push('/familyDetail');
                     }else if (resData.enCode == 1001 ) {

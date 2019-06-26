@@ -69,371 +69,409 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon13" /></div>
                     <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon14" /></div>
-                    <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon13" /></div>
+                    <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon16" /></div>
                 </div>
             </div>
         </div>
         <!-- 轮播图 -->
         <div class="carousel">
             <swipe>
-                <swipe-item><svg-icon icon-class="serveComponent_icon15" /></swipe-item>
-                <swipe-item><svg-icon icon-class="serveComponent_icon15" /></swipe-item>
-                <swipe-item><svg-icon icon-class="serveComponent_icon15" /></swipe-item>
+                <swipe-item>
+                    <svg-icon icon-class="serveComponent_icon15" /></swipe-item>
+                <swipe-item>
+                    <svg-icon icon-class="serveComponent_icon15" /></swipe-item>
+                <swipe-item>
+                    <svg-icon icon-class="serveComponent_icon15" /></swipe-item>
             </swipe>
         </div>
         <!-- 热点资讯 -->
         <!-- <div class="hotMsg">
-            <div class="hotHeader">热点资讯</div>
-            <div class="msgLine" v-for="(item,index) in hotMsg" :key="index">
-                <div class="textBox">
-                    <div class="textInfo">{{item.text | msgLength}}</div>
-                    <div class="dateInfo">{{item.date}}</div>
-                </div>
-                <div class="imgBox"></div>
-            </div>
-        </div> -->
+                            <div class="hotHeader">热点资讯</div>
+                            <div class="msgLine" v-for="(item,index) in hotMsg" :key="index">
+                                <div class="textBox">
+                                    <div class="textInfo">{{item.text | msgLength}}</div>
+                                    <div class="dateInfo">{{item.date}}</div>
+                                </div>
+                                <div class="imgBox"></div>
+                            </div>
+                        </div> -->
+        <div class="bottomline">
+            <!-- <p>本服务由浙江政务服务网、杭州市人社保局提供</p>
+                      <p>服务咨询热线  <span class="bottomSpan">0571-88808880</span> </p> -->
+            <p>本服务由浙江政务服务网提供</p>
+            <p>服务咨询热线 : <span class="bottomSpan">{{tel}}</span> </p>
+        </div>
+
     </div>
 </template>
 
 <script>
-import Swiper from 'swiper';
-import { MessageBox } from 'mint-ui'
-export default {
-    data(){
-        return{
-            hotMsg:[ //热点资讯
-                {text:'“数字经济”：开启浙江经济增长新“大时代”', date:'2019-09-09'},
-                {text:'本式港澳通行证将失效！9图出入境证件办理全攻略', date:'2019-09-09'}
-            ]
-        }
-    },
-    mounted(){
-        new Swiper('.swiper-container', {
-            slidesPerView: 2.15, //显示的范围
-            spaceBetween: -8, //间隔大小
-            slidesOffsetBefore: 10, //靠左偏移量
-            slidesOffsetAfter: 10, //靠左偏移量
-            observer:true,//修改swiper自己或子元素时，自动初始化swiper
-            observeParents:true,//修改swiper的父元素时，自动初始化swiper
-        })
-    },
-    created(){
-        console.log('dddddddddddddddddd',dd)
-        // this.setNativeMsg();
-        this.epFn.setTitle('医疗保障专区')
-        // 获取参保地
-        // name: sessionStorage.getItem("userName") ,
-                // idCard:sessionStorage.getItem("idCard") ,
-        // /h5/jy1033/getRecord
-        let params=this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1033/getRecord', params).then((resData) => {
-            console.log('返回成功信息',resData)
-            //   成功   1000
-            if ( resData.enCode == 1000 ) {
-                if(resData.AAB301){
-                    this.$store.dispatch('SET_USER_DETAILINFO',{
-                        insured: resData.AAB301,
-                        regionName:resData.RegionName || '杭州市'
-                    })
-                }else{
-                    dd.ready({
-                        developer: 'daip@dtdream.com',
-                        usage: [
-                            'dd.device.location.get',
-                        ],
-                        remark: '获取当前位置'
-                    }, function() {
-                        dd.device.location.get ({
-                            onSuccess: function(data) {
-                                console.log(data)
-                            },
-                            onFail: function(error) {}
-                        })
-                    })
-                }
-            }else if (resData.enCode == 1001 ) {
-            //   失败  1001
-                this.$toast(resData.msg);
-                return;
-            }else{
-                this.$toast('业务出错');
-                return;
+    import Swiper from 'swiper';
+    import {
+        MessageBox
+    } from 'mint-ui'
+    export default {
+        data() {
+            return {
+                tel:"0571-88808880",
+                imgurl:"",
+                hotMsg: [ //热点资讯
+                    {
+                        text: '“数字经济”：开启浙江经济增长新“大时代”',
+                        date: '2019-09-09'
+                    },
+                    {
+                        text: '本式港澳通行证将失效！9图出入境证件办理全攻略',
+                        date: '2019-09-09'
+                    }
+                ]
             }
-        })
+        },
+        mounted() {
+            new Swiper('.swiper-container', {
+                slidesPerView: 2.15, //显示的范围
+                spaceBetween: -8, //间隔大小
+                slidesOffsetBefore: 10, //靠左偏移量
+                slidesOffsetAfter: 10, //靠左偏移量
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents: true, //修改swiper的父元素时，自动初始化swiper
+            })
+        },
+        created() {
+            console.log('dddddddddddddddddd', dd)
+            // this.setNativeMsg();
+            this.epFn.setTitle('医疗保障专区')
+            // 获取参保地
+            // name: sessionStorage.getItem("userName") ,
+            // idCard:sessionStorage.getItem("idCard") ,
+            // /h5/jy1033/getRecord
+            let params = this.formatSubmitData();
+            this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1033/getRecord', params).then((resData) => {
+                console.log('返回成功信息', resData)
+                //   成功   1000
+                if (resData.enCode == 1000) {
+                    if (resData.AAB301) {
+                        this.$store.dispatch('SET_USER_DETAILINFO', {
+                            insured: resData.AAB301,
+                            regionName: resData.RegionName || '杭州市'
+                        })
+                    } else {
+                        dd.ready({
+                            developer: 'daip@dtdream.com',
+                            usage: [
+                                'dd.device.location.get',
+                            ],
+                            remark: '获取当前位置'
+                        }, function() {
+                            dd.device.location.get({
+                                onSuccess: function(data) {
+                                    console.log(data)
+                                },
+                                onFail: function(error) {}
+                            })
+                        })
+                    }
+                } else if (resData.enCode == 1001) {
+                    //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                } else {
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+            dd.ready({
+                developer: 'daip@dtdream.com',
+                usage: [
+                    'dd.device.location.get',
+                ],
+                remark: '获取当前位置'
+            }, function() {
+                dd.device.location.get({
+                    onSuccess: function(data) {
+                        console.log(data);
+                    },
+                    onFail: function(error) {}
+                })
+            })
+        },
+        filters: {
+            msgLength: function(val) {
+                return val.slice(0, 20) + '...';
+            }
+        },
+        methods: {
 
-        dd.ready({
-            developer: 'daip@dtdream.com',
-            usage: [
-                'dd.device.location.get',
-            ],
-            remark: '获取当前位置'
-        }, function() {
-            dd.device.location.get ({
-                onSuccess: function(data) {
-                    console.log(data);
-                },
-                onFail: function(error) {}
-            })
-        })
-    },
-    filters:{
-        msgLength: function(val){
-            return val.slice(0,20) + '...';
-        }
-    },
-    methods:{
-        goRouter(route){
-            this.$router.push(route);
-        },
-        setNativeMsg(){
-            this.$store.dispatch('SET_NATIVEMSG', {
-                title: "",
-                describe: "",
-                type: "",
-                typeItem: "",
-                name: sessionStorage.getItem("userName") ,
-                idCard:sessionStorage.getItem("idCard") ,
-                PublicHeader: {
-                    imei: '',
-                    mac: '1111',
-                    phoneModel: '',
-                    platform: '',
-                    signType: '',
-                    sign: '',
-                    version: 'v2.0',
-                }
-            });
-        },
-        formatSubmitData(){  
-            let submitForm ={}
-
-            // 加入用户名和电子社保卡号
-          
-            submitForm.AAC003 = '许肖军'
-            submitForm.AAE135 = '332625197501010910'
-            // 请求参数封装
-            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1033");
-            return params;
-        },
-        changeUsername(){
-            let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
-            MessageBox.prompt('用户名','').then(({ value, action }) => {
-                user.name = value;
-                this.$store.dispatch('SET_USER_BASEINFO',user);
-                sessionStorage.setItem('userName',value);
-                this.setNativeMsg();
-            });
-        },
-        changeUserCode(){
-            let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
-            MessageBox.prompt('社保卡号','').then(({ value, action }) => {
-                user.idNo = value;
-                this.$store.dispatch('SET_USER_BASEINFO',user);
-                sessionStorage.setItem('idCard',value);
-                this.setNativeMsg();
-            });
-        },
-        showWork(url,item,itemInfo) {
-            sessionStorage.setItem('itemUrl',url);
-            sessionStorage.setItem("item",item);
-            sessionStorage.setItem("itemInfo",itemInfo);
-            this.$router.push({
-                name: 'Index',
-                params: {
-                    info: url,
-                    item:item,
-                    itemInfo:itemInfo
-                }
-            })
-        },
-        showDetail(url,item) {
-            sessionStorage.setItem('itemUrl',url);
-            sessionStorage.setItem("item",item);
-            this.$router.push({
-                name: url,
-                params: {
-                    item:item,
-                }
-            })
+            goRouter(route) {
+                this.$router.push(route);
+            },
+            setNativeMsg() {
+                this.$store.dispatch('SET_NATIVEMSG', {
+                    title: "",
+                    describe: "",
+                    type: "",
+                    typeItem: "",
+                    name: sessionStorage.getItem("userName"),
+                    idCard: sessionStorage.getItem("idCard"),
+                    PublicHeader: {
+                        imei: '',
+                        mac: '1111',
+                        phoneModel: '',
+                        platform: '',
+                        signType: '',
+                        sign: '',
+                        version: 'v2.0',
+                    }
+                });
+            },
+            formatSubmitData() {
+                let submitForm = {}
+                // 加入用户名和电子社保卡号
+                submitForm.AAC003 = '许肖军'
+                submitForm.AAE135 = '332625197501010910'
+                // 请求参数封装
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader, submitForm, "1033");
+                return params;
+            },
+            changeUsername() {
+                let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+                MessageBox.prompt('用户名', '').then(({
+                    value,
+                    action
+                }) => {
+                    user.name = value;
+                    this.$store.dispatch('SET_USER_BASEINFO', user);
+                    sessionStorage.setItem('userName', value);
+                    this.setNativeMsg();
+                });
+            },
+            changeUserCode() {
+                let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+                MessageBox.prompt('社保卡号', '').then(({
+                    value,
+                    action
+                }) => {
+                    user.idNo = value;
+                    this.$store.dispatch('SET_USER_BASEINFO', user);
+                    sessionStorage.setItem('idCard', value);
+                    this.setNativeMsg();
+                });
+            },
+            showWork(url, item, itemInfo) {
+                sessionStorage.setItem('itemUrl', url);
+                sessionStorage.setItem("item", item);
+                sessionStorage.setItem("itemInfo", itemInfo);
+                this.$router.push({
+                    name: 'Index',
+                    params: {
+                        info: url,
+                        item: item,
+                        itemInfo: itemInfo
+                    }
+                })
+            },
+            showDetail(url, item) {
+                sessionStorage.setItem('itemUrl', url);
+                sessionStorage.setItem("item", item);
+                this.$router.push({
+                    name: url,
+                    params: {
+                        item: item,
+                    }
+                })
+            }
         }
     }
-}
 </script>
 
 <style lang="less" scoped>
-.indexInfoList{
-    // 头部
-    .indexHeader{
-        height: 3.4rem;
-        position: relative;
-        .svg-icon{
+    .indexInfoList {
+        // 头部
+        .indexHeader {
             height: 3.4rem;
-            width: 7.5rem;
-        }
-        .headerText{
-            position: absolute;
-            top: .4rem;
-            left: .5rem;
-            font-size: .6rem;
-            color: #FFFFFF;
-            line-height: .6rem;
-        }
-        .headerInfo{
-            position: absolute;
-            top: 1.1rem;
-            left: .5rem;
-            opacity: 0.8;
-            font-size: .28rem;
-            color: #FFFFFF;
-            letter-spacing: .0046rem;
-            line-height: .4rem;
-        }
-        .headerPad{
-            position: absolute;
-            top: 2.3rem;
-            left: .2rem;
-            height: 2.2rem;
-            width: 7.1rem;
-            background: #FFFFFF;
-            border: 0 solid #E7EDF7;
-            box-shadow: 0 0 .28rem 0 rgba(0,0,0,0.07);
-            border-radius: .08rem;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            .iconBox{
-                height: 1.4rem;
-                width: 1.4rem;
+            position: relative;
+            .svg-icon {
+                height: 3.4rem;
+                width: 7.5rem;
+            }
+            .headerText {
+                position: absolute;
+                top: .4rem;
+                left: .5rem;
+                font-size: .6rem;
+                color: #FFFFFF;
+                line-height: .6rem;
+            }
+            .headerInfo {
+                position: absolute;
+                top: 1.1rem;
+                left: .5rem;
+                opacity: 0.8;
+                font-size: .28rem;
+                color: #FFFFFF;
+                letter-spacing: .0046rem;
+                line-height: .4rem;
+            }
+            .headerPad {
+                position: absolute;
+                top: 2.3rem;
+                left: .2rem;
+                height: 2.2rem;
+                width: 7.1rem;
+                background: #FFFFFF;
+                border: 0 solid #E7EDF7;
+                box-shadow: 0 0 .28rem 0 rgba(0, 0, 0, 0.07);
+                border-radius: .08rem;
                 display: flex;
-                flex-direction: column;
                 justify-content: space-around;
                 align-items: center;
-                .svg-icon{
-                    height: .68rem;
-                    width: .68rem;
-                }
-                .text{
-                    font-size: .28rem;
-                    color: #3A4259;
-                    letter-spacing: 0;
-                    text-align: center;
-                    line-height: .28rem;
+                .iconBox {
+                    height: 1.4rem;
+                    width: 1.4rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    align-items: center;
+                    .svg-icon {
+                        height: .68rem;
+                        width: .68rem;
+                    }
+                    .text {
+                        font-size: .28rem;
+                        color: #3A4259;
+                        letter-spacing: 0;
+                        text-align: center;
+                        line-height: .28rem;
+                    }
                 }
             }
-        }
-    }
-    // 图标区域
-    .iconContent{
-        height: 4.74rem;
-        background: #FFF;
-        padding: 1.8rem .2rem 0 .2rem;
-        .iconList{
-            display: flex;
-            justify-content: space-around;
-            .iconBox{
-                height: 1.4rem;
-                width: 1.4rem;
+        } // 图标区域
+        .iconContent {
+            height: 4.74rem;
+            background: #FFF;
+            padding: 1.8rem .2rem 0 .2rem;
+            .iconList {
                 display: flex;
-                flex-direction: column;
                 justify-content: space-around;
-                align-items: center;
-                .svg-icon{
-                    height: .68rem;
-                    width: .68rem;
+                .iconBox {
+                    height: 1.4rem;
+                    width: 1.4rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    align-items: center;
+                    .svg-icon {
+                        height: .68rem;
+                        width: .68rem;
+                    }
+                    .text {
+                        font-size: .28rem;
+                        color: #3A4259;
+                        letter-spacing: 0;
+                        text-align: center;
+                        line-height: .28rem;
+                    }
                 }
-                .text{
-                    font-size: .28rem;
-                    color: #3A4259;
-                    letter-spacing: 0;
-                    text-align: center;
-                    line-height: .28rem;
+                &:last-child {
+                    margin-top: .16rem;
                 }
             }
-            &:last-child{
-                margin-top: .16rem;
-            }
-        }
-    }
-    // banner
-    .banner{
-        height: 2.96rem;
-        padding: .6rem 0;
-        background: #FFF;
-        .swiper-container{
-            height: 100%;
-            .swiper-wrapper{
+        } // banner
+        .banner {
+            height: 2.96rem;
+            padding: .6rem 0;
+            background: #FFF;
+            .swiper-container {
                 height: 100%;
-                .swiper-slide{
-                    .svg-icon{
+                .swiper-wrapper {
+                    height: 100%;
+                    .swiper-slide {
+                        .svg-icon {
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        } // 轮播图
+        .carousel {
+            height: 4.48rem;
+            padding-bottom: 2.48rem;
+            background: #FFF;
+            .c-swipe {
+                height: 100%;
+                .svg-icon {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        } // 热点资讯
+        .hotMsg {
+            background: #FFF;
+            padding: 0 .32rem;
+            .hotHeader {
+                height: .8rem;
+                line-height: .8rem;
+                font-size: .44rem;
+                color: #000000;
+                letter-spacing: 0;
+                text-align: left;
+                font-weight: bold;
+            }
+            .msgLine {
+                height: 2.24rem;
+                padding: .32rem 0;
+                display: flex;
+                justify-content: space-between;
+                border-bottom: .01rem solid#E5E5E5;
+                .textBox {
+                    width: 4rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .textInfo {
+                        height: 1rem;
+                        font-size: .36rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                        line-height: .48rem;
+                        text-align: left;
+                    }
+                    .dateInfo {
+                        font-size: .28rem;
+                        color: #999999;
+                        text-align: left;
+                        line-height: .3rem;
+                    }
+                }
+                .imgBox {
+                    height: 1.6rem;
+                    width: 2.2rem;
+                    background: #EEE;
+                    .img {
                         height: 100%;
-                        width: 100%;
+                        width: 100%
                     }
                 }
             }
         }
     }
-    // 轮播图
-    .carousel{
-        height: 4.48rem;
-        padding-bottom: 2.48rem;
-        background: #FFF;
-        .c-swipe{
-            height: 100%;
-            .svg-icon{
-                height: 100%;
-                width: 100%;
-            }
-        }
-    }
-    // 热点资讯
-    .hotMsg{
-        background: #FFF;
-        padding: 0 .32rem;
-        .hotHeader{
-            height: .8rem;
-            line-height: .8rem;
-            font-size: .44rem;
-            color: #000000;
-            letter-spacing: 0;
-            text-align: left;
-            font-weight: bold;
-        }
-        .msgLine{
-            height: 2.24rem;
-            padding: .32rem 0;
-            display: flex;
-            justify-content: space-between;
-            border-bottom: .01rem solid#E5E5E5;
-            .textBox{
-                width: 4rem;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                .textInfo{
-                    height: 1rem;
-                    font-size: .36rem;
-                    color: #000000;
-                    letter-spacing: 0;
-                    line-height: .48rem;
-                    text-align: left;
-                }
-                .dateInfo{
-                    font-size: .28rem;
-                    color: #999999;
-                    text-align: left;
-                    line-height: .3rem;
-                }
-            }
-            .imgBox{
-                height: 1.6rem;
-                width: 2.2rem;
-                background: #EEE;
-                .img{
-                    height: 100%;
-                    width: 100%
+
+            .bottomline {
+            font-size: .28rem;
+            margin-top: 10px;
+            margin-bottom: 18px;
+            text-align: center;
+            p {
+                margin: 0 10px;
+                line-height: 25px;
+                color: #888;
+                .bottomSpan {
+                    color: #1492ff; // color: red;
+                    a {
+                        color: #1492ff
+                    }
                 }
             }
         }
-    }
-}
 </style>

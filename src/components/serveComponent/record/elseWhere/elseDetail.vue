@@ -143,10 +143,11 @@ export default {
                     if(this.form.AAQ011VALUE==undefined){
                         this.form.AAQ011VALUE="";
                     }
+                    this.form.AAE030=this.util.NumberToDate(this.form.AAE030)
+                    this.form.AAE031=this.util.NumberToDate(this.form.AAE031)
                     this.AAS011000=this.form.AAS011VALUE+this.form.AAE011VALUE+this.form.AAQ011VALUE    
                     this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE
                     this.handleNumber = resData.LS_DS_06.BKZ019
-                    this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);

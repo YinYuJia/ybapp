@@ -113,7 +113,7 @@ export default {
                     this.AAA027000=this.form.AAS027VALUE+this.form.AAA027VALUE+this.form.AAQ027VALUE;
                     this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE;
                     this.handleNumber = resData.LS_DS_07.BKZ019
-                    this.$toast("提交成功");
+                    // this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);

@@ -118,12 +118,15 @@ export default {
                 if(this.form.AAQ301VALUE==undefined){
                     this.form.AAQ301VALUE='省本级';
                 } 
+                console.log(typeof(this.form.AAE030))
+                this.form.AAE030=this.util.NumberToDate(this.form.AAE030)
+                this.form.AAE031=this.util.NumberToDate(this.form.AAE031)
                 this.AAS027000=this.form.AAS027VALUE+this.form.AAB027VALUE
                 this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
                 this.handleNumber = resData.LS_DS_09.BKZ019
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    this.$toast("提交成功");
+ 
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);

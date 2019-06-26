@@ -88,6 +88,7 @@ export default {
                 AAE030: "", //开始日期
                 AAE031: "" //结束日期
             },
+            AAB301000: "",
             arr: [
                 {step:1,name:'申请'},
                 {step:2,name:'受理'},
@@ -177,7 +178,6 @@ export default {
                     console.log("form",this.form)
                     this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE
                     this.handleNumber = resData.LS_DS_12.BKZ019
-                    this.$toast("提交成功");
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
                     this.$toast(resData.msg);
