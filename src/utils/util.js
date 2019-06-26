@@ -28,6 +28,14 @@ function DateToNumber(date){
     return dateNum
 }
 
+// Number转换为日期
+function NumberToDate(number){
+        let num = number.toString();
+        let result = num.slice(0,4) + '-' + num.slice(4,6) + '-' + num.slice(6,8);
+        return result;
+
+}
+
 //手机号校验
 function checkPhone(phoneStr){ 
     var phone = phoneStr
@@ -71,6 +79,7 @@ function passPort(value){
 export default{
     formatDate,
     DateToNumber,
+    NumberToDate,
     checkPhone,
     idCard,
     postOffic,
