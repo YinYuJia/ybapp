@@ -82,7 +82,8 @@
 <script>
     export default {
         data() {
-            return {           
+            return {
+                picArr: [],//附件集合
                 AAB301000: '', //参保地
                 form: {
                     AAS301: '', //参保地省
@@ -95,7 +96,7 @@
                     BKE260: '', //护照号码
                     AAA100:"",//参数类别
                     BKZ019:"",//经办编号
-                    photoUrl: '',
+                    photoIdList: [],
                 },
                 dateVal: new Date(), //默认绑定的时间
                 canSubmit: false,
@@ -189,7 +190,7 @@
                                 console.log('照片上传成功',data.picPath[0]);
                                 if(data.result){
                                     // 页面中添加照片
-                                    _this.form.photoUrl = data.picPath[0];
+                                    _this.picArr.push(data.picPath[0])
                                     let submitForm = {};
                                      // 加入用户名和电子社保卡号
                                     if (_this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -204,11 +205,11 @@
                                     submitForm.photoList = data.picPath[0];
                                     submitForm.PTX001 = '2';
                                     const params = _this.epFn.commonRequsetData(_this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
-                                    _this.$axios.post(_this.epFn.ApiUrl() + '/h5/jy2006/info', params).then((resData) => {
+                                    _this.$axios.post(_this.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
                                         console.log('返回成功信息',resData) 
                                         //   成功   1000
                                         if ( resData.enCode == 1000 ) {
-                                            _this.form.photoId = resData.photoId
+                                            _this.form.photoIdList.push(resData.photoId);
                                         }else if (resData.enCode == 1001 ) {
                                         //   失败  1001
                                             _this.$toast(resData.msg);
@@ -273,7 +274,8 @@
             submitForm.AAQ301 =  this.form.AAQ301;//参保地区
             submitForm.AKB020 =  this.form.AKB020;//取药机构
             submitForm.BKE260 =  this.form.BKE260;//护照号码
-            submitForm.BKZ019 =  this.form.BKZ019;//护照号码
+            submitForm.photoIdList =  this.form.photoIdList.join(',');//照片ID数组
+            submitForm.BKZ019 =  this.form.BKZ019;//经办编号
             // submitForm.debugTest=  "true";
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
