@@ -118,7 +118,6 @@ export default {
                 }
                 // 如果需要邮寄
                 if(this.showMail == true){
-                    this.getMailInfo(); //自动获取邮寄信息
                     if ( val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '' && val.AAC050 != '' && val.BKA077 != '') {
                         this.canSubmit = true
                     }else {
@@ -130,6 +129,7 @@ export default {
         },
     },
     created(){
+        this.getMailInfo(); //自动获取邮寄信息
         this.form = this.$store.state.SET_INSURED_PROOF;
         // 获取位置
         let This = this 

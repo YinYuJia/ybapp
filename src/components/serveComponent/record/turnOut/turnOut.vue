@@ -192,7 +192,7 @@
                                     console.log('返回成功信息',resData) 
                                     //   成功   1000
                                     if ( resData.enCode == 1000 ) {
-                                        this.form.photoIdList.push(resData.photoId)
+                                        This.form.photoIdList.push(resData.photoId);
                                         // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
                                         // SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
                                         // this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
@@ -318,7 +318,7 @@
                 submitForm.AAQ301 =  this.form.AAQ301;//参保地区
                 submitForm.AKA121 =  this.form.AKA121;//疾病名称
                 submitForm.BKE255 =  this.form.BKE255;//就诊疗程
-                submitForm.photoIdList =  this.form.photoIdList;//照片ID数组
+                submitForm.photoIdList =  this.form.photoIdList.join(',');//照片ID数组
                 submitForm.BKZ019 =  this.form.BKZ019;//经办编号
                 // submitForm.debugTest=  "true";
                 // submitForm.dibuger =  "true";
