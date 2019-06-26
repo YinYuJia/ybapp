@@ -459,8 +459,8 @@
 
             .bottomline {
             font-size: .28rem;
-            margin-top: 10px;
-            margin-bottom: 18px;
+            margin-top: .1rem;
+            margin-bottom: .18rem;
             text-align: center;
             p {
                 margin: 0 10px;
