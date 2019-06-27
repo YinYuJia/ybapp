@@ -6,20 +6,24 @@
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇总浙江省医疗保障服务</div>
             <div class="headerPad">
-                <div class="iconBox" @click="changeUsername(true)">
-                    <svg-icon icon-class="serveComponent_icon1" />
+                <div class="iconBox" @click="changeUsername(false)">
+                    <svg-icon v-if="0" icon-class="serveComponent_icon1" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey_1" />
                     <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox" @click="changeUserCode(true)">
-                    <svg-icon icon-class="serveComponent_icon2" />
+                <div class="iconBox" @click="changeUserCode(false)">
+                    <svg-icon v-if="0" icon-class="serveComponent_icon2" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey_2" />
                     <div class="text">支付码</div>
                 </div>
                 <div class="iconBox" @click="yibaozhanghu">
-                    <svg-icon icon-class="serveComponent_icon3" />
+                    <svg-icon v-if="0" icon-class="serveComponent_icon3" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey_3" />
                     <div class="text">医保账户</div>
                 </div>
                 <div class="iconBox" @click="yibaozhanghu">
-                    <svg-icon icon-class="serveComponent_icon4" />
+                    <svg-icon v-if="0" icon-class="serveComponent_icon4" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey_4" />
                     <div class="text">移动支付</div>
                 </div>
             </div>
@@ -27,36 +31,42 @@
         <!-- 图标列表 -->
         <div class="iconContent">
             <div class="iconList">
-                <div class="iconBox" @click="showDetail('smallReim','基本医疗保险参保人员医疗费用零星报销')">
-                    <svg-icon icon-class="serveComponent_icon5" />
+                <div class="iconBox" @click="showDetail('smallReim','基本医疗保险参保人员医疗费用零星报销',false)">
+                    <svg-icon v-if="0" icon-class="serveComponent_icon5" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey11" />
                     <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
                     <div class="text">零星报销</div>
                 </div>
                 <div class="iconBox" @click="showDetail('transferRenewing','关系转移接续')">
-                    <svg-icon icon-class="serveComponent_icon6" />
+                    <svg-icon v-if="0" icon-class="serveComponent_icon6" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey4" />
                     <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
                     <div class="text">医保转接</div>
                 </div>
-                <div class="iconBox" @click="showDetail('searchFee','费用信息查询')">
+                <div class="iconBox" @click="showDetail('searchFee','费用信息查询',true)">
                     <svg-icon icon-class="serveComponent_icon_19" />
                     <div class="text">费用信息</div>
                 </div>
                 <div class="iconBox" @click="showDetail('searchProgress','我的事项')">
-                    <svg-icon icon-class="serveComponent_icon8" />
+                    <svg-icon v-if="0" icon-class="serveComponent_icon_18" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey18" />
                     <div class="text">办事进度</div>
                 </div>
             </div>
             <div class="iconList">
                 <div class="iconBox" @click="showDetail('elseWhere','异地就医备案')">
-                    <svg-icon icon-class="serveComponent_icon9" />
+                    <svg-icon v-if="0" icon-class="serveComponent_icon_5" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey5" />
                     <div class="text">异地备案</div>
                 </div>
                 <div class="iconBox" @click="showDetail('specialDrug','特制特药备案')">
-                    <svg-icon icon-class="serveComponent_icon10" />
+                    <svg-icon v-if="0" icon-class="serveComponent_icon_9" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey9" />
                     <div class="text">特药备案</div>
                 </div>
                 <div class="iconBox" @click="showDetail('getProof','领取就医凭证')">
-                    <svg-icon icon-class="serveComponent_icon11" />
+                    <svg-icon v-if="0" icon-class="serveComponent_icon_1" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey1" />
                     <div class="text">就医凭证</div>
                 </div>
                 <div class="iconBox" @click="goRouter('indexInfoListMore')">
@@ -240,18 +250,18 @@
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader, submitForm, "1033");
                 return params;
             },
-            changeUsername(str) { 
+            changeUsername(str) {
                 if (str) {
-                let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
-                MessageBox.prompt('用户名', '').then(({
-                    value,
-                    action
-                }) => {
-                    user.name = value;
-                    this.$store.dispatch('SET_USER_BASEINFO', user);
-                    sessionStorage.setItem('userName', value);
-                    this.setNativeMsg();
-                });
+                    let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+                    MessageBox.prompt('用户名', '').then(({
+                        value,
+                        action
+                    }) => {
+                        user.name = value;
+                        this.$store.dispatch('SET_USER_BASEINFO', user);
+                        sessionStorage.setItem('userName', value);
+                        this.setNativeMsg();
+                    });
                 }else{
                       this.$toast("功能正在建设中")
                 }
@@ -287,7 +297,11 @@
                     }
                 })
             },
-            showDetail(url, item) {
+            showDetail(url, item, isShow) {
+                if(!isShow){
+                    this.$toast('功能正在建设中');
+                    return;
+                }
                 sessionStorage.setItem('itemUrl', url);
                 sessionStorage.setItem("item", item);
                 this.$router.push({

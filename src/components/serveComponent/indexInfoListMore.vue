@@ -16,19 +16,23 @@
             <div class="iconList">
                 <div class="iconContent" id="insured">
                     <div class="iconBox" @click="showDetail('getProof','领取就医凭证')">
-                        <svg-icon icon-class="serveComponent_icon_1" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_1" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey1" />
                         <div class="text">就医凭证</div>
                     </div>
                     <div class="iconBox" @click="showDetail('insuredChange','参保信息变更')">
-                        <svg-icon icon-class="serveComponent_icon_2" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_2" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey2" />
                         <div class="text">信息变更</div>
                     </div>
                     <div class="iconBox" @click="showDetail('searchPrint','打印信息')">
-                        <svg-icon icon-class="serveComponent_icon_3" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_3" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey3" />
                         <div class="text">医保证明</div>
                     </div>
                     <div class="iconBox" @click="showDetail('transferRenewing','关系转移接续')">
-                        <svg-icon icon-class="serveComponent_icon6" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon6" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey4" />
                         <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
                         <div class="text">医保转接</div>
                     </div>
@@ -39,27 +43,33 @@
                 <div class="listHeader">备案服务</div>
                 <div class="iconContent" id="record">
                     <div class="iconBox" @click="showDetail('elseWhere','异地就医备案')">
-                        <svg-icon icon-class="serveComponent_icon_5" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_5" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey5" />
                         <div class="text">异地备案</div>
                     </div>
                     <div class="iconBox" @click="showDetail('turnOut','转外备案')">
-                        <svg-icon icon-class="serveComponent_icon_6" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_6" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey6" />
                         <div class="text">转外就医</div>
                     </div>
                     <div class="iconBox" @click="showDetail('abroadTake','出国带药')">
-                        <svg-icon icon-class="serveComponent_icon_7" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_7" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey7" />
                         <div class="text">出国带药</div>
                     </div>
                     <div class="iconBox" @click="showDetail('familyAid','家庭共济')">
-                        <svg-icon icon-class="serveComponent_icon_8" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_8" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey8" />
                         <div class="text">家庭共济</div>
                     </div>
                     <div class="iconBox" @click="showDetail('specialDrug','特制特药备案')">
-                        <svg-icon icon-class="serveComponent_icon_9" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_9" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey9" />
                         <div class="text">特药备案</div>
                     </div>
                     <div class="iconBox" @click="showDetail('chronicDisease','规定（特殊慢性）病种待遇备案')">
-                        <svg-icon icon-class="serveComponent_icon_10" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_10" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey10" />
                         <div class="text">规定病种</div>
                     </div>
                     <div class="iconBox"></div>
@@ -71,24 +81,29 @@
                 <div class="listHeader">待遇服务</div>
                 <div class="iconContent" id="treat">
                     <div class="iconBox" @click="showDetail('smallReim','基本医疗保险参保人员医疗费用零星报销')">
-                        <svg-icon icon-class="serveComponent_icon5" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon5" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey11" />
                         <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
                         <div class="text">零星报销</div>
                     </div>
                     <div class="iconBox" @click="showDetail('payLimit','视同缴费年限核定')">
-                        <svg-icon icon-class="serveComponent_icon_12" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_12" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey12" />
                         <div class="text">年限核定</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon_13" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_13" />
+                        <svg-icon icon-class="serveComponent_grey13" />
                         <div class="text">平产/剖腹</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon_14" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_14" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey14" />
                         <div class="text">流产/引产</div>
                     </div>
                     <div class="iconBox">
-                        <svg-icon icon-class="serveComponent_icon_15" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_15" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey15" />
                         <div class="text">未就业配偶</div>
                     </div>
                     <div class="iconBox"></div>
@@ -100,24 +115,29 @@
             <div class="iconList">
                 <div class="listHeader">其他服务</div>
                 <div class="iconContent" id="others">
-                    <div class="iconBox" @click="showDetail('searchBaseInfo','个人信息查询')">
-                        <svg-icon icon-class="serveComponent_icon_16" />
+                    <div class="iconBox" @click="showDetail('searchBaseInfo','个人信息查询',true)">
+                        <svg-icon v-if="1" icon-class="serveComponent_icon_16" />
+                        <svg-icon v-if="0" icon-class="serveComponent_grey16" />
                         <div class="text">信息查询</div>
                     </div>
-                    <div class="iconBox" @click="showDetail('searchInsuredInfo','参保信息查询')">
-                        <svg-icon icon-class="serveComponent_icon_17" />
+                    <div class="iconBox" @click="showDetail('searchInsuredInfo','参保信息查询',true)">
+                        <svg-icon v-if="1" icon-class="serveComponent_icon_17" />
+                        <svg-icon v-if="0" icon-class="serveComponent_grey17" />
                         <div class="text">参保信息</div>
                     </div>
                     <div class="iconBox" @click="showDetail('searchProgress','我的事项')">
-                        <svg-icon icon-class="serveComponent_icon_18" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_18" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey18" />
                         <div class="text">办事进度</div>
                     </div>
-                    <div class="iconBox" @click="showDetail('searchFee','费用信息查询')">
-                        <svg-icon icon-class="serveComponent_icon_19" />
+                    <div class="iconBox" @click="showDetail('searchFee','费用信息查询',true)">
+                        <svg-icon v-if="1" icon-class="serveComponent_icon_19" />
+                        <svg-icon v-if="0" icon-class="serveComponent_grey19" />
                         <div class="text">费用信息</div>
                     </div>
                     <div class="iconBox" @click="showDetail('searchRecord','备案信息查询')">
-                        <svg-icon icon-class="serveComponent_icon_20" />
+                        <svg-icon v-if="0" icon-class="serveComponent_icon_20" />
+                        <svg-icon v-if="1" icon-class="serveComponent_grey20" />
                         <div class="text">备案信息</div>
                     </div>
                     <div class="iconBox"></div>
@@ -198,19 +218,15 @@ export default {
             let scroll_4 = document.getElementById('others').offsetTop - titleHeight;
             let pageHeight = this.getScrollTop();
             if(pageHeight > scroll_1 && pageHeight < scroll_2){
-                console.log("进入1");
                 this.activeIndex = 1;
                 this.headerSwiper.slideTo(0,200);
             }else if(pageHeight > scroll_2 && pageHeight < scroll_3){
-                console.log("进入2");
                 this.activeIndex = 2;
                 this.headerSwiper.slideTo(1,200);
             }else if(pageHeight > scroll_3 && pageHeight < scroll_4){
-                console.log("进入3");
                 this.activeIndex = 3;
                 this.headerSwiper.slideTo(2,200);
             }else if(pageHeight == scroll_4){
-                console.log("进入4");
                 this.activeIndex = 4;
                 this.headerSwiper.slideTo(3,200);
             }
@@ -237,7 +253,11 @@ export default {
                 }
             })
         },
-        showDetail(url,item) {
+        showDetail(url,item, isShow) {
+            if(!isShow){
+                this.$toast('功能正在建设中');
+                return false;
+            }
             sessionStorage.setItem('itemUrl',url);
             sessionStorage.setItem("item",item);
             this.$router.push({
@@ -260,6 +280,7 @@ export default {
         background: #FFF;
         position: fixed;
         top: 0;
+        z-index: 999;
         .swiper-container{
             height: 100%;
             width: 100%;
