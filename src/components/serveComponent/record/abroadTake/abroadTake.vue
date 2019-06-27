@@ -265,7 +265,7 @@
                                 this.$router.push("/abroadDetail");
                             }else if (resData.enCode == 1001 ) {
                             //   失败  1001
-                             
+                              
                                 this.$toast(resData.msg);
                                 return;
                             }else{
