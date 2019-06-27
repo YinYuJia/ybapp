@@ -35,7 +35,7 @@
                 <div class="iconBox" @click="showDetail('transferRenewing','关系转移接续')">
                     <svg-icon icon-class="serveComponent_icon6" />
                     <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
-                    <div class="text">转移接续</div>
+                    <div class="text">医保转接</div>
                 </div>
                 <div class="iconBox" @click="showDetail('searchFee','费用信息查询')">
                     <svg-icon icon-class="serveComponent_icon_19" />

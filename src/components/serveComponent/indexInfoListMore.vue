@@ -21,16 +21,16 @@
                     </div>
                     <div class="iconBox" @click="showDetail('insuredChange','参保信息变更')">
                         <svg-icon icon-class="serveComponent_icon_2" />
-                        <div class="text">参保变更</div>
+                        <div class="text">信息变更</div>
                     </div>
                     <div class="iconBox" @click="showDetail('searchPrint','打印信息')">
                         <svg-icon icon-class="serveComponent_icon_3" />
-                        <div class="text">打印信息</div>
+                        <div class="text">医保证明</div>
                     </div>
                     <div class="iconBox" @click="showDetail('transferRenewing','关系转移接续')">
                         <svg-icon icon-class="serveComponent_icon6" />
                         <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
-                        <div class="text">转移接续</div>
+                        <div class="text">医保转接</div>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="iconBox" @click="showDetail('payLimit','视同缴费年限核定')">
                         <svg-icon icon-class="serveComponent_icon_12" />
-                        <div class="text">缴费年限</div>
+                        <div class="text">年限核定</div>
                     </div>
                     <div class="iconBox">
                         <svg-icon icon-class="serveComponent_icon_13" />
