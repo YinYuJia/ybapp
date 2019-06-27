@@ -273,32 +273,32 @@
             },
             submit() {
                 
-            if (this.canSubmit == false) {
-                this.$toast('信息未填写完整');
-                return false;
-            } else {
-                // this.$store.dispatch('SET_TURNOUT_OPERATION', this.form);
+                if (this.canSubmit == false) {
+                    this.$toast('信息未填写完整');
+                    return false;
+                } else {
+                    // this.$store.dispatch('SET_TURNOUT_OPERATION', this.form);
 
-                // 封装数据
-                let params = this.formatSubmitData();
-                // 开始请求
-                console.log('parmas------',params)
-                this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1020/info', params).then((resData) => {
+                    // 封装数据
+                    let params = this.formatSubmitData();
+                    // 开始请求
+                    console.log('parmas------',params)
+                    this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1020/info', params).then((resData) => {
                         console.log('返回成功信息',resData)
                         //   成功   1000
-                            if ( resData.enCode == 1000 ) {
-                                this.$router.push('/turnDetail');
-                            }else if (resData.enCode == 1001 ) {
-                            //   失败  1001
-                                this.$toast(resData.msg);
-                                return;
-                            }else{
-                                this.$toast('业务出错');
-                                return;
-                            }
-                        })
-                
-            }
+                        if ( resData.enCode == 1000 ) {
+                            this.$router.push('/turnDetail');
+                        }else if (resData.enCode == 1001 ) {
+                        //   失败  1001
+                            this.$toast(resData.msg);
+                            return;
+                        }else{
+                            this.$toast('业务出错');
+                            return;
+                        }
+                    })
+                    
+                }
             },
             formatSubmitData(){
                 // let submitForm = JSON.parse(JSON.stringify(this.form));

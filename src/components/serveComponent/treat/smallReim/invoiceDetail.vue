@@ -4,71 +4,71 @@
         <div class="ListInfo">
             <div class="InfoLine">
                 <div class="InfoName"><span>发票号码:</span></div>
-                <div class="InfoText"><span>918239123001023012312</span></div>
+                <div class="InfoText"><span>{{form.BKE100}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>报销日期:</span></div>
-                <div class="InfoText"><span>2019-01-03</span></div>
+                <div class="InfoText"><span>{{form.AKE010}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>总费用:</span></div>
-                <div class="InfoText"><span>8193.23</span></div>
+                <div class="InfoText"><span>{{form.AKC264}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>医保支付合计:</span></div>
-                <div class="InfoText"><span>1490.92</span></div>
+                <div class="InfoText"><span>{{form.BKE450}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>自理费用:</span></div>
-                <div class="InfoText"><span>813.09</span></div>
+                <div class="InfoText"><span>{{form.BKE404}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>自费费用:</span></div>
-                <div class="InfoText"><span>813.09</span></div>
+                <div class="InfoText"><span>{{form.BKE400}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>统筹基金支付:</span></div>
-                <div class="InfoText"><span>13.90</span></div>
+                <div class="InfoText"><span>{{form.AKE039}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>大病基金支付:</span></div>
-                <div class="InfoText"><span>13.90</span></div>
+                <div class="InfoText"><span>{{form.AKE029}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>公补基金支付:</span></div>
-                <div class="InfoText"><span>13.90</span></div>
+                <div class="InfoText"><span>{{form.AKE035}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>离休基金支付:</span></div>
-                <div class="InfoText"><span>13.90</span></div>
+                <div class="InfoText"><span>{{form.AKE043}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>其他基金支付:</span></div>
-                <div class="InfoText"><span>13.90</span></div>
+                <div class="InfoText"><span>{{form.BKE444}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>当年账户支付:</span></div>
-                <div class="InfoText"><span>13.90</span></div>
+                <div class="InfoText"><span>{{form.BKE441}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>历年账户支付:</span></div>
-                <div class="InfoText"><span>13.90</span></div>
+                <div class="InfoText"><span>{{form.BKE442}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>历年近亲属账户支付:</span></div>
-                <div class="InfoText"><span>13.90</span></div>
+                <div class="InfoText"><span>{{form.BKE443}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>现金支付:</span></div>
-                <div class="InfoText"><span>13.90</span></div>
+                <div class="InfoText"><span>{{form.BKE452}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>报销状态:</span></div>
-                <div class="InfoText"><span>已报销</span></div>
+                <div class="InfoText"><span>{{form.BKE586 | BKE586}}</span></div>
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>报销说明:</span></div>
-                <div class="InfoText"><span>这里显示说明内容</span></div>
+                <div class="InfoText"><span>{{form.AAE013}}</span></div>
             </div>
         </div>
     </div>
@@ -76,7 +76,14 @@
 
 <script>
 export default {
+    
+    data(){
+        return{
+            form:{}
+        }
+    },
     created(){
+        this.form = Object.assign({}, this.$store.state.SET_INVOICEDETAIL)
         this.epFn.setTitle('零星报销')
     }
 }

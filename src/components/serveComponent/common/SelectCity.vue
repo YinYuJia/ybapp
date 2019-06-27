@@ -50,6 +50,10 @@ export default {
         },
         propArr:{
             type: Array
+        },
+        onlyZJ:{
+            type: Boolean,
+            default: false
         }
     },
     data(){
@@ -121,10 +125,17 @@ export default {
 
     created(){
         this.$nextTick(() =>{
-            this.insuredCity[0].values = this.epFn.addressList();
-            this.fullCity[0].values = this.epFn.addressList();
-            this.fullCity[0].defaultIndex=10;
-            this.insuredCity[0].defaultIndex=10;
+            if(this.onlyZJ){
+                this.insuredCity[0].values = this.epFn.zjAddress();
+                this.fullCity[0].values = this.epFn.zjAddress();
+                this.fullCity[0].defaultIndex=0;
+                this.insuredCity[0].defaultIndex=0;
+            }else{
+                this.insuredCity[0].values = this.epFn.addressList();
+                this.fullCity[0].values = this.epFn.addressList();
+                this.fullCity[0].defaultIndex=10;
+                this.insuredCity[0].defaultIndex=10;
+            }
         })
     },
     methods:{

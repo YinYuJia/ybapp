@@ -82,7 +82,7 @@ export default {
                 // AAE011: '', //省市信息
                 AAE006: '', //详细地址
                 AAC050:'', //变更类型
-                BKA077 :'' ,//领取方式
+                BKA077 :'0' ,//领取方式
             },
             AAC050VALUE: '',
             BKA077VALUE: '自取',
@@ -129,31 +129,29 @@ export default {
         },
     },
     created(){
-        console.log("----this.$router.params----",this.$route.params)
-        this.getMailInfo(); //自动获取邮寄信息
-        this.form = this.$store.state.SET_INSURED_PROOF;
+        // this.form = this.$store.state.SET_INSURED_PROOF;
         // 获取位置
-        let This = this 
-        if(this.$isSdk){
-            dd.ready({
-                developer: 'daip@dtdream.com',
-                usage: [
-                    'dd.device.location.get',
-                ],
-                remark: '描述业务场景'
-                }, function() {
-                dd.device.location.get ({
-                    onSuccess: function(data) {
-                        console.log(data,1111)
-                    },
-                    onFail: function(error) {
-                        This.$toast(error)
-                        console.log(error,22222)
-                    }
-                })
-            })
-        }
-        
+        // let This = this 
+        // if(this.$isSdk){
+        //     dd.ready({
+        //         developer: 'daip@dtdream.com',
+        //         usage: [
+        //             'dd.device.location.get',
+        //         ],
+        //         remark: '描述业务场景'
+        //         }, function() {
+        //         dd.device.location.get ({
+        //             onSuccess: function(data) {
+        //                 console.log(data,1111)
+        //             },
+        //             onFail: function(error) {
+        //                 This.$toast(error)
+        //                 console.log(error,22222)
+        //             }
+        //         })
+        //     })
+        // }
+        this.getMailInfo(); //自动获取邮寄信息
         this.epFn.setTitle('领取就医凭证');
         // 原生参数添加姓名等信息
         // if(!this.form.AAE011){
@@ -196,7 +194,12 @@ export default {
             //         return false;
             //     }
             // }
-            
+            if(this.form.AAE005){
+                if(!this.util.checkPhone(this.form.AAE005)){
+                    this.$toast('请填写正确的手机号');
+                    return false;
+                }
+            }
             if(this.canSubmit == false){
                 this.$toast('信息未填写完整');
                 return false;
