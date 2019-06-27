@@ -23,7 +23,7 @@
             </div>
         </div>
         <!-- 底部 -->
-        <Footer :btnType="2" @backout="backout()" @edit="edit()" :handleNumber="handleNumber"></Footer>
+        <Footer :btnType="2" v-if="currentStep==1" @backout="backout()" @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>
 </template>
 
