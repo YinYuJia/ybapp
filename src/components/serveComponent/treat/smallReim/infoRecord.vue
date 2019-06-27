@@ -51,7 +51,7 @@ export default {
         }
     },
     created(){
-        this.form = this.$store.state.SET_SMALL_REIM_SUBMIT 
+        this.form = Object.assign({}, this.$store.state.SET_SMALL_REIM_SUBMIT )
         this.epFn.setTitle('零星报销')
         console.log('submitForm',this.$store.state.SET_SMALL_REIM_SUBMIT);
         console.log("SET_SMALL_REIM_2",this.$store.state.SET_SMALL_REIM_2)

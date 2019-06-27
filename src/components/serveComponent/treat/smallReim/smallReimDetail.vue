@@ -112,7 +112,7 @@
         <!-- 补齐材料提交 -->
         <!-- <Footer v-if="needMoreInfo" :btnType="1" :canSubmit="true"></Footer> -->
         <!-- 撤销按钮 -->
-        <Footer :btnType="2" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
+        <Footer :btnType="2" v-if="currentStep==1" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>
 </template>
 
