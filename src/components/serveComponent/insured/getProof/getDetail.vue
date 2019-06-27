@@ -37,6 +37,7 @@
                 <div class="searchBtn" v-if="form.AAC050 == '1'">点击查看附近可领取的银行网点</div>
             </div>
         </div>
+        <Success></Success>
         <!-- 底部 -->
         <Footer :btnType="2" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>

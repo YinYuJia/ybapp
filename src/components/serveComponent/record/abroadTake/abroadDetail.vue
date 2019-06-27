@@ -30,6 +30,7 @@
                 <ProgressDate nameWidth="1.8rem"  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
+        <Success></Success>
         <!-- 底部 -->
         <Footer :btnType="2" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>

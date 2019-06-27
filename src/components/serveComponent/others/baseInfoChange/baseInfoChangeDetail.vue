@@ -22,6 +22,7 @@
                 <ProgressDate></ProgressDate>
             </div>
         </div>
+        <Success></Success>
         <!-- 底部 -->
         <Footer :btnType="2" @backout="backout()" @edit="edit()"></Footer>
     </div>
