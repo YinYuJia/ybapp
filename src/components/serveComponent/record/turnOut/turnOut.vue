@@ -121,8 +121,8 @@
 
            console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
            this.AAS027000 = GinsengLandName
-           this.form.AAB027 = GinsengLandCode
-           this.form.AAS027 = GinsengLandCode.substring(0,2) + '0000'
+           this.form.AAB301 = GinsengLandCode
+           this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
            console.log('this.form.AAS027',this.form.AAS027)
            console.log('this.form.AAB027',this.form.AAB027)
             
@@ -145,9 +145,9 @@
                         if(val.AAB027==val.AAB301){
                             this.$toast('转出地不能与转入地相同');
                             this.AAB301000 = '';
-                            this.form.AAS301="";
-                            this.form.AAB301="";
-                            this.form.AAQ301="";
+                            this.form.AAS027="";
+                            this.form.AAB027="";
+                            this.form.AAQ027="";
                         }
                     }
                 },
@@ -230,8 +230,8 @@
             },
             chooseInsured(val){
                 this.AAS027000=val.name
-                this.form.AAS027=val.code[0]
-                this.form.AAB027=val.code[1]
+                this.form.AAS301=val.code[0]
+                this.form.AAB301=val.code[1]
             },
             // 选择开始日期
             openStartPicker(){
@@ -258,9 +258,9 @@
                 console.log(val);
                 
                 this.AAB301000= val.name;
-                this.form.AAS301=val.code[0]
-                this.form.AAB301=val.code[1]
-                this.form.AAQ301=val.code[2]
+                this.form.AAS027=val.code[0]
+                this.form.AAB027=val.code[1]
+                this.form.AAQ027=val.code[2]
             },
             // 选择就医疗程
             openTreatPicker(){
@@ -272,7 +272,7 @@
                 this.BKE255VALUE = val.label;
             },
             submit() {
-                
+                alert()
                 if (this.canSubmit == false) {
                     this.$toast('信息未填写完整');
                     return false;
