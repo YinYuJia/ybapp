@@ -154,12 +154,13 @@ sessionStorage.setItem("idCard","332625197501010910")
 // router.beforeEach((to, from, next) => {
   
 //       const code = 'yibaozs';
-//       var ticket = paramStr("ticket") || "8afac0cc6b84c4aa016b8e7fb4662798-ticket";
+//       // var ticket = paramStr("ticket") || "8afac0cc6b84c4aa016b8e7fb4662798-ticket";
+//       var ticket = paramStr("ticket");
 //        console.log('ticket-------------',ticket)
 //        var token = sessionStorage.getItem("getToken")
 //        console.log('token-------------',token)
 //           if ( token != "" && token != undefined && token != null) {
-//             axios.post("http://47.98.48.185:8000/api/api/H5/jy2005/info" , {
+//             axios.post("//59.202.42.147:23030/H5/jy2005/info" , {
 //               "token":token,
 //               "tradeCode":"2005"
 //               }).then(result2=>{
@@ -174,9 +175,7 @@ sessionStorage.setItem("idCard","332625197501010910")
 //               })
 //           }else{
 //             if (ticket != "" && ticket != undefined && ticket != null) {
-//                      // http://192.168.200.130:80 光耀地址
-//                     //  http://192.168.200.130:7777
-//                     axios.post("http://47.98.48.185:8000/api/api/H5/jy2004/info" , {
+//                     axios.post("//59.202.42.147:23030/H5/jy2004/info" , {
 //                       "st":ticket,
 //                       "tradeCode":"2004"
 //                     }).then(result0 => {
@@ -191,7 +190,7 @@ sessionStorage.setItem("idCard","332625197501010910")
 //                         // return;
 //                       }
                       
-//                       axios.post("http://47.98.48.185:8000/api/api/H5/jy2005/info" , {
+//                       axios.post("//59.202.42.147:23030/H5/jy2005/info" , {
 //                         "token":result0.token,
 //                         "tradeCode":"2005"
 //                         }).then(result1=>{

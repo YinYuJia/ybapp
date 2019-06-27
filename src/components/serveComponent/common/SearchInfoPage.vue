@@ -35,7 +35,7 @@
               v-for="(item,index) in List"
               :key="index"
               @click="chooseHospital(item.AAA102,item.AAA103)"
-            >{{ item.AAA103 }}</li>
+            >{{ item.AAA103 | tooLong}}</li>
           </ul>
         </mt-loadmore>
         <div class="footer" v-if="isShow">没有更多数据了~</div>
@@ -63,6 +63,14 @@ export default {
       height: 0,
       isShow:false
     };
+  },
+  filters:{
+    tooLong: function(val){
+      if(val.length>20){
+        return val.substring(0,20)+'...';
+      }
+      return val;
+    }
   },
   props: {
     type: {

@@ -94,6 +94,18 @@ export function medicaladvice (val) {
   }
   return obj[val]
 }
+
+// 报销状态
+export function BKE586 (val) {
+  let obj = {
+    "0": "无记录",
+    "1": "有记录未报销",
+    "2": "报销中",
+    "3": "已报销",
+    "9": "已作废",
+  }
+  return obj[val]
+}
 /*退休类别过滤*/
 export function trtireType(value) {
   let str = "";

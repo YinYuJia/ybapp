@@ -253,7 +253,10 @@
 
             } else {
                 this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
-
+                if (!this.util.passPort(this.form.BKE260)) {
+                    this.$toast("请填写一位英文加八位数字");
+                    return false;
+                }
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
@@ -265,7 +268,7 @@
                                 this.$router.push("/abroadDetail");
                             }else if (resData.enCode == 1001 ) {
                             //   失败  1001
-                               
+                              
                                 this.$toast(resData.msg);
                                 return;
                             }else{

@@ -178,6 +178,8 @@ export default new Vuex.Store({  // 暴露与new vuex
         IS_INVOICE:false,
         // 零星报销的图片集合，只供页面跳转使用，不上传后台
         SET_ENCLOSURE:[],
+        // 零星报销查看报销详情
+        SET_INVOICEDETAIL:{},
         //缴费年限核定
         SET_PAYLIMIT_OPERATION:{
           AKC412: '', //视作缴费年限
@@ -367,6 +369,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         SET_SMALL_REIM_2(state,payload){
           state.SET_SMALL_REIM_2 = payload;
         },
+        SET_INVOICEDETAIL(state,payload){
+          state.SET_INVOICEDETAIL = payload;
+        },
         IS_INVOICE(state,payload){
           state.IS_INVOICE = payload;
         },
@@ -455,6 +460,9 @@ export default new Vuex.Store({  // 暴露与new vuex
         },
         SET_SMALL_REIM_2( context, payload ) {
           context.commit( 'SET_SMALL_REIM_2', payload );
+        },
+        SET_INVOICEDETAIL( context, payload ) {
+          context.commit( 'SET_INVOICEDETAIL', payload );
         },
         IS_INVOICE( context, payload ) {
           context.commit( 'IS_INVOICE', payload );
