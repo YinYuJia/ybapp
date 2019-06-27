@@ -5,6 +5,7 @@ import SelectCity from '@/components/serveComponent/common/SelectCity'
 import Title from '@/components/serveComponent/common/Title'
 import UserBaseInfo from '@/components/serveComponent/common/UserBaseInfo'
 import WorkProgress from '@/components/serveComponent/common/WorkProgress'
+import Success from '@/components/serveComponent/common/Success'
 
 function plugin(Vue) {
     if (plugin.installed) {
@@ -17,6 +18,7 @@ function plugin(Vue) {
     Vue.component('Title',Title);
     Vue.component('UserBaseInfo',UserBaseInfo);
     Vue.component('WorkProgress',WorkProgress);
+    Vue.component('Success',Success);
 }
 
 export default plugin
