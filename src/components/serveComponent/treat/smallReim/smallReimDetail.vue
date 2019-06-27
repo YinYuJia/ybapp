@@ -157,7 +157,7 @@ export default {
     },
     methods:{
         back(){
-            this.$router.push('/')
+            // this.$router.push('/')
         },
         edit(){
             this.$router.push("/smallReim");
