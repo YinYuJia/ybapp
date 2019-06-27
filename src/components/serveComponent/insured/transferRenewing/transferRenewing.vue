@@ -23,7 +23,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>转出地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openOutCityPicker" type="text" v-model="AAA027000" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input @click="openOutCityPicker" type="text" v-model="form.AAA027000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -78,7 +78,7 @@ export default {
             let GinsengLandName = sessionStorage.getItem("GinsengLandName")
 
             console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
-            this.AAA027000 = GinsengLandName
+            this.form.AAA027000 = GinsengLandName
             this.form.AAS027 = GinsengLandCode
             this.form.AAA027 = GinsengLandCode.substring(0,2) + '0000'
             console.log('this.form.AAS027',this.form.AAS027)

@@ -299,7 +299,10 @@ export default {
           val.AKA071 != "" &&
           val.AKC226 != "" &&
           val.AAE030 != "" &&
-          val.AAE031 != ""
+          val.AAE031 != "" &&
+          this.AAB301000 !=""   &&
+          this.AAB301000 !=null &&
+          this.picArr.length>0
         ) {
           this.canSubmit = true;
         } else {
