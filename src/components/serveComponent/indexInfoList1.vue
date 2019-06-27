@@ -47,9 +47,9 @@
                 </div>
             </div>
             <div class="iconList">
-                <div class="iconBox" @click="showDetail('searchFee','费用信息查询')">
-                    <svg-icon icon-class="serveComponent_icon_19" />
-                    <div class="text">费用信息</div>
+                <div class="iconBox" @click="showDetail('searchBaseInfo','个人信息查询')">
+                    <svg-icon icon-class="serveComponent_icon_16" />
+                    <div class="text">信息查询</div>
                 </div>
                 <div class="iconBox" @click="showDetail('searchInsuredInfo','参保信息查询')">
                     <svg-icon icon-class="serveComponent_icon_17" />
