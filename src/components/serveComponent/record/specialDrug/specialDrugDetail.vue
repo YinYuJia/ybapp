@@ -116,7 +116,7 @@ export default {
     },
     methods:{
         back(){
-            this.$router.push('/')
+            // this.$router.push('/')
         },
         // 撤销提醒
         backout(){
