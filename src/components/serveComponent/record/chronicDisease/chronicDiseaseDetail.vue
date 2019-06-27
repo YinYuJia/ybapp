@@ -187,7 +187,13 @@ export default {
             let submitForm = {}
             console.log(submitForm)
                 submitForm.AGA002 =  "确认-00253-004";
-                submitForm.lx="2";
+                if(this.$route.query.param){
+                    submitForm.lx="1";
+                    submitForm.BKZ019=this.$route.query.param
+                }else{
+                    submitForm.lx="2";
+                }
+                
                 // submitForm.debugTest=  "true";
 
             // 加入用户名和电子社保卡号

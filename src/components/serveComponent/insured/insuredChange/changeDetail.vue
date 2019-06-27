@@ -43,6 +43,10 @@ export default {
         }
     },
     created(){
+        //从进度查询页面进入接收传参
+        if(this.$route.query.param){
+            console.log("传参",this.$route.query.param)
+        }
         // this.form = this.$store.state.SET_INSURED_CHANGE;
         this.epFn.setTitle('参保信息变更')
         this.request();

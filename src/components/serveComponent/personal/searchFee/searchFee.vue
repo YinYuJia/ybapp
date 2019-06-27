@@ -47,11 +47,14 @@ export default {
                 AAE031: '', //结束日期
             },
             dateVal: new Date(), //默认绑定的时间
+            
             canSubmit: false,
         }
     },
     created () {
         this.epFn.setTitle('个人费用查询')
+        console.log(this.util.DateToNumber(this.dateVal))
+        this.form.AAE030=this.dateVal
         // this.form = this.$store.state.SET_SEARCHFEE_OPERATION;
     },
     watch: {
