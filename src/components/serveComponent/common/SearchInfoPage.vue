@@ -181,7 +181,7 @@ export default {
         // 加载更多数据
         console.log('加载')
       if (!this.allLoaded) {
-        this.getList();
+            this.getList();
       }
         this.allLoaded = true;// 若数据已全部获取完毕
         this.$refs.loadmore.onBottomLoaded();

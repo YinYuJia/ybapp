@@ -231,7 +231,7 @@
                                     })
 
                                 }
-                        },
+                            },
                             onFail: function(error) {}
                         })
                     })
