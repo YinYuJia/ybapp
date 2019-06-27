@@ -267,7 +267,7 @@ export default {
               val.AKA120 != ''&& val.AAE030 != ''&& 
               val.AAE011 != ''&& val.AAE005 != ''&& 
               val.AAE006 != ''&& this.AAB301000 !=""&&
-              this.AAB301000 !=null && this.picArr.length>0
+              this.picArr.length>0
             ) {
                 this.canSubmit = true
             }else{
@@ -277,8 +277,7 @@ export default {
             if ( 
               val.AAS301 != '' && val.AKA035 != '' &&
               val.AKA120 != ''  && val.AAE030 != ''&&
-              this.AAB301000 !=""&& this.AAB301000 !=null && 
-              this.picArr.length>0
+              this.AAB301000 !=""&& this.picArr.length>0
                ) {
                 this.canSubmit = true
             }else{

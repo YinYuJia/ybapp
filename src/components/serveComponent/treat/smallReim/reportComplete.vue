@@ -44,7 +44,7 @@ export default {
     },
     methods:{
         back(){
-            this.$router.push('/')
+            // this.$router.push('/')
         },
         submit(){
             this.$router.push('/smallReimDetail');

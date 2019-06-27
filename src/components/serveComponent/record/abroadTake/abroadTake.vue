@@ -124,7 +124,7 @@
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (val.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' &&this.picArr.length>0 &&val.AAB301000 != null ) {
+                    if (this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' &&this.picArr.length>0) {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
