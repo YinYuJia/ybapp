@@ -24,7 +24,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
                     <div class="InfoText">
-                         <div class="InfoText"><input @click="openInsuredPicker" type="text" v-model="canbao" placeholder="请选择" readonly></div>
+                         <div class="InfoText"><input type="text" v-model="AAB301000" placeholder="请选择" readonly></div>
                     </div>
                 </div>
                 <div class="InfoLine">
@@ -44,19 +44,20 @@
 export default {
     data(){
         return{
+            AAB301000:"",
             form:{
                 AAS301:'', //参保地
                 AAB301:'', //参保地
                 AAQ301:'', //参保地
-                AAE011: '' //缴费月数
+                AAE011: '24' //缴费月数
             },
             canbao:"",
-            AAE011VALUE: '',
+            AAE011VALUE: '24',
             options:[
-                {value: '12', label: '12个月'},
-                {value: '24', label: '24个月'},
-                {value: '36', label: '36个月'},
-                {value: '48', label: '48个月'},
+                {value: '12', label: '12'},
+                {value: '24', label: '24'},
+                {value: '36', label: '36'},
+                {value: '48', label: '48'},
             ],
             canSubmit: false,
         }
@@ -78,6 +79,15 @@ export default {
         this.form = this.$store.state.SET_SEARCH_PRINT;
         this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
         this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+
+        let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+        let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+
+        console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+        this.AAB301000 = GinsengLandName
+        console.log(this.AAB301000=="")
+        this.form.AAB301 = GinsengLandCode
+        this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
         // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
         // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
     },
@@ -173,17 +183,25 @@ export default {
                         display: flex;
                         position: relative;
                         align-items: center;
+                        // input {
+                        //     width: 4rem;
+                        //     height: .6rem;
+                        //     opacity: 0.85;
+                        //     font-family: PingFangSC-Regular;
+                        //     font-size: .3rem;
+                        //     color: #000000;
+                        //     letter-spacing: 0;
+                        //     text-align: right;
+                        //     border: none;
+                        //     background: #ffffff;
+                        // }
                         input {
-                            width: 4rem;
-                            height: .6rem;
-                            opacity: 0.85;
-                            font-family: PingFangSC-Regular;
-                            font-size: .3rem;
-                            color: #000000;
-                            letter-spacing: 0;
-                            text-align: right;
-                            border: none;
-                            background: #ffffff;
+                        height: .6rem;
+                        font-size: .3rem;
+                        color: #000000;
+                        letter-spacing: 0;
+                        text-align: right;
+                        border: none;
                         }
                     }
                     &:last-child {

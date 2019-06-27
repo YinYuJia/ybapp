@@ -5,12 +5,14 @@
         <SelectCity 
             :type="3"
             ref="inCityPicker"
+            :onlyZJ="true"
             @confirm="chooseInCity"
             >
         </SelectCity>
         <SelectCity 
             :type="3"
             ref="outCityPicker"
+            :onlyZJ="true"
             @confirm="chooseOutCity"
             >
         </SelectCity>
