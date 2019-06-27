@@ -272,7 +272,6 @@
                 this.BKE255VALUE = val.label;
             },
             submit() {
-                alert()
                 if (this.canSubmit == false) {
                     this.$toast('信息未填写完整');
                     return false;
