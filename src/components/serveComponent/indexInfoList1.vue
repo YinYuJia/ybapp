@@ -54,15 +54,15 @@
                 </div>
             </div>
             <div class="iconList">
-                <div class="iconBox" @click="showDetail('elseWhere','异地就医备案')">
-                    <svg-icon v-if="0" icon-class="serveComponent_icon_5" />
-                    <svg-icon v-if="1" icon-class="serveComponent_grey5" />
-                    <div class="text">异地备案</div>
+                <div class="iconBox" @click="showDetail('searchBaseInfo','个人信息查询',true)">
+                    <svg-icon v-if="1" icon-class="serveComponent_icon_16" />
+                    <svg-icon v-if="0" icon-class="serveComponent_grey16" />
+                    <div class="text">信息查询</div>
                 </div>
-                <div class="iconBox" @click="showDetail('specialDrug','特制特药备案')">
-                    <svg-icon v-if="0" icon-class="serveComponent_icon_9" />
-                    <svg-icon v-if="1" icon-class="serveComponent_grey9" />
-                    <div class="text">特药备案</div>
+                <div class="iconBox" @click="showDetail('searchInsuredInfo','参保信息查询',true)">
+                    <svg-icon v-if="1" icon-class="serveComponent_icon_17" />
+                    <svg-icon v-if="0" icon-class="serveComponent_grey17" />
+                    <div class="text">参保信息</div>
                 </div>
                 <div class="iconBox" @click="showDetail('getProof','领取就医凭证')">
                     <svg-icon v-if="0" icon-class="serveComponent_icon_1" />
