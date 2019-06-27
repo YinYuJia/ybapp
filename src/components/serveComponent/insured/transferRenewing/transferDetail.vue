@@ -145,9 +145,15 @@ export default {
             let submitForm = {}
             console.log(submitForm)
                 submitForm.AGA002 =  "公共服务-00512-001";
-                submitForm.lx="2";
                 // submitForm.debugTest=  "true";
-
+                //从进度查询页面进入接收传参
+                if(this.$route.query.param){
+                    submitForm.lx="1";
+                    submitForm.BKZ019=this.$route.query.param
+                }else{
+                    submitForm.lx="2";
+                    submitForm.BKZ019="";
+                }
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

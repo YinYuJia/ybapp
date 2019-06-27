@@ -538,7 +538,11 @@ export default {
                 })
                 return
               }
-          }
+          }else if (resData.enCode == 1001 ) {
+              //   失败  1001
+                this.$toast(resData.msg);
+                return;
+            }
         });
     },
      // 上传图片附件
