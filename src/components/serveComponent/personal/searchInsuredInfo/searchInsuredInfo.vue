@@ -24,7 +24,8 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地：</span></div>
                     <div class="InfoText">
-                        <input @click="openInsuredPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly>
+                        <!-- <input @click="openInsuredPicker" type="text" v-model="form.AAB301000" placeholder="请选择" readonly> -->
+                        <input type="text" v-model="form.AAB301000" placeholder="请选择" readonly>
                     </div>
                 </div>
                 <div class="InfoLine">

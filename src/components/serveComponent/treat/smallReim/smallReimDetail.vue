@@ -61,14 +61,14 @@
                 <div class="invoiceHint">报销明细</div>
                 <!-- 报销完成状态 -->
                 <div class="invoiceList2" v-for="item in invoices" :key="item.code">
-                    <!-- <div class="textLine"> -->
-                        <!-- <div class="textHeader" @click="showInvoiceDetail()">
+                    <div class="textLine" v-if="item.BKE586==3">
+                        <div class="textHeader" @click="showInvoiceDetail(item)">
                             <span>医保报销金额：</span>
-                            <span class="active">￥1000.31</span>
+                            <span class="active">{{item.BKE450}}</span>
                             <svg-icon icon-class="serveComponent_arrowRight" />
                         </div>
-                        <div class="textInfo">已报销</div> -->
-                    <!-- </div> -->
+                        <div class="textInfo">{{item.BKE586 | BKE586}}</div>
+                    </div>
                     <div class="textLine">
                         <span class="textName">发票号码</span>
                         <span class="textInfo">{{item.BKE100}}</span>
@@ -77,10 +77,10 @@
                         <span class="textName">发票金额</span>
                         <span class="textInfo">{{item.BKE472}}</span>
                     </div>
-                    <!-- <div class="textLine">
+                    <div class="textLine" v-if="item.BKE586==3">
                         <span class="textName">说明</span>
-                        <span class="textInfo">{{item.state}}</span>
-                    </div> -->
+                        <span class="textInfo">{{item.AAE013 || '已报销'}}</span>
+                    </div>
                 </div>
             </div>
             <!-- 病例资料 -->
@@ -169,7 +169,8 @@ export default {
                 this.$toast('撤销成功');
             });
         },
-        showInvoiceDetail(){
+        showInvoiceDetail(item){
+            this.dispatch('SET_INVOICEDETAIL',item)
             this.$router.push('/invoiceDetail')
         },
         needSubmitInfo(){
@@ -368,7 +369,7 @@ export default {
             margin-top: .15rem;
             background: white;
             .InfoLine{
-                height: 1.2rem;
+                // height: 1.2rem;
                 position: relative;
                 display: flex;
                 font-size: .28rem;
