@@ -231,7 +231,7 @@ export default {
         AAE006: "", //详细地址
         photoIdList:[],//照片ID数组
       },
-      BKE247VALUE: "", //病历提取方式值
+      BKE247VALUE: "自取", //病历提取方式值
       disabledOne: true,
       isSearch: false,
       dateVal: new Date(), //默认绑定的时间
@@ -306,16 +306,16 @@ export default {
     }
   },
     created(){
-        this.epFn.setTitle('规定病种备案')
-                   let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
-           let GinsengLandName = sessionStorage.getItem("GinsengLandName")
-
-           console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
-           this.AAB301000 = GinsengLandName
-           this.form.AAB301 = GinsengLandCode
-           this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
-           console.log('this.form.AAS301',this.form.AAS301)
-           console.log('this.form.AAB301',this.form.AAB301)
+      this.getMailInfo();
+      this.epFn.setTitle('规定病种备案')
+      let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+      let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+      console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+      this.AAB301000 = GinsengLandName
+      this.form.AAB301 = GinsengLandCode
+      this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
+      console.log('this.form.AAS301',this.form.AAS301)
+      console.log('this.form.AAB301',this.form.AAB301)
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
         // this.form.canbao = this.$store.state.SET_USER_DETAILINFO.regionName
         // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
@@ -387,6 +387,33 @@ export default {
         this.form.AKA1212 = '';
       }
     },
+    // 获取邮寄信息
+    getMailInfo(){
+        let submitForm = {}
+        // 加入电子社保卡号
+        if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+            submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+        }else {
+            submitForm.AAE135 = "332625197501010910";
+        }
+        const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2002');
+        this.$axios.post(this.epFn.ApiUrl() + '/h5/jy2002/getRecord', params).then((resData) => {
+            //   成功   1000
+            if ( resData.enCode == 1000 ) {
+                  this.form.AAE011 = resData.AAE009 //收件人
+                  this.form.AAE005 = resData.AAE005  //手机号码
+                  this.form.AAE006 = resData.AAE006   //详细地址
+            }else if (resData.enCode == 1001 ) {
+            //   失败  1001
+                // this.$toast(resData.msg);
+                return;
+            }else{
+                this.$toast('业务出错');
+                return;
+            }
+        })
+    },
+
     submit() {
       if (this.showMail == true) {
         if (!this.util.checkPhone(this.form.AAE005)) {

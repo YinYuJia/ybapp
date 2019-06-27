@@ -16,15 +16,15 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>视作缴费年限</span></div>
-                    <div class="InfoText"><input type="tel" v-model="form.AKC412" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="tel" maxlength="2" v-model="form.AKC412" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>缴费月数</span></div>
-                    <div class="InfoText"><input type="tel" v-model="form.BAC213" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="tel" maxlength="3" v-model="form.BAC213" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>退休工资</span></div>
-                    <div class="InfoText"><input type="tel" maxlength="4" v-model="form.AAE041" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="tel" maxlength="5" v-model="form.AAE041" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>提前退休类别</span></div>
@@ -121,6 +121,15 @@ export default {
     },
     methods:{
         submit(){
+            if(!/^[0-9]+$/.test(this.form.AKC412)){
+                this.$toast("缴费年限只能输入数字");
+            }
+            if(!/^[0-9]+$/.test(this.form.BAC213)){
+                this.$toast("缴费月数只能输入数字");
+            }
+            if(!/^[0-9]+$/.test(this.form.AAE041)){
+                this.$toast("退休工资只能输入数字");
+            }
             if(this.canSubmit == false){
                 this.$toast('信息未填写完整');
                 return false;
@@ -170,7 +179,6 @@ export default {
         },
         formatSubmitData(){
             let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
-            
             submitForm.AKC412 =  this.form.AKC412;
             submitForm.BAC213 =  this.form.BAC213;
             submitForm.AAE041 =  this.form.AAE041;
