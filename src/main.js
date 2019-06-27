@@ -143,7 +143,7 @@ function  paramStr(name){
   }
 }
 
-console.log('欢迎进入医保专区首页H5ddddddddddddmain.js')
+console.log('欢迎进入医保专区首页main.js')
 
 
 
