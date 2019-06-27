@@ -168,7 +168,7 @@ export default {
         },
         formatSubmitData(){  
             let submitForm ={}
-            submitForm.AGA002 =  "确认-00253-004";
+            submitForm.AGA002 =  "330800253004";
             // submitForm.debugTest =  "true";
 
             // 加入用户名和电子社保卡号
@@ -185,7 +185,7 @@ export default {
         },
         formatSubmitData1(){
             let submitForm = {}
-                submitForm.AGA002 =  "确认-00253-004";
+                submitForm.AGA002 =  "330800253004";
                 // submitForm.debugTest=  "true";
                 //从进度查询页面进入接收传参
                 if(this.$route.query.param){

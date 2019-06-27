@@ -209,7 +209,7 @@
                                         submitForm.AAE135 = "332625197501010910";
                                     }
                                     // 加入子项编码
-                                    submitForm.AGA002 = '确认-00253-001';
+                                    submitForm.AGA002 = '330800253001';
                                     submitForm.photoList = data.picPath[0];
                                     submitForm.PTX001 = '2';
                                     const params = _this.epFn.commonRequsetData(_this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
