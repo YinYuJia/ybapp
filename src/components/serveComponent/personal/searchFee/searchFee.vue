@@ -73,7 +73,7 @@ export default {
                     let gap = AAE031 - AAE030;
                     if (gap <=0) {
                         this.$toast('结束日期必须大于开始日期');
-                        this.form.AAE031 = '';
+                        this.form.AAE031 = '';      
                     }
                 }
             },

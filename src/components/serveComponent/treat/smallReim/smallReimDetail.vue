@@ -125,6 +125,13 @@ export default {
         this.request2()
         // this.needSubmitInfo();  //判断是否需要提交资料
         console.log(params);
+        if (window.history && window.history.pushState) {
+            history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', this.back, false);//false阻止默认事件
+        }
+    },
+    destroyed(){
+        window.removeEventListener('popstate', this.back, false);//false阻止默认事件
     },
     data(){
         return{
@@ -149,6 +156,9 @@ export default {
         }
     },
     methods:{
+        back(){
+            this.$router.push('/')
+        },
         edit(){
             this.$router.push("/smallReim");
         },
