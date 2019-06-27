@@ -162,8 +162,12 @@ export default {
                         }else{
                             this.$store.dispatch('IS_INVOICE',false)
                         }
+                        let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+                        let GinsengLandName = sessionStorage.getItem("GinsengLandName")
                         let submitForm = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_SUBMIT));
                         submitForm.AKB020 = this.form.AKB020;
+                        submitForm.AAS301 = GinsengLandCode.substring(0,2) + '0000';
+                        submitForm.AAB301 = GinsengLandCode;
                         this.$store.dispatch('SET_SMALL_REIM_SUBMIT', submitForm);
                         this.$store.dispatch('SET_SMALL_REIM_1', this.form);
                         this.$router.push("/invoiceInfo");
