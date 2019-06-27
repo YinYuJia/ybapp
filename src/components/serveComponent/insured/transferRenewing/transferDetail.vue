@@ -126,7 +126,7 @@ export default {
         },
         formatSubmitData(){  
             let submitForm ={}
-            submitForm.AGA002 =  "公共服务-00512-001";
+            submitForm.AGA002 =  "331400512001";
             // submitForm.debugTest =  "true";
 
             // 加入用户名和电子社保卡号
@@ -144,7 +144,7 @@ export default {
         formatSubmitData1(){
             let submitForm = {}
             console.log(submitForm)
-                submitForm.AGA002 =  "公共服务-00512-001";
+                submitForm.AGA002 =  "331400512001";
                 // submitForm.debugTest=  "true";
                 //从进度查询页面进入接收传参
                 if(this.$route.query.param){

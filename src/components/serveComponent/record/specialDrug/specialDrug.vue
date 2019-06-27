@@ -571,7 +571,7 @@ export default {
                                 submitForm.AAE135 = "332625197501010910";
                             }
                             // 加入子项编码
-                            submitForm.AGA002 = '确认-00253-003'
+                            submitForm.AGA002 = '330800253003'
                             submitForm.photoList = data.picPath[0]
                             submitForm.PTX001 = '2'
                             const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');

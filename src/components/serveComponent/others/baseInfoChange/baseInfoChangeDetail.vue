@@ -77,7 +77,7 @@ export default {
         },
         formatSubmitData(){  
             let submitForm ={}
-            submitForm.AGA002 =  "公共服务-00501-005";
+            submitForm.AGA002 =  "331400501005";
             // submitForm.debugTest =  "true";
 
             // 加入用户名和电子社保卡号
