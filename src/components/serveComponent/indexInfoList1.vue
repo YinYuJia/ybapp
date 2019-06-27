@@ -47,13 +47,13 @@
                 </div>
             </div>
             <div class="iconList">
-                <div class="iconBox" @click="showDetail('elseWhere','异地就医备案')">
-                    <svg-icon icon-class="serveComponent_icon9" />
-                    <div class="text">异地备案</div>
+                <div class="iconBox" @click="showDetail('searchFee','费用信息查询')">
+                    <svg-icon icon-class="serveComponent_icon_19" />
+                    <div class="text">费用信息</div>
                 </div>
-                <div class="iconBox" @click="showDetail('specialDrug','特制特药备案')">
-                    <svg-icon icon-class="serveComponent_icon10" />
-                    <div class="text">特药备案</div>
+                <div class="iconBox" @click="showDetail('searchInsuredInfo','参保信息查询')">
+                    <svg-icon icon-class="serveComponent_icon_17" />
+                    <div class="text">参保信息</div>
                 </div>
                 <div class="iconBox" @click="showDetail('getProof','领取就医凭证')">
                     <svg-icon icon-class="serveComponent_icon11" />

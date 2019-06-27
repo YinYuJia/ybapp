@@ -259,6 +259,7 @@ export default {
         width: 7.5rem;
         background: #FFF;
         position: fixed;
+        z-index: 999;
         top: 0;
         .swiper-container{
             height: 100%;
