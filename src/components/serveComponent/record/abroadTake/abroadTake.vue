@@ -256,7 +256,7 @@
                 if (!this.util.passPort(this.form.BKE260)) {
                     this.$toast("请填写一位英文加八位数字");
                     return false;
-                }
+                } 
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
