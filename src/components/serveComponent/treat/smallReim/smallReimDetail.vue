@@ -257,8 +257,7 @@ export default {
             })
         },
         formatSubmitData(){
-            let submitForm = {}
-                console.log(submitForm)
+                let submitForm = {}
                 submitForm.AGA002 =  "给付-00007-019";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -273,8 +272,7 @@ export default {
                 return params;
         },
         formatSubmitData1(){
-            let submitForm = {}
-                console.log(submitForm)
+                let submitForm = {}
                 submitForm.AGA002 =  "给付-00007-019";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
@@ -322,12 +320,17 @@ export default {
             })
         },
         formatSubmitData2(){
-            let submitForm = {}
-            console.log(submitForm)
+                let submitForm = {}
                 submitForm.AGA002 =  "给付-00007-019";
-                submitForm.lx="2";
                 // submitForm.debugTest=  "true";
-
+                //从进度查询页面进入接收传参
+                if(this.$route.query.param){
+                    submitForm.lx="1";
+                    submitForm.BKZ019=this.$route.query.param
+                }else{
+                    submitForm.lx="2";
+                    submitForm.BKZ019="";
+                }
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

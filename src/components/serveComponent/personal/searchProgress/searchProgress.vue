@@ -79,30 +79,30 @@ export default {
                     console.log('返回成功信息',resData)
                     //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        if (resData.AGA002=="公共服务-00501-005") {
-                                this.$router.push({
-                                path:"/changeDetail",//参保信息变更
-                                query:{
-                                    param: item.BKZ019
-                                }
-                            });
-                        }else if(resData.AGA002=="确认-00122-043"){
+                        if (resData.AGA002=="确认-00122-043") {
                                 this.$router.push({
                                 path:"/getDetail",//领取就医凭证
                                 query:{
                                     param: item.BKZ019
                                 }
                             });
-                        }else if(resData.AGA002=="确认-00253-004"){
+                        }else if(resData.AGA002=="公共服务-00501-005"){
                                 this.$router.push({
-                                path:"/chronicDiseaseDetail",//规定病种（慢病）
+                                path:"/changeDetail",//参保信息变更
                                 query:{
                                     param: item.BKZ019
                                 }
                             });
-                        }else if(resData.AGA002=="确认-00253-003"){
+                        }else if(resData.AGA002=="公共服务-00512-001"){
                                 this.$router.push({
-                                path:"/specialDrugDetail",//特治特药
+                                path:"/transferDetail",//关系转移接续
+                                query:{
+                                    param: item.BKZ019
+                                }
+                            });
+                        }else if(resData.AGA002=="确认-00253-013"){
+                                this.$router.push({
+                                path:"/elseDetail",//异地就医
                                 query:{
                                     param: item.BKZ019
                                 }
@@ -114,6 +114,34 @@ export default {
                                     param: item.BKZ019
                                 }
                             });
+                        }else if(resData.AGA002=="确认-00253-001"){
+                                this.$router.push({
+                                path:"/abroadDetail",//出国带药
+                                query:{
+                                    param: item.BKZ019
+                                }
+                            });
+                        }else if(resData.AGA002=="确认-00253-023"){
+                                this.$router.push({
+                                path:"/abroadDetail",//家庭共济
+                                query:{
+                                    param: item.BKZ019
+                                }
+                            });
+                        }else if(resData.AGA002=="确认-00253-003"){
+                                this.$router.push({
+                                path:"/specialDrugDetail",//特治特药
+                                query:{
+                                    param: item.BKZ019
+                                }
+                            });
+                        }else if(resData.AGA002=="确认-00253-004"){
+                                this.$router.push({
+                                path:"/chronicDiseaseDetail",//规定病种（慢病）
+                                query:{
+                                    param: item.BKZ019
+                                }
+                            });
                         }else if(resData.AGA002=="给付-00007-019"){
                                 this.$router.push({
                                 path:"/smallReimDetail",//零星报销
@@ -121,16 +149,9 @@ export default {
                                     param: item.BKZ019
                                 }
                             });
-                        }else if(resData.AGA002=="公共服务-00512-001"){
+                        }else if(resData.AGA002=="确认-00123-004"){
                                 this.$router.push({
-                                path:"/transferDetail",//关系转移接续
-                                query:{
-                                    param: item.BKZ019
-                                }
-                            });
-                        }else if(resData.AGA002=="公共服务-00512-001"){
-                                this.$router.push({
-                                path:"/transferDetail",//关系转移接续
+                                path:"/payLimitDetail",//缴费年限
                                 query:{
                                     param: item.BKZ019
                                 }

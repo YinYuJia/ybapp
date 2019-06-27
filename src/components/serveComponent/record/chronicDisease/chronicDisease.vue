@@ -397,6 +397,8 @@ export default {
             if (resData.enCode == "1000") {
               this.$store.dispatch("SET_CHRONIC_DISEASE", this.form);
               this.$router.push("/chronicDiseaseDetail");
+            }else if(resData.enCode=="1001"){
+               this.$toast(resData.msg)
             }
           })
       }
