@@ -104,12 +104,12 @@
         },
         created () {
             this.epFn.setTitle('出国带药备案')
-
-        let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
-           let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+            let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+            let GinsengLandName = sessionStorage.getItem("GinsengLandName")
 
            console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
            this.AAB301000 = GinsengLandName
+           console.log(this.AAB301000=="")
            this.form.AAB301 = GinsengLandCode
            this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
            console.log('this.form.AAS301',this.form.AAS301)
@@ -124,7 +124,7 @@
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (val.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' ) {
+                    if (val.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' &&this.picArr.length>0 &&val.AAB301000 != null ) {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;

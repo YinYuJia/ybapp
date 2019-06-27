@@ -262,14 +262,24 @@ export default {
         //   邮寄
         if (val.BKE247 == "2") {
           this.showMail = true;
-           if ( val.AAS301 != '' && val.AKA035 != '' && val.AKA120 !=  '' && val.AAE030 != '' && val.AAE011 != '' && val.AAE005 != '' && val.AAE006 != '') {
+           if ( 
+              val.AAS301 != ''&& val.AKA035 != ''&& 
+              val.AKA120 != ''&& val.AAE030 != ''&& 
+              val.AAE011 != ''&& val.AAE005 != ''&& 
+              val.AAE006 != ''&& this.AAB301000 !=""&&
+              this.AAB301000 !=null && this.picArr.length>0
+            ) {
                 this.canSubmit = true
             }else{
                 this.canSubmit = false
             }
-          
         } else {
-            if ( val.AAS301 != '' && val.AKA035 != '' && val.AKA120 != ''  && val.AAE030 != '') {
+            if ( 
+              val.AAS301 != '' && val.AKA035 != '' &&
+              val.AKA120 != ''  && val.AAE030 != ''&&
+              this.AAB301000 !=""&& this.AAB301000 !=null && 
+              this.picArr.length>0
+               ) {
                 this.canSubmit = true
             }else{
                 this.canSubmit = false
