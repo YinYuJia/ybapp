@@ -77,7 +77,7 @@ export default {
         //     submitForm.AAC003 = '许肖军';
         //     submitForm.AAE135 = "332625197501010910";
         // }
-        // submitForm.AGA002= '确认-00122-043'
+        // submitForm.AGA002= '330800122043'
         // const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
         // this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1009/getRecord', params)
         // .then((resData) => {
@@ -166,7 +166,7 @@ export default {
         },
         formatSubmitData(){  
             let submitForm ={}
-            submitForm.AGA002 =  "确认-00122-043";
+            submitForm.AGA002 =  "330800122043";
             // submitForm.debugTest =  "true";
 
             // 加入用户名和电子社保卡号
@@ -183,7 +183,7 @@ export default {
         },
         formatSubmitData1(){
             let submitForm = {}
-                submitForm.AGA002 =  "确认-00122-043";
+                submitForm.AGA002 =  "330800122043";
                 
                 // submitForm.debugTest=  "true";
                 //从进度查询页面进入接收传参

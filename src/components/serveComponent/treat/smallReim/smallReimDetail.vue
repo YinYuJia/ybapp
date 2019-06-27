@@ -203,7 +203,7 @@ export default {
         // 封装提交参数
         formatSubmitForm(){
             let submitForm = {
-                AGA002: '给付-00007-019',
+                AGA002: '330600007019',
                 AAC003: this.$store.state.SET_NATIVEMSG.names,
                 AAE135: this.$store.state.SET_NATIVEMSG.idCard
             }
@@ -258,7 +258,7 @@ export default {
         },
         formatSubmitData(){
                 let submitForm = {}
-                submitForm.AGA002 =  "给付-00007-019";
+                submitForm.AGA002 =  "330600007019";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
@@ -273,7 +273,7 @@ export default {
         },
         formatSubmitData1(){
                 let submitForm = {}
-                submitForm.AGA002 =  "给付-00007-019";
+                submitForm.AGA002 =  "330600007019";
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
@@ -321,7 +321,7 @@ export default {
         },
         formatSubmitData2(){
                 let submitForm = {}
-                submitForm.AGA002 =  "给付-00007-019";
+                submitForm.AGA002 =  "330600007019";
                 // submitForm.debugTest=  "true";
                 //从进度查询页面进入接收传参
                 if(this.$route.query.param){
