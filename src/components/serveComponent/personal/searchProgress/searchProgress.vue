@@ -18,7 +18,7 @@
                 <ul class="ListInfo">
                     <li class="ListLine" v-for="(item,index) in itemGroup" :key="index" @click="gotoplace(item)">
                         <div class="InfoName">
-                            <div class="InfoHead">{{item.AGA004}}</div>
+                            <div class="InfoHead">{{item.AGA004 | tooLong}}</div>
                             <div class="InfoDate">{{item.AAE036}}</div>
                         </div>
                         <svg-icon icon-class="serveComponent_arrowRight" />
@@ -52,6 +52,16 @@ export default {
             isShow:false,
             height: 0,
 
+        }
+    },
+    filters:{
+        tooLong: function(val){
+            if(!null){
+                if(val.length>20){
+                    return val.substring(0,20)+'...';
+                }
+                return val;
+            }
         }
     },
     created () {

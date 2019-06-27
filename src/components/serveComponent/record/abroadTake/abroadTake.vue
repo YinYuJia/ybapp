@@ -246,18 +246,17 @@
             },
             submit() {
                 
-            if(this.form.BKE260){
-                if(!this.util.passPort(this.form.BKE260)){
-                    this.$toast('请填写正确的护照号(第一位英文字母+8个数字)');
-                    return false;
-                }
-            }
+
             if (this.canSubmit == false) {
                 this.$toast('信息未填写完整');
                 return false;
+
             } else {
                 this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
-
+                if (!this.util.passPort(this.form.BKE260)) {
+                    this.$toast("请填写一位英文加八位数字");
+                    return false;
+                } 
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
@@ -269,6 +268,7 @@
                                 this.$router.push("/abroadDetail");
                             }else if (resData.enCode == 1001 ) {
                             //   失败  1001
+                              
                                 this.$toast(resData.msg);
                                 return;
                             }else{
