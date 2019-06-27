@@ -124,7 +124,7 @@ export default {
     // this.$nextTick(() => {
     //   document.body.addEventListener('touchmove',function(e){
     //     e.preventDefault(); //阻止默认事件(上下滑动)
-    //   })
+    //   })\
     // })
   },
   destroyed(){
