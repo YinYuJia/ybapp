@@ -153,62 +153,67 @@ sessionStorage.setItem("idCard","332625197501010910")
 
 // router.beforeEach((to, from, next) => {
   
-//       const code = 'yibaozs';
-//       // var ticket = paramStr("ticket") || "8afac0cc6b84c4aa016b8e7fb4662798-ticket";
-//       var ticket = paramStr("ticket");
-//        console.log('ticket-------------',ticket)
-//        var token = sessionStorage.getItem("getToken")
-//        console.log('token-------------',token)
-//           if ( token != "" && token != undefined && token != null) {
-//             axios.post("//59.202.42.147:23030/H5/jy2005/info" , {
-//               "token":token,
-//               "tradeCode":"2005"
-//               }).then(result2=>{
-//                     console.log('result2-----------------',result2)
-//                       if ( result2.result == "0") {
-//                         sessionStorage.setItem("userName",result2.username)
-//                         sessionStorage.setItem("idCard",result2.idnum)
-//                         next()
-//                       }else{
-//                         MessageBox.alert(result2.errmsg);
-//                       }
-//               })
-//           }else{
-//             if (ticket != "" && ticket != undefined && ticket != null) {
-//                     axios.post("//59.202.42.147:23030/H5/jy2004/info" , {
-//                       "st":ticket,
-//                       "tradeCode":"2004"
-//                     }).then(result0 => {
-//                       console.log('result0----------------------',result0)
+//   const code = 'yibaozs';
+//   console.log()
+//   // var ticket = paramStr("ticket") || "8afac0cc6b84c4aa016b8e7fb4662798-ticket";
+//   var ticket = paramStr("ticket");
+//    console.log('ticket-------------',ticket)
+//    var token = sessionStorage.getItem("getToken")
+//    console.log('token-------------',token)
+//    //59.202.42.147:23030
+//       if ( token != "" && token != undefined && token != null) {
+//         axios.post(ApiUrl()+"/H5/jy2005/info" , {
+//           "token":token,
+//           "tradeCode":"2005"
+//           }).then(result2=>{
+//                 console.log('result2-----------------',result2)
+//                   if ( result2.result == "0") {
+//                     sessionStorage.setItem("userName",result2.username)
+//                     sessionStorage.setItem("idCard",result2.idnum)
+//                     next()
+//                   }else{
+//                     MessageBox.alert(result2.errmsg);
+//                     return;
+//                   }
+//           })
+//       }else{
+//         if (ticket != "" && ticket != undefined && ticket != null) {
 
-//                       if ( result0.result == "0") {
-//                         sessionStorage.setItem("getToken",result0.token)
-//                         console.log(sessionStorage.getItem("getToken"))
-//                       }else{
-//                         MessageBox.alert(result0.errmsg);
-//                         console.log("return前面")
-//                         // return;
-//                       }
-                      
-//                       axios.post("//59.202.42.147:23030/H5/jy2005/info" , {
-//                         "token":result0.token,
-//                         "tradeCode":"2005"
-//                         }).then(result1=>{
-//                             console.log('result1------------------',result1)
-//                                if ( result1.result == "0") {
-//                                 sessionStorage.setItem("userName",result1.username)
-//                                  sessionStorage.setItem("idCard",result1.idnum)
-//                                  next()
-//                                }else{
-//                                 MessageBox.alert(result1.errmsg);
-//                                }
-//                         })
-//                     });
-//             } else {
-//               console.log("授权侵入")
-//               window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode="+ code + "&goto=" + window.location.href;
-//             }
-//           }
+//           console.log(11111111111111111111111111111111111111111111111)
+//                 axios.post(ApiUrl()+"/H5/jy2004/info" , {
+//                   "st":ticket,
+//                   "tradeCode":"2004"
+//                 }).then(result0 => {
+//                   console.log('result0----------------------',result0)
+
+//                   if ( result0.result == "0") {
+//                     sessionStorage.setItem("getToken",result0.token)
+//                     console.log(sessionStorage.getItem("getToken"))
+//                   }else{
+//                     MessageBox.alert(result0.errmsg);
+//                     return;
+//                     // return;
+//                   }
+                  
+//                   axios.post(ApiUrl()+"/H5/jy2005/info" , {
+//                     "token":result0.token,
+//                     "tradeCode":"2005"
+//                     }).then(result1=>{
+//                         console.log('result1------------------',result1)
+//                            if ( result1.result == "0") {
+//                             sessionStorage.setItem("userName",result1.username)
+//                              sessionStorage.setItem("idCard",result1.idnum)
+//                              next()
+//                            }else{
+//                             MessageBox.alert(result1.errmsg);
+//                            }
+//                     })
+//                 });
+//         } else {
+//           console.log("授权侵入")
+//           window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode="+ code + "&goto=" + window.location.href;
+//         }
+//       }
 // })
 
 
