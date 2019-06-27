@@ -289,20 +289,19 @@ export default {
       handler: function(val,oldVal) {
         // 判断不为空
         if (
-          val.AAS301 != "" &&
-          val.AKB020 != "" &&
-          val.BKE253 != "" &&
-          val.BKE228 != "" &&
-          val.AKA120 != "" &&
-          val.AKA121 != "" &&
-          val.AKE002 != "" &&
-          val.AKA071 != "" &&
-          val.AKC226 != "" &&
-          val.AAE030 != "" &&
-          val.AAE031 != "" &&
-          this.AAB301000 !=""   &&
-          this.AAB301000 !=null &&
-          this.picArr.length>0
+          val.AAS301 != "" && //参保地
+          val.AKB020 != "" && //就诊机构
+          val.BKE253 != "" && //项目类型
+          val.BKE228 != "" && //特药特治类型
+          val.AKA121 != "" && //疾病名称
+          val.BKE248 != "" && //用药时期
+          val.AKE002 != "" && //项目名称
+          val.AKA071 != "" && //单位剂量
+          val.AKC226 != "" && //数量
+          val.AAE030 != "" && //开始日期
+          val.AAE031 != "" && //结束日期
+          this.AAB301000 !=""&&
+          this.picArr.length>0 //照片数组
         ) {
           this.canSubmit = true;
         } else {
