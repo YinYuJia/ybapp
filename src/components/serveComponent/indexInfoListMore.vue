@@ -28,7 +28,8 @@
                         <div class="text">打印信息</div>
                     </div>
                     <div class="iconBox" @click="showDetail('transferRenewing','关系转移接续')">
-                        <svg-icon icon-class="serveComponent_icon_4" />
+                        <svg-icon icon-class="serveComponent_icon6" />
+                        <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
                         <div class="text">转移接续</div>
                     </div>
                 </div>
@@ -70,7 +71,8 @@
                 <div class="listHeader">待遇服务</div>
                 <div class="iconContent" id="treat">
                     <div class="iconBox" @click="showDetail('smallReim','基本医疗保险参保人员医疗费用零星报销')">
-                        <svg-icon icon-class="serveComponent_icon_11" />
+                        <svg-icon icon-class="serveComponent_icon5" />
+                        <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
                         <div class="text">零星报销</div>
                     </div>
                     <div class="iconBox" @click="showDetail('payLimit','视同缴费年限核定')">
@@ -301,6 +303,7 @@ export default {
                 flex-wrap: wrap;
                 padding: .2rem 0 .44rem 0;
                 .iconBox{
+                    position: relative;
                     height: 1.4rem;
                     width: 1.7rem;
                     display: flex;
@@ -310,6 +313,13 @@ export default {
                     .svg-icon{
                         height: .68rem;
                         width: .68rem;
+                    }
+                    .provinceIcon{
+                        height: .28rem;
+                        width: .5rem;
+                        position: absolute;
+                        top: 0rem;
+                        right: 0.1rem;
                     }
                     .text{
                         font-size: .28rem;

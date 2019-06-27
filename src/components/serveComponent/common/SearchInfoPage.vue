@@ -121,7 +121,11 @@ export default {
     
   },
   created() {
-    
+    // this.$nextTick(() => {
+    //   document.body.addEventListener('touchmove',function(e){
+    //     e.preventDefault(); //阻止默认事件(上下滑动)
+    //   })
+    // })
   },
   destroyed(){
     window.removeEventListener('popstate', this.back, false);//false阻止默认事件

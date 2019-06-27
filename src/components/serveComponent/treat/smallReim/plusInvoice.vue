@@ -145,30 +145,34 @@ export default {
         },
         submit(){
             // if(this.canSubmit &&this.form.photoId){
+            if(!this.canSubmit){
+                this.$toast("请填写发票信息，并且上传附件")
+                return
+            }
             if(this.canSubmit){
                 // 因为接口不对，暂留信息
-                let submitForm = JSON.parse(JSON.stringify(this.form));
-                let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
-                console.log(this.$store.state.SET_SMALL_REIM_2,'this.$store.state.SET_SMALL_REIM_2');
+                // let submitForm = JSON.parse(JSON.stringify(this.form));
+                // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                // console.log(this.$store.state.SET_SMALL_REIM_2,'this.$store.state.SET_SMALL_REIM_2');
                 
-                SET_SMALL_REIM_2.eleInvoices.push(submitForm)
-                this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
-                this.$router.push('invoiceInfo')
+                // SET_SMALL_REIM_2.eleInvoices.push(submitForm)
+                // this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                // this.$router.push('invoiceInfo')
                 // 暂留结束
                 let params = this.formatSubmitData();
                 this.$axios.post(this.epFn.ApiUrl() + '/h5/jy2003/info', params).then((resData) => {
                     console.log('返回成功信息',resData) 
                     //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        // if(resData.BKE521==1){
-                        //     this.$toast("该发票未找到，请填写正确的信息")
-                        //     return
-                        // }
-                        // let submitForm = JSON.parse(JSON.stringify(this.form));
-                        // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
-                        // SET_SMALL_REIM_2.eleInvoices.push(submitForm)
-                        // this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
-                        // this.$router.push('invoiceInfo')
+                        if(resData.BKE521==1){
+                            this.$toast("该发票未找到，请填写正确的信息")
+                            return
+                        }
+                        let submitForm = JSON.parse(JSON.stringify(this.form));
+                        let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                        SET_SMALL_REIM_2.eleInvoices.push(submitForm)
+                        this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                        this.$router.push('invoiceInfo')
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
                         this.$toast(resData.msg);

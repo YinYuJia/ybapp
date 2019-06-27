@@ -35,6 +35,7 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地</span></div>
+
                     <div class="InfoText"><input  type="text" v-model="AAS027000" placeholder="请选择" readonly></div>
                 </div>
                 <div class="InfoLine">

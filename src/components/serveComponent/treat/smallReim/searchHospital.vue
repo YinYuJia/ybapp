@@ -23,11 +23,7 @@
 export default {
     data(){
         return{
-            HospitalList:[
-                {AKB020: '3300001101019', hospitalName: '浙江中医药大学附属第三医院'},
-                {AKB020: '3300001102003', hospitalName: '杭州市第三人民医院'},
-                {AKB020: '3302001100003', hospitalName: '宁波市北仑区人民医院'}
-            ],
+            HospitalList:[],
             smallReimForm: {}, // 零星报销对象
         }
     },

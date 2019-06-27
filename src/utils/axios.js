@@ -24,6 +24,7 @@ axios.interceptors.response.use((response) => {
     if ( newRes.result ) {
         return newRes
     }
+    
     // if(newRes.code == -1 ){
     //     // 系统异常
     //     console.log(newRes.data.msg);
