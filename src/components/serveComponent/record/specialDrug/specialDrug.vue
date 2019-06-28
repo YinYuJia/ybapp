@@ -207,7 +207,6 @@ export default {
   data() {
     return {
       picArr: [],//附件集合
-      photoIdList:[],//照片ID数组
       oneDisabled: true,
       twoDisabled: true,
       threeDisabled: true,
@@ -239,6 +238,7 @@ export default {
         AKB063: "", //备案天数
         AAE030: "", //开始日期
         AAE031: "", //结束日期
+        photoIdList:[],//照片ID数组
       },
       BKE253VALUE: "", //项目类型值
       BKE228VALUE: "", //特治特药类型值
@@ -300,8 +300,7 @@ export default {
           val.AKC226 != "" && //数量
           val.AAE030 != "" && //开始日期
           val.AAE031 != "" && //结束日期
-          this.AAB301000 !=""&&
-          this.picArr.length>0 //照片数组
+          val.photoIdList.length>0 //照片数组
         ) {
           this.canSubmit = true;
         } else {
@@ -472,7 +471,7 @@ export default {
       let submitForm = Object.assign({}, this.form);
       submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030)
       submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031)
-      submitForm.photoIdList = this.photoIdList.join(',');//照片ID数组
+      submitForm.photoIdList = this.form.photoIdList.join(',');//照片ID数组
       // let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
       // 加入用户名和电子社保卡号
       if (this.$store.state.SET_NATIVEMSG.name !== undefined) {
@@ -584,7 +583,7 @@ export default {
                                 if ( resData.enCode == 1000 ) {
                                     // 获取图片
                                     This.picArr.push(data.picPath[0])
-                                    This.photoIdList.push(resData.photoId);
+                                    This.form.photoIdList.push(resData.photoId);
                                 }else if (resData.enCode == 1001 ) {
                                 //   失败  1001
                                     This.$toast(resData.msg);
@@ -608,10 +607,10 @@ export default {
     },
     // 删除图片
     deletePic(item,index){
-        console.log('删除图片',this.photoIdList);
+        console.log('删除图片',this.form.photoIdList);
         this.picArr.splice(index,1)
-        this.photoIdList.splice(index,1)
-        console.log('删除后',this.photoIdList);
+        this.form.photoIdList.splice(index,1)
+        console.log('删除后',this.form.photoIdList);
     },
   }
 };

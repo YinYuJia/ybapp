@@ -266,8 +266,7 @@ export default {
               val.AAS301 != ''&& val.AKA035 != ''&& 
               val.AKA120 != ''&& val.AAE030 != ''&& 
               val.AAE011 != ''&& val.AAE005 != ''&& 
-              val.AAE006 != ''&& this.AAB301000 !=""&&
-              this.picArr.length>0
+              val.AAE006 != ''&& val.photoIdList.length>0
             ) {
                 this.canSubmit = true
             }else{
