@@ -55,6 +55,17 @@
                 <div class="searchBtn">点击查看附近领取网点</div>
             </div>
             
+            <!-- 回显图片 -->
+            <div class="PhotoInfo">
+                <!-- <div class="infoName">1、规定病种待遇备案表（医院盖章）</div> -->
+                <div class="photoBox">
+                    <div class="picWrap">
+                        <div class="uploadBtn" v-for="(item,index) in picList" :key="index">
+                            <img :src="item" class="pic" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <Success :flag="successFlag"></Success>
         <!-- 底部 -->
@@ -65,7 +76,7 @@
 <script>
 export default {
     data(){
-        return{               
+        return{
             AAB301000: '', //参保地
             form: {
                 AAS301: '', //参保地省编码
@@ -96,6 +107,7 @@ export default {
             handleNumber:'',
             List:[],
             successFlag: 1,
+            picList: [],
         }
     },
     created(){
@@ -316,6 +328,53 @@ export default {
                 letter-spacing: 0;
                 text-align: center;
                 border: .01rem solid #C9C9C9;
+            }
+        }
+        // 回显图片
+        .PhotoInfo{
+            background: #FFF;
+            padding: 0 .3rem;
+            margin-top: .3rem;
+            .infoName{
+                padding: .1rem 0;
+                text-align: left;
+                font-size: .28rem;
+                color: #000000;
+                letter-spacing: 0;
+            }
+            .photoBox{
+                text-align: left;
+                .picWrap{
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: .3rem 0;
+                    .uploadBtn{
+                        position: relative;
+                        height: 1.5rem;
+                        width: 1.5rem;
+                        margin: .1rem;
+                        img{
+                            height: 100%;
+                            width: 100%;
+                        }
+                        .svg-icon{
+                            position: absolute;
+                            height: .4rem;
+                            width: .4rem;
+                            top: -0.2rem;
+                            right: -0.2rem;
+                        }
+                    }
+                    .svg-icon{
+                        margin: .1rem .15rem 0 0;
+                        height: 1.5rem;
+                        width: 1.5rem;
+                    }
+                }
+                .svg-icon{
+                    height: 1.5rem;
+                    width: 1.5rem;
+                }
             }
         }
     }

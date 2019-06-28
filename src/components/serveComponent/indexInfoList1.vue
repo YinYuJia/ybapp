@@ -6,11 +6,11 @@
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇总浙江省医疗保障服务</div>
             <div class="headerPad">
-                <div class="iconBox" @click="changeUsername(true)">
+                <div class="iconBox">
                     <svg-icon icon-class="serveComponent_icon1" />
                     <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox" @click="changeUserCode(true)">
+                <div class="iconBox">
                     <svg-icon icon-class="serveComponent_icon2" />
                     <div class="text">支付码</div>
                 </div>
@@ -69,9 +69,12 @@
         <div class="banner">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon13" /></div>
-                    <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon14" /></div>
-                    <div class="swiper-slide"><svg-icon icon-class="serveComponent_icon16" /></div>
+                    <div class="swiper-slide">
+                        <svg-icon icon-class="serveComponent_icon13" /></div>
+                    <div class="swiper-slide">
+                        <svg-icon icon-class="serveComponent_icon14" /></div>
+                    <div class="swiper-slide">
+                        <svg-icon icon-class="serveComponent_icon16" /></div>
                 </div>
             </div>
         </div>
@@ -80,30 +83,31 @@
             <swipe>
                 <swipe-item>
                     <svg-icon icon-class="serveComponent_icon15" /></swipe-item>
-                <swipe-item>
+                <!-- <swipe-item>
                     <svg-icon icon-class="serveComponent_icon15" /></swipe-item>
                 <swipe-item>
-                    <svg-icon icon-class="serveComponent_icon15" /></swipe-item>
+                    <svg-icon icon-class="serveComponent_icon15" /></swipe-item> -->
             </swipe>
+        </div>
+        <div class="changeUserBtn">
+            <div class="btn" @click="changeUsername(true)">更改用户名</div>
+            <div class="btn" @click="changeUserCode(true)">更改社保卡号</div>
         </div>
         <!-- 热点资讯 -->
         <!-- <div class="hotMsg">
-                            <div class="hotHeader">热点资讯</div>
-                            <div class="msgLine" v-for="(item,index) in hotMsg" :key="index">
-                                <div class="textBox">
-                                    <div class="textInfo">{{item.text | msgLength}}</div>
-                                    <div class="dateInfo">{{item.date}}</div>
-                                </div>
-                                <div class="imgBox"></div>
-                            </div>
-                        </div> -->
+            <div class="hotHeader">热点资讯</div>
+            <div class="msgLine" v-for="(item,index) in hotMsg" :key="index">
+                <div class="textBox">
+                    <div class="textInfo">{{item.text | msgLength}}</div>
+                    <div class="dateInfo">{{item.date}}</div>
+                </div>
+                <div class="imgBox"></div>
+            </div>
+        </div> -->
         <div class="bottomline">
-            <!-- <p>本服务由浙江政务服务网、杭州市人社保局提供</p>
-                      <p>服务咨询热线  <span class="bottomSpan">0571-88808880</span> </p> -->
             <p>本服务由浙江政务服务网提供</p>
             <p>服务咨询热线 : <span class="bottomSpan">{{tel}}</span> </p>
         </div>
-
     </div>
 </template>
 
@@ -115,8 +119,8 @@
     export default {
         data() {
             return {
-                tel:"0571-88808880",
-                imgurl:"",
+                tel: "0571-88808880",
+                imgurl: "",
                 hotMsg: [ //热点资讯
                     {
                         text: '“数字经济”：开启浙江经济增长新“大时代”',
@@ -141,29 +145,10 @@
         },
         created() {
             console.log('dddddddddddddddddd', dd)
-            // this.setNativeMsg();
+            // this.setNativeMsg();  //浙理办打包需要打开
             this.epFn.setTitle('医疗保障专区')
             // 获取参保地
             this.getUserRegion();
-            // name: sessionStorage.getItem("userName") ,
-            // idCard:sessionStorage.getItem("idCard") ,
-            // /h5/jy1033/getRecord
-            
-            // 测试获取定位
-            // dd.ready({
-            //     developer: 'daip@dtdream.com',
-            //     usage: [
-            //         'dd.device.location.get',
-            //     ],
-            //     remark: '获取当前位置'
-            // }, function() {
-            //     dd.device.location.get({
-            //         onSuccess: function(data) {
-            //             console.log(data);
-            //         },
-            //         onFail: function(error) {}
-            //     })
-            // })
         },
         filters: {
             msgLength: function(val) {
@@ -172,9 +157,8 @@
         },
         methods: {
             yibaozhanghu() {
-                 this.$toast("功能正在建设中")
+                this.$toast("功能正在建设中")
             },
-
             goRouter(route) {
                 this.$router.push(route);
             },
@@ -197,15 +181,15 @@
                     }
                 });
             },
-            getUserRegion(){
+            getUserRegion() {
                 let params = this.formatSubmitData();
                 this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1033/getRecord', params).then((resData) => {
                     console.log('返回成功信息', resData)
                     //   成功   1000
                     if (resData.enCode == 1000) {
                         if (resData.AAB301) {
-                            sessionStorage.setItem("GinsengLandCode",resData.AAB301)
-                            sessionStorage.setItem("GinsengLandName",resData.RegionName)
+                            sessionStorage.setItem("GinsengLandCode", resData.AAB301)
+                            sessionStorage.setItem("GinsengLandName", resData.RegionName)
                             this.$store.dispatch('SET_USER_DETAILINFO', {
                                 insured: resData.AAB301,
                                 regionName: resData.RegionName || '杭州市'
@@ -247,35 +231,34 @@
             },
             changeUsername(str) {
                 if (str) {
-                let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
-                MessageBox.prompt('用户名', '').then(({
-                    value,
-                    action
-                }) => {
-                    user.name = value;
-                    this.$store.dispatch('SET_USER_BASEINFO', user);
-                    sessionStorage.setItem('userName', value);
-                    this.setNativeMsg();
-                });
-                }else{
-                      this.$toast("功能正在建设中")
+                    let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+                    MessageBox.prompt('用户名', '').then(({
+                        value,
+                        action
+                    }) => {
+                        user.name = value;
+                        this.$store.dispatch('SET_USER_BASEINFO', user);
+                        sessionStorage.setItem('userName', value);
+                        this.setNativeMsg();
+                    });
+                } else {
+                    this.$toast("功能正在建设中")
                 }
-
             },
             changeUserCode(str) {
-                if(str) {
-                let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
-                MessageBox.prompt('社保卡号', '').then(({
-                    value,
-                    action
-                }) => {
-                    user.idNo = value;
-                    this.$store.dispatch('SET_USER_BASEINFO', user);
-                    sessionStorage.setItem('idCard', value);
-                    this.setNativeMsg();
-                    this.getUserRegion();
-                });
-                }else{
+                if (str) {
+                    let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+                    MessageBox.prompt('社保卡号', '').then(({
+                        value,
+                        action
+                    }) => {
+                        user.idNo = value;
+                        this.$store.dispatch('SET_USER_BASEINFO', user);
+                        sessionStorage.setItem('idCard', value);
+                        this.setNativeMsg();
+                        this.getUserRegion();
+                    });
+                } else {
                     this.$toast('功能正在建设中')
                 }
             },
@@ -294,12 +277,11 @@
             },
             showDetail(url, item) {
                 let str = sessionStorage.getItem("GinsengLandCode")
-                console.log('str',str)
-                if ( str == "" || str == undefined || str == null) {
-                this.$toast("未获取到您的参保地信息")
-                return
+                console.log('str', str)
+                if (str == "" || str == undefined || str == null) {
+                    this.$toast("未获取到您的参保地信息")
+                    return
                 }
-                
                 sessionStorage.setItem('itemUrl', url);
                 sessionStorage.setItem("item", item);
                 this.$router.push({
@@ -394,7 +376,7 @@
                         height: .68rem;
                         width: .68rem;
                     }
-                    .provinceIcon{
+                    .provinceIcon {
                         height: .28rem;
                         width: .5rem;
                         position: absolute;
@@ -493,22 +475,34 @@
             }
         }
     }
-
-            .bottomline {
-            font-size: .28rem;
-            margin-top: .1rem;
-            margin-bottom: .18rem;
-            text-align: center;
-            p {
-                margin: 0 10px;
-                line-height: 25px;
-                color: #888;
-                .bottomSpan {
-                    color: #1492ff; // color: red;
-                    a {
-                        color: #1492ff
-                    }
+    .bottomline {
+        font-size: .28rem;
+        margin-top: .1rem;
+        margin-bottom: .18rem;
+        text-align: center;
+        p {
+            margin: 0 10px;
+            line-height: 25px;
+            color: #888;
+            .bottomSpan {
+                color: #1492ff; // color: red;
+                a {
+                    color: #1492ff
                 }
             }
         }
+    }
+.changeUserBtn{
+    display: flex;
+    justify-content: space-around;
+    .btn{
+        height: .6rem;
+        line-height: .6rem;
+        width: 3.5rem;
+        border: 1px solid #DDD;
+        font-size: .36rem;
+        border-radius: .2rem;
+        background: #FFF;
+    }
+}
 </style>
