@@ -131,7 +131,7 @@ export default {
                     }
                 }
             }else{
-
+                // 手动添加发票
                 // eleInvoices: [], //电子发票信息
                 //   invoicesImg: [], //附件信息信息  图片id
                 // 手动添加发票
