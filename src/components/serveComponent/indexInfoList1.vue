@@ -5,23 +5,23 @@
             <svg-icon icon-class="serveComponent_background" />
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇总浙江省医疗保障服务</div>
-            <div class="headerPad">
+            <div class="headerPad" @click="hint">
                 <div class="iconBox">
                     <svg-icon v-if="0" icon-class="serveComponent_icon1" />
                     <svg-icon v-if="1" icon-class="serveComponent_grey_1" />
                     <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="hint">
                     <svg-icon v-if="0" icon-class="serveComponent_icon2" />
                     <svg-icon v-if="1" icon-class="serveComponent_grey_2" />
-                    <div class="text">支付码</div>
+                    <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox" @click="yibaozhanghu">
+                <div class="iconBox" @click="hint">
                     <svg-icon v-if="0" icon-class="serveComponent_icon3" />
                     <svg-icon v-if="1" icon-class="serveComponent_grey_3" />
-                    <div class="text">医保账户</div>
+                    <div class="text">支付码</div>
                 </div>
-                <div class="iconBox" @click="yibaozhanghu">
+                <div class="iconBox" @click="hint">
                     <svg-icon v-if="0" icon-class="serveComponent_icon4" />
                     <svg-icon v-if="1" icon-class="serveComponent_grey_4" />
                     <div class="text">移动支付</div>
@@ -160,6 +160,81 @@
             }
         },
         methods: {
+            hint(){
+                this.$toast("功能正在建设中");
+            },
+            //移动支付
+            movePay(){
+                dd.ready({
+                    developer: 'daip@dtdream.com',
+                    usage: [
+                        'dd.biz.navigation.open',
+                    ],
+                    remark: '移动支付'
+                }, function() {
+                    dd.biz.navigation.open({
+                        pageId: 'card',
+                        params:{
+                            id:"medicalPayCard",
+                            functionType:1//1医保SDK
+                        },
+                        onSuccess: function(data) {
+                            console.log(data)
+                        },
+                        onFail: function(error) {
+                            console.log(error)
+                        }
+                    })
+                })
+            },
+            //支付码
+            payCode(){
+                dd.ready({
+                    developer: 'daip@dtdream.com',
+                    usage: [
+                        'dd.biz.navigation.open',
+                    ],
+                    remark: '支付码'
+                }, function() {
+                    dd.biz.navigation.open({
+                        pageId: 'card',
+                        params:{
+                            id:"socialCard",
+                            functionType:2//1社保卡首页 2打开社保卡支付码 3打开社保卡关联页
+                        },
+                        onSuccess: function(data) {
+                            console.log(data)
+                        },
+                        onFail: function(error) {
+                            console.log(error)
+                        }
+                    })
+                })
+            },
+            //电子社保卡
+            socialCard(){
+                dd.ready({
+                    developer: 'daip@dtdream.com',
+                    usage: [
+                        'dd.biz.navigation.open',
+                    ],
+                    remark: '电子社保卡'
+                }, function() {
+                    dd.biz.navigation.open({
+                        pageId: 'card',
+                        params:{
+                            id:"socialCard",
+                            functionType:1//1社保卡首页 2打开社保卡支付码 3打开社保卡关联页
+                        },
+                        onSuccess: function(data) {
+                            console.log(data)
+                        },
+                        onFail: function(error) {
+                            console.log(error)
+                        }
+                    })
+                })
+            },
             yibaozhanghu() {
                 this.$toast("功能正在建设中")
             },
