@@ -6,11 +6,11 @@
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇总浙江省医疗保障服务</div>
             <div class="headerPad">
-                <div class="iconBox">
+                <div class="iconBox" @click="socialCard">
                     <svg-icon icon-class="serveComponent_icon1" />
                     <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox">
+                <div class="iconBox" @click="payCode">
                     <svg-icon icon-class="serveComponent_icon2" />
                     <div class="text">支付码</div>
                 </div>
@@ -18,7 +18,7 @@
                     <svg-icon icon-class="serveComponent_icon3" />
                     <div class="text">医保账户</div>
                 </div>
-                <div class="iconBox" @click="yibaozhanghu">
+                <div class="iconBox" @click="movePay">
                     <svg-icon icon-class="serveComponent_icon4" />
                     <div class="text">移动支付</div>
                 </div>
@@ -89,7 +89,7 @@
                     <svg-icon icon-class="serveComponent_icon15" /></swipe-item> -->
             </swipe>
         </div>
-        <div class="changeUserBtn">
+        <div class="changeUserBtn" v-if="true">
             <div class="btn" @click="changeUsername(true)">更改用户名</div>
             <div class="btn" @click="changeUserCode(true)">更改社保卡号</div>
         </div>
@@ -156,6 +156,75 @@
             }
         },
         methods: {
+            movePay(){
+                dd.ready({
+                    developer: 'daip@dtdream.com',
+                    usage: [
+                        'dd.biz.navigation.open',
+                    ],
+                    remark: '移动支付'
+                }, function() {
+                    dd.biz.navigation.open({
+                        pageId: 'card',
+                        params:{
+                            id:"medicalPayCard",
+                            functionType:1
+                        },
+                        onSuccess: function(data) {
+                            console.log(data)
+                        },
+                        onFail: function(error) {
+                            console.log(error)
+                        }
+                    })
+                })
+            },
+            payCode(){
+                dd.ready({
+                    developer: 'daip@dtdream.com',
+                    usage: [
+                        'dd.biz.navigation.open',
+                    ],
+                    remark: '支付码'
+                }, function() {
+                    dd.biz.navigation.open({
+                        pageId: 'card',
+                        params:{
+                            id:"socialCard",
+                            functionType:2
+                        },
+                        onSuccess: function(data) {
+                            console.log(data)
+                        },
+                        onFail: function(error) {
+                            console.log(error)
+                        }
+                    })
+                })
+            },
+            socialCard(){
+                dd.ready({
+                    developer: 'daip@dtdream.com',
+                    usage: [
+                        'dd.biz.navigation.open',
+                    ],
+                    remark: '电子社保卡'
+                }, function() {
+                    dd.biz.navigation.open({
+                        pageId: 'card',
+                        params:{
+                            id:"socialCard",
+                            functionType:1
+                        },
+                        onSuccess: function(data) {
+                            console.log(data)
+                        },
+                        onFail: function(error) {
+                            console.log(error)
+                        }
+                    })
+                })
+            },
             yibaozhanghu() {
                 this.$toast("功能正在建设中")
             },
