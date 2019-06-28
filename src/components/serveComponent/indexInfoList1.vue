@@ -141,7 +141,7 @@
         },
         created() {
             console.log('dddddddddddddddddd', dd)
-            // this.setNativeMsg();
+            this.setNativeMsg();
             this.epFn.setTitle('医疗保障专区')
             // 获取参保地
             // name: sessionStorage.getItem("userName") ,
@@ -234,8 +234,8 @@
             formatSubmitData() {
                 let submitForm = {}
                 // 加入用户名和电子社保卡号
-                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
-                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                submitForm.AAC003 = sessionStorage.getItem("userName");
+                submitForm.AAE135 = sessionStorage.getItem("idCard");
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader, submitForm, "1033");
                 return params;
