@@ -135,6 +135,7 @@ export default {
                 let LS=resData.LS_DS_09
                 this.form={...this.form,...LS}
                 console.log("form",this.form.AAS027VALUE)
+
                 if(this.form.AAQ027VALUE==undefined){
                     this.form.AAQ027VALUE='';
                 } 
@@ -144,6 +145,12 @@ export default {
                 this.AAS027000=this.form.AAS301VALUE+this.form.AAB301VALUE
                 this.AAB301000=this.form.AAS027VALUE+this.form.AAB027VALUE+this.form.AAQ027VALUE
                 this.handleNumber = resData.LS_DS_09.BKZ019
+                this.picList = []
+                
+                for(let i=0;i<resData.LS_DS_09.photoList.length;i++){
+                    this.picList.push(resData.LS_DS_09.photoList[i].PUL002)
+                    
+                }
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
  
