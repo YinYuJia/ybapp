@@ -164,8 +164,8 @@ console.log('欢迎进入医保专区首页main.js')
 //                     sessionStorage.setItem("userName",result2.username)
 //                     sessionStorage.setItem("idCard",result2.idnum)
                     
-//                     console.log('userName',result1.username)
-//                     console.log('idCard',result1.idnum)
+//                     console.log('userName',result2.username)
+//                     console.log('idCard',result2.idnum)
 //                     next()
 //                   }else{
 //                     MessageBox.alert(result2.errmsg);
