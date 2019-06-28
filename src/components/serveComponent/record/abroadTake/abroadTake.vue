@@ -253,7 +253,7 @@
             } else {
                 this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
                 if (!this.util.passPort(this.form.BKE260)) {
-                    this.$toast("护照号码格式不正确");
+                    this.$toast("护照号码格式不正确：大写英文+数字");
                     return false;
                 }
                 // 封装数据
