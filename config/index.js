@@ -71,10 +71,10 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../../static/zjybapp-static-h5/index.html'),
+    index: path.resolve(__dirname, '../../static/zjybapp-static-h5/index.html'),//  本地打包
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../../static/zjybapp-static-h5'),
+    assetsRoot: path.resolve(__dirname, '../../static/zjybapp-static-h5'),  //  本地打包
 
     // index: path.resolve(__dirname, '../dist/index.html'),  //浙理办打包
     // assetsRoot: path.resolve(__dirname, '../dist'), //浙理办打包
