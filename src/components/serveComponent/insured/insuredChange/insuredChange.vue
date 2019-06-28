@@ -63,6 +63,9 @@ export default {
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
                         this.form =resData.LS_DS[0];
+                        if(this.form.AAE005.length > 11){
+                            this.form.AAE005 = "";
+                        }
                         // this.$toast("请求成功");
                         this.$store.dispatch('SET_BASEINFOCHANGE_OPERATION', this.form);
                     }else if (resData.enCode == 1001 ) {

@@ -50,8 +50,8 @@ export default {
                     const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,{BKZ019:this.handleNumber},'1032');
                     this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1032/businessCancel', params)
                     .then((resData) => {
-                        if(resData.encode==1000){
-                            this.$router.push('/Index');
+                        if(resData.enCode==1000){
+                            this.$router.push('/');
                             this.$toast('撤销成功');
                         }
                     })
