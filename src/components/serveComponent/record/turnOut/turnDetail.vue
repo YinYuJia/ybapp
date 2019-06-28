@@ -41,9 +41,6 @@
                         <div class="uploadBtn" v-for="(item,index) in picList" :key="index">
                             <img :src="item" class="pic" />
                         </div>
-                        <div class="uploadBtn">
-                            <img src="http://10.85.159.203:10540/openapiApp/download?key=bizimg/rdm/15616451911776jg.png" class="pic" />
-                        </div>
                     </div>
                 </div>
             </div>

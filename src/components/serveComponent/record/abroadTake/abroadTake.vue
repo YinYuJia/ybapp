@@ -205,8 +205,7 @@
                                         submitForm.AAC003 = _this.$store.state.SET_NATIVEMSG.name;
                                         submitForm.AAE135 = _this.$store.state.SET_NATIVEMSG.idCard;
                                     }else {
-                                        
-                                        this.$toast("未获取到人员基本信息");
+                                        _this.$toast("未获取到人员基本信息");
                                     }
                                     // 加入子项编码
                                     submitForm.AGA002 = '330800253001';
@@ -254,9 +253,9 @@
             } else {
                 this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
                 if (!this.util.passPort(this.form.BKE260)) {
-                    this.$toast("护照号码格式不正确");
+                    this.$toast("护照号码格式不正确：大写英文+数字");
                     return false;
-                } 
+                }
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
