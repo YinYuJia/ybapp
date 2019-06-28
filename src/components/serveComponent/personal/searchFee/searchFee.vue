@@ -108,6 +108,18 @@ export default {
         },
         // 提交
         submit() {
+            // 判断时间间隔不得超过一年
+            if (this.form.AAE030 != '' && this.form.AAE031 != '') {
+                let start = new Date(this.form.AAE030);
+                let end = new Date(this.form.AAE031);
+                let year = 365 * 24 * 3600 * 1000;
+                let gap = end - start;
+                if (gap > year) {
+                    this.$toast('时间跨度不得超过一年');
+                    this.form.AAE031 = '';
+                    return false;  
+                }
+            }
             if (this.canSubmit == false) {
                 this.$toast('信息未填写完整');
                 return false;
