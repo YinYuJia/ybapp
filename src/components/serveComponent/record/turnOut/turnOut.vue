@@ -14,7 +14,7 @@
             v-model="dateVal"
             @confirm="handleStartConfirm">
         </mt-datetime-picker>
-        <SelectCity 
+        <SelectCity  
             :type="3"
             ref="cityPicker"
             @confirm="chooseCity"
