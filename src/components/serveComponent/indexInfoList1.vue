@@ -156,6 +156,7 @@
             }
         },
         methods: {
+            //移动支付
             movePay(){
                 dd.ready({
                     developer: 'daip@dtdream.com',
@@ -168,7 +169,7 @@
                         pageId: 'card',
                         params:{
                             id:"medicalPayCard",
-                            functionType:1
+                            functionType:1//1医保SDK
                         },
                         onSuccess: function(data) {
                             console.log(data)
@@ -179,6 +180,7 @@
                     })
                 })
             },
+            //支付码
             payCode(){
                 dd.ready({
                     developer: 'daip@dtdream.com',
@@ -191,7 +193,7 @@
                         pageId: 'card',
                         params:{
                             id:"socialCard",
-                            functionType:2
+                            functionType:2//1社保卡首页 2打开社保卡支付码 3打开社保卡关联页
                         },
                         onSuccess: function(data) {
                             console.log(data)
@@ -202,6 +204,7 @@
                     })
                 })
             },
+            //电子社保卡
             socialCard(){
                 dd.ready({
                     developer: 'daip@dtdream.com',
@@ -214,7 +217,7 @@
                         pageId: 'card',
                         params:{
                             id:"socialCard",
-                            functionType:1
+                            functionType:1//1社保卡首页 2打开社保卡支付码 3打开社保卡关联页
                         },
                         onSuccess: function(data) {
                             console.log(data)
