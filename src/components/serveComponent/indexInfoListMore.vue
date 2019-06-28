@@ -260,6 +260,12 @@ export default {
             })
         },
         showDetail(url,item) {
+            let str = sessionStorage.getItem("GinsengLandCode")
+                console.log('str',str)
+                if ( str == "" || str == undefined || str == null) {
+                this.$toast("未获取到您的参保地信息")
+                return
+            }
             sessionStorage.setItem('itemUrl',url);
             sessionStorage.setItem("item",item);
             this.$router.push({

@@ -56,7 +56,7 @@ export default {
     },
     filters:{
         tooLong: function(val){
-            if(!null){
+            if(val){
                 if(val.length>20){
                     return val.substring(0,20)+'...';
                 }

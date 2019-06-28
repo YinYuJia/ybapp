@@ -80,9 +80,9 @@ export default {
             let GinsengLandName = sessionStorage.getItem("GinsengLandName")
 
             console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
-            this.form.AAA027000 = GinsengLandName
-            this.form.AAS027 = GinsengLandCode
-            this.form.AAA027 = GinsengLandCode.substring(0,2) + '0000'
+            this.form.AAB301000 = GinsengLandName
+            this.form.AAB301 = GinsengLandCode
+            this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
             console.log('this.form.AAS027',this.form.AAS027)
             console.log('this.form.AAA027',this.form.AAA027)
         // this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
