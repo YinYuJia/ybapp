@@ -33,6 +33,17 @@
                 <!-- 进度时间 -->
                 <ProgressDate nameWidth="1.8rem"  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
+            <!-- 回显图片 -->
+            <div class="PhotoInfo">
+                <!-- <div class="infoName">《基本医疗保险参保人员转外就医备案表》（医院盖章）</div> -->
+                <div class="photoBox">
+                    <div class="picWrap">
+                        <div class="uploadBtn" v-for="(item,index) in picList" :key="index">
+                            <img :src="item" class="pic" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <Success :flag="successFlag"></Success>
         <!-- 底部 -->
@@ -230,9 +241,53 @@ export default {
                 }
             }
         }
+        // 回显图片
+        .PhotoInfo{
+            background: #FFF;
+            padding: 0 .3rem;
+            margin-top: .3rem;
+            .infoName{
+                padding: .1rem 0;
+                text-align: left;
+                font-size: .28rem;
+                color: #000000;
+                letter-spacing: 0;
+            }
+            .photoBox{
+                text-align: left;
+                .picWrap{
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: .3rem 0;
+                    .uploadBtn{
+                        position: relative;
+                        height: 1.5rem;
+                        width: 1.5rem;
+                        margin: .1rem;
+                        img{
+                            height: 100%;
+                            width: 100%;
+                        }
+                        .svg-icon{
+                            position: absolute;
+                            height: .4rem;
+                            width: .4rem;
+                            top: -0.2rem;
+                            right: -0.2rem;
+                        }
+                    }
+                    .svg-icon{
+                        margin: .1rem .15rem 0 0;
+                        height: 1.5rem;
+                        width: 1.5rem;
+                    }
+                }
+                .svg-icon{
+                    height: 1.5rem;
+                    width: 1.5rem;
+                }
+            }
+        }
     }
 }
-</style>
-
-<style>
 </style>

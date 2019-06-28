@@ -88,15 +88,15 @@
         </div>
         <!-- 热点资讯 -->
         <!-- <div class="hotMsg">
-                            <div class="hotHeader">热点资讯</div>
-                            <div class="msgLine" v-for="(item,index) in hotMsg" :key="index">
-                                <div class="textBox">
-                                    <div class="textInfo">{{item.text | msgLength}}</div>
-                                    <div class="dateInfo">{{item.date}}</div>
-                                </div>
-                                <div class="imgBox"></div>
-                            </div>
-                        </div> -->
+            <div class="hotHeader">热点资讯</div>
+            <div class="msgLine" v-for="(item,index) in hotMsg" :key="index">
+                <div class="textBox">
+                    <div class="textInfo">{{item.text | msgLength}}</div>
+                    <div class="dateInfo">{{item.date}}</div>
+                </div>
+                <div class="imgBox"></div>
+            </div>
+        </div> -->
         <div class="bottomline">
             <!-- <p>本服务由浙江政务服务网、杭州市人社保局提供</p>
                       <p>服务咨询热线  <span class="bottomSpan">0571-88808880</span> </p> -->
