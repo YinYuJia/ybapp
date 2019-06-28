@@ -123,7 +123,7 @@ export default {
         
         
         console.log(this.invoices,'55555');
-        // 有发票信息
+        // 有电子发票信息
         if(this.hasInvoice){
            
             if(!this.invoices[0].hasOwnProperty('selected')){
@@ -142,6 +142,7 @@ export default {
             this.invoiceCount.count = index
             this.invoiceCount.price = price
         }
+        // 没有电子发票信息
         if(!this.hasInvoice){
             let index = 0
             let price = 0
@@ -232,6 +233,14 @@ export default {
             let invoices = JSON.parse(JSON.stringify(this.$store.state.SET_SMALL_REIM_2));
             invoices.eleInvoices = this.invoices
             this.$store.dispatch('SET_SMALL_REIM_2',invoices)
+            let index1 = 0
+            let price = 0
+            for(let i=0;i<this.invoices.length;i++){
+                index1 = i+1
+                price += parseFloat(this.invoices[i].AKC264)
+            }
+            this.invoiceCount.count = index1
+            this.invoiceCount.price = price
 
         },
         // 选择发票

@@ -306,7 +306,6 @@ export default {
                     }
                         console.log('我要的数据',this.picList);
                     // alert(this.picList.photoList[0].PUL002)
-                    // alert(1)
                     console.log("this.picList.photoList[0].PUL002",resData.LS_DS_08.photoList);
                     
                     // this.$toast("提交成功");
