@@ -41,29 +41,33 @@
                     <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
                     <div class="text">医保转接</div>
                 </div>
-                <div class="iconBox" @click="showDetail('searchFee','费用信息查询')">
+                <div class="iconBox" v-if="iconFlag" @click="showDetail('searchFee','费用信息查询')">
                     <svg-icon icon-class="serveComponent_icon_19" />
                     <div class="text">就医信息</div>
                 </div>
-                <div class="iconBox" @click="showDetail('searchProgress','我的事项')">
+                <div class="iconBox" v-if="iconFlag" @click="showDetail('searchProgress','我的事项')">
                     <svg-icon icon-class="serveComponent_icon8" />
                     <div class="text">办事进度</div>
                 </div>
+                <div class="iconBox" v-if="!iconFlag">
+                </div>
+                <div class="iconBox" v-if="!iconFlag">
+                </div>
             </div>
             <div class="iconList">
-                <div class="iconBox" @click="showDetail('searchBaseInfo','个人信息查询')">
+                <div class="iconBox" v-if="iconFlag" @click="showDetail('searchBaseInfo','个人信息查询')">
                     <svg-icon icon-class="serveComponent_icon_16" />
                     <div class="text">参保信息</div>
                 </div>
-                <div class="iconBox" @click="showDetail('searchInsuredInfo','参保信息查询')">
+                <div class="iconBox" v-if="iconFlag" @click="showDetail('searchInsuredInfo','参保信息查询')">
                     <svg-icon icon-class="serveComponent_icon_17" />
                     <div class="text">征缴信息</div>
                 </div>
-                <div class="iconBox" @click="showDetail('getProof','领取就医凭证')">
+                <div class="iconBox" v-if="iconFlag" @click="showDetail('getProof','领取就医凭证')">
                     <svg-icon icon-class="serveComponent_icon11" />
                     <div class="text">就医凭证</div>
                 </div>
-                <div class="iconBox" @click="goRouter('indexInfoListMore')">
+                <div class="iconBox" v-if="iconFlag" @click="goRouter('indexInfoListMore')">
                     <svg-icon icon-class="serveComponent_icon12" />
                     <div class="text">更多</div>
                 </div>
@@ -134,7 +138,8 @@
                         text: '本式港澳通行证将失效！9图出入境证件办理全攻略',
                         date: '2019-09-09'
                     }
-                ]
+                ],
+                iconFlag: false,
             }
         },
         mounted() {
@@ -273,6 +278,12 @@
                                 insured: resData.AAB301,
                                 regionName: resData.RegionName || '杭州市'
                             })
+                            console.log('用户参保地信息',sessionStorage.getItem("GinsengLandCode"));
+                            if(sessionStorage.getItem("GinsengLandCode") == "339900"){
+                                this.iconFlag = true;  //省本级设置为true
+                            }else{
+                                this.iconFlag = false;  //其他情况设置为false
+                            }
                         } else {
                             dd.ready({
                                 developer: 'daip@dtdream.com',
