@@ -107,6 +107,7 @@
                 </div>
             </div> -->
         </div>
+        <Success :flag="successFlag"></Success>
         <!-- 按钮 -->
         <!-- <Footer v-if="!needMoreInfo" :btnType="2" @backout="backout()" @edit="edit()"></Footer> -->
         <!-- 补齐材料提交 -->
@@ -119,6 +120,9 @@
 <script>
 export default {
     created(){
+        if(this.$route.query.param){
+            this.successFlag = 2;
+        }
         this.epFn.setTitle('零星报销')
         let params = this.formatSubmitForm();
         this.request1()
@@ -152,7 +156,8 @@ export default {
                 {step:4,name:'审批'},
                 {step:5,name:'财务支付'}
             ],
-            picList:[]
+            picList:[],
+            successFlag: 1,
         }
     },
     methods:{

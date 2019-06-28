@@ -234,8 +234,8 @@
             formatSubmitData() {
                 let submitForm = {}
                 // 加入用户名和电子社保卡号
-                submitForm.AAC003 = '许肖军'
-                submitForm.AAE135 = '332625197501010910'
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader, submitForm, "1033");
                 return params;

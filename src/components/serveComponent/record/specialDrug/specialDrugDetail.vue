@@ -55,7 +55,7 @@
                 <ProgressDate nameWidth="2rem"  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
-        <Success></Success>
+        <Success :flag="successFlag"></Success>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
@@ -98,10 +98,14 @@ export default {
             ],
             currentStep:1,
             handleNumber:'',
-            List:[]
+            List:[],
+            successFlag: 1,
         }
     },
-    created(){   
+    created(){
+        if(this.$route.query.param){
+            this.successFlag = 2;
+        }
         this.epFn.setTitle('特治特药备案')
         // this.form = this.$store.state.SET_SPECIAL_DRUG;
         this.request();

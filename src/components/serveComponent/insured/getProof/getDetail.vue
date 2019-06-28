@@ -37,7 +37,7 @@
                 <div class="searchBtn" v-if="form.AAC050 == '1'">点击查看附近可领取的银行网点</div>
             </div>
         </div>
-        <Success></Success>
+        <Success :flag="successFlag"></Success>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>
@@ -58,10 +58,14 @@ export default {
             ],
             currentStep:1,
             handleNumber:'',
-            List:[]
+            List:[],
+            successFlag: 1,
         }
     },
     created(){
+        if(this.$route.query.param){
+            this.successFlag = 2;
+        }
         this.epFn.setTitle('领取就医凭证')
         /*if (window.history && window.history.pushState) {
             history.pushState(null, null, document.URL);

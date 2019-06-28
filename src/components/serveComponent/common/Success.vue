@@ -15,9 +15,22 @@
 
 <script>
 export default {
+    props:{
+        flag:{
+            type: Number,
+            default: 1
+        }
+    },
     data(){
         return{
             show: true
+        }
+    },
+    created(){
+        if(this.flag == 1){
+            this.show = true;
+        }else{
+            this.show = false;
         }
     },
     methods:{

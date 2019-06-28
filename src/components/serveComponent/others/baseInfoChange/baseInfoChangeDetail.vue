@@ -22,7 +22,7 @@
                 <ProgressDate></ProgressDate>
             </div>
         </div>
-        <Success></Success>
+        <Success :flag="successFlag"></Success>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()" @edit="edit()"></Footer>
     </div>
@@ -39,10 +39,14 @@ export default {
                 // BKZ019: '', //经办编号
         },
         currentStep:1,
-        handleNumber:""
+        handleNumber:"",
+        successFlag: 1,
       }
     },
     created(){
+        if(this.$route.query.param){
+            this.successFlag = 2;
+        }
         this.epFn.setTitle('人员基本信息变更')
         // this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
         let params=this.formatSubmitData();

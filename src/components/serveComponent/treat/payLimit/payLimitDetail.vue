@@ -26,7 +26,7 @@
                 <ProgressDate nameWidth="2rem" :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
-        <Success></Success>
+        <Success :flag="successFlag"></Success>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
@@ -45,9 +45,13 @@ export default {
                 {step:3,name:'办结'},
                 {step:4,name:'送达'}
             ],
+            successFlag: 1,
         }
     },
     created () {
+        if(this.$route.query.param){
+            this.successFlag = 2;
+        }
         this.epFn.setTitle('缴费年限核定')
         this.request();
         this.request1();

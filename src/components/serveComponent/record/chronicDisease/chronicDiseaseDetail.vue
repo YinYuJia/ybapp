@@ -56,7 +56,7 @@
             </div>
             
         </div>
-        <Success></Success>
+        <Success :flag="successFlag"></Success>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
@@ -94,10 +94,14 @@ export default {
             ],
             currentStep:1,
             handleNumber:'',
-            List:[]
+            List:[],
+            successFlag: 1,
         }
     },
     created(){
+        if(this.$route.query.param){
+            this.successFlag = 2;
+        }
         this.epFn.setTitle('规定病种备案')
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
         this.request();
