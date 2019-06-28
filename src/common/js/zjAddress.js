@@ -262,6 +262,9 @@ export default[{
 		"code": "331000",
 		"name": "台州市",
 		"children": [{
+			"code": "331099",
+			"name": "市本级"
+		},{
 			"code": "331002",
 			"name": "椒江区"
 		}, {
