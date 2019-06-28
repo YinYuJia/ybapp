@@ -19,7 +19,7 @@
                     <div class="InfoText">{{form.AAE005 | tuoMin(3,4)}}</div>
                 </div>
                 <!-- 进度时间 -->
-                <ProgressDate  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
+                <ProgressDate  :replyDate="AAE036"  :progressDate="BAE019"></ProgressDate>
             </div>
         </div>
         <Success :flag="successFlag"></Success>
@@ -34,6 +34,8 @@ export default {
         return{
             AAA027000: '', //转出地
             AAB301000: '', //转入地
+            AAE036:'',
+            BAE019:'',
             form:{},
             arr:[
                 {step:1,name:'收件'},
@@ -106,6 +108,8 @@ export default {
                 if ( resData.enCode == 1000 ) {  
                     console.log(1)
                     console.log("RESDATA",resData.LS_DS_07)
+                    this.AAE036 = resData.AAE036
+                    this.BAE019 = resData.BAE019
                     let LS=resData.LS_DS_07
                     this.form={...this.form,...LS}
                     console.log("form",this.form)
