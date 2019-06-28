@@ -42,7 +42,7 @@
                 <ProgressDate nameWidth="1.8rem"  :replyDate="form.AAE036"  :progressDate="form.BAE019"></ProgressDate>
             </div>
         </div>
-        <Success></Success>
+        <Success :flag="successFlag"></Success>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
@@ -72,10 +72,14 @@ export default {
         },
         currentStep:1,
         List:[],
-        handleNumber: ''
+        handleNumber: '',
+        successFlag: 1,
       }
     },
-    created(){      
+    created(){
+        if(this.$route.query.param){
+            this.successFlag = 2;
+        }
         this.epFn.setTitle('异地就医备案')
         this.request();
         this.request1();
@@ -170,8 +174,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '许肖军';
-                submitForm.AAE135 = "332625197501010910";
+                
+                this.$toast("未获取到人员基本信息");
             }
             
             // 请求参数封装
@@ -195,8 +199,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '许肖军';
-                submitForm.AAE135 = "332625197501010910";
+                
+                this.$toast("未获取到人员基本信息");
             }
             
             // 请求参数封装

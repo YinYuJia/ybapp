@@ -145,14 +145,7 @@ function  paramStr(name){
 
 console.log('欢迎进入医保专区首页main.js')
 
-
-
-sessionStorage.setItem("userName","许肖军")
-sessionStorage.setItem("idCard","332625197501010910")
-
-
 // router.beforeEach((to, from, next) => {
-  
 //   const code = 'yibaozs';
 //   console.log()
 //   // var ticket = paramStr("ticket") || "8afac0cc6b84c4aa016b8e7fb4662798-ticket";
@@ -170,6 +163,9 @@ sessionStorage.setItem("idCard","332625197501010910")
 //                   if ( result2.result == "0") {
 //                     sessionStorage.setItem("userName",result2.username)
 //                     sessionStorage.setItem("idCard",result2.idnum)
+                    
+//                     console.log('userName',result1.username)
+//                     console.log('idCard',result1.idnum)
 //                     next()
 //                   }else{
 //                     MessageBox.alert(result2.errmsg);
@@ -188,7 +184,6 @@ sessionStorage.setItem("idCard","332625197501010910")
 
 //                   if ( result0.result == "0") {
 //                     sessionStorage.setItem("getToken",result0.token)
-//                     console.log(sessionStorage.getItem("getToken"))
 //                   }else{
 //                     MessageBox.alert(result0.errmsg);
 //                     return;
@@ -203,6 +198,9 @@ sessionStorage.setItem("idCard","332625197501010910")
 //                            if ( result1.result == "0") {
 //                             sessionStorage.setItem("userName",result1.username)
 //                              sessionStorage.setItem("idCard",result1.idnum)
+
+//                              console.log('userName',result1.username)
+//                              console.log('idCard',result1.idnum)
 //                              next()
 //                            }else{
 //                             MessageBox.alert(result1.errmsg);

@@ -179,8 +179,8 @@ export default {
                                     submitForm.AAC003 = This.$store.state.SET_NATIVEMSG.name;
                                     submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
                                 }else {
-                                    submitForm.AAC003 = '许肖军';
-                                    submitForm.AAE135 = "332625197501010910";
+                                    
+                                    this.$toast("未获取到人员基本信息");
                                 }
                                 // 加入子项编码
                                 submitForm.AGA002 = '330600007019'

@@ -392,7 +392,7 @@ export default {
         if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
             submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
         }else {
-            submitForm.AAE135 = "332625197501010910";
+            this.$toast("未获取到人员基本信息");
         }
         const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2002');
         this.$axios.post(this.epFn.ApiUrl() + '/h5/jy2002/getRecord', params).then((resData) => {
@@ -450,7 +450,7 @@ export default {
         submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
       } else {
         submitForm.AAC003 = "许肖军";
-        submitForm.AAE135 = "332625197501010910";
+        this.$toast("未获取到人员基本信息");
       }
       // submitForm.debugTest = "true"
       // 请求参数封装
@@ -483,8 +483,8 @@ export default {
                               submitForm.AAC003 = This.$store.state.SET_NATIVEMSG.name;
                               submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
                           }else {
-                              submitForm.AAC003 = '许肖军';
-                              submitForm.AAE135 = "332625197501010910";
+                              
+                              this.$toast("未获取到人员基本信息");
                           }
                           // 加入子项编码
                           submitForm.AGA002 = '330800253004'

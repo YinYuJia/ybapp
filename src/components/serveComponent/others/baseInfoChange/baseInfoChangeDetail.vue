@@ -22,7 +22,7 @@
                 <ProgressDate></ProgressDate>
             </div>
         </div>
-        <Success></Success>
+        <Success :flag="successFlag"></Success>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()" @edit="edit()"></Footer>
     </div>
@@ -39,10 +39,14 @@ export default {
                 // BKZ019: '', //经办编号
         },
         currentStep:1,
-        handleNumber:""
+        handleNumber:"",
+        successFlag: 1,
       }
     },
     created(){
+        if(this.$route.query.param){
+            this.successFlag = 2;
+        }
         this.epFn.setTitle('人员基本信息变更')
         // this.form = this.$store.state.SET_BASEINFOCHANGE_OPERATION;
         let params=this.formatSubmitData();
@@ -86,8 +90,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '许肖军';
-                submitForm.AAE135 = "332625197501010910";
+                
+                this.$toast("未获取到人员基本信息");
             }
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");

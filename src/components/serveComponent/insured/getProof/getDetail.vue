@@ -37,7 +37,7 @@
                 <div class="searchBtn" v-if="form.AAC050 == '1'">点击查看附近可领取的银行网点</div>
             </div>
         </div>
-        <Success></Success>
+        <Success :flag="successFlag"></Success>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>
@@ -58,10 +58,14 @@ export default {
             ],
             currentStep:1,
             handleNumber:'',
-            List:[]
+            List:[],
+            successFlag: 1,
         }
     },
     created(){
+        if(this.$route.query.param){
+            this.successFlag = 2;
+        }
         this.epFn.setTitle('领取就医凭证')
         /*if (window.history && window.history.pushState) {
             history.pushState(null, null, document.URL);
@@ -75,8 +79,8 @@ export default {
         //     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
         //     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
         // }else {
-        //     submitForm.AAC003 = '许肖军';
-        //     submitForm.AAE135 = "332625197501010910";
+        //     
+        //     this.$toast("未获取到人员基本信息");
         // }
         // submitForm.AGA002= '330800122043'
         // const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
@@ -175,8 +179,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '许肖军';
-                submitForm.AAE135 = "332625197501010910";
+                
+                this.$toast("未获取到人员基本信息");
             }
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
@@ -201,8 +205,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '许肖军';
-                submitForm.AAE135 = "332625197501010910";
+                
+                this.$toast("未获取到人员基本信息");
             }
             
             // 请求参数封装

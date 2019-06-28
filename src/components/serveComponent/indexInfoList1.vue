@@ -144,60 +144,26 @@
             // this.setNativeMsg();
             this.epFn.setTitle('医疗保障专区')
             // 获取参保地
+            this.getUserRegion();
             // name: sessionStorage.getItem("userName") ,
             // idCard:sessionStorage.getItem("idCard") ,
             // /h5/jy1033/getRecord
-            let params = this.formatSubmitData();
-            this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1033/getRecord', params).then((resData) => {
-                console.log('返回成功信息', resData)
-                //   成功   1000
-                if (resData.enCode == 1000) {
-                    if (resData.AAB301) {
-                        sessionStorage.setItem("GinsengLandCode",resData.AAB301)
-                        sessionStorage.setItem("GinsengLandName",resData.RegionName)
-                        this.$store.dispatch('SET_USER_DETAILINFO', {
-                            insured: resData.AAB301,
-                            regionName: resData.RegionName || '杭州市'
-                        })
-                    } else {
-                        dd.ready({
-                            developer: 'daip@dtdream.com',
-                            usage: [
-                                'dd.device.location.get',
-                            ],
-                            remark: '获取当前位置'
-                        }, function() {
-                            dd.device.location.get({
-                                onSuccess: function(data) {
-                                    console.log(data)
-                                },
-                                onFail: function(error) {}
-                            })
-                        })
-                    }
-                } else if (resData.enCode == 1001) {
-                    //   失败  1001
-                    this.$toast(resData.msg);
-                    return;
-                } else {
-                    this.$toast('业务出错');
-                    return;
-                }
-            })
-            dd.ready({
-                developer: 'daip@dtdream.com',
-                usage: [
-                    'dd.device.location.get',
-                ],
-                remark: '获取当前位置'
-            }, function() {
-                dd.device.location.get({
-                    onSuccess: function(data) {
-                        console.log(data);
-                    },
-                    onFail: function(error) {}
-                })
-            })
+            
+            // 测试获取定位
+            // dd.ready({
+            //     developer: 'daip@dtdream.com',
+            //     usage: [
+            //         'dd.device.location.get',
+            //     ],
+            //     remark: '获取当前位置'
+            // }, function() {
+            //     dd.device.location.get({
+            //         onSuccess: function(data) {
+            //             console.log(data);
+            //         },
+            //         onFail: function(error) {}
+            //     })
+            // })
         },
         filters: {
             msgLength: function(val) {
@@ -231,16 +197,55 @@
                     }
                 });
             },
+            getUserRegion(){
+                let params = this.formatSubmitData();
+                this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1033/getRecord', params).then((resData) => {
+                    console.log('返回成功信息', resData)
+                    //   成功   1000
+                    if (resData.enCode == 1000) {
+                        if (resData.AAB301) {
+                            sessionStorage.setItem("GinsengLandCode",resData.AAB301)
+                            sessionStorage.setItem("GinsengLandName",resData.RegionName)
+                            this.$store.dispatch('SET_USER_DETAILINFO', {
+                                insured: resData.AAB301,
+                                regionName: resData.RegionName || '杭州市'
+                            })
+                        } else {
+                            dd.ready({
+                                developer: 'daip@dtdream.com',
+                                usage: [
+                                    'dd.device.location.get',
+                                ],
+                                remark: '获取当前位置'
+                            }, function() {
+                                dd.device.location.get({
+                                    onSuccess: function(data) {
+                                        console.log(data)
+                                    },
+                                    onFail: function(error) {}
+                                })
+                            })
+                        }
+                    } else if (resData.enCode == 1001) {
+                        //   失败  1001
+                        this.$toast(resData.msg);
+                        return;
+                    } else {
+                        this.$toast('业务出错');
+                        return;
+                    }
+                })
+            },
             formatSubmitData() {
                 let submitForm = {}
                 // 加入用户名和电子社保卡号
-                submitForm.AAC003 = '许肖军'
-                submitForm.AAE135 = '332625197501010910'
+                submitForm.AAC003 = sessionStorage.getItem("userName");
+                submitForm.AAE135 = sessionStorage.getItem("idCard");
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader, submitForm, "1033");
                 return params;
             },
-            changeUsername(str) { 
+            changeUsername(str) {
                 if (str) {
                 let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
                 MessageBox.prompt('用户名', '').then(({
@@ -259,7 +264,7 @@
             },
             changeUserCode(str) {
                 if(str) {
-                                   let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
+                let user = Object.assign({}, this.$store.state.SET_USER_BASEINFO);
                 MessageBox.prompt('社保卡号', '').then(({
                     value,
                     action
@@ -268,11 +273,11 @@
                     this.$store.dispatch('SET_USER_BASEINFO', user);
                     sessionStorage.setItem('idCard', value);
                     this.setNativeMsg();
+                    this.getUserRegion();
                 });
                 }else{
                     this.$toast('功能正在建设中')
                 }
-
             },
             showWork(url, item, itemInfo) {
                 sessionStorage.setItem('itemUrl', url);

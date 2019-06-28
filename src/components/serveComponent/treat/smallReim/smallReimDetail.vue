@@ -107,6 +107,7 @@
                 </div>
             </div> -->
         </div>
+        <Success :flag="successFlag"></Success>
         <!-- 按钮 -->
         <!-- <Footer v-if="!needMoreInfo" :btnType="2" @backout="backout()" @edit="edit()"></Footer> -->
         <!-- 补齐材料提交 -->
@@ -119,6 +120,9 @@
 <script>
 export default {
     created(){
+        if(this.$route.query.param){
+            this.successFlag = 2;
+        }
         this.epFn.setTitle('零星报销')
         let params = this.formatSubmitForm();
         this.request1()
@@ -152,7 +156,8 @@ export default {
                 {step:4,name:'审批'},
                 {step:5,name:'财务支付'}
             ],
-            picList:[]
+            picList:[],
+            successFlag: 1,
         }
     },
     methods:{
@@ -180,8 +185,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '许肖军';
-                submitForm.AAE135 = "332625197501010910";
+                
+                this.$toast("未获取到人员基本信息");
             }
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1029');
@@ -265,8 +270,8 @@ export default {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 }else {
-                    submitForm.AAC003 = '许肖军';
-                    submitForm.AAE135 = "332625197501010910";
+                    
+                    this.$toast("未获取到人员基本信息");
                 }
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
@@ -280,8 +285,8 @@ export default {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 }else {
-                    submitForm.AAC003 = '许肖军';
-                    submitForm.AAE135 = "332625197501010910";
+                    
+                    this.$toast("未获取到人员基本信息");
                 }      
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1031");
@@ -336,8 +341,8 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = '许肖军';
-                submitForm.AAE135 = "332625197501010910";
+                
+                this.$toast("未获取到人员基本信息");
             }
             
             // 请求参数封装
