@@ -135,7 +135,7 @@
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (this.AAS027000 != '' && this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKA121 != '' && val.BKE255 != '' &&this.picArr.length>0 ) {
+                    if (this.AAS027000 != '' && this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKA121 != '' && val.BKE255 != '' &&val.photoIdList.length>0 ) {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;

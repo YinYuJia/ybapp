@@ -56,8 +56,8 @@ export default {
         }
         .successText{
             height: .36rem;
-            width: 1.44rem;
-            font-size: .36rem;
+            width: 1.5rem;
+            font-size: .35rem;
             color: #000000;
             letter-spacing: 0;
             text-align: center;
