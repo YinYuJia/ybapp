@@ -2,6 +2,6 @@
 module.exports = {
   NODE_ENV: '"production"',
   // baseURL : '"//ybj.zjzwfw.gov.cn/api"',  //浙理办打包
-  baseURL : '"/api/api"',
+  baseURL : '"/api/api"',  //本地打包
   ifDev:false
 }
