@@ -20,6 +20,7 @@
       <div class="SearchBox">
         <svg-icon icon-class="serveComponent_search"/>
         <input class="InputContent" v-model="params.AAA102" :placeholder="'查找'+title">
+        <svg-icon v-if="params.AAA102.length>0" class="deleteIcon" @click="deleteSearch()" icon-class="serveComponent_delete"></svg-icon>
         <div class="SearchBtn" @click="search">搜索</div>
       </div>
     </div>
@@ -190,6 +191,10 @@ export default {
           }
         });
     },
+    deleteSearch(){
+      this.params.AAA102 = '';
+      this.getList();
+    },
     loadBottom() {
         // 加载更多数据
         console.log('加载')
@@ -297,6 +302,7 @@ export default {
     justify-content: center;
     align-items: flex-end;
     .SearchBox {
+      position: relative;
       height: 0.8rem;
       width: 6.7rem;
       padding: 0 0.15rem;
@@ -311,16 +317,23 @@ export default {
       }
       .InputContent {
         height: 0.49rem;
-        width: 4.8rem;
+        width: 4.1rem;
         font-size: 0.26rem;
         border: none;
         &::placeholder {
           color: #c9c9c9;
         }
       }
+      .deleteIcon{
+        height: .4rem;
+        width: .4rem;
+        position: absolute;
+        right: 1.2rem;
+      }
       .SearchBtn {
         height: 0.49rem;
         width: 0.99rem;
+        margin-left: .2rem;
         background: #1492ff;
         border-radius: 0.04rem;
         color: white;
