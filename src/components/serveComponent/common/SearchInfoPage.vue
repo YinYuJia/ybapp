@@ -197,16 +197,16 @@ export default {
     },
     // 搜索
     search() {
-      if(this.params.AAA102){
+      // if(this.params.AAA102){
         this.isShow=false
         this.allLoaded = true;
-      this.List = [];
-      this.params.pageNum = 1;
-      this.getList();
-      console.log("清空List",this.List)
-      }else{
-        this.$toast("请输入查询条件")
-      }
+        this.List = [];
+        this.params.pageNum = 1;
+        this.getList();
+        console.log("清空List",this.List)
+      // }else{
+      //   this.$toast("请输入查询条件")
+      // }
       
     },
     formatSubmitData() {
