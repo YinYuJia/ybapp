@@ -116,14 +116,14 @@ export default {
                 let LS=resData.LS_DS_09
                 this.form={...this.form,...LS}
                 console.log("form",this.form.AAS027VALUE)
-                if(this.form.AAQ301VALUE==undefined){
-                    this.form.AAQ301VALUE='省本级';
+                if(this.form.AAQ027VALUE==undefined){
+                    this.form.AAQ027VALUE='';
                 } 
                 console.log(typeof(this.form.AAE030))
                 // this.form.AAE030=this.util.NumberToDate(this.form.AAE030)
                 // this.form.AAE031=this.util.NumberToDate(this.form.AAE031)
-                this.AAS027000=this.form.AAS027VALUE+this.form.AAB027VALUE
-                this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE+this.form.AAQ301VALUE
+                this.AAS027000=this.form.AAS301VALUE+this.form.AAB301VALUE
+                this.AAB301000=this.form.AAS027VALUE+this.form.AAB027VALUE+this.form.AAQ027VALUE
                 this.handleNumber = resData.LS_DS_09.BKZ019
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
