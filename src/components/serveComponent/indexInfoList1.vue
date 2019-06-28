@@ -89,7 +89,7 @@
                     <svg-icon icon-class="serveComponent_icon15" /></swipe-item> -->
             </swipe>
         </div>
-        <div class="changeUserBtn">
+        <div class="changeUserBtn" v-if="true">
             <div class="btn" @click="changeUsername(true)">更改用户名</div>
             <div class="btn" @click="changeUserCode(true)">更改社保卡号</div>
         </div>
