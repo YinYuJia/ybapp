@@ -20,7 +20,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>取药机构:</span></div>
-                    <div class="InfoText">{{form.AKB020}}</div>
+                    <div class="InfoText">{{form.AKB020VALUE}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>护照号码:</span></div>
