@@ -86,7 +86,7 @@ export default {
         // const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1009');
         // this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1009/getRecord', params)
         // .then((resData) => {
-        //     if(resData.encode==1000){
+        //     if(resData.enCode==1000){
         //         this.currentStep = Number(resData.LS_DS[0].BOD037)
         //     }
         // })

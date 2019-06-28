@@ -23,7 +23,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>进度时间:</span></div>
-                    <div class="InfoText"><span></span></div>
+                    <div class="InfoText"><span>{{form3.BAE019}}</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>收款开户行:</span></div>
