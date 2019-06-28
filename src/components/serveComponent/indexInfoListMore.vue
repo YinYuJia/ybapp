@@ -145,6 +145,7 @@ export default {
     },
     destroyed(){
         this.myScroll.destroy();
+        this.myScroll = null;
     },
     created(){
         this.epFn.setTitle('医疗保障专区')
@@ -167,7 +168,7 @@ export default {
                     mouseWheel: true, //允许鼠标滑动
                     bounce: false, //关闭回弹
                     scrollbars: false, //关闭滚动条
-                    click: true, //开启点击功能
+                    // click: true, //开启点击功能
                     // momentum: false, //关闭势能，提升性能
                     probeType: 3
                 });
