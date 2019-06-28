@@ -39,7 +39,7 @@ function NumberToDate(number){
 //手机号校验
 function checkPhone(phoneStr){ 
     var phone = phoneStr
-    if(!(/^1[3456789]\d{9}$/.test(phone))){ 
+    if(!(/^1[3456789]\d{11}$/.test(phone))){ 
         return false; 
     }
     return true;
