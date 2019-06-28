@@ -278,7 +278,7 @@ export default {
                         console.log('返回成功信息',resData)
                         //   成功   1000
                             if ( resData.enCode == 1000 ) {
-                                this.$toast("提交成功");
+                                // this.$toast("提交成功");
                                 this.$router.push("/elseDetail");
                             }else if (resData.enCode == 1001 ) {
                             //   失败  1001
