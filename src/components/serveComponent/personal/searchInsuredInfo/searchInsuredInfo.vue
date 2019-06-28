@@ -62,7 +62,7 @@ export default {
         }
     },
     created(){
-        this.epFn.setTitle('个人参保信息')
+        this.epFn.setTitle('个人征缴信息')
         this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
         this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
     },
