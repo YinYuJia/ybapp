@@ -74,11 +74,11 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <svg-icon icon-class="serveComponent_icon13" /></div>
+                        <svg-icon icon-class="serveComponent_icon13" @click="hint" /></div>
                     <div class="swiper-slide">
-                        <svg-icon icon-class="serveComponent_icon14" /></div>
+                        <svg-icon icon-class="serveComponent_icon14" @click="hint" /></div>
                     <div class="swiper-slide">
-                        <svg-icon icon-class="serveComponent_icon16" /></div>
+                        <svg-icon icon-class="serveComponent_icon16" @click="hint" /></div>
                 </div>
             </div>
         </div>
