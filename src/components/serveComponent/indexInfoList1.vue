@@ -18,7 +18,7 @@
                     <svg-icon icon-class="serveComponent_icon3" />
                     <div class="text">医保账户</div>
                 </div>
-                <div class="iconBox" @click="yibaozhanghu">
+                <div class="iconBox" @click="movePay">
                     <svg-icon icon-class="serveComponent_icon4" />
                     <div class="text">移动支付</div>
                 </div>
@@ -205,6 +205,15 @@
             }
         },
         methods: {
+            movePay(){
+                // 1支付SDK首页
+                //医保支付
+                pageId:"card"
+                params：{
+                    id:"medicalPayCard",
+                    functionType:1
+                }
+            },
             yibaozhanghu() {
                  this.$toast("功能正在建设中")
             },
