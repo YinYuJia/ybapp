@@ -143,7 +143,7 @@
                     // 判断转入转出地
                     if (val.AAB027 != '' && val.AAB301 != '') {
                         if(val.AAB027==val.AAB301){
-                            this.$toast('转出地不能与转入地相同');
+                            this.$toast('转往城市不能与参保地相同');
                             this.AAB301000 = '';
                             this.form.AAS027="";
                             this.form.AAB027="";
