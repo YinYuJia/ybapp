@@ -268,12 +268,16 @@ export default {
             }
             sessionStorage.setItem('itemUrl',url);
             sessionStorage.setItem("item",item);
-            this.$router.push({
-                name: url,
-                params: {
-                    item:item,
-                }
-            })
+            let This = this
+            setTimeout(function(){
+                this.$router.push({
+                    name: url,
+                    params: {
+                        item:item,
+                    }
+                })
+            },16)
+            
         }
     }
 }
