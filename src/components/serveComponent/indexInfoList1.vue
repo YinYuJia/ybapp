@@ -6,11 +6,11 @@
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇总浙江省医疗保障服务</div>
             <div class="headerPad">
-                <div class="iconBox" @click="changeUsername(true)">
+                <div class="iconBox">
                     <svg-icon icon-class="serveComponent_icon1" />
                     <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox" @click="changeUserCode(true)">
+                <div class="iconBox">
                     <svg-icon icon-class="serveComponent_icon2" />
                     <div class="text">支付码</div>
                 </div>
@@ -85,6 +85,10 @@
                 <swipe-item>
                     <svg-icon icon-class="serveComponent_icon15" /></swipe-item>
             </swipe>
+        </div>
+        <div class="changeUserBtn">
+            <div class="btn" @click="changeUsername(true)">更改用户名</div>
+            <div class="btn" @click="changeUserCode(true)">更改社保卡号</div>
         </div>
         <!-- 热点资讯 -->
         <!-- <div class="hotMsg">
@@ -511,4 +515,17 @@
                 }
             }
         }
+.changeUserBtn{
+    display: flex;
+    justify-content: space-around;
+    .btn{
+        height: .6rem;
+        line-height: .6rem;
+        width: 3.5rem;
+        border: 1px solid #DDD;
+        font-size: .36rem;
+        border-radius: .2rem;
+        background: #FFF;
+    }
+}
 </style>

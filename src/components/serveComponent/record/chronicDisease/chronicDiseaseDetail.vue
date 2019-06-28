@@ -107,6 +107,7 @@ export default {
             handleNumber:'',
             List:[],
             successFlag: 1,
+            picList: [],
         }
     },
     created(){
