@@ -75,7 +75,7 @@ export default {
         },
     },
     created(){
-        this.epFn.setTitle('就诊信息查询')
+        this.epFn.setTitle('个人就医信息')
     },
     methods:{
         // 选择开始日期
