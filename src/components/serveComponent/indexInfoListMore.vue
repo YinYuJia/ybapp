@@ -270,7 +270,7 @@ export default {
             sessionStorage.setItem("item",item);
             let This = this
             setTimeout(function(){
-                this.$router.push({
+                This.$router.push({
                     name: url,
                     params: {
                         item:item,
