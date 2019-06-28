@@ -204,6 +204,12 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
+                if(this.form.AAE005){
+                    if(!this.util.checkPhone(this.form.AAE005)){
+                        this.$toast('请填写正确的手机号码');
+                        return false;
+                    }
+                }
                 let params = this.formatSubmitData();
                 this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1008/transactionVoucher', params.params)
                 .then((resData) => {
