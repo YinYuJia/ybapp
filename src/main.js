@@ -148,11 +148,11 @@ let vConsole = new Vconsole()
 export default vConsole;
 
 
-const isShow = false
+
 // 1  网新恩普包  2  浙理办包
 Vue.prototype.$build = "1"
 
- 
+const isShow = false
 if (isShow ) {
   router.beforeEach((to, from, next) => {
   
