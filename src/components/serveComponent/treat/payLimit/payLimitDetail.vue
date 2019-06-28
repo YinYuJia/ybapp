@@ -133,8 +133,8 @@ export default {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 }else {
-                    submitForm.AAC003 = '许肖军';
-                    submitForm.AAE135 = "332625197501010910";
+                    
+                    this.$toast("未获取到人员基本信息");
                 }      
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1009");
@@ -156,8 +156,8 @@ export default {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 }else {
-                    submitForm.AAC003 = '许肖军';
-                    submitForm.AAE135 = "332625197501010910";
+                    
+                    this.$toast("未获取到人员基本信息");
                 }      
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
