@@ -133,7 +133,7 @@ export default {
                             });
                         }else if(resData.AGA002=="330800253023"){
                                 this.$router.push({
-                                path:"/abroadDetail",//家庭共济
+                                path:"/familyDetail",//家庭共济
                                 query:{
                                     param: item.BKZ019
                                 }
