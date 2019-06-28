@@ -62,10 +62,10 @@ export default {
     },
     created(){
         this.epFn.setTitle('领取就医凭证')
-        if (window.history && window.history.pushState) {
+        /*if (window.history && window.history.pushState) {
             history.pushState(null, null, document.URL);
             window.addEventListener('popstate', this.back, false);//false阻止默认事件
-        }
+        }*/
         // 请求参数封装
         // this.form = this.$store.state.SET_INSURED_PROOF
         // let submitForm = {};
@@ -104,9 +104,9 @@ export default {
             }
         }
     },
-    destroyed(){
+    /*destroyed(){
         window.removeEventListener('popstate', this.back, false);//false阻止默认事件
-    },
+    },*/
     methods:{
         back(){
             // this.$router.push('/')

@@ -50,14 +50,14 @@ export default {
         // this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
         this.request();
         this.request1();
-        if (window.history && window.history.pushState) {
+        /*if (window.history && window.history.pushState) {
             history.pushState(null, null, document.URL);
             window.addEventListener('popstate', this.back, false);//false阻止默认事件
-        }
+        }*/
     },
-    destroyed(){
+    /*destroyed(){
         window.removeEventListener('popstate', this.back, false);//false阻止默认事件
-    },
+    },*/
     methods:{
         back(){
             // this.$router.push('/')
