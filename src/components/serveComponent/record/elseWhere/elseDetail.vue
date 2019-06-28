@@ -79,14 +79,14 @@ export default {
         this.epFn.setTitle('异地就医备案')
         this.request();
         this.request1();
-        if (window.history && window.history.pushState) {
+        /*if (window.history && window.history.pushState) {
             history.pushState(null, null, document.URL);
             window.addEventListener('popstate', this.back, false);//false阻止默认事件
-        }
+        }*/
     },
-    destroyed(){
+    /*destroyed(){
         window.removeEventListener('popstate', this.back, false);//false阻止默认事件
-    },
+    },*/
     computed:{
         // address: function(){
         //     return this.form.AAE011.join(' ');
