@@ -97,7 +97,7 @@
                     <svg-icon icon-class="serveComponent_icon15" /></swipe-item> -->
             </swipe>
         </div>
-        <div class="changeUserBtn" v-if="true">
+        <div class="changeUserBtn" v-if="ifShow">
             <div class="btn" @click="changeUsername(true)">更改用户名</div>
             <div class="btn" @click="changeUserCode(true)">更改社保卡号</div>
         </div>
@@ -126,7 +126,9 @@
     } from 'mint-ui'
     export default {
         data() {
+           
             return {
+                 ifShow:true,
                 tel: "0571-88808880",
                 imgurl: "",
                 hotMsg: [ //热点资讯
@@ -153,8 +155,17 @@
             })
         },
         created() {
-            console.log('dddddddddddddddddd', dd)
+            console.log("$build",this.$build)
+            //  切换打包环境  1 网新恩普包  2  浙理办包
+            if (this.$build =="1" ) {
             // this.setNativeMsg();  //浙理办打包需要打开
+               this.ifShow == true
+            }else{
+                this.ifShow == false;
+                this.setNativeMsg();  //浙理办打包需要打开
+            }
+            console.log('dddddd引入浙理办SDKddddddd', dd)
+ 
             this.epFn.setTitle('医疗保障专区')
             // 获取参保地
             this.getUserRegion();
