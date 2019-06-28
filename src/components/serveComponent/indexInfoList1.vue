@@ -83,10 +83,10 @@
             <swipe>
                 <swipe-item>
                     <svg-icon icon-class="serveComponent_icon15" /></swipe-item>
-                <swipe-item>
+                <!-- <swipe-item>
                     <svg-icon icon-class="serveComponent_icon15" /></swipe-item>
                 <swipe-item>
-                    <svg-icon icon-class="serveComponent_icon15" /></swipe-item>
+                    <svg-icon icon-class="serveComponent_icon15" /></swipe-item> -->
             </swipe>
         </div>
         <div class="changeUserBtn">
@@ -491,6 +491,7 @@
                 }
             }
         }
+    }
 .changeUserBtn{
     display: flex;
     justify-content: space-around;
@@ -504,5 +505,4 @@
         background: #FFF;
     }
 }
-    }
 </style>
