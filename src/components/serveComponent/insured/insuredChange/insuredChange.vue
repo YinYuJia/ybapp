@@ -57,12 +57,12 @@ export default {
     },
     created(){
         this.epFn.setTitle('参保信息变更')
-        let params = this.formatSubmitData();
-        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy2002/getRecord', params).then((resData) => {
+        let params = this.formatSubmitData1();
+        this.$axios.post(this.epFn.ApiUrl()+ '/h5/jy1013/info', params).then((resData) => {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        this.form =resData;
+                        this.form =resData.LS_DS[0];
                         // this.$toast("请求成功");
                         this.$store.dispatch('SET_BASEINFOCHANGE_OPERATION', this.form);
                     }else if (resData.enCode == 1001 ) {
@@ -133,6 +133,25 @@ export default {
             }
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1010");
+            return params;
+        },
+        formatSubmitData1(){
+            let submitForm = {}
+            submitForm.AAE005 =  this.form.AAE005;            
+            submitForm.AAE006 =  this.form.AAE006;
+            submitForm.AAE007 =  this.form.AAE007;
+            submitForm.BKZ019 =  this.form.BKZ019;
+            // submitForm.debugTest ="true"
+            // 加入用户名和电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                
+                this.$toast("未获取到人员基本信息");
+            }
+            // 请求参数封装
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1013");
             return params;
         }
     }
