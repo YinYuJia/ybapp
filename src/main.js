@@ -36,11 +36,7 @@ Vue.use(Mint);
 import Util from './utils/util'
 Vue.prototype.util = Util;
 
-import Vconsole from 'vconsole';
 
-let vConsole = new Vconsole()
-
-export default vConsole;
 
 // Vue.use(vConsole)
 
@@ -147,8 +143,11 @@ console.log('欢迎进入医保专区首页main.js')
 
 
 
-// sessionStorage.setItem("userName","许肖军")
-// sessionStorage.setItem("idCard","332625197501010910")
+import Vconsole from 'vconsole';
+
+let vConsole = new Vconsole()
+
+export default vConsole;
 
 
 // router.beforeEach((to, from, next) => {
