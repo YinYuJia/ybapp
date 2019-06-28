@@ -254,7 +254,7 @@
             } else {
                 this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
                 if (!this.util.passPort(this.form.BKE260)) {
-                    this.$toast("护照号码格式不正确，首位英文加8位数字");
+                    this.$toast("护照号码格式不正确");
                     return false;
                 } 
                 // 封装数据
