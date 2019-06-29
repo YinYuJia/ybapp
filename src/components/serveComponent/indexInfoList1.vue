@@ -178,10 +178,10 @@
                 eleInvoices: [], //电子发票信息
                 invoicesImg: [], //附件信息信息  图片id
             }
-            this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_1)
+            this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
             
             let SET_ENCLOSURE=[]
-            this.$store.dispatch('SET_SMALL_REIM_2',SET_ENCLOSURE)
+            this.$store.dispatch('SET_ENCLOSURE',SET_ENCLOSURE)
             // 清空结束
 
             console.log("$build",this.$build)
