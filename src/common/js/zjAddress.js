@@ -6,5 +6,12 @@ export default[{
 		"name": "省本级",
 		"children": [
 		]
-	}]
+	},{
+		"code": "331000",
+        "name": "台州市",
+        "children": [{
+			"code": "331099",
+			"name": "市本级"
+		}]
+    }]
 }];
