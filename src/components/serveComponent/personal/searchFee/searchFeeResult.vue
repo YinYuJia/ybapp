@@ -62,7 +62,11 @@ export default {
     },
     filters:{
         tooLong(val){
-            return val.slice(0,13) + '...';
+            if(val.length > 13){
+                 return val.slice(0,13) + '...';
+            }else{
+                return val;
+            }
         }
     },
     created () {
