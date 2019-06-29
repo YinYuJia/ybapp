@@ -155,6 +155,35 @@
             })
         },
         created() {
+            // 清空零星报销的Vuex
+            let SET_SMALL_REIM_SUBMIT={
+                AAS301: '', //参保地统筹省编码
+                AAB301: '', //参保地统筹市编码
+                AKC264: 0, //发票费用总额
+                AAE008: '', //收款开户行
+                AAE009: '', //收款开户名
+                AAE010: '', //收款银行账号
+                BKC013: '', //发票张数
+                AKB020: '', //机构编码（医院编码）
+            }
+            this.$store.dispatch('SET_SMALL_REIM_SUBMIT',SET_SMALL_REIM_SUBMIT)
+            let SET_SMALL_REIM_1={
+                hospitalName: '', //就诊医院
+                AKB020: '', //医院编码
+                AKA078: '', //就诊类型
+                AAE030: '' //就诊日期
+            }
+            this.$store.dispatch('SET_SMALL_REIM_1',SET_SMALL_REIM_1)
+            let SET_SMALL_REIM_2={
+                eleInvoices: [], //电子发票信息
+                invoicesImg: [], //附件信息信息  图片id
+            }
+            this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_1)
+            
+            let SET_ENCLOSURE=[]
+            this.$store.dispatch('SET_SMALL_REIM_2',SET_ENCLOSURE)
+            // 清空结束
+
             console.log("$build",this.$build)
             //  切换打包环境  1 网新恩普包  2  浙理办包
             if (this.$build =="1" ) {

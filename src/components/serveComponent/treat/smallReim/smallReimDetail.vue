@@ -115,10 +115,8 @@
             </div>
         </div>
         <Success :flag="successFlag"></Success>
-        <!-- 按钮 -->
-        <!-- <Footer v-if="!needMoreInfo" :btnType="2" @backout="backout()" @edit="edit()"></Footer> -->
         <!-- 补齐材料提交 -->
-        <!-- <Footer v-if="needMoreInfo" :btnType="1" :canSubmit="true"></Footer> -->
+        <Footer v-if="needMoreInfo" @submit="submit()" :btnType="1" :canSubmit="true"></Footer>
         <!-- 撤销按钮 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>
@@ -132,9 +130,10 @@ export default {
         }
         this.epFn.setTitle('零星报销')
         let params = this.formatSubmitForm();
+        this.request()
         this.request1()
         this.request2()
-        // this.needSubmitInfo();  //判断是否需要提交资料
+        this.needSubmitInfo();  //判断是否需要提交资料
         console.log(params);
         /*if (window.history && window.history.pushState) {
             history.pushState(null, null, document.URL);
@@ -148,7 +147,7 @@ export default {
         return{
             invoiceComplete: true,
             invoices:[],
-            needMoreInfo: true,
+            needMoreInfo: false,
             moreInfoList: [],
             currentStep:1,
             handleNumber:'',
@@ -165,6 +164,8 @@ export default {
             ],
             picList:[],
             successFlag: 1,
+            picArr:[],
+            photoIdList:[]
         }
     },
     methods:{
@@ -180,6 +181,97 @@ export default {
                 this.$router.push('/Index');
                 this.$toast('撤销成功');
             });
+        },
+        // 上传图片附件
+        uploadImg(){
+            let This = this
+            if(this.$isSdk){
+                dd.ready({
+                developer: 'daip@dtdream.com',
+                usage: [
+                    'dd.device.notification.chooseImage',
+                ],
+                remark: '描述业务场景'
+                }, function() {
+                    dd.device.notification.chooseImage ({
+                        onSuccess: function(data) {
+                            console.log(data.picPath[0],'请求图片成功');
+                            if(data.result){
+                                // This.$store.dispatch('SET_ENCLOSURE',This.picArr)
+                                let submitForm = {}; 
+                                // 加入用户名和电子社保卡号
+                                if (This.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                                    submitForm.AAC003 = This.$store.state.SET_NATIVEMSG.name;
+                                    submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
+                                }else {
+                                    
+                                    this.$toast("未获取到人员基本信息");
+                                }
+                                // 加入子项编码
+                                submitForm.AGA002 = '330600007019'
+                                submitForm.photoList = data.picPath[0]
+                                submitForm.PTX001 = '2'
+                                const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
+                                // 图片上传后台
+                                This.$axios.post(This.epFn.ApiUrl() + '/h5/jy2006/updPhoto', params).then((resData) => {
+                                    console.log('返回成功信息',resData) 
+                                    //   成功   1000
+                                    if ( resData.enCode == 1000 ) {
+                                        // 获取图片
+                                        This.picArr.push(data.picPath[0]);
+                                        This.photoIdList.push(resData.photoId);
+                                        // let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+                                        // SET_SMALL_REIM_2.invoicesImg.push(resData.photoId)
+                                        // this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                                    }else if (resData.enCode == 1001 ) {
+                                    //   失败  1001
+                                        This.$toast(resData.msg);
+                                        return;
+                                    }else{
+                                        This.$toast('业务出错');
+                                        return;
+                                    }
+                                })
+                            }
+                        },
+                        onFail: function(error) {
+                            this.$toast(error)
+                            console.log("请求图片失败",error);
+                            
+                        }
+                    })
+            })
+            }
+            
+        },
+        submit(){
+            if(!this.photoIdList.length){
+                this.$toast('请上传附件信息')
+                return
+            }
+            let params=this.sunmitFormatSubmitData();
+            this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1030/getRecord', params).then((resData) => {
+                console.log('返回成功信息',resData)
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {
+                    this.$router.push('smallReimDetail')
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+            
+        },
+        // 删除图片
+        deletePic(item,index){
+            console.log('删除图片',this.photoIdList);
+            this.picArr.splice(index,1)
+            this.photoIdList.splice(index,1)
+            console.log('删除后',this.photoIdList);
         },
         showInvoiceDetail(item){
             this.dispatch('SET_INVOICEDETAIL',item)
@@ -355,6 +447,22 @@ export default {
             // 请求参数封装
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
             return params;
+        },
+        sunmitFormatSubmitData(){
+                let submitForm = {}
+                submitForm.AGA002 =  "330600007019";
+                // 加入用户名和电子社保卡号
+                if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+                }else {
+                    
+                    this.$toast("未获取到人员基本信息");
+                }
+                submitForm.photoIdList = this.photoIdList.join(',')
+                // 请求参数封装
+                const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1030");
+                return params;
         },
     }
 }

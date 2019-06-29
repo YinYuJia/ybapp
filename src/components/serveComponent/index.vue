@@ -110,7 +110,7 @@
             
             let SET_ENCLOSURE=[]
             this.$store.dispatch('SET_SMALL_REIM_2',SET_ENCLOSURE)
-
+            // 清空结束
             this.itemUrl = sessionStorage.getItem('itemUrl');
             this.NameTitle = sessionStorage.getItem("item")
             this.describe = sessionStorage.getItem("itemInfo")
