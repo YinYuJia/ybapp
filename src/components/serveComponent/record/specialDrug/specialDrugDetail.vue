@@ -174,7 +174,7 @@ export default {
         formatSubmitData(){
             let submitForm = {}
             console.log(submitForm)
-                submitForm.AGA002 =  "330800253023";
+                submitForm.AGA002 =  "330800253003";
                 // submitForm.debugTest=  "true";
 
             // 加入用户名和电子社保卡号
