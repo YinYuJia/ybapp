@@ -179,7 +179,7 @@ export default {
                     //  this.form.AAE009 = resData.AAE009   //开户名
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
-                    this.$toast(resData.msg);
+                    // this.$toast(resData.msg);
                     return;
                 }else{
                     this.$toast('业务出错');

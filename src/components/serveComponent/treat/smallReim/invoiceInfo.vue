@@ -60,12 +60,14 @@
             <div class="uploadHint">病例资料（如出院小结、用药清单、医嘱等）</div>
             <div class="picWrap">
                 <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
-                    <img :src="item" class="pic" />
+                    <img :src="item" class="pic" @click="showBigPhoto(item)" />
                     <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)" />
                 </div>
                 <svg-icon @click="uploadImg" icon-class="serveComponent_upload" />
             </div>
         </div>
+        
+        <PhotoView ref="photo" :imgUrl="imgUrl"></PhotoView>
         <!-- 按钮 -->
         <footer class="Footer">
             <div class="Btn">
@@ -88,6 +90,7 @@ export default {
             form: {
                 
             },
+            imgUrl:'',
             canSubmit: false, //是否可以提交
             progress:[
                 {step:1,name:'申请报销'},
@@ -156,6 +159,11 @@ export default {
         console.log('发票',this.invoices);
     },
     methods: {
+        // 查看大图
+        showBigPhoto(val){
+            this.imgUrl = val;
+            this.$refs.photo.open();
+        },
         // 上传图片附件
         uploadImg(){
             let This = this
@@ -180,7 +188,7 @@ export default {
                                     submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
                                 }else {
                                     
-                                    this.$toast("未获取到人员基本信息");
+                                    This.$toast("未获取到人员基本信息");
                                 }
                                 // 加入子项编码
                                 submitForm.AGA002 = '330600007019'

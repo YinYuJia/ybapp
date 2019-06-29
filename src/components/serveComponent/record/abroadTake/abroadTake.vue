@@ -65,13 +65,15 @@
                 </div>
                 <div class="picWrap">
                     <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
-                        <img :src="item" class="pic" />
+                        <img @click="showBigPhoto(item)" :src="item" class="pic" />
                         <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)"/>
                     </div>
                     <svg-icon  @click="uploadImg()" icon-class="serveComponent_upload" />
                 </div>
             </div>
         </div>
+        
+        <PhotoView ref="photo" :imgUrl="imgUrl"></PhotoView>
         <!-- 按钮 -->
         <Footer :canSubmit='canSubmit' @submit="submit()"></Footer>
     <SearchInfoPage ref="hospita" @childrenClick="hospitaClick" title="取药机构"></SearchInfoPage>
@@ -83,6 +85,7 @@
     export default {
         data() {
             return {
+                imgUrl:'',
                 picArr: [],//附件集合
                 AAB301000: '', //参保地
                 form: {
@@ -145,6 +148,11 @@
             },
         },
         methods: {
+            // 查看大图
+            showBigPhoto(val){
+                this.imgUrl = val;
+                this.$refs.photo.open();
+            },
             gotoTakeDrug(){
                 this.$router.push('/searchTakeDrug')
             },

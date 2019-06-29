@@ -17,9 +17,16 @@ export default {
             show: false,
         }
     },
+    destroyed(){
+        window.removeEventListener('popstate', this.closePhoto, false);//false阻止默认事件
+    },
     methods:{
         open(){
             this.show = true;
+            if (window.history && window.history.pushState) {
+                history.pushState(null, null, document.URL);
+                window.addEventListener('popstate', this.closePhoto, false);//false阻止默认事件
+            }
         },
         closePhoto(){
             this.show = false;
@@ -30,7 +37,7 @@ export default {
 
 <style lang="less" scoped>
 .PhotoView{
-    position: absolute;
+    position: fixed;
     z-index: 998;
     top: 0;
     left: 0;
