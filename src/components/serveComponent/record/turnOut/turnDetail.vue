@@ -39,13 +39,14 @@
                 <div class="photoBox">
                     <div class="picWrap">
                         <div class="uploadBtn" v-for="(item,index) in picList" :key="index">
-                            <img :src="item" class="pic" />
+                            <img :src="item" @click="showBigPhoto(item)" class="pic" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <Success :flag="successFlag"></Success>
+        <PhotoView ref="photo" :imgUrl="imgUrl"></PhotoView>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
     </div>
@@ -70,6 +71,7 @@ export default {
         List:[],
         successFlag: 1,
         picList: [],
+        imgUrl: '',
       }
     },
     created(){
@@ -89,7 +91,11 @@ export default {
         window.removeEventListener('popstate', this.back, false);//false阻止默认事件
     },*/
     methods:{
-        
+        // 查看大图
+        showBigPhoto(val){
+            this.imgUrl = val;
+            this.$refs.photo.open();
+        },
         back(){
             // this.$router.push('/')
         },

@@ -6,6 +6,7 @@ import Title from '@/components/serveComponent/common/Title'
 import UserBaseInfo from '@/components/serveComponent/common/UserBaseInfo'
 import WorkProgress from '@/components/serveComponent/common/WorkProgress'
 import Success from '@/components/serveComponent/common/Success'
+import PhotoView from '@/components/serveComponent/common/PhotoView'
 
 function plugin(Vue) {
     if (plugin.installed) {
@@ -19,6 +20,7 @@ function plugin(Vue) {
     Vue.component('UserBaseInfo',UserBaseInfo);
     Vue.component('WorkProgress',WorkProgress);
     Vue.component('Success',Success);
+    Vue.component('PhotoView',PhotoView);
 }
 
 export default plugin
