@@ -154,8 +154,8 @@ export default {
                 if(this.form.AAQ301VALUE==undefined){
                     this.form.AAQ301VALUE=""
                 }
-                this.AAS027000=this.form.AAS301VALUE+this.form.AAB301VALUE
-                this.AAB301000=this.form.AAS027VALUE+this.form.AAB027VALUE+this.form.AAQ027VALUE
+                this.AAS027000=this.form.AAS301VALUE+this.form.AAB301VALUE//参保地
+                this.AAB301000=this.form.AAS027VALUE+this.form.AAB027VALUE+this.form.AAQ027VALUE//转往地市
                 this.handleNumber = resData.LS_DS_09.BKZ019
                 this.picList = []
                 
