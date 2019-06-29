@@ -5,15 +5,15 @@
             <svg-icon icon-class="serveComponent_background" />
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇总浙江省医疗保障服务</div>
-            <div class="headerPad" @click="socialCard">
-                <div class="iconBox">
-                    <svg-icon v-if="1" icon-class="serveComponent_icon1" />
-                    <svg-icon v-if="0" icon-class="serveComponent_grey_1" />
+            <div class="headerPad" @click="hint">
+                <div class="iconBox" @click="hint">
+                    <svg-icon v-if="0" icon-class="serveComponent_icon1" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey_1" />
                     <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox" @click="payCode">
-                    <svg-icon v-if="1" icon-class="serveComponent_icon2" />
-                    <svg-icon v-if="0" icon-class="serveComponent_grey_2" />
+                <div class="iconBox" @click="hint">
+                    <svg-icon v-if="0" icon-class="serveComponent_icon2" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey_2" />
                     <div class="text">支付码</div>
                 </div>
                 <div class="iconBox" @click="hint">
@@ -21,9 +21,9 @@
                     <svg-icon v-if="1" icon-class="serveComponent_grey_3" />
                     <div class="text">医保账户</div>
                 </div>
-                <div class="iconBox" @click="movePay">
-                    <svg-icon v-if="1" icon-class="serveComponent_icon4" />
-                    <svg-icon v-if="0" icon-class="serveComponent_grey_4" />
+                <div class="iconBox" @click="hint">
+                    <svg-icon v-if="0" icon-class="serveComponent_icon4" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey_4" />
                     <div class="text">移动支付</div>
                 </div>
             </div>
@@ -155,6 +155,35 @@
             })
         },
         created() {
+            // 清空零星报销的Vuex
+            let SET_SMALL_REIM_SUBMIT={
+                AAS301: '', //参保地统筹省编码
+                AAB301: '', //参保地统筹市编码
+                AKC264: 0, //发票费用总额
+                AAE008: '', //收款开户行
+                AAE009: '', //收款开户名
+                AAE010: '', //收款银行账号
+                BKC013: '', //发票张数
+                AKB020: '', //机构编码（医院编码）
+            }
+            this.$store.dispatch('SET_SMALL_REIM_SUBMIT',SET_SMALL_REIM_SUBMIT)
+            let SET_SMALL_REIM_1={
+                hospitalName: '', //就诊医院
+                AKB020: '', //医院编码
+                AKA078: '', //就诊类型
+                AAE030: '' //就诊日期
+            }
+            this.$store.dispatch('SET_SMALL_REIM_1',SET_SMALL_REIM_1)
+            let SET_SMALL_REIM_2={
+                eleInvoices: [], //电子发票信息
+                invoicesImg: [], //附件信息信息  图片id
+            }
+            this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+            
+            let SET_ENCLOSURE=[]
+            this.$store.dispatch('SET_ENCLOSURE',SET_ENCLOSURE)
+            // 清空结束
+
             console.log("$build",this.$build)
             //  切换打包环境  1 网新恩普包  2  浙理办包
             if (this.$build =="1" ) {
