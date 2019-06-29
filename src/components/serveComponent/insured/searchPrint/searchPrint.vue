@@ -134,6 +134,8 @@ export default {
                 this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1011/QueryInsurance', params)
                     .then((resData) => {
                         console.log(resData);
+
+                        sessionStorage.setItem("searchPrintData",JSON.stringify(resData))
                         
                         if(resData.enCode==1000){
                             

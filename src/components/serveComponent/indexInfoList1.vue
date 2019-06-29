@@ -430,7 +430,6 @@
                     this.$toast(tipstr + "服务暂未开通")
                     return;
                 }
-                console.log(sessionStorage.getItem(""))
                 let str = sessionStorage.getItem("GinsengLandCode")
                 console.log('str', str)
                 if (str == "" || str == undefined || str == null) {
