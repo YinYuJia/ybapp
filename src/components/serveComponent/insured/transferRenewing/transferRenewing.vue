@@ -220,6 +220,7 @@ export default {
                     position: relative;
                     align-items: center;
                     input{
+                        width: 4rem;
                         height: .6rem;
                         opacity: 0.85;
                         font-family: PingFangSC-Regular;

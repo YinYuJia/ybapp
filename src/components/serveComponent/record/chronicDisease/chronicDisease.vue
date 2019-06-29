@@ -566,6 +566,7 @@ export default {
           position: relative;
           align-items: center;
           input {
+            width: 4rem;
             background-color: #fff;
             height: 0.6rem;
             font-family: PingFangSC-Regular;
@@ -612,6 +613,7 @@ export default {
           position: relative;
           align-items: center;
           input {
+            width: 4rem;
             background-color: #fff;
             height: 0.6rem;
             font-size: 0.28rem;
@@ -629,6 +631,7 @@ export default {
             align-items: center;
           }
           textarea {
+            width: 4rem;
             height: 0.84rem;
             font-size: 0.3rem;
             opacity: 0.85;
