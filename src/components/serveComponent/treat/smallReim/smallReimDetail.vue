@@ -45,15 +45,15 @@
                 <div class="invoiceList" v-for="item in invoices" :key="item.code">
                     <div class="textLine">
                         <span class="textName">发票号</span>
-                        <span class="textInfo">{{item.code}}</span>
+                        <span class="textInfo">{{item.BKE100}}</span>
                     </div>
                     <div class="textLine">
                         <span class="textName">发票金额</span>
-                        <span class="textInfo">{{item.cost}}</span>
+                        <span class="textInfo">{{item.AKC264}}</span>
                     </div>
                     <div class="textLine">
                         <span class="textName">状态</span>
-                        <span class="textInfo warn">{{item.state}}</span>
+                        <span class="textInfo warn">{{item.BKE586 |BKE586}}</span>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,11 @@
                     </div>
                     <div class="textLine">  
                         <span class="textName">发票金额</span>
-                        <span class="textInfo">{{item.BKE472}}</span>
+                        <span class="textInfo">{{item.AKC264}}</span>
+                    </div>
+                    <div class="textLine">
+                        <span class="textName">状态</span>
+                        <span class="textInfo warn">{{item.BKE586 |BKE586}}</span>
                     </div>
                     <div class="textLine" v-if="item.BKE586==3">
                         <span class="textName">说明</span>
@@ -354,8 +358,11 @@ export default {
                     // this.form1={...this.form1,...resData.LS_DS_13.LS_DS1} 
                     // this.form2={...this.form2,...resData.LS_DS_13.LS_DS2} 
                     // console.log(this.List)
-                    this.invoices = resData.LS_DS1
-                    console.log('数据最新resData.LS_DS111',resData.LS_DS1);
+                    // if(resData.LS_DS0.BKE586==0 || resData.LS_DS0.BKE586==1 || resData.LS_DS0.BKE586==2 ){
+                    //     this.invoiceComplete = false
+                    // }
+                    this.invoices = resData.LS_DS0
+                    console.log('数据最新resData.LS_DS111',resData.LS_DS0);
                     
                     // this.form={...this.from,...this.List[0]}
                 }else if (resData.enCode == 1001 ) {
@@ -624,6 +631,9 @@ export default {
                         color: #000000;
                         letter-spacing: 0;
                     }
+                    .warn{
+                        color: #FFA007;
+                    }   
                 }
                 &:last-child{
                     border-bottom: none;
