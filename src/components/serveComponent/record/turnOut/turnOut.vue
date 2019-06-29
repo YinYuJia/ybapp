@@ -129,13 +129,13 @@
             // this.form.AAA301000 = this.$store.state.SET_USER_DETAILINFO.regionName
             // // this.form.AAA301000 = "杭州"
             // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
-            // this.form.AAB301 = "12344"   &&val.photoIdList.length>0 
+            // this.form.AAB301 = "12344"
         },
         watch: {
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (this.AAS027000 != '' && this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKA121 != '' && val.BKE255 != '' ) {
+                    if (this.AAS027000 != '' && this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKA121 != '' && val.BKE255 != '' &&val.photoIdList.length>0 ) {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
