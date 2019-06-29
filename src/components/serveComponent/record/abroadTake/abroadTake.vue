@@ -53,7 +53,7 @@
                 <div class="InfoLine">
                     <div class="InfoName"><span>护照号码</span></div>
                     <div class="InfoText">
-                        <div class="InfoText"><input type="text" v-model="form.BKE260" placeholder="请输入"></div>
+                        <div class="InfoText"><input type="text" maxlength="9" v-model="form.BKE260" placeholder="请输入"></div>
                     </div>
                 </div>
             </div>
