@@ -153,6 +153,7 @@ export default vConsole;
 Vue.prototype.$build = "1"
 
 const isShow = false
+
 if (isShow ) {
   router.beforeEach((to, from, next) => {
   
