@@ -13,7 +13,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户行：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.BAC048" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="text" v-model="form.AAE008" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开户名：</span></div>
@@ -37,7 +37,7 @@ export default {
         return{
             form:{
                 AAE010: '', //银行账户
-                BAC048: '', //开户行
+                AAE008: '', //开户行
                 AAE009: '', //开户名
                 LS_DS1:[],
             },
@@ -62,7 +62,7 @@ export default {
         form: {
             handler: function(val) {
                 // 判断不为空
-                if (val.AAE010 != '' && val.BAC048 != '' && val.AAE009 != '') {
+                if (val.AAE010 != '' && val.AAE008 != '' && val.AAE009 != '') {
                     this.canSubmit = true;
                 } else {
                     this.canSubmit = false;
@@ -111,7 +111,7 @@ export default {
             console.log(this.$store.state.SET_SMALL_REIM_2,'this.$store.state.SET_SMALL_REIM_2');
             
             submitForm.AAE010 = this.form.AAE010.replace(/\s+/g,'');
-            submitForm.BAC048 = this.form.BAC048;
+            submitForm.AAE008 = this.form.AAE008;
             submitForm.AAE009 = this.form.AAE009;
            
             
@@ -175,7 +175,7 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
                      this.form.AAE010 = resData.AAE010 //银行账户
-                     this.form.BAC048 = resData.BAC048  //开户行
+                     this.form.AAE008 = resData.AAE008  //开户行
                     //  this.form.AAE009 = resData.AAE009   //开户名
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001

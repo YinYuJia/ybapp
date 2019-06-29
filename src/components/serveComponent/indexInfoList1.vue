@@ -155,20 +155,55 @@
             })
         },
         created() {
+            // 清空零星报销的Vuex
+            let SET_SMALL_REIM_SUBMIT={
+                AAS301: '', //参保地统筹省编码
+                AAB301: '', //参保地统筹市编码
+                AKC264: 0, //发票费用总额
+                AAE008: '', //收款开户行
+                AAE009: '', //收款开户名
+                AAE010: '', //收款银行账号
+                BKC013: '', //发票张数
+                AKB020: '', //机构编码（医院编码）
+            }
+            this.$store.dispatch('SET_SMALL_REIM_SUBMIT',SET_SMALL_REIM_SUBMIT)
+            let SET_SMALL_REIM_1={
+                hospitalName: '', //就诊医院
+                AKB020: '', //医院编码
+                AKA078: '', //就诊类型
+                AAE030: '' //就诊日期
+            }
+            this.$store.dispatch('SET_SMALL_REIM_1',SET_SMALL_REIM_1)
+            let SET_SMALL_REIM_2={
+                eleInvoices: [], //电子发票信息
+                invoicesImg: [], //附件信息信息  图片id
+            }
+            this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+            
+            let SET_ENCLOSURE=[]
+            this.$store.dispatch('SET_ENCLOSURE',SET_ENCLOSURE)
+            // 清空结束
+
             console.log("$build",this.$build)
             //  切换打包环境  1 网新恩普包  2  浙理办包
             if (this.$build =="1" ) {
-            // this.setNativeMsg();  //浙理办打包需要打开
-               this.ifShow == true
-            }else{
-                this.ifShow == false;
-                this.setNativeMsg();  //浙理办打包需要打开
+                this.ifShow == true   //显示输入人名社保卡
+            }else if((this.$build == "2" )){
+                this.ifShow == false; //隐藏输入人名社保卡
+                this.setNativeMsg();  //浙理办打包需要打开 
+                this.getUserRegion();  // 自动获取参保地
             }
             console.log('dddddd引入浙理办SDKddddddd', dd)
  
             this.epFn.setTitle('医疗保障专区')
+
             // 获取参保地
-            this.getUserRegion();
+            if(sessionStorage.getItem("GinsengLandCode") == "339900"){
+                this.iconFlag = true;  //省本级设置为true
+            }else{
+                this.iconFlag = false;  //其他情况设置为false
+            }
+
         },
         filters: {
             msgLength: function(val) {
