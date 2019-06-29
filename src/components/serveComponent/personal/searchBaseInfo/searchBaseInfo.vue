@@ -101,6 +101,9 @@ export default {
                     if ( resData.enCode == 1000 ) {
                         if(resData.LS_DS){ 
                             this.form={...this.form,...resData.LS_DS[0]}
+                            if(this.form.AAE005.length > 11){
+                                this.form.AAE005 = "";
+                            }
                         }
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001

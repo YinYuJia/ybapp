@@ -204,6 +204,12 @@ export default {
                 this.$toast('信息未填写完整');
                 return false;
             }else{
+                if(this.form.AAE005){
+                    if(!this.util.checkPhone(this.form.AAE005)){
+                        this.$toast('请填写正确的手机号码');
+                        return false;
+                    }
+                }
                 let params = this.formatSubmitData();
                 this.$axios.post( this.epFn.ApiUrl() +  '/h5/jy1008/transactionVoucher', params.params)
                 .then((resData) => {
@@ -231,7 +237,6 @@ export default {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                 submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
             }else {
-                submitForm.AAC003 = "许肖军";
                 this.$toast("未获取到人员基本信息");
             }
             // 请求参数封装
@@ -252,7 +257,11 @@ export default {
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {
                      this.form.AAE011 = resData.AAE009 //收件人
-                     this.form.AAE005 = resData.AAE005  //手机号码
+                     if(resData.AAE005.length > 11){
+                         this.form.AAE005 = '';
+                     }else{
+                         this.form.AAE005 = resData.AAE005  //手机号码
+                     }
                      this.form.AAE006 = resData.AAE006   //详细地址
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
