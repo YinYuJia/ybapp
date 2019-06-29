@@ -475,6 +475,10 @@ export default {
     },
     // 上传图片附件
     uploadImg(){
+      if(this.picArr.length>4){
+          this.$toast("附件信息最大5张")
+          return
+      }
       let This = this
       if(this.$isSdk){
           dd.ready({

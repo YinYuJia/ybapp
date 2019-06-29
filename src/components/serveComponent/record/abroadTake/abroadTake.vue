@@ -194,6 +194,10 @@
             },
             // 上传图片
             uploadImg(){
+                if(this.picArr.length>4){
+                    this.$toast("附件信息最大5张")
+                    return
+                }
                 let _this = this;
                 if(this.$isSdk){
                     dd.ready({
