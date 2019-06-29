@@ -139,9 +139,11 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    if (resData.LS_DS_11.length > 0 ) {
+                    console.log(Object.keys(resData.LS_DS_11).length);
+                    if (Object.keys(resData.LS_DS_11).length > 0) {
                         let LS=resData.LS_DS_11
                         this.form={...this.form,...LS}
+                        this.handleNumber = this.form.BKZ019;
                         console.log("form",this.form)
                         this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE
                     }else{
@@ -214,7 +216,7 @@ export default {
                     }
                 }
                 .InfoText{
-                    width: 5.1rem;
+                    width: 4.5rem;
                     color: 000;
                     line-height: 1.2rem;
                     display: flex;

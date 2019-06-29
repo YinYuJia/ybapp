@@ -13,7 +13,7 @@
         </footer> -->
         <footer class="Footer" v-if="btnType == 2">
             <div class="Btn">
-                <div class="ResetBtn" @click="backout()">撤销</div>
+                <button class="ResetBtn" @click="backout()" :disabled="isAble">撤销</button>
             </div>
         </footer>
     </div>
@@ -39,6 +39,11 @@ export default {
             default: ''
         }
     },
+    data(){
+        return{
+            isAble: false,
+        }
+    },
     methods:{
         submit(){
             this.$emit('submit');
@@ -53,6 +58,8 @@ export default {
                         if(resData.enCode==1000){
                             this.$router.push('/');
                             this.$toast('撤销成功');
+                        }else{
+                            this.isAble = true;
                         }
                     })
                 });
@@ -121,6 +128,7 @@ export default {
             letter-spacing: 0;
             text-align: center;
             border: .01rem solid #C9C9C9;
+            outline-style: none;
         }
         .EditBtn{
             height: 1.05rem;
