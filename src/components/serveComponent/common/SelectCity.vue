@@ -54,6 +54,10 @@ export default {
         onlyZJ:{
             type: Boolean,
             default: false
+        },
+        onlyTZ:{
+            type: Boolean,
+            default: false
         }
     },
     data(){
@@ -124,10 +128,16 @@ export default {
     },
 
     created(){
+        console.log(this.epFn.tzAddress());
         this.$nextTick(() =>{
             if(this.onlyZJ){
                 this.insuredCity[0].values = this.epFn.zjAddress();
                 this.fullCity[0].values = this.epFn.zjAddress();
+                this.fullCity[0].defaultIndex=0;
+                this.insuredCity[0].defaultIndex=0;
+            }else if(this.onlyTZ){
+                this.insuredCity[0].values = this.epFn.tzAddress();
+                this.fullCity[0].values = this.epFn.tzAddress();
                 this.fullCity[0].defaultIndex=0;
                 this.insuredCity[0].defaultIndex=0;
             }else{
