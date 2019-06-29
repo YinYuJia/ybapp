@@ -431,7 +431,6 @@
                         this.$toast(tipstr + "服务暂未开通")
                         return
                     }
-
                 }
                 let str = sessionStorage.getItem("GinsengLandCode")
                 console.log('str', str)
