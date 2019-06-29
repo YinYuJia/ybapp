@@ -341,6 +341,7 @@
                     position: relative;
                     align-items: center;
                     input {
+                        width: 4rem;
                         height: .6rem;
                         font-size: .3rem;
                         color: #000000;

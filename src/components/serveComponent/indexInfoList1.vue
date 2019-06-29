@@ -6,7 +6,7 @@
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇总浙江省医疗保障服务</div>
             <div class="headerPad" @click="hint">
-                <div class="iconBox">
+                <div class="iconBox" @click="hint">
                     <svg-icon v-if="0" icon-class="serveComponent_icon1" />
                     <svg-icon v-if="1" icon-class="serveComponent_grey_1" />
                     <div class="text">电子社保卡</div>
