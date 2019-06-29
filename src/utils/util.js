@@ -65,20 +65,29 @@ function postOffic(value){
 } 
 
 //护照号校验
+// function passPort(value){
+//     // if(value && (!(/^1[45][0-9]{7}$|(^[P|p|S|s]\d{7}$)|(^[S|s|G|g|E|e]\d{8}$)|(^[Gg|Tt|Ss|Ll|Qq|Dd|Aa|Ff]\d{8}$)|(^[H|h|M|m]\d{8,10}$)/).test(value))){
+//     //     return false
+//     // }else{
+//     //     return true
+//     // }
+//     if(value && (!(/^[A-Z]\d{8}$/).test(value))){
+//         console.log("失败")
+//         return false;
+//     }else{
+//         console.log("成功");
+//         return true;
+//     }
+// }
 function passPort(value){
-    // if(value && (!(/^1[45][0-9]{7}$|(^[P|p|S|s]\d{7}$)|(^[S|s|G|g|E|e]\d{8}$)|(^[Gg|Tt|Ss|Ll|Qq|Dd|Aa|Ff]\d{8}$)|(^[H|h|M|m]\d{8,10}$)/).test(value))){
-    //     return false
-    // }else{
-    //     return true
-    // }
-    if(value && (!(/^[A-Z]\d{8}$/).test(value))){
+    if(value && (!/^((1[45]\d{7})|(G\d{8})|(P\d{7})|(S\d{7,8})|(DE\d{7}))?$/.test(value))){
         console.log("失败")
         return false;
     }else{
-        console.log("成功");
+        console.log("成功")
         return true;
     }
-} 
+}
 function decimalPoint(num){  
     num += '';  
     num = num.replace(/[^0-9|\.]/g, ''); //清除字符串中的非数字非.字符  

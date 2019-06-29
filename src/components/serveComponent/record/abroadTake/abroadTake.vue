@@ -121,13 +121,13 @@
             // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
             // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;  
             // this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
-            // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
+            // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301     &&val.photoIdList.length>0
         },
         watch: {
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' &&val.photoIdList.length>0) {
+                    if (this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' ) {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
@@ -264,8 +264,9 @@
 
             } else {
                 this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
+                this.form.BKE260 = this.form.BKE260.toUpperCase(); //将所有小写字母转换为大写
                 if (!this.util.passPort(this.form.BKE260)) {
-                    this.$toast("护照号码格式不正确：大写英文+数字");
+                    this.$toast("护照号码格式不正确");
                     return false;
                 }
                 // 封装数据
