@@ -9,7 +9,7 @@ const service = axios.create({
 
 // axios拦截器
 axios.interceptors.request.use(request => {
-    Indicator.open()
+    Indicator.open();
     request.headers['Content-Type'] = 'application/json';
     request.baseURL = process.env.baseURL
     console.log('request.baseURL环境变量',request.baseURL)

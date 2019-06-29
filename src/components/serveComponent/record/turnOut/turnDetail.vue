@@ -142,6 +142,10 @@ export default {
                 if(this.form.AAQ027VALUE==undefined){
                     this.form.AAQ027VALUE='';
                 } 
+
+                if(this.form.AAB301VALUE==undefined){
+                    this.form.AAB301VALUE='';
+                } 
                 console.log(typeof(this.form.AAE030))
                 // this.form.AAE030=this.util.NumberToDate(this.form.AAE030)
                 // this.form.AAE031=this.util.NumberToDate(this.form.AAE031)

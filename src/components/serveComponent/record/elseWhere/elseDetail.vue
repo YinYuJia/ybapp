@@ -148,6 +148,9 @@ export default {
                     if(this.form.AAQ011VALUE==undefined){
                         this.form.AAQ011VALUE="";
                     }
+                    if(this.form.AAE011VALUE == undefined){
+                        this.form.AAE011VALUE="";
+                    }
                     this.form.AAE030=this.util.NumberToDate(this.form.AAE030)
                     this.form.AAE031=this.util.NumberToDate(this.form.AAE031)
                     this.AAS011000=this.form.AAS011VALUE+this.form.AAE011VALUE+this.form.AAQ011VALUE    
