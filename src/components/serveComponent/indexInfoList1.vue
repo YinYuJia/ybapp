@@ -14,12 +14,12 @@
                 <div class="iconBox" @click="hint">
                     <svg-icon v-if="0" icon-class="serveComponent_icon2" />
                     <svg-icon v-if="1" icon-class="serveComponent_grey_2" />
-                    <div class="text">电子社保卡</div>
+                    <div class="text">支付码</div>
                 </div>
                 <div class="iconBox" @click="hint">
                     <svg-icon v-if="0" icon-class="serveComponent_icon3" />
                     <svg-icon v-if="1" icon-class="serveComponent_grey_3" />
-                    <div class="text">支付码</div>
+                    <div class="text">医保账户</div>
                 </div>
                 <div class="iconBox" @click="hint">
                     <svg-icon v-if="0" icon-class="serveComponent_icon4" />
