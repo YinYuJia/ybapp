@@ -89,7 +89,7 @@
                 <div class="photoBox">
                      <div class="picWrap">
                         <div class="uploadBtn" v-for="(item,index) in picList" :key="index">
-                            <img :src="item" class="pic" />
+                            <img :src="item" class="pic" @click="showBigPhoto(item)" />
                             <!-- <span>{{item}}</span> -->
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                 </div> -->
                  <div class="picWrap">
                     <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
-                        <img :src="item" class="pic" />
+                        <img :src="item" class="pic" @click="showBigPhoto(item)" />
                         <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)"/>
                     </div>
                     <svg-icon  @click="uploadImg()" icon-class="serveComponent_upload" />
@@ -115,6 +115,7 @@
             </div>
         </div>
         <Success :flag="successFlag"></Success>
+        <PhotoView ref="photo" :imgUrl="imgUrl"></PhotoView>
         <!-- 补齐材料提交 -->
         <Footer v-if="needMoreInfo" @submit="submit()" :btnType="1" :canSubmit="true"></Footer>
         <!-- 撤销按钮 -->
@@ -165,10 +166,16 @@ export default {
             picList:[],
             successFlag: 1,
             picArr:[],
-            photoIdList:[]
+            photoIdList:[],
+            imgUrl: '',
         }
     },
     methods:{
+        // 查看大图
+        showBigPhoto(val){
+            this.imgUrl = val;
+            this.$refs.photo.open();
+        },
         back(){
             // this.$router.push('/')
         },
@@ -205,7 +212,7 @@ export default {
                                     submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
                                 }else {
                                     
-                                    this.$toast("未获取到人员基本信息");
+                                    This.$toast("未获取到人员基本信息");
                                 }
                                 // 加入子项编码
                                 submitForm.AGA002 = '330600007019'

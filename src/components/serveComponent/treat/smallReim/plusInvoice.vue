@@ -15,11 +15,11 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>发票号码：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.BKE100" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="text" v-model="form.BKE100" @input="maxLength10" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>发票金额：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.AKC264" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="text" @input="clearNoNum" v-model="form.AKC264" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>发票日期：</span></div>
@@ -30,11 +30,13 @@
             <div class="supplementInfo">
                 <div class="infoName">上传图片：</div>
                 <div class="photoBox">
-                    <img :src="form.photoUrl" v-if="form.photoUrl" class="pic">
+                    <img :src="form.photoUrl" @click="showBigPhoto(form.photoUrl)" v-if="form.photoUrl" class="pic">
                     <svg-icon @click="uploadImg" icon-class="serveComponent_upload" />
                 </div>
             </div>
         </div>
+        
+        <PhotoView ref="photo" :imgUrl="imgUrl"></PhotoView>
         <!-- 按钮 -->
         <Footer :canSubmit="canSubmit" :btnText="'添加发票'" @submit="submit()"></Footer>
     </div>
@@ -44,6 +46,7 @@
 export default {
     data(){
         return{
+            imgUrl:'',
             dateVal: new Date(), //默认绑定的时间
             endDate: new Date(), //最晚选择时间
             form:{
@@ -71,9 +74,34 @@ export default {
                 }
             },
             deep: true
-        },
+        }
     },
     methods:{
+        clearNoNum(e){
+            // console.log(e.target.value.toString().length);
+            
+            
+            this.form.AKC264 = e.target.value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符   
+            this.form.AKC264 = e.target.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的   
+            this.form.AKC264 = e.target.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");  
+            this.form.AKC264 = e.target.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//只能输入两个小数   
+            if(e.target.value.indexOf(".")< 0 && e.target.value !=""){//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额  
+                this.form.AKC264= parseFloat(e.target.value);  
+            } 
+            if(e.target.value.toString().length>10){
+                this.form.AKC264 = this.form.AKC264.toString().slice(0,10)
+            }
+        },
+        maxLength10(e){
+            if(e.target.value.toString().length>10){
+                this.form.BKE100 = this.form.BKE100.toString().slice(0,10)
+            }
+        },
+        // 查看大图
+        showBigPhoto(val){
+            this.imgUrl = val;
+            this.$refs.photo.open();
+        },
         uploadImg(){
             if(this.form.BKE100==''||this.form.AKC264==''||this.form.AAE036==''){
                 this.$toast("请先填写发票信息")
@@ -103,7 +131,7 @@ export default {
                                     submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
                                 }else {
                                     
-                                    this.$toast("未获取到人员基本信息");
+                                    This.$toast("未获取到人员基本信息");
                                 }
                                 // 加入子项编码
                                 submitForm.AGA002 = '330600007019'
@@ -111,7 +139,7 @@ export default {
                                 submitForm.PTX001 = '1'
                                 // 发票信息
                                 submitForm.BKE100 = This.form.BKE100
-                                submitForm.AKC264 = This.form.AKC264
+                                submitForm.AKC264 = String(This.form.AKC264)
                                 submitForm.AAE036 = This.form.AAE036
                                 const params = This.epFn.commonRequsetData(This.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2006');
                                 // /h5/jy2006/updPhoto

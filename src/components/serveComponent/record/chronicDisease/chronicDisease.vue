@@ -187,7 +187,7 @@
             </div>
             <div class="picWrap">
                 <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
-                    <img :src="item" class="pic" />
+                    <img :src="item" class="pic" @click="showBigPhoto(item)" />
                     <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)"/>
                 </div>
                 <svg-icon  @click="uploadImg()" icon-class="serveComponent_upload" />
@@ -197,6 +197,8 @@
       <!-- 按钮 -->
       <Footer :canSubmit="canSubmit" @submit="submit()"></Footer>
     </div>
+    
+    <PhotoView ref="photo" :imgUrl="imgUrl"></PhotoView>
     <!-- 规定病种 -->
     <SearchInfoPage ref="species" type="AKA035"  @childrenClick="speciesClick"></SearchInfoPage>
     <!-- 疾病1 -->
@@ -215,6 +217,7 @@
 export default {
   data() {
     return {
+      imgUrl:'',
       picArr: [],//附件集合 
       AAB301000: "", //参保地
       form: {
@@ -324,6 +327,12 @@ export default {
         // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
     },
   methods: {
+    
+    // 查看大图
+    showBigPhoto(val){
+        this.imgUrl = val;
+        this.$refs.photo.open();
+    },
     //  本页面的点击
     species(val) {
       this.$refs.species.open();
@@ -475,6 +484,10 @@ export default {
     },
     // 上传图片附件
     uploadImg(){
+      if(this.picArr.length>4){
+          this.$toast("附件信息最大5张")
+          return
+      }
       let This = this
       if(this.$isSdk){
           dd.ready({
@@ -496,7 +509,7 @@ export default {
                               submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
                           }else {
                               
-                              this.$toast("未获取到人员基本信息");
+                              This.$toast("未获取到人员基本信息");
                           }
                           // 加入子项编码
                           submitForm.AGA002 = '330800253004'
