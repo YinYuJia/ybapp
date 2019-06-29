@@ -33,11 +33,13 @@
                 </div>
             </div>
             <div class="searchPlace" v-if="form.BKA077 == '0'">
-                <div class="searchBtn">点击查看附近可领取的医院网点</div>
+                <div class="searchBtn" @click="openHospital">点击查看附近可领取的医院网点</div>
                 <div class="searchBtn" v-if="form.AAC050 == '1'">点击查看附近可领取的银行网点</div>
             </div>
         </div>
         <Success :flag="successFlag"></Success>
+        <!-- 就诊机构 -->
+        <SearchInfoPage ref="org" @childrenClick="orgClick"></SearchInfoPage>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>
@@ -120,11 +122,15 @@ export default {
             this.$router.push("/getProof");
         },
         // 撤销提醒
-        backout(){
-            this.$messagebox.confirm('确定撤销吗?').then(() => {
-                this.$router.push('/Index');
-                this.$toast('撤销成功');
-            });
+        // backout(){
+        //     this.$messagebox.confirm('确定撤销吗?').then(() => {
+        //         this.$router.push('/Index');
+        //         this.$toast('撤销成功');
+        //     });
+        // },
+        // 打开医院列表
+        openHospital(){
+            this.$refs.org.open();
         },
         request(){
             let params=this.formatSubmitData();
