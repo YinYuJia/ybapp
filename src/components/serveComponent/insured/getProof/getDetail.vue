@@ -32,10 +32,15 @@
                     <div class="InfoText"><textarea v-model="form.AAE006" readonly></textarea></div>
                 </div>
             </div>
-            <div class="searchPlace" v-if="form.BKA077 == '0'">
+            <!-- <div class="searchPlace" v-if="form.BKA077 == '0'">
                 <div class="searchBtn" @click="openHospital">点击查看附近可领取的医院网点</div>
-                <!-- <div class="searchBtn" v-if="form.AAC050 == '1'">点击查看附近可领取的银行网点</div> -->
+                <div class="searchBtn" v-if="form.AAC050 == '1'">点击查看附近可领取的银行网点</div>
+            </div> -->
+            <div class="searchPlace" v-if="form.BKA077 == '0'">
+                <div class="searchBtn" @click="openHospital">点击查看附近领取网点</div>
             </div>
+            <!-- 就诊机构 -->
+            <SearchInfoPage ref="org"></SearchInfoPage>
         </div>
         <Success :flag="successFlag"></Success>
         <!-- 就诊机构 -->
@@ -311,13 +316,18 @@ export default {
             width: 7.5rem;
             .searchBtn{
                 height: .8rem;
-                width: 7rem;
+                width: 7.1rem;
                 margin: auto;
-                margin-top: .16rem;
+                margin-top: .18rem;
+                border-radius: .05rem;
                 line-height: .8rem;
-                font-size: .32rem;
-                background: #CCC;
-                border-radius: .1rem;
+                background: #FFF;;
+                font-family: PingFangSC-Regular;
+                font-size: .26rem;
+                color: #666;
+                letter-spacing: 0;
+                text-align: center;
+                border: .01rem solid #C9C9C9;
             }
         }
     }
