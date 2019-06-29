@@ -4,16 +4,16 @@
         <!-- MintUI弹出框区域 -->
         <SelectCity 
             :type="3"
-            ref="inCityPicker"
-            :onlyZJ="true"
-            @confirm="chooseInCity"
+            ref="outCityPicker"
+            :onlyTZ="true"
+            @confirm="chooseOutCity"
             >
         </SelectCity>
         <SelectCity 
             :type="3"
-            ref="outCityPicker"
+            ref="inCityPicker"
             :onlyZJ="true"
-            @confirm="chooseOutCity"
+            @confirm="chooseInCity"
             >
         </SelectCity>
         <!-- 弹出框区域结束 -->
@@ -76,15 +76,14 @@ export default {
     },
     created () {
         this.epFn.setTitle('医保转移接续')
-            let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
-            let GinsengLandName = sessionStorage.getItem("GinsengLandName")
+        let GinsengLandCode = sessionStorage.getItem("GinsengLandCode")
+        let GinsengLandName = sessionStorage.getItem("GinsengLandName")
 
-            console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
-            this.form.AAB301000 = GinsengLandName
-            this.form.AAB301 = GinsengLandCode
-            this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
-            console.log('this.form.AAS027',this.form.AAS027)
-            console.log('this.form.AAA027',this.form.AAA027)
+        console.log('GinsengLandCode',GinsengLandCode,'GinsengLandName',GinsengLandName)
+        this.form.AAB301000 = GinsengLandName
+        this.form.AAB301 = GinsengLandCode
+        this.form.AAS301 = GinsengLandCode.substring(0,2) + '0000'
+        console.log('aaaaaaaaa',this.form.AAA027000);
         // this.form = this.$store.state.SET_TRANSFERRENEWING_OPERATION;
         // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name|| "许肖军"
         // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard|| "332625197501010910"
@@ -92,6 +91,7 @@ export default {
     watch: {
        form:{
             handler: function(val) {
+                console.log(val);
                 // 判断不为空
                 if ( val.AAB301000 != '' && val.AAE005 != '') {
                     this.canSubmit = true;
@@ -102,7 +102,7 @@ export default {
                 if (val.AAA027000 != '' && val.AAB301000 != '') {
                     if(val.AAA027000==val.AAB301000){
                         this.$toast('转出地不能与转入地相同');
-                        this.form.AAB301000 = '';
+                        this.form.AAA027000 = '';
                     }
                 }
                 },
@@ -113,9 +113,9 @@ export default {
     methods:{
         // 选择转出地
         openOutCityPicker(){
-            this.$refs.inCityPicker.open();
+            this.$refs.outCityPicker.open();
         },
-        chooseInCity(val){
+        chooseOutCity(val){
             this.form.AAA027000= val.name;
             this.form.AAS027=val.code[0]
             this.form.AAA027=val.code[1]
@@ -124,9 +124,9 @@ export default {
         },
         // 选择转入地
         openInCityPicker(){
-            this.$refs.outCityPicker.open();
+            this.$refs.inCityPicker.open();
         },
-        chooseOutCity(val){
+        chooseInCity(val){
             this.form.AAB301000= val.name;
             this.form.AAS301=val.code[0]
             this.form.AAB301=val.code[1]

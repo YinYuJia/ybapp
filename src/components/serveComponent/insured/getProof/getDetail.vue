@@ -34,7 +34,7 @@
             </div>
             <div class="searchPlace" v-if="form.BKA077 == '0'">
                 <div class="searchBtn" @click="openHospital">点击查看附近可领取的医院网点</div>
-                <div class="searchBtn" v-if="form.AAC050 == '1'">点击查看附近可领取的银行网点</div>
+                <!-- <div class="searchBtn" v-if="form.AAC050 == '1'">点击查看附近可领取的银行网点</div> -->
             </div>
         </div>
         <Success :flag="successFlag"></Success>

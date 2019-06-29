@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Vue from "vue"
-
+import Indicator from "mint-ui/lib/indicator/index";
+import {Toast} from 'mint-ui/lib/toast/index'
 // 创建实例
 const service = axios.create({
 
@@ -8,6 +9,7 @@ const service = axios.create({
 
 // axios拦截器
 axios.interceptors.request.use(request => {
+    Indicator.open()
     request.headers['Content-Type'] = 'application/json';
     request.baseURL = process.env.baseURL
     console.log('request.baseURL环境变量',request.baseURL)
@@ -18,6 +20,7 @@ axios.interceptors.request.use(request => {
 
 // 拦截响应
 axios.interceptors.response.use((response) => {
+    Indicator.close()
     // token 已过期，重定向到登录页面
     let newRes = response.data;
     console.log('响应拦截器',newRes)

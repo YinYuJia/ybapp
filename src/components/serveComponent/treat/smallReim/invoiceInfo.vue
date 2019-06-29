@@ -440,7 +440,7 @@ export default {
             .plusInvoice{
                 height: .85rem;
                 margin: .47rem 0;
-                border: .01rem solid #1492FF;
+                border: .02rem solid #1492FF;
                 border-radius: .05rem;
                 font-size: .28rem;
                 color: #1492FF;

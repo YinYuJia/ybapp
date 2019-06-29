@@ -2,6 +2,7 @@
 import ChinaJson from './ChinaArray'
 import addressList from './address'
 import zjAddress from './zjAddress'
+import tzAddress from './tzAddress'
 import  Vuex from '../../vuex/vuex' 
 export default {
     // 登录方法
@@ -207,5 +208,8 @@ export default {
     },
     zjAddress: function(){
       return zjAddress;
+    },
+    tzAddress: function(){
+      return tzAddress;
     }
 }

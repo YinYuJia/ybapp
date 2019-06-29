@@ -8,7 +8,7 @@
             <div class="MailInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>参保地:</span></div>
-                    <div class="InfoText">{{AAS027000}}</div>
+                    <div class="InfoText">{{AAB301000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>开始日期:</span></div>
@@ -20,14 +20,14 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>转往地市:</span></div>
-                    <div class="InfoText">{{AAB301000}}</div>
+                    <div class="InfoText">{{AAS027000}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>疾病名称:</span></div>
                     <div class="InfoText">{{form.AKA121}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>就诊疗程:</span></div>
+                    <div class="InfoName"><span>就医疗程:</span></div>
                     <div class="InfoText">{{form.BKE255 | medicaladvice }}</div>
                 </div>
                 <!-- 进度时间 -->
@@ -55,9 +55,9 @@
 <script>
 export default {
     data() {
-      return {            
-        AAS027000:"",//参保地
-        AAB301000: "",//转往地市
+      return {           
+        AAB301000: "",//参保地 
+        AAS027000:"",//转往地市
         form: {
 
             // AAE030: '', //开始日期
@@ -145,8 +145,8 @@ export default {
                 console.log(typeof(this.form.AAE030))
                 // this.form.AAE030=this.util.NumberToDate(this.form.AAE030)
                 // this.form.AAE031=this.util.NumberToDate(this.form.AAE031)
-                this.AAS027000=this.form.AAS301VALUE+this.form.AAB301VALUE
-                this.AAB301000=this.form.AAS027VALUE+this.form.AAB027VALUE+this.form.AAQ027VALUE
+                this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE
+                this.AAS027000=this.form.AAS027VALUE+this.form.AAB027VALUE+this.form.AAQ027VALUE
                 this.handleNumber = resData.LS_DS_09.BKZ019
                 this.picList = []
                 

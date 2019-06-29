@@ -89,7 +89,7 @@ export function AKC030 (val) {
 // 就诊疗程 BKE255
 export function medicaladvice (val) {
   let obj = {
-    "1": "就诊",
+    "1": "初诊",
     "2": "复诊",
   }
   return obj[val]
@@ -106,6 +106,16 @@ export function BKE586 (val) {
   }
   return obj[val]
 }
+
+// 备案信息来源字典
+export function BKE258( val ) { 
+  let obj = {
+    "0": "中心备案",
+    "1": "网上申报",
+    "2": "App",
+  }
+  return obj[val]
+ }
 /*退休类别过滤*/
 export function trtireType(value) {
   let str = "";
