@@ -27,7 +27,7 @@
                     <div class="InfoText">{{form.AKA121}}</div>
                 </div>
                 <div class="InfoLine">
-                    <div class="InfoName"><span>就诊疗程:</span></div>
+                    <div class="InfoName"><span>就医疗程:</span></div>
                     <div class="InfoText">{{form.BKE255 | medicaladvice }}</div>
                 </div>
                 <!-- 进度时间 -->

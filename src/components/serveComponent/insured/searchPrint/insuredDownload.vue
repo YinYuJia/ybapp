@@ -2,19 +2,39 @@
     <div class="download">
         <Title :title="'打印参保证明'" :backRouter="'/searchPrint'"></Title>
         <!-- 按钮 -->
-        <footer class="Btn active" @click="search()">
-            下载PDF
+        <div class="img">
+            <img :src="imgurl" alt="">
+        </div>
+        <footer class="Btn active" >
+            <a :href="pdfUrl">下载PDF </a>
         </footer>
     </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            imgurl:'',
+            pdfUrl:''
+        }
+    },
     created(){
         this.epFn.setTitle('打印参保证明')
+        console.log(JSON.parse(sessionStorage.getItem("searchPrintData")))
+        const data = JSON.parse(sessionStorage.getItem("searchPrintData"))
+
+        if ( data.enCode == 1000) {
+            this.imgurl = data.imgUrl
+            this.pdfUrl = data.pdfUrl
+            console.log('data.imgUrl',data.imgUrl)
+            console.log('data.pdfUrl',data.pdfUrl)
+        }
     },
     methods:{
-        
+        search() {
+            window.location.href = this.pdfUrl 
+        }
     }
 }
 </script>
@@ -30,6 +50,10 @@ export default {
         .NameTitle{
             color: white;
         }
+    }
+    img {
+        height: 100%;
+        width: 100%;
     }
     .Btn{
         height: 1rem;
