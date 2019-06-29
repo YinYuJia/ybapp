@@ -61,6 +61,11 @@
                     </div>
                 </div>
             </div>
+            <div class="searchPlace" v-if="showMail">
+                <div class="searchBtn" @click="openHospital">点击查看附近领取网点</div>
+            </div>
+            <!-- 就诊机构 -->
+            <SearchInfoPage ref="org"></SearchInfoPage>
             <!-- 提示 -->
             <div class="Hint" v-if="showMail">
                 <div class="HintTitle"><i class="el-icon-warning" style="color:#05AEF0"></i>温馨提示</div>
@@ -243,6 +248,10 @@ export default {
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1008');
             return {params,submitForm};
         },
+        // 打开医院列表
+        openHospital(){
+            this.$refs.org.open();
+        },
         // 获取邮寄信息
         getMailInfo(){
             let submitForm = {}
@@ -379,6 +388,24 @@ export default {
                     width: 100%;
                     text-align: left !important;
                 }
+            }
+        }
+        .searchPlace{
+            width: 7.5rem;
+            .searchBtn{
+                height: .8rem;
+                width: 7.1rem;
+                margin: auto;
+                margin-top: .18rem;
+                border-radius: .05rem;
+                line-height: .8rem;
+                background: #FFF;;
+                font-family: PingFangSC-Regular;
+                font-size: .26rem;
+                color: #666;
+                letter-spacing: 0;
+                text-align: center;
+                border: .01rem solid #C9C9C9;
             }
         }
         .Hint{

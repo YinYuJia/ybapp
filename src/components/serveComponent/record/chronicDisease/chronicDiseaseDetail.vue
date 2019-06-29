@@ -62,12 +62,13 @@
                 <div class="photoBox">
                     <div class="picWrap">
                         <div class="uploadBtn" v-for="(item,index) in picList" :key="index">
-                            <img :src="item" class="pic" />
+                            <img :src="item" @click="showBigPhoto(item)" class="pic" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <PhotoView ref="photo" :imgUrl="imgUrl"></PhotoView>
         <Success :flag="successFlag"></Success>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()" :handleNumber="handleNumber" @edit="edit()"></Footer>
@@ -78,6 +79,7 @@
 export default {
     data(){
         return{
+            imgUrl:'',
             AAB301000: '', //参保地
             form: {
                 AAS301: '', //参保地省编码
@@ -129,6 +131,12 @@ export default {
     },*/
 
     methods:{
+        
+        // 查看大图
+        showBigPhoto(val){
+            this.imgUrl = val;
+            this.$refs.photo.open();
+        },
         back(){
             // this.$router.push('/')
         },

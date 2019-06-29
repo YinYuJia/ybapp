@@ -6,12 +6,14 @@
             type="date"
             ref="startPicker"
             v-model="dateVal"
+            :endDate="endDate"
             @confirm="handleStartConfirm">
         </mt-datetime-picker>
         <mt-datetime-picker
             type="date"
             ref="endPicker"
             v-model="dateVal"
+            :endDate="endDate"
             @confirm="handleEndConfirm">
         </mt-datetime-picker>
         <div class="Content">
@@ -47,7 +49,7 @@ export default {
                 AAE031: '', //结束日期
             },
             dateVal: new Date(), //默认绑定的时间
-            
+            endDate: new Date(),
             canSubmit: false,
         }
     },

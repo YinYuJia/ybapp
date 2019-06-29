@@ -183,7 +183,7 @@
           </div>
           <div class="picWrap">
               <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
-                  <img :src="item" class="pic" />
+                  <img :src="item" class="pic" @click="showBigPhoto(item)" />
                   <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)"/>
               </div>
               <svg-icon  @click="uploadImg()" icon-class="serveComponent_upload" />
@@ -192,6 +192,7 @@
     </div>
     <!-- 按钮 -->
     <Footer :canSubmit="canSubmit" @submit="submit()"></Footer>
+    <PhotoView ref="photo" :imgUrl="imgUrl"></PhotoView>
     <!-- 就诊机构 -->
     <SearchInfoPage ref="org" @childrenClick="orgClick"></SearchInfoPage>
     <!-- 疾病名称 -->
@@ -206,6 +207,7 @@
 export default {
   data() {
     return {
+      imgUrl:'',
       picArr: [],//附件集合
       oneDisabled: true,
       twoDisabled: true,
@@ -367,6 +369,11 @@ export default {
     }
   },
   methods: {
+    // 查看大图
+    showBigPhoto(val){
+        this.imgUrl = val;
+        this.$refs.photo.open();
+    },
     fun(){
       console.log("监听到了");
 
@@ -547,6 +554,10 @@ export default {
     },
      // 上传图片附件
     uploadImg(){
+        if(this.picArr.length>4){
+            this.$toast("附件信息最大5张")
+            return
+        }
         let This = this
         if(this.$isSdk){
             dd.ready({
@@ -558,7 +569,6 @@ export default {
             }, function() {
                 dd.device.notification.chooseImage ({
                     onSuccess: function(data) {
-                        console.log(data.picPath[0],'请求图片成功');
                         if(data.result){
                             // This.$store.dispatch('SET_ENCLOSURE',This.picArr)
                             let submitForm = {}; 
@@ -568,7 +578,7 @@ export default {
                                 submitForm.AAE135 = This.$store.state.SET_NATIVEMSG.idCard;
                             }else {
                                 
-                                this.$toast("未获取到人员基本信息");
+                                This.$toast("未获取到人员基本信息");
                             }
                             // 加入子项编码
                             submitForm.AGA002 = '330800253003'

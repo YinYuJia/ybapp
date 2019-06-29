@@ -40,7 +40,7 @@
         </div>
         <!-- 按钮 -->
         <Footer :canSubmit="canSubmit" :btnText="'下一步'" @submit="submit()"></Footer>
-    <SearchInfoPage ref="hospita" @childrenClick="hospitaClick" title="选择医院"></SearchInfoPage>
+    <SearchInfoPage ref="hospita" type="AKB020_SP" @childrenClick="hospitaClick" title="选择医院"></SearchInfoPage>
 
     </div>
 </template>

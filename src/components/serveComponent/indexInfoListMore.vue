@@ -81,15 +81,18 @@
                             <div class="text">年限核定</div>
                         </div>
                         <div class="iconBox">
-                            <svg-icon icon-class="serveComponent_icon_13" />
+                            <svg-icon v-if="0" icon-class="serveComponent_icon_13" />
+                            <svg-icon v-if="1" icon-class="serveComponent_grey_5" />
                             <div class="text">平产/剖腹</div>
                         </div>
                         <div class="iconBox">
-                            <svg-icon icon-class="serveComponent_icon_14" />
+                            <svg-icon v-if="0" icon-class="serveComponent_icon_14" />
+                            <svg-icon v-if="1" icon-class="serveComponent_grey_6" />
                             <div class="text">流产/引产</div>
                         </div>
                         <div class="iconBox">
-                            <svg-icon icon-class="serveComponent_icon_15" />
+                            <svg-icon v-if="0" icon-class="serveComponent_icon_15" />
+                            <svg-icon v-if="1" icon-class="serveComponent_grey_7" />
                             <div class="text">未就业配偶</div>
                         </div>
                         <div class="iconBox"></div>

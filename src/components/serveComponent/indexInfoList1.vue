@@ -155,6 +155,9 @@
             })
         },
         created() {
+
+
+            console.log(21000 * 0.87)
             // 清空零星报销的Vuex
             let SET_SMALL_REIM_SUBMIT={
                 AAS301: '', //参保地统筹省编码
@@ -412,6 +415,22 @@
                 })
             },
             showDetail(url, item) {
+                const tip = sessionStorage.getItem("GinsengLandCode")
+                const tipstr = sessionStorage.getItem("GinsengLandName")
+
+                
+                if ( tip != "339900" &&  tip != "331099") {
+                    console.log("tiptiptiptiptiptip",tip);
+                    
+                    this.$toast(tipstr + "服务暂未开通")
+                    return;
+                }
+
+                if ( url == "smallReim" ) {
+                    this.$toast(tipstr + "服务暂未开通")
+                    return;
+                }
+                console.log(sessionStorage.getItem(""))
                 let str = sessionStorage.getItem("GinsengLandCode")
                 console.log('str', str)
                 if (str == "" || str == undefined || str == null) {

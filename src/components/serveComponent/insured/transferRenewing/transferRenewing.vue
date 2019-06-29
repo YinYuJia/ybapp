@@ -5,7 +5,7 @@
         <SelectCity 
             :type="3"
             ref="outCityPicker"
-            :onlyTZ="true"
+            :onlyZJ="true"
             @confirm="chooseOutCity"
             >
         </SelectCity>
