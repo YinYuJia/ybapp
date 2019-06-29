@@ -164,8 +164,7 @@ export default {
                 {step:1,name:'申请'},
                 {step:2,name:'受理'},
                 {step:3,name:'审核'},
-                {step:4,name:'审批'},
-                {step:5,name:'财务支付'}
+                {step:4,name:'财务支付'}
             ],
             picList:[],
             successFlag: 1,

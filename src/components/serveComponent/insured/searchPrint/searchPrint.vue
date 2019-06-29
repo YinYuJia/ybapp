@@ -120,7 +120,7 @@ export default {
                 let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
                 // 加入用户名和电子社保卡号
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
-                    // submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
+                    submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
                 }else {
                     // 
@@ -130,10 +130,12 @@ export default {
                 // delete submitForm.AAB301
                 
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'1011');
-                
+                console.log('submitForm--------------',params)
                 this.$axios.post(this.epFn.ApiUrl() + '/h5/jy1011/QueryInsurance', params)
                     .then((resData) => {
                         console.log(resData);
+
+                        sessionStorage.setItem("searchPrintData",JSON.stringify(resData))
                         
                         if(resData.enCode==1000){
                             
