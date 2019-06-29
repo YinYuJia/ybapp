@@ -97,15 +97,22 @@
                 </div>
             </div>
             <!-- 需要补充信息 -->
-            <!-- <div class="supplementInfo" v-if="needMoreInfo">
+            <div class="supplementInfo" v-if="needMoreInfo">
                 <div class="infoName">根据业务需要，需要您补充提交以下资料</div>
-                <div class="infoList" v-for="item in moreInfoList" :key="item.BKE262">
+                <div class="infoList" v-for="(item,index) in moreInfoList" :key="index">
                     {{BKE262}}、{{BKE265}}（{{BKE266}}）
                 </div>
-                <div class="photoBox">
+                <!-- <div class="photoBox">
                     <svg-icon icon-class="serveComponent_upload" />
+                </div> -->
+                 <div class="picWrap">
+                    <div class="uploadBtn" v-for="(item,index) in picArr" :key="index">
+                        <img :src="item" class="pic" />
+                        <svg-icon icon-class="serveComponent_delete" @click="deletePic(item,index)"/>
+                    </div>
+                    <svg-icon  @click="uploadImg()" icon-class="serveComponent_upload" />
                 </div>
-            </div> -->
+            </div>
         </div>
         <Success :flag="successFlag"></Success>
         <!-- 按钮 -->
