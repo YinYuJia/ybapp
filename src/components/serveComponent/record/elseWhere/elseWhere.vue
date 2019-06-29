@@ -244,6 +244,7 @@ export default {
             this.form.AAS011=val.code[0]
             this.form.AAE011=val.code[1]
             this.form.AAQ011=val.code[2]
+            console.log("9999",val)
         },
         // 选择申请原因
         openReasonPicker(){
