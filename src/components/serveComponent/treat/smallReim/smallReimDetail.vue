@@ -31,7 +31,7 @@
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>收款开户名:</span></div>
-                    <div class="InfoText"><span>{{form3.AAE009 |tuoMin(0,1)}}</span></div>
+                    <div class="InfoText"><span>{{form3.AAE009 |tuoMin(0,2)}}</span></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>收款银行账号:</span></div>
@@ -297,7 +297,7 @@ export default {
                     this.moreInfoList = resData.LS_DS1;
                 }else if (resData.enCode == 1001 ) {
                 //   失败  1001
-                    this.$toast(resData.msg);
+                    // this.$toast(resData.msg);
                     return;
                 }else{
                     this.$toast('业务出错');
