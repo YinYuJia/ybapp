@@ -139,7 +139,7 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
-                    if (resData.LS_DS.length > 0 ) {
+                    if (resData.LS_DS_11.length > 0 ) {
                         let LS=resData.LS_DS_11
                         this.form={...this.form,...LS}
                         console.log("form",this.form)

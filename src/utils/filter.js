@@ -89,7 +89,7 @@ export function AKC030 (val) {
 // 就诊疗程 BKE255
 export function medicaladvice (val) {
   let obj = {
-    "1": "就诊",
+    "1": "初诊",
     "2": "复诊",
   }
   return obj[val]

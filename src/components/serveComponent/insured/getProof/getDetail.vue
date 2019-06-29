@@ -39,7 +39,7 @@
         </div>
         <Success :flag="successFlag"></Success>
         <!-- 就诊机构 -->
-        <SearchInfoPage ref="org" @childrenClick="orgClick"></SearchInfoPage>
+        <SearchInfoPage ref="org"></SearchInfoPage>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>
