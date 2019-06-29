@@ -197,6 +197,13 @@
  
             this.epFn.setTitle('医疗保障专区')
 
+            // 获取参保地
+            if(sessionStorage.getItem("GinsengLandCode") == "339900"){
+                this.iconFlag = true;  //省本级设置为true
+            }else{
+                this.iconFlag = false;  //其他情况设置为false
+            }
+
         },
         filters: {
             msgLength: function(val) {
