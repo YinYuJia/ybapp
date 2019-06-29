@@ -52,9 +52,10 @@
                 </div>
             </div>
             <div class="searchPlace" v-if="form.BKE247 == '1'">
-                <div class="searchBtn">点击查看附近领取网点</div>
+                <div class="searchBtn" @click="openHospital">点击查看附近领取网点</div>
             </div>
-            
+            <!-- 就诊机构 -->
+            <SearchInfoPage ref="org"></SearchInfoPage>
             <!-- 回显图片 -->
             <div class="PhotoInfo">
                 <!-- <div class="infoName">1、规定病种待遇备案表（医院盖章）</div> -->
@@ -118,7 +119,6 @@ export default {
         // this.form = this.$store.state.SET_CHRONIC_DISEASE;
         this.request();
         this.request1();
-        
         /*if (window.history && window.history.pushState) {
             history.pushState(null, null, document.URL);
             window.addEventListener('popstate', this.back, false);//false阻止默认事件
@@ -131,6 +131,10 @@ export default {
     methods:{
         back(){
             // this.$router.push('/')
+        },
+        // 打开医院列表
+        openHospital(){
+            this.$refs.org.open();
         },
         //
         // 撤销提醒
@@ -231,6 +235,36 @@ export default {
             const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1016");
             return params;
         },
+        // 获取邮寄信息
+        getMailInfo(){
+            let submitForm = {}
+            // 加入电子社保卡号
+            if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
+                submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;
+            }else {
+                this.$toast("未获取到人员基本信息");
+            }
+            const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,'2002');
+            this.$axios.post(this.epFn.ApiUrl() + '/h5/jy2002/getRecord', params).then((resData) => {
+                //   成功   1000
+                if ( resData.enCode == 1000 ) {
+                     this.form.AAE011 = resData.AAE009 //收件人
+                     if(resData.AAE005.length > 11){
+                         this.form.AAE005 = '';
+                     }else{
+                         this.form.AAE005 = resData.AAE005  //手机号码
+                     }
+                     this.form.AAE006 = resData.AAE006   //详细地址
+                }else if (resData.enCode == 1001 ) {
+                //   失败  1001
+                    // this.$toast(resData.msg);
+                    return;
+                }else{
+                    this.$toast('业务出错');
+                    return;
+                }
+            })
+        }
     }
 }
 </script>
