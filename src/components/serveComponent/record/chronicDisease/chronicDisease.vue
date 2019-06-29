@@ -158,7 +158,7 @@
             </div>
           </div>
         </div>
-        <div class="searchPlace" v-if="showMail">
+        <div class="searchPlace" v-if="!showMail">
           <div class="searchBtn" @click="openHospital">点击查看附近领取网点</div>
         </div>
         <!-- 就诊机构 -->
