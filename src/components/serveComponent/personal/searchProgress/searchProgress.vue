@@ -26,10 +26,10 @@
                 </ul>
             </mt-loadmore>
         </div>
-        <div v-if="isShow">
-        <div class="pic_null"></div>
-        <div class="tip">没有更多事项了~~~</div>
-        </div>
+        <!-- <div v-if="isShow">
+            <div class="pic_null"></div>
+            <div class="tip">没有更多事项了~~~</div>
+        </div> -->
         
     </div>
 </template>
