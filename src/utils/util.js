@@ -96,6 +96,12 @@ function passPort(value){
     //     console.log("成功")
     //     return true;
     // }
+    var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+    if(reg.test(value)){
+        return true;
+    }else{
+        return false;
+    }
 }
 function decimalPoint(num){  
     num += '';  
