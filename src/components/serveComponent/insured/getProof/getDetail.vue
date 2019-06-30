@@ -40,7 +40,7 @@
                 <div class="searchBtn" @click="openHospital">点击查看领取网点</div>
             </div>
             <!-- 就诊机构 -->
-            <SearchInfoPage ref="org"></SearchInfoPage>
+            <SearchInfoPage ref="org" type="AKB020_HZ"></SearchInfoPage>
         </div>
         <Success :flag="successFlag"></Success>
         <!-- 就诊机构 -->

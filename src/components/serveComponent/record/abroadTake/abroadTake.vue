@@ -121,13 +121,13 @@
             // this.form.AAC003 = this.$store.state.SET_NATIVEMSG.name
             // this.form.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;  
             // this.form.AAB301000 = this.$store.state.SET_USER_DETAILINFO.regionName
-            // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301     &&val.photoIdList.length>0
+            // this.form.AAB301 = this.$store.state.SET_USER_DETAILINFO.AAB301
         },
         watch: {
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' ) {
+                    if (this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' &&val.photoIdList.length>0) {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;

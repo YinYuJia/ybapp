@@ -35,7 +35,6 @@ export default {
     .InfoLine{
         height: 1.2rem;
         position: relative;
-        font-family: PingFangSC-Regular;
         font-size: .28rem;
         display: flex;
         border-bottom: .01rem solid #D5D5D5;
