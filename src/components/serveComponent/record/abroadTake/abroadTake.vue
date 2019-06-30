@@ -265,10 +265,10 @@
             } else {
                 this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
                 this.form.BKE260 = this.form.BKE260.toUpperCase(); //将所有小写字母转换为大写
-                if (!this.util.passPort(this.form.BKE260)) {
-                    this.$toast("护照号码格式不正确");
-                    return false;
-                }
+                // if (!this.util.passPort(this.form.BKE260)) {  目前不做控制
+                //     this.$toast("护照号码格式不正确");
+                //     return false;
+                // }
                 // 封装数据
                 let params = this.formatSubmitData();
                 // 开始请求
