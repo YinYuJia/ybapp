@@ -319,6 +319,7 @@ export default {
         formatSubmitForm(){
             let submitForm = {
                 AGA002: '330600007019',
+                BKZ019:this.$route.query.param||"",
                 AAC003: this.$store.state.SET_NATIVEMSG.names,
                 AAE135: this.$store.state.SET_NATIVEMSG.idCard
             }
@@ -378,6 +379,7 @@ export default {
                 let submitForm = {}
                 submitForm.AGA002 =  "330600007019";
                 // 加入用户名和电子社保卡号
+                submitForm.BKZ019=this.$route.query.param||""
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;

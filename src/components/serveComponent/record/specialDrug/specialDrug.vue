@@ -135,7 +135,7 @@
             <span>剂量</span>
           </div>
           <div class="InfoText">
-            <input type="tel" v-model="form.AKA071" placeholder="请输入">
+            <input type="tel" maxlength="13" v-model="form.AKA071" placeholder="请输入">
           </div>
         </div>
         <div class="InfoLine">
@@ -143,7 +143,7 @@
             <span>数量</span>
           </div>
           <div class="InfoText">
-            <input type="tel" v-model="form.AKC226" placeholder="请输入">
+            <input type="tel" maxlength="5" v-model="form.AKC226" placeholder="请输入">
           </div>
         </div>
         <div class="InfoLine">
@@ -301,8 +301,8 @@ export default {
           val.AKA071 != "" && //单位剂量
           val.AKC226 != "" && //数量
           val.AAE030 != "" && //开始日期
-          val.AAE031 != "" && //结束日期
-          val.photoIdList.length>0 //照片数组
+          val.AAE031 != ""  //结束日期
+          // val.photoIdList.length>0 //照片数组
         ) {
           this.canSubmit = true;
         } else {
@@ -479,6 +479,8 @@ export default {
       submitForm.AAE030 = this.util.DateToNumber(this.form.AAE030)
       submitForm.AAE031 = this.util.DateToNumber(this.form.AAE031)
       submitForm.photoIdList = this.form.photoIdList.join(',');//照片ID数组
+      submitForm.AKC226 = (parseFloat(this.form.AKC226).toFixed(2)).toString(); //数量
+      submitForm.BKE249 = (parseFloat(this.form.AKC226).toFixed(2)).toString(); //剂量
       // let submitForm = JSON.parse(JSON.stringify(this.form)); //深拷贝
       // 加入用户名和电子社保卡号
       if (this.$store.state.SET_NATIVEMSG.name !== undefined) {

@@ -257,18 +257,22 @@ export default {
         },
         // 提交
         submit() {
-            console.log(this.form.AAE030)
-            console.log(this.form.AAE031)
-            if(this.form.AAE005){
-                if(!this.util.checkPhone(this.form.AAE005)){
-                    this.$toast('请填写正确的手机号码');
-                    return false;
-                }
-            }
             if (this.canSubmit == false) {
                 this.$toast('信息未填写完整');
                 return false;
             } else {
+                if(this.form.AAE005){
+                    if(!this.util.checkPhone(this.form.AAE005)){
+                        this.$toast('请填写正确的手机号码');
+                        return false;
+                    }
+                }
+                if(this.form.AAE004){
+                    if(this.util.checkName(this.form.AAE004)){
+                        this.$toast('姓名中不能包含数字');
+                        return false;
+                    }
+                }
                 this.$store.dispatch('SET_ELSEWHERE_OPERATION', this.form);
 
                 // 封装数据

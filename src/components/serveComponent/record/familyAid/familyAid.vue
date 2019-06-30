@@ -160,6 +160,12 @@
                     this.$toast('请填写正确的身份证号');
                     return false;
                 }
+                if(this.form.BAC003){
+                    if(this.util.checkName(this.form.BAC003)){
+                        this.$toast('姓名中不能包含数字');
+                        return false;
+                    }
+                }
                 if(this.canSubmit == false){
                 this.$toast('信息未填写完整');
                 return false;
