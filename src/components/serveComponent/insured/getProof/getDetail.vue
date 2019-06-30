@@ -43,8 +43,6 @@
             <SearchInfoPage ref="org" type="AKB020_HZ"></SearchInfoPage>
         </div>
         <Success :flag="successFlag"></Success>
-        <!-- 就诊机构 -->
-        <SearchInfoPage ref="org"></SearchInfoPage>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>
