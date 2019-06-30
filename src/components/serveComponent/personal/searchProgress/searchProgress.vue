@@ -318,7 +318,7 @@ export default {
             height: .62rem;
             width: 6.9rem;
             background: #FFFFFF;
-            border: .01rem solid #1492FF;
+            border: 1px solid #1492FF;
             border-radius: .05rem;
             display: flex;
             .MenuCell {
@@ -328,8 +328,7 @@ export default {
                 text-align: center;
                 letter-spacing: 0;
                 font-size: .28rem;
-                border-top: .01rem solid #1492FF;
-                border-right: .01rem solid #1492FF;
+                border-right: 1px solid #1492FF;
                 &:first-child {
                     border-top-left-radius: .05rem;
                     border-bottom-left-radius: .05rem;
