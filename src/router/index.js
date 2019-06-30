@@ -50,6 +50,7 @@ import invoiceDetail from '@/components/serveComponent/treat/smallReim/invoiceDe
 import payLimit from '@/components/serveComponent/treat/payLimit/payLimit'
 import payLimitDetail from '@/components/serveComponent/treat/payLimit/payLimitDetail'
 import searchBaseInfo from '@/components/serveComponent/personal/searchBaseInfo/searchBaseInfo'
+import medicalInsuranceAccount from '@/components/serveComponent/personal/searchBaseInfo/medicalInsuranceAccount'
 import searchInsuredInfo from '@/components/serveComponent/personal/searchInsuredInfo/searchInsuredInfo'
 import searchInsuredResult from '@/components/serveComponent/personal/searchInsuredInfo/searchInsuredResult'
 import searchProgress from '@/components/serveComponent/personal/searchProgress/searchProgress'
@@ -279,6 +280,11 @@ export default new Router({
       path: '/searchBaseInfo',
       name: 'searchBaseInfo',
       component: searchBaseInfo
+    },
+    {
+      path: '/medicalInsuranceAccount',
+      name: 'medicalInsuranceAccount',
+      component: medicalInsuranceAccount
     },
     {
       path: '/searchInsuredInfo',
