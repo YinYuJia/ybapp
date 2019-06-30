@@ -146,7 +146,6 @@ export default {
   },
   methods: {
     fun(){
-      // alert(33)
     },
     // 获取医院列表
     getList() {
@@ -157,9 +156,7 @@ export default {
           console.log("返回成功信息", resData.LS_DS);
           //   成功   1000
           if (resData.enCode == 1000) {
-            if(resData.pages<=15){
-              this.isShow = true
-            }
+            
             // this.$toast("提交成功");
             if (resData.LS_DS.length > 0) {
               this.List = [...this.List, ...resData.LS_DS];
@@ -174,6 +171,10 @@ export default {
                 // sessionStorage.setItem("pointList", JSON.stringify(this.List));
               }else{
                 this.isShow = true
+              }
+              if(resData.pages<=15){
+                this.isShow = true
+                this.allLoaded = true;
               }
               sessionStorage.setItem("pointList", JSON.stringify(this.List));
               sessionStorage.setItem("params", JSON.stringify(this.params));
