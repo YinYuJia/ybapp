@@ -75,6 +75,8 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../../static/zjybapp-static-h5'),  //  本地打
+
+    
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
 
