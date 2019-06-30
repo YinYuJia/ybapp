@@ -24,7 +24,7 @@ export default {
         open(){
             this.show = true;
             if (window.history && window.history.pushState) {
-                history.pushState(null, null, document.URL);
+            //     history.pushState(null, null, document.URL);
                 window.addEventListener('popstate', this.closePhoto, false);//false阻止默认事件
             }
         },

@@ -248,14 +248,13 @@ export default {
       this.params.pageNum = 1
       this.getList();
       if (window.history && window.history.pushState) {
-        history.pushState(null, null, document.URL);
+    //     history.pushState(null, null, document.URL);
         window.addEventListener('popstate', this.back, false);//false阻止默认事件
       }
     },
     back(){
       this.List = []
       this.showSearch = false;
-      
     },
     chooseHospital(code, name) {
         this.$emit('childrenClick',code,name);

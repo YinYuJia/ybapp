@@ -113,7 +113,6 @@ export default {
                     return
                 }
             }
-            alert(1)
             let This = this
             if(this.$isSdk){
                 dd.ready({
