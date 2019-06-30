@@ -140,11 +140,22 @@ function  paramStr(name){
   }
 }
 
+function ApiUrl() {
+  // return 'http://10.85.159.203:13030' // 吴学文
+  console.log('process.env.NODE_ENV',process.env.NODE_ENV)
+  if(process.env.NODE_ENV == 'development') {
+    return 'http://47.98.48.185:8000/api/api'  //服务器
+    // return 'http://192.168.1.189:13030' //吴学文
+  }else{
+    return ''
+  }
+}
+
 console.log('欢迎进入医保专区首页main.js')
 
-// import Vconsole from 'vconsole';
-// var vConsole = new Vconsole()
-// export default vConsole;
+import Vconsole from 'vconsole';
+var vConsole = new Vconsole()
+export default vConsole;
 
 // 1  网新恩普包  2  浙理办包
 Vue.prototype.$build = "2"
