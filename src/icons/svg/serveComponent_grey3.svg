@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/面性/打印信息 copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/面性/打印信息-copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dayin-2" transform="translate(1.000000, 5.000000)">
+            <path d="M2,30 L116,30 C117.104569,30 118,30.8954305 118,32 L118,82 C118,83.1045695 117.104569,84 116,84 L2,84 C0.8954305,84 1.3527075e-16,83.1045695 0,82 L0,32 C-1.3527075e-16,30.8954305 0.8954305,30 2,30 Z M101,54 C104.313708,54 107,51.3137085 107,48 C107,44.6862915 104.313708,42 101,42 C97.6862915,42 95,44.6862915 95,48 C95,51.3137085 97.6862915,54 101,54 Z" id="Combined-Shape" fill="#C9C9C9"></path>
+            <rect id="Rectangle-3" fill="#C9C9C9" x="24" y="62" width="70" height="46"></rect>
+            <rect id="Rectangle" fill="#C9C9C9" fill-rule="nonzero" x="24" y="0" width="71" height="24" rx="2"></rect>
+            <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="82.9243077 96.0824615 36 96.0824615 36 66 82.9288205 66 82.9288205 96.0824615"></polygon>
+        </g>
+    </g>
+</svg>

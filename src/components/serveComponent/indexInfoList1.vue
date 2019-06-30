@@ -32,13 +32,15 @@
         <!-- 图标列表 -->
         <div class="iconContent">
             <div class="iconList">
-                <div class="iconBox" @click="showDetail('smallReim','基本医疗保险参保人员医疗费用零星报销')">
-                    <svg-icon icon-class="serveComponent_icon5" />
+                <div class="iconBox" @click="showDetail('smallReim','基本医疗保险参保人员医疗费用零星报销',false)">
+                    <svg-icon v-if="0" icon-class="serveComponent_icon5" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey11" />
                     <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
                     <div class="text">零星报销</div>
                 </div>
                 <div class="iconBox" @click="showDetail('transferRenewing','关系转移接续')">
-                    <svg-icon icon-class="serveComponent_icon6" />
+                    <svg-icon v-if="0" icon-class="serveComponent_icon6" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey4" />
                     <svg-icon icon-class="serveComponent_province" class="provinceIcon" />
                     <div class="text">医保转接</div>
                 </div>
@@ -46,8 +48,9 @@
                     <svg-icon icon-class="serveComponent_icon_19" />
                     <div class="text">就医信息</div>
                 </div>
-                <div class="iconBox"  @click="showDetail('searchProgress','我的事项')">
-                    <svg-icon icon-class="serveComponent_icon8" />
+                <div class="iconBox" @click="showDetail('searchProgress','我的事项')">
+                    <svg-icon v-if="0" icon-class="serveComponent_icon_18" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey18" />
                     <div class="text">办事进度</div>
                 </div>
                 <div class="iconBox" v-if="!iconFlag">
@@ -56,16 +59,19 @@
                 </div>
             </div>
             <div class="iconList">
-                <div class="iconBox" v-if="iconFlag" @click="showDetail('searchBaseInfo','个人信息查询')">
-                    <svg-icon icon-class="serveComponent_icon_16" />
+                <div class="iconBox" @click="showDetail('searchBaseInfo','个人信息查询',true)">
+                    <svg-icon v-if="1" icon-class="serveComponent_icon_16" />
+                    <svg-icon v-if="0" icon-class="serveComponent_grey16" />
+                    <div class="text">信息查询</div>
+                </div>
+                <div class="iconBox" @click="showDetail('searchInsuredInfo','参保信息查询',true)">
+                    <svg-icon v-if="1" icon-class="serveComponent_icon_17" />
+                    <svg-icon v-if="0" icon-class="serveComponent_grey17" />
                     <div class="text">参保信息</div>
                 </div>
-                <div class="iconBox" v-if="iconFlag" @click="showDetail('searchInsuredInfo','参保信息查询')">
-                    <svg-icon icon-class="serveComponent_icon_17" />
-                    <div class="text">征缴信息</div>
-                </div>
-                <div class="iconBox" v-if="iconFlag" @click="showDetail('getProof','领取就医凭证')">
-                    <svg-icon icon-class="serveComponent_icon11" />
+                <div class="iconBox" @click="showDetail('getProof','领取就医凭证')">
+                    <svg-icon v-if="0" icon-class="serveComponent_icon_1" />
+                    <svg-icon v-if="1" icon-class="serveComponent_grey1" />
                     <div class="text">就医凭证</div>
                 </div>
                 <div class="iconBox" v-if="iconFlag" @click="goRouter('indexInfoListMore')">
@@ -388,8 +394,8 @@
                         sessionStorage.setItem('userName', value);
                         this.setNativeMsg();
                     });
-                } else {
-                    this.$toast("功能正在建设中")
+                }else{
+                      this.$toast("功能正在建设中")
                 }
             },
             changeUserCode(str) {
