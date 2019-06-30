@@ -77,13 +77,13 @@
                         <span class="textName">发票金额</span>
                         <span class="textInfo">{{item.AKC264}}</span>
                     </div>
-                    <div class="textLine">
+                    <!-- <div class="textLine">
                         <span class="textName">状态</span>
                         <span class="textInfo warn">{{item.BKE586 |BKE586}}</span>
-                    </div>
+                    </div> -->
                     <div class="textLine" v-if="item.BKE586==3">
                         <span class="textName">说明</span>
-                        <span class="textInfo">{{item.AAE013 || '已报销'}}</span>
+                        <span class="textInfo">{{item.AAE013==true?item.AAE013:'已报销'}}</span>
                     </div>
                 </div>
             </div>
@@ -284,7 +284,7 @@ export default {
             console.log('删除后',this.photoIdList);
         },
         showInvoiceDetail(item){
-            this.dispatch('SET_INVOICEDETAIL',item)
+            this.$store.dispatch('SET_INVOICEDETAIL',item)
             this.$router.push('/invoiceDetail')
         },
         needSubmitInfo(){
@@ -357,9 +357,9 @@ export default {
                     // this.form1={...this.form1,...resData.LS_DS_13.LS_DS1} 
                     // this.form2={...this.form2,...resData.LS_DS_13.LS_DS2} 
                     // console.log(this.List)
-                    // if(resData.LS_DS0.BKE586==0 || resData.LS_DS0.BKE586==1 || resData.LS_DS0.BKE586==2 ){
-                    //     this.invoiceComplete = false
-                    // }
+                    if(resData.LS_DS0[0].BKE586==0 || resData.LS_DS0[0].BKE586==1 || resData.LS_DS0[0].BKE586==2 ){
+                        this.invoiceComplete = false
+                    }
                     this.invoices = resData.LS_DS0
                     console.log('数据最新resData.LS_DS111',resData.LS_DS0);
                     
@@ -596,7 +596,7 @@ export default {
             }
             // 报销完成状态
             .invoiceList2{
-                height: 2.3rem;
+                height: 3.3rem;
                 padding: .42rem 0 .58rem 0;
                 border-bottom: .01rem solid #D5D5D5;
                 display: flex;
@@ -605,12 +605,12 @@ export default {
                 .textLine{
                     display: flex;
                     font-size: .28rem;
-                    // &:first-child{
-                    //     justify-content: space-between;
-                    //     .textInfo{
-                    //         color: #007CEA;
-                    //     }
-                    // }
+                    &:first-child{
+                        justify-content: space-between;
+                        .textInfo{
+                            color: #007CEA;
+                        }
+                    }
                     .textHeader{
                         width: 4.1rem;
                         display: flex;
@@ -630,9 +630,6 @@ export default {
                         color: #000000;
                         letter-spacing: 0;
                     }
-                    .warn{
-                        color: #FFA007;
-                    }   
                 }
                 &:last-child{
                     border-bottom: none;

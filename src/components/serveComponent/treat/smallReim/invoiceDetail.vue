@@ -68,7 +68,7 @@
             </div>
             <div class="InfoLine">
                 <div class="InfoName"><span>报销说明:</span></div>
-                <div class="InfoText"><span>{{form.AAE013}}</span></div>
+                <div class="InfoText"><span>{{form.AAE013==true?form.AAE013:"已报销"}}</span></div>
             </div>
         </div>
     </div>
