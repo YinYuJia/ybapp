@@ -222,7 +222,7 @@ export default {
                 }
                 .InfoText{
                     width: 4.5rem;
-                    color: 000;
+                    color: #000;
                     line-height: 1.2rem;
                     display: flex;
                     position: relative;
