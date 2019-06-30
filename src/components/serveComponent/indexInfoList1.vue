@@ -240,7 +240,7 @@
                         },
                         onFail: function(error) {
                             console.log(error)
-                            _this.$toast("请升级版本")
+                            _this.$toast("请升级浙理办APP版本")
                         }
                     })
                 })
@@ -266,7 +266,7 @@
                         },
                         onFail: function(error) {
                             console.log(error)
-                            _this.$toast("请升级版本")
+                            _this.$toast("请升级浙理办APP版本")
                         }
                     })
                 })
@@ -292,7 +292,7 @@
                         },
                         onFail: function(error) {
                             console.log(error)
-                            _this.$toast("请升级版本")
+                            _this.$toast("请升级浙理办APP版本")
                         }
                     })
                 })
