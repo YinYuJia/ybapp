@@ -4,7 +4,7 @@
         <div class="indexHeader">
             <svg-icon icon-class="serveComponent_background" />
             <div class="headerText">医疗保障专区</div>
-            <div class="headerInfo">汇总浙江省医疗保障服务</div>
+            <div class="headerInfo">汇聚浙江省医疗保障服务</div>
             <div class="headerPad" @click="hint">
                 <div class="iconBox" @click="hint">
                     <svg-icon v-if="0" icon-class="serveComponent_icon1" />
@@ -45,7 +45,7 @@
                     <svg-icon icon-class="serveComponent_icon_19" />
                     <div class="text">就医信息</div>
                 </div>
-                <div class="iconBox" v-if="iconFlag" @click="showDetail('searchProgress','我的事项')">
+                <div class="iconBox"  @click="showDetail('searchProgress','我的事项')">
                     <svg-icon icon-class="serveComponent_icon8" />
                     <div class="text">办事进度</div>
                 </div>
