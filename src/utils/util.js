@@ -89,12 +89,18 @@ function postOffic(value){
 //     }
 // }
 function passPort(value){
-    if(value && (!/^((1[45]\d{7})|(G\d{8})|(P\d{7})|(S\d{7,8})|(DE\d{7}))?$/.test(value))){
-        console.log("失败")
-        return false;
-    }else{
-        console.log("成功")
+    // if(value && (!/^((1[45]\d{7})|(G\d{8})|(P\d{7})|(S\d{7,8})|(DE\d{7}))?$/.test(value))){
+    //     console.log("失败")
+    //     return false;
+    // }else{
+    //     console.log("成功")
+    //     return true;
+    // }
+    var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+    if(reg.test(value)){
         return true;
+    }else{
+        return false;
     }
 }
 function decimalPoint(num){  
