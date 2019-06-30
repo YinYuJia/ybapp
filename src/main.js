@@ -142,17 +142,15 @@ function  paramStr(name){
 
 console.log('欢迎进入医保专区首页main.js')
 
-
 import Vconsole from 'vconsole';
-let vConsole = new Vconsole()
+var vConsole = new Vconsole()
 export default vConsole;
-
-
 
 // 1  网新恩普包  2  浙理办包
 Vue.prototype.$build = "1"
 
 const isShow = false
+
 
 if (isShow ) {
   router.beforeEach((to, from, next) => {
