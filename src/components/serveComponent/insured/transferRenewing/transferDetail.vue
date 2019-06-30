@@ -35,6 +35,12 @@ export default {
             AAA027000: '', //转出地
             AAB301000: '', //转入地
             form:{},
+            arr:[
+                {step:1,name:'收件'},
+                {step:2,name:'受理'},
+                {step:3,name:'转移'},
+                {step:4,name:'办结'},
+            ],
             currentStep:1,
             handleNumber:'',
             List:[],
@@ -106,6 +112,9 @@ export default {
                     if(this.form.AAQ027VALUE==undefined){
                         this.AAA027000=this.form.AAS027VALUE+this.form.AAA027VALUE
                     }
+                    if(this.form.AAB027VALUE==undefined){
+                        this.AAA027000=this.form.AAS027VALUE+this.form.AAQ027VALUE
+                    }
                     if(this.form.AAQ301VALUE==undefined){
                         this.AAB301000=this.form.AAS301VALUE+this.form.AAB301VALUE
                     }
@@ -125,7 +134,7 @@ export default {
             let submitForm ={}
             submitForm.AGA002 =  "331400512001";
             // submitForm.debugTest =  "true";
-
+            submitForm.BKZ019=this.$route.query.param||""
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
