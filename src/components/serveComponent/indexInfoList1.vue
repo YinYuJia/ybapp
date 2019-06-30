@@ -5,27 +5,28 @@
             <svg-icon icon-class="serveComponent_background" />
             <div class="headerText">医疗保障专区</div>
             <div class="headerInfo">汇聚浙江省医疗保障服务</div>
-            <div class="headerPad" @click="hint">
-                <div class="iconBox" @click="hint">
-                    <svg-icon v-if="0" icon-class="serveComponent_icon1" />
-                    <svg-icon v-if="1" icon-class="serveComponent_grey_1" />
+            <div class="headerPad" >
+                <div class="iconBox" @click="socialCard">
+                    <svg-icon v-if="1" icon-class="serveComponent_icon1" />
+                    <svg-icon v-if="0" icon-class="serveComponent_grey_1" />
                     <div class="text">电子社保卡</div>
                 </div>
-                <div class="iconBox" @click="hint">
-                    <svg-icon v-if="0" icon-class="serveComponent_icon2" />
-                    <svg-icon v-if="1" icon-class="serveComponent_grey_2" />
+                <div class="iconBox" @click="payCode">
+                    <svg-icon v-if="1" icon-class="serveComponent_icon2" />
+                    <svg-icon v-if="0" icon-class="serveComponent_grey_2" />
                     <div class="text">支付码</div>
                 </div>
-                <div class="iconBox" @click="hint">
-                    <svg-icon v-if="0" icon-class="serveComponent_icon3" />
-                    <svg-icon v-if="1" icon-class="serveComponent_grey_3" />
-                    <div class="text">医保账户</div>
-                </div>
-                <div class="iconBox" @click="hint">
-                    <svg-icon v-if="0" icon-class="serveComponent_icon4" />
-                    <svg-icon v-if="1" icon-class="serveComponent_grey_4" />
+                <div class="iconBox" @click="movePay">
+                    <svg-icon v-if="1" icon-class="serveComponent_icon4" />
+                    <svg-icon v-if="0" icon-class="serveComponent_grey_4" />
                     <div class="text">移动支付</div>
                 </div>
+                <div class="iconBox" @click="showDetail('medicalInsuranceAccount','医保账户')">
+                    <svg-icon v-if="1" icon-class="serveComponent_icon3" />
+                    <svg-icon v-if="0" icon-class="serveComponent_grey_3" />
+                    <div class="text">医保账户</div>
+                </div>
+
             </div>
         </div>
         <!-- 图标列表 -->
@@ -219,6 +220,8 @@
             },
             //移动支付
             movePay(){
+
+                let _this = this
                 dd.ready({
                     developer: 'daip@dtdream.com',
                     usage: [
@@ -237,12 +240,14 @@
                         },
                         onFail: function(error) {
                             console.log(error)
+                            _this.$toast("请升级版本")
                         }
                     })
                 })
             },
             //支付码
             payCode(){
+                let _this = this
                 dd.ready({
                     developer: 'daip@dtdream.com',
                     usage: [
@@ -261,12 +266,14 @@
                         },
                         onFail: function(error) {
                             console.log(error)
+                            _this.$toast("请升级版本")
                         }
                     })
                 })
             },
             //电子社保卡
             socialCard(){
+                let _this = this
                 dd.ready({
                     developer: 'daip@dtdream.com',
                     usage: [
@@ -285,6 +292,7 @@
                         },
                         onFail: function(error) {
                             console.log(error)
+                            _this.$toast("请升级版本")
                         }
                     })
                 })
@@ -424,6 +432,16 @@
                     
                     this.$toast(tipstr + "服务暂未开通")
                     return;
+                }
+
+                 
+                // 医保账户 只有省本级能点
+                if (url == 'medicalInsuranceAccount' ) {
+                    if (tip != '339900') {
+                           
+                        this.$toast(tipstr + "服务暂未开通")
+                        return;
+                    }
                 }
                 //  台州市只能点转移接续
                 // if ( url == "smallReim" ) {
