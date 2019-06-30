@@ -11,7 +11,7 @@
                 <div class="EditBtn" @click="edit()">编辑</div>
             </div>
         </footer> -->
-        <footer class="Footer" v-if="btnType == 2">
+        <footer class="SecondFooter" v-if="btnType == 2">
             <div class="Btn">
                 <button class="ResetBtn" @click="backout()" :disabled="isAble">撤销</button>
             </div>
@@ -103,7 +103,8 @@ export default {
     }
 }
 // 底部
-.Footer {
+.SecondFooter {
+    display: none;
     height: 1.31rem;
     width: 7.5rem;
     padding: 0 .2rem;

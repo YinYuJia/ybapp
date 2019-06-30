@@ -44,6 +44,15 @@ function checkPhone(phoneStr){
     }
     return true;
   }
+// 检验姓名
+function checkName(name){
+    var reg = /[0-9]/;
+    if(reg.test(name)){
+        return true;
+    }else{
+        return false;
+    }
+}
 /**
  * 身份证号码校验
  */
@@ -109,6 +118,7 @@ export default{
     DateToNumber,
     NumberToDate,
     checkPhone,
+    checkName,
     idCard,
     postOffic,
     passPort,

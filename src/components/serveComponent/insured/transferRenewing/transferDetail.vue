@@ -3,7 +3,7 @@
         <Title :title="'医保转移接续'" :backRouter="'/transferRenewing'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
-            <WorkProgress :currentStep="currentStep" :progress=arr ></WorkProgress>
+            <WorkProgress :currentStep="currentStep"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">

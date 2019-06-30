@@ -52,10 +52,10 @@
                 </div>
             </div>
             <div class="searchPlace" v-if="form.BKE247 == '1'">
-                <div class="searchBtn" @click="openHospital">点击查看附近领取网点</div>
+                <div class="searchBtn" @click="openHospital">点击查看领取网点</div>
             </div>
             <!-- 就诊机构 -->
-            <SearchInfoPage ref="org"></SearchInfoPage>
+            <SearchInfoPage ref="org" type="AKB020_HZ"></SearchInfoPage>
             <!-- 回显图片 -->
             <div class="PhotoInfo">
                 <!-- <div class="infoName">1、规定病种待遇备案表（医院盖章）</div> -->

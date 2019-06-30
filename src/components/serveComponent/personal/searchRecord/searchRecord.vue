@@ -3,26 +3,26 @@
         <Title :title="'个人备案信息'" :backRouter="'/'"></Title>
         <div class="Content">
             <!-- 列表信息 -->
-            <div class="ListInfo">
+            <div class="ListInfo" v-for="(item,index) in List" :key="index">
                 <div class="InfoLine">
                     <div class="InfoName"><span>备案号：</span></div>
-                    <div class="InfoText">{{form.AAZ267}}</div>
+                    <div class="InfoText">{{item.AAZ267}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>备案类型：</span></div>
-                    <div class="InfoText">{{form.AKA083}}</div>
+                    <div class="InfoText">{{item.AKA083}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>审核状态：</span></div>
-                    <div class="InfoText">{{form.AAE016}}</div>
+                    <div class="InfoText">{{item.AAE016}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>备案来源：</span></div>
-                    <div class="InfoText">{{form.BKE258 || "暂无" | BKE258()}}</div>
+                    <div class="InfoText">{{item.BKE258 || "暂无" | BKE258()}}</div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>备案期限：</span></div>
-                    <div class="InfoText">{{form.AAE031}}</div>
+                    <div class="InfoText">{{item.AAE031}}</div>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                     if ( resData.enCode == 1000 ) {
-                        this.form ={...this.from,...resData.LS_DS[0]}
+                        this.List =[...this.List,...resData.LS_DS]
                     }else if (resData.enCode == 1001 ) {
                     //   失败  1001
                         this.$toast(resData.msg);
@@ -92,6 +92,7 @@ export default {
         .ListInfo{
             width: 7.5rem;
             padding: 0 .3rem;
+            margin-bottom: .3rem;
             background: white;
             .InfoLine{
                 height: 1.2rem;
