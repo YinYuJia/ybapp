@@ -242,7 +242,7 @@
       },
       //  安卓  ios  交互方法 
       setOrderList: function(a, b, c) {
-        alert("33333333333333333333")
+        // alert("33333333333333333333")
         this.As = "" + a + ""
         this.Bs = "" + b + ""
         this.Cs = "" + c + ""
