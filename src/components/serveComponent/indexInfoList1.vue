@@ -190,9 +190,9 @@
             console.log("$build",this.$build)
             //  切换打包环境  1 网新恩普包  2  浙理办包
             if (this.$build =="1" ) {
-                this.ifShow == true   //显示输入人名社保卡
-            }else if((this.$build == "2" )){
-                this.ifShow == false; //隐藏输入人名社保卡
+                this.ifShow = true   //显示输入人名社保卡
+            }else if( this.$build == "2" ){
+                this.ifShow = false; //隐藏输入人名社保卡
                 this.setNativeMsg();  //浙理办打包需要打开 
                 this.getUserRegion();  // 自动获取参保地
             }
