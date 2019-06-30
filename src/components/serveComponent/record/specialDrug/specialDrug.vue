@@ -301,8 +301,8 @@ export default {
           val.AKA071 != "" && //单位剂量
           val.AKC226 != "" && //数量
           val.AAE030 != "" && //开始日期
-          val.AAE031 != ""  //结束日期
-          // val.photoIdList.length>0 //照片数组
+          val.AAE031 != "" && //结束日期
+          val.photoIdList.length>0 //照片数组
         ) {
           this.canSubmit = true;
         } else {
