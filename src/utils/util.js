@@ -44,6 +44,15 @@ function checkPhone(phoneStr){
     }
     return true;
   }
+// 检验姓名
+function checkName(name){
+    var reg = /[0-9]/;
+    if(reg.test(name)){
+        return true;
+    }else{
+        return false;
+    }
+}
 /**
  * 身份证号码校验
  */
@@ -80,12 +89,18 @@ function postOffic(value){
 //     }
 // }
 function passPort(value){
-    if(value && (!/^((1[45]\d{7})|(G\d{8})|(P\d{7})|(S\d{7,8})|(DE\d{7}))?$/.test(value))){
-        console.log("失败")
-        return false;
-    }else{
-        console.log("成功")
+    // if(value && (!/^((1[45]\d{7})|(G\d{8})|(P\d{7})|(S\d{7,8})|(DE\d{7}))?$/.test(value))){
+    //     console.log("失败")
+    //     return false;
+    // }else{
+    //     console.log("成功")
+    //     return true;
+    // }
+    var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+    if(reg.test(value)){
         return true;
+    }else{
+        return false;
     }
 }
 function decimalPoint(num){  
@@ -109,6 +124,7 @@ export default{
     DateToNumber,
     NumberToDate,
     checkPhone,
+    checkName,
     idCard,
     postOffic,
     passPort,

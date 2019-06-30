@@ -134,6 +134,7 @@ export default {
                 console.log(submitForm)
                 submitForm.AGA002 =  "330800123004";
                 // 加入用户名和电子社保卡号
+                submitForm.BKZ019=this.$route.query.param||""
                 if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                     submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;
                     submitForm.AAE135 = this.$store.state.SET_NATIVEMSG.idCard;

@@ -55,7 +55,7 @@
                 <div class="searchBtn" @click="openHospital">点击查看领取网点</div>
             </div>
             <!-- 就诊机构 -->
-            <SearchInfoPage ref="org"></SearchInfoPage>
+            <SearchInfoPage ref="org" type="AKB020_HZ"></SearchInfoPage>
             <!-- 回显图片 -->
             <div class="PhotoInfo">
                 <!-- <div class="infoName">1、规定病种待遇备案表（医院盖章）</div> -->
@@ -205,7 +205,7 @@ export default {
             let submitForm ={}
             submitForm.AGA002 =  "330800253004";
             // submitForm.debugTest =  "true";
-
+            submitForm.BKZ019=this.$route.query.param||""
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

@@ -43,8 +43,6 @@
             <SearchInfoPage ref="org" type="AKB020_HZ"></SearchInfoPage>
         </div>
         <Success :flag="successFlag"></Success>
-        <!-- 就诊机构 -->
-        <SearchInfoPage ref="org"></SearchInfoPage>
         <!-- 底部 -->
         <Footer :btnType="2" v-if="currentStep==1" @backout="backout()"  @edit="edit()" :handleNumber="handleNumber"></Footer>
     </div>
@@ -184,7 +182,7 @@ export default {
             let submitForm ={}
             submitForm.AGA002 =  "330800122043";
             // submitForm.debugTest =  "true";
-
+            submitForm.BKZ019=this.$route.query.param||""
             // 加入用户名和电子社保卡号
             if (this.$store.state.SET_NATIVEMSG.name !== undefined ) {
                 submitForm.AAC003 = this.$store.state.SET_NATIVEMSG.name;

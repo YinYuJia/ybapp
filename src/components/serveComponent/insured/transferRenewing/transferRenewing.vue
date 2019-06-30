@@ -103,6 +103,9 @@ export default {
                     if(val.AAA027000==val.AAB301000){
                         this.$toast('转出地不能与转入地相同');
                         this.form.AAA027000 = '';
+                        this.form.AAS027="";
+                        this.form.AAA027="";
+                        this.form.AAQ027=""
                     }
                 }
                 },
