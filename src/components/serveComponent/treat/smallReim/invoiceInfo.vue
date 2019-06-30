@@ -298,6 +298,8 @@ export default {
                 console.log(this.picArrNum);
                 
                 this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
+                console.log('要提交的发票信息',this.$store.state.SET_SMALL_REIM_2.eleInvoices);
+                
                 this.$router.push('/infoRecord');
                
             }
