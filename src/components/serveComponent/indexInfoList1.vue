@@ -425,13 +425,13 @@
                     this.$toast(tipstr + "服务暂未开通")
                     return;
                 }
-
-                if ( url == "smallReim" ) {
-                    if ( tip != "339900" ) {
-                        this.$toast(tipstr + "服务暂未开通")
-                        return
-                    }
-                }
+                //  台州市只能点转移接续
+                // if ( url == "smallReim" ) {
+                //     if ( tip != "339900" ) {
+                //         this.$toast(tipstr + "服务暂未开通")
+                //         return
+                //     }
+                // }
                 let str = sessionStorage.getItem("GinsengLandCode")
                 console.log('str', str)
                 if (str == "" || str == undefined || str == null) {
