@@ -3,7 +3,7 @@
         <Title :title="'医保转移接续'" :backRouter="'/transferRenewing'"></Title>
         <div class="Content">
             <!-- 办事进度 -->
-            <WorkProgress :currentStep="currentStep" :progress=arr ></WorkProgress>
+            <WorkProgress :currentStep="currentStep"></WorkProgress>
             <!-- 邮递信息 -->
             <div class="MailInfo">
                 <div class="InfoLine">
@@ -35,12 +35,6 @@ export default {
             AAA027000: '', //转出地
             AAB301000: '', //转入地
             form:{},
-            arr:[
-                {step:1,name:'收件'},
-                {step:2,name:'转移'},
-                {step:3,name:'接续'},
-                {step:4,name:'办结'},
-            ],
             currentStep:1,
             handleNumber:'',
             List:[],
