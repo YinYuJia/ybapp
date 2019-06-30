@@ -15,7 +15,7 @@
             <div class="ReportInfo">
                 <div class="InfoLine">
                     <div class="InfoName"><span>发票号码：</span></div>
-                    <div class="InfoText"><input type="text" v-model="form.BKE100" @input="maxLength10" placeholder="请输入"></div>
+                    <div class="InfoText"><input type="text" v-model="form.BKE100" placeholder="请输入"></div>
                 </div>
                 <div class="InfoLine">
                     <div class="InfoName"><span>发票金额：</span></div>
@@ -61,7 +61,6 @@ export default {
     },
     created(){
         this.epFn.setTitle('零星报销')
-        console.log(this.$store.state.SET_SMALL_REIM_2,'this.$store.state.SET_SMALL_REIM_2');
     },
     watch: {
         form: {
@@ -107,6 +106,14 @@ export default {
                 this.$toast("请先填写发票信息")
                 return
             }
+            let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
+            for(let i=0;i<SET_SMALL_REIM_2.eleInvoices.length;i++){
+                if(SET_SMALL_REIM_2.eleInvoices[i].BKE100 == this.form.BKE100){
+                    this.$toast("该发票已添加")
+                    return
+                }
+            }
+            alert(1)
             let This = this
             if(this.$isSdk){
                 dd.ready({
@@ -199,12 +206,7 @@ export default {
                     
                         let submitForm = JSON.parse(JSON.stringify(this.form));
                         let SET_SMALL_REIM_2 = this.$store.state.SET_SMALL_REIM_2
-                        for(let i=0;i<SET_SMALL_REIM_2.eleInvoices.length;i++){
-                            if(SET_SMALL_REIM_2.eleInvoices[i].BKE100 == this.form.BKE100){
-                                this.$toast("该发票已添加")
-                                return
-                            }
-                        }
+                        
                         SET_SMALL_REIM_2.eleInvoices.push(submitForm)
                         this.$store.dispatch('SET_SMALL_REIM_2',SET_SMALL_REIM_2)
                         this.$router.push('invoiceInfo')
