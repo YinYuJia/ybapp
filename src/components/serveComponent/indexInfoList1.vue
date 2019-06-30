@@ -101,7 +101,7 @@
             <div class="btn" @click="changeUsername(true)">更改用户名</div>
             <div class="btn" @click="changeUserCode(true)">更改社保卡号</div>
         </div>
-        <!-- 热点资讯 -->
+        <!-- 热点资讯 -->   
         <!-- <div class="hotMsg">
             <div class="hotHeader">热点资讯</div>
             <div class="msgLine" v-for="(item,index) in hotMsg" :key="index">
