@@ -75,6 +75,11 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../../static/zjybapp-static-h5'),  //  本地打
+
+    
+    // index: path.resolve(__dirname, '../dist/index.html'),  //浙理办打包
+    // assetsRoot: path.resolve(__dirname, '../dist'), //浙理办打包
+    
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
 

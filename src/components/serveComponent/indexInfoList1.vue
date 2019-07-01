@@ -52,6 +52,8 @@
                 </div>
                 <div class="iconBox" v-if="!iconFlag">
                 </div>
+                <!-- <div class="iconBox" v-if="!iconFlag">
+                </div> -->
             </div>
             <div class="iconList">
                 <div class="iconBox" v-if="iconFlag" @click="showDetail('searchBaseInfo','个人信息查询')">
@@ -238,7 +240,7 @@
                         },
                         onFail: function(error) {
                             console.log(error)
-                            _this.$toast("请升级版本")
+                            _this.$toast("请升级浙里办APP版本")
                         }
                     })
                 })
@@ -264,7 +266,7 @@
                         },
                         onFail: function(error) {
                             console.log(error)
-                            _this.$toast("请升级版本")
+                            _this.$toast("请升级浙里办APP版本")
                         }
                     })
                 })
@@ -290,7 +292,7 @@
                         },
                         onFail: function(error) {
                             console.log(error)
-                            _this.$toast("请升级版本")
+                            _this.$toast("请升级浙里办APP版本")
                         }
                     })
                 })

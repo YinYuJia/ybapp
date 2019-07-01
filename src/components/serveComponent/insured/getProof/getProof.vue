@@ -97,7 +97,7 @@ export default {
             canSubmit: false,
             optionList: [], //所有地区
             AAC050s: [
-                {value: '1',label: '变更'},
+                {value: '1',label: '更换'},
                 {value: '2',label: '补办'}
             ], 
             BKA077s: [
