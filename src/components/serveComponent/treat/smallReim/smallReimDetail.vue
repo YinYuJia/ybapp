@@ -136,7 +136,7 @@ export default {
         this.epFn.setTitle('零星报销')
         let params = this.formatSubmitForm();
         this.request()
-        this.request1()
+        
         this.request2()
         this.needSubmitInfo();  //判断是否需要提交资料
         console.log(params);
@@ -171,6 +171,7 @@ export default {
             picArr:[],
             photoIdList:[],
             imgUrl: '',
+            BKZ019:""
         }
     },
     methods:{
@@ -402,6 +403,12 @@ export default {
                     
                     this.$toast("未获取到人员基本信息");
                 }      
+                // if(this.$route.query.param){
+                //     submitForm.BKZ019 = this.$route.query.param
+                // }else{
+                    submitForm.BKZ019 = this.BKZ019
+                // }
+                
                 // 请求参数封装
                 const params = this.epFn.commonRequsetData(this.$store.state.SET_NATIVEMSG.PublicHeader,submitForm,"1031");
                 return params;
@@ -412,6 +419,8 @@ export default {
                 console.log('返回成功信息',resData)
                 //   成功   1000
                 if ( resData.enCode == 1000 ) {  
+                    this.BKZ019 = resData.LS_DS_08.BKZ019
+                    this.request1()
                     // this.form3={...this.form3,...resData.LS_DS_08}
                     let LS=resData.LS_DS_08
                     this.form3={...this.form3,...LS}
