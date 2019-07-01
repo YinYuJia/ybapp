@@ -127,7 +127,7 @@
             form: {
                 handler: function(val) {
                     // 判断不为空
-                    if (this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' &&val.photoIdList.length>0) {
+                    if (this.AAB301000 != '' && val.AAE030 != '' && val.AAE031 != '' && val.AKB020 != '' && val.BKE260 != '' && val.photoIdList.length>0) {
                         this.canSubmit = true;
                     } else {
                         this.canSubmit = false;
@@ -265,8 +265,9 @@
             } else {
                 this.$store.dispatch('SET_ABROADTAKE_OPERATION', this.form);
                 this.form.BKE260 = this.form.BKE260.toUpperCase(); //将所有小写字母转换为大写
-                if (!this.util.passPort(this.form.BKE260)) {
+                if (this.util.passPort(this.form.BKE260)) {
                     this.$toast("护照号码格式不正确");
+                    console.log("出错");
                     return false;
                 }
                 // 封装数据
