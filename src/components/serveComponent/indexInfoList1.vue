@@ -52,8 +52,6 @@
                 </div>
                 <div class="iconBox" v-if="!iconFlag">
                 </div>
-                <div class="iconBox" v-if="!iconFlag">
-                </div>
             </div>
             <div class="iconList">
                 <div class="iconBox" v-if="iconFlag" @click="showDetail('searchBaseInfo','个人信息查询')">
