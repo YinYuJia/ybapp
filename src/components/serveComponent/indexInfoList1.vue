@@ -124,7 +124,8 @@
     import Swiper from 'swiper';
     import {
         MessageBox
-    } from 'mint-ui'
+    } from 'mint-ui';
+
     export default {
         data() {
            
@@ -156,9 +157,6 @@
             })
         },
         created() {
-
-
-            console.log(21000 * 0.87)
             // 清空零星报销的Vuex
             let SET_SMALL_REIM_SUBMIT={
                 AAS301: '', //参保地统筹省编码
@@ -207,7 +205,30 @@
             }else{
                 this.iconFlag = false;  //其他情况设置为false
             }
+            
+            // 设置标题
+            // this.$ep.setTitle("sssssssssssssssssssssssss")
+            // 选择图片
+            // this.$ep.chooseImage((data)=> {
+            //     console.log('chooseImage成功回调',data)
 
+            // },(error)=> {
+            //     console.log('chooseImage失败回调',error)
+            // });
+            // 获取当前城市信息
+            this.$ep.selectLocalCity((data) => {
+                console.log('selectLocalCity成功回调',data)
+                            
+            },(error)=> {
+                console.log('selectLocalCity失败回调',error)
+            })
+            // 获取当前地理位置
+            
+            this.$ep.locationGet((data) => {
+                console.log('locationGet成功回调',data)
+            },(error)=> {
+                console.log('locationGet失败回调',error)
+            })
         },
         filters: {
             msgLength: function(val) {

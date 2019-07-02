@@ -8,6 +8,10 @@ import App from './App'
 import router from './router'
 import './common/css/base.css';
 import epFn from './common/js/common.js';
+
+import ep from './common/js/epsdk'
+Vue.prototype.$ep = ep
+
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 
@@ -62,7 +66,8 @@ Vue.config.productionTip = false;
   Vue.prototype.$isSdk = true
 
 }
-Object.keys(filters).forEach(key => {
+
+Object.keys(filters).forEach(key => { //过滤器
   Vue.filter(key, filters[key])
 })
 
