@@ -141,7 +141,7 @@ export default {
                             
                             this.$router.push('/insuredDownload');
                         }else if(resData.enCode==1001){
-                            this.$toast(resData.meg)
+                            this.$toast(resData.msg)
                         }
                     })
                     .catch((error) => {

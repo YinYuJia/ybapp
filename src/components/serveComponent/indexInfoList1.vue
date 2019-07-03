@@ -279,7 +279,7 @@
                     dd.biz.navigation.open({
                         pageId: 'card',
                         params:{
-                            id:"socialCard",
+                            id:"medicalPayCard",
                             functionType:2//1社保卡首页 2打开社保卡支付码 3打开社保卡关联页
                         },
                         onSuccess: function(data) {
@@ -293,7 +293,7 @@
                 })
             },
             //电子社保卡
-            socialCard(){
+            l(){
                 let _this = this
                 dd.ready({
                     developer: 'daip@dtdream.com',
