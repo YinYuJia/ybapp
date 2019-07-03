@@ -69,4 +69,46 @@ export default  {
               })
           })
      },
+     locationGet(onSuccess,onFail ) {
+        dd.ready({
+            developer: 'daip@dtdream.com',
+            usage: [
+              'dd.device.location.get',
+            ],
+            remark: '描述业务场景'
+          }, function() {
+            dd.device.location.get ({
+                onSuccess: (data) => {
+                    onSuccess(data)
+                },
+                onFail: (error) => {
+                    onFail(error)
+                }
+              })
+          })
+     },
+    //  移动支付
+     mobelPay(onSuccess,onFail) {
+        dd.ready({
+            developer: 'daip@dtdream.com',
+            usage: [
+              'dd.biz.navigation.open',
+            ],
+            remark: '移动支付'
+          }, function() {
+            dd.biz.navigation.open ({
+                pageId: 'card',
+                params:{
+                    id:"medicalPayCard",
+                    functionType:1//1医保SDK
+                },
+                onSuccess: (data) => {
+                    onSuccess(data)
+                },
+                onFail: (error) => {
+                    onFail(error)
+                }
+              })
+          })
+     }
 }

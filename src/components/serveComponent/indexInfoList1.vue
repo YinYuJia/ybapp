@@ -229,6 +229,12 @@
             },(error)=> {
                 console.log('locationGet失败回调',error)
             })
+            // 移动支付
+            // this.$ep.mobelPay((data) => {
+            //     console.log('locationGet成功回调',data)
+            // },(error)=> {
+            //     console.log('locationGet失败回调',error)
+            // })
         },
         filters: {
             msgLength: function(val) {
@@ -241,7 +247,7 @@
             },
             //移动支付
             movePay(){
-
+                
                 let _this = this
                 dd.ready({
                     developer: 'daip@dtdream.com',
@@ -293,7 +299,7 @@
                 })
             },
             //电子社保卡
-            l(){
+            socialCard(){
                 let _this = this
                 dd.ready({
                     developer: 'daip@dtdream.com',
