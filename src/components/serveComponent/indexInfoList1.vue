@@ -235,6 +235,18 @@
             // },(error)=> {
             //     console.log('locationGet失败回调',error)
             // })
+            // 支付码
+            // this.$ep.payCode((data) => {
+            //     console.log('locationGet成功回调',data)
+            // },(error)=> {
+            //     console.log('locationGet失败回调',error)
+            // })
+            // 电子社保卡
+            // this.$ep.socialCard((data) => {
+            //     console.log('locationGet成功回调',data)
+            // },(error)=> {
+            //     console.log('locationGet失败回调',error)
+            // })
         },
         filters: {
             msgLength: function(val) {

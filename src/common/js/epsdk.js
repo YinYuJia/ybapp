@@ -110,5 +110,53 @@ export default  {
                 }
               })
           })
-     }
+     },
+    //  支付码
+     payCode(onSuccess,onFail) {
+        dd.ready({
+            developer: 'daip@dtdream.com',
+            usage: [
+              'dd.biz.navigation.open',
+            ],
+            remark: '支付码'
+          }, function() {
+            dd.biz.navigation.open ({
+                pageId: 'card',
+                params:{
+                    id:"medicalPayCard",
+                    functionType:2//1社保卡首页 2打开社保卡支付码 3打开社保卡关联页
+                    },
+                onSuccess: (data) => {
+                    onSuccess(data)
+                },
+                onFail: (error) => {
+                    onFail(error)
+                }
+              })
+          })
+     },
+    //  电子社保卡
+     socialCard(onSuccess,onFail) {
+        dd.ready({
+            developer: 'daip@dtdream.com',
+            usage: [
+              'dd.biz.navigation.open',
+            ],
+            remark: '支付码'
+          }, function() {
+            dd.biz.navigation.open ({
+                pageId: 'card',
+                params:{
+                    id:"socialCard",
+                    functionType:1//1社保卡首页 2打开社保卡支付码 3打开社保卡关联页
+                },
+                onSuccess: (data) => {
+                    onSuccess(data)
+                },
+                onFail: (error) => {
+                    onFail(error)
+                }
+              })
+          })
+     },
 }
