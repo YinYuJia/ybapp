@@ -55,8 +55,8 @@
                 </div>
                 <div class="iconBox" v-if="!iconFlag">
                 </div>
-                <div class="iconBox" v-if="!iconFlag">
-                </div>
+                <!-- <div class="iconBox" v-if="!iconFlag">
+                </div> -->
             </div>
             <div class="iconList">
                 <div class="iconBox" @click="showDetail('searchBaseInfo','个人信息查询',true)">
@@ -130,7 +130,8 @@
     import Swiper from 'swiper';
     import {
         MessageBox
-    } from 'mint-ui'
+    } from 'mint-ui';
+
     export default {
         data() {
            
@@ -162,9 +163,6 @@
             })
         },
         created() {
-
-
-            console.log(21000 * 0.87)
             // 清空零星报销的Vuex
             let SET_SMALL_REIM_SUBMIT={
                 AAS301: '', //参保地统筹省编码
@@ -213,7 +211,48 @@
             }else{
                 this.iconFlag = false;  //其他情况设置为false
             }
+            
+            // 设置标题
+            // this.$ep.setTitle("sssssssssssssssssssssssss")
+            // 选择图片
+            // this.$ep.chooseImage((data)=> {
+            //     console.log('chooseImage成功回调',data)
 
+            // },(error)=> {
+            //     console.log('chooseImage失败回调',error)
+            // });
+            // 获取当前城市信息
+            this.$ep.selectLocalCity((data) => {
+                console.log('selectLocalCity成功回调',data)
+                            
+            },(error)=> {
+                console.log('selectLocalCity失败回调',error)
+            })
+            // 获取当前地理位置
+            
+            this.$ep.locationGet((data) => {
+                console.log('locationGet成功回调',data)
+            },(error)=> {
+                console.log('locationGet失败回调',error)
+            })
+            // 移动支付
+            // this.$ep.mobelPay((data) => {
+            //     console.log('locationGet成功回调',data)
+            // },(error)=> {
+            //     console.log('locationGet失败回调',error)
+            // })
+            // 支付码
+            // this.$ep.payCode((data) => {
+            //     console.log('locationGet成功回调',data)
+            // },(error)=> {
+            //     console.log('locationGet失败回调',error)
+            // })
+            // 电子社保卡
+            // this.$ep.socialCard((data) => {
+            //     console.log('locationGet成功回调',data)
+            // },(error)=> {
+            //     console.log('locationGet失败回调',error)
+            // })
         },
         filters: {
             msgLength: function(val) {
@@ -226,7 +265,7 @@
             },
             //移动支付
             movePay(){
-
+                
                 let _this = this
                 dd.ready({
                     developer: 'daip@dtdream.com',
@@ -264,7 +303,7 @@
                     dd.biz.navigation.open({
                         pageId: 'card',
                         params:{
-                            id:"socialCard",
+                            id:"medicalPayCard",
                             functionType:2//1社保卡首页 2打开社保卡支付码 3打开社保卡关联页
                         },
                         onSuccess: function(data) {

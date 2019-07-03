@@ -38,9 +38,12 @@
             </div> -->
             <div class="searchPlace" v-if="form.BKA077 == '0'">
                 <div class="searchBtn" @click="openHospital">点击查看领取网点</div>
+                <div class="searchBtn" @click="openBank">点击查看银行网点</div>
             </div>
             <!-- 就诊机构 -->
             <SearchInfoPage ref="org" type="AKB020_HZ"></SearchInfoPage>
+            <!-- 银行网点 -->
+            <SearchInfoPage ref="bank" type="AAE008"></SearchInfoPage>
         </div>
         <Success :flag="successFlag"></Success>
         <!-- 底部 -->
@@ -134,6 +137,10 @@ export default {
         // 打开医院列表
         openHospital(){
             this.$refs.org.open();
+        },
+        // 打开银行列表
+        openBank(){
+            this.$refs.bank.open();
         },
         request(){
             let params=this.formatSubmitData();
